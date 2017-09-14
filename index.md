@@ -50,7 +50,7 @@ For strategies and best practices to protecting a client secret refer to:
 if your app is *able to protect* a `client_secret`, e.g.:
 
 * App runs on a trusted server with only server-side access to the secret
-* App is a native app that uses more additional technology (such as dynamic client registration and universal redirect_uris) to protect the `client_secret`
+* App is a native app that uses additional technology (such as dynamic client registration and universal redirect_uris) to protect the `client_secret`
 
 #### Use the <span class="label label-primary">public app</span> profile 
 if your app is *unable to protect* a `client_secret`, e.g.:
