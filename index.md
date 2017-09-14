@@ -43,6 +43,8 @@ For strategies and best practices to protecting a client secret refer to:
 
 - OAuth 2.0 Threat Model and Security Considerations: [4.1.1. Threat: Obtaining Client Secrets](https://tools.ietf.org/html/rfc6819#section-4.1.1)
 - OAuth 2.0 for Native Apps: [8.5. Client Authentication](https://tools.ietf.org/html/draft-ietf-oauth-native-apps-12#section-8.5)
+- [OAuth 2.0 Dynamic Client Registration Protocol](https://tools.ietf.org/html/rfc7591)
+
 
 #### Use the <span class="label label-primary">confidential app</span> profile
 if your app is *able to protect* a `client_secret`, e.g.:
