@@ -48,14 +48,13 @@ For strategies and best practices to protecting a client secret refer to:
 if your app is *able to protect* a `client_secret`, e.g.:
 
 * App runs on a trusted server with only server-side access to the secret
-* App is a native app that uses dynamic client registration and secure url registration
-
+* App is a native app that uses more complex technolgies (such as dynamic client registration and universal redirect_uris) to protect the `client_secret`
 
 #### Use the <span class="label label-primary">public app</span> profile 
 if your app is *unable to protect* a `client_secret`, e.g.:
 
 * App is an HTML5/JS based in-browser app that would expose the secret in user space
-* App is a native app and doesn't use more complex OAuth2 features, (including dynamic client registration and secure url registration)
+* App is a native app that can only distribute a `client_secret` statically		
 
 
 ## Registering a SMART App with an EHR
