@@ -24,7 +24,7 @@ Here is a quick overview of the most commonly used scopes. Read on below for com
 |---|---
 |`patient/*.read`|Permission to read any resource for the current patient (see notes on wildcard scopes below)|
 |`user/*.*`| Permission to read and write all resources that the current user can access (see notes on wildcard scopes below)|
-| `openid` `profile`| Permission to retrieve information about the current logged-in user|
+| `openid` `fhirUser` (or `openid` `profile`)| Permission to retrieve information about the current logged-in user|
 |`launch`| Permission to obtain launch context when app is launched from an EHR|
 |`launch/patient`| When launching outside the EHR, ask for a patient to be selected at launch time|
 |`offline_access`| Request a `refresh_token` that can be used to obtain a new access token to replace an expired one, even after the end-user no longer is online after the access token expires|
@@ -252,16 +252,44 @@ that might occur from the immediate use of these values in the client app UI.
 ## Scopes for requesting identity data
 
 Some apps need to authenticate the clinical end-user. This can be accomplished
-by requesting a pair of OpenID Connect scopes: `openid` and  `profile`.
+by requesting a pair of OpenID Connect scopes: `openid` and  `fhirUser`. A
+client may also request `openid profile` instead of `openid fhirUser`, but the
+`profile` claim is being depreceated in favor of `fhirUser`.
 
 When these scopes are requested (and the request is granted), the app will
 receive an [`id_token`](http://openid.net/specs/openid-connect-core-1_0.html#CodeIDToken)
 that comes alongside the access token.
 
 This token must be [validated according to the OIDC specification](http://openid.net/specs/openid-connect-core-1_0.html#IDTokenValidation).
-To learn more about the user, the app should treat the "profile" claim as the URL of
+To learn more about the user, the app should treat the `fhirUser` claim as the URL of
 a FHIR resource representing the current user. This will be a resource of type
 `Patient`, `Practitioner`, `RelatedPerson`, or `Person`.  Note that `Person` is only used if the other resource type do not apply to the current user, for example, the "authorized representative" for >1 patients.
+=======
+
+The [OpenID Connect Core specification](http://openid.net/specs/openid-connect-core-1_0.html)
+describes a wide surface area with many optional capabilities. To be considered compatible
+with the SMART's `sso-openid-connect` capability, the following requirements apply:
+
+ * Response types: The EHR MUST support the Authorization Code Flow, with the request parameters [as defined in SMART's authorization guide](../). Support is not required for parameters that OIDC lists as optional (e.g. `id_token_hint`, `acr_value`), but EHRs are encouraged to review these optional parameters.
+ 
+ * Public Keys Published as Bare Keys: The EHR MUST publish public keys as base JWK keys (which MAY also be accompanied by X.509 representations of those keys).
+
+ * Claims: The EHR MUST support the inclusion of SMART's `fhirUser` claim within the `id_token` issued for any requests that grant the `openid` and `fhirUser` scopes.  Some EHRs may use the `profile` claim as an alias for `fhirUser`, and to preserve compatibility, these EHRs should continue to support this claim during a deprecation phase.
+ 
+ * Mandatory to Implement: The EHR MUST support the following features described in the ["Mandatory to Implement" Section 15.1 of the OIDC Core 1.0 Specification](http://openid.net/specs/openid-connect-core-1_0.html#ServerMTI):
+  * Signing ID Tokens with RSA SHA-256
+  * Prompt Parameter
+  * Display Parameter
+  * Preferred Locales
+  * Authentication Time
+  * Maximum Authentication Age
+  * Authentication Context Class Reference
+
+Note that support for the following features is optional:
+
+ * `claims` parameters on the authorization request
+ * Request Objects on the authorization request
+ * UserInfo endpoint with claims exposed to clients
 
 ## Scopes for requesting a refresh token
 
@@ -286,7 +314,7 @@ Additional context parameters and scopes can be used as extensions using the fol
  2. Perform a `GET {issuer}/.well-known/openid-configuration`
  3. Fetch the server's JSON Web Key by following the "jwks_uri" property
  4. Validate the token's signature against the public key from step #3
- 5. Extract the "profile" claim and treat it as the URL of a FHIR resource
+ 5. Extract the `fhirUser` claim and treat it as the URL of a FHIR resource
 
 ## Worked examples
 

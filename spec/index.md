@@ -281,7 +281,7 @@ URL.:
       <td>
 
 Must describe the access that the app needs, including clinical data scopes like
-<code>patient/*.read</code>, <code>openid</code> and <code>profile</code> (if app
+<code>patient/*.read</code>, <code>openid</code> and <code>fhirUser</code> (if app 
 needs authenticated patient identity) and either:
 
 <ul>
@@ -330,7 +330,7 @@ by the app). The app SHOULD limit the grants, scope, and period of
 time requested to the minimum necessary.
 
 If the app needs to authenticate the identity of the end-user, it should
-include two OpenID Connect scopes:  `openid` and `profile`.   When these scopes
+include two OpenID Connect scopes:  `openid` and `fhirUser`.   When these scopes
 are requested, and the request is granted, the app will receive an id_token
 along with the access token.  For full details, see [SMART launch context
 parameters](scopes-and-launch-context/index.html).
@@ -341,7 +341,7 @@ patient, and also wants information about the current logged-in user, the app  c
 
 * `patient/Patient.read`
 * `patient/Observation.read`
-* `openid profile`
+* `openid fhirUser`
 
 If the app was launched from an EHR, the app adds a `launch` scope and a
 `launch={launch id}` URL parameter, echoing the value it received from the EHR
@@ -369,7 +369,7 @@ Location: https://ehr/authorize?
             client_id=app-client-id&
             redirect_uri=https%3A%2F%2Fapp%2Fafter-auth&
             launch=xyz123&
-            scope=launch+patient%2FObservation.read+patient%2FPatient.read+openid+profile&
+            scope=launch+patient%2FObservation.read+patient%2FPatient.read+openid+fhirUser&
             state=98wrghuwuogerg97&
             aud=https://ehr/fhir
 ```
@@ -510,7 +510,7 @@ includes the following parameters:
     <tr>
       <td><code>id_token</code></td>
       <td><span class="label label-info">optional</span></td>
-      <td>Authenticated patient identity and profile, if requested</td>
+      <td>Authenticated patient identity and user details, if requested</td>
     </tr>
       <tr>
       <td><code>refresh_token</code></td>
