@@ -582,7 +582,6 @@ redirect_uri=https%3A%2F%2Fapp%2Fafter-auth
   "token_type": "bearer",
   "expires_in": 3600,
   "scope": "patient/Observation.read patient/Patient.read",
-  "state": "98wrghuwuogerg97",
   "intent": "client-ui-name",
   "patient":  "123",
   "encounter": "456"
