@@ -1,0 +1,16 @@
+{
+  "paths": {
+    "resources": ["resources"],
+    "specification": "http://hl7.org/fhir/smart-app-launch",
+    "pages": "spec",
+    "temp": "temp",
+    "output": "output",
+    "txCache": "txCache",
+    "qa": "qa"
+  },
+  "tool": "jekyll",
+  "resources": { },
+  "canonicalBase": "http://hl7.org/fhir/smart-app-launch",
+  "version": "3.0.1",
+  "source": "ig.xml"
+}
