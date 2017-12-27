@@ -331,7 +331,7 @@ along with the access token.  For full details, see [SMART launch context
 parameters](scopes-and-launch-context/index.html).
 
 #### *For example*
-An app that needs demographics and observations for a single
+If an app that needs demographics and observations for a single
 patient, and also wants information about the current logged-in user, the app  can request:
 
 * `patient/Patient.read`

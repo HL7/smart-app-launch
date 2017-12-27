@@ -45,7 +45,7 @@ the following internal components:
   </tbody>
 </table>
 
-# Publishing Additional Conformance Details
+## Publishing Additional Conformance Details
 
 A SMART on FHIR server should also describe which optional SMART features it
 supports by declaring a list of "capabilties". Details are [provided

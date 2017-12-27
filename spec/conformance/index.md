@@ -40,7 +40,7 @@ can publish its support for Core SMART on FHIR Support by including: [Core Capab
 
 ### Launch Context
 
-The following capabilities convey that a SMART on FHIR server is capable of provding basic context
+The following capabilities convey that a SMART on FHIR server is capable of providing basic context
 to an app at launch time. These capabilities apply during an EHR Launch or a Standalone Launch:
 
 * `context-passthrough-banner`: support for "need patient banner" launch context (conveyed via `need_patient_banner` token parameter)
