@@ -3,8 +3,6 @@ layout: default
 title: "SMART App Launch: Scopes and Launch Context"
 ---
 
-# Scopes and Launch Context
-
 SMART on FHIR's authorization scheme uses OAuth scopes to communicate (and
 negotiate) access requirements. In general, we use scopes for three kinds of
 data:
@@ -43,7 +41,7 @@ Expressed in [EBNF notation](https://en.wikipedia.org/wiki/Extended_Backus%E2%80
 
 [//]: # (Diagram generated from http://www.bottlecaps.de/rr/ui)
 <div style='text-align: left'>
-  <img src="./clinical-scope-syntax-diagram.png" alt="Clinical scope syntax diagram" />
+  <img src="clinical-scope-syntax-diagram.png" alt="Clinical scope syntax diagram" />
 </div>
 
 ### Patient-specific scopes
@@ -273,7 +271,7 @@ after the current access token expires, add one of the following scopes:
 Scope              | Grants
 -------------------|-------
 `online_access`    | Request a `refresh_token` that can be used to obtain a new access token to replace an expired one, and that will be usable for as long as the end-user remains online.
-`offline_access`   | Request a `refresh_token` that can be used to obtain a new access token to replace an expired token, and that will remain usable for as long as the authorization server and end-user will allow, regardless of whether the end-user is online. 
+`offline_access`   | Request a `refresh_token` that can be used to obtain a new access token to replace an expired token, and that will remain usable for as long as the authorization server and end-user will allow, regardless of whether the end-user is online.
 
 ## Steps for using an ID token
 
@@ -289,6 +287,6 @@ For worked examples (in Python), see [this ipython notebook](http://nbviewer.ipy
 
 ## Appendix: URI representation of scopes
 
-In some circumstances - for example, exchanging what scopes users are allowed to have, or sharing what they did choose), the scopes must be represented as URIs. When this is done, the standard URI is to prefix the SMART scopes with  http://smarthealthit.org/fhir/scopes/, so that a scope would be `http://smarthealthit.org/fhir/scopes/patient/*.read`. 
+In some circumstances - for example, exchanging what scopes users are allowed to have, or sharing what they did choose), the scopes must be represented as URIs. When this is done, the standard URI is to prefix the SMART scopes with  http://smarthealthit.org/fhir/scopes/, so that a scope would be `http://smarthealthit.org/fhir/scopes/patient/*.read`.
 
 openID scopes have a URI prefix of http://openid.net/specs/openid-connect-core-1_0#

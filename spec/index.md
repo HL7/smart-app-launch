@@ -2,43 +2,42 @@
 title: SMART App Launch Framework
 layout: default
 ---
-
-# SMART App Launch Framework
+{% include publish-box.html %}
 
 SMART on FHIR provides reliable, secure authorization for a variety of app
 architectures through the use of the OAuth 2.0 standard.  The Launch Framework
-supports the [four uses cases](http://argonautwiki.hl7.org/images/4/4c/Argonaut_UseCasesV1.pdf) 
+supports the [four uses cases](http://argonautwiki.hl7.org/images/4/4c/Argonaut_UseCasesV1.pdf)
 defined for Phase 1 of the [Argonaut
 Project](http://argonautwiki.hl7.org/index.php?title=Main_Page).  
 
 ## Profile audience and scope
-This profile is intended to be used by developers of apps that need to 
-access FHIR resources by requesting access tokens from OAuth 2.0 compliant 
+This profile is intended to be used by developers of apps that need to
+access FHIR resources by requesting access tokens from OAuth 2.0 compliant
 authorization servers.
 
 OAuth 2.0 authorization servers are configured to mediate access based on
-a set of rules configured to enforce institutional policy, which may 
-include requesting end-user authorization.  This profile 
-does not dictate the institutional policies that are implemented in the 
+a set of rules configured to enforce institutional policy, which may
+include requesting end-user authorization.  This profile
+does not dictate the institutional policies that are implemented in the
 authorization server.
 
-The profile defines a method through which an app requests 
-authorization to access a FHIR resource, and then uses that authorization 
-to retrieve the resource.  Other HIPAA-mandated security mechanisms, 
-such as end-user authentication, session time-out, security auditing, 
+The profile defines a method through which an app requests
+authorization to access a FHIR resource, and then uses that authorization
+to retrieve the resource.  Other HIPAA-mandated security mechanisms,
+such as end-user authentication, session time-out, security auditing,
 and accounting of disclosures, are outside the scope of this profile.
 
 ## Support for "public" and "confidential" apps
 
-Within this profile we differentiate between two types of 
-apps based upon whether the execution environment within which the app runs 
-enables the app to protect secrets.   Pure client-side apps 
+Within this profile we differentiate between two types of
+apps based upon whether the execution environment within which the app runs
+enables the app to protect secrets.   Pure client-side apps
 (for example, HTML5/JS browser-based apps, iOS mobile
 apps, or Windows desktop apps) can provide adequate security -- but they can't
 "keep a secret" in the OAuth2 sense. That is to say, any "secret" key, code, or
 string that's embedded in the app can potentially be extracted by an end-user
 or attacker. So security for these apps can't depend on secrets embedded at
-install-time. Security assurance comes from being hosted within a trusted 
+install-time. Security assurance comes from being hosted within a trusted
 server environment.
 
 #### Use the <span class="label label-primary">confidential app</span>  profile
@@ -49,7 +48,7 @@ when all of the following apply:
 * App is *able to protect* a `client_secret`
 
 
-#### Use the <span class="label label-primary">public app</span> profile 
+#### Use the <span class="label label-primary">public app</span> profile
 when all of the following apply:
 
 * App runs on an end-user's device (e.g. HTML5/JS in-browser; native iOS, Windows, or Android)
@@ -106,11 +105,11 @@ The two alternative launch sequences are described below.
 
 <img class="sequence-diagram-raw"  src="http://www.websequencediagrams.com/cgi-bin/cdraw?lz=RUhSIFNlc3Npb24gLT4-IEFwcDogUmVkaXJlY3QgdG8gaHR0cHM6Ly97YXBwIGxhdW5jaF91cml9P1xuAAgGPTEyMyZcbmlzcz0AIwlmaGlyIGJhc2UgdXJsfQpBcHAgLT4gRUhSIEZISVIgU2VydmVyOiBHRVQAVgoAJg4vbWV0YWRhdGEKACcPIC0AgR4HW0NvbmZvcm1hbmNlIHN0YXRlbWVudCBpbmNsdWRpbmcgT0F1dGggMi4wIGVuZHBvaW50IFVSTHNdAIEIBwCBCgZBdXRoegCBCAkAgWQVZWhyIGF1dGhvcml6AIFLBj9cbnNjb3BlPQCCCgYmXG4AewU9YWJjJgCCCA9hdWQ9AIIADyZcbi4uLgo&s=default"/>
 
-In SMART's <span class="label label-primary">EHR launch</span> flow (shown above), 
-a user has established an EHR session, and then decides to launch an app. This 
-could be a single-patient app (which runs in the context of a patient record), or 
+In SMART's <span class="label label-primary">EHR launch</span> flow (shown above),
+a user has established an EHR session, and then decides to launch an app. This
+could be a single-patient app (which runs in the context of a patient record), or
 a user-level app (like an appointment manager or a population dashboard). The EHR
-initiates a "launch sequence" by opening a new browser instance (or `iframe`) 
+initiates a "launch sequence" by opening a new browser instance (or `iframe`)
 pointing to the app's registered launch URL and passing some context.
 
 The following parameters are included:
@@ -156,11 +155,11 @@ On receiving the launch notification, the app would query the issuer's
     GET https://ehr/fhir/metadata
     Accept: application/json
 
-The metadata response contains (among other details) the EHR's 
-<a href="./capability-statement">
+The metadata response contains (among other details) the EHR's
+<a href="capability-statement/index.html">
 capability statement</a> identifying the OAuth `authorize` and `token`
-endpoint URLs for use in requesting authorization to access FHIR 
-resources. 
+endpoint URLs for use in requesting authorization to access FHIR
+resources.
 
 Later, when the app prepares a list of access scopes to request from
 the EHR authorization server, it will bind to the existing EHR context by
@@ -171,27 +170,27 @@ including the launch notification in the scope.
 <img class="sequence-diagram-raw"  src="http://www.websequencediagrams.com/cgi-bin/cdraw?lz=QXBwIC0-IEVIUiBGSElSIFNlcnZlcjogR0VUIGh0dHBzOi8ve2ZoaXIgYmFzZSB1cmx9L21ldGFkYXRhCgAnDyAtPiBBcHA6IFtDb25mb3JtYW5jZSBzdGF0ZW1lbnQgaW5jbHVkaW5nIE9BdXRoIDIuMCBlbmRwb2ludCBVUkxzXQoAgQkGAIEKBkF1dGh6AIEICVJlZGlyZWN0IHRvAIEPCmVociBhdXRob3JpegCBFwY_XG5zY29wZT1sYXVuY2gmXG4AewU9YWJjJlxuYXVkPQCBPw8mXG4uLi4KCg&s=default"/>
 
 Alternatively, in SMART's <span class="label label-primary">standalone
-launch</span> flow (shown above), a user selects an app from outside the EHR, 
-for example by tapping an app icon on a mobile phone home screen. This app 
+launch</span> flow (shown above), a user selects an app from outside the EHR,
+for example by tapping an app icon on a mobile phone home screen. This app
 will launch from its registered URL without a launch id.   
 
-In order to obtain launch context and request authorization to access FHIR 
+In order to obtain launch context and request authorization to access FHIR
 resources, the app discovers the EHR authorization server's OAuth
 `authorize` and `token` endpoint URLs by querying the FHIR endpoint
 for the <a
-href="./capability-statement"> 
+href="capability-statement/index.html">
 EHR's capability statement</a>.  
 
 The app then can declare its launch context requirements
 by adding specific scopes to the request it sends to the EHR's authorization
-server.  The `authorize` endpoint 
+server.  The `authorize` endpoint
 will acquire the context the app needs and make it available.
 
 #### *For example:*
 
-If the app needs patient context, the EHR's authorization server 
+If the app needs patient context, the EHR's authorization server
 may provide the end-user with a
-patient selection widget.  For full details, see <a href="scopes-and-launch-context">SMART launch context parameters</a>.
+patient selection widget.  For full details, see <a href="scopes-and-launch-context/index.html">SMART launch context parameters</a>.
 
 *	launch/patient - to indicate that the app needs to know a patient ID
 *	launch/encounter - to indicate the app needs an encounter
@@ -234,7 +233,7 @@ in the clear.
 * Apps should persist tokens and other sensitive data in app-specific
 storage locations only, not in system-wide-discoverable locations.
 
-#### *SMART authorization sequence* 
+#### *SMART authorization sequence*
 
 <img class="sequence-diagram-raw" src="http://www.websequencediagrams.com/cgi-bin/cdraw?lz=bm90ZSBsZWZ0IG9mIEFwcDogUmVxdWVzdCBhdXRob3JpemF0aW9uCkFwcCAtPj4gRUhSIEF1dGh6IFNlcnZlcjogUmVkaXJlY3QgaHR0cHM6Ly97ZWhyADUJZV91cmx9Py4uLgoAZgVvdmVyADITQQAnCCBBcHBcbihtYXkgaW5jbHVkZSBlbmQtdXNlAE4GZW50aWMAgQ4FXG5hbmQADw4AgSYJKQpOb3RlIABWGE9uIGFwcHJvdmFsCgCBQRAgLT4-AIIBBwCBSBBhcHAgcgCBZwdfdXJpfT9jb2RlPTEyMyYAgVcJAII-DUV4Y2hhbmdlIGNvZGUgZm9yIGFjY2VzcyB0b2tlbjtcbmlmIGNvbmZpZGVudGlhbCBjbGllbnQsAIFyCXNlY3JldApBcHAtPgCCaBJQT1NUAIJsCgBPBSB1cmx9XG5ncmFudF90eXBlPQCDOg1fY29kZSYAgSQSAIJ7GwCCagdlIGEAgxQFAIEcFgCCaQcAg0YXSXNzdWUgbmV3AIFyBiB3aXRoIGNvbnRleHQ6XG4ge1xuIgCCEwZfAIIUBSI6IgCBcwYtAIIjBS14eXoiLFxuImV4cGlyZXMtaW4iOjM2MDAsXG4icGF0aWVudCI6IjQ1NiIsXG4uLi5cbn0Ag0MUAIVZBVsAgnYMIHJlc3BvbnNlXQ&s=default&h=NA3OIkJNCqFraI5a">
 
@@ -277,7 +276,7 @@ URL using the "application/x-www-form-urlencoded" format:
       <td>
 
 Must describe the access that the app needs, including clinical data scopes like
-<code>patient/*.read</code>, <code>openid</code> and <code>profile</code> (if app 
+<code>patient/*.read</code>, <code>openid</code> and <code>profile</code> (if app
 needs authenticated patient identity) and either:
 
 <ul>
@@ -285,7 +284,7 @@ needs authenticated patient identity) and either:
 <li> a set of launch context requirements in the form <code>launch/patient</code>, which asks the EHR to establish context on your behalf.</li>
 </ul>
 
-See <a href="scopes-and-launch-context">SMART on FHIR Access
+See <a href="scopes-and-launch-context/index.html">SMART on FHIR Access
 Scopes</a> details.
 
       </td>
@@ -329,7 +328,7 @@ If the app needs to authenticate the identity of the end-user, it should
 include two OpenID Connect scopes:  `openid` and `profile`.   When these scopes
 are requested, and the request is granted, the app will receive an id_token
 along with the access token.  For full details, see [SMART launch context
-parameters](./scopes-and-launch-context).
+parameters](scopes-and-launch-context/index.html).
 
 #### *For example*
 An app that needs demographics and observations for a single
@@ -351,7 +350,7 @@ example, `launch/patient` to indicate that you need to know a patient ID, or
 endpoint will take care of acquiring the context you need (and then making it
 available to you).  For example, if your app needs patient context, the EHR may
 provide the end-user with a patient selection widget.  For full details, see <a
-href="scopes-and-launch-context">SMART launch
+href="scopes-and-launch-context/index.html">SMART launch
 context parameters</a>.*
 
 
@@ -438,15 +437,15 @@ Location: https://app/after-auth?
 
 After obtaining an authorization code, the app trades the code for an access
 token via HTTP `POST` to the EHR authorization server's token endpoint URL,
-using content-type `application/x-www-form-urlencoded`, as described in 
-section 4.1.3 of RFC6749](https://tools.ietf.org/html/rfc6749#page-29). 
+using content-type `application/x-www-form-urlencoded`, as described in
+section 4.1.3 of RFC6749](https://tools.ietf.org/html/rfc6749#page-29).
 
 For <span class="label label-primary">public apps</span>, authentication is not
 possible (and thus not required), since the app cannot be trusted to protect a
 secret.  For <span class="label label-primary">confidential apps</span>, an
 `Authorization` header using HTTP Basic authentication is required, where the
 username is the app's `client_id` and the password is the app's `client_secret`
-(see [example](./basic-auth-example)).
+(see [example](basic-auth-example/index.html)).
 
 
 <table class="table">
@@ -519,36 +518,36 @@ includes the following parameters:
   </tbody>
 </table>
 
-In addition, if the app was launched from within a patient context, 
-parameters to communicate the context values MAY BE included. For example, 
-a parameter like `"patient": "123"` would indicate the FHIR resource 
-https://[fhir-base]/Patient/123. Other context parameters may also 
-be available. For full details see [SMART launch context parameters](./scopes-and-launch-context/). 
+In addition, if the app was launched from within a patient context,
+parameters to communicate the context values MAY BE included. For example,
+a parameter like `"patient": "123"` would indicate the FHIR resource
+https://[fhir-base]/Patient/123. Other context parameters may also
+be available. For full details see [SMART launch context parameters](scopes-and-launch-context/index.html).
 
-The parameters are included in the entity-body of the HTTP response, as 
-described in section 5.1 of [RFC6749](https://tools.ietf.org/html/rfc6749). 
+The parameters are included in the entity-body of the HTTP response, as
+described in section 5.1 of [RFC6749](https://tools.ietf.org/html/rfc6749).
 
-The access token is a string of characters as defined in 
-[RFC6749](https://tools.ietf.org/html/rfc6749) and 
-[RFC6750](http://tools.ietf.org/html/rfc6750).  The token is essentially 
-a private message that the authorization server 
-passes to the FHIR Resource Server, telling the FHIR server that the 
+The access token is a string of characters as defined in
+[RFC6749](https://tools.ietf.org/html/rfc6749) and
+[RFC6750](http://tools.ietf.org/html/rfc6750).  The token is essentially
+a private message that the authorization server
+passes to the FHIR Resource Server, telling the FHIR server that the
 "message bearer" has been authorized to access the specified resources.  
-Defining the format and content of the access token is left up to the 
-organization that issues the access token and holds the requested resource. 
+Defining the format and content of the access token is left up to the
+organization that issues the access token and holds the requested resource.
 
-The authorization server's response MUST 
-include the HTTP "Cache-Control" response header field with a value 
-of "no-store," as well as the "Pragma" response header field with a 
-value of "no-cache." 
+The authorization server's response MUST
+include the HTTP "Cache-Control" response header field with a value
+of "no-store," as well as the "Pragma" response header field with a
+value of "no-cache."
 
 The EHR authorization server decides what `expires_in` value to assign to an
 access token and whether to issue a refresh token, as defined in section 1.5
-of [RFC6749](https://tools.ietf.org/html/rfc6749#page-10), along with the 
-access token.  If the app receives a refresh token along with the access 
-token, it can exchange this refresh token for a new access token when the 
-current access token expires (see step 5 below).  A refresh token MUST 
-BE bound to the same `client_id` and MUST contain the same, or a subset of, 
+of [RFC6749](https://tools.ietf.org/html/rfc6749#page-10), along with the
+access token.  If the app receives a refresh token along with the access
+token, it can exchange this refresh token for a new access token when the
+current access token expires (see step 5 below).  A refresh token MUST
+BE bound to the same `client_id` and MUST contain the same, or a subset of,
 the set of claims authorized for the access token with which it is associated.  
 
 Apps SHOULD store tokens in app-specific storage locations only, not in
@@ -557,15 +556,15 @@ lifetime no greater than one hour, and refresh tokens (if issued) SHOULD
 have a valid lifetime no greater than twenty-four hours.  Confidential
 clients may be issued longer-lived tokens than public clients.
 
-A large range of threats to bearer tokens can be mitigated by digitally 
-signing the token as specified in [RFC7515](https://tools.ietf.org/html/rfc7515) 
-or by using a Message Authentication Code (MAC) instead.  Alternatively, 
-a bearer token can contain a reference to authorization information, 
+A large range of threats to bearer tokens can be mitigated by digitally
+signing the token as specified in [RFC7515](https://tools.ietf.org/html/rfc7515)
+or by using a Message Authentication Code (MAC) instead.  Alternatively,
+a bearer token can contain a reference to authorization information,
 rather than encoding the information directly into the token itself.  
-To be effective, such references must be infeasible for an attacker to 
-guess.  Using a reference may require an extra interaction between the 
-resource server and the authorization server; the mechanics of such an 
-interaction are not defined by this specification. 
+To be effective, such references must be infeasible for an attacker to
+guess.  Using a reference may require an extra interaction between the
+resource server and the authorization server; the mechanics of such an
+interaction are not defined by this specification.
 
 
 #### *For example*
@@ -664,7 +663,7 @@ href="#step-3">step 3</a>) to determine when its access token will expire.
 After an access token expires, it may be possible to request an updated token
 without user intervention, if the app asked for a refresh token via the
 `offline_access` scope (see <a
-href="./scopes-and-launch-context">SMART on FHIR
+href="scopes-and-launch-context/index.html">SMART on FHIR
 Access Scopes</a> for details) and the EHR supplied a `refresh_token` in the
 authorization response.  To obtain a new access token, the app issues an HTTP
 `POST` to the EHR authorization server's token URL, with content-type
@@ -675,7 +674,7 @@ possible (and thus not required). For <span class="label
 label-primary">confidential apps</span>, an `Authorization` header using HTTP
 Basic authentication is required, where the username is the app's `client_id`
 and the password is the app's `client_secret` (see
-[example](./basic-auth-example)).
+[example](basic-auth-example/index.html)).
 
 The following request parameters are defined:
 
@@ -742,11 +741,11 @@ The response is a JSON object containing a new access token, with the following 
   </tbody>
 </table>
 
-In addition, if the app was launched from within a patient context, 
-parameters to communicate the context values MAY BE included. For example, 
-a parameter like `"patient": "123"` would indicate the FHIR resource 
-https://[fhir-base]/Patient/123. Other context parameters may also 
-be available. For full details see [SMART launch context parameters](./scopes-and-launch-context/). 
+In addition, if the app was launched from within a patient context,
+parameters to communicate the context values MAY BE included. For example,
+a parameter like `"patient": "123"` would indicate the FHIR resource
+https://[fhir-base]/Patient/123. Other context parameters may also
+be available. For full details see [SMART launch context parameters](scopes-and-launch-context/index.html).
 
 #### *For example*
 If the EHR supports refresh tokens, an app may be able to replace an expired
