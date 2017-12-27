@@ -1,0 +1,37 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# - resource -------------------------------------------------------------------
+
+<http://hl7.org/fhir/smart-app-launch/ImplementationGuide/ig> a fhir:ImplementationGuide;
+  fhir:nodeRole fhir:treeRoot;
+  fhir:Resource.id [ fhir:value "ig"];
+  fhir:DomainResource.text [
+     fhir:Narrative.status [ fhir:value "generated" ];
+     fhir:Narrative.div "<div xmlns=\"http://www.w3.org/1999/xhtml\"><h2>SMART Application Launch Framework</h2><p>The official URL for this implementation guide is: </p><pre>http://hl7.org/fhir/smart-app-launch/ImplementationGuide/ig</pre></div>"
+  ];
+  fhir:ImplementationGuide.url [ fhir:value "http://hl7.org/fhir/smart-app-launch/ImplementationGuide/ig"];
+  fhir:ImplementationGuide.name [ fhir:value "SMART Application Launch Framework"];
+  fhir:ImplementationGuide.status [ fhir:value "draft"];
+  fhir:ImplementationGuide.experimental [ fhir:value "false"^^xsd:boolean];
+  fhir:ImplementationGuide.publisher [ fhir:value "FHIR Project"];
+  fhir:ImplementationGuide.package [
+     fhir:index 0;
+     fhir:ImplementationGuide.package.name [ fhir:value "base" ]
+  ];
+  fhir:ImplementationGuide.page [
+     fhir:ImplementationGuide.page.source [ fhir:value "index.html" ];
+     fhir:ImplementationGuide.page.title [ fhir:value "FHIRPath Specification" ];
+     fhir:ImplementationGuide.page.kind [ fhir:value "page" ]
+  ] .
+
+# - ontology header ------------------------------------------------------------
+
+<http://hl7.org/fhir/smart-app-launch/ImplementationGuide/ig.ttl> a owl:Ontology;
+  owl:imports fhir:fhir.ttl;
+  owl:versionIRI <http://build.fhir.org/smart-app-launch/ImplementationGuide/ig.ttl> .
+
+# -------------------------------------------------------------------------------------
+

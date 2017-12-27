@@ -1,0 +1,23 @@
+{
+  "resourceType": "ImplementationGuide",
+  "id": "ig",
+  "text": {
+    "status": "generated",
+    "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><h2>SMART Application Launch Framework</h2><p>The official URL for this implementation guide is: </p><pre>http://hl7.org/fhir/smart-app-launch/ImplementationGuide/ig</pre></div>"
+  },
+  "url": "http://hl7.org/fhir/smart-app-launch/ImplementationGuide/ig",
+  "name": "SMART Application Launch Framework",
+  "status": "draft",
+  "experimental": false,
+  "publisher": "FHIR Project",
+  "package": [
+    {
+      "name": "base"
+    }
+  ],
+  "page": {
+    "source": "index.html",
+    "title": "FHIRPath Specification",
+    "kind": "page"
+  }
+}
