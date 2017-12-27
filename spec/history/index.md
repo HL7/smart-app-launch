@@ -3,8 +3,6 @@ title: "SMART App Launch: History"
 layout: default
 ---
 
-# SMART App Launch Version History
-
 ## Current Versions
 
 | Date | Version  | Changes |
