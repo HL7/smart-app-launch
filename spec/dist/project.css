@@ -372,6 +372,7 @@ body{counter-reset: section}
 h2{counter-reset: sub-section}
 h3{counter-reset: composite}
 h4{counter-reset: detail}
+h5{counter-reset: more-detail}
 
 h2:before{
   counter-increment: section;
@@ -388,6 +389,10 @@ h4:before{
 h5:before{
   counter-increment: detail;
   content: counter(section) "." counter(sub-section) "." counter(composite) "." counter(detail) " ";
+}
+h6:before{
+  counter-increment: more-detail;
+  content: counter(section) "." counter(sub-section) "." counter(composite) "." counter(detail) "." counter(more-detail)" ";
 }
 
 /* ----------Publish box styling------*/

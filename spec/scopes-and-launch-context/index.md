@@ -23,7 +23,7 @@ Scope              | Grants
 `openid` `profile` | Permission to retrieve information about the current logged-in user
 `launch`           | Permission to obtain launch context when app is launched from an EHR
 `launch/patient`   | When launching outside the EHR, ask for a patient to be selected at launch time
-`offline_access`   | Request a `refresh_token` that can be used to obtain a new access token to replace an expired one, even after the end-user no long is online after the access token rexpires
+`offline_access`   | Request a `refresh_token` that can be used to obtain a new access token to replace an expired one, even after the end-user no longer is online after the access token rexpires
 `online_access`   | Request a `refresh_token` that can be used to obtain a new access token to replace an expired one, and that will be usable for as long as the end-user remains online.
 
 
@@ -47,8 +47,8 @@ Expressed in [EBNF notation](https://en.wikipedia.org/wiki/Extended_Backus%E2%80
 ### Patient-specific scopes
 
 Patient-specific scopes allow access to specific data about a single patient.
-(You'll notice that we don't need to say *which* patient here: clinical data
-scopes are all about "what" and not "who." We'll deal with "who" below!)
+(Notice that *which* patient is not specified here: clinical data
+scopes are all about "what" and not "who." "Who" is handled below!)
 Patient-specific scopes take the form: `patient/:resourceType.(read|write|*)`.
 
 Let's look at a few examples:
@@ -98,7 +98,7 @@ Granted Scope | Notes
 `patient/*.read` | The client was granted read access to all data on the patient.
 `patient/*.*` | The client was granted its requested scopes as well as read/write access to all other data on the patient.
 `patient/Observation.read` | The client was granted an entirely different scope: patient-level read access to the patient's observations. While this behavior is unlikely for a production quality authorization server, this scenario is technically possible.
-_none_ | The authoriztion server chose to not grant any of the requested scopes.
+_none_ | The authorization server chose to not grant any of the requested scopes.
 
 As a best practice, clients are encouraged to request only the scopes and permissions they need to function and avoid the use of wildcard scopes purely for the sake of convenience. For instance, if your allergy management app requires patient-level read and write access to allergies, requesting the `patient/AllergyIntolerance.*` scope is acceptable. However, if your app only requires access to read allergies, requesting a scope of `patient/AllergyIntolerance.read` would be more appropriate.
 
