@@ -4,7 +4,7 @@
     "specification": "http://hl7.org/fhir/STU3/",
     "pages": "spec",
     "temp": "temp",
-    "output": "output",
+    "output": "docs",
     "txCache": "txCache",
     "qa": "qa"
   },
