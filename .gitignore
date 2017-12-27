@@ -3,3 +3,9 @@ _site/*
 *.swo
 node_modules
 .DS_Store
+my-notes-and-issues.txt
+
+temp
+output
+qa
+
