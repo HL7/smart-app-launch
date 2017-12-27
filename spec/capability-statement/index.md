@@ -3,8 +3,6 @@ layout: default
 title: "SMART App Launch: Capability Statement"
 ---
 
-# Publishing OAuth2 URLs
-
 If a server requires SMART on FHIR authorization for access, its metadata must
 support automated dicovery of OAuth2 endpoints by including a "complex"
 extension (that is, an extension with multiple components inside) on the
@@ -51,14 +49,14 @@ the following internal components:
 
 A SMART on FHIR server should also describe which optional SMART features it
 supports by declaring a list of "capabilties". Details are [provided
-here](../conformance/).
+here](../conformance/index.html).
 
 ### Example CapabilityStatement (as JSON)
 
 
 ```
 {
-  "resourceType": "CapabilityStatement", 
+  "resourceType": "CapabilityStatement",
 ...
   "rest": [{
    ...
@@ -132,4 +130,3 @@ here](../conformance/).
         ],
       ...
 ```
-
