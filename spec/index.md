@@ -2,7 +2,7 @@
 title: SMART App Launch Framework
 layout: default
 ---
-{% include publish-box.html %}
+{% include publish-box.md %}
 
 SMART on FHIR provides reliable, secure authorization for a variety of app
 architectures through the use of the OAuth 2.0 standard.  The Launch Framework
@@ -13,7 +13,7 @@ Project](http://argonautwiki.hl7.org/index.php?title=Main_Page).
 ## Profile audience and scope
 This profile is intended to be used by developers of apps that need to
 access FHIR resources by requesting access tokens from OAuth 2.0 compliant
-authorization servers.
+authorization servers. Note that this Implementation Guide applies to both DSTU2 and STU3 versions of FHIR.
 
 OAuth 2.0 authorization servers are configured to mediate access based on
 a set of rules configured to enforce institutional policy, which may
@@ -23,9 +23,8 @@ authorization server.
 
 The profile defines a method through which an app requests
 authorization to access a FHIR resource, and then uses that authorization
-to retrieve the resource.  Other HIPAA-mandated security mechanisms,
-such as end-user authentication, session time-out, security auditing,
-and accounting of disclosures, are outside the scope of this profile.
+to retrieve the resource.  Other security mechanisms, such as those mandated by HIPAA in the US (end-user authentication, session time-out, security auditing,
+and accounting of disclosures) are outside the scope of this profile.
 
 ## Support for "public" and "confidential" apps
 
@@ -225,7 +224,7 @@ session.  An app MUST validate the `state` value for any request sent to its
 redirect URL; include `state` with all authorization requests; and validate
 the `state` value included in access tokens it receives.
 
-* An app should NEVER treat any inputs it receives as executable code.
+* An app should NEVER excecute any inputs it receives as code.
 
 * An app MUST NOT forward values passed back to its redirect URL to any
 other arbitrary or user-provided URL (a practice known as an “open
@@ -323,7 +322,7 @@ flow, this <code>aud</code> value is the same as the launch's <code>iss</code> v
 </table>
 
 The app MUST use an unpredictable value for the state parameter
-with at least 128 bits of entropy. The app MUST validate the value
+with at least 122 bits of entropy (sufficient for a random UUID). The app MUST validate the value
 of the state parameter upon return to the redirect URL and MUST ensure
 that the state value is securely tied to the user’s current session
 (e.g., by relating the state value to a session identifier issued

@@ -19,7 +19,8 @@ known as the **Core SMART on FHIR Support** that includes support for
 A SMART on FHIR server can convey its capabilities to app developers by listing
 a set of the capabilities described below. This can be published out of band,
 or it can be conveyed as part of a server's FHIR `CapabilityStatement` using
-an extension on `CapabilityStatement.rest.security`. For example, a server
+an extension on `CapabilityStatement.rest.security` (when using this specification
+with FHIR DSTU2, the `CapabilityStatement` is named `Conformance`). For example, a server
 can publish its support for Core SMART on FHIR Support by including: [Core Capabilities](core-set/index.html)
 
 ## Specific Capabilities (by category)

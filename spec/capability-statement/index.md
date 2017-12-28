@@ -6,7 +6,8 @@ title: "SMART App Launch: Capability Statement"
 If a server requires SMART on FHIR authorization for access, its metadata must
 support automated dicovery of OAuth2 endpoints by including a "complex"
 extension (that is, an extension with multiple components inside) on the
-`CapabilityStatement.rest.security` element. Any time a client sees this extension, it
+`CapabilityStatement.rest.security` element (or when using FHIR DSTU2, the
+`Conformance.rest.security` element). Any time a client sees this extension, it
 must be prepared to authorize using SMART's OAuth2-based protocol.
 
 The top-level extension uses the URL
@@ -51,7 +52,7 @@ A SMART on FHIR server should also describe which optional SMART features it
 supports by declaring a list of "capabilties". Details are [provided
 here](../conformance/index.html).
 
-### Example CapabilityStatement (as JSON)
+### Example Version STU3 CapabilityStatement (as JSON)
 
 
 ```
