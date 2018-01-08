@@ -3,11 +3,9 @@ title: "SMART App Launch: Core Capabilities"
 layout: default
 ---
 
-# Core Capabilities
-
 To be conformant with SMART on FHIR's Core Capabilities, an EHR must support
 the following capabilities, and must advertise them in its [capability
-statement](../../capability-statement):
+statement](../../capability-statement/index.html):
 
 * `launch-ehr`
 * `launch-standalone`

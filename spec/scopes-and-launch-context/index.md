@@ -3,8 +3,6 @@ layout: default
 title: "SMART App Launch: Scopes and Launch Context"
 ---
 
-# Scopes and Launch Context
-
 SMART on FHIR's authorization scheme uses OAuth scopes to communicate (and
 negotiate) access requirements. In general, we use scopes for three kinds of
 data:
@@ -14,7 +12,7 @@ data:
 3. Identity data
 
 
-### Quick Start
+## Quick Start
 
 Here is a quick overview of the most commonly used scopes. Read on below for complete details.
 
@@ -25,7 +23,7 @@ Scope              | Grants
 `openid` `profile` | Permission to retrieve information about the current logged-in user
 `launch`           | Permission to obtain launch context when app is launched from an EHR
 `launch/patient`   | When launching outside the EHR, ask for a patient to be selected at launch time
-`offline_access`   | Request a `refresh_token` that can be used to obtain a new access token to replace an expired one, even after the end-user no long is online after the access token rexpires
+`offline_access`   | Request a `refresh_token` that can be used to obtain a new access token to replace an expired one, even after the end-user no longer is online after the access token rexpires
 `online_access`   | Request a `refresh_token` that can be used to obtain a new access token to replace an expired one, and that will be usable for as long as the end-user remains online.
 
 
@@ -43,14 +41,14 @@ Expressed in [EBNF notation](https://en.wikipedia.org/wiki/Extended_Backus%E2%80
 
 [//]: # (Diagram generated from http://www.bottlecaps.de/rr/ui)
 <div style='text-align: left'>
-  <img src="./clinical-scope-syntax-diagram.png" alt="Clinical scope syntax diagram" />
+  <img src="clinical-scope-syntax-diagram.png" alt="Clinical scope syntax diagram" />
 </div>
 
 ### Patient-specific scopes
 
 Patient-specific scopes allow access to specific data about a single patient.
-(You'll notice that we don't need to say *which* patient here: clinical data
-scopes are all about "what" and not "who." We'll deal with "who" below!)
+(Notice that *which* patient is not specified here: clinical data
+scopes are all about "what" and not "who." "Who" is handled below!)
 Patient-specific scopes take the form: `patient/:resourceType.(read|write|*)`.
 
 Let's look at a few examples:
@@ -100,7 +98,7 @@ Granted Scope | Notes
 `patient/*.read` | The client was granted read access to all data on the patient.
 `patient/*.*` | The client was granted its requested scopes as well as read/write access to all other data on the patient.
 `patient/Observation.read` | The client was granted an entirely different scope: patient-level read access to the patient's observations. While this behavior is unlikely for a production quality authorization server, this scenario is technically possible.
-_none_ | The authoriztion server chose to not grant any of the requested scopes.
+_none_ | The authorization server chose to not grant any of the requested scopes.
 
 As a best practice, clients are encouraged to request only the scopes and permissions they need to function and avoid the use of wildcard scopes purely for the sake of convenience. For instance, if your allergy management app requires patient-level read and write access to allergies, requesting the `patient/AllergyIntolerance.*` scope is acceptable. However, if your app only requires access to read allergies, requesting a scope of `patient/AllergyIntolerance.read` would be more appropriate.
 
@@ -166,9 +164,9 @@ Launch context parameter | Example value | Meaning
 ------|---------|-------------------
 `patient` | `"123"`| String value with a patient id, indicating that the app was launched in the context of FHIR Patient 123. If the app has any patient-level scopes, they will be scoped to Patient 123.
 `encounter` | `"123"`| String value with an encounter id, indicating that the app was launched in the context of FHIR Encounter 123.
-`location` | `"123"`| String value with a location id, indicating that the app app was launched from the phyical place corresponding to FHIR Location 123.
+`location` | `"123"`| String value with a location id, indicating that the app app was launched from the physical place corresponding to FHIR Location 123.
 `need_patient_banner` | `true` or `false` (boolean) | Boolean value indicating whether the app was launched in a UX context where a patient banner is required (when `true`) or not required (when `false`). An app receiving a value of `false` should not take up screen real estate displaying a patient banner.
-`resource` | `"MedicationPrescription/123"`| String value with a relative resource link, describing some specific resource context for the (in this case, a particular medication prescription). This is a generic mechanism to communicate to an app that a particular resource is "of interest" at launch time.
+`resource` | `"MedicationPrescription/123"`| String value with a relative resource link, describing some specific resource context  for the launch (in this case, a particular medication prescription). This is a generic mechanism to communicate to an app that a particular resource is "of interest" at launch time.
 `intent` | `"reconcile-medications"`| String value describing the intent of the application launch (see notes [below](#launch-intent))
 `smart_style_url` | `"https://ehr/styles/smart_v1.json"`| String URL where the host's style parameters can be retrieved (for apps that support [styling](#styling))
 
@@ -273,7 +271,7 @@ after the current access token expires, add one of the following scopes:
 Scope              | Grants
 -------------------|-------
 `online_access`    | Request a `refresh_token` that can be used to obtain a new access token to replace an expired one, and that will be usable for as long as the end-user remains online.
-`offline_access`   | Request a `refresh_token` that can be used to obtain a new access token to replace an expired token, and that will remain usable for as long as the authorization server and end-user will allow, regardless of whether the end-user is online. 
+`offline_access`   | Request a `refresh_token` that can be used to obtain a new access token to replace an expired token, and that will remain usable for as long as the authorization server and end-user will allow, regardless of whether the end-user is online.
 
 ## Steps for using an ID token
 
@@ -289,6 +287,6 @@ For worked examples (in Python), see [this ipython notebook](http://nbviewer.ipy
 
 ## Appendix: URI representation of scopes
 
-In some circumstances - for example, exchanging what scopes users are allowed to have, or sharing what they did choose), the scopes must be represented as URIs. When this is done, the standard URI is to prefix the SMART scopes with  http://smarthealthit.org/fhir/scopes/, so that a scope would be `http://smarthealthit.org/fhir/scopes/patient/*.read`. 
+In some circumstances - for example, exchanging what scopes users are allowed to have, or sharing what they did choose), the scopes must be represented as URIs. When this is done, the standard URI is to prefix the SMART scopes with  http://smarthealthit.org/fhir/scopes/, so that a scope would be `http://smarthealthit.org/fhir/scopes/patient/*.read`.
 
 openID scopes have a URI prefix of http://openid.net/specs/openid-connect-core-1_0#
