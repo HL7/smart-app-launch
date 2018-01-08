@@ -4,9 +4,10 @@ _site/*
 node_modules
 .DS_Store
 my-notes-and-issues.txt
-
-temp
-output
-docs
-qa
-*.sh
+output/
+publish.sh
+publish2.sh
+push-view.sh
+push.sh
+qa/
+temp/
