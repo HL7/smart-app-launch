@@ -1,7 +1,7 @@
 {
   "paths": {
     "resources": ["resources"],
-    "specification": "http://hl7.org/fhir/STU3/",
+    "specification": "http://hl7.org/fhir/STU3",
     "pages": "spec",
     "temp": "temp",
     "output": "output",
