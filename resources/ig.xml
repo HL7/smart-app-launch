@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--Hidden IG for de facto IG publishing-->
+<ImplementationGuide xmlns="http://hl7.org/fhir">
+  <id value="ig"/>
+  <url value="http://hl7.org/fhir/smart-app-launch/ImplementationGuide/ig"/>
+  <name value="SMART Application Launch Framework"/>
+  <status value="draft"/>
+  <experimental value="false"/>
+  <publisher value="FHIR Project"/>
+  <package>
+    <name value="base"/>
+  </package>
+  <page>
+    <source value="index.html"/>
+    <title value="FHIRPath Specification"/>
+    <kind value="page"/>
+  </page>
+</ImplementationGuide>
