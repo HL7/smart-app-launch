@@ -56,11 +56,7 @@ when all of the following apply:
 
 ## Registering a SMART App with an EHR
 
-Before a SMART app can run against an EHR, the app must be registered with that
-EHR's authorization service.  SMART does not specify a standards-based registration process, but we
-encourage EHR implementers to consider the [OAuth 2.0 Dynamic Client
-Registration Protocol](https://tools.ietf.org/html/draft-ietf-oauth-dyn-reg)
-for an out-of-the-box solution.
+Before a SMART app can run against an EHR, the app must be registered with that EHR’s authorization service. SMART does not specify a standards-based registration process, but we encourage EHR implementers to consider the OAuth 2.0 Dynamic Client Registration Protocol for an out-of-the-box solution.  Similarly, we encourage EHR implementers to consider the [Oauth 2.0 Token Introspection Protocol](https://tools.ietf.org/html/rfc7662) for a solution to examining the validity and meaning of tokens.
 
 No matter how an app registers with an EHR's authorization service, at registration time **every SMART app must**:
 
