@@ -322,7 +322,7 @@ flow, this <code>aud</code> value is the same as the launch's <code>iss</code> v
 </table>
 
 The app MUST use an unpredictable value for the state parameter
-with at least 122 bits of entropy (sufficient for a random UUID). The app MUST validate the value
+with at least 122 bits of entropy (e.g., a properly configured random uuid is suitable). The app MUST validate the value
 of the state parameter upon return to the redirect URL and MUST ensure
 that the state value is securely tied to the user’s current session
 (e.g., by relating the state value to a session identifier issued
