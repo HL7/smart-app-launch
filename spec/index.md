@@ -15,6 +15,7 @@ authorization / launch process and supports the following
 1. Patient uses provider-approved mobile app to access health data
 1. Clinician uses provider-approved web application to access health data
 1. Clinician uses provider-approved mobile app to access health data
+
 ## Profile audience and scope
 This profile is intended to be used by developers of apps that need to
 access FHIR resources by requesting access tokens from OAuth 2.0 compliant
