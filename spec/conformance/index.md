@@ -3,11 +3,6 @@ title: "SMART App Launch: Conformance"
 layout: default
 ---
 
-site.baseurl = {{site.baseurl}}
-site.url = {{site.url}}
-page.url = {{page.url}}
-page.path = {{page.path}}
-
 The SMART's App Launch specification enables apps to launch and securely interact with EHRs.
 The specification can be described as a set of capabilities; a given server implementation
 may implement a subset of these. To promote interoperability, we describe a full package

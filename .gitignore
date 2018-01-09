@@ -9,5 +9,6 @@ publish.sh
 publish2.sh
 push-view.sh
 push.sh
+push-nb.sh
 qa/
 temp/
