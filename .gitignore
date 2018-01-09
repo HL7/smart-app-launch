@@ -1,6 +1,7 @@
 _site/*
 *.swp
 *.swo
+*.sh
 node_modules
 .DS_Store
 output/

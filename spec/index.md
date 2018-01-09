@@ -4,11 +4,7 @@ layout: default
 ---
 {% include publish-box.md %}
 
-SMART on FHIR provides reliable, secure authorization for a variety of app
-architectures through the use of the OAuth 2.0 standard.  The Launch Framework
-supports the [four uses cases](http://argonautwiki.hl7.org/images/4/4c/Argonaut_UseCasesV1.pdf)
-defined for Phase 1 of the [Argonaut
-Project](http://argonautwiki.hl7.org/index.php?title=Main_Page).  
+The SMART App Launch Framework connects third-party applications to Electronic Health Record data, allowing apps to launch from inside or outside the user interface of an EHR system. The framework supports apps for use by clinicians, patients, and others. It provides a reliable, secure authorization protocol for a variety of app architectures, including apps that run on an end-user's device as well as apps that run on a secure server.  The Launch Framework supports the [four uses cases](http://argonautwiki.hl7.org/images/4/4c/Argonaut_UseCasesV1.pdf) defined for Phase 1 of the [ArgonautProject](http://argonautwiki.hl7.org/index.php?title=Main_Page).  
 
 ## Profile audience and scope
 This profile is intended to be used by developers of apps that need to
