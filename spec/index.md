@@ -233,8 +233,7 @@ redirector”).
 * An app should NEVER store bearer tokens in cookies that are transmitted
 in the clear.
 
-* Apps should persist tokens and other sensitive data in app-specific
-storage locations only, not in system-wide-discoverable locations.
+* Apps should not persist tokens and other sensitive data in a way that allows unauthorized access.
 
 #### *SMART authorization sequence*
 
@@ -553,8 +552,7 @@ current access token expires (see step 5 below).  A refresh token MUST
 BE bound to the same `client_id` and MUST contain the same, or a subset of,
 the set of claims authorized for the access token with which it is associated.  
 
-Apps SHOULD store tokens in app-specific storage locations only, not in
-system-wide-discoverable locations.  Access tokens SHOULD have a valid
+Apps should not persist tokens and other sensitive data in a way that allows unauthorized access.  Access tokens SHOULD have a valid
 lifetime no greater than one hour, and refresh tokens (if issued) SHOULD
 have a valid lifetime no greater than twenty-four hours.  Confidential
 clients may be issued longer-lived tokens than public clients.
