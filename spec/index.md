@@ -28,8 +28,7 @@ and accounting of disclosures) are outside the scope of this profile.
 
 ## Support for "public" and "confidential" apps
 
-Within this profile we differentiate between two types of
-apps based upon whether the execution environment within which the app runs
+Within this profile we differentiate between the two types of apps defined in the [OAuth 2.0 specification: confidential and public](https://tools.ietf.org/html/rfc6749#section-2.1). The differentiation is based upon whether the execution environment within which the app runs
 enables the app to protect secrets.   Pure client-side apps
 (for example, HTML5/JS browser-based apps, iOS mobile
 apps, or Windows desktop apps) can provide adequate security -- but they can't
