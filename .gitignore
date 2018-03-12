@@ -3,11 +3,8 @@ _site/*
 *.swo
 node_modules
 .DS_Store
-my-notes-and-issues.txt
 output/
-publish.sh
-publish2.sh
-push-view.sh
-push.sh
+*.sh
 qa/
 temp/
+my_notes/
