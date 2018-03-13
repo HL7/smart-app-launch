@@ -4,7 +4,7 @@ layout: default
 ---
 ## Capability Sets
 
-The following four Capability Sets are defined. Any individual SMART server will publish a granular list of its capabilities; from this list you can determine which of these Capability Sets are supported:
+The following four Capability Sets are defined. Any individual SMART server will publish a granular list of its capabilities; from this list a client can determine which of these Capability Sets are supported:
 
 
 ### Patient Access for Standalone Apps
