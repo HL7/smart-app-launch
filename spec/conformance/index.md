@@ -76,4 +76,4 @@ completing the launch.
 
 <br />
 
-[well-known]: well-known/index.html
+[well-known]: ../well-known/index.html

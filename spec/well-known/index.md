@@ -1,5 +1,5 @@
 ---
-title: "SMART App Launch: FHIR Authorization Endpoint Discovery"
+title: "SMART App Launch: FHIR Authorization Endpoint and Capabilities Discovery"
 layout: default
 ---
 
