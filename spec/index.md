@@ -388,7 +388,7 @@ the request, the scope, and the time access is needed.
 
 The EHR decides whether to grant or deny access.  This decision is
 communicated to the app when the EHR authorization server returns an
-authorization code.  Authorization codes are short-lived, usually expiring
+authorization code (or, if denying access, an error response).  Authorization codes are short-lived, usually expiring
 within around one minute.  The code is sent when the EHR authorization server
 redirects the browser to the app's <code>redirect_uri</code>, with the
 following URL parameters:
