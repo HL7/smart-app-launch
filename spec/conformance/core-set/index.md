@@ -4,8 +4,7 @@ layout: default
 ---
 
 To be conformant with SMART on FHIR's Core Capabilities, an EHR must support
-the following capabilities, and must advertise them in its [capability
-statement](../../capability-statement/index.html):
+the following capabilities, and must advertise them in an external [.well-known][well-known] json file:
 
 * `launch-ehr`
 * `launch-standalone`
@@ -21,3 +20,5 @@ statement](../../capability-statement/index.html):
 * `permission-offline`
 * `permission-patient`
 * `permission-user`
+
+[well-known]:  ../../well-known/index.html
