@@ -662,6 +662,8 @@ authorization response.  To obtain a new access token, the app issues an HTTP
 `POST` to the EHR authorization server's token URL, with content-type
 `application/x-www-form-urlencoded`
 
+EHR implementers are encouraged to consider using the [Oauth 2.0 Token Introspection Protocol](https://tools.ietf.org/html/rfc7662) to provide an introspection endpoint that clients can use to examine the validity and meaning of tokens.
+
 For <span class="label label-primary">public apps</span>, authentication is not
 possible (and thus not required). For <span class="label
 label-primary">confidential apps</span>, an `Authorization` header using HTTP
