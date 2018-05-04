@@ -39,6 +39,7 @@ A JSON document must be returned using the `application/json` mime type.
 - `scopes_supported`: **RECOMMENDED**, array of scopes a client may request. See [scopes and launch context][smart-scopes].
 - `response_types_supported`: **RECOMMENDED**, array of OAuth2 `response_type` values that are supported
 - `manage_endpoint`: **RECOMMENDED**, URL to the user-facing authorization management workflow entry point for this FHIR server.
+- `introspection` :  **RECOMMENDED**, URL to a server's introspection endpoint that can be used to validate a token.
 
 ### Sample Response
 
@@ -54,6 +55,7 @@ Content-Type: application/json
   "scopes_supported": ["openid", "profile", "launch", "launch/patient", "patient/*.*", "user/*.*", "offline_access"],
   "response_types_supported": ["code", "code id_token", "id_token", "refresh_token"],
   "manage_endpoint": "https://emr.io/user/manage"
+  "introspection": "https://emr.io/user/introspect"
 }
 ```
 
