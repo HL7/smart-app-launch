@@ -210,13 +210,13 @@ session.  An app MUST validate the `state` value for any request sent to its
 redirect URL; include `state` with all authorization requests; and validate
 the `state` value included in access tokens it receives.
 
-* An app should NEVER excecute any inputs it receives as code.
+* An app SHALL NOT excecute any inputs it receives as code.
 
 * An app MUST NOT forward values passed back to its redirect URL to any
 other arbitrary or user-provided URL (a practice known as an “open
 redirector”).
 
-* An app should NEVER store bearer tokens in cookies that are transmitted
+* An app SHALL NOT store bearer tokens in cookies that are transmitted
 in the clear.
 
 * Apps should persist tokens and other sensitive data in app-specific
@@ -661,6 +661,8 @@ Access Scopes</a> for details) and the EHR supplied a `refresh_token` in the
 authorization response.  To obtain a new access token, the app issues an HTTP
 `POST` to the EHR authorization server's token URL, with content-type
 `application/x-www-form-urlencoded`
+
+EHR implementers are encouraged to consider using the [Oauth 2.0 Token Introspection Protocol](https://tools.ietf.org/html/rfc7662) to provide an introspection endpoint that clients can use to examine the validity and meaning of tokens.
 
 For <span class="label label-primary">public apps</span>, authentication is not
 possible (and thus not required). For <span class="label
