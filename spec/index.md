@@ -210,13 +210,13 @@ session.  An app MUST validate the `state` value for any request sent to its
 redirect URL; include `state` with all authorization requests; and validate
 the `state` value included in access tokens it receives.
 
-* An app should NEVER excecute any inputs it receives as code.
+* An app SHALL NOT excecute any inputs it receives as code.
 
 * An app MUST NOT forward values passed back to its redirect URL to any
 other arbitrary or user-provided URL (a practice known as an “open
 redirector”).
 
-* An app should NEVER store bearer tokens in cookies that are transmitted
+* An app SHALL NOT store bearer tokens in cookies that are transmitted
 in the clear.
 
 * Apps should persist tokens and other sensitive data in app-specific
