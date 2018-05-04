@@ -4,11 +4,7 @@ layout: default
 ---
 {% include publish-box.md %}
 
-SMART on FHIR provides reliable, secure authorization for a variety of app
-architectures through the use of the OAuth 2.0 standard.  The Launch Framework
-supports the [four uses cases](http://argonautwiki.hl7.org/images/4/4c/Argonaut_UseCasesV1.pdf)
-defined for Phase 1 of the [Argonaut
-Project](http://argonautwiki.hl7.org/index.php?title=Main_Page).  
+The SMART App Launch Framework connects third-party applications to Electronic Health Record data, allowing apps to launch from inside or outside the user interface of an EHR system. The framework supports apps for use by clinicians, patients, and others. It provides a reliable, secure authorization protocol for a variety of app architectures, including apps that run on an end-user's device as well as apps that run on a secure server.  The Launch Framework supports the [four uses cases](http://argonautwiki.hl7.org/images/4/4c/Argonaut_UseCasesV1.pdf) defined for Phase 1 of the [ArgonautProject](http://argonautwiki.hl7.org/index.php?title=Main_Page): Patients apps that launch standalone; Patient apps that launch from a portal; Provider apps that launch standalone; Provider apps that launch from a portal.
 
 ## Profile audience and scope
 This profile is intended to be used by developers of apps that need to
@@ -64,7 +60,7 @@ for an out-of-the-box solution.
 No matter how an app registers with an EHR's authorization service, at registration time **every SMART app must**:
 
 * Register one or more fixed, fully-specified launch URL with the EHR's authorization server
-* Register one or more, fixed, fully-specified `redirect_uri`s with the EHR's authorization server
+* Register one or more, fixed, fully-specified `redirect_uri`s with the EHR's authorization server.  Note: In the case of native clients following the OAuth 2.0 for Native Apps specification [(RFC 8252)](https://tools.ietf.org/html/rfc8252), it may be appropriate to leave the port as a dynamic variable in an otherwise fixed Redirect URI.
 
 ## SMART authorization & FHIR access: overview
 
@@ -150,14 +146,7 @@ A launch might cause the browser to redirect to:
     Location: https://app/launch?iss=https%3A%2F%2Fehr%2Ffhir&launch=xyz123
 
 On receiving the launch notification, the app would query the issuer's
-`/metadata` endpoint:
-
-    GET https://ehr/fhir/metadata
-    Accept: application/json
-
-The metadata response contains (among other details) the EHR's
-<a href="capability-statement/index.html">
-capability statement</a> identifying the OAuth `authorize` and `token`
+[.well-known][well-known] json file which contains (among other details) the EHR's identifying the OAuth `authorize` and `token`
 endpoint URLs for use in requesting authorization to access FHIR
 resources.
 
@@ -178,10 +167,8 @@ will launch from its registered URL without a launch id.
 
 In order to obtain launch context and request authorization to access FHIR
 resources, the app discovers the EHR authorization server's OAuth
-`authorize` and `token` endpoint URLs by querying the FHIR endpoint
-for the <a
-href="capability-statement/index.html">
-EHR's capability statement</a>.  
+`authorize` and `token` endpoint URLs by querying their
+[.well-known][well-known] json file.
 
 The app then can declare its launch context requirements
 by adding specific scopes to the request it sends to the EHR's authorization
@@ -321,7 +308,7 @@ flow, this <code>aud</code> value is the same as the launch's <code>iss</code> v
 </table>
 
 The app MUST use an unpredictable value for the state parameter
-with at least 122 bits of entropy (sufficient for a random UUID). The app MUST validate the value
+with at least 122 bits of entropy (e.g., a properly configured random uuid is suitable). The app MUST validate the value
 of the state parameter upon return to the redirect URL and MUST ensure
 that the state value is securely tied to the user’s current session
 (e.g., by relating the state value to a session identifier issued
@@ -388,7 +375,7 @@ the request, the scope, and the time access is needed.
 
 The EHR decides whether to grant or deny access.  This decision is
 communicated to the app when the EHR authorization server returns an
-authorization code.  Authorization codes are short-lived, usually expiring
+authorization code (or, if denying access, an error response).  Authorization codes are short-lived, usually expiring
 within around one minute.  The code is sent when the EHR authorization server
 redirects the browser to the app's <code>redirect_uri</code>, with the
 following URL parameters:
@@ -780,3 +767,4 @@ refresh_token=a47txjiipgxkvohibvsm
   "refresh_token":"tGzv3JOkF0XG5Qx2TlKWIA"
 }
 ```
+[well-known]: well-known/index.html
