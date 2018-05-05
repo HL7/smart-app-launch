@@ -70,7 +70,7 @@ app.
 
 In an <span class="label label-primary">EHR launch</span>, an opaque handle to
 the EHR context is passed along to the app as part of the launch URL.  The app
-later will include this context handle as a scope parameter when it requests
+later will include this context handle as a request parameter when it requests
 authorization to access resources.  Note that the complete URLs of all apps
 approved for use by users of this EHR will have been registered with the EHR
 authorization server.
