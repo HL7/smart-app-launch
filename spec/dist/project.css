@@ -435,12 +435,10 @@ font-size: 1em;
  padding: 10px
 }
 
-/* this part adds an icon after external links, using Glyph Hafflings*/
-a[href^="http://"]:after, a[href^="https://"]:after {
-    content: "\e066";
-    font-family: Glyphicons Halflings;
-    font-weight: normal;
-    font-style: normal;
+/* this part adds an icon after external links, using external.png file */
+
+a[href^="http://"]:not([no-external^="true"]):after, a[href^="https://"]:not([no-external^="true"]):after {
+    content: url(external.png);
     display: inline-block;
     text-decoration: none;
     padding-left: 3px;
