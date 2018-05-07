@@ -23,7 +23,7 @@ Scope              | Grants
 `openid` `profile` | Permission to retrieve information about the current logged-in user
 `launch`           | Permission to obtain launch context when app is launched from an EHR
 `launch/patient`   | When launching outside the EHR, ask for a patient to be selected at launch time
-`offline_access`   | Request a `refresh_token` that can be used to obtain a new access token to replace an expired one, even after the end-user no longer is online after the access token rexpires
+`offline_access`   | Request a `refresh_token` that can be used to obtain a new access token to replace an expired one, even after the end-user no longer is online after the access token expires
 `online_access`   | Request a `refresh_token` that can be used to obtain a new access token to replace an expired one, and that will be usable for as long as the end-user remains online.
 
 
@@ -265,8 +265,8 @@ a FHIR resource representing the current user. This will be a resource of type
 
 ## Scopes for requesting a refresh token
 
-To request a `refresh_token` that can be used to obtain a new access token
-after the current access token expires, add one of the following scopes:
+To request a `refresh_token` that can be used to obtain a new access token.
+After the current access token expires, add one of the following scopes.  Note that a server can decide which client types (public or confidential) are eligible to receive refresh tokens.:
 
 Scope              | Grants
 -------------------|-------
