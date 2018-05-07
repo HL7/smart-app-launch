@@ -200,7 +200,7 @@ patient selection widget.  For full details, see <a href="scopes-and-launch-cont
 *	launch/patient - to indicate that the app needs to know a patient ID
 *	launch/encounter - to indicate the app needs an encounter
 
-<br><br>
+
 
 ## SMART authorization and resource retrieval
 
@@ -434,7 +434,7 @@ Location: https://app/after-auth?
   state=98wrghuwuogerg97
 ```
 
-<br><br>
+
 
 <a id="step-3"></a>
 
@@ -660,7 +660,7 @@ a resource hosted on a different resource server.  The app SHOULD NOT blindly
 follow such references and send along its access_token, as the token may be
 subject to potential theft.   The app SHOULD either ignore the reference, or
 initiate a new request for access to that resource.
-<br><br>
+
 
 <a id="step-5"></a>
 

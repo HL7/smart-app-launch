@@ -12,7 +12,7 @@ breadcrumb vs history what is a breadcrumb hiearchy or history?
 gray-color thingy
 
 widget-row vs thumbs vs joyo-thumbs
-shortcode for 
+shortcode for
 - Fontawesome
 - Accordion
 - Notifications
@@ -5194,7 +5194,7 @@ h3,
 h4,
 h5,
 h6 {
-  margin: 0 0 0.4em 0;
+  margin: 1.0em 0 0.4em 0;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-weight: 500;
   line-height: 20px;
@@ -5260,7 +5260,7 @@ p {
   padding-bottom: 5px;
 }
 /*
-//@import "joyo-widgets.less";	
+//@import "joyo-widgets.less";
 //@import "joyo-wordpress.less";
 */
 .clearfix:before,
