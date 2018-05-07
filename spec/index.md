@@ -561,15 +561,15 @@ lifetime no greater than one hour, and refresh tokens (if issued) SHOULD
 have a valid lifetime no greater than twenty-four hours.  Confidential
 clients may be issued longer-lived tokens than public clients.
 
-A large range of threats to bearer tokens can be mitigated by digitally
+*A large range of threats to access tokens can be mitigated by digitally
 signing the token as specified in [RFC7515](https://tools.ietf.org/html/rfc7515)
 or by using a Message Authentication Code (MAC) instead.  Alternatively,
-a bearer token can contain a reference to authorization information,
+a access token can contain a reference to authorization information,
 rather than encoding the information directly into the token itself.  
 To be effective, such references must be infeasible for an attacker to
 guess.  Using a reference may require an extra interaction between the
 resource server and the authorization server; the mechanics of such an
-interaction are not defined by this specification.
+interaction are not defined by this specification.*
 
 
 ##### *For example*
