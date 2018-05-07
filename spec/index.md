@@ -38,7 +38,7 @@ and accounting of disclosures) are outside the scope of this profile.
 Within this profile we differentiate between the two types of apps defined in the [OAuth 2.0 specification: confidential and public](https://tools.ietf.org/html/rfc6749#section-2.1). The differentiation is based upon whether the execution environment within which the app runs
 enables the app to protect secrets.   Pure client-side apps
 (for example, HTML5/JS browser-based apps, iOS mobile
-apps, or Windows desktop apps) can provide adequate security, but they may be unable to "keep a secret" in the OAuth2 sense, in other words, any "secret" key, code, or
+apps, or Windows desktop apps) can provide adequate security, but they may be unable to "keep a secret" in the OAuth2 sense.  In other words, any "secret" key, code, or
 string that is statically embedded in the app can potentially be extracted by an end-user
 or attacker. Hence security for these apps can't depend on secrets embedded at
 install-time.
