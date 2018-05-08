@@ -260,7 +260,7 @@ that comes alongside the access token.
 This token must be [validated according to the OIDC specification](http://openid.net/specs/openid-connect-core-1_0.html#IDTokenValidation).
 To learn more about the user, the app should treat the "profile" claim as the URL of
 a FHIR resource representing the current user. This will be a resource of type
-`Patient`, `Practitioner`, or `RelatedPerson`.
+`Patient`, `Practitioner`, `RelatedPerson`, or `Person`.  Note that `Person` is only used if the other resource type do not apply to the current user, for example, the "authorized representative" for >1 patients.
 
 ## Scopes for requesting a refresh token
 
