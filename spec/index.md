@@ -40,7 +40,7 @@ enables the app to protect secrets.   Pure client-side apps
 (for example, HTML5/JS browser-based apps, iOS mobile
 apps, or Windows desktop apps) can provide adequate security, but they may be unable to "keep a secret" in the OAuth2 sense.  In other words, any "secret" key, code, or
 string that is statically embedded in the app can potentially be extracted by an end-user
-or attacker. Hence security for these apps can not depend on secrets embedded at
+or attacker. Hence security for these apps cannot depend on secrets embedded at
 install-time.
 
 For strategies and best practices to protecting a client secret refer to:
