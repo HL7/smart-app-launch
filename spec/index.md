@@ -647,8 +647,7 @@ Authorization: Bearer i8hweunweunweofiwweoijewiwe
 }
 ```
 
-The EHR's FHIR resource server validates the access token and ensures that it
-has not expired and that its scope covers the requested FHIR resource.  The
+The resource server MUST validate the access token and ensure that it has not expired and that its scope covers the requested resource.  The
 resource server also validates that the `aud` parameter associated with the
 authorization (see <a href="#step-1">above</a>) matches the resource server's own FHIR
 endpoint.  The method used by the EHR to validate the access token is beyond
