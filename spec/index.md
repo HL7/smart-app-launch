@@ -14,8 +14,11 @@ as well as apps that run on a secure server.  The Launch Framework supports the
 cases](http://argonautwiki.hl7.org/images/4/4c/Argonaut_UseCasesV1.pdf) defined
 for Phase 1 of the
 [ArgonautProject](http://argonautwiki.hl7.org/index.php?title=Main_Page):
-Patients apps that launch standalone; Patient apps that launch from a portal;
-Provider apps that launch standalone; Provider apps that launch from a portal.
+
+1. Patients apps that launch standalone
+1. Patient apps that launch from a portal
+1. Provider apps that launch standalone
+1. Provider apps that launch from a portal
 
 ## Profile audience and scope
 This profile is intended to be used by developers of apps that need to
