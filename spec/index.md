@@ -1,4 +1,4 @@
----
+from the token response---
 title: SMART App Launch Framework
 layout: default
 ---
@@ -40,7 +40,7 @@ enables the app to protect secrets.   Pure client-side apps
 (for example, HTML5/JS browser-based apps, iOS mobile
 apps, or Windows desktop apps) can provide adequate security, but they may be unable to "keep a secret" in the OAuth2 sense.  In other words, any "secret" key, code, or
 string that is statically embedded in the app can potentially be extracted by an end-user
-or attacker. Hence security for these apps can't depend on secrets embedded at
+or attacker. Hence security for these apps can not depend on secrets embedded at
 install-time.
 
 For strategies and best practices to protecting a client secret refer to:
@@ -666,7 +666,7 @@ initiate a new request for access to that resource.
 
 #### Step 5: (Later...) App uses a refresh token to obtain a new access token
 
-The app can use the `expires_in` field from the authorization response (see <a
+The app can use the `expires_in` field from the token response (see <a
 href="#step-3">step 3</a>) to determine when its access token will expire.
 After an access token expires, it may be possible to request an updated token
 without user intervention, if the app asked for a refresh token via the
