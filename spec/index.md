@@ -36,6 +36,40 @@ authorization to access a FHIR resource, and then uses that authorization
 to retrieve the resource. Synchronization of patient context is not addressed.  In other words, if the patient chart is changed during the session, the application will not inherently be updated.  Other security mechanisms, such as those mandated by HIPAA in the US (end-user authentication, session time-out, security auditing,
 and accounting of disclosures) are outside the scope of this profile.
 
+## App protection
+
+The app is responsible for protecting itself from potential misbehaving or
+malicious values passed to its redirect URL (e.g., values injected with
+executable code, such as SQL) and for protecting authorization codes, access
+tokens, and refresh tokens from unauthorized access and use.  The app
+developer must be aware of potential threats, such as malicious apps running
+on the same platform, counterfeit authorization servers, and counterfeit
+resource servers, and implement countermeasures to help protect both the app
+itself and any sensitive information it may hold. For background, see the
+[OAuth 2.0 Threat Model and Security
+Considerations](https://tools.ietf.org/html/rfc6819).
+
+* Apps MUST assure that sensitive information (authentication secrets,
+authorization codes, tokens) is transmitted ONLY to authenticated servers,
+over TLS-secured channels.
+
+* Apps MUST generate an unpredictable `state` parameter for each user
+session.  An app MUST validate the `state` value for any request sent to its
+redirect URL; include `state` with all authorization requests; and validate
+the `state` value included in access tokens it receives.
+
+* An app SHALL NOT excecute any inputs it receives as code.
+
+* An app MUST NOT forward values passed back to its redirect URL to any
+other arbitrary or user-provided URL (a practice known as an “open
+redirector”).
+
+* An app SHALL NOT store bearer tokens in cookies that are transmitted
+in the clear.
+
+* Apps should persist tokens and other sensitive data in app-specific
+storage locations only, not in system-wide-discoverable locations.
+
 ## Support for "public" and "confidential" apps
 
 Within this profile we differentiate between the two types of apps defined in the [OAuth 2.0 specification: confidential and public](https://tools.ietf.org/html/rfc6749#section-2.1). The differentiation is based upon whether the execution environment within which the app runs
@@ -66,7 +100,6 @@ for example:
 
 - App is an HTML5 or JS in-browser app that would expose the secret in user space
 - App is a native app that can only distribute a `client_secret` statically
-
 
 ## Registering a SMART App with an EHR
 
@@ -204,44 +237,9 @@ patient selection widget.  For full details, see <a href="scopes-and-launch-cont
 *	launch/encounter - to indicate the app needs an encounter
 
 
-
 ## SMART authorization and resource retrieval
 
-#### First, a word about app protection...
-
-The app is responsible for protecting itself from potential misbehaving or
-malicious values passed to its redirect URL (e.g., values injected with
-executable code, such as SQL) and for protecting authorization codes, access
-tokens, and refresh tokens from unauthorized access and use.  The app
-developer must be aware of potential threats, such as malicious apps running
-on the same platform, counterfeit authorization servers, and counterfeit
-resource servers, and implement countermeasures to help protect both the app
-itself and any sensitive information it may hold. For background, see the
-[OAuth 2.0 Threat Model and Security
-Considerations](https://tools.ietf.org/html/rfc6819).
-
-* Apps MUST assure that sensitive information (authentication secrets,
-authorization codes, tokens) is transmitted ONLY to authenticated servers,
-over TLS-secured channels.
-
-* Apps MUST generate an unpredictable `state` parameter for each user
-session.  An app MUST validate the `state` value for any request sent to its
-redirect URL; include `state` with all authorization requests; and validate
-the `state` value included in access tokens it receives.
-
-* An app SHALL NOT excecute any inputs it receives as code.
-
-* An app MUST NOT forward values passed back to its redirect URL to any
-other arbitrary or user-provided URL (a practice known as an “open
-redirector”).
-
-* An app SHALL NOT store bearer tokens in cookies that are transmitted
-in the clear.
-
-* Apps should persist tokens and other sensitive data in app-specific
-storage locations only, not in system-wide-discoverable locations.
-
-#### *SMART authorization sequence*
+### *SMART authorization sequence*
 
 <div>
 <img class="sequence-diagram-raw" src="http://www.websequencediagrams.com/cgi-bin/cdraw?lz=bm90ZSBsZWZ0IG9mIEFwcDogUmVxdWVzdCBhdXRob3JpemF0aW9uCkFwcCAtPj4gRUhSIEF1dGh6IFNlcnZlcjogUmVkaXJlY3QgaHR0cHM6Ly97ZWhyADUJZV91cmx9Py4uLgoAZgVvdmVyADITQQAnCCBBcHBcbihtYXkgaW5jbHVkZSBlbmQtdXNlAE4GZW50aWMAgQ4FXG5hbmQADw4AgSYJKQpOb3RlIABWGE9uIGFwcHJvdmFsCgCBQRAgLT4-AIIBBwCBSBBhcHAgcgCBZwdfdXJpfT9jb2RlPTEyMyYAgVcJAII-DUV4Y2hhbmdlIGNvZGUgZm9yIGFjY2VzcyB0b2tlbjtcbmlmIGNvbmZpZGVudGlhbCBjbGllbnQsAIFyCXNlY3JldApBcHAtPgCCaBJQT1NUAIJsCgBPBSB1cmx9XG5ncmFudF90eXBlPQCDOg1fY29kZSYAgSQSAIJ7GwCCagdlIGEAgxQFAIEcFgCCaQcAg0YXSXNzdWUgbmV3AIFyBiB3aXRoIGNvbnRleHQ6XG4ge1xuIgCCEwZfAIIUBSI6IgCBcwYtAIIjBS14eXoiLFxuImV4cGlyZXMtaW4iOjM2MDAsXG4icGF0aWVudCI6IjQ1NiIsXG4uLi5cbn0Ag0MUAIVZBVsAgnYMIHJlc3BvbnNlXQ&s=default&h=NA3OIkJNCqFraI5a">
