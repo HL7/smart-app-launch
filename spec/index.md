@@ -160,7 +160,7 @@ time by passing along a <code>launch=123</code> parameter (see below).
 
 
 #### *For example*
-A launch might cause the browser to redirect to:
+A launch might cause the browser to navigate to:
 
     Location: https://app/launch?iss=https%3A%2F%2Fehr%2Ffhir&launch=xyz123
 
