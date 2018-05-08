@@ -1,4 +1,4 @@
----
+from the token response---
 title: SMART App Launch Framework
 layout: default
 ---
@@ -668,7 +668,7 @@ initiate a new request for access to that resource.
 
 #### Step 5: (Later...) App uses a refresh token to obtain a new access token
 
-The app can use the `expires_in` field from the authorization response (see <a
+The app can use the `expires_in` field from the token response (see <a
 href="#step-3">step 3</a>) to determine when its access token will expire.
 After an access token expires, it may be possible to request an updated token
 without user intervention, if the app asked for a refresh token via the
