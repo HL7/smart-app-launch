@@ -277,7 +277,7 @@ Scope              | Grants
 Additional context parameters and scopes can be used as extensions using the following namespace conventions:
 
 - use a *full URI* that you control (e.g. http://example.com/scope-name)
-- use any string starting with "__"
+- use any string starting with `__` (two underscores)
 
 ## Steps for using an ID token
 
