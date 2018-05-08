@@ -557,8 +557,7 @@ the set of claims authorized for the access token with which it is associated.
 
 Apps SHOULD store tokens in app-specific storage locations only, not in
 system-wide-discoverable locations.  Access tokens SHOULD have a valid
-lifetime no greater than one hour, and refresh tokens (if issued) SHOULD
-have a valid lifetime no greater than twenty-four hours.  Confidential
+lifetime no greater than one hour.  Confidential
 clients may be issued longer-lived tokens than public clients.
 
 *A large range of threats to access tokens can be mitigated by digitally
@@ -666,20 +665,21 @@ initiate a new request for access to that resource.
 
 #### Step 5: (Later...) App uses a refresh token to obtain a new access token
 
-The app can use the `expires_in` field from the authorization response (see <a
-href="#step-3">step 3</a>) to determine when its access token will expire.
-After an access token expires, it may be possible to request an updated token
-without user intervention, if the app asked for a refresh token via the
+An app with "offline access" can continue to get new access tokens without the user being interactively engaged. The app can use the `expires_in` field from the authorization response (see <a
+href="#step-3">step 3</a>) to determine when its access token will expire.  After an access token expires,
+ the app requests a refresh token via the
 `offline_access` scope (see <a
 href="scopes-and-launch-context/index.html">SMART on FHIR
-Access Scopes</a> for details) and the EHR supplied a `refresh_token` in the
+Access Scopes</a> for details) and the EHR supplies a `refresh_token` in the
 authorization response.  To obtain a new access token, the app issues an HTTP
 `POST` to the EHR authorization server's token URL, with content-type
-`application/x-www-form-urlencoded`
+`application/x-www-form-urlencoded`.
 
-EHR implementers are encouraged to consider using the [Oauth 2.0 Token Introspection Protocol](https://tools.ietf.org/html/rfc7662) to provide an introspection endpoint that clients can use to examine the validity and meaning of tokens.
+- A server can decide which client types (public or confidential) are eligible for offline access and able to receive a refresh token.
 
-For <span class="label label-primary">public apps</span>, authentication is not
+- EHR implementers are encouraged to consider using the [Oauth 2.0 Token Introspection Protocol](https://tools.ietf.org/html/rfc7662) to provide an introspection endpoint that clients can use to examine the validity and meaning of tokens.
+
+- For <span class="label label-primary">public apps</span>, authentication is not
 possible (and thus not required). For <span class="label
 label-primary">confidential apps</span>, an `Authorization` header using HTTP
 Basic authentication is required, where the username is the app's `client_id`
