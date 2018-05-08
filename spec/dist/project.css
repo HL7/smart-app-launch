@@ -443,3 +443,21 @@ a[href^="http://"]:not([no-external^="true"]):after, a[href^="https://"]:not([no
     text-decoration: none;
     padding-left: 3px;
 }
+
+/* print output */
+
+pre.print_out {
+  background-color: #ffffff26;
+  border: none;
+}
+
+code.print_out{
+  word-wrap: normal;
+  background-color: #ffffff26
+}
+
+/*  horizontal scroll */
+
+div.scroll-me {
+  overflow-x: auto;
+}

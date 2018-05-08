@@ -283,7 +283,7 @@ Scope              | Grants
 
 ## Worked examples
 
-For worked examples (in Python), see [this ipython notebook](http://nbviewer.ipython.org/url/docs.smarthealthit.org/authorization/smart-on-fhir-jwt-examples.ipynb).
+- [Worked Python example](../worked_example1/index.html) ([ipython notebook](http://nbviewer.ipython.org/url/docs.smarthealthit.org/authorization/smart-on-fhir-jwt-examples.ipynb)).
 
 ## Appendix: URI representation of scopes
 
