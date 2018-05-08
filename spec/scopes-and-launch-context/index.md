@@ -4,8 +4,7 @@ title: "SMART App Launch: Scopes and Launch Context"
 ---
 
 SMART on FHIR's authorization scheme uses OAuth scopes to communicate (and
-negotiate) access requirements. In general, we use scopes for three kinds of
-data:
+negotiate) access requirements. Providing apps with access to broad data sets is consistent with current common practices (e.g. interface engines also provide access to broad data sets); access is also limited based on the privileges of the user in context.  In general, we use scopes for three kinds of data:
 
 1. Clinical data
 2. Contextual data
@@ -272,6 +271,13 @@ Scope              | Grants
 -------------------|-------
 `online_access`    | Request a `refresh_token` that can be used to obtain a new access token to replace an expired one, and that will be usable for as long as the end-user remains online.
 `offline_access`   | Request a `refresh_token` that can be used to obtain a new access token to replace an expired token, and that will remain usable for as long as the authorization server and end-user will allow, regardless of whether the end-user is online.
+
+## Extensions
+
+Additional context parameters and scopes can be used as extensions using the following namespace conventions:
+
+- use a *full URI* that you control (e.g. http://example.com/scope-name)
+- use any string starting with "__"
 
 ## Steps for using an ID token
 
