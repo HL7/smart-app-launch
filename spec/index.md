@@ -30,7 +30,7 @@ authorization server.
 
 The profile defines a method through which an app requests
 authorization to access a FHIR resource, and then uses that authorization
-to retrieve the resource.  Other security mechanisms, such as those mandated by HIPAA in the US (end-user authentication, session time-out, security auditing,
+to retrieve the resource. Synchronization of patient context is not addressed.  In other words, if the patient chart is changed during the session, the application will not inherently be updated.  Other security mechanisms, such as those mandated by HIPAA in the US (end-user authentication, session time-out, security auditing,
 and accounting of disclosures) are outside the scope of this profile.
 
 ## Support for "public" and "confidential" apps
