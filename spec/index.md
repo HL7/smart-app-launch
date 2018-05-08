@@ -253,7 +253,7 @@ storage locations only, not in system-wide-discoverable locations.
 
 At launch time, the app constructs a request for authorization by adding the
 following parameters to the query component of the EHR’s "authorize" endpoint
-URL using the "application/x-www-form-urlencoded" format:
+URL.:
 
 <table class="table">
   <thead>
