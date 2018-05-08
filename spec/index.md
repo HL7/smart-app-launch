@@ -14,8 +14,11 @@ as well as apps that run on a secure server.  The Launch Framework supports the
 cases](http://argonautwiki.hl7.org/images/4/4c/Argonaut_UseCasesV1.pdf) defined
 for Phase 1 of the
 [ArgonautProject](http://argonautwiki.hl7.org/index.php?title=Main_Page):
-Patients apps that launch standalone; Patient apps that launch from a portal;
-Provider apps that launch standalone; Provider apps that launch from a portal.
+
+1. Patients apps that launch standalone
+1. Patient apps that launch from a portal
+1. Provider apps that launch standalone
+1. Provider apps that launch from a portal
 
 ## Profile audience and scope
 This profile is intended to be used by developers of apps that need to
@@ -30,7 +33,7 @@ authorization server.
 
 The profile defines a method through which an app requests
 authorization to access a FHIR resource, and then uses that authorization
-to retrieve the resource.  Other security mechanisms, such as those mandated by HIPAA in the US (end-user authentication, session time-out, security auditing,
+to retrieve the resource. Synchronization of patient context is not addressed.  In other words, if the patient chart is changed during the session, the application will not inherently be updated.  Other security mechanisms, such as those mandated by HIPAA in the US (end-user authentication, session time-out, security auditing,
 and accounting of disclosures) are outside the scope of this profile.
 
 ## Support for "public" and "confidential" apps
@@ -75,7 +78,7 @@ for an out-of-the-box solution.
 
 No matter how an app registers with an EHR's authorization service, at registration time **every SMART app must**:
 
-* Register one or more fixed, fully-specified launch URL with the EHR's authorization server
+* Register zero or more fixed, fully-specified launch URL with the EHR's authorization server
 * Register one or more, fixed, fully-specified `redirect_uri`s with the EHR's authorization server.  Note: In the case of native clients following the OAuth 2.0 for Native Apps specification [(RFC 8252)](https://tools.ietf.org/html/rfc8252), it may be appropriate to leave the port as a dynamic variable in an otherwise fixed Redirect URI.
 
 ## SMART authorization & FHIR access: overview
@@ -157,7 +160,7 @@ time by passing along a <code>launch=123</code> parameter (see below).
 
 
 #### *For example*
-A launch might cause the browser to redirect to:
+A launch might cause the browser to navigate to:
 
     Location: https://app/launch?iss=https%3A%2F%2Fehr%2Ffhir&launch=xyz123
 
@@ -647,8 +650,7 @@ Authorization: Bearer i8hweunweunweofiwweoijewiwe
 }
 ```
 
-The EHR's FHIR resource server validates the access token and ensures that it
-has not expired and that its scope covers the requested FHIR resource.  The
+The resource server MUST validate the access token and ensure that it has not expired and that its scope covers the requested resource.  The
 resource server also validates that the `aud` parameter associated with the
 authorization (see <a href="#step-1">above</a>) matches the resource server's own FHIR
 endpoint.  The method used by the EHR to validate the access token is beyond
