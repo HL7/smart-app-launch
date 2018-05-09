@@ -150,7 +150,7 @@ UX and UI expectations to the app (see `need_patient_banner` below).
 Launch context parameters come alongside the access token. They will appear as JSON
 parameters:
 
-```
+```  text
 {
   access_token: "secret-xyz",
   patient: "123",
@@ -167,7 +167,6 @@ Launch context parameter | Example value | Meaning
 `need_patient_banner` | `true` or `false` (boolean) | Boolean value indicating whether the app was launched in a UX context where a patient banner is required (when `true`) or not required (when `false`). An app receiving a value of `false` should not take up screen real estate displaying a patient banner.
 `intent` | `"reconcile-medications"`| String value describing the intent of the application launch (see notes [below](#launch-intent))
 `smart_style_url` | `"https://ehr/styles/smart_v1.json"`| String URL where the host's style parameters can be retrieved (for apps that support [styling](#styling))
-
 
 #### Notes on launch context parameters
 
@@ -197,14 +196,15 @@ Note:  *SMART makes no effort to standardize `intent` values*.  Intents simply
 provide a mechanism for tighter custom integration between an app and a SMART
 host. The meaning of intents must be negotiated between the app and the host.
 
-<h5 id="styling"><b>SMART App Styling</b> (experimental[^1])</h5>
+##### SMART App Styling (experimental[^1])
+{: #styling}
 `smart_style_url`: In order to mimic the style of the SMART host more closely,
 SMART apps can check for the existence of this launch context parameter and
 download the JSON file referenced by the URL value, if provided.
 
 The URL should serve a "SMART Style" JSON object with one or more of the following properties:
 
-```
+``` text
 {
   color_background: "#edeae3",
   color_error: "#9e2d2d",
@@ -246,8 +246,6 @@ Optionally, if the client app detects a new version of the SMART Style object
 store the new property values and request approval to use the new values from
 a client app stakeholder. This allows for safeguarding against poor usability
 that might occur from the immediate use of these values in the client app UI.
-
-[^1]: This section is marked as ""experimental"" to indicate that there may be future backwards-incompatible changes to the style document pointed to by the smart_style_url.
 
 ## Scopes for requesting identity data
 
@@ -297,3 +295,9 @@ For worked examples (in Python), see [this ipython notebook](http://nbviewer.ipy
 In some circumstances - for example, exchanging what scopes users are allowed to have, or sharing what they did choose), the scopes must be represented as URIs. When this is done, the standard URI is to prefix the SMART scopes with  http://smarthealthit.org/fhir/scopes/, so that a scope would be `http://smarthealthit.org/fhir/scopes/patient/*.read`.
 
 openID scopes have a URI prefix of http://openid.net/specs/openid-connect-core-1_0#
+
+---
+
+<br />
+
+[^1]: Section is marked as "experimental" to indicate that there may be future backwards-incompatible changes to the style document pointed to by the `smart_style_url`.
