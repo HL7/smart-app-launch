@@ -165,7 +165,6 @@ Launch context parameter | Example value | Meaning
 `encounter` | `"123"`| String value with an encounter id, indicating that the app was launched in the context of FHIR Encounter 123.
 `location` | `"123"`| String value with a location id, indicating that the app app was launched from the physical place corresponding to FHIR Location 123.
 `need_patient_banner` | `true` or `false` (boolean) | Boolean value indicating whether the app was launched in a UX context where a patient banner is required (when `true`) or not required (when `false`). An app receiving a value of `false` should not take up screen real estate displaying a patient banner.
-`resource` | `"MedicationPrescription/123"`| String value with a relative resource link, describing some specific resource context  for the launch (in this case, a particular medication prescription). This is a generic mechanism to communicate to an app that a particular resource is "of interest" at launch time.
 `intent` | `"reconcile-medications"`| String value describing the intent of the application launch (see notes [below](#launch-intent))
 `smart_style_url` | `"https://ehr/styles/smart_v1.json"`| String URL where the host's style parameters can be retrieved (for apps that support [styling](#styling))
 
@@ -198,7 +197,7 @@ Note:  *SMART makes no effort to standardize `intent` values*.  Intents simply
 provide a mechanism for tighter custom integration between an app and a SMART
 host. The meaning of intents must be negotiated between the app and the host.
 
-<h5 id="styling"><b>SMART App Styling</b> (optional)</h5>
+<h5 id="styling"><b>SMART App Styling</b> (experimental[^1])</h5>
 `smart_style_url`: In order to mimic the style of the SMART host more closely,
 SMART apps can check for the existence of this launch context parameter and
 download the JSON file referenced by the URL value, if provided.
@@ -247,6 +246,8 @@ Optionally, if the client app detects a new version of the SMART Style object
 store the new property values and request approval to use the new values from
 a client app stakeholder. This allows for safeguarding against poor usability
 that might occur from the immediate use of these values in the client app UI.
+
+[^1]: This section is marked as ""experimental"" to indicate that there may be future backwards-incompatible changes to the style document pointed to by the smart_style_url.
 
 ## Scopes for requesting identity data
 
