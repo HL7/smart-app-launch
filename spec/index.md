@@ -220,7 +220,7 @@ itself and any sensitive information it may hold. For background, see the
 [OAuth 2.0 Threat Model and Security
 Considerations](https://tools.ietf.org/html/rfc6819).
 
-* Apps MUST assure that sensitive information (authentication secrets,
+* Apps MUST ensure that sensitive information (authentication secrets,
 authorization codes, tokens) is transmitted ONLY to authenticated servers,
 over TLS-secured channels.
 
