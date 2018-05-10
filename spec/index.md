@@ -151,7 +151,7 @@ additional details about the EHR, including its authorization URL.
 
       Opaque identifier for this specific launch, and any EHR context associated
 with it. This parameter must be communicated back to the EHR  at authorization
-time by passing along a <code>launch=123</code> parameter (see below).
+time by passing along a <code>launch</code> parameter (see example below).
 
       </td>
     </tr>
