@@ -79,7 +79,7 @@ for an out-of-the-box solution.
 No matter how an app registers with an EHR's authorization service, at registration time **every SMART app must**:
 
 * Register zero or more fixed, fully-specified launch URL with the EHR's authorization server
-* Register one or more, fixed, fully-specified `redirect_uri`s with the EHR's authorization server.  Note: In the case of native clients following the OAuth 2.0 for Native Apps specification [(RFC 8252)](https://tools.ietf.org/html/rfc8252), it may be appropriate to leave the port as a dynamic variable in an otherwise fixed Redirect URI.
+* Register one or more, fixed, fully-specified `redirect_uri`s with the EHR's authorization server.  Note: In the case of native clients following the OAuth 2.0 for Native Apps specification [(RFC 8252)](https://tools.ietf.org/html/rfc8252), it may be appropriate to leave the port as a dynamic variable in an otherwise fixed redirect URI.
 
 ## SMART authorization & FHIR access: overview
 
@@ -100,7 +100,7 @@ from the EHR authorization server during the authorization process described
 below.
 
 Once the app is launched, it requests authorization to access a FHIR resource
-by redirecting its authorization request to the EHR’s authorization server.
+by causing the browser to navigate its authorization request to the EHR’s authorization server.
 Based on pre-defined rules and possibly end-user authorization, the EHR
 authorization server either grants the request by returning an
 authorization code to the app’s redirect URL, or denies the request.
@@ -364,7 +364,7 @@ href="scopes-and-launch-context/index.html">SMART launch
 context parameters</a>.*
 
 
-The app then redirects the browser to the EHR's **authorization URL** as
+The app then causes the browser to navigate the browser to the EHR's **authorization URL** as
 determined above:
 
 
@@ -396,7 +396,7 @@ The EHR decides whether to grant or deny access.  This decision is
 communicated to the app when the EHR authorization server returns an
 authorization code (or, if denying access, an error response).  Authorization codes are short-lived, usually expiring
 within around one minute.  The code is sent when the EHR authorization server
-redirects the browser to the app's <code>redirect_uri</code>, with the
+causes the browser to navigate to the app's <code>redirect_uri</code>, with the
 following URL parameters:
 
 <table class="table">
@@ -428,7 +428,7 @@ risk of leaks.
 
 Based on the `client_id`, current EHR user, configured policy, and perhaps
 direct user input, the EHR makes a decision to approve or deny access.  This
-decision is communicated to the app by redirection to the app's registered
+decision is communicated to the app by causing the browser to navigate to the app's registered
 `redirect_uri`:
 
 ```
