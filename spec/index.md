@@ -170,7 +170,7 @@ endpoint URLs for use in requesting authorization to access FHIR
 resources.
 
 Later, when the app prepares a list of access scopes to request from
-the EHR authorization server, it will bind to the existing EHR context by
+the EHR authorization server, it will be associated with to the existing EHR context by
 including the launch notification in the scope.
 
 ### Standalone launch sequence
@@ -350,7 +350,7 @@ patient, and also wants information about the current logged-in user, the app  c
 
 If the app was launched from an EHR, the app adds a `launch` scope and a
 `launch={launch id}` URL parameter, echoing the value it received from the EHR
-to bind to the EHR context of this launch notification.
+to be associated with to the EHR context of this launch notification.
 
 *Apps using the <span class="label label-primary">standalone launch</span> flow
 won't have a `launch` id at this point.  These apps can declare launch context
