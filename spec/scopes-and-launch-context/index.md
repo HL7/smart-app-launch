@@ -6,9 +6,15 @@ title: "SMART App Launch: Scopes and Launch Context"
 SMART on FHIR's authorization scheme uses OAuth scopes to communicate (and
 negotiate) access requirements. Providing apps with access to broad data sets is consistent with current common practices (e.g. interface engines also provide access to broad data sets); access is also limited based on the privileges of the user in context.  In general, we use scopes for three kinds of data:
 
-1. Clinical data 2. Contextual data 3. Identity data
+* 1. Clinical data
+* 2. Contextual data
+* 3. Identity data
 
-Launch context is a negotiation where a client asks for specific launch context parameters (e.g. `launch/patient`). A server can decide which launch context parameterss to provide, using the client's request as an input into the decision process.  When granting a patient-level scopes like `patient/*.read`, the server MUST provide a "patient" launch context parameter.
+Launch context is a negotiation where a client asks for specific launch context
+parameters (e.g. `launch/patient`). A server can decide which launch context
+parameters to provide, using the client's request as an input into the decision
+process.  When granting a patient-level scopes like `patient/*.read`, the server
+MUST provide a "patient" launch context parameter.
 
 ## Quick Start
 
