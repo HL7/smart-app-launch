@@ -77,7 +77,7 @@ enables the app to protect secrets.   Pure client-side apps
 (for example, HTML5/JS browser-based apps, iOS mobile
 apps, or Windows desktop apps) can provide adequate security, but they may be unable to "keep a secret" in the OAuth2 sense.  In other words, any "secret" key, code, or
 string that is statically embedded in the app can potentially be extracted by an end-user
-or attacker. Hence security for these apps can't depend on secrets embedded at
+or attacker. Hence security for these apps cannot depend on secrets embedded at
 install-time.
 
 For strategies and best practices to protecting a client secret refer to:
@@ -558,8 +558,7 @@ the set of claims authorized for the access token with which it is associated.
 
 Apps SHOULD store tokens in app-specific storage locations only, not in
 system-wide-discoverable locations.  Access tokens SHOULD have a valid
-lifetime no greater than one hour, and refresh tokens (if issued) SHOULD
-have a valid lifetime no greater than twenty-four hours.  Confidential
+lifetime no greater than one hour.  Confidential
 clients may be issued longer-lived tokens than public clients.
 
 *A large range of threats to access tokens can be mitigated by digitally
@@ -627,7 +626,7 @@ FHIR API call to the FHIR endpoint on the EHR's resource server. The request inc
     Authorization: Bearer {{access_token}}
 {% endraw %}
 
-(Note that in a real request, {% raw %}`{{access_token}}`{% endraw %}is replaced
+(Note that in a real request, `{% raw %}{{access_token}}{% endraw %}`{:.language-text} is replaced
 with the actual token value.)
 
 ##### *For example*
@@ -635,7 +634,7 @@ With this response, the app knows which patient is in-context, and has an
 OAuth2 bearer-type access token that can be used to fetch clinical data:
 
 ###### Request
-```
+``` text
 GET https://ehr/fhir/Patient/123
 Authorization: Bearer i8hweunweunweofiwweoijewiwe
 ```
@@ -666,25 +665,11 @@ initiate a new request for access to that resource.
 
 #### Step 5: (Later...) App uses a refresh token to obtain a new access token
 
-The app can use the `expires_in` field from the authorization response (see <a
-href="#step-3">step 3</a>) to determine when its access token will expire.
-After an access token expires, it may be possible to request an updated token
-without user intervention, if the app asked for a refresh token via the
-`offline_access` scope (see <a
-href="scopes-and-launch-context/index.html">SMART on FHIR
-Access Scopes</a> for details) and the EHR supplied a `refresh_token` in the
-authorization response.  To obtain a new access token, the app issues an HTTP
-`POST` to the EHR authorization server's token URL, with content-type
-`application/x-www-form-urlencoded`
+Refresh tokens are issued to enable sessions to last longer than the validity period of an access token.  The app can use the `expires_in` field from the token response (see <a href="#step-3">step 3</a>) to determine when its access token will expire.  EHR implementers are also encouraged to consider using the [Oauth 2.0 Token Introspection Protocol](https://tools.ietf.org/html/rfc7662) to provide an introspection endpoint that clients can use to examine the validity and meaning of tokens. An app with "online access" can continue to get new access tokens as long as the end-user remains online.  Apps with "offline access" can continue to get new access tokens without the user being interactively engaged for cases where an application should have long-term access extending beyond the time when a user is still interacting with the client.
 
-EHR implementers are encouraged to consider using the [Oauth 2.0 Token Introspection Protocol](https://tools.ietf.org/html/rfc7662) to provide an introspection endpoint that clients can use to examine the validity and meaning of tokens.
+The app requests a refresh token in its authorization request via the `online_access` or `offline_access` scope (see <a href="scopes-and-launch-context/index.html">SMART on FHIR Access Scopes</a> for details).  A server can decide which client types (public or confidential) are eligible for offline access and able to receive a refresh token.  If granted, the EHR supplies a refresh_token in the token response.  After an access token expires, the app requests a new access token by providing its refresh token to the EHR's token endpoint.  An HTTP `POST` transaction is made to the EHR authorization server's token URL, with content-type `application/x-www-form-urlencoded`. The decision about how long the refresh token lasts is determined by a mechanism that the server chooses.  For clients with online access, the goal is to ensure that the user is still online.
 
-For <span class="label label-primary">public apps</span>, authentication is not
-possible (and thus not required). For <span class="label
-label-primary">confidential apps</span>, an `Authorization` header using HTTP
-Basic authentication is required, where the username is the app's `client_id`
-and the password is the app's `client_secret` (see
-[example](basic-auth-example/index.html)).
+- For <span class="label label-primary">public apps</span>, authentication is not possible (and thus not required). For <span class="label label-primary">confidential apps</span>, an `Authorization` header using HTTP
 
 The following request parameters are defined:
 
