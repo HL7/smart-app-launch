@@ -382,11 +382,7 @@ Location: https://ehr/authorize?
 The authorization decision is up to the EHR authorization server,
 which may request authorization from the end-user. The EHR authorization
 server will enforce access rules based on local policies and optionally direct
-end-user input.  If an EHR launches the app for an authenticated user who has
-explicitly requested the launch, asking for the end user's authorization is
-optional; else the user's authorization SHOULD be requested.  The user
-should be given information regarding the client requesting the access,
-the request, the scope, and the time access is needed.
+end-user input.
 
 The EHR decides whether to grant or deny access.  This decision is
 communicated to the app when the EHR authorization server returns an
