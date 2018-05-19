@@ -130,16 +130,15 @@ when the app launches from outside an EHR session, the app can request context
 from the EHR authorization server during the authorization process described
 below.
 
-Once an app receives a launch request, it enters an authorization flow by
-redirectingthe user agent to the EHR's authorize endpoint.  Based on
-pre-defined rules and possibly end-user authorization, the EHR
-authorization server either grants the request by returning an
-authorization code to the app’s redirect URL, or denies the request.
-The app then exchanges the authorization code for an access token, which
-the app presents to the EHR’s resource server to obtain the FHIR resource.
-If a refresh token is returned along with the access token, the app may
-use this to request a new access token, with the same scope, once
-the access token expires.
+Once an app receives a launch request, it requests authorization to access a FHIR resource by
+causing the browser to navigate to the EHR's authorization endpoint. Based
+on pre-defined rules and possibly end-user authorization, the EHR authorization
+server either grants the request by returning an authorization code to the app’s
+redirect URL, or denies the request. The app then exchanges the authorization
+code for an access token, which the app presents to the EHR’s resource server to
+access requested FHIR resources. If a refresh token is returned along with the
+access token, the app may use this to request a new access token, with the same
+scope, once the access token expires.
 
 ## SMART "launch sequence"
 
