@@ -237,8 +237,7 @@ redirector”).
 * An app SHALL NOT store bearer tokens in cookies that are transmitted
 in the clear.
 
-* Apps should persist tokens and other sensitive data in app-specific
-storage locations only, not in system-wide-discoverable locations.
+* Apps should not persist tokens and other sensitive data in a way that allows unauthorized access.
 
 #### *SMART authorization sequence*
 
