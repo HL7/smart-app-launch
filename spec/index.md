@@ -130,9 +130,9 @@ when the app launches from outside an EHR session, the app can request context
 from the EHR authorization server during the authorization process described
 below.
 
-Once the app is launched, it requests authorization to access a FHIR resource
-by causing the browser to navigate its authorization request to the EHR’s authorization server.
-Based on pre-defined rules and possibly end-user authorization, the EHR
+Once an app receives a launch request, it enters an authorization flow by
+redirectingthe user agent to the EHR's authorize endpoint.  Based on
+pre-defined rules and possibly end-user authorization, the EHR
 authorization server either grants the request by returning an
 authorization code to the app’s redirect URL, or denies the request.
 The app then exchanges the authorization code for an access token, which
