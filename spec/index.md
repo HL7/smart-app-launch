@@ -221,8 +221,7 @@ itself and any sensitive information it may hold. For background, see the
 Considerations](https://tools.ietf.org/html/rfc6819).
 
 * Apps MUST assure that sensitive information (authentication secrets,
-authorization codes, tokens) is transmitted ONLY to authenticated servers,
-over TLS-secured channels.
+authorization codes, tokens) is transmitted to servers over TLS-secured channels.
 
 * Apps MUST generate an unpredictable `state` parameter for each user
 session.  An app MUST validate the `state` value for any request sent to its
