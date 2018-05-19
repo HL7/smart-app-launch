@@ -441,11 +441,14 @@ using content-type `application/x-www-form-urlencoded`, as described in
 section 4.1.3 of RFC6749](https://tools.ietf.org/html/rfc6749#section-4.1.3).
 
 For <span class="label label-primary">public apps</span>, authentication is not
-possible (and thus not required), since the app cannot be trusted to protect a
-secret.  For <span class="label label-primary">confidential apps</span>, an
-`Authorization` header using HTTP Basic authentication is required, where the
-username is the app's `client_id` and the password is the app's `client_secret`
-(see [example](basic-auth-example/index.html)).
+possible (and thus not required), since a client with no secret cannot prove its
+identity when it issues a call. (The end-to-end system can still be secure
+because the client comes from a known, https protected endpoint specified and
+enforced by the redirect uri.)  For <span class="label
+label-primary">confidential apps</span>, an `Authorization` header using HTTP
+Basic authentication is required, where the username is the app's `client_id`
+and the password is the app's `client_secret` (see
+[example](basic-auth-example/index.html)).
 
 
 <table class="table">
