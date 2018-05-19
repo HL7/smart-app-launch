@@ -7,7 +7,7 @@ layout: default
 The SMART App Launch Framework connects third-party applications to Electronic
 Health Record data, allowing apps to launch from inside or outside the user
 interface of an EHR system. The framework supports apps for use by clinicians,
-patients, and others. It provides a reliable, secure authorization protocol for
+patients, and others via a PHR or Patient Portal or any FHIR system where a user can give permissions to launch an app. It provides a reliable, secure authorization protocol for
 a variety of app architectures, including apps that run on an end-user's device
 as well as apps that run on a secure server.  The Launch Framework supports the
 [four uses
@@ -35,6 +35,40 @@ The profile defines a method through which an app requests
 authorization to access a FHIR resource, and then uses that authorization
 to retrieve the resource. Synchronization of patient context is not addressed.  In other words, if the patient chart is changed during the session, the application will not inherently be updated.  Other security mechanisms, such as those mandated by HIPAA in the US (end-user authentication, session time-out, security auditing,
 and accounting of disclosures) are outside the scope of this profile.
+
+## App protection
+
+The app is responsible for protecting itself from potential misbehaving or
+malicious values passed to its redirect URL (e.g., values injected with
+executable code, such as SQL) and for protecting authorization codes, access
+tokens, and refresh tokens from unauthorized access and use.  The app
+developer must be aware of potential threats, such as malicious apps running
+on the same platform, counterfeit authorization servers, and counterfeit
+resource servers, and implement countermeasures to help protect both the app
+itself and any sensitive information it may hold. For background, see the
+[OAuth 2.0 Threat Model and Security
+Considerations](https://tools.ietf.org/html/rfc6819).
+
+* Apps MUST assure that sensitive information (authentication secrets,
+authorization codes, tokens) is transmitted ONLY to authenticated servers,
+over TLS-secured channels.
+
+* Apps MUST generate an unpredictable `state` parameter for each user
+session.  An app MUST validate the `state` value for any request sent to its
+redirect URL; include `state` with all authorization requests; and validate
+the `state` value included in access tokens it receives.
+
+* An app SHALL NOT excecute any inputs it receives as code.
+
+* An app MUST NOT forward values passed back to its redirect URL to any
+other arbitrary or user-provided URL (a practice known as an “open
+redirector”).
+
+* An app SHALL NOT store bearer tokens in cookies that are transmitted
+in the clear.
+
+* Apps should persist tokens and other sensitive data in app-specific
+storage locations only, not in system-wide-discoverable locations.
 
 ## Support for "public" and "confidential" apps
 
@@ -67,7 +101,6 @@ for example:
 - App is an HTML5 or JS in-browser app that would expose the secret in user space
 - App is a native app that can only distribute a `client_secret` statically
 
-
 ## Registering a SMART App with an EHR
 
 Before a SMART app can run against an EHR, the app must be registered with that
@@ -83,9 +116,7 @@ No matter how an app registers with an EHR's authorization service, at registrat
 
 ## SMART authorization & FHIR access: overview
 
-An app (confidential or public) can launch from within an existing EHR session,
-which is known as an EHR launch.  Alternatively, it can launch as a standalone
-app.
+An app can launch from within an existing EHR or Patient Portal session; this is known as an EHR launch.  Alternatively, it can launch as a standalone app.
 
 In an <span class="label label-primary">EHR launch</span>, an opaque handle to
 the EHR context is passed along to the app as part of the launch URL.  The app
@@ -151,7 +182,7 @@ additional details about the EHR, including its authorization URL.
 
       Opaque identifier for this specific launch, and any EHR context associated
 with it. This parameter must be communicated back to the EHR  at authorization
-time by passing along a <code>launch=123</code> parameter (see below).
+time by passing along a <code>launch</code> parameter (see example below).
 
       </td>
     </tr>
@@ -204,44 +235,9 @@ patient selection widget.  For full details, see <a href="scopes-and-launch-cont
 *	launch/encounter - to indicate the app needs an encounter
 
 
-
 ## SMART authorization and resource retrieval
 
-#### First, a word about app protection...
-
-The app is responsible for protecting itself from potential misbehaving or
-malicious values passed to its redirect URL (e.g., values injected with
-executable code, such as SQL) and for protecting authorization codes, access
-tokens, and refresh tokens from unauthorized access and use.  The app
-developer must be aware of potential threats, such as malicious apps running
-on the same platform, counterfeit authorization servers, and counterfeit
-resource servers, and implement countermeasures to help protect both the app
-itself and any sensitive information it may hold. For background, see the
-[OAuth 2.0 Threat Model and Security
-Considerations](https://tools.ietf.org/html/rfc6819).
-
-* Apps MUST assure that sensitive information (authentication secrets,
-authorization codes, tokens) is transmitted ONLY to authenticated servers,
-over TLS-secured channels.
-
-* Apps MUST generate an unpredictable `state` parameter for each user
-session.  An app MUST validate the `state` value for any request sent to its
-redirect URL; include `state` with all authorization requests; and validate
-the `state` value included in access tokens it receives.
-
-* An app SHALL NOT excecute any inputs it receives as code.
-
-* An app MUST NOT forward values passed back to its redirect URL to any
-other arbitrary or user-provided URL (a practice known as an “open
-redirector”).
-
-* An app SHALL NOT store bearer tokens in cookies that are transmitted
-in the clear.
-
-* Apps should persist tokens and other sensitive data in app-specific
-storage locations only, not in system-wide-discoverable locations.
-
-#### *SMART authorization sequence*
+### *SMART authorization sequence*
 
 <div>
 <img class="sequence-diagram-raw" src="http://www.websequencediagrams.com/cgi-bin/cdraw?lz=bm90ZSBsZWZ0IG9mIEFwcDogUmVxdWVzdCBhdXRob3JpemF0aW9uCkFwcCAtPj4gRUhSIEF1dGh6IFNlcnZlcjogUmVkaXJlY3QgaHR0cHM6Ly97ZWhyADUJZV91cmx9Py4uLgoAZgVvdmVyADITQQAnCCBBcHBcbihtYXkgaW5jbHVkZSBlbmQtdXNlAE4GZW50aWMAgQ4FXG5hbmQADw4AgSYJKQpOb3RlIABWGE9uIGFwcHJvdmFsCgCBQRAgLT4-AIIBBwCBSBBhcHAgcgCBZwdfdXJpfT9jb2RlPTEyMyYAgVcJAII-DUV4Y2hhbmdlIGNvZGUgZm9yIGFjY2VzcyB0b2tlbjtcbmlmIGNvbmZpZGVudGlhbCBjbGllbnQsAIFyCXNlY3JldApBcHAtPgCCaBJQT1NUAIJsCgBPBSB1cmx9XG5ncmFudF90eXBlPQCDOg1fY29kZSYAgSQSAIJ7GwCCagdlIGEAgxQFAIEcFgCCaQcAg0YXSXNzdWUgbmV3AIFyBiB3aXRoIGNvbnRleHQ6XG4ge1xuIgCCEwZfAIIUBSI6IgCBcwYtAIIjBS14eXoiLFxuImV4cGlyZXMtaW4iOjM2MDAsXG4icGF0aWVudCI6IjQ1NiIsXG4uLi5cbn0Ag0MUAIVZBVsAgnYMIHJlc3BvbnNlXQ&s=default&h=NA3OIkJNCqFraI5a">
@@ -253,7 +249,7 @@ storage locations only, not in system-wide-discoverable locations.
 
 At launch time, the app constructs a request for authorization by adding the
 following parameters to the query component of the EHR’s "authorize" endpoint
-URL using the "application/x-www-form-urlencoded" format:
+URL.:
 
 <table class="table">
   <thead>
@@ -386,11 +382,7 @@ Location: https://ehr/authorize?
 The authorization decision is up to the EHR authorization server,
 which may request authorization from the end-user. The EHR authorization
 server will enforce access rules based on local policies and optionally direct
-end-user input.  If an EHR launches the app for an authenticated user who has
-explicitly requested the launch, asking for the end user's authorization is
-optional; else the user's authorization SHOULD be requested.  The user
-should be given information regarding the client requesting the access,
-the request, the scope, and the time access is needed.
+end-user input.
 
 The EHR decides whether to grant or deny access.  This decision is
 communicated to the app when the EHR authorization server returns an
@@ -560,8 +552,7 @@ the set of claims authorized for the access token with which it is associated.
 
 Apps SHOULD store tokens in app-specific storage locations only, not in
 system-wide-discoverable locations.  Access tokens SHOULD have a valid
-lifetime no greater than one hour, and refresh tokens (if issued) SHOULD
-have a valid lifetime no greater than twenty-four hours.  Confidential
+lifetime no greater than one hour.  Confidential
 clients may be issued longer-lived tokens than public clients.
 
 *A large range of threats to access tokens can be mitigated by digitally
@@ -629,7 +620,7 @@ FHIR API call to the FHIR endpoint on the EHR's resource server. The request inc
     Authorization: Bearer {{access_token}}
 {% endraw %}
 
-(Note that in a real request, {% raw %}`{{access_token}}`{% endraw %}is replaced
+(Note that in a real request, `{% raw %}{{access_token}}{% endraw %}`{:.language-text} is replaced
 with the actual token value.)
 
 ##### *For example*
@@ -637,7 +628,7 @@ With this response, the app knows which patient is in-context, and has an
 OAuth2 bearer-type access token that can be used to fetch clinical data:
 
 ###### Request
-```
+``` text
 GET https://ehr/fhir/Patient/123
 Authorization: Bearer i8hweunweunweofiwweoijewiwe
 ```
@@ -668,25 +659,11 @@ initiate a new request for access to that resource.
 
 #### Step 5: (Later...) App uses a refresh token to obtain a new access token
 
-The app can use the `expires_in` field from the authorization response (see <a
-href="#step-3">step 3</a>) to determine when its access token will expire.
-After an access token expires, it may be possible to request an updated token
-without user intervention, if the app asked for a refresh token via the
-`offline_access` scope (see <a
-href="scopes-and-launch-context/index.html">SMART on FHIR
-Access Scopes</a> for details) and the EHR supplied a `refresh_token` in the
-authorization response.  To obtain a new access token, the app issues an HTTP
-`POST` to the EHR authorization server's token URL, with content-type
-`application/x-www-form-urlencoded`
+Refresh tokens are issued to enable sessions to last longer than the validity period of an access token.  The app can use the `expires_in` field from the token response (see <a href="#step-3">step 3</a>) to determine when its access token will expire.  EHR implementers are also encouraged to consider using the [Oauth 2.0 Token Introspection Protocol](https://tools.ietf.org/html/rfc7662) to provide an introspection endpoint that clients can use to examine the validity and meaning of tokens. An app with "online access" can continue to get new access tokens as long as the end-user remains online.  Apps with "offline access" can continue to get new access tokens without the user being interactively engaged for cases where an application should have long-term access extending beyond the time when a user is still interacting with the client.
 
-EHR implementers are encouraged to consider using the [Oauth 2.0 Token Introspection Protocol](https://tools.ietf.org/html/rfc7662) to provide an introspection endpoint that clients can use to examine the validity and meaning of tokens.
+The app requests a refresh token in its authorization request via the `online_access` or `offline_access` scope (see <a href="scopes-and-launch-context/index.html">SMART on FHIR Access Scopes</a> for details).  A server can decide which client types (public or confidential) are eligible for offline access and able to receive a refresh token.  If granted, the EHR supplies a refresh_token in the token response.  After an access token expires, the app requests a new access token by providing its refresh token to the EHR's token endpoint.  An HTTP `POST` transaction is made to the EHR authorization server's token URL, with content-type `application/x-www-form-urlencoded`. The decision about how long the refresh token lasts is determined by a mechanism that the server chooses.  For clients with online access, the goal is to ensure that the user is still online.
 
-For <span class="label label-primary">public apps</span>, authentication is not
-possible (and thus not required). For <span class="label
-label-primary">confidential apps</span>, an `Authorization` header using HTTP
-Basic authentication is required, where the username is the app's `client_id`
-and the password is the app's `client_secret` (see
-[example](basic-auth-example/index.html)).
+- For <span class="label label-primary">public apps</span>, authentication is not possible (and thus not required). For <span class="label label-primary">confidential apps</span>, an `Authorization` header using HTTP
 
 The following request parameters are defined:
 
