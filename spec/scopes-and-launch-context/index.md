@@ -46,9 +46,9 @@ Expressed in [EBNF notation](https://en.wikipedia.org/wiki/Extended_Backus%E2%80
 ### Patient-specific scopes
 
 Patient-specific scopes allow access to specific data about a single patient.
-(Notice that *which* patient is not specified here: clinical data
-scopes are all about "what" and not "who." "Who" is handled below!)
-Patient-specific scopes take the form: `patient/:resourceType.(read|write|*)`.
+*Which* patient is not specified here: clinical data
+scopes are all about *what* and not *who* which is handled in the next section.
+Patient-specific scopes take the form: `patient/:resourceType.(read|write|*)`.  Note that some EHRs may not enable access to all related resources - for example, Practitioners linked to/from Patient-specific resources.
 
 Let's look at a few examples:
 
