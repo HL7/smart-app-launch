@@ -15,20 +15,15 @@ negotiate) access requirements. Providing apps with access to broad data sets is
 
 Here is a quick overview of the most commonly used scopes. Read on below for complete details.
 
-Scope              | Grants -------------------|------- `patient/*.read`   |
-Permission to read any resource for the current patient (see notes on wildcard
-scopes below) `user/*.*`         | Permission to read and write all resources
-that the current user can access (see notes on wildcard scopes below) `openid`
-`profile` | Permission to retrieve information about the current logged-in user
-`launch`           | Permission to obtain launch context when app is launched
-from an EHR `launch/patient`   | When launching outside the EHR, ask for a
-patient to be selected at launch time `offline_access`   | Request a
-`refresh_token` that can be used to obtain a new access token to replace an
-expired one, even after the end-user no longer is online after the access token
-rexpires `online_access`   | Request a `refresh_token` that can be used to
-obtain a new access token to replace an expired one, and that will be usable for
-as long as the end-user remains online.
-
+|Scope | Grants|
+|---|---
+|`patient/*.read`|Permission to read any resource for the current patient (see notes on wildcard scopes below)|
+|`user/*.*`| Permission to read and write all resources that the current user can access (see notes on wildcard scopes below)|
+| `openid` `profile`| Permission to retrieve information about the current logged-in user|
+|`launch`| Permission to obtain launch context when app is launched from an EHR|
+|`launch/patient`| When launching outside the EHR, ask for a patient to be selected at launch time|
+|`offline_access`| Request a `refresh_token` that can be used to obtain a new access token to replace an expired one, even after the end-user no longer is online after the access token expires|
+|`online_access`| Request a `refresh_token` that can be used to obtain a new access token to replace an expired one, and that will be usable for as long as the end-user remains online.|
 
 ## Scopes for requesting clinical data
 
@@ -138,7 +133,7 @@ scopes:
 #### Requesting context with scopes
 
 Requested Scope | Meaning
-------|---------|-------------------
+---------|-------------------
 `launch/patient` | Need patient context at launch time (FHIR Patient resource)
 `launch/encounter` | Need encounter context at launch time (FHIR Encounter resource)
 (Others)| This list can be extended by any SMART EHR if additional context is required.
