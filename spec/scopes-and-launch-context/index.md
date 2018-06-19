@@ -160,7 +160,7 @@ parameters:
   ...
 }
 ```
-Here are the launch context paramaters to expect:
+Here are the launch context parameters to expect:
 
 Launch context parameter | Example value | Meaning
 ------|---------|-------------------
