@@ -290,7 +290,7 @@ Additional context parameters and scopes can be used as extensions using the fol
 
 ## Worked examples
 
-For worked examples (in Python), see [this ipython notebook](http://nbviewer.ipython.org/url/docs.smarthealthit.org/authorization/smart-on-fhir-jwt-examples.ipynb).
+- Worked Python example: [rendered](../worked_example1/index.html) ([ipython notebook source](../smart-on-fhir-jwt-examples.ipynb)).
 
 ## Appendix: URI representation of scopes
 
