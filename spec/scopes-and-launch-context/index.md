@@ -4,34 +4,37 @@ title: "SMART App Launch: Scopes and Launch Context"
 ---
 
 SMART on FHIR's authorization scheme uses OAuth scopes to communicate (and
-negotiate) access requirements. In general, we use scopes for three kinds of
-data:
+negotiate) access requirements. Providing apps with access to broad data sets is consistent with current common practices (e.g. interface engines also provide access to broad data sets); access is also limited based on the privileges of the user in context.  In general, we use scopes for three kinds of data:
 
 1. Clinical data
-2. Contextual data
-3. Identity data
+1. Contextual data
+1. Identity data
 
+Launch context is a negotiation where a client asks for specific launch context
+parameters (e.g. `launch/patient`). A server can decide which launch context
+parameters to provide, using the client's request as an input into the decision
+process.  When granting a patient-level scopes like `patient/*.read`, the server
+MUST provide a "patient" launch context parameter.
 
 ## Quick Start
 
 Here is a quick overview of the most commonly used scopes. Read on below for complete details.
 
-Scope              | Grants
--------------------|-------
-`patient/*.read`   | Permission to read any resource for the current patient (see notes on wildcard scopes below)
-`user/*.*`         | Permission to read and write all resources that the current user can access (see notes on wildcard scopes below)
-`openid` `profile` | Permission to retrieve information about the current logged-in user
-`launch`           | Permission to obtain launch context when app is launched from an EHR
-`launch/patient`   | When launching outside the EHR, ask for a patient to be selected at launch time
-`offline_access`   | Request a `refresh_token` that can be used to obtain a new access token to replace an expired one, even after the end-user no longer is online after the access token rexpires
-`online_access`   | Request a `refresh_token` that can be used to obtain a new access token to replace an expired one, and that will be usable for as long as the end-user remains online.
-
+|Scope | Grants|
+|---|---
+|`patient/*.read`|Permission to read any resource for the current patient (see notes on wildcard scopes below)|
+|`user/*.*`| Permission to read and write all resources that the current user can access (see notes on wildcard scopes below)|
+| `openid` `profile`| Permission to retrieve information about the current logged-in user|
+|`launch`| Permission to obtain launch context when app is launched from an EHR|
+|`launch/patient`| When launching outside the EHR, ask for a patient to be selected at launch time|
+|`offline_access`| Request a `refresh_token` that can be used to obtain a new access token to replace an expired one, even after the end-user no longer is online after the access token expires|
+|`online_access`| Request a `refresh_token` that can be used to obtain a new access token to replace an expired one, and that will be usable for as long as the end-user remains online.|
 
 ## Scopes for requesting clinical data
 
 SMART on FHIR defines OAuth2 access scopes that correspond directly to FHIR
 resource types. We define **read** and **write** permissions for
-patient-specific and user-level access.
+patient-specific and user-level access.  Apps that need to read existing data from an EHR (e.g., FHIR read and search interactions) should ask for read scopes. Apps that need to write data to an ehr (e.g., FHIR create, update, and delete) should ask for write scopes. EHRs may decide what specific interactions and operations will be enabled by these scopes.
 
 ### Clinical Scope Syntax
 
@@ -47,9 +50,9 @@ Expressed in [EBNF notation](https://en.wikipedia.org/wiki/Extended_Backus%E2%80
 ### Patient-specific scopes
 
 Patient-specific scopes allow access to specific data about a single patient.
-(Notice that *which* patient is not specified here: clinical data
-scopes are all about "what" and not "who." "Who" is handled below!)
-Patient-specific scopes take the form: `patient/:resourceType.(read|write|*)`.
+*Which* patient is not specified here: clinical data
+scopes are all about *what* and not *who* which is handled in the next section.
+Patient-specific scopes take the form: `patient/:resourceType.(read|write|*)`.  Note that some EHRs may not enable access to all related resources - for example, Practitioners linked to/from Patient-specific resources.
 
 Let's look at a few examples:
 
@@ -121,10 +124,10 @@ on the details of how your app is launched.
 ### Apps that launch from the EHR
 
 Apps that launch from the EHR will be passed an explicit URL parameter called
-`launch`, whose value must be turned into an OAuth scope to bind the app's
-authorization request to the current EHR session.  If an app receives the URL
+launch`, whose value must associate the app's
+authorization request with the current EHR session.  For example, If an app receives the URL
 parameter `launch=abc123`, then it requests the scope `launch` and provides an
-additional URL parameter of `launch=abc123` That's all.
+additional URL parameter of `launch=abc123`.
 
 ### Standalone apps
 
@@ -135,10 +138,9 @@ scopes:
 #### Requesting context with scopes
 
 Requested Scope | Meaning
-------|---------|-------------------
+---------|-------------------
 `launch/patient` | Need patient context at launch time (FHIR Patient resource)
 `launch/encounter` | Need encounter context at launch time (FHIR Encounter resource)
-`launch/location` | Need location context at launch time (FHIR Location resource)
 (Others)| This list can be extended by any SMART EHR if additional context is required.
 
 ### Launch context arrives with your `access_token`
@@ -151,7 +153,7 @@ UX and UI expectations to the app (see `need_patient_banner` below).
 Launch context parameters come alongside the access token. They will appear as JSON
 parameters:
 
-```
+```  text
 {
   access_token: "secret-xyz",
   patient: "123",
@@ -164,12 +166,9 @@ Launch context parameter | Example value | Meaning
 ------|---------|-------------------
 `patient` | `"123"`| String value with a patient id, indicating that the app was launched in the context of FHIR Patient 123. If the app has any patient-level scopes, they will be scoped to Patient 123.
 `encounter` | `"123"`| String value with an encounter id, indicating that the app was launched in the context of FHIR Encounter 123.
-`location` | `"123"`| String value with a location id, indicating that the app was launched from the physical place corresponding to FHIR Location 123.
 `need_patient_banner` | `true` or `false` (boolean) | Boolean value indicating whether the app was launched in a UX context where a patient banner is required (when `true`) or not required (when `false`). An app receiving a value of `false` should not take up screen real estate displaying a patient banner.
-`resource` | `"MedicationPrescription/123"`| String value with a relative resource link, describing some specific resource context  for the launch (in this case, a particular medication prescription). This is a generic mechanism to communicate to an app that a particular resource is "of interest" at launch time.
 `intent` | `"reconcile-medications"`| String value describing the intent of the application launch (see notes [below](#launch-intent))
 `smart_style_url` | `"https://ehr/styles/smart_v1.json"`| String URL where the host's style parameters can be retrieved (for apps that support [styling](#styling))
-
 
 #### Notes on launch context parameters
 
@@ -199,14 +198,15 @@ Note:  *SMART makes no effort to standardize `intent` values*.  Intents simply
 provide a mechanism for tighter custom integration between an app and a SMART
 host. The meaning of intents must be negotiated between the app and the host.
 
-<h5 id="styling"><b>SMART App Styling</b> (optional)</h5>
+##### SMART App Styling (experimental[^1])
+{: #styling}
 `smart_style_url`: In order to mimic the style of the SMART host more closely,
 SMART apps can check for the existence of this launch context parameter and
 download the JSON file referenced by the URL value, if provided.
 
 The URL should serve a "SMART Style" JSON object with one or more of the following properties:
 
-```
+``` text
 {
   color_background: "#edeae3",
   color_error: "#9e2d2d",
@@ -261,7 +261,7 @@ that comes alongside the access token.
 This token must be [validated according to the OIDC specification](http://openid.net/specs/openid-connect-core-1_0.html#IDTokenValidation).
 To learn more about the user, the app should treat the "profile" claim as the URL of
 a FHIR resource representing the current user. This will be a resource of type
-`Patient`, `Practitioner`, or `RelatedPerson`.
+`Patient`, `Practitioner`, `RelatedPerson`, or `Person`.  Note that `Person` is only used if the other resource type do not apply to the current user, for example, the "authorized representative" for >1 patients.
 
 ## Scopes for requesting a refresh token
 
@@ -272,6 +272,13 @@ Scope              | Grants
 -------------------|-------
 `online_access`    | Request a `refresh_token` that can be used to obtain a new access token to replace an expired one, and that will be usable for as long as the end-user remains online.
 `offline_access`   | Request a `refresh_token` that can be used to obtain a new access token to replace an expired token, and that will remain usable for as long as the authorization server and end-user will allow, regardless of whether the end-user is online.
+
+## Extensions
+
+Additional context parameters and scopes can be used as extensions using the following namespace conventions:
+
+- use a *full URI* that you control (e.g. http://example.com/scope-name)
+- use any string starting with `__` (two underscores)
 
 ## Steps for using an ID token
 
@@ -290,3 +297,9 @@ For worked examples (in Python), see [this ipython notebook](http://nbviewer.ipy
 In some circumstances - for example, exchanging what scopes users are allowed to have, or sharing what they did choose), the scopes must be represented as URIs. When this is done, the standard URI is to prefix the SMART scopes with  http://smarthealthit.org/fhir/scopes/, so that a scope would be `http://smarthealthit.org/fhir/scopes/patient/*.read`.
 
 openID scopes have a URI prefix of http://openid.net/specs/openid-connect-core-1_0#
+
+---
+
+<br />
+
+[^1]: Section is marked as "experimental" to indicate that there may be future backwards-incompatible changes to the style document pointed to by the `smart_style_url`.
