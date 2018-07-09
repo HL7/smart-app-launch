@@ -1,16 +1,55 @@
 {
-  "paths": {
-    "resources": ["resources"],
-    "specification": "http://hl7.org/fhir/STU3",
-    "pages": "spec",
-    "temp": "temp",
-    "output": "output",
-    "txCache": "txCache",
-    "qa": "qa"
-  },
-  "tool": "jekyll",
-  "resources": { },
   "canonicalBase": "http://hl7.org/fhir/smart-app-launch",
-  "version": "3.0.1",
-  "source": "ig.xml"
+  "extraTemplates": [
+    "inline"
+  ],
+  "defaults": {
+    "Any": {
+      "template-base": "base.html",
+      "template-format": "format.html"
+    },
+    "StructureDefinition": {
+      "template-base": "sd.html",
+      "template-inline": "inline.html"
+    }
+  },
+  "fixed-business-version": "1.0.0",
+  "license": "CC0-1.0",
+  "npm-name": "smart.launch",
+  "paths": {
+    "output": "output",
+    "pages": ["spec"],
+    "qa": "qa",
+    "resources": [
+      "resources"
+    ],
+    "specification": "http://hl7.org/fhir/STU3",
+    "temp": "temp",
+    "txCache": "txCache"
+  },
+  "resources": {
+    "CodeSystem/cap-codes": {
+      "base": "CodeSystem-cap-codes.html"
+    },
+    "StructureDefinition/capabilitystatement-smartlaunch": {
+      "base": "StructureDefinition-capabilitystatement-smartlaunch.html"
+    },
+    "StructureDefinition/extension-oauth-uris": {
+      "base": "StructureDefinition-extension-oauth-uris.html",
+      "inline": "StructureDefinition-extension-oauth-uris-inline.html"
+    },
+    "StructureDefinition/extension-smart-capabilities": {
+      "base": "StructureDefinition-extension-smart-capabilities.html",
+      "inline": "StructureDefinition-extension-smart-capabilities-inline.html"
+    },
+    "ValueSet/cap-codes": {
+      "base": "ValueSet-cap-codes.html"
+    }
+  },
+  "source": "ig.xml",
+  "spreadsheets": [
+    "smartlaunch-profile-spreadsheet.xml"
+  ],
+  "tool": "jekyll",
+  "version": "3.0.1"
 }

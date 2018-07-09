@@ -9,10 +9,30 @@
   <publisher value="FHIR Project"/>
   <package>
     <name value="base"/>
+    <resource>
+      <example value="false"/>
+      <sourceReference>
+        <reference value="StructureDefinition/extension-oauth-uris"/>
+      </sourceReference>
+    </resource>
+    <resource>
+      <example value="false"/>
+      <sourceReference>
+        <reference value="StructureDefinition/extension-smart-capabilities"/>
+      </sourceReference>
+    </resource>
+ 
+    <resource>
+      <example value="false"/>
+      <sourceReference>
+        <reference value="StructureDefinition/capabilitystatement-smartlaunch"/>
+      </sourceReference>
+    </resource>
+
   </package>
   <page>
     <source value="index.html"/>
-    <title value="FHIRPath Specification"/>
+    <title value="SMART App Launch"/>
     <kind value="page"/>
   </page>
 </ImplementationGuide>
