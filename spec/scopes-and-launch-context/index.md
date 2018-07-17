@@ -254,7 +254,7 @@ that might occur from the immediate use of these values in the client app UI.
 Some apps need to authenticate the clinical end-user. This can be accomplished
 by requesting a pair of OpenID Connect scopes: `openid` and  `fhirUser`. A
 client may also request `openid profile` instead of `openid fhirUser`, but the
-`profile` claim is being depreceated in favor of `fhirUser`.
+`profile` claim is being deprecated in favor of `fhirUser`.
 
 When these scopes are requested (and the request is granted), the app will
 receive an [`id_token`](http://openid.net/specs/openid-connect-core-1_0.html#CodeIDToken)
