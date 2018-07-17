@@ -21,7 +21,7 @@
             "url": "http://fhir-registry.smarthealthit.org/StructureDefinition/extension-oauth-uris",
             "extension": [
               {
-                "url": "token",
+                "url": "token",gs
                 "valueUri": "https://my-server.org/token"
               },
               {
