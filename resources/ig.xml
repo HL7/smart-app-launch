@@ -15,13 +15,7 @@
         <reference value="StructureDefinition/extension-oauth-uris"/>
       </sourceReference>
     </resource>
-    <resource>
-      <example value="false"/>
-      <sourceReference>
-        <reference value="StructureDefinition/extension-smart-capabilities"/>
-      </sourceReference>
-    </resource>
- 
+
     <resource>
       <example value="false"/>
       <sourceReference>

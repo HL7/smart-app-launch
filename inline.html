@@ -1,0 +1,18 @@
+---
+# jekyll header
+level: 2
+template: inline
+active: format
+type: {{[type]}}
+id: {{[id]}}
+---
+
+<!-- ig template for many conformance resource html pages  ('base' in definitions file)  can not be used for conformance resources that have more that a single base template. e.g.,  sd since there are mapping and definitions templates for it as well  they need to be split out into 3 separate templates -->
+
+<div id="tbl-diff">
+ <div id="tbl-diff-inner">
+{% include {{[type]}}-{{[id]}}-diff.xhtml %}
+ </div>
+</div>
+
+  <!-- ==============END CONTENT END CONTENT=================== -->

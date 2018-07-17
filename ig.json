@@ -15,7 +15,7 @@
   },
   "fixed-business-version": "1.0.0",
   "license": "CC0-1.0",
-  "npm-name": "smart.launch",
+  "npm-name": "hl7.fhir.smart",
   "paths": {
     "output": "output",
     "pages": ["spec"],
@@ -28,22 +28,12 @@
     "txCache": "txCache"
   },
   "resources": {
-    "CodeSystem/cap-codes": {
-      "base": "CodeSystem-cap-codes.html"
-    },
     "StructureDefinition/capabilitystatement-smartlaunch": {
       "base": "StructureDefinition-capabilitystatement-smartlaunch.html"
     },
     "StructureDefinition/extension-oauth-uris": {
       "base": "StructureDefinition-extension-oauth-uris.html",
       "inline": "StructureDefinition-extension-oauth-uris-inline.html"
-    },
-    "StructureDefinition/extension-smart-capabilities": {
-      "base": "StructureDefinition-extension-smart-capabilities.html",
-      "inline": "StructureDefinition-extension-smart-capabilities-inline.html"
-    },
-    "ValueSet/cap-codes": {
-      "base": "ValueSet-cap-codes.html"
     }
   },
   "source": "ig.xml",
