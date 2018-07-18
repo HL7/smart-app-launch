@@ -14,8 +14,7 @@ The following package file contains an NPM package file with all the value sets,
 **Schematrons** are also available and listed below:
 
 - [SMART on FHIR CapabilityStatement]({{layout.baseurl}}capabilitystatement-smartlaunch.sch)
-- [Oauth Uri]({{layout.baseurl}}extension-oauth-uris.sch)
-- [SMART Capabilities]({{layout.baseurl}}extension-smart-capabilities.sch)
+- [Oauth Uri]({{layout.baseurl}}oauth-uris.sch)
 
 **Examples**
 

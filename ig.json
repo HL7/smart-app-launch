@@ -1,5 +1,5 @@
 {
-  "canonicalBase": "http://hl7.org/fhir/smart-app-launch",
+  "canonicalBase": "http://fhir-registry.smarthealthit.org",
   "extraTemplates": [
     "inline"
   ],
@@ -31,9 +31,9 @@
     "StructureDefinition/capabilitystatement-smartlaunch": {
       "base": "StructureDefinition-capabilitystatement-smartlaunch.html"
     },
-    "StructureDefinition/extension-oauth-uris": {
-      "base": "StructureDefinition-extension-oauth-uris.html",
-      "inline": "StructureDefinition-extension-oauth-uris-inline.html"
+    "StructureDefinition/oauth-uris": {
+      "base": "StructureDefinition-oauth-uris.html",
+      "inline": "StructureDefinition-oauth-uris-inline.html"
     }
   },
   "source": "ig.xml",
