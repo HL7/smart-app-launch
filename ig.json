@@ -1,16 +1,45 @@
 {
-  "paths": {
-    "resources": ["resources"],
-    "specification": "http://hl7.org/fhir/STU3",
-    "pages": "spec",
-    "temp": "temp",
-    "output": "output",
-    "txCache": "txCache",
-    "qa": "qa"
+  "canonicalBase": "http://fhir-registry.smarthealthit.org",
+  "extraTemplates": [
+    "inline"
+  ],
+  "defaults": {
+    "Any": {
+      "template-base": "base.html",
+      "template-format": "format.html"
+    },
+    "StructureDefinition": {
+      "template-base": "sd.html",
+      "template-inline": "inline.html"
+    }
   },
+  "fixed-business-version": "1.0.0",
+  "license": "CC0-1.0",
+  "npm-name": "hl7.fhir.smart",
+  "paths": {
+    "output": "output",
+    "pages": ["spec"],
+    "qa": "qa",
+    "resources": [
+      "resources"
+    ],
+    "specification": "http://hl7.org/fhir/STU3",
+    "temp": "temp",
+    "txCache": "txCache"
+  },
+  "resources": {
+    "StructureDefinition/capabilitystatement-smartlaunch": {
+      "base": "StructureDefinition-capabilitystatement-smartlaunch.html"
+    },
+    "StructureDefinition/oauth-uris": {
+      "base": "StructureDefinition-oauth-uris.html",
+      "inline": "StructureDefinition-oauth-uris-inline.html"
+    }
+  },
+  "source": "ig.xml",
+  "spreadsheets": [
+    "smartlaunch-profile-spreadsheet.xml"
+  ],
   "tool": "jekyll",
-  "resources": { },
-  "canonicalBase": "http://hl7.org/fhir/smart-app-launch",
-  "version": "3.0.1",
-  "source": "ig.xml"
+  "version": "3.0.1"
 }

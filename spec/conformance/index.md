@@ -4,39 +4,71 @@ layout: default
 ---
 
 The SMART's App Launch specification enables apps to launch and securely interact with EHRs.
-The specification can be described as a set of capabilities; a given server implementation
-may implement a subset of these. To promote interoperability, we describe a full package
-known as the **Core SMART on FHIR Support** that includes support for
+The specification can be described as a set of capabilities and a given SMART on FHIR server implementation
+may implement a subset of these.  The methods of declaring a server's SMART authorization endpoints and launch capabilities are described in the sections below.
 
-* both launch modes (EHR Launch + Standalone Launch)
-* both client types (Public + Confidential with symmetric client secret authentication)
-* single sign-on (OpenID Connect)
-* basic launch context (patient, encounter, banner, style)
-* permission for single-patient apps, user-level apps, and refresh tokens
+## SMART on FHIR OAuth authorization Endpoints
 
-## FHIR Authorization Endpoint and Capabilities Discovery
+The server SHALL convey the FHIR OAuth authorization endpoints that are listed in the table below to app developers.  The server SHALL use *both*:
 
-A SMART on FHIR server can convey its FHIR authorization endpoints and capabilities to app developers by exposing them as a [Well-Known Uniform Resource Identifiers (URIs)][well-known] JSON file.
+1. A [FHIR CapabilityStatement](#using-cs)
+1. A [Well-Known Uniform Resource Identifiers (URIs)](#using-well-known) JSON file.
 
-A server can publish its support for Core SMART on FHIR Support by including the [Core Capabilities](core-set/index.html), and the [Capability Sets](capability-sets/index.html) can be determined from this file as well.
+to declare its SMART authorization endpoints.  ( Note that the because the specification is transitioning away from CapabilityStatement but needs to preserve compatibility with existing implementations, both methods are required.)
 
-## Specific Capabilities (by category)
+|Endpoint|Conformance Expectation|Description|
+|---|---|---|
+|authorize|**SHALL**|URL to the OAuth2 authorization endpoint.|
+|token|**CONDITIONAL SHALL**|URL to the OAuth2 token endpoint, required unless the implicit grant flow is used.|
+|register|**SHOULD**|If available, URL to the OAuth2 dynamic registration endpoint for this FHIR server.|
+|manage|**SHOULD**|If available the 'manage' URL is a browser-accessible web endpoint where an end-user can view which applications currently have access to data and can make adjustments to these access rights. Details of the 'manage' functionality are out of scope for this specification.
+|introspect|**SHOULD**|URL to a server’s introspection endpoint that can be used to validate a token.|
+|revoke|**SHOULD**|URL to a server’s endpoint that can be used to to notify the authorization server that a previously obtained refresh or access token is no longer needed.|
+{:.grid}
 
-### Launch Modes
+<!--deprecated... manage	optional	valueUri indicating the user-facing authorization management workflow entry point for this FHIR server. -->
+
+## SMART on FHIR Core Capabilities and Capability Sets
+
+The server SHALL convey the *optional* SMART Core Capabilities it supports using:
+
+- A [Well-Known Uniform Resource Identifiers (URIs)](#using-well-known) JSON file.
+
+### Core Capabilities
+
+To promote interoperability, the following SMART on FHIR’s *Core Capabilities* have been defined by category:
+
+- launch-ehr
+- launch-standalone
+- client-public
+- client-confidential-symmetric
+- sso-openid-connect
+- context-banner
+- context-style
+- context-ehr-patient
+- context-ehr-encounter
+- context-standalone-patient
+- context-standalone-encounter
+- permission-offline
+- permission-patient
+- permission-user
+
+
+#### Launch Modes
 
 * `launch-ehr`: support for SMART's EHR Launch mode  
 * `launch-standalone`: support for SMART's Standalone Launch mode  
 
-### Client Types
+#### Client Types
 
 * `client-public`: support for SMART's public client profile (no client authentication)  
 * `client-confidential-symmetric`: support for SMART's confidential client profile (symmetric client secret authentication)
 
-### Single Sign-on
+#### Single Sign-on
 
 * `sso-openid-connect`: support for SMART's OpenID Connect profile
 
-### Launch Context
+#### Launch Context
 
 The following capabilities convey that a SMART on FHIR server is capable of providing basic context
 to an app at launch time. These capabilities apply during an EHR Launch or a Standalone Launch:
@@ -44,7 +76,7 @@ to an app at launch time. These capabilities apply during an EHR Launch or a Sta
 * `context-banner`: support for "need patient banner" launch context (conveyed via `need_patient_banner` token parameter)
 * `context-style`: support for "SMART style URL" launch context (conveyed via `smart_style_url` token parameter)
 
-#### Launch Context for EHR Launch
+##### Launch Context for EHR Launch
 
 When a SMART on FHIR server supports the launch of an app from _within_ an
 existing user session ("EHR Launch"), the server has an opportunity to pass
@@ -55,7 +87,7 @@ ability to pass context through to an app at launch time:
 * `context-ehr-patient`: support for patient-level launch context (requested by `launch/patient` scope, conveyed via `patient` token parameter)
 * `context-ehr-encounter`: support for encounter-level launch context (requested by `launch/encounter` scope, conveyed via `encounter` token parameter)
 
-#### Launch Context for Standalone Launch
+##### Launch Context for Standalone Launch
 
 When a SMART on FHIR server supports the launch of an app from _outside_ an
 existing user session ("Standalone Launch"), the server may be able to
@@ -67,8 +99,7 @@ completing the launch.
 * `context-standalone-patient`: support for patient-level launch context (requested by `launch/patient` scope, conveyed via `patient` token parameter)
 * `context-standalone-encounter`: support for encounter-level launch context (requested by `launch/encounter` scope, conveyed via `encounter` token parameter)
 
-
-### Permissions
+#### Permissions
 
 * `permission-offline`: support for refresh tokens (requested by `offline_access` scope)
 * `permission-patient`: support for patient-level scopes (e.g. `patient/Observation.read`)
@@ -77,3 +108,166 @@ completing the launch.
 <br />
 
 [well-known]: ../well-known/index.html
+
+
+### Capability Sets
+
+Additionally, Four *Capability Sets* are defined.  Any individual SMART server will publish a granular list of its capabilities; from this list a client can determine which of these Capability Sets are supported:
+
+#### Patient Access for Standalone Apps
+1. `launch-standalone`
+1. At least one of `client-public` or `client-confidential-symmetric`
+1. `context-standalone-patient`
+1. `permission-patient`
+
+####  Patient Access for EHR Launch (i.e. from Portal)
+1. `launch-ehr`
+1. At least one of `client-public` or `client-confidential-symmetric`
+1. `context-ehr-patient`
+1. `permission-patient`
+
+####  Clinician Access for Standalone
+1. `launch-standalone`
+1. At least one of `client-public` or `client-confidential-symmetric`
+1. `permission-user`
+1. `permission-patient`
+
+####  Clinician Access for EHR Launch
+1. `launch-ehr`
+1. At least one of `client-public` or `client-confidential-symmetric`
+1. `context-ehr-patient` support
+1. `context-ehr-encounter` support
+1. `permission-user`
+1. `permission-patient`
+
+## FHIR Authorization Endpoint and Capabilities Discovery using a FHIR CapabilityStatement
+{:. #using-cs}
+
+### Declaring Support for OAuth2 Endpoints
+
+If a server supports SMART on FHIR authorization for access, it declares support for
+automated discovery of OAuth2 endpoints in its [CapabilityStatement]({{site.data.fhir.path}}/capabilitystatement.html) using the [OAuth Uri extension](#oauth-uris-extension) on the `rest.security` element (or, when using FHIR DSTU2, the
+`Conformance.rest.security` element). Any time a client sees this extension, it
+must be prepared to authorize using SMART's OAuth2-based protocol.
+
+The OAuth extension has the following internal components:
+
+|Component|Conformance Expectation|Type|Description|
+|---|---|---|---|
+|authorize|**SHALL**|`valueUri`|URL to the OAuth2 authorization endpoint.|
+|token|**CONDITIONAL SHALL**|`valueUri`|URL to the OAuth2 token endpoint, required unless the implicit grant flow is used.|
+|register|**SHOULD**|`valueUri`|If available, URL to the OAuth2 dynamic registration endpoint for this FHIR server.|
+|manage|**SHOULD**|`valueUri`|If available, URL where an end-user can view which applications currently have access to data and can make adjustments to these access rights.|
+|introspect|**SHOULD**|`valueUri`|URL to a server’s introspection endpoint that can be used to validate a token.|
+|revoke|**SHOULD**|`valueUri`|URL to a server’s endpoint that can be used to revoke a token.|
+{:.grid}
+
+
+<!-- =======  inline view of extension ============== -->
+
+#### OAuth Uris Extension
+
+Full StructureDefinition: [STU3]({{layout.baseurl}}/StructureDefinition-oauth-uris.html), [DSTU2]({{layout.baseurl}}/todo.html)
+
+{% include StructureDefinition-oauth-uris-inline.html %}
+
+<!-- =======    end inline view of extension ============== -->
+
+
+<!--
+### Publishing Additional Conformance Details
+
+A SMART on FHIR server should also describe which *optional* SMART core set of capabilities is it supports by declaring it within the CapabilityStatement [capabilities extension](#capabilities-extension) on the `rest.security` element (or, when using FHIR DSTU2, the
+`Conformance.rest.security` element).
+
+
+=======  inline view of extension ==============
+
+#### SMART Capabilities Extension
+
+Full StructureDefinition: [STU3](/StructureDefinition-extension-smart-capabilities.html), [DSTU2](/todo.html)
+
+{%raw%}{% include StructureDefinition-extension-smart-capabilities-inline.html %}{%endraw%}
+
+ =======    end inline view of extension ==============
+
+-->
+
+### Example
+
+{% include cs-example.md %}
+
+( for a complete example see the [CapabilityStatement Example](todo.html) )
+
+## FHIR Authorization Endpoint and Capabilities Discovery using a Well-Known Uniform Resource Identifiers (URIs)
+{: #using-well-known}
+
+As an alternative to using a FHIR CapabilityStatement, the authorization endpoints accepted by a FHIR resource server can be exposed as a Well-Known Uniform Resource Identifiers (URIs) [(RFC5785)][well-known] JSON document.
+
+FHIR endpoints requiring authorization MUST serve a JSON document at the location formed by appending `/.well-known/fhir-authorization-configuration` to their base URL.
+Contrary to RFC5785 Appendix B.4, the `.well-known` path component may be appended even if the FHIR endpoint already contains a path component.
+
+### Request
+
+Sample requests:
+
+#### Base URL "fhir.ehr.io"
+
+```
+GET /.well-known/fhir-authorization-configuration HTTP/1.1
+Host: fhir.ehr.io
+```
+
+#### Base URL "www.ehr.io/apis/fhir"
+
+```
+GET /apis/fhir/.well-known/fhir-authorization-configuration HTTP/1.1
+Host: www.ehr.io
+```
+
+### Response
+
+A JSON document must be returned using the `application/json` mime type.
+
+#### Metadata
+
+- `authorization_endpoint`: **REQUIRED**, URL to the OAuth2 authorization endpoint.
+- `token_endpoint`: **CONDITIONAL**, URL to the OAuth2 token endpoint, required unless the _implicit_ grant flow is used.
+- `token_endpoint_auth_methods`: **OPTIONAL**, array of client authentication methods supported by the token endpoint. The options are "client_secret_post" and "client_secret_basic".
+- `registration_endpoint`: **OPTIONAL**, if available, URL to the OAuth2 dynamic registration endpoint for this FHIR server.
+- `scopes_supported`: **RECOMMENDED**, array of scopes a client may request. See [scopes and launch context][smart-scopes].
+- `response_types_supported`: **RECOMMENDED**, array of OAuth2 `response_type` values that are supported
+- `manage_endpoint`: **RECOMMENDED**, URL where an end-user can view which applications currently have access to data and can make adjustments to these access rights.
+- `introspection_endpoint` :  **RECOMMENDED**, URL to a server's introspection endpoint that can be used to validate a token.
+- `revoke_endpoint` :  **RECOMMENDED**, URL to a server's revoke endpoint that can be used to revoke a token.
+
+
+### Sample Response
+
+```
+HTTP/1.1 200 OK
+Content-Type: application/json
+
+{
+  "authorization_endpoint": "https://emr.io/auth/authorize",
+  "token_endpoint": "https://emr.io/auth/token",
+  "token_endpoint_auth_methods_supported": ["client_secret_basic],
+  "registration_endpoint": "https://emr.io/auth/register",
+  "scopes_supported": ["openid", "profile", "launch", "launch/patient", "patient/*.*", "user/*.*", "offline_access"],
+  "response_types_supported": ["code", "code id_token", "id_token", "refresh_token"],
+  "manage_endpoint": "https://emr.io/user/manage"
+  "introspection_endpoint": "https://emr.io/user/introspect"
+  "revoke_endpoint": "https://emr.io/user/revoke"
+
+}
+```
+
+### Well-Known URI Registry
+
+- URI Suffix: fhir-authorization-configuration
+
+
+[well-known]: https://tools.ietf.org/html/rfc5785
+[oid]: https://openid.net/specs/openid-connect-discovery-1_0.html
+[smart-scopes]: http://docs.smarthealthit.org/authorization/scopes-and-launch-context/#quick-start
+[extensions]:{{site.data.fhir.path}}/extensibility.html

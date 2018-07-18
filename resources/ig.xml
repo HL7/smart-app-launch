@@ -2,17 +2,31 @@
 <!--Hidden IG for de facto IG publishing-->
 <ImplementationGuide xmlns="http://hl7.org/fhir">
   <id value="ig"/>
-  <url value="http://hl7.org/fhir/smart-app-launch/ImplementationGuide/ig"/>
+  <url value="http://fhir-registry.smarthealthit.org/ImplementationGuide/ig"/>
   <name value="SMART Application Launch Framework"/>
   <status value="draft"/>
   <experimental value="false"/>
   <publisher value="FHIR Project"/>
   <package>
     <name value="base"/>
+    <resource>
+      <example value="false"/>
+      <sourceReference>
+        <reference value="StructureDefinition/oauth-uris"/>
+      </sourceReference>
+    </resource>
+
+    <resource>
+      <example value="false"/>
+      <sourceReference>
+        <reference value="StructureDefinition/capabilitystatement-smartlaunch"/>
+      </sourceReference>
+    </resource>
+
   </package>
   <page>
     <source value="index.html"/>
-    <title value="FHIRPath Specification"/>
+    <title value="SMART App Launch"/>
     <kind value="page"/>
   </page>
 </ImplementationGuide>
