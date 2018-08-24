@@ -225,9 +225,9 @@ A JSON document must be returned using the `application/json` mime type.
 - `registration_endpoint`: **OPTIONAL**, if available, URL to the OAuth2 dynamic registration endpoint for this FHIR server.
 - `scopes_supported`: **RECOMMENDED**, array of scopes a client may request. See [scopes and launch context][smart-scopes].
 - `response_types_supported`: **RECOMMENDED**, array of OAuth2 `response_type` values that are supported
-- `manage_endpoint`: **RECOMMENDED**, URL where an end-user can view which applications currently have access to data and can make adjustments to these access rights.
+- `management_endpoint`: **RECOMMENDED**, URL where an end-user can view which applications currently have access to data and can make adjustments to these access rights.
 - `introspection_endpoint` :  **RECOMMENDED**, URL to a server's introspection endpoint that can be used to validate a token.
-- `revoke_endpoint` :  **RECOMMENDED**, URL to a server's revoke endpoint that can be used to revoke a token.
+- `revocation_endpoint` :  **RECOMMENDED**, URL to a server's revoke endpoint that can be used to revoke a token.
 
 
 ### Sample Response
@@ -243,9 +243,9 @@ Content-Type: application/json
   "registration_endpoint": "https://ehr.example.com/auth/register",
   "scopes_supported": ["openid", "profile", "launch", "launch/patient", "patient/*.*", "user/*.*", "offline_access"],
   "response_types_supported": ["code", "code id_token", "id_token", "refresh_token"],
-  "manage_endpoint": "https://ehr.example.com/user/manage"
+  "management_endpoint": "https://ehr.example.com/user/manage"
   "introspection_endpoint": "https://ehr.example.com/user/introspect"
-  "revoke_endpoint": "https://ehr.example.com/user/revoke"
+  "revocation_endpoint": "https://ehr.example.com/user/revoke"
 
 }
 ```
