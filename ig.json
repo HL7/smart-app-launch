@@ -18,7 +18,9 @@
   "npm-name": "hl7.fhir.smart",
   "paths": {
     "output": "output",
-    "pages": ["spec"],
+    "pages": [
+      "spec"
+    ],
     "qa": "qa",
     "resources": [
       "resources"

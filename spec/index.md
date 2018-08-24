@@ -107,7 +107,7 @@ for example:
 Before a SMART app can run against an EHR, the app must be registered with that
 EHR's authorization service.  SMART does not specify a standards-based registration process, but we
 encourage EHR implementers to consider the [OAuth 2.0 Dynamic Client
-Registration Protocol](https://tools.ietf.org/html/draft-ietf-oauth-dyn-reg)
+Registration Protocol](https://tools.ietf.org/html/rfc7591)
 for an out-of-the-box solution.
 
 No matter how an app registers with an EHR's authorization service, at registration time **every SMART app must**:
@@ -282,7 +282,7 @@ URL.:
       <td>
 
 Must describe the access that the app needs, including clinical data scopes like
-<code>patient/*.read</code>, <code>openid</code> and <code>profile</code> (if app
+<code>patient/*.read</code>, <code>openid</code> and <code>fhirUser</code> (if app
 needs authenticated patient identity) and either:
 
 <ul>
@@ -331,7 +331,7 @@ by the app). The app SHOULD limit the grants, scope, and period of
 time requested to the minimum necessary.
 
 If the app needs to authenticate the identity of the end-user, it should
-include two OpenID Connect scopes:  `openid` and `profile`.   When these scopes
+include two OpenID Connect scopes:  `openid` and `fhirUser`.   When these scopes
 are requested, and the request is granted, the app will receive an id_token
 along with the access token.  For full details, see [SMART launch context
 parameters](scopes-and-launch-context/index.html).
@@ -342,7 +342,7 @@ patient, and also wants information about the current logged-in user, the app  c
 
 * `patient/Patient.read`
 * `patient/Observation.read`
-* `openid profile`
+* `openid fhirUser`
 
 If the app was launched from an EHR, the app adds a `launch` scope and a
 `launch={launch id}` URL parameter, echoing the value it received from the EHR
@@ -370,7 +370,7 @@ Location: https://ehr/authorize?
             client_id=app-client-id&
             redirect_uri=https%3A%2F%2Fapp%2Fafter-auth&
             launch=xyz123&
-            scope=launch+patient%2FObservation.read+patient%2FPatient.read+openid+profile&
+            scope=launch+patient%2FObservation.read+patient%2FPatient.read+openid+fhirUser&
             state=98wrghuwuogerg97&
             aud=https://ehr/fhir
 ```
@@ -511,7 +511,7 @@ includes the following parameters:
     <tr>
       <td><code>id_token</code></td>
       <td><span class="label label-info">optional</span></td>
-      <td>Authenticated patient identity and profile, if requested</td>
+      <td>Authenticated patient identity and user details, if requested</td>
     </tr>
       <tr>
       <td><code>refresh_token</code></td>
@@ -662,7 +662,7 @@ initiate a new request for access to that resource.
 
 #### Step 5: (Later...) App uses a refresh token to obtain a new access token
 
-Refresh tokens are issued to enable sessions to last longer than the validity period of an access token.  The app can use the `expires_in` field from the token response (see <a href="#step-3">step 3</a>) to determine when its access token will expire.  EHR implementers are also encouraged to consider using the [Oauth 2.0 Token Introspection Protocol](https://tools.ietf.org/html/rfc7662) to provide an introspection endpoint that clients can use to examine the validity and meaning of tokens. An app with "online access" can continue to get new access tokens as long as the end-user remains online.  Apps with "offline access" can continue to get new access tokens without the user being interactively engaged for cases where an application should have long-term access extending beyond the time when a user is still interacting with the client.
+Refresh tokens are issued to enable sessions to last longer than the validity period of an access token.  The app can use the `expires_in` field from the token response (see <a href="#step-3">step 3</a>) to determine when its access token will expire.  EHR implementers are also encouraged to consider using the [OAuth 2.0 Token Introspection Protocol](https://tools.ietf.org/html/rfc7662) to provide an introspection endpoint that clients can use to examine the validity and meaning of tokens. An app with "online access" can continue to get new access tokens as long as the end-user remains online.  Apps with "offline access" can continue to get new access tokens without the user being interactively engaged for cases where an application should have long-term access extending beyond the time when a user is still interacting with the client.
 
 The app requests a refresh token in its authorization request via the `online_access` or `offline_access` scope (see <a href="scopes-and-launch-context/index.html">SMART on FHIR Access Scopes</a> for details).  A server can decide which client types (public or confidential) are eligible for offline access and able to receive a refresh token.  If granted, the EHR supplies a refresh_token in the token response.  After an access token expires, the app requests a new access token by providing its refresh token to the EHR's token endpoint.  An HTTP `POST` transaction is made to the EHR authorization server's token URL, with content-type `application/x-www-form-urlencoded`. The decision about how long the refresh token lasts is determined by a mechanism that the server chooses.  For clients with online access, the goal is to ensure that the user is still online.
 
