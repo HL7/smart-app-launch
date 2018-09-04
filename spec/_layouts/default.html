@@ -1,8 +1,32 @@
+---
+baseurl: "file:///Users/ehaas/Documents/FHIR/smart-app-launch-brver/output/"
+---
+
+<!-- NOTE change the page.baseurl to "[site baseurl]" when pushing to upstream commit notify GG when publishing this needs to be changed
+for local use baseurl: "file:///Users/ehaas/Documents/FHIR/smart-app-launch-brver/output/"
+for github veiwer use baseurl: "/smart-app-launch-viewer/"
+for hl7 repo use baseurl: "/smart-app-launch/"  I think
+-->
+
+
 {% assign base = '' %}
 {% assign depth = page.url | split: '/' | size  %}
 {% if depth == 2 %}{% assign base = '../' %}
 {% elsif depth == 3 %}{% assign base = '../../' %}
-{% elsif depth == 4 %}{% assign base = '../../../' %}{% endif %}
+{% elsif depth == 4 %}{% assign base = '../../../' %}
+{% endif %}
+
+{% if page.template %}
+{% assign base = '' %}
+{% endif %}
+
+page.template = {{page.template}}
+page.url = {{page.url}}
+page.path = {{page.path}}
+base = {{base}}
+site.baseurl = {{site.baseurl}}
+site.url = {{site.url}}
+
 <!DOCTYPE html>
 <!-- saved from url=(0043)http://hl7.org/fhir/2016May/FHIRPath.html -->
 <html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
@@ -104,15 +128,15 @@
 						<ul class="nav navbar-nav">
               <li><a class="nav-link" href="{{base}}index.html">Home</a></li>
                 <li class="dropdown">
-                  <a href="#" data-toggle="dropdown" class="dropdown-toggle">Conformance<b class="caret"></b></a>
-                  <ul class="dropdown-menu">
-                    <li><a class="nav-link" href="{{base}}conformance/index.html">Declaring Conformance</a></li>
-                    <li><a class="nav-link" href="{{base}}conformance/capability-sets/index.html">Conformance: Capability Sets</a></li>
-                    <li><a class="nav-link" href="{{base}}conformance/core-set/index.html">Conformance: Core Set</a></li>
-                    <li><a class="nav-link" href="{{base}}well-known/index.html">Conformance:FHIR Authorization Endpoint and Capabilities Discovery</a></li>
-                  </ul>
-                </li>
+                  <a href="#" data-toggle="dropdown" class="dropdown-toggle">Conformance<b class="caret">
+                  </b>
+                </a>
+                <ul class="dropdown-menu">
+                  <li><a class="nav-link" href="{{base}}conformance/index.html">Declaring Conformance</a></li>
+                  <li><a class="nav-link" href="{{base}}conformance/fhir-conformance-artifacts/index.html">Conformance: FHIR Conformance Artifacts</a></li>
+                </ul>
               <li><a class="nav-link" href="{{base}}scopes-and-launch-context/index.html">Scopes and Launch Context</a><!--current--></li>
+              <li><a class="nav-link" href="{{base}}downloads/index.html">Downloads</a><!--current--></li>
 
 						</ul>
 					</div>  <!-- /.nav-collapse -->
@@ -190,10 +214,45 @@
 <script src="{{base}}dist/fhir.js"> </script>
 <script src="{{base}}dist/topofpage.js"> </script>
 
+{% if page.template %}
+
+<script src="dist/jquery-ui.min.js"> </script>
+<script>
+try {
+  var currentTabIndex = sessionStorage.getItem('fhir-resource-tab-index');
+}
+catch(exception){
+}
+
+if (!currentTabIndex)
+  currentTabIndex = '1';
+
+$( '#tabs' ).tabs({
+         active: currentTabIndex,
+         activate: function( event, ui ) {
+             var active = $('.selector').tabs('option', 'active');
+             currentTabIndex = ui.newTab.index();
+             document.activeElement.blur();
+             try {
+               sessionStorage.setItem('fhir-resource-tab-index', currentTabIndex);
+             }
+             catch(exception){
+             }
+         }
+     });
+</script>
+
+{% endif %}
+<!--   end added for profile tabs -->
+
+
   <!-- Analytics Below
 ================================================== -->
-<!-- add anchors before the closing body tag. -->
-<script> anchors.add()</script>
+<!-- add anchors before the closing body tag. no sure why the hover is not working?-->
+<script> anchors.options = {
+  visible: 'always'
+}; anchors.add('h2, h3, h4, h5, h6,.anchored')
+</script>
 
 </body>
 </html>
