@@ -228,6 +228,7 @@ A JSON document must be returned using the `application/json` mime type.
 - `management_endpoint`: **RECOMMENDED**, URL where an end-user can view which applications currently have access to data and can make adjustments to these access rights.
 - `introspection_endpoint` :  **RECOMMENDED**, URL to a server's introspection endpoint that can be used to validate a token.
 - `revocation_endpoint` :  **RECOMMENDED**, URL to a server's revoke endpoint that can be used to revoke a token.
+- `capabilities`: **REQUIRED**, array of strings representing SMART capabilities (e.g., `single-sign-on` or `launch-standalone`) that the server supports.
 
 
 ### Sample Response
@@ -245,8 +246,8 @@ Content-Type: application/json
   "response_types_supported": ["code", "code id_token", "id_token", "refresh_token"],
   "management_endpoint": "https://ehr.example.com/user/manage"
   "introspection_endpoint": "https://ehr.example.com/user/introspect"
-  "revocation_endpoint": "https://ehr.example.com/user/revoke"
-
+  "revocation_endpoint": "https://ehr.example.com/user/revoke",
+  "capabilities": ["launch-ehr", "client-public", "client-confidential-symmetric", "context-ehr-patient", "sso-openid-connect"]
 }
 ```
 
