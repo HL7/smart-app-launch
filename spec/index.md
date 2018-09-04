@@ -106,7 +106,7 @@ for example:
 Before a SMART app can run against an EHR, the app must be registered with that
 EHR's authorization service.  SMART does not specify a standards-based registration process, but we
 encourage EHR implementers to consider the [OAuth 2.0 Dynamic Client
-Registration Protocol](https://tools.ietf.org/html/draft-ietf-oauth-dyn-reg)
+Registration Protocol](https://tools.ietf.org/html/rfc7591)
 for an out-of-the-box solution.
 
 No matter how an app registers with an EHR's authorization service, at registration time **every SMART app must**:
@@ -281,7 +281,7 @@ URL.:
       <td>
 
 Must describe the access that the app needs, including clinical data scopes like
-<code>patient/*.read</code>, <code>openid</code> and <code>fhirUser</code> (if app 
+<code>patient/*.read</code>, <code>openid</code> and <code>fhirUser</code> (if app
 needs authenticated patient identity) and either:
 
 <ul>
