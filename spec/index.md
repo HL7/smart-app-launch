@@ -2,6 +2,7 @@
 title: SMART App Launch Framework
 layout: default
 ---
+
 {% include publish-box.md %}
 
 The SMART App Launch Framework connects third-party applications to Electronic
