@@ -436,7 +436,7 @@ font-size: 1em;
 }
 
 /* this part adds an icon after external links, using external.png file  for p and li elements */
-p a[href^="http://"]:not([no-external^="true"]):after, a[href^="https://"]:not([no-external^="true"]):after {
+p a[href^="http://"]:not([no-external^="true"]):after, a[href^="https://"]:not([no-external^="true"]):after, a[external="true"]:after {
     content: url(../dist/external.png);
     display: inline-block;
     text-decoration: none;
@@ -449,6 +449,8 @@ li a[href^="http://"]:not([no-external^="true"]):after, a[href^="https://"]:not(
     text-decoration: none;
     padding-left: 3px;
 }
+
+
 
 /* print output */
 

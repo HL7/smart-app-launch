@@ -3,8 +3,6 @@ title: SMART App Launch Framework
 layout: default
 ---
 
-{% include publish-box.md %}
-
 The SMART App Launch Framework connects third-party applications to Electronic
 Health Record data, allowing apps to launch from inside or outside the user
 interface of an EHR system. The framework supports apps for use by clinicians,

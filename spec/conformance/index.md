@@ -155,7 +155,7 @@ The OAuth extension has the following internal components:
 
 #### OAuth Uris Extension
 
-Full StructureDefinition: [STU3]({{layout.baseurl}}/StructureDefinition-oauth-uris.html), [DSTU2]({{layout.baseurl}}/todo.html)
+Full StructureDefinition: [STU3]({{layout.baseurl}}StructureDefinition-oauth-uris.html), [DSTU2]({{layout.dstu2path}}StructureDefinition-oauth-uris.html)
 
 {% include StructureDefinition-oauth-uris-inline.html %}
 

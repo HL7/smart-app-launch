@@ -1,13 +1,26 @@
 ---
 baseurl: "file:///Users/ehaas/Documents/FHIR/smart-app-launch-brver/output/"
+historypath: "file:///Users/ehaas/Documents/FHIR/smart-app-launch-brver/output/history/index.html"
+dstu2path: "file:///Users/ehaas/Documents/FHIR/smart-app-launch-dstu2/output/"
 ---
 
-<!-- NOTE change the page.baseurl to "[site baseurl]" when pushing to upstream commit notify GG when publishing this needs to be changed
-for local use baseurl: "file:///Users/ehaas/Documents/FHIR/smart-app-launch-brver/output/"
-for github veiwer use baseurl: "/smart-app-launch-viewer/"
-for hl7 repo use baseurl: "/smart-app-launch/"  I think
--->
+<!-- NOTE
+the layout variables are used a type of global site variable since can't get the _config.yml to work with the ig-pub.
 
+layout.baseurl is used in to include the generated fhir profile fragments into a page since need to copy and paste the relative icon references for proper rendering.
+  change the page.baseurl to "[site baseurl]" when pushing to upstream commit notify GG when publishing this needs to be changed
+  for local use baseurl: "file:///Users/ehaas/Documents/FHIR/smart-app-launch-brver/output/"
+  for github veiwer use baseurl: "/smart-app-launch-viewer/"
+  for hl7 repo use baseurl: "/smart-app-launch/"  I think
+
+layout.historypath is a path to the current history file, hoping that is a convienence for GG when publishing.
+  right now is pointing to a relative path to the local file
+
+layout.dstu2path is a path to the DSTU2 artifact that this IG points to
+  right now is pointing to a file in my directory
+  will need to point to a published version once uploaded onto the publishing platform
+
+-->
 
 {% assign base = '' %}
 {% assign depth = page.url | split: '/' | size  %}
@@ -137,11 +150,12 @@ site.url = {{site.url}}
 
 <div class="col-12">
 
-
+<!--status-bar-->
+{% include publish-box.md %}
 
 <h1>{{page.title}}</h1>
 
-{% include publish-box.md %}
+
 
 {{ content }}
 
@@ -168,7 +182,8 @@ site.url = {{site.url}}
   			<div class="inner-wrapper">
   				<p>Smart App Launch Framework Version: {{ site.data.fhir.ig.version }}
           &copy; Boston Children's Hospital and Health Level Sevel International. This content is licensed under <a href="https://creativecommons.org/licenses/by/4.0/"><!-- <img height=auto  alt="CC BY 4.0" src="{{base}}dist/CC-BY_icon.svg"/> -->CC BY 4.0</a>.  Generated on {{ site.time }} by the FHIR IG-publisher v{{site.data.fhir.versionFull}}.
-          <span style="color: #FFFF77">
+          <span style="color: #FFFF77"> |
+            <a style="color: #81BEF7" target="_blank" href="{{layout.historypath}}">History</a>
             | <a style="color: #81BEF7" target="_blank" href="https://github.com/HL7/smart-app-launch/issues">Propose a change</a>
           </span>
           </p>
