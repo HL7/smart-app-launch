@@ -65,27 +65,48 @@ site.url = {{site.url}}
 </head>
 <body>
 	<div id="segment-header" class="segment">  <!-- segment-header -->
-		<div class="container">  <!-- container -->
-      <a id="logo" no-external="true" href="http://hl7.org/fhir"><img alt="logo fhir" src="{{base}}dist/fhir-logo-www.png"/> </a>
-			<div id="hl7-status">
-				<b>SMART App Launch Framework</b>
+<!-- ======================== Title Bar ======================= -->
+    <div class="container"><!-- container -->
 
-			</div>
-      <div id="hl7-nav">
-         <a id="hl7-logo" no-external="true" href="https://smarthealthit.org/">
-           <img height="50" alt="visit the SMART website" width="42" src="{{base}}dist/smart-logo.svg"/>
-        </a>
-      </div>
+  <!-- hl7 logo -->
+      <a no-external="true" href="http://hl7.org/fhir">
+        <img alt="FHIR Homepage" class="img-responsive logo" src="{{base}}dist/fhir-logo-www.png"/>
+      </a>
+  <!-- end hl7 logo -->
 
-			<div id="hl7-nav">
-				 <a id="hl7-logo" no-external="true" href="http://www.hl7.org/">
-           <img height="50" alt="visit the hl7 website" width="42" src="{{base}}dist/hl7-logo.png"/>
-				</a>
-			</div>
-      <!--
-			<div id="hl7-nav"><a id="hl7-logo" no-external="true" href="http://hl7.org/fhir/search.cfm"><img alt="Search FHIR" src="dist/search.png"/></a></div>
-        -->
-		</div>
+
+   <!-- org logo -->
+
+
+
+            <a id="project-logo" no-external="true" href="https://smarthealthit.org/">
+              <img alt="visit the SMART website" class="img-responsive project-logo" src="{{base}}dist/smart-logo.png"/>
+           </a>
+
+
+
+   				 <a id="project-logo" no-external="true" href="http://www.hl7.org/">
+              <img alt="visit the hl7 website" class="img-responsive project-logo" src="{{base}}dist/hl7-logo.png"/>
+   				</a>
+
+
+    <!-- end org logo -->
+
+
+        <div id="project-status" class="project-status"> <!-- ig title text -->
+
+        {% if {{site.data.fhir.ig.status}} == 'draft' %}
+        <strong>{{site.data.fhir.igName}} Implementation Guide CI Build</strong>
+        {% else %}
+        <strong>{{site.data.fhir.igName}} Implementation Guide Release {{site.data.fhir.ig.version}}</strong>
+        {% endif %}
+
+      </div><!-- end ig title text -->
+
+    </div><!-- end container -->
+    <!-- ======================== End Title Bar ======================= -->
+
+
 		<div class="container">  <!-- container -->
 	</div></div>  <!-- /segment-header -->
 
@@ -140,6 +161,8 @@ site.url = {{site.url}}
 
 
 <h1>{{page.title}}</h1>
+
+<!--status-bar-->
 
 {{ content }}
 
