@@ -4,7 +4,7 @@
   <id value="ig"/>
   <url value="http://fhir-registry.smarthealthit.org/ImplementationGuide/ig"/>
   <name value="SMART Application Launch Framework"/>
-  <status value="draft"/>
+  <status value="active"/>
   <experimental value="false"/>
   <publisher value="FHIR Project"/>
   <package>
