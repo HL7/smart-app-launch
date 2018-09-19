@@ -1,4 +1,5 @@
- 
+
+
 {% assign base = '' %}
 {% assign depth = page.url | split: '/' | size  %}
 {% if depth == 2 %}{% assign base = '../' %}
@@ -10,7 +11,7 @@
 {% assign base = '' %}
 {% endif %}
 
-
+.  <!-- need this to get to render - suspect an html error -->
 
 <!DOCTYPE html>
 <!-- saved from url=(0043)http://hl7.org/fhir/2016May/FHIRPath.html -->
@@ -109,35 +110,23 @@
 						<span class="icon-bar"> </span>
 					</button>
 					<a class="navbar-brand hidden" href="#">Navbar</a>
-						<div class="nav-collapse collapse navbar-inverse-collapse">
-							<ul class="nav navbar-nav">
-								<li>
-									<a class="nav-link" href="{{base}}index.html">Home</a>
-								</li>
-								<li class="dropdown">
-									<a href="#" data-toggle="dropdown" class="dropdown-toggle">Conformance<b class="caret">
-										</b>
-									</a>
-									<ul class="dropdown-menu">
-										<li>
-											<a class="nav-link" href="{{base}}conformance/index.html">Declaring Conformance</a>
-										</li>
-										<li>
-											<a class="nav-link" href="{{base}}conformance/fhir-conformance-artifacts/index.html">Conformance: FHIR Conformance Artifacts</a>
-										</li>
-									</ul>
-								</li>
-								<li>
-									<a class="nav-link" href="{{base}}scopes-and-launch-context/index.html">Scopes and Launch Context</a>
-									<!--current-->
-								</li>
-								<li>
-									<a class="nav-link" href="{{base}}downloads/index.html">Downloads</a>
-									<!--current-->
-								</li>
-							</ul>
-						</div>
-						<!-- /.nav-collapse -->
+					<div class="nav-collapse collapse navbar-inverse-collapse">
+						<ul class="nav navbar-nav">
+              <li><a class="nav-link" href="{{base}}index.html">Home</a></li>
+                <li class="dropdown">
+                  <a href="#" data-toggle="dropdown" class="dropdown-toggle">Conformance<b class="caret">
+                  </b>
+                </a>
+                <ul class="dropdown-menu">
+                  <li><a class="nav-link" href="{{base}}conformance/index.html">Declaring Conformance</a></li>
+                  <li><a class="nav-link" href="{{base}}conformance/fhir-conformance-artifacts/index.html">Conformance: FHIR Conformance Artifacts</a></li>
+                </ul>
+              <li><a class="nav-link" href="{{base}}scopes-and-launch-context/index.html">Scopes and Launch Context</a><!--current--></li>
+              <li><a class="nav-link" href="{{base}}downloads/index.html">Downloads</a><!--current--></li>
+
+						</ul>
+					</div>  <!-- /.nav-collapse -->
+
           </div>  <!-- /.container -->
 			</nav>  <!-- /.navbar -->
 

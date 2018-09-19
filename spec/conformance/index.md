@@ -134,7 +134,7 @@ Additionally, Four *Capability Sets* are defined.  Any individual SMART server w
 ### Declaring Support for OAuth2 Endpoints
 
 If a server supports SMART on FHIR authorization for access, it declares support for
-automated discovery of OAuth2 endpoints in its [CapabilityStatement]({{site.data.fhir.path}}/capabilitystatement.html) using the [OAuth Uri extension](#oauth-uris-extension) on the `rest.security` element (or, when using FHIR DSTU2, the
+automated discovery of OAuth2 endpoints in its [CapabilityStatement]({{site.data.fhir.path}}capabilitystatement.html) using the [OAuth Uri extension](#oauth-uris-extension) on the `rest.security` element (or, when using FHIR DSTU2, the
 `Conformance.rest.security` element). Any time a client sees this extension, it
 must be prepared to authorize using SMART's OAuth2-based protocol.
 
@@ -261,4 +261,4 @@ Content-Type: application/json
 [well-known]: https://tools.ietf.org/html/rfc5785
 [oid]: https://openid.net/specs/openid-connect-discovery-1_0.html
 [smart-scopes]: http://docs.smarthealthit.org/authorization/scopes-and-launch-context/#quick-start
-[extensions]:{{site.data.fhir.path}}/extensibility.html
+[extensions]:{{site.data.fhir.path}}extensibility.html
