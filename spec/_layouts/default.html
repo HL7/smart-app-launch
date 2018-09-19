@@ -1,13 +1,4 @@
----
-baseurl: "file:///Users/ehaas/Documents/FHIR/smart-app-launch-brver/output/"
----
-
-<!-- NOTE change the page.baseurl to "[site baseurl]" when pushing to upstream commit notify GG when publishing this needs to be changed
-for local use baseurl: "file:///Users/ehaas/Documents/FHIR/smart-app-launch-brver/output/"
-for github veiwer use baseurl: "/smart-app-launch-viewer/"
-for hl7 repo use baseurl: "/smart-app-launch/"  I think
--->
-
+<!DOCTYPE html>
 
 {% assign base = '' %}
 {% assign depth = page.url | split: '/' | size  %}
@@ -20,14 +11,7 @@ for hl7 repo use baseurl: "/smart-app-launch/"  I think
 {% assign base = '' %}
 {% endif %}
 
-page.template = {{page.template}}
-page.url = {{page.url}}
-page.path = {{page.path}}
-base = {{base}}
-site.baseurl = {{site.baseurl}}
-site.url = {{site.url}}
 
-<!DOCTYPE html>
 <!-- saved from url=(0043)http://hl7.org/fhir/2016May/FHIRPath.html -->
 <html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 

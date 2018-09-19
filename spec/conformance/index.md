@@ -151,15 +151,18 @@ The OAuth extension has the following internal components:
 {:.grid}
 
 
-<!-- =======  inline view of extension ============== -->
+<!-- =======  reference to formal definition ============== -->
 
 #### OAuth Uris Extension
 
-Full StructureDefinition: [STU3]({{layout.baseurl}}/StructureDefinition-oauth-uris.html), [DSTU2]({{layout.baseurl}}/todo.html)
+- [**STU3 StructureDefinition for oauth-uris**](../StructureDefinition-oauth-uris.html)
+- [**DSTU2  StructureDefinition for oauth-uris**](todo.hml)
 
-{% include StructureDefinition-oauth-uris-inline.html %}
+<!-- {% raw %}
+{ % include StructureDefinition-oauth-uris-inline.html % }
+ {% endraw %} -->
 
-<!-- =======    end inline view of extension ============== -->
+<!-- =======   reference to formal definition ============== -->
 
 
 <!--
@@ -185,7 +188,7 @@ Full StructureDefinition: [STU3](/StructureDefinition-extension-smart-capabiliti
 
 {% include cs-example.md %}
 
-( for a complete example see the [CapabilityStatement Example](todo.html) )
+( for a complete example see the [CapabilityStatement Example](../CapabilityStatement-smart-app-launch-example.html) )
 
 ## FHIR Authorization Endpoint and Capabilities Discovery using a Well-Known Uniform Resource Identifiers (URIs)
 {: #using-well-known}
