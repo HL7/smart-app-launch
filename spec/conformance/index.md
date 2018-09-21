@@ -153,10 +153,10 @@ The OAuth extension has the following internal components:
 
 <!-- =======  reference to formal definition ============== -->
 
-#### OAuth Uris Extension
+#### OAuth URIs Extension
 
-- [**STU3 StructureDefinition for oauth-uris**](../StructureDefinition-oauth-uris.html)
-- [**DSTU2  StructureDefinition for oauth-uris**](todo.hml)
+- [**STU3 StructureDefinition for Oauth-URI**](../StructureDefinition-oauth-uris.html)
+- [**DSTU2  StructureDefinition for Oauth-URI**](../StructureDefinition-dstu2-oauth-uris.html)
 
 <!-- {% raw %}
 { % include StructureDefinition-oauth-uris-inline.html % }
