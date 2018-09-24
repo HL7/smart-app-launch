@@ -1,14 +1,4 @@
----
-baseurl: "file:///Users/ehaas/Documents/FHIR/smart-app-launch-brver/output/"
----
-
-<!-- NOTE change the page.baseurl to "[site baseurl]" when pushing to upstream commit notify GG when publishing this needs to be changed
-for local use baseurl: "file:///Users/ehaas/Documents/FHIR/smart-app-launch-brver/output/"
-for github veiwer use baseurl: "/smart-app-launch-viewer/"
-for hl7 repo use baseurl: "/smart-app-launch/"  I think
--->
-
-
+ 
 {% assign base = '' %}
 {% assign depth = page.url | split: '/' | size  %}
 {% if depth == 2 %}{% assign base = '../' %}
@@ -20,12 +10,7 @@ for hl7 repo use baseurl: "/smart-app-launch/"  I think
 {% assign base = '' %}
 {% endif %}
 
-page.template = {{page.template}}
-page.url = {{page.url}}
-page.path = {{page.path}}
-base = {{base}}
-site.baseurl = {{site.baseurl}}
-site.url = {{site.url}}
+
 
 <!DOCTYPE html>
 <!-- saved from url=(0043)http://hl7.org/fhir/2016May/FHIRPath.html -->
@@ -124,23 +109,35 @@ site.url = {{site.url}}
 						<span class="icon-bar"> </span>
 					</button>
 					<a class="navbar-brand hidden" href="#">Navbar</a>
-					<div class="nav-collapse collapse navbar-inverse-collapse">
-						<ul class="nav navbar-nav">
-              <li><a class="nav-link" href="{{base}}index.html">Home</a></li>
-                <li class="dropdown">
-                  <a href="#" data-toggle="dropdown" class="dropdown-toggle">Conformance<b class="caret">
-                  </b>
-                </a>
-                <ul class="dropdown-menu">
-                  <li><a class="nav-link" href="{{base}}conformance/index.html">Declaring Conformance</a></li>
-                  <li><a class="nav-link" href="{{base}}conformance/fhir-conformance-artifacts/index.html">Conformance: FHIR Conformance Artifacts</a></li>
-                </ul>
-              <li><a class="nav-link" href="{{base}}scopes-and-launch-context/index.html">Scopes and Launch Context</a><!--current--></li>
-              <li><a class="nav-link" href="{{base}}downloads/index.html">Downloads</a><!--current--></li>
-
-						</ul>
-					</div>  <!-- /.nav-collapse -->
-
+						<div class="nav-collapse collapse navbar-inverse-collapse">
+							<ul class="nav navbar-nav">
+								<li>
+									<a class="nav-link" href="{{base}}index.html">Home</a>
+								</li>
+								<li class="dropdown">
+									<a href="#" data-toggle="dropdown" class="dropdown-toggle">Conformance<b class="caret">
+										</b>
+									</a>
+									<ul class="dropdown-menu">
+										<li>
+											<a class="nav-link" href="{{base}}conformance/index.html">Declaring Conformance</a>
+										</li>
+										<li>
+											<a class="nav-link" href="{{base}}conformance/fhir-conformance-artifacts/index.html">Conformance: FHIR Conformance Artifacts</a>
+										</li>
+									</ul>
+								</li>
+								<li>
+									<a class="nav-link" href="{{base}}scopes-and-launch-context/index.html">Scopes and Launch Context</a>
+									<!--current-->
+								</li>
+								<li>
+									<a class="nav-link" href="{{base}}downloads/index.html">Downloads</a>
+									<!--current-->
+								</li>
+							</ul>
+						</div>
+						<!-- /.nav-collapse -->
           </div>  <!-- /.container -->
 			</nav>  <!-- /.navbar -->
 
