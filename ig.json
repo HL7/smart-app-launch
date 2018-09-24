@@ -9,8 +9,7 @@
       "template-format": "format.html"
     },
     "StructureDefinition": {
-      "template-base": "sd.html",
-      "template-inline": "inline.html"
+      "template-base": "sd.html"
     }
   },
   "fixed-business-version": "1.0.0",
@@ -20,29 +19,27 @@
   "paths": {
     "output": "output",
     "pages": [
-      "spec"
+      "spec",
+      "dstu2"
     ],
     "qa": "qa",
     "resources": [
-      "resources"
+      "resources",
+      "examples"
     ],
     "specification": "http://hl7.org/fhir/STU3",
     "temp": "temp",
     "txCache": "txCache"
   },
   "resources": {
-    "StructureDefinition/capabilitystatement-smartlaunch": {
-      "base": "StructureDefinition-capabilitystatement-smartlaunch.html"
-    },
     "StructureDefinition/oauth-uris": {
-      "base": "StructureDefinition-oauth-uris.html",
-      "inline": "StructureDefinition-oauth-uris-inline.html"
+      "base": "StructureDefinition-oauth-uris.html"
+    },
+    "CapabilityStatement/smart-app-launch-example": {
+      "base": "CapabilityStatement-smart-app-launch-example.html"
     }
   },
   "source": "ig.xml",
-  "spreadsheets": [
-    "smartlaunch-profile-spreadsheet.xml"
-  ],
   "tool": "jekyll",
   "version": "3.0.1"
 }
