@@ -153,10 +153,11 @@ The OAuth extension has the following internal components:
 
 <!-- =======  reference to formal definition ============== -->
 
-#### OAuth Uris Extension
+#### OAuth URIs Extension
 
-- [**STU3 StructureDefinition for oauth-uris**](../StructureDefinition-oauth-uris.html)
-- [**DSTU2  StructureDefinition for oauth-uris**](todo.hml)
+- [**STU3 StructureDefinition for Oauth-URI**](../StructureDefinition-oauth-uris.html)
+- [**DSTU2  StructureDefinition for Oauth-URI**](../StructureDefinition-dstu2-oauth-uris.html)
+
 
 <!-- {% raw %}
 { % include StructureDefinition-oauth-uris-inline.html % }
@@ -243,7 +244,7 @@ Content-Type: application/json
 {
   "authorization_endpoint": "https://ehr.example.com/auth/authorize",
   "token_endpoint": "https://ehr.example.com/auth/token",
-  "token_endpoint_auth_methods_supported": ["client_secret_basic],
+  "token_endpoint_auth_methods_supported": ["client_secret_basic"],
   "registration_endpoint": "https://ehr.example.com/auth/register",
   "scopes_supported": ["openid", "profile", "launch", "launch/patient", "patient/*.*", "user/*.*", "offline_access"],
   "response_types_supported": ["code", "code id_token", "id_token", "refresh_token"],
