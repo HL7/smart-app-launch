@@ -105,45 +105,43 @@ body {
 }
 /* SCAFFOlDING OBJECTS
 ----------------------------------------------------------------------------------------*/
-#logo {
+.logo {
   float: left;
   margin-top: 6px;
   margin-left: 20px;
   margin-bottom: 4px;
-  display: block;
 }
-#logo img {
-  max-width: 100%;
-}
-#hl7-nav {
+
+#project-nav {
   line-height: 50px;
   float: right;
   margin-top: 16px;
   color: #808080;
 }
-#hl7-nav a {
+#project-nav a {
   color: inherit;
 }
-#hl7-status {
+.project-status {
+  margin-top: 16px;
+  color: maroon;
+}
+#project-search {
   line-height: 50px;
   float: left;
   margin-top: 16px;
   color: maroon;
 }
-#hl7-search {
-  line-height: 50px;
-  float: right;
-  margin-top: 16px;
-  color: maroon;
-}
-#hl7-search a {
+#project-search a {
   color: inherit;
 }
-#hl7-logo {
+.project-logo {
   float: right;
-  margin-left: 6px;
-  margin-right: 6px;
+  margin-right: 10px;
+  margin-top: 15px;
+  margin-bottom: 4px;
+  height: 50px;
 }
+
 #stripe {
   position: absolute;
   left: 0;
@@ -282,6 +280,10 @@ body {
 .breadcrumb a {
   color: #555555;
 }
+.breadcrumb .btn-link {
+  font-weight: bold;
+}
+
 .nav-listing {
   overflow: hidden;
 }
@@ -366,6 +368,36 @@ a.to-top {
 /* D-I-D AREA
 ----------------------------------------------------------------------------------------*/
 
+/* ----------TOC styling ------*/
+
+// Adding 'Contents' headline to the TOC
+#markdown-toc {
+}
+
+#markdown-toc::before {
+  content: 'Contents:';
+  /*font-size: 1.5em;*/
+}
+
+
+ul#markdown-toc {
+  /* font-size: 0.8em; */
+  /* list-style: none; */
+    list-style-position: inside;
+    margin: 4px;
+    padding: 4px;
+    /*float: right;*/
+    z-index: 10;
+    width: 250px;
+    background-color: #f5f5f5;
+    border: 1px solid #f5f5f5;
+    border-radius: 5px;
+}
+
+li#markdown-toc {
+/* font-size: 1.5em; */
+}
+
 /* Section numbering*/
 
 body{counter-reset: section}
@@ -418,6 +450,11 @@ font-size: 1em;
 
 }
 
+/* ----- increase li font sized fhir.css makes it all 12 px---*/
+
+p, li {
+    font-size: 1em;
+}
 
 /*-----top of page arrow ----*/
 .back-to-top {
@@ -435,8 +472,22 @@ font-size: 1em;
  padding: 10px
 }
 
+/*----pseudo json styling ----*/
+
+pre.spec {
+  font-size: 11px;
+  width: 650px;
+  border-width: 1px;
+  border-style: solid;
+  border-color: rgba(255, 255, 255, 0.15);
+  border-image: initial;
+  background: rgba(255, 255, 255, 0.15);
+  padding: 5px;
+}
+
 /* this part adds an icon after external links, using external.png file  for p and li elements */
-p a[href^="http://"]:not([no-external^="true"]):after, a[href^="https://"]:not([no-external^="true"]):after {
+
+p a[href^="http://"]:not([no-external^="true"]):after, a[href^="https://"]:not([no-external^="true"]):after, a[external="true"]:after {
     content: url(../dist/external.png);
     display: inline-block;
     text-decoration: none;
@@ -444,26 +495,74 @@ p a[href^="http://"]:not([no-external^="true"]):after, a[href^="https://"]:not([
 }
 
 li a[href^="http://"]:not([no-external^="true"]):after, a[href^="https://"]:not([no-external^="true"]):after {
-    content: url(../dist/external.png);
+    content: url(../images/external.png);
     display: inline-block;
     text-decoration: none;
     padding-left: 3px;
 }
 
-/* print output */
 
-pre.print_out {
-  background-color: #ffffff26;
-  border: none;
+
+/*--------- make all figures the same siz------e*/
+.figure-img{
+  height: 415px;
+  width: 740px;
 }
 
-code.print_out{
-  word-wrap: normal;
-  background-color: #ffffff26
+.figure-img-narrow{
+  height: 181px;
+  width: 740px;
 }
 
-/*  horizontal scroll */
+.figure-img-portrait{
+  width: 100%%;
+}
 
-div.scroll-me {
-  overflow-x: auto;
+
+/*--------- change example button color------*/
+
+.btn-example {
+  color: #000000;
+  background-color: #EFF3F6;
+  border-color: #8C88A3;
+}
+
+.btn-example:hover,
+.btn-example:focus,
+.btn-example:active,
+.btn-example.active,
+.open .dropdown-toggle.btn-example {
+  color: #000000;
+  background-color: #E3E6E8;
+  border-color: #8C88A3;
+}
+
+.btn-example:active,
+.btn-example.active,
+.open .dropdown-toggle.btn-example {
+  background-image: none;
+}
+
+.btn-example.disabled,
+.btn-example[disabled],
+fieldset[disabled] .btn-example,
+.btn-example.disabled:hover,
+.btn-example[disabled]:hover,
+fieldset[disabled] .btn-example:hover,
+.btn-example.disabled:focus,
+.btn-example[disabled]:focus,
+fieldset[disabled] .btn-example:focus,
+.btn-example.disabled:active,
+.btn-example[disabled]:active,
+fieldset[disabled] .btn-example:active,
+.btn-example.disabled.active,
+.btn-example[disabled].active,
+fieldset[disabled] .btn-example.active {
+  background-color: #EFF3F6;
+  border-color: #8C88A3;
+}
+
+.btn-example .badge {
+  color: #EFF3F6;
+  background-color: #000000;
 }

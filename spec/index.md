@@ -3,8 +3,6 @@ title: SMART App Launch Framework
 layout: default
 ---
 
-{% include publish-box.md %}
-
 The SMART App Launch Framework connects third-party applications to Electronic
 Health Record data, allowing apps to launch from inside or outside the user
 interface of an EHR system. The framework supports apps for use by clinicians,
@@ -196,7 +194,7 @@ A launch might cause the browser to navigate to:
     Location: https://app/launch?iss=https%3A%2F%2Fehr%2Ffhir&launch=xyz123
 
 On receiving the launch notification, the app would query the issuer's
-[.well-known][well-known] json file which contains (among other details) the EHR's identifying the OAuth `authorize` and `token`
+[.well-known] json file which contains (among other details) the EHR's identifying the OAuth `authorize` and `token`
 endpoint URLs for use in requesting authorization to access FHIR
 resources.
 
@@ -218,7 +216,7 @@ will launch from its registered URL without a launch id.
 In order to obtain launch context and request authorization to access FHIR
 resources, the app discovers the EHR authorization server's OAuth
 `authorize` and `token` endpoint URLs by querying their
-[.well-known][well-known] json file.
+[.well-known] json file.
 
 The app then can declare its launch context requirements
 by adding specific scopes to the request it sends to the EHR's authorization
@@ -766,4 +764,4 @@ refresh_token=a47txjiipgxkvohibvsm
   "refresh_token":"tGzv3JOkF0XG5Qx2TlKWIA"
 }
 ```
-[well-known]: well-known/index.html
+[.well-known]: conformance/index.html#using-well-known

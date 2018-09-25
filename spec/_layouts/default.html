@@ -1,13 +1,3 @@
----
-baseurl: "file:///Users/ehaas/Documents/FHIR/smart-app-launch-brver/output/"
----
-
-<!-- NOTE change the page.baseurl to "[site baseurl]" when pushing to upstream commit notify GG when publishing this needs to be changed
-for local use baseurl: "file:///Users/ehaas/Documents/FHIR/smart-app-launch-brver/output/"
-for github veiwer use baseurl: "/smart-app-launch-viewer/"
-for hl7 repo use baseurl: "/smart-app-launch/"  I think
--->
-
 
 {% assign base = '' %}
 {% assign depth = page.url | split: '/' | size  %}
@@ -20,12 +10,7 @@ for hl7 repo use baseurl: "/smart-app-launch/"  I think
 {% assign base = '' %}
 {% endif %}
 
-page.template = {{page.template}}
-page.url = {{page.url}}
-page.path = {{page.path}}
-base = {{base}}
-site.baseurl = {{site.baseurl}}
-site.url = {{site.url}}
+
 
 <!DOCTYPE html>
 <!-- saved from url=(0043)http://hl7.org/fhir/2016May/FHIRPath.html -->
@@ -65,27 +50,48 @@ site.url = {{site.url}}
 </head>
 <body>
 	<div id="segment-header" class="segment">  <!-- segment-header -->
-		<div class="container">  <!-- container -->
-      <a id="logo" no-external="true" href="http://hl7.org/fhir"><img alt="logo fhir" src="{{base}}dist/fhir-logo-www.png"/> </a>
-			<div id="hl7-status">
-				<b>SMART App Launch Framework</b>
+<!-- ======================== Title Bar ======================= -->
+    <div class="container"><!-- container -->
 
-			</div>
-      <div id="hl7-nav">
-         <a id="hl7-logo" no-external="true" href="https://smarthealthit.org/">
-           <img height="50" alt="visit the SMART website" width="42" src="{{base}}dist/smart-logo.svg"/>
-        </a>
-      </div>
+  <!-- hl7 logo -->
+      <a no-external="true" href="http://hl7.org/fhir">
+        <img alt="FHIR Homepage" class="img-responsive logo" src="{{base}}dist/fhir-logo-www.png"/>
+      </a>
+  <!-- end hl7 logo -->
 
-			<div id="hl7-nav">
-				 <a id="hl7-logo" no-external="true" href="http://www.hl7.org/">
-           <img height="50" alt="visit the hl7 website" width="42" src="{{base}}dist/hl7-logo.png"/>
-				</a>
-			</div>
-      <!--
-			<div id="hl7-nav"><a id="hl7-logo" no-external="true" href="http://hl7.org/fhir/search.cfm"><img alt="Search FHIR" src="dist/search.png"/></a></div>
-        -->
-		</div>
+
+   <!-- org logo -->
+
+
+
+            <a id="project-logo" no-external="true" href="https://smarthealthit.org/">
+              <img alt="visit the SMART website" class="img-responsive project-logo" src="{{base}}dist/smart-logo.png"/>
+           </a>
+
+
+
+   				 <a id="project-logo" no-external="true" href="http://www.hl7.org/">
+              <img alt="visit the hl7 website" class="img-responsive project-logo" src="{{base}}dist/hl7-logo.png"/>
+   				</a>
+
+
+    <!-- end org logo -->
+
+
+        <div id="project-status" class="project-status"> <!-- ig title text -->
+
+        {% if {{site.data.fhir.ig.status}} == 'draft' %}
+        <strong>{{site.data.fhir.igName}} Implementation Guide CI Build</strong>
+        {% else %}
+        <strong>{{site.data.fhir.igName}} Implementation Guide Release {{site.data.fhir.ig.version}}</strong>
+        {% endif %}
+
+      </div><!-- end ig title text -->
+
+    </div><!-- end container -->
+    <!-- ======================== End Title Bar ======================= -->
+
+
 		<div class="container">  <!-- container -->
 	</div></div>  <!-- /segment-header -->
 
@@ -103,23 +109,35 @@ site.url = {{site.url}}
 						<span class="icon-bar"> </span>
 					</button>
 					<a class="navbar-brand hidden" href="#">Navbar</a>
-					<div class="nav-collapse collapse navbar-inverse-collapse">
-						<ul class="nav navbar-nav">
-              <li><a class="nav-link" href="{{base}}index.html">Home</a></li>
-                <li class="dropdown">
-                  <a href="#" data-toggle="dropdown" class="dropdown-toggle">Conformance<b class="caret">
-                  </b>
-                </a>
-                <ul class="dropdown-menu">
-                  <li><a class="nav-link" href="{{base}}conformance/index.html">Declaring Conformance</a></li>
-                  <li><a class="nav-link" href="{{base}}conformance/fhir-conformance-artifacts/index.html">Conformance: FHIR Conformance Artifacts</a></li>
-                </ul>
-              <li><a class="nav-link" href="{{base}}scopes-and-launch-context/index.html">Scopes and Launch Context</a><!--current--></li>
-              <li><a class="nav-link" href="{{base}}downloads/index.html">Downloads</a><!--current--></li>
-
-						</ul>
-					</div>  <!-- /.nav-collapse -->
-
+						<div class="nav-collapse collapse navbar-inverse-collapse">
+							<ul class="nav navbar-nav">
+								<li>
+									<a class="nav-link" href="{{base}}index.html">Home</a>
+								</li>
+								<li class="dropdown">
+									<a href="#" data-toggle="dropdown" class="dropdown-toggle">Conformance<b class="caret">
+										</b>
+									</a>
+									<ul class="dropdown-menu">
+										<li>
+											<a class="nav-link" href="{{base}}conformance/index.html">Declaring Conformance</a>
+										</li>
+										<li>
+											<a class="nav-link" href="{{base}}conformance/fhir-conformance-artifacts/index.html">Conformance: FHIR Conformance Artifacts</a>
+										</li>
+									</ul>
+								</li>
+								<li>
+									<a class="nav-link" href="{{base}}scopes-and-launch-context/index.html">Scopes and Launch Context</a>
+									<!--current-->
+								</li>
+								<li>
+									<a class="nav-link" href="{{base}}downloads/index.html">Downloads</a>
+									<!--current-->
+								</li>
+							</ul>
+						</div>
+						<!-- /.nav-collapse -->
           </div>  <!-- /.container -->
 			</nav>  <!-- /.navbar -->
 
@@ -137,7 +155,8 @@ site.url = {{site.url}}
 
 <div class="col-12">
 
-
+<!--status-bar-->
+{% include publish-box.md %}
 
 <h1>{{page.title}}</h1>
 
@@ -166,7 +185,8 @@ site.url = {{site.url}}
   			<div class="inner-wrapper">
   				<p>Smart App Launch Framework Version: {{ site.data.fhir.ig.version }}
           &copy; Boston Children's Hospital and Health Level Sevel International. This content is licensed under <a href="https://creativecommons.org/licenses/by/4.0/"><!-- <img height=auto  alt="CC BY 4.0" src="{{base}}dist/CC-BY_icon.svg"/> -->CC BY 4.0</a>.  Generated on {{ site.time }} by the FHIR IG-publisher v{{site.data.fhir.versionFull}}.
-          <span style="color: #FFFF77">
+          <span style="color: #FFFF77"> |
+            <a style="color: #81BEF7" target="_blank" href="{{layout.historypath}}">History</a>
             | <a style="color: #81BEF7" target="_blank" href="https://github.com/HL7/smart-app-launch/issues">Propose a change</a>
           </span>
           </p>
