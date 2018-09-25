@@ -318,7 +318,7 @@ Additional context parameters and scopes can be used as extensions using the fol
 
 ## Worked examples
 
-- Worked Python example: [rendered](../worked_example1/index.html) ([ipython notebook source](../smart-on-fhir-jwt-examples.ipynb)).
+- Worked Python example: [rendered](../worked_example1/index.html) ([ipython notebook source](../dist/smart-on-fhir-jwt-examples.ipynb)).
 
 ## Appendix: URI representation of scopes
 

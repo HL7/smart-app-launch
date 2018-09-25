@@ -11,6 +11,9 @@
   <extension url="http://hl7.org/fhir/StructureDefinition/igpublisher-folder-pages">
     <valueString value="/Users/ehaas/Documents/FHIR/smart-app-launch-brver/spec"/>
   </extension>
+  <extension url="http://hl7.org/fhir/StructureDefinition/igpublisher-folder-pages">
+    <valueString value="/Users/ehaas/Documents/FHIR/smart-app-launch-brver/dstu2"/>
+  </extension>
   <url value="http://fhir-registry.smarthealthit.org/ImplementationGuide/ig"/>
   <version value="1.0.0"/>
   <name value="SMART Application Launch Framework"/>
