@@ -193,8 +193,8 @@ A launch might cause the browser to navigate to:
 
     Location: https://app/launch?iss=https%3A%2F%2Fehr%2Ffhir&launch=xyz123
 
-On receiving the launch notification, the app would query the issuer's
-[.well-known] json file which contains (among other details) the EHR's identifying the OAuth `authorize` and `token`
+On receiving the launch notification, the app would query the issuer's `/metadata/` endpoint or
+[.well-known/smart-configuration.json] endpoint which contains (among other details) the EHR's identifying the OAuth `authorize` and `token`
 endpoint URLs for use in requesting authorization to access FHIR
 resources.
 
@@ -216,7 +216,7 @@ will launch from its registered URL without a launch id.
 In order to obtain launch context and request authorization to access FHIR
 resources, the app discovers the EHR authorization server's OAuth
 `authorize` and `token` endpoint URLs by querying their
-[.well-known] json file.
+[.well-known/smart-configuration.json] file.
 
 The app then can declare its launch context requirements
 by adding specific scopes to the request it sends to the EHR's authorization
@@ -359,7 +359,7 @@ context parameters</a>.*
 
 
 The app then causes the browser to navigate the browser to the EHR's **authorization URL** as
-determined above:
+determined above. For example:
 
 
 ```
@@ -419,7 +419,7 @@ risk of leaks.
 Based on the `client_id`, current EHR user, configured policy, and perhaps
 direct user input, the EHR makes a decision to approve or deny access.  This
 decision is communicated to the app by causing the browser to navigate to the app's registered
-`redirect_uri`:
+`redirect_uri`. For example:
 
 ```
 Location: https://app/after-auth?
@@ -599,6 +599,8 @@ redirect_uri=https%3A%2F%2Fapp%2Fafter-auth
 }
 ```
 
+[See full payload example](examples/token-post.html).
+
 At this point, **the authorization flow is complete**. Follow steps below to work with
 data and refresh access tokens, as shown in the following sequence diagram.
 
@@ -641,6 +643,8 @@ Authorization: Bearer i8hweunweunweofiwweoijewiwe
   "birthTime": ...
 }
 ```
+
+[See full payload example](examples/patient.html).
 
 The resource server MUST validate the access token and ensure that it has not expired and that its scope covers the requested resource.  The
 resource server also validates that the `aud` parameter associated with the
@@ -764,4 +768,13 @@ refresh_token=a47txjiipgxkvohibvsm
   "refresh_token":"tGzv3JOkF0XG5Qx2TlKWIA"
 }
 ```
-[.well-known]: conformance/index.html#using-well-known
+
+[See full payload example](examples/refresh.html).
+
+### Complete examples requests and responses
+
+* [Request metadata](examples/metadata.html)
+* [Request a FHIR resource](examples/patient,html)
+* [Refresh an access token](examples/refresh.html)
+
+[.well-known/smart-configuration.json]: conformance/index.html#using-well-known

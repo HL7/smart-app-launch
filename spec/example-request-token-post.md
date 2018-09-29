@@ -1,7 +1,3 @@
----
-title: Example: Request Access Token
-layout: default
----
 ```sh
 $ curl -i  'http://launch.smarthealthit.org/v/r2/sim/eyJoIjoiMSIsImoiOiIxIn0/auth/token' -H 'Content-Type: application/x-www-form-urlencoded' -H 'Accept: application/json' -H 'Authorization: Basic bXktYXBwOm15LWFwcC1zZWNyZXQtMTIz'  --data 'code=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJjb250ZXh0Ijp7Im5lZWRfcGF0aWVudF9iYW5uZXIiOnRydWUsInNtYXJ0X3N0eWxlX3VybCI6Imh0dHBzOi8vbGF1bmNoLnNtYXJ0aGVhbHRoaXQub3JnL3NtYXJ0LXN0eWxlLmpzb24iLCJwYXRpZW50IjoiZjNlY2Y2OTAtZTAzNS00OThkLTllOGMtMWVmMWU0ZGIzNGI3IiwiZW5jb3VudGVyIjoiNDYzMmU2MWItOWIzNC00YWQ3LWE0MzEtZjAwOGYzNWI0ZGQzIn0sImNsaWVudF9pZCI6Im15X3dlYl9hcHAiLCJzY29wZSI6Im9wZW5pZCBwcm9maWxlIG9mZmxpbmVfYWNjZXNzIHVzZXIvKi4qIHBhdGllbnQvKi4qIGxhdW5jaC9lbmNvdW50ZXIgbGF1bmNoL3BhdGllbnQiLCJ1c2VyIjoiUHJhY3RpdGlvbmVyL1NNQVJULTEyMzQiLCJpYXQiOjE1Mjk2NzM5MDIsImV4cCI6MTUyOTY3NDIwMn0.t6Yn9NwDYYNHyiNut67li8TD76Y_C-jq0VQ1MPELjWI&grant_type=authorization_code&redirect_uri=http%3A%2F%2Flaunch.smarthealthit.org%2Fsample-app%2F&client_id=my_web_app'
 HTTP/1.1 200 OK
