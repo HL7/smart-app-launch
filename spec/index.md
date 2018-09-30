@@ -436,7 +436,7 @@ Location: https://app/after-auth?
 After obtaining an authorization code, the app trades the code for an access
 token via HTTP `POST` to the EHR authorization server's token endpoint URL,
 using content-type `application/x-www-form-urlencoded`, as described in
-section 4.1.3 of RFC6749](https://tools.ietf.org/html/rfc6749#section-4.1.3).
+[section 4.1.3 of RFC6749](https://tools.ietf.org/html/rfc6749#section-4.1.3).
 
 For <span class="label label-primary">public apps</span>, authentication is not
 possible (and thus not required), since a client with no secret cannot prove its
