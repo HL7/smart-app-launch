@@ -566,3 +566,7 @@ fieldset[disabled] .btn-example.active {
   color: #EFF3F6;
   background-color: #000000;
 }
+
+.spec-image {
+  max-width: 100%;
+}

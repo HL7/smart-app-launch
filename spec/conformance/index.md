@@ -12,7 +12,7 @@ may implement a subset of these.  The methods of declaring a server's SMART auth
 The server SHALL convey the FHIR OAuth authorization endpoints that are listed in the table below to app developers.  The server SHALL use *both*:
 
 1. A [FHIR CapabilityStatement](#using-cs)
-1. A [Well-Known Uniform Resource Identifiers (URIs)](#using-well-known) JSON file.
+1. A [`.well-known/smart-configuration.json`](#using-well-known) file.
 
 to declare its SMART authorization endpoints. (Note that we require both because the specification is transitioning away from CapabilityStatement, but needs to preserve compatibility with existing implementations.)
 
@@ -194,11 +194,11 @@ GET /.well-known/smart-configuration HTTP/1.1
 Host: fhir.ehr.example.com
 ```
 
-#### Base URL "www.ehr.example.com/apis/fhir"
+#### Base URL "ehr.example.com/apis/fhir"
 
 ```
 GET /apis/fhir/.well-known/smart-configuration HTTP/1.1
-Host: www.ehr.example.com
+Host: ehr.example.com
 ```
 
 ### Response

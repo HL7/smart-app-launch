@@ -40,11 +40,13 @@ patient-specific and user-level access.  Apps that need to read existing data fr
 
 Expressed in [EBNF notation](https://en.wikipedia.org/wiki/Extended_Backus%E2%80%93Naur_Form), the clinical scope syntax is:
 
-`clinical-scope ::= ( 'patient' | 'user' ) '/' ( fhir-resource | '*' ) '.' ( 'read' | 'write' | '*' )`
+```
+clinical-scope ::= ( 'patient' | 'user' ) '/' ( fhir-resource | '*' ) '.' ( 'read' | 'write' | '*' )
+```
 
 [//]: # (Diagram generated from http://www.bottlecaps.de/rr/ui)
 <div style='text-align: left'>
-  <img src="clinical-scope-syntax-diagram.png" alt="Clinical scope syntax diagram" />
+  <img src="clinical-scope-syntax-diagram.png" alt="Clinical scope syntax diagram" class="spec-image" />
 </div>
 
 ### Patient-specific scopes
@@ -124,7 +126,7 @@ on the details of how your app is launched.
 ### Apps that launch from the EHR
 
 Apps that launch from the EHR will be passed an explicit URL parameter called
-launch`, whose value must associate the app's
+`launch`, whose value must associate the app's
 authorization request with the current EHR session.  For example, If an app receives the URL
 parameter `launch=abc123`, then it requests the scope `launch` and provides an
 additional URL parameter of `launch=abc123`.
@@ -164,11 +166,11 @@ Here are the launch context parameters to expect:
 
 Launch context parameter | Example value | Meaning
 ------|---------|-------------------
-`patient` | `"123"`| String value with a patient id, indicating that the app was launched in the context of FHIR Patient 123. If the app has any patient-level scopes, they will be scoped to Patient 123.
-`encounter` | `"123"`| String value with an encounter id, indicating that the app was launched in the context of FHIR Encounter 123.
+`patient` | "123"| String value with a patient id, indicating that the app was launched in the context of FHIR Patient 123. If the app has any patient-level scopes, they will be scoped to Patient 123.
+`encounter` | "123"| String value with an encounter id, indicating that the app was launched in the context of FHIR Encounter 123.
 `need_patient_banner` | `true` or `false` (boolean) | Boolean value indicating whether the app was launched in a UX context where a patient banner is required (when `true`) or not required (when `false`). An app receiving a value of `false` should not take up screen real estate displaying a patient banner.
-`intent` | `"reconcile-medications"`| String value describing the intent of the application launch (see notes [below](#launch-intent))
-`smart_style_url` | `"https://ehr/styles/smart_v1.json"`| String URL where the host's style parameters can be retrieved (for apps that support [styling](#styling))
+`intent` | "reconcile-medications"| String value describing the intent of the application launch (see notes [below](#launch-intent))
+`smart_style_url` | "https://ehr/styles/smart_v1.json"| String URL where the host's style parameters can be retrieved (for apps that support [styling](#styling))
 
 #### Notes on launch context parameters
 
@@ -277,13 +279,14 @@ with the SMART's `sso-openid-connect` capability, the following requirements app
  * Claims: The EHR MUST support the inclusion of SMART's `fhirUser` claim within the `id_token` issued for any requests that grant the `openid` and `fhirUser` scopes.  Some EHRs may use the `profile` claim as an alias for `fhirUser`, and to preserve compatibility, these EHRs should continue to support this claim during a deprecation phase.
 
  * Mandatory to Implement: The EHR MUST support the following features described in the ["Mandatory to Implement" Section 15.1 of the OIDC Core 1.0 Specification](http://openid.net/specs/openid-connect-core-1_0.html#ServerMTI):
-  * Signing ID Tokens with RSA SHA-256
-  * Prompt Parameter
-  * Display Parameter
-  * Preferred Locales
-  * Authentication Time
-  * Maximum Authentication Age
-  * Authentication Context Class Reference
+
+   * Signing ID Tokens with RSA SHA-256
+   * Prompt Parameter
+   * Display Parameter
+   * Preferred Locales
+   * Authentication Time
+   * Maximum Authentication Age
+   * Authentication Context Class Reference
 
 Note that support for the following features is optional:
 
@@ -311,7 +314,7 @@ Additional context parameters and scopes can be used as extensions using the fol
 ## Steps for using an ID token
 
  1. Examine the ID token for its "issuer" property
- 2. Perform a `GET {issuer}/.well-known/openid-configuration`
+ 2. Perform `GET` on `{issuer}/.well-known/openid-configuration`
  3. Fetch the server's JSON Web Key by following the "jwks_uri" property
  4. Validate the token's signature against the public key from step #3
  5. Extract the `fhirUser` claim and treat it as the URL of a FHIR resource
@@ -322,7 +325,10 @@ Additional context parameters and scopes can be used as extensions using the fol
 
 ## Appendix: URI representation of scopes
 
-In some circumstances - for example, exchanging what scopes users are allowed to have, or sharing what they did choose), the scopes must be represented as URIs. When this is done, the standard URI is to prefix the SMART scopes with  http://smarthealthit.org/fhir/scopes/, so that a scope would be `http://smarthealthit.org/fhir/scopes/patient/*.read`.
+In some circumstances - for example, exchanging what scopes users are allowed to have, or sharing what they did choose), the scopes must be represented as URIs. When this is done, the standard URI is to prefix the SMART scopes with  http://smarthealthit.org/fhir/scopes/, so that a scope would be:
+```
+http://smarthealthit.org/fhir/scopes/patient/*.read
+```
 
 openID scopes have a URI prefix of http://openid.net/specs/openid-connect-core-1_0#
 
