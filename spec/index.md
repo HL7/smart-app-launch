@@ -193,7 +193,7 @@ A launch might cause the browser to navigate to:
 
     Location: https://app/launch?iss=https%3A%2F%2Fehr%2Ffhir&launch=xyz123
 
-On receiving the launch notification, the app would query the issuer's `/metadata/` endpoint or
+On receiving the launch notification, the app queries the issuer's `/metadata/` endpoint or
 [.well-known/smart-configuration.json] endpoint which contains (among other details) the EHR's identifying the OAuth `authorize` and `token`
 endpoint URLs for use in requesting authorization to access FHIR
 resources.
@@ -213,10 +213,11 @@ launch</span> flow (shown above), a user selects an app from outside the EHR,
 for example by tapping an app icon on a mobile phone home screen. This app
 will launch from its registered URL without a launch id.   
 
-In order to obtain launch context and request authorization to access FHIR
-resources, the app discovers the EHR authorization server's OAuth
-`authorize` and `token` endpoint URLs by querying their
-[.well-known/smart-configuration.json] file.
+To obtain launch context and request authorization to access FHIR resources,
+the app queries the issuer's `/metadata/` endpoint or
+[.well-known/smart-configuration.json] endpoint which contains (among other details) the EHR's identifying the OAuth `authorize` and `token`
+endpoint URLs for use in requesting authorization to access FHIR
+resources.
 
 The app then can declare its launch context requirements
 by adding specific scopes to the request it sends to the EHR's authorization
