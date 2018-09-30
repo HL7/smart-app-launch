@@ -771,10 +771,4 @@ refresh_token=a47txjiipgxkvohibvsm
 
 [See full payload example](examples/refresh.html).
 
-### Complete examples requests and responses
-
-* [Request metadata](examples/metadata.html)
-* [Request a FHIR resource](examples/patient,html)
-* [Refresh an access token](examples/refresh.html)
-
 [.well-known/smart-configuration.json]: conformance/index.html#using-well-known
