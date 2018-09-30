@@ -55,7 +55,7 @@ over TLS-secured channels.
 * Apps MUST generate an unpredictable `state` parameter for each user
 session.  An app MUST validate the `state` value for any request sent to its
 redirect URL; include `state` with all authorization requests; and validate
-the `state` value included in access tokens it receives.
+the `state` value included in access token response it receives.
 
 * An app SHALL NOT excecute any inputs it receives as code.
 
