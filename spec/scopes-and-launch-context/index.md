@@ -75,7 +75,7 @@ Goal | Scope | Notes
 -----|-------|-----
 Read a feed of all new lab observations across a patient population: | `user/Observation.read` |
 Manage all appointments to which the authorizing user has access | `user/Appointment.read` `user/Appointment.write` | Note that `read` and `write` both need to be supplied. (Write access does not imply read access.)
-Manage all resources on behalf of the authorizing user| `user/*.read` `user/*.write `| Note that the permission is broader than our goal: with this scope, an app can add not only blood pressures, but other observations as well. Also see notes on wildcard scopes below.
+Manage all resources on behalf of the authorizing user| `user/*.read` `user/*.write `|
 Select a patient| `user/Patient.read` | Allows the client app to select a patient
 
 ### Wildcard scopes
@@ -264,7 +264,6 @@ This token must be [validated according to the OIDC specification](http://openid
 To learn more about the user, the app should treat the `fhirUser` claim as the URL of
 a FHIR resource representing the current user. This will be a resource of type
 `Patient`, `Practitioner`, `RelatedPerson`, or `Person`.  Note that `Person` is only used if the other resource type do not apply to the current user, for example, the "authorized representative" for >1 patients.
-=======
 
 The [OpenID Connect Core specification](http://openid.net/specs/openid-connect-core-1_0.html)
 describes a wide surface area with many optional capabilities. To be considered compatible
