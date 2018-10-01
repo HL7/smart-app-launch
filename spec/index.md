@@ -20,9 +20,11 @@ for Phase 1 of the
 1. Provider apps that launch from a portal
 
 ## Profile audience and scope
-This profile is intended to be used by developers of apps that need to
-access FHIR resources by requesting access tokens from OAuth 2.0 compliant
-authorization servers. Note that this Implementation Guide applies to both DSTU2 and STU3 versions of FHIR.
+
+This profile is intended to be used by developers of apps that need to access
+FHIR resources by requesting access tokens from OAuth 2.0 compliant
+authorization servers. It is compatible with FHIR DSTU2 and above, and includes
+explicit definitions for extensions in DSTU2 and STU3.
 
 OAuth 2.0 authorization servers are configured to mediate access based on
 a set of rules configured to enforce institutional policy, which may
@@ -57,7 +59,7 @@ session.  An app MUST validate the `state` value for any request sent to its
 redirect URL; include `state` with all authorization requests; and validate
 the `state` value included in access tokens it receives.
 
-* An app SHALL NOT excecute any inputs it receives as code.
+* An app SHALL NOT execute any inputs it receives as code.
 
 * An app MUST NOT forward values passed back to its redirect URL to any
 other arbitrary or user-provided URL (a practice known as an “open
