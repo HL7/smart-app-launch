@@ -12,7 +12,7 @@ as well as apps that run on a secure server.  The Launch Framework supports the
 [four uses
 cases](http://argonautwiki.hl7.org/images/4/4c/Argonaut_UseCasesV1.pdf) defined
 for Phase 1 of the
-[ArgonautProject](http://argonautwiki.hl7.org/index.php?title=Main_Page):
+[Argonaut Project](http://argonautwiki.hl7.org/index.php?title=Main_Page):
 
 1. Patients apps that launch standalone
 1. Patient apps that launch from a portal
