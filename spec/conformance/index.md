@@ -139,8 +139,8 @@ The OAuth extension has the following internal components:
 
 #### OAuth URIs Extension
 
-- [**STU3 StructureDefinition for Oauth-URI**](../StructureDefinition-oauth-uris.html)
-- [**DSTU2  StructureDefinition for Oauth-URI**](../StructureDefinition-dstu2-oauth-uris.html)
+- [**STU3 StructureDefinition for OAuth-URI**](../StructureDefinition-oauth-uris.html)
+- [**DSTU2  StructureDefinition for OAuth-URI**](../StructureDefinition-dstu2-oauth-uris.html)
 
 
 <!-- {% raw %}
