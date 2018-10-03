@@ -40,11 +40,13 @@ patient-specific and user-level access.  Apps that need to read existing data fr
 
 Expressed in [EBNF notation](https://en.wikipedia.org/wiki/Extended_Backus%E2%80%93Naur_Form), the clinical scope syntax is:
 
-`clinical-scope ::= ( 'patient' | 'user' ) '/' ( fhir-resource | '*' ) '.' ( 'read' | 'write' | '*' )`
+```
+clinical-scope ::= ( 'patient' | 'user' ) '/' ( fhir-resource | '*' ) '.' ( 'read' | 'write' | '*' )`
+```
 
 [//]: # (Diagram generated from http://www.bottlecaps.de/rr/ui)
 <div style='text-align: left'>
-  <img src="clinical-scope-syntax-diagram.png" alt="Clinical scope syntax diagram" />
+  <img src="clinical-scope-syntax-diagram.png" alt="Clinical scope syntax diagram" class="spec-image"/>
 </div>
 
 ### Patient-specific scopes
@@ -75,7 +77,7 @@ Goal | Scope | Notes
 -----|-------|-----
 Read a feed of all new lab observations across a patient population: | `user/Observation.read` |
 Manage all appointments to which the authorizing user has access | `user/Appointment.read` `user/Appointment.write` | Note that `read` and `write` both need to be supplied. (Write access does not imply read access.)
-Manage all resources on behalf of the authorizing user| `user/*.read` `user/*.write `| Note that the permission is broader than our goal: with this scope, an app can add not only blood pressures, but other observations as well. Also see notes on wildcard scopes below.
+Manage all resources on behalf of the authorizing user| `user/*.read` `user/*.write `|
 Select a patient| `user/Patient.read` | Allows the client app to select a patient
 
 ### Wildcard scopes
@@ -124,7 +126,7 @@ on the details of how your app is launched.
 ### Apps that launch from the EHR
 
 Apps that launch from the EHR will be passed an explicit URL parameter called
-launch`, whose value must associate the app's
+`launch`, whose value must associate the app's
 authorization request with the current EHR session.  For example, If an app receives the URL
 parameter `launch=abc123`, then it requests the scope `launch` and provides an
 additional URL parameter of `launch=abc123`.
@@ -264,7 +266,6 @@ This token must be [validated according to the OIDC specification](http://openid
 To learn more about the user, the app should treat the `fhirUser` claim as the URL of
 a FHIR resource representing the current user. This will be a resource of type
 `Patient`, `Practitioner`, `RelatedPerson`, or `Person`.  Note that `Person` is only used if the other resource type do not apply to the current user, for example, the "authorized representative" for >1 patients.
-=======
 
 The [OpenID Connect Core specification](http://openid.net/specs/openid-connect-core-1_0.html)
 describes a wide surface area with many optional capabilities. To be considered compatible
@@ -277,13 +278,13 @@ with the SMART's `sso-openid-connect` capability, the following requirements app
  * Claims: The EHR MUST support the inclusion of SMART's `fhirUser` claim within the `id_token` issued for any requests that grant the `openid` and `fhirUser` scopes.  Some EHRs may use the `profile` claim as an alias for `fhirUser`, and to preserve compatibility, these EHRs should continue to support this claim during a deprecation phase.
 
  * Mandatory to Implement: The EHR MUST support the following features described in the ["Mandatory to Implement" Section 15.1 of the OIDC Core 1.0 Specification](http://openid.net/specs/openid-connect-core-1_0.html#ServerMTI):
-  * Signing ID Tokens with RSA SHA-256
-  * Prompt Parameter
-  * Display Parameter
-  * Preferred Locales
-  * Authentication Time
-  * Maximum Authentication Age
-  * Authentication Context Class Reference
+   * Signing ID Tokens with RSA SHA-256
+   * Prompt Parameter
+   * Display Parameter
+   * Preferred Locales
+   * Authentication Time
+   * Maximum Authentication Age
+   * Authentication Context Class Reference
 
 Note that support for the following features is optional:
 
@@ -318,7 +319,7 @@ Additional context parameters and scopes can be used as extensions using the fol
 
 ## Worked examples
 
-- Worked Python example: [rendered](../worked_example1/index.html) ([ipython notebook source](../dist/smart-on-fhir-jwt-examples.ipynb)).
+- Worked Python example: [rendered](../worked_example_id_token/index.html) ([ipython notebook source](../worked_example_id_token/smart-on-fhir-jwt-examples.ipynb)).
 
 ## Appendix: URI representation of scopes
 

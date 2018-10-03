@@ -13,8 +13,8 @@ The following package file contains an NPM package file with all the value sets,
 
 **Schematrons** are also available and listed below:
 
-- [STU3 Oauth Uri](../oauth-uris.sch)
-- [DSTU2 Oauth Uri](../dstu2-oauth-uris.sch)
+- [STU3 OAuth Uri](../oauth-uris.sch)
+- [DSTU2 OAuth Uri](../dstu2-oauth-uris.sch)
 
 **Examples**
 

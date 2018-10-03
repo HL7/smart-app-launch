@@ -4,22 +4,14 @@ layout: default
 active: profiles
 ---
 
-The following FHIR artifact for have been defined for declaring conformance to the SMART’s App Launch specifications.
-
-<!--
-
-## Profiles
-
-- [SMART on FHIR CapabilityStatement](../StructureDefinition-capabilitystatement-smartlaunch.html): The SMART on FHIR  CapabilityStatement defines extensions for automated discovery of OAuth2 endpoints and optional SMART launch features.
-
--->
+The following FHIR artifacts for have been defined for declaring conformance to the SMART App Launch specification.
 
 ## Extensions
 
-**Oauth URIs**: Declares support for automated dicovery of OAuth2 endpoints If a server requires SMART on FHIR authorization for access. Any time a client sees this extension, it must be prepared to authorize using SMART's OAuth2-based protocol.
+**OAuth URIs**: Declares support for automated dicovery of OAuth2 endpoints If a server requires SMART on FHIR authorization for access. Any time a client sees this extension, it must be prepared to authorize using SMART's OAuth2-based protocol.
 
-- [**STU3** Oauth URIs](../../StructureDefinition-oauth-uris.html)
-- [**DSTU2** Oauth URIs](../../StructureDefinition-dstu2-oauth-uris.html)
+- [**STU3** OAuth URIs](../../StructureDefinition-oauth-uris.html)
+- [**DSTU2** OAuth URIs](../../StructureDefinition-dstu2-oauth-uris.html)
 
 <br /><br />
 

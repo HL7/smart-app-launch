@@ -12,7 +12,7 @@ as well as apps that run on a secure server.  The Launch Framework supports the
 [four uses
 cases](http://argonautwiki.hl7.org/images/4/4c/Argonaut_UseCasesV1.pdf) defined
 for Phase 1 of the
-[ArgonautProject](http://argonautwiki.hl7.org/index.php?title=Main_Page):
+[Argonaut Project](http://argonautwiki.hl7.org/index.php?title=Main_Page):
 
 1. Patients apps that launch standalone
 1. Patient apps that launch from a portal
@@ -20,9 +20,11 @@ for Phase 1 of the
 1. Provider apps that launch from a portal
 
 ## Profile audience and scope
-This profile is intended to be used by developers of apps that need to
-access FHIR resources by requesting access tokens from OAuth 2.0 compliant
-authorization servers. Note that this Implementation Guide applies to both DSTU2 and STU3 versions of FHIR.
+
+This profile is intended to be used by developers of apps that need to access
+FHIR resources by requesting access tokens from OAuth 2.0 compliant
+authorization servers. It is compatible with FHIR DSTU2 and above, and includes
+explicit definitions for extensions in DSTU2 and STU3.
 
 OAuth 2.0 authorization servers are configured to mediate access based on
 a set of rules configured to enforce institutional policy, which may
@@ -57,7 +59,7 @@ session.  An app MUST validate the `state` value for any request sent to its
 redirect URL; include `state` with all authorization requests; and validate
 the `state` value included in access tokens it receives.
 
-* An app SHALL NOT excecute any inputs it receives as code.
+* An app SHALL NOT execute any inputs it receives as code.
 
 * An app MUST NOT forward values passed back to its redirect URL to any
 other arbitrary or user-provided URL (a practice known as an “open
@@ -111,7 +113,7 @@ for an out-of-the-box solution.
 No matter how an app registers with an EHR's authorization service, at registration time **every SMART app must**:
 
 * Register zero or more fixed, fully-specified launch URL with the EHR's authorization server
-* Register one or more, fixed, fully-specified `redirect_uri`s with the EHR's authorization server.  Note: In the case of native clients following the OAuth 2.0 for Native Apps specification [(RFC 8252)](https://tools.ietf.org/html/rfc8252), it may be appropriate to leave the port as a dynamic variable in an otherwise fixed redirect URI.
+* Register one or more fixed, fully-specified `redirect_uri`s with the EHR's authorization server.  Note: In the case of native clients following the OAuth 2.0 for Native Apps specification [(RFC 8252)](https://tools.ietf.org/html/rfc8252), it may be appropriate to leave the port as a dynamic variable in an otherwise fixed redirect URI.
 
 ## SMART authorization & FHIR access: overview
 
@@ -146,7 +148,7 @@ The two alternative launch sequences are described below.
 ### EHR launch sequence
 
 <div>
-<img class="sequence-diagram-raw"  src="http://www.websequencediagrams.com/cgi-bin/cdraw?lz=RUhSIFNlc3Npb24gLT4-IEFwcDogUmVkaXJlY3QgdG8gaHR0cHM6Ly97YXBwIGxhdW5jaF91cml9P1xuAAgGPTEyMyZcbmlzcz0AIwlmaGlyIGJhc2UgdXJsfQpBcHAgLT4gRUhSIEZISVIgU2VydmVyOiBHRVQAVgoAJg4vbWV0YWRhdGEKACcPIC0AgR4HW0NvbmZvcm1hbmNlIHN0YXRlbWVudCBpbmNsdWRpbmcgT0F1dGggMi4wIGVuZHBvaW50IFVSTHNdAIEIBwCBCgZBdXRoegCBCAkAgWQVZWhyIGF1dGhvcml6AIFLBj9cbnNjb3BlPQCCCgYmXG4AewU9YWJjJgCCCA9hdWQ9AIIADyZcbi4uLgo&s=default"/>
+<img class="spec-image"  src="http://www.websequencediagrams.com/cgi-bin/cdraw?lz=RUhSIFNlc3Npb24gLT4-IEFwcDogUmVkaXJlY3QgdG8gaHR0cHM6Ly97YXBwIGxhdW5jaF91cml9P1xuAAgGPTEyMyZcbmlzcz0AIwlmaGlyIGJhc2UgdXJsfQpBcHAgLT4gRUhSIEZISVIgU2VydmVyOiBHRVQAVgoAJg4vbWV0YWRhdGEKACcPIC0AgR4HW0NvbmZvcm1hbmNlIHN0YXRlbWVudCBpbmNsdWRpbmcgT0F1dGggMi4wIGVuZHBvaW50IFVSTHNdAIEIBwCBCgZBdXRoegCBCAkAgWQVZWhyIGF1dGhvcml6AIFLBj9cbnNjb3BlPQCCCgYmXG4AewU9YWJjJgCCCA9hdWQ9AIIADyZcbi4uLgo&s=default"/>
 </div>
 
 In SMART's <span class="label label-primary">EHR launch</span> flow (shown above),
@@ -193,8 +195,8 @@ A launch might cause the browser to navigate to:
 
     Location: https://app/launch?iss=https%3A%2F%2Fehr%2Ffhir&launch=xyz123
 
-On receiving the launch notification, the app would query the issuer's
-[.well-known] json file which contains (among other details) the EHR's identifying the OAuth `authorize` and `token`
+On receiving the launch notification, the app would query the issuer's `/metadata/` endpoint or
+[.well-known/smart-configuration.json] endpoint which contains (among other details) the EHR's identifying the OAuth `authorize` and `token`
 endpoint URLs for use in requesting authorization to access FHIR
 resources.
 
@@ -205,7 +207,7 @@ including the launch notification in the scope.
 ### Standalone launch sequence
 
 <div>
-<img class="sequence-diagram-raw"  src="http://www.websequencediagrams.com/cgi-bin/cdraw?lz=QXBwIC0-IEVIUiBGSElSIFNlcnZlcjogR0VUIGh0dHBzOi8ve2ZoaXIgYmFzZSB1cmx9L21ldGFkYXRhCgAnDyAtPiBBcHA6IFtDb25mb3JtYW5jZSBzdGF0ZW1lbnQgaW5jbHVkaW5nIE9BdXRoIDIuMCBlbmRwb2ludCBVUkxzXQoAgQkGAIEKBkF1dGh6AIEICVJlZGlyZWN0IHRvAIEPCmVociBhdXRob3JpegCBFwY_XG5zY29wZT1sYXVuY2gmXG4AewU9YWJjJlxuYXVkPQCBPw8mXG4uLi4KCg&s=default"/>
+<img class="spec-image"  src="http://www.websequencediagrams.com/cgi-bin/cdraw?lz=QXBwIC0-IEVIUiBGSElSIFNlcnZlcjogR0VUIGh0dHBzOi8ve2ZoaXIgYmFzZSB1cmx9L21ldGFkYXRhCgAnDyAtPiBBcHA6IFtDb25mb3JtYW5jZSBzdGF0ZW1lbnQgaW5jbHVkaW5nIE9BdXRoIDIuMCBlbmRwb2ludCBVUkxzXQoAgQkGAIEKBkF1dGh6AIEICVJlZGlyZWN0IHRvAIEPCmVociBhdXRob3JpegCBFwY_XG5zY29wZT1sYXVuY2gmXG4AewU9YWJjJlxuYXVkPQCBPw8mXG4uLi4KCg&s=default"/>
 </div>
 
 Alternatively, in SMART's <span class="label label-primary">standalone
@@ -216,7 +218,7 @@ will launch from its registered URL without a launch id.
 In order to obtain launch context and request authorization to access FHIR
 resources, the app discovers the EHR authorization server's OAuth
 `authorize` and `token` endpoint URLs by querying their
-[.well-known] json file.
+[.well-known/smart-configuration.json] file.
 
 The app then can declare its launch context requirements
 by adding specific scopes to the request it sends to the EHR's authorization
@@ -238,7 +240,7 @@ patient selection widget.  For full details, see <a href="scopes-and-launch-cont
 ### *SMART authorization sequence*
 
 <div>
-<img class="sequence-diagram-raw" src="http://www.websequencediagrams.com/cgi-bin/cdraw?lz=bm90ZSBsZWZ0IG9mIEFwcDogUmVxdWVzdCBhdXRob3JpemF0aW9uCkFwcCAtPj4gRUhSIEF1dGh6IFNlcnZlcjogUmVkaXJlY3QgaHR0cHM6Ly97ZWhyADUJZV91cmx9Py4uLgoAZgVvdmVyADITQQAnCCBBcHBcbihtYXkgaW5jbHVkZSBlbmQtdXNlAE4GZW50aWMAgQ4FXG5hbmQADw4AgSYJKQpOb3RlIABWGE9uIGFwcHJvdmFsCgCBQRAgLT4-AIIBBwCBSBBhcHAgcgCBZwdfdXJpfT9jb2RlPTEyMyYAgVcJAII-DUV4Y2hhbmdlIGNvZGUgZm9yIGFjY2VzcyB0b2tlbjtcbmlmIGNvbmZpZGVudGlhbCBjbGllbnQsAIFyCXNlY3JldApBcHAtPgCCaBJQT1NUAIJsCgBPBSB1cmx9XG5ncmFudF90eXBlPQCDOg1fY29kZSYAgSQSAIJ7GwCCagdlIGEAgxQFAIEcFgCCaQcAg0YXSXNzdWUgbmV3AIFyBiB3aXRoIGNvbnRleHQ6XG4ge1xuIgCCEwZfAIIUBSI6IgCBcwYtAIIjBS14eXoiLFxuImV4cGlyZXMtaW4iOjM2MDAsXG4icGF0aWVudCI6IjQ1NiIsXG4uLi5cbn0Ag0MUAIVZBVsAgnYMIHJlc3BvbnNlXQ&s=default&h=NA3OIkJNCqFraI5a">
+<img class="spec-image" src="http://www.websequencediagrams.com/cgi-bin/cdraw?lz=bm90ZSBsZWZ0IG9mIEFwcDogUmVxdWVzdCBhdXRob3JpemF0aW9uCkFwcCAtPj4gRUhSIEF1dGh6IFNlcnZlcjogUmVkaXJlY3QgaHR0cHM6Ly97ZWhyADUJZV91cmx9Py4uLgoAZgVvdmVyADITQQAnCCBBcHBcbihtYXkgaW5jbHVkZSBlbmQtdXNlAE4GZW50aWMAgQ4FXG5hbmQADw4AgSYJKQpOb3RlIABWGE9uIGFwcHJvdmFsCgCBQRAgLT4-AIIBBwCBSBBhcHAgcgCBZwdfdXJpfT9jb2RlPTEyMyYAgVcJAII-DUV4Y2hhbmdlIGNvZGUgZm9yIGFjY2VzcyB0b2tlbjtcbmlmIGNvbmZpZGVudGlhbCBjbGllbnQsAIFyCXNlY3JldApBcHAtPgCCaBJQT1NUAIJsCgBPBSB1cmx9XG5ncmFudF90eXBlPQCDOg1fY29kZSYAgSQSAIJ7GwCCagdlIGEAgxQFAIEcFgCCaQcAg0YXSXNzdWUgbmV3AIFyBiB3aXRoIGNvbnRleHQ6XG4ge1xuIgCCEwZfAIIUBSI6IgCBcwYtAIIjBS14eXoiLFxuImV4cGlyZXMtaW4iOjM2MDAsXG4icGF0aWVudCI6IjQ1NiIsXG4uLi5cbn0Ag0MUAIVZBVsAgnYMIHJlc3BvbnNlXQ&s=default&h=NA3OIkJNCqFraI5a">
 </div>
 
 <a id="step-1"></a>
@@ -359,7 +361,7 @@ context parameters</a>.*
 
 
 The app then causes the browser to navigate the browser to the EHR's **authorization URL** as
-determined above:
+determined above. For example:
 
 
 ```
@@ -419,7 +421,7 @@ risk of leaks.
 Based on the `client_id`, current EHR user, configured policy, and perhaps
 direct user input, the EHR makes a decision to approve or deny access.  This
 decision is communicated to the app by causing the browser to navigate to the app's registered
-`redirect_uri`:
+`redirect_uri`. For example:
 
 ```
 Location: https://app/after-auth?
@@ -436,7 +438,7 @@ Location: https://app/after-auth?
 After obtaining an authorization code, the app trades the code for an access
 token via HTTP `POST` to the EHR authorization server's token endpoint URL,
 using content-type `application/x-www-form-urlencoded`, as described in
-section 4.1.3 of RFC6749](https://tools.ietf.org/html/rfc6749#section-4.1.3).
+[section 4.1.3 of RFC6749](https://tools.ietf.org/html/rfc6749#section-4.1.3).
 
 For <span class="label label-primary">public apps</span>, authentication is not
 possible (and thus not required), since a client with no secret cannot prove its
@@ -599,12 +601,14 @@ redirect_uri=https%3A%2F%2Fapp%2Fafter-auth
 }
 ```
 
+[See full payload example](examples/token-post.html).
+
 At this point, **the authorization flow is complete**. Follow steps below to work with
 data and refresh access tokens, as shown in the following sequence diagram.
 
 #### *SMART retrieval and refresh sequence*
 <div>
-<img class="sequence-diagram-raw"
+<img class="spec-image"
 src="http://www.websequencediagrams.com/cgi-bin/cdraw?lz=bm90ZSBvdmVyIEFwcDogQWNjZXNzIHBhdGllbnQgZGF0YSAKQXBwLT5FSFIgRkhJUiBTZXJ2ZXI6IEdFVCBodHRwczovL3tmaGlyIGJhc2UgdXJsfS9QADoGLzEyMwoAWAoAMhFSZXR1cm4AUQZyZXNvdXJjZSB0byBhcHAKAGEPLT4AgRsFeyIAIAhUeXBlIjogIgBkByIsICJiaXJ0aERhdGUiOi4uLn0AbwsAgVAMdG9rZW4gZXhwaXJlcy4uLgAXEC4uLiBzbyByZXF1ZXN0IGEgbmV3AC8GAIF_CkF1dGh6AIIBCSBQT1MAggELAFsGdXJsfVxuZ3JhbnRfdHlwZT1yZWZyZXNoXwB7BSZcbgADDT1hYmMAghsSAFkOQXV0aGVudGljYXRlIGFwcFxuKGlmIGNvbmZpZGVudGlhbCBjbGllbnQpCk4ALBtJc3N1ZQCBSwpcbntcbiJhAINzBQCBFgYiOiAic2VjcmV0LQCCJwUteHl6IixcbiIAgi0HX2luIjogMzYwMCxcbiIAgUoNIjogIm5leHQtAIFmBy0xMjMiXG4uLi5cbn0KfQoAg1EFAIIxDACDUAdbAHoGAIMVB3Jlc3BvbnNlXQoKCgoKCgABBQo&s=">
 </div>
 
@@ -641,6 +645,8 @@ Authorization: Bearer i8hweunweunweofiwweoijewiwe
   "birthTime": ...
 }
 ```
+
+[See full payload example](examples/patient.html).
 
 The resource server MUST validate the access token and ensure that it has not expired and that its scope covers the requested resource.  The
 resource server also validates that the `aud` parameter associated with the
@@ -764,4 +770,7 @@ refresh_token=a47txjiipgxkvohibvsm
   "refresh_token":"tGzv3JOkF0XG5Qx2TlKWIA"
 }
 ```
-[.well-known]: conformance/index.html#using-well-known
+
+[See full payload example](examples/refresh.html).
+
+[.well-known/smart-configuration.json]: conformance/index.html#using-well-known

@@ -24,23 +24,7 @@ The server SHALL convey the *optional* SMART Core Capabilities it supports using
 
 ### Core Capabilities
 
-To promote interoperability, the following SMART on FHIR’s *Core Capabilities* have been defined by category:
-
-- launch-ehr
-- launch-standalone
-- client-public
-- client-confidential-symmetric
-- sso-openid-connect
-- context-banner
-- context-style
-- context-ehr-patient
-- context-ehr-encounter
-- context-standalone-patient
-- context-standalone-encounter
-- permission-offline
-- permission-patient
-- permission-user
-
+To promote interoperability, the following SMART on FHIR *Core Capabilities* have been defined:
 
 #### Launch Modes
 
@@ -155,8 +139,8 @@ The OAuth extension has the following internal components:
 
 #### OAuth URIs Extension
 
-- [**STU3 StructureDefinition for Oauth-URI**](../StructureDefinition-oauth-uris.html)
-- [**DSTU2  StructureDefinition for Oauth-URI**](../StructureDefinition-dstu2-oauth-uris.html)
+- [**STU3 StructureDefinition for OAuth-URI**](../StructureDefinition-oauth-uris.html)
+- [**DSTU2  StructureDefinition for OAuth-URI**](../StructureDefinition-dstu2-oauth-uris.html)
 
 
 <!-- {% raw %}
