@@ -277,14 +277,9 @@ with the SMART's `sso-openid-connect` capability, the following requirements app
 
  * Claims: The EHR SHALL support the inclusion of SMART's `fhirUser` claim within the `id_token` issued for any requests that grant the `openid` and `fhirUser` scopes.  Some EHRs may use the `profile` claim as an alias for `fhirUser`, and to preserve compatibility, these EHRs should continue to support this claim during a deprecation phase.
 
- * Mandatory to Implement: The EHR SHALL support the following features described in the ["Mandatory to Implement" Section 15.1 of the OIDC Core 1.0 Specification](http://openid.net/specs/openid-connect-core-1_0.html#ServerMTI):
-   * Signing ID Tokens with RSA SHA-256
-   * Prompt Parameter
-   * Display Parameter
-   * Preferred Locales
-   * Authentication Time
-   * Maximum Authentication Age
-   * Authentication Context Class Reference
+* Signed ID Token: The EHR SHALL support Signing ID Tokens with RSA SHA-256.
+
+* A SMART app SHALL NOT pass the `auth_time` claim or `max_age` parameter to a server that does not support receiving them.
 
 Note that support for the following features is optional:
 
