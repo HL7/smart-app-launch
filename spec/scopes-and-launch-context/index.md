@@ -277,7 +277,7 @@ with the SMART's `sso-openid-connect` capability, the following requirements app
 
  * Claims: The EHR SHALL support the inclusion of SMART's `fhirUser` claim within the `id_token` issued for any requests that grant the `openid` and `fhirUser` scopes.  Some EHRs may use the `profile` claim as an alias for `fhirUser`, and to preserve compatibility, these EHRs should continue to support this claim during a deprecation phase.
 
-The OpenID Connect includes ["Mandatory to Implement" Section 15.1 of the OIDC Core 1.0 Specification](http://openid.net/specs/openid-connect-core-1_0.html#ServerMTI) that implementers should be aware of:
+The OpenID Connect specification includes a ["Mandatory to Implement" Section](http://openid.net/specs/openid-connect-core-1_0.html#ServerMTI) that implementers should be aware of, including:
    * Signing ID Tokens with RSA SHA-256
    * Prompt Parameter
    * Display Parameter
