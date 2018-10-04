@@ -12,6 +12,10 @@
   {
     "url" : "http://hl7.org/fhir/StructureDefinition/igpublisher-folder-pages",
     "valueString" : "/Users/ehaas/Documents/FHIR/smart-app-launch-brver/spec"
+  },
+  {
+    "url" : "http://hl7.org/fhir/StructureDefinition/igpublisher-folder-pages",
+    "valueString" : "/Users/ehaas/Documents/FHIR/smart-app-launch-brver/dstu2"
   }],
   "url" : "http://fhir-registry.smarthealthit.org/ImplementationGuide/ig",
   "version" : "1.0.0",
