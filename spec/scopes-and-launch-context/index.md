@@ -14,7 +14,7 @@ Launch context is a negotiation where a client asks for specific launch context
 parameters (e.g. `launch/patient`). A server can decide which launch context
 parameters to provide, using the client's request as an input into the decision
 process.  When granting a patient-level scopes like `patient/*.read`, the server
-MUST provide a "patient" launch context parameter.
+SHALL provide a "patient" launch context parameter.
 
 ## Quick Start
 
@@ -271,13 +271,13 @@ The [OpenID Connect Core specification](http://openid.net/specs/openid-connect-c
 describes a wide surface area with many optional capabilities. To be considered compatible
 with the SMART's `sso-openid-connect` capability, the following requirements apply:
 
- * Response types: The EHR MUST support the Authorization Code Flow, with the request parameters [as defined in SMART's authorization guide](../). Support is not required for parameters that OIDC lists as optional (e.g. `id_token_hint`, `acr_value`), but EHRs are encouraged to review these optional parameters.
+ * Response types: The EHR SHALL support the Authorization Code Flow, with the request parameters [as defined in SMART's authorization guide](../). Support is not required for parameters that OIDC lists as optional (e.g. `id_token_hint`, `acr_value`), but EHRs are encouraged to review these optional parameters.
 
- * Public Keys Published as Bare Keys: The EHR MUST publish public keys as base JWK keys (which MAY also be accompanied by X.509 representations of those keys).
+ * Public Keys Published as SHALL Keys: The EHR SHALL publish public keys as bare JWK keys (which MAY also be accompanied by X.509 representations of those keys).
 
- * Claims: The EHR MUST support the inclusion of SMART's `fhirUser` claim within the `id_token` issued for any requests that grant the `openid` and `fhirUser` scopes.  Some EHRs may use the `profile` claim as an alias for `fhirUser`, and to preserve compatibility, these EHRs should continue to support this claim during a deprecation phase.
+ * Claims: The EHR SHALL support the inclusion of SMART's `fhirUser` claim within the `id_token` issued for any requests that grant the `openid` and `fhirUser` scopes.  Some EHRs may use the `profile` claim as an alias for `fhirUser`, and to preserve compatibility, these EHRs should continue to support this claim during a deprecation phase.
 
- * Mandatory to Implement: The EHR MUST support the following features described in the ["Mandatory to Implement" Section 15.1 of the OIDC Core 1.0 Specification](http://openid.net/specs/openid-connect-core-1_0.html#ServerMTI):
+ * Mandatory to Implement: The EHR SHALL support the following features described in the ["Mandatory to Implement" Section 15.1 of the OIDC Core 1.0 Specification](http://openid.net/specs/openid-connect-core-1_0.html#ServerMTI):
    * Signing ID Tokens with RSA SHA-256
    * Prompt Parameter
    * Display Parameter

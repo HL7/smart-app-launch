@@ -50,18 +50,18 @@ itself and any sensitive information it may hold. For background, see the
 [OAuth 2.0 Threat Model and Security
 Considerations](https://tools.ietf.org/html/rfc6819).
 
-* Apps MUST ensure that sensitive information (authentication secrets,
+* Apps SHALL ensure that sensitive information (authentication secrets,
 authorization codes, tokens) is transmitted ONLY to authenticated servers,
 over TLS-secured channels.
 
-* Apps MUST generate an unpredictable `state` parameter for each user
-session.  An app MUST validate the `state` value for any request sent to its
+* Apps SHALL generate an unpredictable `state` parameter for each user
+session.  An app SHALL validate the `state` value for any request sent to its
 redirect URL; include `state` with all authorization requests; and validate
 the `state` value included in access tokens it receives.
 
 * An app SHALL NOT execute any inputs it receives as code.
 
-* An app MUST NOT forward values passed back to its redirect URL to any
+* An app SHALL NOT forward values passed back to its redirect URL to any
 other arbitrary or user-provided URL (a practice known as an “open
 redirector”).
 
@@ -302,7 +302,7 @@ Scopes</a> details.
 
 An opaque value used by the client to maintain state between the request and
 callback. The authorization server includes this value when redirecting the
-user-agent back to the client. The parameter MUST be used for preventing
+user-agent back to the client. The parameter SHALL be used for preventing
 cross-site request forgery or session fixation attacks.
 
       </td>
@@ -322,9 +322,9 @@ flow, this <code>aud</code> value is the same as the launch's <code>iss</code> v
   </tbody>
 </table>
 
-The app MUST use an unpredictable value for the state parameter
-with at least 122 bits of entropy (e.g., a properly configured random uuid is suitable). The app MUST validate the value
-of the state parameter upon return to the redirect URL and MUST ensure
+The app SHALL use an unpredictable value for the state parameter
+with at least 122 bits of entropy (e.g., a properly configured random uuid is suitable). The app SHALL validate the value
+of the state parameter upon return to the redirect URL and SHALL ensure
 that the state value is securely tied to the user’s current session
 (e.g., by relating the state value to a session identifier issued
 by the app). The app SHOULD limit the grants, scope, and period of
@@ -539,7 +539,7 @@ passes to the FHIR Resource Server, telling the FHIR server that the
 Defining the format and content of the access token is left up to the
 organization that issues the access token and holds the requested resource.
 
-The authorization server's response MUST
+The authorization server's response SHALL
 include the HTTP "Cache-Control" response header field with a value
 of "no-store," as well as the "Pragma" response header field with a
 value of "no-cache."
@@ -549,8 +549,8 @@ access token and whether to issue a refresh token, as defined in section 1.5
 of [RFC6749](https://tools.ietf.org/html/rfc6749#page-10), along with the
 access token.  If the app receives a refresh token along with the access
 token, it can exchange this refresh token for a new access token when the
-current access token expires (see step 5 below).  A refresh token MUST
-BE bound to the same `client_id` and MUST contain the same, or a subset of,
+current access token expires (see step 5 below).  A refresh token SHALL
+BE bound to the same `client_id` and SHALL contain the same, or a subset of,
 the set of claims authorized for the access token with which it is associated.  
 
 Apps SHOULD store tokens in app-specific storage locations only, not in
@@ -648,7 +648,7 @@ Authorization: Bearer i8hweunweunweofiwweoijewiwe
 
 [See full payload example](examples/patient.html).
 
-The resource server MUST validate the access token and ensure that it has not expired and that its scope covers the requested resource.  The
+The resource server SHALL validate the access token and ensure that it has not expired and that its scope covers the requested resource.  The
 resource server also validates that the `aud` parameter associated with the
 authorization (see <a href="#step-1">above</a>) matches the resource server's own FHIR
 endpoint.  The method used by the EHR to validate the access token is beyond

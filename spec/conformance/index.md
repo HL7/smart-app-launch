@@ -180,7 +180,7 @@ Full StructureDefinition: [STU3](/StructureDefinition-extension-smart-capabiliti
 
 As an alternative to using a FHIR CapabilityStatement, the authorization endpoints accepted by a FHIR resource server can be exposed as a Well-Known Uniform Resource Identifiers (URIs) [(RFC5785)][well-known] JSON document.
 
-FHIR endpoints requiring authorization MUST serve a JSON document at the location formed by appending `/.well-known/smart-configuration` to their base URL.
+FHIR endpoints requiring authorization SHALL serve a JSON document at the location formed by appending `/.well-known/smart-configuration` to their base URL.
 Contrary to RFC5785 Appendix B.4, the `.well-known` path component may be appended even if the FHIR endpoint already contains a path component.
 
 ### Request
