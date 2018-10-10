@@ -16,6 +16,8 @@ The server SHALL convey the FHIR OAuth authorization endpoints that are listed i
 
 to declare its SMART authorization endpoints. (Note that we require both because the specification is transitioning away from CapabilityStatement, but needs to preserve compatibility with existing implementations.)
 
+*Note* that while this specification does not require that absolute URIs be used for OAuth authorization endpoints, absolute URIs are a recommended practice and may be required in a future release.
+
 ## SMART on FHIR Core Capabilities and Capability Sets
 
 The server SHALL convey the *optional* SMART Core Capabilities it supports using:
