@@ -24,22 +24,22 @@
   <license value="CC0-1.0"/>
   <fhirVersion value="3.0.1"/>
   <definition>
-    <package id="p1">
+    <grouping id="p1">
       <name value="base"/>
-    </package>
+    </grouping>
     <resource>
       <reference>
         <reference value="StructureDefinition/oauth-uris"/>
       </reference>
       <exampleBoolean value="false"/>
-      <package value="p1"/>
+      <groupingId value="p1"/>
     </resource>
     <resource>
       <reference>
         <reference value="CapabilityStatement/smart-app-launch-example"/>
       </reference>
       <exampleBoolean value="true"/>
-      <package value="p1"/>
+      <groupingId value="p1"/>
     </resource>
     <page>
       <nameUrl value="index.html"/>
@@ -47,8 +47,8 @@
       <generation value="html"/>
     </page>
     <parameter>
-      <code value="apply-business-version"/>
-      <value value="1.0.0"/>
+      <code value="apply"/>
+      <value value="version"/>
     </parameter>
     <parameter>
       <code value="generate-json"/>

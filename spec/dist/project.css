@@ -574,3 +574,12 @@ body {
 img.spec-image {
   max-width: 100%;
 }
+
+/* ============ downloads css ============= */
+
+a[href$=".sch"]:after, a[href$=".zip"]:after, a[href$=".tgz"]:after, a[href$=".xml"]:after, a[href$=".json"]:after, a[href$=".csv"]:after, a[href$=".ttl"]:after {
+  content: url(download.png);
+  display: inline-block;
+  text-decoration: none;
+  padding-left: 3px;
+}

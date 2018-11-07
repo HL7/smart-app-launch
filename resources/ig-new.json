@@ -25,9 +25,9 @@
   "publisher" : "FHIR Project",
   "packageId" : "hl7.fhir.smart",
   "license" : "CC0-1.0",
-  "fhirVersion" : "3.0.1",
+  "fhirVersion" : ["3.0.1"],
   "definition" : {
-    "package" : [{
+    "grouping" : [{
       "id" : "p1",
       "name" : "base"
     }],
@@ -36,14 +36,14 @@
         "reference" : "StructureDefinition/oauth-uris"
       },
       "exampleBoolean" : false,
-      "package" : "p1"
+      "groupingId" : "p1"
     },
     {
       "reference" : {
         "reference" : "CapabilityStatement/smart-app-launch-example"
       },
       "exampleBoolean" : true,
-      "package" : "p1"
+      "groupingId" : "p1"
     }],
     "page" : {
       "nameUrl" : "index.html",
@@ -51,8 +51,8 @@
       "generation" : "html"
     },
     "parameter" : [{
-      "code" : "apply-business-version",
-      "value" : "1.0.0"
+      "code" : "apply",
+      "value" : "version"
     },
     {
       "code" : "generate-json",
