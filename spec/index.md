@@ -601,7 +601,7 @@ redirect_uri=https%3A%2F%2Fapp%2Fafter-auth
 }
 ```
 
-[See full payload example](examples/token-post.html).
+[See full payload example](example-request-token-post/index.html).
 
 At this point, **the authorization flow is complete**. Follow steps below to work with
 data and refresh access tokens, as shown in the following sequence diagram.
@@ -646,7 +646,7 @@ Authorization: Bearer i8hweunweunweofiwweoijewiwe
 }
 ```
 
-[See full payload example](examples/patient.html).
+[See full payload example](example-request-patient/index.html).
 
 The resource server SHALL validate the access token and ensure that it has not expired and that its scope covers the requested resource.  The
 resource server also validates that the `aud` parameter associated with the
@@ -771,6 +771,6 @@ refresh_token=a47txjiipgxkvohibvsm
 }
 ```
 
-[See full payload example](examples/refresh.html).
+[See full payload example](example-request-refresh/index.html).
 
 [.well-known/smart-configuration.json]: conformance/index.html#using-well-known
