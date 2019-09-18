@@ -1,9 +1,9 @@
 
 {% assign base = '' %}
-{% assign depth = page.url | split: '/' | size  %}
-{% if depth == 2 %}{% assign base = '../' %}
-{% elsif depth == 3 %}{% assign base = '../../' %}
-{% elsif depth == 4 %}{% assign base = '../../../' %}
+{% assign depth = page.url | append: 'suffix' | split: '/' | size  %}
+{% if depth == 3 %}{% assign base = '../' %}
+{% elsif depth == 4 %}{% assign base = '../../' %}
+{% elsif depth == 5 %}{% assign base = '../../../' %}
 {% endif %}
 
 {% if page.template %}
