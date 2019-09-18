@@ -37,6 +37,11 @@ Functional requirements:
 * Allowed Category: http://terminology.hl7.org/CodeSystem/observation-category#laboratory
 * Interaction: read|create|update|delete|?search
 
+
+Notes
+* category is near-term, low-hanging, practical
+* tag is outlet / forward-looking opportunity for more sophisticated behaviors, even if there's not widely supportefd automatic labeling deployed today
+
 ## Looking at syntaxes
 
 
