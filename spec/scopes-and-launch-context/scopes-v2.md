@@ -35,7 +35,7 @@ Functional requirements:
 * Scoping context: patient|user|system
 * Resource type: Observation
 * Allowed Category: http://terminology.hl7.org/CodeSystem/observation-category#laboratory
-* Interaction: read|create|update|?search
+* Interaction: read|create|update|delete|?search
 
 ## Looking at syntaxes
 
@@ -51,4 +51,21 @@ patient/Observation:http://terminology.hl7.org/CodeSystem/observation-category#e
 {"context":"patient","resourceType":"Observation","category":"http://terminology.hl7.org/CodeSystem/observation-category#exam","interaction":"read"}
 ```
 
-These are long... especially if you have a lot of them. But each one is straightforward, at least. Each one can be treated independently (i.e., they're OR'd together)
+These are long... especially if you have a lot of them. But each one is straightforward, at least. Each one can be treated independently (i.e., they're OR'd together).
+
+Still, this quickly starts to suggests a combined syntax like:
+
+```js
+[{
+  "context": "patient",
+  "resourceType": ["Observation"],
+  "interaction": ["read", "search", "create", "update"],
+  "category": [
+    "#laboratory",
+    "#vital-signs",
+    "#social-history",
+  ]
+  "tagRequired": [],
+  "tagExcluded": ["http://terminology.hl7.org/CodeSystem/v3-Confidentiality Code Display#V"]
+}]
+```
