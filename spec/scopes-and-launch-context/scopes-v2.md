@@ -66,6 +66,8 @@ Still, this quickly starts to suggests a combined syntax like:
     "#social-history",
   ]
   "tagRequired": [],
-  "tagExcluded": ["http://terminology.hl7.org/CodeSystem/v3-Confidentiality Code Display#V"]
+  "tagExcluded": [],
+  "securityLabelRequired": []
+  "securityLabelExcluded": ["http://terminology.hl7.org/CodeSystem/v3-Confidentiality Code Display#V"]
 }]
 ```
