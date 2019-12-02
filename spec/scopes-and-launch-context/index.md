@@ -6,9 +6,9 @@ layout: default
 SMART on FHIR's authorization scheme uses OAuth scopes to communicate (and
 negotiate) access requirements. Providing apps with access to broad data sets is consistent with current common practices (e.g. interface engines also provide access to broad data sets); access is also limited based on the privileges of the user in context.  In general, we use scopes for three kinds of data:
 
-1. Clinical data
-1. Contextual data
-1. Identity data
+1. [Clinical data](#scopes-for-requesting-clinical-data)
+1. [Contextual data](#scopes-for-requesting-context-data)
+1. [Identity data](#scopes-for-requesting-identity-data)
 
 Launch context is a negotiation where a client asks for specific launch context
 parameters (e.g. `launch/patient`). A server can decide which launch context
