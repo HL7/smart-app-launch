@@ -32,9 +32,7 @@ Here is a quick overview of the most commonly used scopes. Read on below for com
 
 ## Scopes for requesting clinical data
 
-SMART on FHIR defines OAuth2 access scopes that correspond directly to FHIR
-resource types. We define **read** and **write** permissions for
-patient-specific and user-level access.  Apps that need to read existing data from an EHR (e.g., FHIR read and search interactions) should ask for read scopes. Apps that need to write data to an ehr (e.g., FHIR create, update, and delete) should ask for write scopes. EHRs may decide what specific interactions and operations will be enabled by these scopes.
+SMART on FHIR defines OAuth2 access scopes that correspond directly to FHIR resource types. These scopes impact the access an application may have to FHIR resources (and actions). We define **read** and **write** permissions for patient-specific and user-level access.  Apps that need to read existing data from an EHR (e.g., FHIR read and search interactions) should ask for read scopes. Apps that need to write data to an ehr (e.g., FHIR create, update, and delete) should ask for write scopes. EHRs may decide what specific interactions and operations will be enabled by these scopes.
 
 ### Clinical Scope Syntax
 
@@ -109,7 +107,7 @@ As a best practice, clients are encouraged to request only the scopes and permis
 
 ## Scopes for requesting context data
 
-Many apps rely on contextual data from the EHR to answer questions like:
+These scopes affect what context parameters will be provided in the access token response. Many apps rely on contextual data from the EHR to answer questions like:
 
 * Which patient record is currently "open" in the EHR?
 * Which encounter is currently "open" in the EHR?
@@ -131,6 +129,10 @@ authorization request with the current EHR session.  For example, If an app rece
 parameter `launch=abc123`, then it requests the scope `launch` and provides an
 additional URL parameter of `launch=abc123`.
 
+The application could choose to also provide `launch/patient` and/or `launch/encounter` as "hints" regarding which contexts the app would like the EHR to gather. The EHR MAY ignore these hints (for example, if the user is in a workflow where these contexts do not exist).
+
+If an application is also requesting a clinical scope which is restricted to a patient (e.g. `patient/*.read`), and the authorization results in the EHR is granting that scope, the EHR SHALL establish a patient in context. The EHR MAY refuse authorization requests including `patient/` but that do not include a valid `launch`, or it MAY infer the `launch/patient` scope.
+
 ### Standalone apps
 
 Standalone apps that launch outside the EHR do not have any EHR context at the
@@ -144,6 +146,8 @@ Requested Scope | Meaning
 `launch/patient` | Need patient context at launch time (FHIR Patient resource)
 `launch/encounter` | Need encounter context at launch time (FHIR Encounter resource)
 (Others)| This list can be extended by any SMART EHR if additional context is required.
+
+If an application is also requesting a clinical scope which is restricted to a patient (e.g. `patient/*.read`), and the authorization results in the EHR is granting that scope, the EHR SHALL establish a patient in context. The EHR MAY refuse authorization requests including `patient/` but that do not include a valid `launch/patient` scope, or it MAY infer the `launch/patient` scope.
 
 ### Launch context arrives with your `access_token`
 
