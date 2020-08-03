@@ -82,7 +82,7 @@ to an app at launch time.
 These capabilities only apply during an EHR Launch, and `context-style` only for an embedded EHR Launch.
 
 * `context-banner`: support for "need patient banner" launch context (conveyed via `need_patient_banner` token parameter)
-* `context-style`: support for "SMART style URL" launch context (conveyed via `smart_style_url` token parameter)
+* `context-style`: support for "SMART style URL" launch context (conveyed via `smart_style_url` token parameter). This capability is deemed *experimental*.
 
 ##### Launch Context for EHR Launch
 
