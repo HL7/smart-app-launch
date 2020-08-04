@@ -147,7 +147,7 @@ Requested Scope | Meaning
 `launch/encounter` | Need encounter context at launch time (FHIR Encounter resource)
 (Others)| This list can be extended by any SMART EHR if additional context is required.
 
-If an application is also requesting a clinical scope which is restricted to a patient (e.g. `patient/*.read`), and the authorization results in the EHR is granting that scope, the EHR SHALL establish a patient in context. The EHR MAY refuse authorization requests including `patient/` but that do not include a valid `launch/patient` scope, or it MAY infer the `launch/patient` scope.
+If an application requests a clinical scope which is restricted to a single patient (e.g. `patient/*.read`), and the authorization results in the EHR granting that scope, the EHR SHALL establish a patient in context. The EHR MAY refuse authorization requests including `patient/` that do not also include a valid `launch/patient` scope, or it MAY infer the `launch/patient` scope.
 
 ### Launch context arrives with your `access_token`
 
