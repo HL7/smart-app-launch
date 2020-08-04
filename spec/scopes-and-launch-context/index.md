@@ -131,7 +131,7 @@ additional URL parameter of `launch=abc123`.
 
 The application could choose to also provide `launch/patient` and/or `launch/encounter` as "hints" regarding which contexts the app would like the EHR to gather. The EHR MAY ignore these hints (for example, if the user is in a workflow where these contexts do not exist).
 
-If an application is also requesting a clinical scope which is restricted to a patient (e.g. `patient/*.read`), and the authorization results in the EHR is granting that scope, the EHR SHALL establish a patient in context. The EHR MAY refuse authorization requests including `patient/` but that do not include a valid `launch`, or it MAY infer the `launch/patient` scope.
+If an application requests a clinical scope which is restricted to a single patient (e.g. `patient/*.read`), and the authorization results in the EHR is granting that scope, the EHR SHALL establish a patient in context. The EHR MAY refuse authorization requests including `patient/` that do not also include a valid `launch`, or it MAY infer the `launch/patient` scope.
 
 ### Standalone apps
 
