@@ -234,8 +234,8 @@ Content-Type: application/json
   "registration_endpoint": "https://ehr.example.com/auth/register",
   "scopes_supported": ["openid", "profile", "launch", "launch/patient", "patient/*.*", "user/*.*", "offline_access"],
   "response_types_supported": ["code", "code id_token", "id_token", "refresh_token"],
-  "management_endpoint": "https://ehr.example.com/user/manage"
-  "introspection_endpoint": "https://ehr.example.com/user/introspect"
+  "management_endpoint": "https://ehr.example.com/user/manage",
+  "introspection_endpoint": "https://ehr.example.com/user/introspect",
   "revocation_endpoint": "https://ehr.example.com/user/revoke",
   "capabilities": ["launch-ehr", "client-public", "client-confidential-symmetric", "context-ehr-patient", "sso-openid-connect"]
 }
