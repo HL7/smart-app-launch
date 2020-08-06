@@ -732,7 +732,7 @@ The response is a JSON object containing a new access token, with the following 
     <tr>
       <td><code>refresh_token</code></td>
       <td><span class="label label-info">optional</span></td>
-      <td>The refresh token issued by the authorization server. If present, the app should discard any previosu <code>refresh_token</code> associated with this launch, replacing it with this new value.</td>
+      <td>The refresh token issued by the authorization server. If present, the app should discard any previous <code>refresh_token</code> associated with this launch, replacing it with this new value.</td>
     </tr>
   </tbody>
 </table>
