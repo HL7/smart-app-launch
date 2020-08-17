@@ -24,9 +24,41 @@ The server SHALL convey the *optional* SMART Core Capabilities it supports using
 
 - A [Well-Known Uniform Resource Identifiers (URIs)](#using-well-known) JSON file.
 
-### Core Capabilities
+### Capability Sets
 
-To promote interoperability, the following SMART on FHIR *Core Capabilities* have been defined:
+A *Capability Set* combines individual capabilities to enable a specific use-case. A SMART on FHIR server SHOULD support one or more *Capability Set*s. Unless otherwise noted, each capability listed is required to satisfy a *Capability Set*. Any individual SMART server will publish a granular list of its capabilities; from this list a client can determine which of these Capability Sets are supported:
+
+External implementation guides MAY define additional capabilities to be discovered through this same mechanism. IGs published by HL7 MAY use simple strings to represent additional capabilities (e.g., `example-new-capability`); IGs published by other organizations SHALL use full URIs to represent additional capabilities (e.g., `http://sdo.example.org/example-new-capability`).
+
+#### Patient Access for Standalone Apps
+1. `launch-standalone`
+1. At least one of `client-public` or `client-confidential-symmetric`
+1. `context-standalone-patient`
+1. `permission-patient`
+
+####  Patient Access for EHR Launch (i.e. from Portal)
+1. `launch-ehr`
+1. At least one of `client-public` or `client-confidential-symmetric`
+1. `context-ehr-patient`
+1. `permission-patient`
+
+####  Clinician Access for Standalone
+1. `launch-standalone`
+1. At least one of `client-public` or `client-confidential-symmetric`
+1. `permission-user`
+1. `permission-patient`
+
+####  Clinician Access for EHR Launch
+1. `launch-ehr`
+1. At least one of `client-public` or `client-confidential-symmetric`
+1. `context-ehr-patient` support
+1. `context-ehr-encounter` support
+1. `permission-user`
+1. `permission-patient`
+
+### Capabilities
+
+To promote interoperability, the following SMART on FHIR *Capabilities* have been defined. A given set of these capabilities is combined to support a specific use, a *Capability Set*. 
 
 #### Launch Modes
 
@@ -44,11 +76,15 @@ To promote interoperability, the following SMART on FHIR *Core Capabilities* hav
 
 #### Launch Context
 
-The following capabilities convey that a SMART on FHIR server is capable of providing basic context
-to an app at launch time. These capabilities apply during an EHR Launch or a Standalone Launch:
+The following capabilities convey that a SMART on FHIR server is capable of providing context
+to an app at launch time.
+
+##### Lauch Context for UI Integration
+
+These capabilities only apply during an EHR Launch, and `context-style` only for an embedded EHR Launch.
 
 * `context-banner`: support for "need patient banner" launch context (conveyed via `need_patient_banner` token parameter)
-* `context-style`: support for "SMART style URL" launch context (conveyed via `smart_style_url` token parameter)
+* `context-style`: support for "SMART style URL" launch context (conveyed via `smart_style_url` token parameter). This capability is deemed *experimental*.
 
 ##### Launch Context for EHR Launch
 
@@ -83,36 +119,6 @@ completing the launch.
 
 [well-known]: ../well-known/index.html
 
-
-### Capability Sets
-
-Additionally, Four *Capability Sets* are defined.  Any individual SMART server will publish a granular list of its capabilities; from this list a client can determine which of these Capability Sets are supported:
-
-#### Patient Access for Standalone Apps
-1. `launch-standalone`
-1. At least one of `client-public` or `client-confidential-symmetric`
-1. `context-standalone-patient`
-1. `permission-patient`
-
-####  Patient Access for EHR Launch (i.e. from Portal)
-1. `launch-ehr`
-1. At least one of `client-public` or `client-confidential-symmetric`
-1. `context-ehr-patient`
-1. `permission-patient`
-
-####  Clinician Access for Standalone
-1. `launch-standalone`
-1. At least one of `client-public` or `client-confidential-symmetric`
-1. `permission-user`
-1. `permission-patient`
-
-####  Clinician Access for EHR Launch
-1. `launch-ehr`
-1. At least one of `client-public` or `client-confidential-symmetric`
-1. `context-ehr-patient` support
-1. `context-ehr-encounter` support
-1. `permission-user`
-1. `permission-patient`
 
 ## FHIR Authorization Endpoint and Capabilities Discovery using a FHIR CapabilityStatement
 {:. #using-cs}
