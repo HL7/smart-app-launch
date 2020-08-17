@@ -28,6 +28,8 @@ The server SHALL convey the *optional* SMART Core Capabilities it supports using
 
 A *Capability Set* combines individual capabilities to enable a specific use-case. A SMART on FHIR server SHOULD support one or more *Capability Set*s. Unless otherwise noted, each capability listed is required to satisfy a *Capability Set*. Any individual SMART server will publish a granular list of its capabilities; from this list a client can determine which of these Capability Sets are supported:
 
+External implementation guides MAY define additional capabilities to be discovered through this same mechanism. IGs published by HL7 MAY use simple strings to represent additional capabilities (e.g., `example-new-capability`); IGs published by other organizations SHALL use full URIs to represent additional capabilities (e.g., `http://sdo.example.org/example-new-capability`).
+
 #### Patient Access for Standalone Apps
 1. `launch-standalone`
 1. At least one of `client-public` or `client-confidential-symmetric`
