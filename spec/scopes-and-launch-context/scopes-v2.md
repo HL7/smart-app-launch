@@ -3,6 +3,48 @@ title: SMART App Launch Framework
 layout: default
 ---
 
+
+# Draft API Additions for SMART Scopes v2 (work in progress)
+
+This documentation captures API design plans as of August 2020, as a target for the Granular Data track at the FHIR September 2020 Connectathon.
+
+## Finer-grained interaction constraints using `.cruds`
+
+In SMART 1.0, scopes ended in `.read`, `.write`, or `.*`. For SMART 2.0, we provide more detailed suffixes to convey support for the following FHIR REST API interactions:
+
+* `c` for `create`
+* `r` for `read` and `vread`
+* `u` for `update`
+* `d` for `delete`
+* `s` for `search`
+
+Valid suffixes are a subset of the string `.cruds`. For example, to convey support for creating and updating observations, use scope `patient/Observation.cu`. To convey support for reading and searching observations, use scope `patient/Observation.rs`. For backwards compatibility, servers should tread SMART v1 scopes as follows:
+
+* `.read` ⇒ `.rs`
+* `.write` ⇒ `.cud`
+* `.*` ⇒ `.cruds`
+
+
+## Finer-grained resource constraints using search parameters
+
+In SMART 1.0, scopes were based entirely on FHIR Resource types, as in `patient/Observation.read` (for Observations) or `patient.Immunization.read` (for Immunizations). In SMART 2.0, we provide more detailed constraints based on FHIR REST API search parameter syntax. To apply these constraints, add a query string suffix to existing scopes, starting with `?` and followed by a series of `param=value` items separated by `&`. For example, to request read and search access to laboratory observations but not other observations, the scope `patient/Observation.rs?category=laboratory`.
+
+Note: While the search parameter based syntax here is quite general, and could be used for any search parameter defined in FHIR, we're seeking community consensus on a small common core of search parameters for broad support. As such, we'll be focused on:
+
+* `_tag` for all resource types
+* `_security` for all resource types
+* `category` for resource types where a category or type exists (e.g., Observation, Condition)
+
+
+----
+
+# Historical notes...
+
+## Placeholder for SMART Scopes v2 (work in progress)
+
+"sub-resource scopes"
+* `category` for resource
+
 ## Placeholder for SMART Scopes v2 (work in progress)
 
 "sub-resource scopes"
