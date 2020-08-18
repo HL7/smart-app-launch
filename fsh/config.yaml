@@ -1,0 +1,35 @@
+# ╭──────────────────────────────────────ImplementationGuide───────────────────────────────────────╮
+# │  The properties below are used to create the ImplementationGuide resource. For a list of       │
+# │  supported properties, see: https://fshschool.org/sushi/configuration/                         │
+# ╰────────────────────────────────────────────────────────────────────────────────────────────────╯
+id: hl7.fhir.smart
+canonical: http://fhir-registry.smarthealthit.org
+name: smart-app-launch
+title: "SMART App Launch"
+status: active
+version: 2.0.0
+fhirVersion: 4.0.1
+copyrightYear: 2020+
+releaseLabel: ci-build
+publisher:
+  name: HL7 International - FHIR Infrastructure WG
+  url: https://www.hl7.org/Special/committees/fiwg/index.cfm
+  email: fhir@lists.HL7.org
+
+# ╭─────────────────────────────────────────────ig.ini─────────────────────────────────────────────╮
+# │  To use a provided ig-data/ig.ini file, delete the "template" property below.                  │
+# ╰────────────────────────────────────────────────────────────────────────────────────────────────╯
+#template: hl7.fhir.template#current
+template: fhir.base.template#current
+
+# ╭────────────────────────────────────────────menu.xml────────────────────────────────────────────╮
+# │  To use a provided ig-data/input/includes/menu.xml file, delete the "menu" property below.     │
+# ╰────────────────────────────────────────────────────────────────────────────────────────────────╯
+menu:
+  Launch and Authorization: index.html
+  Scopes and Launch Context: scopes-and-launch-context.html
+  Conformance: 
+    Declaring Conformance: conformance.html
+    Artifacts: artifacts.html
+  History: http://hl7.org/fhir/smart-app-launch/history.html
+
