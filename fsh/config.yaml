@@ -27,7 +27,9 @@ template: fhir.base.template#current
 # ╰────────────────────────────────────────────────────────────────────────────────────────────────╯
 menu:
   Launch and Authorization: index.html
-  Scopes and Launch Context: scopes-and-launch-context.html
+  Scopes and Launch Context:
+    Overview: scopes-and-launch-context.html
+    V2 Notes: scopes-v2-wip.html
   Conformance: 
     Declaring Conformance: conformance.html
     Artifacts: artifacts.html
