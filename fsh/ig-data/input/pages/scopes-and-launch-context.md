@@ -133,8 +133,7 @@ If an application requests a clinical scope which is restricted to a single pati
 ### Standalone apps
 
 Standalone apps that launch outside the EHR do not have any EHR context at the
-outset. These apps must explicitly request EHR context by using the following
-scopes:
+outset. These apps must explicitly request EHR context. The EHR SHOULD provide the requested context if requested by the following scopes:
 
 #### Requesting context with scopes
 
