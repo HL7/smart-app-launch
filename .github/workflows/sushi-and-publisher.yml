@@ -12,8 +12,7 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
-
-      - name: Run a one-line script
+      - name: Build Implementation Guide
         run: |
           docker pull hl7fhir/ig-publisher-base && \
           docker run \
