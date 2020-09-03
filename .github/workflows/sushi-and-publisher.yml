@@ -19,4 +19,4 @@ jobs:
           docker run \
             -v $(pwd):/home/publisher/ig \
             hl7fhir/ig-publisher-base \
-            sh -c "sushi && _updatePublisher.sh && _genonce.sh"
+            sh -c "sushi && _updatePublisher.sh --yes && _genonce.sh"
