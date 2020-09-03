@@ -16,7 +16,7 @@ jobs:
       - name: Run a one-line script
         run: |
           docker pull hl7fhir/ig-publisher-base && \
-          docker run 
+          docker run \
             -v $(pwd):/home/publisher/ig \
             hl7fhir/ig-publisher-base \
             sh -c "sushi && _updatePublisher.sh && _genonce.sh"
