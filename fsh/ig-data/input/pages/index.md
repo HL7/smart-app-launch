@@ -242,9 +242,8 @@ patient selection widget.  For full details, see <a href="scopes-and-launch-cont
 
 #### Step 1: App asks for authorization
 
-At launch time, the app constructs a request for authorization by adding the
-following parameters to the query component of the EHR’s "authorize" endpoint
-URL.:
+At launch time, the app constructs a request for authorization by supplying the
+following parameters to the EHR’s "authorize" endpoint.
 
 <table class="table">
   <thead>
@@ -331,6 +330,12 @@ are requested, and the request is granted, the app will receive an id_token
 along with the access token.  For full details, see [SMART launch context
 parameters](scopes-and-launch-context.html).
 
+The following requirements are adopted from [OpenID Connect Core 1.0 Specification section 3.1.2.1](https://openid.net/specs/openid-connect-core-1_0.html#AuthRequest):
+
+* Authorization Servers SHALL support the use of the HTTP GET and POST methods at the Authorization Endpoint.
+* Clients MAY use the HTTP GET or POST methods to send the Authorization Request to the Authorization Server. If using the HTTP GET method, the request parameters are serialized using URI Query String Serialization. If using the HTTP POST method, the request parameters are serialized using Form Serialization and the `application/x-www-form-urlencoded` content type.
+
+
 ##### *For example*
 If an app needs demographics and observations for a single
 patient, and also wants information about the current logged-in user, the app  can request:
@@ -356,7 +361,7 @@ context parameters</a>.*
 
 
 The app then causes the browser to navigate the browser to the EHR's **authorization URL** as
-determined above. For example:
+determined above. For example to cause the browser to issue a `GET`:
 
 
 ```
@@ -368,6 +373,25 @@ Location: https://ehr/authorize?
             scope=launch+patient%2FObservation.read+patient%2FPatient.read+openid+fhirUser&
             state=98wrghuwuogerg97&
             aud=https://ehr/fhir
+```
+
+Alternatively, the following example shows one way for a client app to cause the browser to issue a `POST`, using HTML and javascript:
+
+
+```
+<html>
+  <body onload="javascript:document.forms[0].submit()">
+    <form method="post" action="https://ehr/authorize">
+      <input type="hidden" name="response_type" value="code"/>
+      <input type="hidden" name="client_id" value="app-client-id"/>
+      <input type="hidden" name="redirect_uri" value="https://app/after-auth"/>
+      <input type="hidden" name="launch" value="xyz123"/>
+      <input type="hidden" name="scope" value="launch patient/Observation.read patient/Patient.read openid fhirUser"/>
+      <input type="hidden" name="state" value="98wrghuwuogerg97"/>
+      <input type="hidden" name="aud" value="https://ehr/fhir"/>
+    </form>
+  </body>
+</html>
 ```
 
 <a id="step-2"></a>
