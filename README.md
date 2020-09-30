@@ -16,7 +16,7 @@ $ cd smart-app-launch
 
 $ docker run \
     --rm -it \
-    -v $(pwd):/home/publisher/ig \
+    -v "$(pwd):/home/publisher/ig" \
     hl7fhir/ig-publisher-base
 ```
 
