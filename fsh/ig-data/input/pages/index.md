@@ -18,8 +18,8 @@ for Phase 1 of the
 
 This profile is intended to be used by developers of apps that need to access
 FHIR resources by requesting access tokens from OAuth 2.0 compliant
-authorization servers. It is compatible with FHIR DSTU2 and above, and includes
-explicit definitions for extensions in DSTU2 and STU3.
+authorization servers. It is compatible with FHIR R2 (DSTU2) and later;
+this publication includes explicit definitions for FHIR R4.
 
 OAuth 2.0 authorization servers are configured to mediate access based on
 a set of rules configured to enforce institutional policy, which may
