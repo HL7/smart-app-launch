@@ -31,19 +31,17 @@ Valid suffixes are a subset of the in-order string `.cruds`. For example, to con
 * `.write` ⇒ `.cud`
 * `.*` ⇒ `.cruds`
 
-Scope requests with undefined or out of order interactions SHALL be ignored. For example, a request of `.dus` is not a defined scope request. This policy is to prevent misinterpretation of scopes with other conventions (e.g., interpreting `.read` as `.rd` and granting extraneous delete permissions).
+Scope requests with undefined or out of order interactions MAY be ignored, replaced with server default scopes, or rejected. For example, a request of `.dus` is not a defined scope request. This policy is to prevent misinterpretation of scopes with other conventions (e.g., interpreting `.read` as `.rd` and granting extraneous delete permissions).
 
 ### Batches and Transactions
 
 SMART 2.0 does not define specific scopes for [batch or transaction](http://hl7.org/fhir/http.html#transaction) interactions. These system-level interactions are simply convience wrappers for other interactions. As such, batch and transaction requests should be validated based on the actual requests within them.
 
-#### Batch Details
+### Scope Equivalence
 
-Batches include discrete requests which are individually processed. Per [Batch Processing Rules](http://hl7.org/fhir/http.html#brules), as long as the batch is accepted and processed, the server SHOULD respond with `200` OK.  Within the response bundle, any requests failed because they are outside of granted scopes MAY/SHOULD be marked with a response code of `403` Forbidden.
+Multiple scopes compounded or expanded are equivalent to each other.  E.g., `Observation.rs` is interchangeable with `Observation.r Observation.s`. In order to reduce token size, it is recomended that scopes be factored to their shortest form.
 
-#### Transaction Details 
-
-Transactions must be accepted or rejected as a single request. If a request within the transaction falls outside granted scopes, the server MAY/SHOULD return an [OperationOutcome](http://hl7.org/fhir/operationoutcome.html) with an issue code of [forbidden](http://hl7.org/fhir/codesystem-issue-type.html#issue-type-forbidden).
+Note that multiple requests for the same scope MAY be ignored or rejected.
 
 ### Finer-grained resource constraints using search parameters
 
@@ -54,7 +52,6 @@ Note: While the search parameter based syntax here is quite general, and could b
 * `_tag` for all resource types
 * `_security` for all resource types
 * `category` for resource types where a category or type exists (e.g., Observation, Condition)
-
 
 ----
 
