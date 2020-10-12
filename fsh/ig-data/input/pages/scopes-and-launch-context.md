@@ -174,7 +174,7 @@ Launch context parameter | Example value | Meaning
 `intent` | `"reconcile-medications"`| String value describing the intent of the application launch (see notes [below](#launch-intent))
 `smart_style_url` | `"https://ehr/styles/smart_v1.json"`| String URL where the host's style parameters can be retrieved (for apps that support [styling](#styling))
 
-In addition to the explicitly listed context parameters in the table above, the EHR MAY provide additional FHIR resources in contextf by following a convention where the JSON property is named `context{{ResourceType}}` (e.g., `contextImmunization` or `contextMedicationRequest`) and the JSON value is a string representing the resource ID (e.g., `"123"` or `"bc3584f6-0d5b-4f27-90af-dd8b8a3f6a52"`). For example, an EHR might pass along an Immunization in context as follows:
+In addition to the explicitly listed context parameters in the table above, the EHR MAY provide additional FHIR resources in context by adding properties to the Access Token Response, following a convention where the JSON property is named `context{{ResourceType}}` (e.g., `contextImmunization` or `contextMedicationRequest`) and the JSON value is a string representing the resource ID (e.g., `"123"` or `"bc3584f6-0d5b-4f27-90af-dd8b8a3f6a52"`). For example, an EHR might pass along an Immunization in context as follows:
 
 ```  text
 {
