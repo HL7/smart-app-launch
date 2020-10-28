@@ -132,16 +132,14 @@ If an application requests a clinical scope which is restricted to a single pati
 
 ### Standalone apps
 
-Standalone apps that launch outside the EHR do not have any EHR context at the
-outset. These apps must explicitly request EHR context by using the following
-scopes:
+Standalone apps that launch outside the EHR do not have any EHR context at the outset. These apps must explicitly request EHR context. The EHR SHOULD provide the requested context if requested by the following scopes, unless otherwise noted:
 
 #### Requesting context with scopes
 
 Requested Scope | Meaning
 ---------|-------------------
-`launch/patient` | Need patient context at launch time (FHIR Patient resource)
-`launch/encounter` | Need encounter context at launch time (FHIR Encounter resource)
+`launch/patient` | Need patient context at launch time (FHIR Patient resource). The EHR SHALL be capable of providing  patient context, and SHOULD do so if `launch/patient` is requested together with `patient/` data scopes (e.g., `patient/*.*`).
+`launch/encounter` | Need encounter context at launch time (FHIR Encounter resource).
 (Others)| This list can be extended by any SMART EHR if additional context is required.
 
 If an application requests a clinical scope which is restricted to a single patient (e.g. `patient/*.read`), and the authorization results in the EHR granting that scope, the EHR SHALL establish a patient in context. The EHR MAY refuse authorization requests including `patient/` that do not also include a valid `launch/patient` scope, or it MAY infer the `launch/patient` scope.
