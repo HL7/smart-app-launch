@@ -32,6 +32,8 @@ authorization to access a FHIR resource, and then uses that authorization
 to retrieve the resource. Synchronization of patient context is not addressed.  In other words, if the patient chart is changed during the session, the application will not inherently be updated.  Other security mechanisms, such as those mandated by HIPAA in the US (end-user authentication, session time-out, security auditing,
 and accounting of disclosures) are outside the scope of this profile.
 
+This profile provides a mechanism to *delegate* a user's permissions to a 3rd-party app invoked by that user. The profile includes mechanisms to delegate a limited subset of a user's permissions (e.g., only sharing access to certain data types). However, this profile does not model the permissiosn a user has in the first place (e.g., it provides no mechanism to specify that a given user should or should not be able to access specific records in an EHR). Hence, this profile is designed to work on top of an EHR's existing user and permissions management system, enabling a standardized mechanism for delegation.
+
 ## App protection
 
 The app is responsible for protecting itself from potential misbehaving or
