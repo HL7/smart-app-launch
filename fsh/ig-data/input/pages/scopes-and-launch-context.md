@@ -138,7 +138,7 @@ Standalone apps that launch outside the EHR do not have any EHR context at the o
 
 Requested Scope | Meaning
 ---------|-------------------
-`launch/patient` | Need patient context at launch time (FHIR Patient resource). 
+`launch/patient` | Need patient context at launch time (FHIR Patient resource). See note below.
 `launch/encounter` | Need encounter context at launch time (FHIR Encounter resource).
 (Others)| This list can be extended by any SMART EHR if additional context is required.
 
