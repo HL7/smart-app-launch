@@ -138,11 +138,11 @@ Standalone apps that launch outside the EHR do not have any EHR context at the o
 
 Requested Scope | Meaning
 ---------|-------------------
-`launch/patient` | Need patient context at launch time (FHIR Patient resource). The EHR SHALL be capable of providing  patient context, and SHOULD do so if `launch/patient` is requested together with `patient/` data scopes (e.g., `patient/*.*`).
+`launch/patient` | Need patient context at launch time (FHIR Patient resource). 
 `launch/encounter` | Need encounter context at launch time (FHIR Encounter resource).
 (Others)| This list can be extended by any SMART EHR if additional context is required.
 
-If an application requests a clinical scope which is restricted to a single patient (e.g. `patient/*.read`), and the authorization results in the EHR granting that scope, the EHR SHALL establish a patient in context. The EHR MAY refuse authorization requests including `patient/` that do not also include a valid `launch/patient` scope, or it MAY infer the `launch/patient` scope.
+Note on `launch/patient`: If an application requests a clinical scope which is restricted to a single patient (e.g. `patient/*.read`), and the authorization results in the EHR granting that scope, the EHR SHALL establish a patient in context. The EHR MAY refuse authorization requests including `patient/` that do not also include a valid `launch/patient` scope, or it MAY infer the `launch/patient` scope.
 
 ### Launch context arrives with your `access_token`
 
