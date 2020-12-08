@@ -51,6 +51,16 @@ Note: While the search parameter based syntax here is quite general, and could b
 * `_security` for all resource types
 * `category` for resource types where a category or type exists (e.g., Observation, Condition)
 
+### Scope size over the wire
+
+Scope strings appear over the wire at several points in an OAuth flow. Implementers should be aware that fine-grained controls can lead to a proliferation of scopes, increasing in the length of the `scope` string for app authorizations. As such, implementers should take care to avoid putting arbitrarily large scope strings in places where they might not "fit". The following considerations apply, presented in the sequential order of a SMART App Launch:
+
+* When initiating an authorization request, app developers should prefer POST-based authorization requests to GET-based requests, since this avoid URL length limits that might apply to GET-based authorization requests. (For example, somme current-generation browsers have a 32kB length limit for values displayed in the URL bar.)
+* In the authorization code redirect response, no scopes are included, so these considerations do not apply.
+* In the access token response, no specific limits apply, since this payload comes in response to a client-initiated POST.
+* In the token introspection response, no specific limits apply, since this payload comes in response to a client-initiated POST.
+* In the access token itself, implementation-specific considerations may apply. SMART leaves access token formats out of scope, so formally there are no restrictions. But since access tokens are included in HTTP headers, servers should take care to ensure they do not get too large. For example, some current-generation HTTP servers have an 8kB limit on header length. To remain under this limit, authorization servers that use structured token formats like JWT might consider embedding handles or pointers to scopes, rather than embedding literal scopes in an access token. Alternatively, authorization servers might establish an internal convention mapping shorter scope names into longer scopes (or common combinations of longer scopes).
+
 ----
 
 ## Historical notes...
