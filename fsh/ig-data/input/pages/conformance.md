@@ -181,6 +181,7 @@ A JSON document must be returned using the `application/json` mime type.
 
 #### Metadata
 
+- `smart_version`: **REQUIRED**, Version of SMART App Launch Framework supported. Valid values: `"1.0.0"`, `"2.0.0"`.
 - `authorization_endpoint`: **REQUIRED**, URL to the OAuth2 authorization endpoint.
 - `token_endpoint`: **REQUIRED**, URL to the OAuth2 token endpoint.
 - `token_endpoint_auth_methods`: **OPTIONAL**, array of client authentication methods supported by the token endpoint. The options are "client_secret_post" and "client_secret_basic".
@@ -200,6 +201,7 @@ HTTP/1.1 200 OK
 Content-Type: application/json
 
 {
+  "smart_version": "2.0.0",
   "authorization_endpoint": "https://ehr.example.com/auth/authorize",
   "token_endpoint": "https://ehr.example.com/auth/token",
   "token_endpoint_auth_methods_supported": ["client_secret_basic"],
