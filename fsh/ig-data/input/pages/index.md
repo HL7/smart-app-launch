@@ -97,8 +97,8 @@ for example:
 - App is an HTML5 or JS in-browser app that would expose the secret in user space
 - App is a native app that can only distribute a `client_secret` statically
 
-### Considerations for native apps
-If a native SMART app is unable to guarantee ownership of its `redirect_uri`(s), the app SHALL support Proof Key for Code Exchange (PKCE).  PKCE is a standardized, cross-platform technique for public clients to mitigate the threat of authorization code interception. PKCE is described in [IETF RFC 7636](https://tools.ietf.org/html/rfc7636). SMART requires the S256 code_challenge_method. The "plain" method is not supported. 
+### Considerations for PKCE Support
+All SMART apps SHOULD support Proof Key for Code Exchange (PKCE), and public client SMART apps SHALL support PKCE.  PKCE is a standardized, cross-platform technique for public clients to mitigate the threat of authorization code interception. PKCE is described in [IETF RFC 7636](https://tools.ietf.org/html/rfc7636). SMART requires the `S256` `code_challenge_method`. The `plain` method is not supported.
 
 ## Registering a SMART App with an EHR
 
