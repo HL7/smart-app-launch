@@ -25,7 +25,7 @@ In SMART 1.0, scopes ended in `.read`, `.write`, or `.*`. For SMART 2.0, we prov
   * System level [search](http://hl7.org/fhir/http.html#search)
   * System level [history](http://hl7.org/fhir/http.html#history)
 
-Valid suffixes are a subset of the in-order string `.cruds`. For example, to convey support for creating and updating observations, use scope `patient/Observation.cu`. To convey support for reading and searching observations, use scope `patient/Observation.rs`. For backwards compatibility, servers should tread SMART v1 scopes as follows:
+Valid suffixes are a subset of the in-order string `.cruds`. For example, to convey support for creating and updating observations, use scope `patient/Observation.cu`. To convey support for reading and searching observations, use scope `patient/Observation.rs`. For backwards compatibility, servers should treat SMART v1 scopes as follows:
 
 * `.read` ⇒ `.rs`
 * `.write` ⇒ `.cud`
@@ -49,7 +49,7 @@ In SMART 1.0, scopes were based entirely on FHIR Resource types, as in `patient/
 
 While the search parameter based syntax here is quite general, and could be used for any search parameter defined in FHIR, we're seeking community consensus on a small common core of search parameters for broad support. Initially, servers supporting SMART v2 scopes SHALL support:
 
-* `category=` constraints for any supported resource types where `category` is a defined search parameter. This includes support for category-based Observation access.
+* `category=` constraints for any supported resource types where `category` is a defined search parameter. This includes support for category-based Observation access on any server that supports Observation access.
 
 ### Experimental features
 
@@ -58,3 +58,14 @@ Because the search parameter based syntax here is quite general, it opens up the
 * Use of search modifiers such as `Observation.rs?code:in=http://valueset.example.org/ValueSet/diabetes-codes`
 * Use of search parameter chaining such as `Observation.rs?patient.birthdate=1990`
 * Use of FHIR's `_filter` capabilities
+
+
+### Scope size over the wire
+
+Scope strings appear over the wire at several points in an OAuth flow. Implementers should be aware that fine-grained controls can lead to a proliferation of scopes, increasing in the length of the `scope` string for app authorizations. As such, implementers should take care to avoid putting arbitrarily large scope strings in places where they might not "fit". The following considerations apply, presented in the sequential order of a SMART App Launch:
+
+* When initiating an authorization request, app developers should prefer POST-based authorization requests to GET-based requests, since this avoid URL length limits that might apply to GET-based authorization requests. (For example, somme current-generation browsers have a 32kB length limit for values displayed in the URL bar.)
+* In the authorization code redirect response, no scopes are included, so these considerations do not apply.
+* In the access token response, no specific limits apply, since this payload comes in response to a client-initiated POST.
+* In the token introspection response, no specific limits apply, since this payload comes in response to a client-initiated POST.
+* In the access token itself, implementation-specific considerations may apply. SMART leaves access token formats out of scope, so formally there are no restrictions. But since access tokens are included in HTTP headers, servers should take care to ensure they do not get too large. For example, some current-generation HTTP servers have an 8kB limit on header length. To remain under this limit, authorization servers that use structured token formats like JWT might consider embedding handles or pointers to scopes, rather than embedding literal scopes in an access token. Alternatively, authorization servers might establish an internal convention mapping shorter scope names into longer scopes (or common combinations of longer scopes).
