@@ -58,7 +58,11 @@ To promote interoperability, the following SMART on FHIR *Capabilities* have bee
 #### Launch Modes
 
 * `launch-ehr`: support for SMART's EHR Launch mode  
-* `launch-standalone`: support for SMART's Standalone Launch mode  
+* `launch-standalone`: support for SMART's Standalone Launch mode
+
+#### Authorization Methods
+
+* `authorize-post`: support for POST-based authorization
 
 #### Client Types
 
@@ -107,8 +111,10 @@ completing the launch.
 #### Permissions
 
 * `permission-offline`: support for refresh tokens (requested by `offline_access` scope)
-* `permission-patient`: support for patient-level scopes (e.g. `patient/Observation.read`)
-* `permission-user`: support for user-level scopes (e.g. `user/Appointment.read`)
+* `permission-patient`: support for patient-level scopes (e.g. `patient/Observation.rs`)
+* `permission-user`: support for user-level scopes (e.g. `user/Appointment.rs`)
+* `permission-v1`: support for SMARTv1 scope syntax (e.g., `patient/Observation.read`)
+* `permission-v2`: support for SMARTv2 granular scope syntax (e.g., `patient/Observation.rs?category=http://terminology.hl7.org/CodeSystem/observation-category|vital-signs`)
 
 <br />
 
@@ -180,17 +186,18 @@ Host: www.ehr.example.com
 A JSON document must be returned using the `application/json` mime type.
 
 #### Metadata
-
+- `issuer`: **CONDITIONAL**, String conveying this system's OpenID Connect Issuer URL. Required if the server's capabilities include `sso-openid-connect`; otherwise, omitted.
 - `authorization_endpoint`: **REQUIRED**, URL to the OAuth2 authorization endpoint.
 - `token_endpoint`: **REQUIRED**, URL to the OAuth2 token endpoint.
 - `token_endpoint_auth_methods`: **OPTIONAL**, array of client authentication methods supported by the token endpoint. The options are "client_secret_post" and "client_secret_basic".
 - `registration_endpoint`: **OPTIONAL**, if available, URL to the OAuth2 dynamic registration endpoint for this FHIR server.
-- `scopes_supported`: **RECOMMENDED**, array of scopes a client may request. See [scopes and launch context][smart-scopes].
+- `scopes_supported`: **RECOMMENDED**, array of scopes a client may request. See [scopes and launch context][smart-scopes]. The server SHALL support all scopes listed here; additional scopes MAY be supported (so clients should not consider this an exhaustive list).
 - `response_types_supported`: **RECOMMENDED**, array of OAuth2 `response_type` values that are supported
 - `management_endpoint`: **RECOMMENDED**, URL where an end-user can view which applications currently have access to data and can make adjustments to these access rights.
 - `introspection_endpoint` :  **RECOMMENDED**, URL to a server's introspection endpoint that can be used to validate a token.
 - `revocation_endpoint` :  **RECOMMENDED**, URL to a server's revoke endpoint that can be used to revoke a token.
 - `capabilities`: **REQUIRED**, array of strings representing SMART capabilities (e.g., `single-sign-on` or `launch-standalone`) that the server supports.
+- `code_challenge_methods_supported`|**REQUIRED**|Array of PKCE code challenge methods supported. The `S256` method SHALL be included in this list, and the `plain` method SHALL NOT be included in this list.
 
 
 ### Sample Response
@@ -204,12 +211,21 @@ Content-Type: application/json
   "token_endpoint": "https://ehr.example.com/auth/token",
   "token_endpoint_auth_methods_supported": ["client_secret_basic"],
   "registration_endpoint": "https://ehr.example.com/auth/register",
-  "scopes_supported": ["openid", "profile", "launch", "launch/patient", "patient/*.*", "user/*.*", "offline_access"],
+  "scopes_supported": ["openid", "profile", "launch", "launch/patient", "patient/*.rs", "user/*.rs", "offline_access"],
   "response_types_supported": ["code", "code id_token", "id_token", "refresh_token"],
   "management_endpoint": "https://ehr.example.com/user/manage",
   "introspection_endpoint": "https://ehr.example.com/user/introspect",
   "revocation_endpoint": "https://ehr.example.com/user/revoke",
-  "capabilities": ["launch-ehr", "client-public", "client-confidential-symmetric", "context-ehr-patient", "sso-openid-connect"]
+  "code_challenge_methods_supported": ["S256"],
+  "capabilities": [
+    "launch-ehr",
+    "permission-patient",
+    "permission-v2",
+    "client-public",
+    "client-confidential-symmetric",
+    "context-ehr-patient",
+    "sso-openid-connect"
+  ]
 }
 ```
 

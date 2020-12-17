@@ -25,11 +25,11 @@ In SMART 1.0, scopes ended in `.read`, `.write`, or `.*`. For SMART 2.0, we prov
   * System level [search](http://hl7.org/fhir/http.html#search)
   * System level [history](http://hl7.org/fhir/http.html#history)
 
-Valid suffixes are a subset of the in-order string `.cruds`. For example, to convey support for creating and updating observations, use scope `patient/Observation.cu`. To convey support for reading and searching observations, use scope `patient/Observation.rs`. For backwards compatibility, servers should treat SMART v1 scopes as follows:
+Valid suffixes are a subset of the in-order string `.cruds`. For example, to convey support for creating and updating observations, use scope `patient/Observation.cu`. To convey support for reading and searching observations, use scope `patient/Observation.rs`. For backwards compatibility, servers SHOULD advertise the `permission-v1` capability in their `.well-known/smart-configuration` discovery document, SHOULD return v1 scopes when v1 scopes are requested and granted, and SHOULD process v1 scopes with the following semantics in v2:
 
-* `.read` ⇒ `.rs`
-* `.write` ⇒ `.cud`
-* `.*` ⇒ `.cruds`
+* v1 `.read` ⇒ v2 `.rs`
+* v1 `.write` ⇒ v2 `.cud`
+* v1 `.*` ⇒ v2 `.cruds`
 
 Scope requests with undefined or out of order interactions MAY be ignored, replaced with server default scopes, or rejected. For example, a request of `.dus` is not a defined scope request. This policy is to prevent misinterpretation of scopes with other conventions (e.g., interpreting `.read` as `.rd` and granting extraneous delete permissions).
 
