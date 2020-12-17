@@ -113,8 +113,8 @@ completing the launch.
 * `permission-offline`: support for refresh tokens (requested by `offline_access` scope)
 * `permission-patient`: support for patient-level scopes (e.g. `patient/Observation.rs`)
 * `permission-user`: support for user-level scopes (e.g. `user/Appointment.rs`)
-* `permission-v1`: support for SMART v1 scope syntax (e.g., `patient/*.read`)
-* `permission-granular`: support for SMARTv2 granular scope syntax (e.g., `patient/Observation.rs?category=http://terminology.hl7.org/CodeSystem/observation-category|vital-signs`)
+* `permission-v1`: support for SMARTv1 scope syntax (e.g., `patient/Observation.read`)
+* `permission-v2`: support for SMARTv2 granular scope syntax (e.g., `patient/Observation.rs?category=http://terminology.hl7.org/CodeSystem/observation-category|vital-signs`)
 
 <br />
 
@@ -186,7 +186,7 @@ Host: www.ehr.example.com
 A JSON document must be returned using the `application/json` mime type.
 
 #### Metadata
-
+- `issuer`: **CONDITIONAL**, String conveying this system's OpenID Connect Issuer URL. Required if the server's capabilities include `sso-openid-connect`; otherwise, omitted.
 - `authorization_endpoint`: **REQUIRED**, URL to the OAuth2 authorization endpoint.
 - `token_endpoint`: **REQUIRED**, URL to the OAuth2 token endpoint.
 - `token_endpoint_auth_methods`: **OPTIONAL**, array of client authentication methods supported by the token endpoint. The options are "client_secret_post" and "client_secret_basic".
@@ -217,7 +217,15 @@ Content-Type: application/json
   "introspection_endpoint": "https://ehr.example.com/user/introspect",
   "revocation_endpoint": "https://ehr.example.com/user/revoke",
   "code_challenge_methods_supported": ["S256"],
-  "capabilities": ["launch-ehr", "client-public", "client-confidential-symmetric", "context-ehr-patient", "sso-openid-connect"]
+  "capabilities": [
+    "launch-ehr",
+    "permission-patient",
+    "permission-v2",
+    "client-public",
+    "client-confidential-symmetric",
+    "context-ehr-patient",
+    "sso-openid-connect"
+  ]
 }
 ```
 
