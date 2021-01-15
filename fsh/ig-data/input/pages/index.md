@@ -252,7 +252,7 @@ At launch time, the app constructs a request for authorization by supplying the
 following parameters to the EHR’s "authorize" endpoint.
 
 *Note on PKCE Support: if an app supplies
-PKCE parameters in teh authorization request (`code_challenge` and `code_challenge_method`, see table below for details)
+PKCE parameters in the authorization request (`code_challenge` and `code_challenge_method`, see table below for details)
 the EHR SHALL ensure that the `code_verifier` is present and valid in Step 3
 ("App exchanges authorization code for access token"), at the completion of the OAuth flow.*
 
@@ -279,7 +279,7 @@ the EHR SHALL ensure that the `code_verifier` is present and valid in Step 3
     <tr>
       <td><code>launch</code></td>
       <td><span class="label label-info">optional</span></td>
-      <td>When using the <span class="label label-primary">EHR launch</span>flow, this must match the launch value received from the EHR.</td>
+      <td>When using the <span class="label label-primary">EHR launch</span> flow, this must match the launch value received from the EHR.</td>
     </tr>
     <tr>
       <td><code>scope</code></td>
