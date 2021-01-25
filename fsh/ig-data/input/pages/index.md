@@ -489,8 +489,12 @@ possible (and thus not required), since a client with no secret cannot prove its
 identity when it issues a call. (The end-to-end system can still be secure
 because the client comes from a known, https protected endpoint specified and
 enforced by the redirect uri.)  For <span class="label label-primary">confidential
-apps</span>, authentication is required; clients SHOULD register for JWT assertion
-authentication and MAY instead register to for Client Password authentication.
+apps</span>, authentication is required.
+
+(*Note that conformance requirements determining support for these two methods of
+client authentication are still under consideration; tentative guidance is that
+clients SHOULD register for JWT assertion authentication and MAY instead register
+for Client Password authentication.)
 
 * If a client has registered for Client Password authentication (i.e.,
 it possesses a `client_secret` that is also known to the EHR), the client
