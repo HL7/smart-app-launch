@@ -18,8 +18,8 @@ for Phase 1 of the
 
 This profile is intended to be used by developers of apps that need to access
 FHIR resources by requesting access tokens from OAuth 2.0 compliant
-authorization servers. It is compatible with FHIR DSTU2 and above, and includes
-explicit definitions for extensions in DSTU2 and STU3.
+authorization servers. It is compatible with FHIR R2 (DSTU2) and later;
+this publication includes explicit definitions for FHIR R4.
 
 OAuth 2.0 authorization servers are configured to mediate access based on
 a set of rules configured to enforce institutional policy, which may
@@ -84,20 +84,23 @@ For strategies and best practices to protecting a client secret refer to:
 - OAuth 2.0 for Native Apps: [8.5. Client Authentication](https://tools.ietf.org/html/draft-ietf-oauth-native-apps-12#section-8.5)
 - [OAuth 2.0 Dynamic Client Registration Protocol](https://tools.ietf.org/html/rfc7591)
 
-#### Use the <span class="label label-primary">confidential app</span>  profile if your app is *able* to protect a `client_secret`
+#### Use the <span class="label label-primary">confidential app</span>  profile if your app is *able* to protect a secret
 
 for example:
 
 - App runs on a trusted server with only server-side access to the secret
-- App is a native app that uses additional technology (such as dynamic client registration and universal redirect_uris) to protect the `client_secret`
+- App is a native app that uses additional technology (such as dynamic client registration and universal redirect_uris) to protect the secret
 
 
-#### Use the <span class="label label-primary">public app</span> profile if your app is *unable* to protect a `client_secret`
+#### Use the <span class="label label-primary">public app</span> profile if your app is *unable* to protect a secret
 
 for example:
 
 - App is an HTML5 or JS in-browser app that would expose the secret in user space
-- App is a native app that can only distribute a `client_secret` statically
+- App is a native app that can only distribute a secret statically
+
+### Considerations for PKCE Support
+All SMART apps SHOULD support Proof Key for Code Exchange (PKCE), and public client SMART apps SHALL support PKCE.  PKCE is a standardized, cross-platform technique for public clients to mitigate the threat of authorization code interception. PKCE is described in [IETF RFC 7636](https://tools.ietf.org/html/rfc7636). SMART requires the `S256` `code_challenge_method`. The `plain` method is not supported.
 
 ## Registering a SMART App with an EHR
 
@@ -193,7 +196,7 @@ A launch might cause the browser to navigate to:
     Location: https://app/launch?iss=https%3A%2F%2Fehr%2Ffhir&launch=xyz123
 
 On receiving the launch notification, the app would query the issuer's `/metadata/` endpoint or
-[.well-known/smart-configuration.json] endpoint which contains (among other details) the EHR's identifying the OAuth `authorize` and `token`
+[.well-known/smart-configuration] endpoint which contains (among other details) the EHR's identifying the OAuth `authorize` and `token`
 endpoint URLs for use in requesting authorization to access FHIR
 resources.
 
@@ -215,7 +218,7 @@ will launch from its registered URL without a launch id.
 In order to obtain launch context and request authorization to access FHIR
 resources, the app discovers the EHR authorization server's OAuth
 `authorize` and `token` endpoint URLs by querying their
-[.well-known/smart-configuration.json] file.
+[.well-known/smart-configuration] file.
 
 The app then can declare its launch context requirements
 by adding specific scopes to the request it sends to the EHR's authorization
@@ -232,6 +235,7 @@ patient selection widget.  For full details, see <a href="scopes-and-launch-cont
 *	launch/encounter - to indicate the app needs an encounter
 
 
+
 ## SMART authorization and resource retrieval
 
 ### *SMART authorization sequence*
@@ -246,6 +250,11 @@ patient selection widget.  For full details, see <a href="scopes-and-launch-cont
 
 At launch time, the app constructs a request for authorization by supplying the
 following parameters to the EHR’s "authorize" endpoint.
+
+*Note on PKCE Support: if an app supplies
+PKCE parameters in the authorization request (`code_challenge` and `code_challenge_method`, see table below for details)
+the EHR SHALL ensure that the `code_verifier` is present and valid in Step 3
+("App exchanges authorization code for access token"), at the completion of the OAuth flow.*
 
 <table class="table">
   <thead>
@@ -270,7 +279,7 @@ following parameters to the EHR’s "authorize" endpoint.
     <tr>
       <td><code>launch</code></td>
       <td><span class="label label-info">optional</span></td>
-      <td>When using the <span class="label label-primary">EHR launch</span>flow, this must match the launch value received from the EHR.</td>
+      <td>When using the <span class="label label-primary">EHR launch</span> flow, this must match the launch value received from the EHR.</td>
     </tr>
     <tr>
       <td><code>scope</code></td>
@@ -315,6 +324,20 @@ flow, this <code>aud</code> value is the same as the launch's <code>iss</code> v
 
       </td>
     </tr>
+
+    <tr>
+      <td><code>code_challenge</code></td>
+      <td><span class="label label-info">conditional</span></td>
+      <td>This parameter is generated by the app and used for <a href="https://tools.ietf.org/html/rfc7636">PKCE</a>. This is the S256 hashed version of the <code>code_verifier</code> parameter, which will be used in the token request. All apps SHOULD implement PKCE support; see <a href="#considerations-for-native-apps">Considerations for Native Apps above for additional requirements</a>.</td>
+    </tr>
+    
+
+    <tr>
+      <td><code>code_challenge_method</code></td>
+      <td><span class="label label-info">conditional</span></td>
+      <td>This parameter is required if an app is using <a href="https://tools.ietf.org/html/rfc7636">PKCE</a> and indicates the method used for the <code>code_challenge</code> parameter. Fixed value: <code>S256</code>.</td>
+    </tr>
+    
   </tbody>
 </table>
 
@@ -465,11 +488,24 @@ For <span class="label label-primary">public apps</span>, authentication is not
 possible (and thus not required), since a client with no secret cannot prove its
 identity when it issues a call. (The end-to-end system can still be secure
 because the client comes from a known, https protected endpoint specified and
-enforced by the redirect uri.)  For <span class="label
-label-primary">confidential apps</span>, an `Authorization` header using HTTP
-Basic authentication is required, where the username is the app's `client_id`
-and the password is the app's `client_secret` (see
-[example](basic-auth-example.html)).
+enforced by the redirect uri.)  For <span class="label label-primary">confidential
+apps</span>, authentication is required; clients SHOULD register for JWT assertion
+authentication and MAY instead register to for Client Password authentication.
+
+* If a client has registered for Client Password authentication (i.e.,
+it possesses a `client_secret` that is also known to the EHR), the client
+authenticates using an `Authorization` header with HTTP Basic authentication,
+where the username is the app's `client_id` and the password is the app's
+`client_secret` (see [example](basic-auth-example/index.html)).
+
+* If a client has registered for [JWT
+assertion](https://tools.ietf.org/html/rfc7523)-based authentication (i.e., it
+possesses a public/private keypairn whose public key is known to the EHR), the
+client authenticates using two parameters: `client_assertion_type` and
+`client_assertion`, as profiled in [SMART Backend Services Protocol
+Details](https://hl7.org/fhir/uv/bulkdata/authorization/index.html#protocol-details)
+(see [example](https://github.com/HL7/bulk-data/blob/master/spec/authorization/authorization-example-jwks-and-signatures.ipynb)).
+
 
 
 <table class="table">
@@ -497,6 +533,12 @@ and the password is the app's `client_secret` (see
       <td><span class="label label-warning">conditional</span></td>
       <td>Required for <span class="label label-primary">public apps</span>. Omit for <span class="label label-primary">confidential apps</span>.</td>
     </tr>
+    <tr>
+      <td><code>code_verifier</code></td>
+      <td><span class="label label-warning">conditional</span></td>
+      <td>Required for PKCE. This parameter is used to verify against the <code>code_challenge</code> parameter previously provided in the authorize request.</td>
+    </tr>
+
   </tbody>
 </table>
 
@@ -794,4 +836,4 @@ refresh_token=a47txjiipgxkvohibvsm
 
 [See full payload example](example-request-refresh.html).
 
-[.well-known/smart-configuration.json]: conformance.html#using-well-known
+[.well-known/smart-configuration]: conformance.html#using-well-known

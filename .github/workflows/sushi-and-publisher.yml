@@ -9,12 +9,13 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-
     steps:
       - uses: actions/checkout@v2
+        with:
+          submodules: true
       - name: Build Implementation Guide
         run: |
           docker run \
             -v $(pwd):/home/publisher/ig \
             hl7fhir/ig-publisher-base \
-            sh -c "sushi && yes | _updatePublisher.sh && _genonce.sh"
+            sh -c "sushi && yes | ./scripts/_updatePublisher.sh && ./scripts/_genonce.sh"
