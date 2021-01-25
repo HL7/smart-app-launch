@@ -737,7 +737,8 @@ Refresh tokens are issued to enable sessions to last longer than the validity pe
 
 The app requests a refresh token in its authorization request via the `online_access` or `offline_access` scope (see <a href="scopes-and-launch-context.html">SMART on FHIR Access Scopes</a> for details).  A server can decide which client types (public or confidential) are eligible for offline access and able to receive a refresh token.  If granted, the EHR supplies a refresh_token in the token response.  After an access token expires, the app requests a new access token by providing its refresh token to the EHR's token endpoint.  An HTTP `POST` transaction is made to the EHR authorization server's token URL, with content-type `application/x-www-form-urlencoded`. The decision about how long the refresh token lasts is determined by a mechanism that the server chooses.  For clients with online access, the goal is to ensure that the user is still online.
 
-- For <span class="label label-primary">public apps</span>, authentication is not possible (and thus not required). For <span class="label label-primary">confidential apps</span>, an `Authorization` header using HTTP Basic authentication is required, where the username is the app's `client_id` and the password is the app's `client_secret`.
+- For <span class="label label-primary">public apps</span>, authentication is not possible (and thus not required). For <span class="label label-primary">confidential apps</span>, see authentication considerations in
+<a href="#step-3">step 3</a>.
 
 The following request parameters are defined:
 
