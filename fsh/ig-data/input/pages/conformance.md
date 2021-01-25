@@ -2,22 +2,10 @@ The SMART's App Launch specification enables apps to launch and securely interac
 The specification can be described as a set of capabilities and a given SMART on FHIR server implementation
 may implement a subset of these.  The methods of declaring a server's SMART authorization endpoints and launch capabilities are described in the sections below.
 
-## SMART on FHIR OAuth authorization Endpoints
+## SMART on FHIR OAuth authorization Endpoints and Capabilities
 
-The server SHALL convey the FHIR OAuth authorization endpoints that are listed in the table below to app developers.  The server SHALL use *both*:
+The server SHALL convey the FHIR OAuth authorization endpoints and any *optional* SMART Capabilitise it supports using a [Well-Known Uniform Resource Identifiers (URIs)](#using-well-known) JSON file. (In previous versions of SMART, some of these details were also conveyed in a server's CapabilityStatement; this mechanism is now deprecated.)
 
-1. A [FHIR CapabilityStatement](#using-cs)
-1. A [Well-Known Uniform Resource Identifiers (URIs)](#using-well-known) JSON file.
-
-to declare its SMART authorization endpoints. (Note that we require both because the specification is transitioning away from CapabilityStatement, but needs to preserve compatibility with existing implementations.)
-
-*Note* that while this specification does not require that absolute URIs be used for OAuth authorization endpoints, absolute URIs are a recommended practice and may be required in a future release.
-
-## SMART on FHIR Core Capabilities and Capability Sets
-
-The server SHALL convey the *optional* SMART Core Capabilities it supports using:
-
-- A [Well-Known Uniform Resource Identifiers (URIs)](#using-well-known) JSON file.
 
 ### Capability Sets
 
@@ -121,44 +109,11 @@ completing the launch.
 [well-known]: ../well-known/index.html
 
 
-## FHIR Authorization Endpoint and Capabilities Discovery using a FHIR CapabilityStatement
-{:. #using-cs}
-
-### Declaring Support for OAuth2 Endpoints
-
-If a server supports SMART on FHIR authorization for access, it declares support for
-automated discovery of OAuth2 endpoints in its [CapabilityStatement]({{site.data.fhir.path}}capabilitystatement.html) using the [OAuth Uri extension](#oauth-uris-extension) on the `rest.security` element (or, when using FHIR DSTU2, the
-`Conformance.rest.security` element). Any time a client sees this extension, it
-must be prepared to authorize using SMART's OAuth2-based protocol.
-
-The OAuth extension has the following internal components:
-
-|Component|Conformance Expectation|Type|Description|
-|---|---|---|---|
-|authorize|**SHALL**|`valueUri`|URL to the OAuth2 authorization endpoint.|
-|token|**SHALL**|`valueUri`|URL to the OAuth2 token endpoint.|
-|register|**SHOULD**|`valueUri`|If available, URL to the OAuth2 dynamic registration endpoint for this FHIR server.|
-|manage|**SHOULD**|`valueUri`|If available, URL where an end-user can view which applications currently have access to data and can make adjustments to these access rights.|
-|introspect|**SHOULD**|`valueUri`|URL to a server’s introspection endpoint that can be used to validate a token.|
-|revoke|**SHOULD**|`valueUri`|URL to a server’s endpoint that can be used to revoke a token.|
-{:.grid}
-
-
-#### OAuth URIs Extension
-
-- [**StructureDefinition for OAuth-URI**](StructureDefinition-oauth-uris.html)
-
-
-### Example
-
-{% include cs-example.md %}
-
-(For a complete example see the [CapabilityStatement Example](CapabilityStatement-smart-app-launch-example.html).)
 
 ## FHIR Authorization Endpoint and Capabilities Discovery using a Well-Known Uniform Resource Identifiers (URIs)
 {: #using-well-known}
 
-As an alternative to using a FHIR CapabilityStatement, the authorization endpoints accepted by a FHIR resource server can be exposed as a Well-Known Uniform Resource Identifiers (URIs) [(RFC5785)][well-known] JSON document.
+The authorization endpoints accepted by a FHIR resource server are exposed as a Well-Known Uniform Resource Identifiers (URIs) [(RFC5785)][well-known] JSON document.
 
 FHIR endpoints requiring authorization SHALL serve a JSON document at the location formed by appending `/.well-known/smart-configuration` to their base URL.
 Contrary to RFC5785 Appendix B.4, the `.well-known` path component may be appended even if the FHIR endpoint already contains a path component.
