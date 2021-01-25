@@ -84,20 +84,20 @@ For strategies and best practices to protecting a client secret refer to:
 - OAuth 2.0 for Native Apps: [8.5. Client Authentication](https://tools.ietf.org/html/draft-ietf-oauth-native-apps-12#section-8.5)
 - [OAuth 2.0 Dynamic Client Registration Protocol](https://tools.ietf.org/html/rfc7591)
 
-#### Use the <span class="label label-primary">confidential app</span>  profile if your app is *able* to protect a `client_secret`
+#### Use the <span class="label label-primary">confidential app</span>  profile if your app is *able* to protect a secret
 
 for example:
 
 - App runs on a trusted server with only server-side access to the secret
-- App is a native app that uses additional technology (such as dynamic client registration and universal redirect_uris) to protect the `client_secret`
+- App is a native app that uses additional technology (such as dynamic client registration and universal redirect_uris) to protect the secret
 
 
-#### Use the <span class="label label-primary">public app</span> profile if your app is *unable* to protect a `client_secret`
+#### Use the <span class="label label-primary">public app</span> profile if your app is *unable* to protect a secret
 
 for example:
 
 - App is an HTML5 or JS in-browser app that would expose the secret in user space
-- App is a native app that can only distribute a `client_secret` statically
+- App is a native app that can only distribute a secret statically
 
 ### Considerations for PKCE Support
 All SMART apps SHOULD support Proof Key for Code Exchange (PKCE), and public client SMART apps SHALL support PKCE.  PKCE is a standardized, cross-platform technique for public clients to mitigate the threat of authorization code interception. PKCE is described in [IETF RFC 7636](https://tools.ietf.org/html/rfc7636). SMART requires the `S256` `code_challenge_method`. The `plain` method is not supported.
@@ -488,11 +488,24 @@ For <span class="label label-primary">public apps</span>, authentication is not
 possible (and thus not required), since a client with no secret cannot prove its
 identity when it issues a call. (The end-to-end system can still be secure
 because the client comes from a known, https protected endpoint specified and
-enforced by the redirect uri.)  For <span class="label
-label-primary">confidential apps</span>, an `Authorization` header using HTTP
-Basic authentication is required, where the username is the app's `client_id`
-and the password is the app's `client_secret` (see
-[example](basic-auth-example.html)).
+enforced by the redirect uri.)  For <span class="label label-primary">confidential
+apps</span>, authentication is required; clients SHOULD register for JWT assertion
+authentication and MAY instead register to for Client Password authentication.
+
+* If a client has registered for Client Password authentication (i.e.,
+it possesses a `client_secret` that is also known to the EHR), the client
+authenticates using an `Authorization` header with HTTP Basic authentication,
+where the username is the app's `client_id` and the password is the app's
+`client_secret` (see [example](basic-auth-example/index.html)).
+
+* If a client has registered for [JWT
+assertion](https://tools.ietf.org/html/rfc7523)-based authentication (i.e., it
+possesses a public/private keypairn whose public key is known to the EHR), the
+client authenticates using two parameters: `client_assertion_type` and
+`client_assertion`, as profiled in [SMART Backend Services Protocol
+Details](https://hl7.org/fhir/uv/bulkdata/authorization/index.html#protocol-details)
+(see [example](https://github.com/HL7/bulk-data/blob/master/spec/authorization/authorization-example-jwks-and-signatures.ipynb)).
+
 
 
 <table class="table">
