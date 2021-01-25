@@ -235,7 +235,6 @@ patient selection widget.  For full details, see <a href="scopes-and-launch-cont
 *	launch/encounter - to indicate the app needs an encounter
 
 
-
 ## SMART authorization and resource retrieval
 
 ### *SMART authorization sequence*
@@ -510,8 +509,6 @@ client authenticates using two parameters: `client_assertion_type` and
 Details](https://hl7.org/fhir/uv/bulkdata/authorization/index.html#protocol-details)
 (see [example](https://github.com/HL7/bulk-data/blob/master/spec/authorization/authorization-example-jwks-and-signatures.ipynb)).
 
-
-
 <table class="table">
   <thead>
     <th colspan="3">Parameters</th>
@@ -634,7 +631,6 @@ To be effective, such references must be infeasible for an attacker to
 guess.  Using a reference may require an extra interaction between the
 resource server and the authorization server; the mechanics of such an
 interaction are not defined by this specification.*
-
 
 ##### *For example*
 
