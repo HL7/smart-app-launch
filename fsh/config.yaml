@@ -30,6 +30,8 @@ menu:
   Scopes and Launch Context:
     Overview: scopes-and-launch-context.html
     V2 Notes: scopes-v2-wip.html
+  Token Introspection: token-introspection.html
+  Best Practices: best-practices.html
   Conformance: 
     Declaring Conformance: conformance.html
     Artifacts: artifacts.html

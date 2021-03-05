@@ -10,7 +10,7 @@ negotiate) access requirements. Providing apps with access to broad data sets is
 Launch context is a negotiation where a client asks for specific launch context
 parameters (e.g. `launch/patient`). A server can decide which launch context
 parameters to provide, using the client's request as an input into the decision
-process.  When granting a patient-level scopes like `patient/*.read`, the server
+process.  When granting a patient-level scopes like `patient/*.rs`, the server
 SHALL provide a "patient" launch context parameter.
 
 ## Quick Start
@@ -19,8 +19,8 @@ Here is a quick overview of the most commonly used scopes. Read on below for com
 
 |Scope | Grants|
 |---|---
-|`patient/*.read`|Permission to read any resource for the current patient (see notes on wildcard scopes below)|
-|`user/*.*`| Permission to read and write all resources that the current user can access (see notes on wildcard scopes below)|
+|`patient/*.rs`|Permission to read and search any resource for the current patient (see notes on wildcard scopes below)|
+|`user/*.cruds`| Permission to read and write all resources that the current user can access (see notes on wildcard scopes below)|
 | `openid` `fhirUser` (or `openid` `profile`)| Permission to retrieve information about the current logged-in user|
 |`launch`| Permission to obtain launch context when app is launched from an EHR|
 |`launch/patient`| When launching outside the EHR, ask for a patient to be selected at launch time|
@@ -29,78 +29,366 @@ Here is a quick overview of the most commonly used scopes. Read on below for com
 
 ## Scopes for requesting clinical data
 
-SMART on FHIR defines OAuth2 access scopes that correspond directly to FHIR resource types. These scopes impact the access an application may have to FHIR resources (and actions). We define **read** and **write** permissions for patient-specific and user-level access.  Apps that need to read existing data from an EHR (e.g., FHIR read and search interactions) should ask for read scopes. Apps that need to write data to an ehr (e.g., FHIR create, update, and delete) should ask for write scopes. EHRs may decide what specific interactions and operations will be enabled by these scopes.
+SMART on FHIR defines OAuth2 access scopes that correspond directly to FHIR resource types. These scopes impact the access an application may have to FHIR resources (and actions). We define permissions to support the following FHIR REST API interactions:
+
+* `c` for `create`
+  * Type level [create](http://hl7.org/fhir/http.html#create)
+* `r` for `read`
+  * Instance level [read](http://hl7.org/fhir/http.html#read)
+  * Instance level [vread](http://hl7.org/fhir/http.html#vread)
+  * Instance level [history](http://hl7.org/fhir/http.html#history)
+* `u` for `update`
+  * Instance level [update](http://hl7.org/fhir/http.html#update)
+    Note that some servers allow for an [update operation to create a new instance](http://hl7.org/fhir/http.html#upsert)
+  * Instance level [patch](http://hl7.org/fhir/http.html#patch)
+* `d` for `delete`
+  * Instance level [delete](http://hl7.org/fhir/http.html#delete)
+* `s` for `search`
+  * Type level [search](http://hl7.org/fhir/http.html#search)
+  * Type level [history](http://hl7.org/fhir/http.html#history)
+  * System level [search](http://hl7.org/fhir/http.html#search)
+  * System level [history](http://hl7.org/fhir/http.html#history)
+
+
+Valid suffixes are a subset of the in-order string `.cruds`. For example, to convey support for creating and updating observations, use scope `patient/Observation.cu`. To convey support for reading and searching observations, use scope `patient/Observation.rs`. For backwards compatibility with scopes defined in the SMART App Launch 1.0 specification, servers SHOULD advertise the `permission-v1` capability in their `.well-known/smart-configuration` discovery document, SHOULD return v1 scopes when v1 scopes are requested and granted, and SHOULD process v1 scopes with the following semantics in v2:
+
+* v1 `.read` ⇒ v2 `.rs`
+* v1 `.write` ⇒ v2 `.cud`
+* v1 `.*` ⇒ v2 `.cruds`
+
+Scope requests with undefined or out of order interactions MAY be ignored, replaced with server default scopes, or rejected. For example, a request of `.dus` is not a defined scope request. This policy is to prevent misinterpretation of scopes with other conventions (e.g., interpreting `.read` as `.rd` and granting extraneous delete permissions).
+
+### Batches and Transactions
+
+SMART 2.0 does not define specific scopes for [batch or transaction](http://hl7.org/fhir/http.html#transaction) interactions. These system-level interactions are simply convience wrappers for other interactions. As such, batch and transaction requests should be validated based on the actual requests within them.
+
+### Scope Equivalence
+
+Multiple scopes compounded or expanded are equivalent to each other.  E.g., `Observation.rs` is interchangeable with `Observation.r Observation.s`. In order to reduce token size, it is recomended that scopes be factored to their shortest form.
+
+### Finer-grained resource constraints using search parameters
+
+In SMART 1.0, scopes were based entirely on FHIR Resource types, as in `patient/Observation.read` (for Observations) or `patient.Immunization.read` (for Immunizations). In SMART 2.0, we provide more detailed constraints based on FHIR REST API search parameter syntax. To apply these constraints, add a query string suffix to existing scopes, starting with `?` and followed by a series of `param=value` items separated by `&`. For example, to request read and search access to laboratory observations but not other observations, the scope `patient/Observation.rs?category=laboratory`.
+
+### Requirements for support
+
+While the search parameter based syntax here is quite general, and could be used for any search parameter defined in FHIR, we're seeking community consensus on a small common core of search parameters for broad support. Initially, servers supporting SMART v2 scopes SHALL support:
+
+* `category=` constraints for any supported resource types where `category` is a defined search parameter. This includes support for category-based Observation access on any server that supports Observation access.
+
+### Experimental features
+
+Because the search parameter based syntax here is quite general, it opens up the possibility of using many features that servers may have trouble supporting in a consistent and performant fashion. Given the current level of implementation experience, the following features should be considered experimental, even if they are supported by a server:
+
+* Use of search modifiers such as `Observation.rs?code:in=http://valueset.example.org/ValueSet/diabetes-codes`
+* Use of search parameter chaining such as `Observation.rs?patient.birthdate=1990`
+* Use of FHIR's `_filter` capabilities
+
+
+### Scope size over the wire
+
+Scope strings appear over the wire at several points in an OAuth flow. Implementers should be aware that fine-grained controls can lead to a proliferation of scopes, increasing in the length of the `scope` string for app authorizations. As such, implementers should take care to avoid putting arbitrarily large scope strings in places where they might not "fit". The following considerations apply, presented in the sequential order of a SMART App Launch:
+
+* When initiating an authorization request, app developers should prefer POST-based authorization requests to GET-based requests, since this avoid URL length limits that might apply to GET-based authorization requests. (For example, somme current-generation browsers have a 32kB length limit for values displayed in the URL bar.)
+* In the authorization code redirect response, no scopes are included, so these considerations do not apply.
+* In the access token response, no specific limits apply, since this payload comes in response to a client-initiated POST.
+* In the token introspection response, no specific limits apply, since this payload comes in response to a client-initiated POST.
+* In the access token itself, implementation-specific considerations may apply. SMART leaves access token formats out of scope, so formally there are no restrictions. But since access tokens are included in HTTP headers, servers should take care to ensure they do not get too large. For example, some current-generation HTTP servers have an 8kB limit on header length. To remain under this limit, authorization servers that use structured token formats like JWT might consider embedding handles or pointers to scopes, rather than embedding literal scopes in an access token. Alternatively, authorization servers might establish an internal convention mapping shorter scope names into longer scopes (or common combinations of longer scopes).
+
 
 ### Clinical Scope Syntax
 
-Expressed in [EBNF notation](https://en.wikipedia.org/wiki/Extended_Backus%E2%80%93Naur_Form), the clinical scope syntax is:
+Expressed as a railroad diagram, the scope language is:
 
-```
-clinical-scope ::= ( 'patient' | 'user' ) '/' ( fhir-resource | '*' ) '.' ( 'read' | 'write' | '*' )`
-```
 
-[//]: # (Diagram generated from http://www.bottlecaps.de/rr/ui)
-<div style='text-align: left'>
-  <img src="clinical-scope-syntax-diagram.png" alt="Clinical scope syntax diagram" class="spec-image"/>
-</div>
+<svg class="railroad-diagram" width="1094" height="131" viewBox="0 0 1094 131" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<!--
+https://github.com/tabatkins/railroad-diagrams
+Diagram(
+  Choice(0, 'patient', 'user', 'system'),
+  Choice(0, '/'),
+  Choice(0, 'FHIR Resource Type', '*'),
+  Choice(0, '.'),
+  OptionalSequence('c', 'r', 'u', 'd', 's'),
+  Optional(
+    Sequence('?', OneOrMore('param=value&')))
+)
+-->
+
+<g transform="translate(.5 .5)">
+<g>
+<path d="M20 30v20m10 -20v20m-10 -10h20"></path>
+</g>
+<g>
+<path d="M40 40h0"></path>
+<path d="M159.5 40h0"></path>
+<path d="M40 40h20"></path>
+<g class="terminal ">
+<path d="M60 40h0"></path>
+<path d="M139.5 40h0"></path>
+<rect x="60" y="29" width="79.5" height="22" rx="10" ry="10"></rect>
+<text x="99.75" y="44">patient</text>
+</g>
+<path d="M139.5 40h20"></path>
+<path d="M40 40a10 10 0 0 1 10 10v10a10 10 0 0 0 10 10"></path>
+<g class="terminal ">
+<path d="M60 70h12.75"></path>
+<path d="M126.75 70h12.75"></path>
+<rect x="72.75" y="59" width="54" height="22" rx="10" ry="10"></rect>
+<text x="99.75" y="74">user</text>
+</g>
+<path d="M139.5 70a10 10 0 0 0 10 -10v-10a10 10 0 0 1 10 -10"></path>
+<path d="M40 40a10 10 0 0 1 10 10v40a10 10 0 0 0 10 10"></path>
+<g class="terminal ">
+<path d="M60 100h4.25"></path>
+<path d="M135.25 100h4.25"></path>
+<rect x="64.25" y="89" width="71" height="22" rx="10" ry="10"></rect>
+<text x="99.75" y="104">system</text>
+</g>
+<path d="M139.5 100a10 10 0 0 0 10 -10v-40a10 10 0 0 1 10 -10"></path>
+</g>
+<g>
+<path d="M159.5 40h0"></path>
+<path d="M228 40h0"></path>
+<path d="M159.5 40h20"></path>
+<g class="terminal ">
+<path d="M179.5 40h0"></path>
+<path d="M208 40h0"></path>
+<rect x="179.5" y="29" width="28.5" height="22" rx="10" ry="10"></rect>
+<text x="193.75" y="44">/</text>
+</g>
+<path d="M208 40h20"></path>
+</g>
+<g>
+<path d="M228 40h0"></path>
+<path d="M441 40h0"></path>
+<path d="M228 40h20"></path>
+<g class="terminal ">
+<path d="M248 40h0"></path>
+<path d="M421 40h0"></path>
+<rect x="248" y="29" width="173" height="22" rx="10" ry="10"></rect>
+<text x="334.5" y="44">FHIR Resource Type</text>
+</g>
+<path d="M421 40h20"></path>
+<path d="M228 40a10 10 0 0 1 10 10v10a10 10 0 0 0 10 10"></path>
+<g class="terminal ">
+<path d="M248 70h72.25"></path>
+<path d="M348.75 70h72.25"></path>
+<rect x="320.25" y="59" width="28.5" height="22" rx="10" ry="10"></rect>
+<text x="334.5" y="74">&#42;</text>
+</g>
+<path d="M421 70a10 10 0 0 0 10 -10v-10a10 10 0 0 1 10 -10"></path>
+</g>
+<g>
+<path d="M441 40h0"></path>
+<path d="M509.5 40h0"></path>
+<path d="M441 40h20"></path>
+<g class="terminal ">
+<path d="M461 40h0"></path>
+<path d="M489.5 40h0"></path>
+<rect x="461" y="29" width="28.5" height="22" rx="10" ry="10"></rect>
+<text x="475.25" y="44">.</text>
+</g>
+<path d="M489.5 40h20"></path>
+</g>
+<g>
+<path d="M509.5 40h0"></path>
+<path d="M832 40h0"></path>
+<path d="M509.5 40a10 10 0 0 0 10 -10v0a10 10 0 0 1 10 -10h28.5a10 10 0 0 1 10 10v0a10 10 0 0 0 10 10"></path>
+<path d="M509.5 40h20"></path>
+<g class="terminal ">
+<path d="M529.5 40h0"></path>
+<path d="M558 40h0"></path>
+<rect x="529.5" y="29" width="28.5" height="22" rx="10" ry="10"></rect>
+<text x="543.75" y="44">c</text>
+</g>
+<path d="M558 20h68.5a10 10 0 0 1 10 10v0a10 10 0 0 0 10 10"></path>
+<path d="M558 40h20"></path>
+<g class="terminal ">
+<path d="M578 40h0"></path>
+<path d="M606.5 40h0"></path>
+<rect x="578" y="29" width="28.5" height="22" rx="10" ry="10"></rect>
+<text x="592.25" y="44">r</text>
+</g>
+<path d="M606.5 40h20"></path>
+<path d="M558 40a10 10 0 0 1 10 10v0a10 10 0 0 0 10 10h28.5a10 10 0 0 0 10 -10v0a10 10 0 0 1 10 -10"></path>
+<path d="M626.5 20h68.5a10 10 0 0 1 10 10v0a10 10 0 0 0 10 10"></path>
+<path d="M626.5 40h20"></path>
+<g class="terminal ">
+<path d="M646.5 40h0"></path>
+<path d="M675 40h0"></path>
+<rect x="646.5" y="29" width="28.5" height="22" rx="10" ry="10"></rect>
+<text x="660.75" y="44">u</text>
+</g>
+<path d="M675 40h20"></path>
+<path d="M626.5 40a10 10 0 0 1 10 10v0a10 10 0 0 0 10 10h28.5a10 10 0 0 0 10 -10v0a10 10 0 0 1 10 -10"></path>
+<path d="M695 20h68.5a10 10 0 0 1 10 10v0a10 10 0 0 0 10 10"></path>
+<path d="M695 40h20"></path>
+<g class="terminal ">
+<path d="M715 40h0"></path>
+<path d="M743.5 40h0"></path>
+<rect x="715" y="29" width="28.5" height="22" rx="10" ry="10"></rect>
+<text x="729.25" y="44">d</text>
+</g>
+<path d="M743.5 40h20"></path>
+<path d="M695 40a10 10 0 0 1 10 10v0a10 10 0 0 0 10 10h28.5a10 10 0 0 0 10 -10v0a10 10 0 0 1 10 -10"></path>
+<path d="M763.5 40h20"></path>
+<g class="terminal ">
+<path d="M783.5 40h0"></path>
+<path d="M812 40h0"></path>
+<rect x="783.5" y="29" width="28.5" height="22" rx="10" ry="10"></rect>
+<text x="797.75" y="44">s</text>
+</g>
+<path d="M812 40h20"></path>
+<path d="M763.5 40a10 10 0 0 1 10 10v0a10 10 0 0 0 10 10h28.5a10 10 0 0 0 10 -10v0a10 10 0 0 1 10 -10"></path>
+</g>
+<g>
+<path d="M832 40h0"></path>
+<path d="M1054 40h0"></path>
+<path d="M832 40a10 10 0 0 0 10 -10v0a10 10 0 0 1 10 -10"></path>
+<g>
+<path d="M852 20h182"></path>
+</g>
+<path d="M1034 20a10 10 0 0 1 10 10v0a10 10 0 0 0 10 10"></path>
+<path d="M832 40h20"></path>
+<g>
+<path d="M852 40h0"></path>
+<path d="M1034 40h0"></path>
+<g class="terminal ">
+<path d="M852 40h0"></path>
+<path d="M880.5 40h0"></path>
+<rect x="852" y="29" width="28.5" height="22" rx="10" ry="10"></rect>
+<text x="866.25" y="44">?</text>
+</g>
+<path d="M880.5 40h10"></path>
+<path d="M890.5 40h10"></path>
+<g>
+<path d="M900.5 40h0"></path>
+<path d="M1034 40h0"></path>
+<path d="M900.5 40h10"></path>
+<g class="terminal ">
+<path d="M910.5 40h0"></path>
+<path d="M1024 40h0"></path>
+<rect x="910.5" y="29" width="113.5" height="22" rx="10" ry="10"></rect>
+<text x="967.25" y="44">param=value&</text>
+</g>
+<path d="M1024 40h10"></path>
+<path d="M910.5 40a10 10 0 0 0 -10 10v0a10 10 0 0 0 10 10"></path>
+<g>
+<path d="M910.5 60h113.5"></path>
+</g>
+<path d="M1024 60a10 10 0 0 0 10 -10v0a10 10 0 0 0 -10 -10"></path>
+</g>
+</g>
+<path d="M1034 40h20"></path>
+</g>
+<path d="M 1054 40 h 20 m -10 -10 v 20 m 10 -20 v 20"></path>
+</g>
+<style>
+	svg {
+		background-color: hsl(30,20%,95%);
+	}
+	path {
+		stroke-width: 3;
+		stroke: black;
+		fill: rgba(0,0,0,0);
+	}
+	text {
+		font: bold 14px monospace;
+		text-anchor: middle;
+		white-space: pre;
+	}
+	text.diagram-text {
+		font-size: 12px;
+	}
+	text.diagram-arrow {
+		font-size: 16px;
+	}
+	text.label {
+		text-anchor: start;
+	}
+	text.comment {
+		font: italic 12px monospace;
+	}
+	g.non-terminal text {
+		/&#42;font-style: italic;&#42;/
+	}
+	rect {
+		stroke-width: 3;
+		stroke: black;
+		fill: hsl(120,100%,90%);
+	}
+	rect.group-box {
+		stroke: gray;
+		stroke-dasharray: 10 5;
+		fill: none;
+	}
+	path.diagram-text {
+		stroke-width: 3;
+		stroke: black;
+		fill: white;
+		cursor: help;
+	}
+	g.diagram-text:hover path.diagram-text {
+		fill: #eee;
+	}</style>
+</svg>
 
 ### Patient-specific scopes
 
 Patient-specific scopes allow access to specific data about a single patient.
 *Which* patient is not specified here: clinical data
 scopes are all about *what* and not *who* which is handled in the next section.
-Patient-specific scopes take the form: `patient/:resourceType.(read|write|*)`.  Note that some EHRs may not enable access to all related resources - for example, Practitioners linked to/from Patient-specific resources.
+Patient-specific scopes start with `patient/`.  Note that some EHRs may not enable access to all related resources - for example, Practitioners linked to/from Patient-specific resources.
 
 Let's look at a few examples:
 
 Goal | Scope | Notes
 -----|-------|-----
-Read all observations about a patient | `patient/Observation.read` |
-Read demographics about a patient | `patient/Patient.read` | Note the difference in capitalization between "patient" the permission type and "Patient" the resource.
-Add new blood pressure readings for a patient| `patient/Observation.write`| Note that the permission is broader than our goal: with this scope, an app can add not only blood pressures, but other observations as well. Note also that write access does not imply read access.
-Read all available data about a patient| `patient/*.read`| See notes on wildcard scopes below |
+Read all observations about a patient | `patient/Observation.rs` |
+Read demographics about a patient | `patient/Patient.rs` | Note the difference in capitalization between "patient" the permission type and "Patient" the resource.
+Add new blood pressure readings for a patient| `patient/Observation.c`| Note that the permission is broader than our goal: with this scope, an app can add not only blood pressures, but other observations as well. Note also that write access does not imply read access.
+Read all available data about a patient| `patient/*.cruds`| See notes on wildcard scopes below |
 
 ### User-level scopes
 
 User-level scopes allow access to specific data that a user can access. Note
 that this isn't just data *about* the user; it's data *available to* that user.
-User-level scopes take the form: `user/:resourceType.(read|write|*)`.
+User-level scopes start with  `user/`.
 
 Let's look at a few examples:
 
 Goal | Scope | Notes
 -----|-------|-----
-Read a feed of all new lab observations across a patient population: | `user/Observation.read` |
-Manage all appointments to which the authorizing user has access | `user/Appointment.read` `user/Appointment.write` | Note that `read` and `write` both need to be supplied. (Write access does not imply read access.)
-Manage all resources on behalf of the authorizing user| `user/*.read` `user/*.write `|
-Select a patient| `user/Patient.read` | Allows the client app to select a patient
+Read a feed of all new lab observations across a patient population: | `user/Observation.rs` |
+Manage all appointments to which the authorizing user has access | `user/Appointment.cruds` | Individual attributes such as `d` for delete could be removed if not required.
+Manage all resources on behalf of the authorizing user| `user/*.cruds`|
+Select a patient| `user/Patient.rs` | Allows the client app to select a patient
 
 ### Wildcard scopes
 
-As noted previously, clients can request clinical scopes that contain a wildcard (`*`) for both the FHIR resource as well as the requested permission for the given resource. When a wildcard is requested for the FHIR resource, the client is asking for all data for all available FHIR resources, both now _and in the future_. This is an important distinction to understand, especially for the entity responsible for granting authorization requests from clients.
+As noted previously, clients can request clinical scopes that contain a wildcard (`*`) for the FHIR resource. When a wildcard is requested for the FHIR resource, the client is asking for all data for all available FHIR resources, both now _and in the future_. This is an important distinction to understand, especially for the entity responsible for granting authorization requests from clients.
 
-For instance, imagine a FHIR server that today just exposes the Patient resource. The authorization server asking a patient to authorize a SMART app requesting `patient/*.read` should inform the user that they are being asked to grant this SMART app access to not just the currently accessible data about them (patient demographics), but also any additional data the FHIR server may be enhanced to expose in the future (eg, genetics).
-
-When a wildcard is requested for the permission, as in the case of `patient/Patient.*`, the client is asking for both read and write access to the FHIR resource.
+For instance, imagine a FHIR server that today just exposes the Patient resource. The authorization server asking a patient to authorize a SMART app requesting `patient/*.cruds` should inform the user that they are being asked to grant this SMART app access to not just the currently accessible data about them (patient demographics), but also any additional data the FHIR server may be enhanced to expose in the future (eg, genetics).
 
 As with any requested scope, the scopes ultimately granted by the authorization server may differ from the scopes requested by the client! When dealing with wildcard clinical scope requests, this is often true.
 
 As a best practice, clients should examine the granted scopes by the authorization server and respond accordingly. Failure to do so may lead to situations in which the client attempts to access FHIR resources they were not granted access only to receieve an authorization failure by the FHIR server.
 
-For example, imagine a client with the goal of obtaining read and write access to a patient's allergies and as such, requests the clinical scope of `patient/AllergyIntolerance.*`. The authorization server may respond in a variety of ways with respect to the scopes that are ultimately granted. The following table outlines several, but not an exhaustive list of scenarios for this example:
+For example, imagine a client with the goal of obtaining read and write access to a patient's allergies and as such, requests the clinical scope of `patient/AllergyIntolerance.cruds`. The authorization server may respond in a variety of ways with respect to the scopes that are ultimately granted. The following table outlines several, but not an exhaustive list of scenarios for this example:
 
 Granted Scope | Notes
 --------------|---------------
-`patient/AllergyIntolerance.*` | The client was granted exactly what it requested: patient-level read and write access to allergies via the same requested wildcard scope.
-`patient/AllergyIntolerance.read`<br />`patient/AllergyIntolerance.write` | The client was granted exactly what it requested: patient-level read and write access to allergies. However, note that this was communicated via two explicit scopes rather than a single wildcard scope.
-`patient/AllergyIntolerance.read` | The client was granted just patient-level read access to allergies.
-`patient/AllergyIntolerance.write` | The client was granted just patient-level write access to allergies.
-`patient/*.read` | The client was granted read access to all data on the patient.
-`patient/*.*` | The client was granted its requested scopes as well as read/write access to all other data on the patient.
-`patient/Observation.read` | The client was granted an entirely different scope: patient-level read access to the patient's observations. While this behavior is unlikely for a production quality authorization server, this scenario is technically possible.
+`patient/AllergyIntolerance.cruds` | The client was granted exactly what it requested: patient-level read and write access to allergies via the same requested wildcard scope.
+`patient/AllergyIntolerance.rs`<br />`patient/AllergyIntolerance.cud` | The client was granted exactly what it requested: patient-level CRUDS access to allergies. However, note that this was communicated via two explicit scopes rather than a single  scope.
+`patient/AllergyIntolerance.rs` | The client was granted just patient-level read access to allergies.
+`patient/AllergyIntolerance.cud` | The client was granted just patient-level write access to allergies.
+`patient/*.rs` | The client was granted read access to all data on the patient.
+`patient/*.cruds` | The client was granted its requested scopes as well as read/write access to all other data on the patient.
+`patient/Observation.rs` | The client was granted an entirely different scope: patient-level read access to the patient's observations. While this behavior is unlikely for a production quality authorization server, this scenario is technically possible.
 _none_ | The authorization server chose to not grant any of the requested scopes.
 
-As a best practice, clients are encouraged to request only the scopes and permissions they need to function and avoid the use of wildcard scopes purely for the sake of convenience. For instance, if your allergy management app requires patient-level read and write access to allergies, requesting the `patient/AllergyIntolerance.*` scope is acceptable. However, if your app only requires access to read allergies, requesting a scope of `patient/AllergyIntolerance.read` would be more appropriate.
+As a best practice, clients are encouraged to request only the scopes and permissions they need to function and avoid the use of wildcard scopes purely for the sake of convenience. For instance, if your allergy management app requires patient-level read and write access to allergies, requesting the `patient/AllergyIntolerance.cruds` scope is acceptable. However, if your app only requires access to read allergies, requesting a scope of `patient/AllergyIntolerance.rs` would be more appropriate.
 
 ## Scopes for requesting context data
 
@@ -128,7 +416,7 @@ additional URL parameter of `launch=abc123`.
 
 The application could choose to also provide `launch/patient` and/or `launch/encounter` as "hints" regarding which contexts the app would like the EHR to gather. The EHR MAY ignore these hints (for example, if the user is in a workflow where these contexts do not exist).
 
-If an application requests a clinical scope which is restricted to a single patient (e.g. `patient/*.read`), and the authorization results in the EHR is granting that scope, the EHR SHALL establish a patient in context. The EHR MAY refuse authorization requests including `patient/` that do not also include a valid `launch`, or it MAY infer the `launch/patient` scope.
+If an application requests a clinical scope which is restricted to a single patient (e.g. `patient/*.rs`), and the authorization results in the EHR is granting that scope, the EHR SHALL establish a patient in context. The EHR MAY refuse authorization requests including `patient/` that do not also include a valid `launch`, or it MAY infer the `launch/patient` scope.
 
 ### Standalone apps
 
@@ -142,7 +430,7 @@ Requested Scope | Meaning
 `launch/encounter` | Need encounter context at launch time (FHIR Encounter resource).
 (Others)| This list can be extended by any SMART EHR if additional context is required.
 
-Note on `launch/patient`: If an application requests a clinical scope which is restricted to a single patient (e.g. `patient/*.read`), and the authorization results in the EHR granting that scope, the EHR SHALL establish a patient in context. The EHR MAY refuse authorization requests including `patient/` that do not also include a valid `launch/patient` scope, or it MAY infer the `launch/patient` scope.
+Note on `launch/patient`: If an application requests a clinical scope which is restricted to a single patient (e.g. `patient/*.rs`), and the authorization results in the EHR granting that scope, the EHR SHALL establish a patient in context. The EHR MAY refuse authorization requests including `patient/` that do not also include a valid `launch/patient` scope, or it MAY infer the `launch/patient` scope.
 
 ### Launch context arrives with your `access_token`
 
