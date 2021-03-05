@@ -19,21 +19,18 @@ publisher:
 # ╭─────────────────────────────────────────────ig.ini─────────────────────────────────────────────╮
 # │  To use a provided ig-data/ig.ini file, delete the "template" property below.                  │
 # ╰────────────────────────────────────────────────────────────────────────────────────────────────╯
-#template: hl7.fhir.template#current
-template: fhir.base.template#current
+template: hl7.fhir.template#current
+#template: fhir.base.template#current
 
 # ╭────────────────────────────────────────────menu.xml────────────────────────────────────────────╮
 # │  To use a provided ig-data/input/includes/menu.xml file, delete the "menu" property below.     │
 # ╰────────────────────────────────────────────────────────────────────────────────────────────────╯
 menu:
   Launch and Authorization: index.html
-  Scopes and Launch Context:
-    Overview: scopes-and-launch-context.html
-    V2 Notes: scopes-v2-wip.html
+  Scopes and Launch Context: scopes-and-launch-context.html
   Token Introspection: token-introspection.html
-  Best Practices: best-practices.html
   Conformance: 
     Declaring Conformance: conformance.html
     Artifacts: artifacts.html
+  Best Practices: best-practices.html
   History: http://hl7.org/fhir/smart-app-launch/history.html
-
