@@ -16,12 +16,6 @@ publisher:
   url: https://www.hl7.org/Special/committees/fiwg/index.cfm
   email: fhir@lists.HL7.org
 
-# ╭─────────────────────────────────────────────ig.ini─────────────────────────────────────────────╮
-# │  To use a provided ig-data/ig.ini file, delete the "template" property below.                  │
-# ╰────────────────────────────────────────────────────────────────────────────────────────────────╯
-template: hl7.fhir.template#current
-#template: fhir.base.template#current
-
 # ╭────────────────────────────────────────────menu.xml────────────────────────────────────────────╮
 # │  To use a provided ig-data/input/includes/menu.xml file, delete the "menu" property below.     │
 # ╰────────────────────────────────────────────────────────────────────────────────────────────────╯
