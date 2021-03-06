@@ -1,8 +1,3 @@
----
-title: "SMART App Launch: Token Introspection"
-layout: default
----
-
 SMART on FHIR EHRs SHOULD support Token Introspection, which allows a broader ecosystem of resource servers to leverage authorization decisions managed by a single authorization server. Token Introspection is conducted according to [RFC 7662: OAuth 2.0 Token Introspection], with the following additional considerations.
 
 ## Required fields in the introspection response
