@@ -34,7 +34,10 @@ and accounting of disclosures) are outside the scope of this profile.
 
 This profile provides a mechanism to *delegate* an entity's permissions (e.g., a user's permissions) to a 3rd-party app. The profile includes mechanisms to delegate a limited subset of an entity's permissions (e.g., only sharing access to certain data types). However, this profile does not model the permissiosn that the entity has in the first place (e.g., it provides no mechanism to specify that a given entity should or should not be able to access specific records in an EHR). Hence, this profile is designed to work on top of an EHR's existing user and permissions management system, enabling a standardized mechanism for delegation.
 
-## App protection
+
+## Security and Privacy Considerations
+
+### App protection
 
 The app is responsible for protecting itself from potential misbehaving or
 malicious values passed to its redirect URL (e.g., values injected with
@@ -68,7 +71,7 @@ in the clear.
 * Apps should persist tokens and other sensitive data in app-specific
 storage locations only, not in system-wide-discoverable locations.
 
-## Support for "public" and "confidential" apps
+### Support for "public" and "confidential" apps
 
 Within this profile we differentiate between the two types of apps defined in the [OAuth 2.0 specification: confidential and public](https://tools.ietf.org/html/rfc6749#section-2.1). The differentiation is based upon whether the execution environment within which the app runs
 enables the app to protect secrets.   Pure client-side apps
@@ -101,6 +104,12 @@ for example:
 
 ### Considerations for PKCE Support
 All SMART apps SHOULD support Proof Key for Code Exchange (PKCE), and public client SMART apps SHALL support PKCE.  PKCE is a standardized, cross-platform technique for public clients to mitigate the threat of authorization code interception. PKCE is described in [IETF RFC 7636](https://tools.ietf.org/html/rfc7636). SMART requires the `S256` `code_challenge_method`. The `plain` method is not supported.
+
+### Related reading
+
+Implementers can review the [OAuth Security Topics](https://tools.ietf.org/html/draft-ietf-oauth-security-topics-16) guidance from IETF as a collection of Best Current Practices.
+
+Some resources shared with apps following this IG may be considered [Patient Sensitive](http://hl7.org/fhir/security.html#Patient); implementers should review the Core FHIR Specification's [Security Page](http://hl7.org/fhir/security.html) for additional security and privacy considerations.
 
 ## Registering a SMART App with an EHR
 
