@@ -1,7 +1,10 @@
 .DS_Store
 Thumbs.db
 /fsh-generated
-/input-cache
+#/input-cache
 /output
 /template
 /temp
+*.sh
+eh-pub-notes.md
+/input/data
