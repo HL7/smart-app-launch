@@ -4,7 +4,7 @@
 # ╰────────────────────────────────────────────────────────────────────────────────────────────────╯
 id: hl7.fhir.uv.smart
 canonical: http://fhir-registry.smarthealthit.org
-name: smart-app-launch
+name: SmartAppLaunch
 title: "SMART App Launch"
 status: active
 version: 2.0.0
@@ -13,6 +13,7 @@ copyrightYear: 2020+
 releaseLabel: ci-build
 date: '2021-04-16'
 license: 'CC-BY-4.0'
+jurisdiction: http://unstats.un.org/unsd/methods/m49/m49.htm#001 "World"
 publisher:
   name: HL7 International - FHIR Infrastructure WG
   url: https://www.hl7.org/Special/committees/fiwg/index.cfm

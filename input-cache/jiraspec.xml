@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<specification gitUrl="https://github.com/HL7/smart-app-launch" url="http://www.hl7.org/fhir/smart-app-launch" ciUrl="http://hl7.github.io/smart-app-launch" defaultWorkgroup="fhir-i" defaultVersion="1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../schemas/specification.xsd">
+  <version code="1.0"/>
+  <artifactPageExtension value="-definitions"/>
+  <artifactPageExtension value="-examples"/>
+  <artifactPageExtension value="-mappings"/>
+  <page name="(NA)" key="NA"/>
+  <page name="(many)" key="many"/>
+  <page name="(profiles)" key="profiles"/>
+  <page name="smart-app-launch" key="smart-app-launch" url="smart-app-launch" deprecated="true"/>
+</specification>
