@@ -7,6 +7,9 @@ server supports SMART on FHIR authorization for access. Any time a client sees
 this extension, it must be prepared to authorize using SMART’s OAuth2-based
 protocol."
 
+* ^context.type = #element
+* ^context.expression = "CapabilityStatement.rest.security"
+
 * extension contains
     authorize 1..1 MS and
     token 0..1 MS and
@@ -27,4 +30,3 @@ protocol."
 * extension[introspect].value[x] only uri
 * extension[revoke] ^short = "URL indicating the endpoint that can be used to revoke a token."
 * extension[revoke].value[x] only uri
-
