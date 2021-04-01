@@ -1,8 +1,9 @@
 == Suppressed Messages ==
 # ****** Warnings ******
-# update jira file for smart pr #191 and Merged #191 into master on 03/30/2021
+# update jira file for smart pr #191,#193 and Merged #191,#193 into master on 03/30/2021,04/01/2021
 WARNING: The jira specification file appears to be out of date with the versions, artifacts and pages currently defined in the IG.  A proposed revised file to be reviewed and, if appropriate, submitted as a pull request against the XML folder in https://github.com/HL7/JIRA-Spec-Artifacts.  To see the differences, perform a file compare on 'template/jira-current.xml' (a normalized view of what is in Github) and 'template/jira-new.xml' (reflects current IG content)
-# Extensions in CapabilityStatement/smart-app-launch-example see: http://build.fhir.org/ig/HL7/smart-app-launch/CapabilityStatement-smart-app-launch-example.html
+# In previous versions of SMART, some of these details were also conveyed in a server’s CapabilityStatement; this mechanism is now deprecated.
+# Previous version of SMART have example CapabilityStatement that provide examples of these extenesions
 WARNING: StructureDefinition.where(url = 'http://fhir-registry.smarthealthit.org/StructureDefinition/oauth-uris'): The Implementation Guide contains no examples for this extension
 
 # ******* INFORMATION ******
