@@ -14,7 +14,7 @@ for Phase 1 of the
 1. Provider apps that launch standalone
 1. Provider apps that launch from a portal
 
-## Profile audience and scope
+### Profile audience and scope
 
 This profile is intended to be used by developers of apps that need to access
 FHIR resources by requesting access tokens from OAuth 2.0 compliant
@@ -35,9 +35,9 @@ and accounting of disclosures) are outside the scope of this profile.
 This profile provides a mechanism to *delegate* an entity's permissions (e.g., a user's permissions) to a 3rd-party app. The profile includes mechanisms to delegate a limited subset of an entity's permissions (e.g., only sharing access to certain data types). However, this profile does not model the permissiosn that the entity has in the first place (e.g., it provides no mechanism to specify that a given entity should or should not be able to access specific records in an EHR). Hence, this profile is designed to work on top of an EHR's existing user and permissions management system, enabling a standardized mechanism for delegation.
 
 
-## Security and Privacy Considerations
+### Security and Privacy Considerations
 
-### App protection
+#### App protection
 
 The app is responsible for protecting itself from potential misbehaving or
 malicious values passed to its redirect URL (e.g., values injected with
@@ -71,7 +71,7 @@ in the clear.
 * Apps should persist tokens and other sensitive data in app-specific
 storage locations only, not in system-wide-discoverable locations.
 
-### Support for "public" and "confidential" apps
+#### Support for "public" and "confidential" apps
 
 Within this profile we differentiate between the two types of apps defined in the [OAuth 2.0 specification: confidential and public](https://tools.ietf.org/html/rfc6749#section-2.1). The differentiation is based upon whether the execution environment within which the app runs
 enables the app to protect secrets.   Pure client-side apps
@@ -87,7 +87,7 @@ For strategies and best practices to protecting a client secret refer to:
 - OAuth 2.0 for Native Apps: [8.5. Client Authentication](https://tools.ietf.org/html/draft-ietf-oauth-native-apps-12#section-8.5)
 - [OAuth 2.0 Dynamic Client Registration Protocol](https://tools.ietf.org/html/rfc7591)
 
-#### Use the <span class="label label-primary">confidential app</span>  profile if your app is *able* to protect a secret
+##### Use the <span class="label label-primary">confidential app</span>  profile if your app is *able* to protect a secret
 
 for example:
 
@@ -95,23 +95,23 @@ for example:
 - App is a native app that uses additional technology (such as dynamic client registration and universal redirect_uris) to protect the secret
 
 
-#### Use the <span class="label label-primary">public app</span> profile if your app is *unable* to protect a secret
+##### Use the <span class="label label-primary">public app</span> profile if your app is *unable* to protect a secret
 
 for example:
 
 - App is an HTML5 or JS in-browser app that would expose the secret in user space
 - App is a native app that can only distribute a secret statically
 
-### Considerations for PKCE Support
+#### Considerations for PKCE Support
 All SMART apps SHOULD support Proof Key for Code Exchange (PKCE), and public client SMART apps SHALL support PKCE.  PKCE is a standardized, cross-platform technique for public clients to mitigate the threat of authorization code interception. PKCE is described in [IETF RFC 7636](https://tools.ietf.org/html/rfc7636). SMART requires the `S256` `code_challenge_method`. The `plain` method is not supported.
 
-### Related reading
+#### Related reading
 
 Implementers can review the [OAuth Security Topics](https://tools.ietf.org/html/draft-ietf-oauth-security-topics-16) guidance from IETF as a collection of Best Current Practices.
 
 Some resources shared with apps following this IG may be considered [Patient Sensitive](http://hl7.org/fhir/security.html#Patient); implementers should review the Core FHIR Specification's [Security Page](http://hl7.org/fhir/security.html) for additional security and privacy considerations.
 
-## Registering a SMART App with an EHR
+### Registering a SMART App with an EHR
 
 Before a SMART app can run against an EHR, the app must be registered with that
 EHR's authorization service.  SMART does not specify a standards-based registration process, but we
@@ -124,7 +124,7 @@ No matter how an app registers with an EHR's authorization service, at registrat
 * Register zero or more fixed, fully-specified launch URL with the EHR's authorization server
 * Register one or more fixed, fully-specified `redirect_uri`s with the EHR's authorization server.  Note: In the case of native clients following the OAuth 2.0 for Native Apps specification [(RFC 8252)](https://tools.ietf.org/html/rfc8252), it may be appropriate to leave the port as a dynamic variable in an otherwise fixed redirect URI.
 
-## SMART authorization & FHIR access: overview
+### SMART authorization & FHIR access: overview
 
 An app can launch from within an existing EHR or Patient Portal session; this is known as an EHR launch.  Alternatively, it can launch as a standalone app.
 
@@ -150,11 +150,11 @@ access requested FHIR resources. If a refresh token is returned along with the
 access token, the app may use this to request a new access token, with the same
 scope, once the access token expires.
 
-## SMART "launch sequence"
+### SMART "launch sequence"
 
 The two alternative launch sequences are described below.
 
-### EHR launch sequence
+#### EHR launch sequence
 
 <div>
 <img class="spec-image"  src="http://www.websequencediagrams.com/cgi-bin/cdraw?lz=RUhSIFNlc3Npb24gLT4-IEFwcDogUmVkaXJlY3QgdG8gaHR0cHM6Ly97YXBwIGxhdW5jaF91cml9P1xuAAgGPTEyMyZcbmlzcz0AIwlmaGlyIGJhc2UgdXJsfQpBcHAgLT4gRUhSIEZISVIgU2VydmVyOiBHRVQAVgoAJg4vbWV0YWRhdGEKACcPIC0AgR4HW0NvbmZvcm1hbmNlIHN0YXRlbWVudCBpbmNsdWRpbmcgT0F1dGggMi4wIGVuZHBvaW50IFVSTHNdAIEIBwCBCgZBdXRoegCBCAkAgWQVZWhyIGF1dGhvcml6AIFLBj9cbnNjb3BlPQCCCgYmXG4AewU9YWJjJgCCCA9hdWQ9AIIADyZcbi4uLgo&s=default"/>
@@ -199,7 +199,7 @@ time by passing along a <code>launch</code> parameter (see example below).
 </table>
 
 
-#### *For example*
+##### *For example*
 A launch might cause the browser to navigate to:
 
     Location: https://app/launch?iss=https%3A%2F%2Fehr%2Ffhir&launch=xyz123
@@ -213,7 +213,7 @@ Later, when the app prepares a list of access scopes to request from
 the EHR authorization server, it will be associated with the existing EHR context by
 including the launch notification in the scope.
 
-### Standalone launch sequence
+#### Standalone launch sequence
 
 <div>
 <img class="spec-image"  src="http://www.websequencediagrams.com/cgi-bin/cdraw?lz=QXBwIC0-IEVIUiBGSElSIFNlcnZlcjogR0VUIGh0dHBzOi8ve2ZoaXIgYmFzZSB1cmx9L21ldGFkYXRhCgAnDyAtPiBBcHA6IFtDb25mb3JtYW5jZSBzdGF0ZW1lbnQgaW5jbHVkaW5nIE9BdXRoIDIuMCBlbmRwb2ludCBVUkxzXQoAgQkGAIEKBkF1dGh6AIEICVJlZGlyZWN0IHRvAIEPCmVociBhdXRob3JpegCBFwY_XG5zY29wZT1sYXVuY2gmXG4AewU9YWJjJlxuYXVkPQCBPw8mXG4uLi4KCg&s=default"/>
@@ -234,7 +234,7 @@ by adding specific scopes to the request it sends to the EHR's authorization
 server.  The `authorize` endpoint
 will acquire the context the app needs and make it available.
 
-#### *For example:*
+##### *For example:*
 
 If the app needs patient context, the EHR's authorization server
 may provide the end-user with a
@@ -244,9 +244,9 @@ patient selection widget.  For full details, see <a href="scopes-and-launch-cont
 *	launch/encounter - to indicate the app needs an encounter
 
 
-## SMART authorization and resource retrieval
+### SMART authorization and resource retrieval
 
-### *SMART authorization sequence*
+#### *SMART authorization sequence*
 
 <div>
 <img class="spec-image" src="http://www.websequencediagrams.com/cgi-bin/cdraw?lz=bm90ZSBsZWZ0IG9mIEFwcDogUmVxdWVzdCBhdXRob3JpemF0aW9uCkFwcCAtPj4gRUhSIEF1dGh6IFNlcnZlcjogUmVkaXJlY3QgaHR0cHM6Ly97ZWhyADUJZV91cmx9Py4uLgoAZgVvdmVyADITQQAnCCBBcHBcbihtYXkgaW5jbHVkZSBlbmQtdXNlAE4GZW50aWMAgQ4FXG5hbmQADw4AgSYJKQpOb3RlIABWGE9uIGFwcHJvdmFsCgCBQRAgLT4-AIIBBwCBSBBhcHAgcgCBZwdfdXJpfT9jb2RlPTEyMyYAgVcJAII-DUV4Y2hhbmdlIGNvZGUgZm9yIGFjY2VzcyB0b2tlbjtcbmlmIGNvbmZpZGVudGlhbCBjbGllbnQsAIFyCXNlY3JldApBcHAtPgCCaBJQT1NUAIJsCgBPBSB1cmx9XG5ncmFudF90eXBlPQCDOg1fY29kZSYAgSQSAIJ7GwCCagdlIGEAgxQFAIEcFgCCaQcAg0YXSXNzdWUgbmV3AIFyBiB3aXRoIGNvbnRleHQ6XG4ge1xuIgCCEwZfAIIUBSI6IgCBcwYtAIIjBS14eXoiLFxuImV4cGlyZXMtaW4iOjM2MDAsXG4icGF0aWVudCI6IjQ1NiIsXG4uLi5cbn0Ag0MUAIVZBVsAgnYMIHJlc3BvbnNlXQ&s=default&h=NA3OIkJNCqFraI5a">
@@ -254,7 +254,7 @@ patient selection widget.  For full details, see <a href="scopes-and-launch-cont
 
 <a id="step-1"></a>
 
-#### Step 1: App asks for authorization
+##### Step 1: App asks for authorization
 
 At launch time, the app constructs a request for authorization by supplying the
 following parameters to the EHR’s "authorize" endpoint.
@@ -338,14 +338,14 @@ flow, this <code>aud</code> value is the same as the launch's <code>iss</code> v
       <td><span class="label label-info">conditional</span></td>
       <td>This parameter is generated by the app and used for <a href="https://tools.ietf.org/html/rfc7636">PKCE</a>. This is the S256 hashed version of the <code>code_verifier</code> parameter, which will be used in the token request. All apps SHOULD implement PKCE support; see <a href="#considerations-for-native-apps">Considerations for Native Apps above for additional requirements</a>.</td>
     </tr>
-    
+
 
     <tr>
       <td><code>code_challenge_method</code></td>
       <td><span class="label label-info">conditional</span></td>
       <td>This parameter is required if an app is using <a href="https://tools.ietf.org/html/rfc7636">PKCE</a> and indicates the method used for the <code>code_challenge</code> parameter. Fixed value: <code>S256</code>.</td>
     </tr>
-    
+
   </tbody>
 </table>
 
@@ -369,7 +369,7 @@ The following requirements are adopted from [OpenID Connect Core 1.0 Specificati
 * Clients MAY use the HTTP GET or POST methods to send the Authorization Request to the Authorization Server. If using the HTTP GET method, the request parameters are serialized using URI Query String Serialization. If using the HTTP POST method, the request parameters are serialized using Form Serialization and the `application/x-www-form-urlencoded` content type.
 
 
-##### *For example*
+###### *For example*
 If an app needs demographics and observations for a single
 patient, and also wants information about the current logged-in user, the app  can request:
 
@@ -429,7 +429,7 @@ Alternatively, the following example shows one way for a client app to cause the
 
 <a id="step-2"></a>
 
-#### Step-2: EHR evaluates authorization request, asking for end-user input
+##### Step-2: EHR evaluates authorization request, asking for end-user input
 
 The authorization decision is up to the EHR authorization server,
 which may request authorization from the end-user. The EHR authorization
@@ -468,7 +468,7 @@ risk of leaks.
   </tbody>
 </table>
 
-##### *For example*
+###### *For example*
 
 Based on the `client_id`, current EHR user, configured policy, and perhaps
 direct user input, the EHR makes a decision to approve or deny access.  This
@@ -485,7 +485,7 @@ Location: https://app/after-auth?
 
 <a id="step-3"></a>
 
-#### Step-3: App exchanges authorization code for access token
+##### Step-3: App exchanges authorization code for access token
 
 After obtaining an authorization code, the app trades the code for an access
 token via HTTP `POST` to the EHR authorization server's token endpoint URL,
@@ -641,12 +641,12 @@ guess.  Using a reference may require an extra interaction between the
 resource server and the authorization server; the mechanics of such an
 interaction are not defined by this specification.*
 
-##### *For example*
+###### *For example*
 
 Given an authorization code, the app trades it for an access token via HTTP
 `POST`.
 
-###### Request for
+**Request for**
 
 ```
 POST /token HTTP/1.1
@@ -659,7 +659,7 @@ code=123abc&
 redirect_uri=https%3A%2F%2Fapp%2Fafter-auth
 ```
 
-###### Response
+**Response**
 
 ```
 {
@@ -678,7 +678,7 @@ redirect_uri=https%3A%2F%2Fapp%2Fafter-auth
 At this point, **the authorization flow is complete**. Follow steps below to work with
 data and refresh access tokens, as shown in the following sequence diagram.
 
-#### *SMART retrieval and refresh sequence*
+##### *SMART retrieval and refresh sequence*
 <div>
 <img class="spec-image"
 src="http://www.websequencediagrams.com/cgi-bin/cdraw?lz=bm90ZSBvdmVyIEFwcDogQWNjZXNzIHBhdGllbnQgZGF0YSAKQXBwLT5FSFIgRkhJUiBTZXJ2ZXI6IEdFVCBodHRwczovL3tmaGlyIGJhc2UgdXJsfS9QADoGLzEyMwoAWAoAMhFSZXR1cm4AUQZyZXNvdXJjZSB0byBhcHAKAGEPLT4AgRsFeyIAIAhUeXBlIjogIgBkByIsICJiaXJ0aERhdGUiOi4uLn0AbwsAgVAMdG9rZW4gZXhwaXJlcy4uLgAXEC4uLiBzbyByZXF1ZXN0IGEgbmV3AC8GAIF_CkF1dGh6AIIBCSBQT1MAggELAFsGdXJsfVxuZ3JhbnRfdHlwZT1yZWZyZXNoXwB7BSZcbgADDT1hYmMAghsSAFkOQXV0aGVudGljYXRlIGFwcFxuKGlmIGNvbmZpZGVudGlhbCBjbGllbnQpCk4ALBtJc3N1ZQCBSwpcbntcbiJhAINzBQCBFgYiOiAic2VjcmV0LQCCJwUteHl6IixcbiIAgi0HX2luIjogMzYwMCxcbiIAgUoNIjogIm5leHQtAIFmBy0xMjMiXG4uLi5cbn0KfQoAg1EFAIIxDACDUAdbAHoGAIMVB3Jlc3BvbnNlXQoKCgoKCgABBQo&s=">
@@ -687,7 +687,7 @@ src="http://www.websequencediagrams.com/cgi-bin/cdraw?lz=bm90ZSBvdmVyIEFwcDogQWN
 
 <a id="step-4"></a>
 
-#### Step 4: App accesses clinical data via FHIR API
+##### Step 4: App accesses clinical data via FHIR API
 
 With a valid access token, the app can access protected EHR data by issuing a
 FHIR API call to the FHIR endpoint on the EHR's resource server. The request includes an
@@ -700,17 +700,17 @@ FHIR API call to the FHIR endpoint on the EHR's resource server. The request inc
 (Note that in a real request, `{% raw %}{{access_token}}{% endraw %}`{:.language-text} is replaced
 with the actual token value.)
 
-##### *For example*
+###### *For example*
 With this response, the app knows which patient is in-context, and has an
 OAuth2 bearer-type access token that can be used to fetch clinical data:
 
-###### Request
+**Request**
 ``` text
 GET https://ehr/fhir/Patient/123
 Authorization: Bearer i8hweunweunweofiwweoijewiwe
 ```
 
-###### Response
+**Response**
 ```
 {
   "resourceType": "Patient",
@@ -736,7 +736,7 @@ initiate a new request for access to that resource.
 
 <a id="step-5"></a>
 
-#### Step 5: (Later...) App uses a refresh token to obtain a new access token
+##### Step 5: (Later...) App uses a refresh token to obtain a new access token
 
 Refresh tokens are issued to enable sessions to last longer than the validity period of an access token.  The app can use the `expires_in` field from the token response (see <a href="#step-3">step 3</a>) to determine when its access token will expire.  EHR implementers are also encouraged to consider using the [OAuth 2.0 Token Introspection Protocol](https://tools.ietf.org/html/rfc7662) to provide an introspection endpoint that clients can use to examine the validity and meaning of tokens. An app with "online access" can continue to get new access tokens as long as the end-user remains online.  Apps with "offline access" can continue to get new access tokens without the user being interactively engaged for cases where an application should have long-term access extending beyond the time when a user is still interacting with the client.
 
@@ -816,11 +816,11 @@ a parameter like `"patient": "123"` would indicate the FHIR resource
 https://[fhir-base]/Patient/123. Other context parameters may also
 be available. For full details see [SMART launch context parameters](scopes-and-launch-context.html).
 
-##### *For example*
+###### *For example*
 If the EHR supports refresh tokens, an app may be able to replace an expired
 access token programatically, without user interaction:
 
-###### Request
+**Request**
 
 ```
 POST /token HTTP/1.1
@@ -832,7 +832,7 @@ grant_type=refresh_token&
 refresh_token=a47txjiipgxkvohibvsm
 ```
 
-###### Response
+**Response**
 
 ```
 {
