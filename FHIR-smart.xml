@@ -17,7 +17,7 @@
 <page key="basic-auth-example" name="Basic Auth Example"/>
 <page key="best-practices" name="Best Practices"/>
 <page key="conformance" name="Conformance"/>
-<page key="example-request-access-token" name="Example Request Access Token"/>
+<page deprecated="true" key="example-request-access-token" name="Example Request Access Token"/>
 <page key="example-request-patient" name="Example Request Patient"/>
 <page key="example-request-refresh" name="Example Request Refresh"/>
 <page key="example-request-token-post" name="Example Request Token Post"/>
