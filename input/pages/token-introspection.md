@@ -14,13 +14,13 @@ In addition to the `active` field required by RFC7662 (a boolean indicating whet
 
 In addition to the required fields, the following fields SHALL be included in the introspection response when the specified conditions are met:
 
-* SMART Launch Context. If a launch context parameter defined in <a href="scopes-and-launch-context/index.html">SMART on FHIR Access Scopes</a> (e.g., `patient` or `intent`) was included in the original access token response, the parameter SHALL be included in the token introspection response.
+* SMART Launch Context. If a launch context parameter defined in <a href="scopes-and-launch-context.html">Scopes and Launch Context</a> (e.g., `patient` or `intent`) was included in the original access token response, the parameter SHALL be included in the token introspection response.
 
 * ID Token Claims. If an `id_token` was included in the original access token response, the following claims from the ID Token SHALL be included in the Token Introspection response:
 
   * `iss`
   * `sub`
- 
+
 * ID Token Claims. If an `id_token` was included in the original access token response, the following claims from the ID Token SHOULD be included in the Token Introspection response:
 
   * `fhirUser`

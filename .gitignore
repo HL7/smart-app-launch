@@ -5,3 +5,7 @@ Thumbs.db
 /output
 /template
 /temp
+*.sh
+eh-pub-notes.md
+/input/data
+/input/draft

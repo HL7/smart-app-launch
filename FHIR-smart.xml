@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<specification xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" ballotUrl="http://hl7.org/fhir/uv/smart-app-launch/2021May" ciUrl="http://build.fhir.org/ig/HL7/smart-app-launch" defaultVersion="1.0.0" defaultWorkgroup="" gitUrl="https://github.com/HL7/smart-app-launch" url="http://fhir-registry.smarthealthit.org">
+<version code="current" url="http://build.fhir.org/ig/HL7/smart-app-launch"/>
+<version code="2.0.0" url="http://hl7.org/fhir/uv/smart-app-launch/2021May"/>
+<version code="1.0.0" url="http://hl7.org/fhir/smart-app-launch/"/>
+<version code="0.8.0" deprecated="true" url="http://hl7.org/fhir/smart-app-launch/0.8.0/"/>
+<version code="1.0" deprecated="true"/>
+<artifactPageExtension value="-definitions"/>
+<artifactPageExtension value="-examples"/>
+<artifactPageExtension value="-mappings"/>
+<artifact id="StructureDefinition/oauth-uris" key="StructureDefinition-oauth-uris" name="SMART on FHIR Oauth URIs"/>
+<artifact id="CapabilityStatement/smart-app-launch-example" key="CapabilityStatement-smart-app-launch-example" name="smart-app-launch-example"/>
+<page key="NA" name="(NA)"/>
+<page key="many" name="(many)"/>
+<page deprecated="true" key="profiles" name="(profiles)"/>
+<page key="artifacts" name="Artifacts Summary"/>
+<page key="basic-auth-example" name="Basic Auth Example"/>
+<page key="best-practices" name="Best Practices"/>
+<page key="conformance" name="Conformance"/>
+<page key="example-request-access-token" name="Example Request Access Token"/>
+<page key="example-request-patient" name="Example Request Patient"/>
+<page key="example-request-refresh" name="Example Request Refresh"/>
+<page key="example-request-token-post" name="Example Request Token Post"/>
+<page key="index" name="Home"/>
+<page key="scopes-and-launch-context" name="Scopes and Launch Context"/>
+<page key="toc" name="Table of Contents"/>
+<page key="token-introspection" name="Token Introspection"/>
+<page key="worked_example_id_token" name="Worked Example Id Token"/>
+<page deprecated="true" key="smart-app-launch" name="smart-app-launch" url="smart-app-launch"/>
+</specification>

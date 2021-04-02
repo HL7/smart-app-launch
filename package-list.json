@@ -1,0 +1,42 @@
+{
+  "package-id": "hl7.fhir.uv.smart",
+  "title": "SMART App Launch)",
+  "canonical": "http://fhir-registry.smarthealthit.org",
+  "list": [
+    {
+      "version": "current",
+      "date": "n/a",
+      "desc": "Continuous Integration Build (latest in version control)",
+      "path": "http://build.fhir.org/ig/HL7/smart-app-launch",
+      "status": "ci-build"
+    },
+    {
+      "version": "2.0.0",
+      "date": "2021-04-16",
+      "desc": "STU 2 Ballot #1",
+      "changes": "/changes.html",
+      "path": "http://hl7.org/fhir/uv/smart-app-launch/2021May",
+      "sequence": "STU2",
+      "fhirversion": "4.0.1",
+      "status": "ballot"
+    },
+    {
+      "version": "1.0.0",
+      "date": "2018-11-13",
+      "desc": "Release 1.0.0 (STU)",
+      "path": "http://hl7.org/fhir/smart-app-launch/",
+      "sequence": "STU1",
+      "fhirversion": "3.0.1",
+      "status": "trial-use"
+    },
+    {
+      "version": "0.8.0",
+      "date": "2017-07-29",
+      "desc": "STU1 Ballot",
+      "path": "http://hl7.org/fhir/smart-app-launch/0.8.0/",
+      "status": "ballot",
+      "sequence": "STU1",
+      "fhirversion": "3.0.1"
+    }
+  ]
+}
