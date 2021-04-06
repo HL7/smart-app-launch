@@ -2,36 +2,36 @@ The SMART's App Launch specification enables apps to launch and securely interac
 The specification can be described as a set of capabilities and a given SMART on FHIR server implementation
 may implement a subset of these.  The methods of declaring a server's SMART authorization endpoints and launch capabilities are described in the sections below.
 
-## SMART on FHIR OAuth authorization Endpoints and Capabilities
+### SMART on FHIR OAuth authorization Endpoints and Capabilities
 
 The server SHALL convey the FHIR OAuth authorization endpoints and any *optional* SMART Capabilitise it supports using a [Well-Known Uniform Resource Identifiers (URIs)](#using-well-known) JSON file. (In previous versions of SMART, some of these details were also conveyed in a server's CapabilityStatement; this mechanism is now deprecated.)
 
 
-### Capability Sets
+#### Capability Sets
 
 A *Capability Set* combines individual capabilities to enable a specific use-case. A SMART on FHIR server SHOULD support one or more *Capability Set*s. Unless otherwise noted, each capability listed is required to satisfy a *Capability Set*. Any individual SMART server will publish a granular list of its capabilities; from this list a client can determine which of these Capability Sets are supported:
 
 External implementation guides MAY define additional capabilities to be discovered through this same mechanism. IGs published by HL7 MAY use simple strings to represent additional capabilities (e.g., `example-new-capability`); IGs published by other organizations SHALL use full URIs to represent additional capabilities (e.g., `http://sdo.example.org/example-new-capability`).
 
-#### Patient Access for Standalone Apps
+##### Patient Access for Standalone Apps
 1. `launch-standalone`
 1. At least one of `client-public` or `client-confidential-symmetric`
 1. `context-standalone-patient`
 1. `permission-patient`
 
-####  Patient Access for EHR Launch (i.e. from Portal)
+#####  Patient Access for EHR Launch (i.e. from Portal)
 1. `launch-ehr`
 1. At least one of `client-public` or `client-confidential-symmetric`
 1. `context-ehr-patient`
 1. `permission-patient`
 
-####  Clinician Access for Standalone
+#####  Clinician Access for Standalone
 1. `launch-standalone`
 1. At least one of `client-public` or `client-confidential-symmetric`
 1. `permission-user`
 1. `permission-patient`
 
-####  Clinician Access for EHR Launch
+#####  Clinician Access for EHR Launch
 1. `launch-ehr`
 1. At least one of `client-public` or `client-confidential-symmetric`
 1. `context-ehr-patient` support
@@ -39,41 +39,41 @@ External implementation guides MAY define additional capabilities to be discover
 1. `permission-user`
 1. `permission-patient`
 
-### Capabilities
+#### Capabilities
 
-To promote interoperability, the following SMART on FHIR *Capabilities* have been defined. A given set of these capabilities is combined to support a specific use, a *Capability Set*. 
+To promote interoperability, the following SMART on FHIR *Capabilities* have been defined. A given set of these capabilities is combined to support a specific use, a *Capability Set*.
 
-#### Launch Modes
+##### Launch Modes
 
 * `launch-ehr`: support for SMART's EHR Launch mode  
 * `launch-standalone`: support for SMART's Standalone Launch mode
 
-#### Authorization Methods
+##### Authorization Methods
 
 * `authorize-post`: support for POST-based authorization
 
-#### Client Types
+##### Client Types
 
 * `client-public`: support for SMART's public client profile (no client authentication)  
 * `client-confidential-symmetric`: support for SMART's confidential client profile (symmetric client secret authentication)
 
-#### Single Sign-on
+##### Single Sign-on
 
 * `sso-openid-connect`: support for SMART's OpenID Connect profile
 
-#### Launch Context
+##### Launch Context
 
 The following capabilities convey that a SMART on FHIR server is capable of providing context
 to an app at launch time.
 
-##### Lauch Context for UI Integration
+###### Lauch Context for UI Integration
 
 These capabilities only apply during an EHR Launch, and `context-style` only for an embedded EHR Launch.
 
 * `context-banner`: support for "need patient banner" launch context (conveyed via `need_patient_banner` token parameter)
 * `context-style`: support for "SMART style URL" launch context (conveyed via `smart_style_url` token parameter). This capability is deemed *experimental*.
 
-##### Launch Context for EHR Launch
+###### Launch Context for EHR Launch
 
 When a SMART on FHIR server supports the launch of an app from _within_ an
 existing user session ("EHR Launch"), the server has an opportunity to pass
@@ -84,7 +84,7 @@ ability to pass context through to an app at launch time:
 * `context-ehr-patient`: support for patient-level launch context (requested by `launch/patient` scope, conveyed via `patient` token parameter)
 * `context-ehr-encounter`: support for encounter-level launch context (requested by `launch/encounter` scope, conveyed via `encounter` token parameter)
 
-##### Launch Context for Standalone Launch
+###### Launch Context for Standalone Launch
 
 When a SMART on FHIR server supports the launch of an app from _outside_ an
 existing user session ("Standalone Launch"), the server may be able to
@@ -96,7 +96,7 @@ completing the launch.
 * `context-standalone-patient`: support for patient-level launch context (requested by `launch/patient` scope, conveyed via `patient` token parameter)
 * `context-standalone-encounter`: support for encounter-level launch context (requested by `launch/encounter` scope, conveyed via `encounter` token parameter)
 
-#### Permissions
+##### Permissions
 
 * `permission-offline`: support for refresh tokens (requested by `offline_access` scope)
 * `permission-patient`: support for patient-level scopes (e.g. `patient/Observation.rs`)
@@ -110,7 +110,7 @@ completing the launch.
 
 
 
-## FHIR Authorization Endpoint and Capabilities Discovery using a Well-Known Uniform Resource Identifiers (URIs)
+### FHIR Authorization Endpoint and Capabilities Discovery using a Well-Known Uniform Resource Identifiers (URIs)
 {: #using-well-known}
 
 The authorization endpoints accepted by a FHIR resource server are exposed as a Well-Known Uniform Resource Identifiers (URIs) [(RFC5785)][well-known] JSON document.
@@ -118,29 +118,29 @@ The authorization endpoints accepted by a FHIR resource server are exposed as a 
 FHIR endpoints requiring authorization SHALL serve a JSON document at the location formed by appending `/.well-known/smart-configuration` to their base URL.
 Contrary to RFC5785 Appendix B.4, the `.well-known` path component may be appended even if the FHIR endpoint already contains a path component.
 
-### Request
+#### Request
 
 Sample requests:
 
-#### Base URL "fhir.ehr.example.com"
+##### Base URL "fhir.ehr.example.com"
 
 ```
 GET /.well-known/smart-configuration HTTP/1.1
 Host: fhir.ehr.example.com
 ```
 
-#### Base URL "www.ehr.example.com/apis/fhir"
+##### Base URL "www.ehr.example.com/apis/fhir"
 
 ```
 GET /apis/fhir/.well-known/smart-configuration HTTP/1.1
 Host: www.ehr.example.com
 ```
 
-### Response
+#### Response
 
 A JSON document must be returned using the `application/json` mime type.
 
-#### Metadata
+##### Metadata
 - `issuer`: **CONDITIONAL**, String conveying this system's OpenID Connect Issuer URL. Required if the server's capabilities include `sso-openid-connect`; otherwise, omitted.
 - `authorization_endpoint`: **REQUIRED**, URL to the OAuth2 authorization endpoint.
 - `token_endpoint`: **REQUIRED**, URL to the OAuth2 token endpoint.
@@ -155,7 +155,7 @@ A JSON document must be returned using the `application/json` mime type.
 - `code_challenge_methods_supported`|**REQUIRED**|Array of PKCE code challenge methods supported. The `S256` method SHALL be included in this list, and the `plain` method SHALL NOT be included in this list.
 
 
-### Sample Response
+#### Sample Response
 
 ```
 HTTP/1.1 200 OK
@@ -184,7 +184,7 @@ Content-Type: application/json
 }
 ```
 
-### Well-Known URI Registry
+#### Well-Known URI Registry
 
 - URI Suffix: smart-configuration
 

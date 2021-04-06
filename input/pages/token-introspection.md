@@ -1,6 +1,6 @@
 SMART on FHIR EHRs SHOULD support Token Introspection, which allows a broader ecosystem of resource servers to leverage authorization decisions managed by a single authorization server. Token Introspection is conducted according to [RFC 7662: OAuth 2.0 Token Introspection], with the following additional considerations.
 
-## Required fields in the introspection response
+### Required fields in the introspection response
 
 In addition to the `active` field required by RFC7662 (a boolean indicating whether the access token is active), the following fields SHALL be included in the introspection response:
 
@@ -10,7 +10,7 @@ In addition to the `active` field required by RFC7662 (a boolean indicating whet
 
 * `exp`. As included in the original access token response. The integer timestamp indicating when the access token expires.
 
-## Conditional fields in the introspection response
+### Conditional fields in the introspection response
 
 In addition to the required fields, the following fields SHALL be included in the introspection response when the specified conditions are met:
 
@@ -25,12 +25,12 @@ In addition to the required fields, the following fields SHALL be included in th
 
   * `fhirUser`
 
-## Authorization to perform Token Introspection
+### Authorization to perform Token Introspection
 
 SMART on FHIR EHRs MAY implement access control protecting the Token Introspection endpoint. If access control is implemented, any client authorized to issue Token Introspection API calls SHOULD be able to authenticate to the Token Introspection endpoint using its client credentials. Further considerations for access control are out of scope for the SMART App Launch IG.
 
 
-## Example Request and Response
+### Example Request and Response
 
 Example Token Introspection request:
 
