@@ -9,7 +9,7 @@
 <artifactPageExtension value="-examples"/>
 <artifactPageExtension value="-mappings"/>
 <artifact id="StructureDefinition/oauth-uris" key="StructureDefinition-oauth-uris" name="SMART on FHIR Oauth URIs"/>
-<artifact id="CapabilityStatement/smart-app-launch-example" key="CapabilityStatement-smart-app-launch-example" name="smart-app-launch-example"/>
+<artifact deprecated="true" id="CapabilityStatement/smart-app-launch-example" key="CapabilityStatement-smart-app-launch-example" name="smart-app-launch-example"/>
 <page key="NA" name="(NA)"/>
 <page key="many" name="(many)"/>
 <page deprecated="true" key="profiles" name="(profiles)"/>
@@ -17,11 +17,11 @@
 <page key="basic-auth-example" name="Basic Auth Example"/>
 <page key="best-practices" name="Best Practices"/>
 <page key="conformance" name="Conformance"/>
-<page key="example-request-access-token" name="Example Request Access Token"/>
+<page deprecated="true" key="example-request-access-token" name="Example Request Access Token"/>
 <page key="example-request-patient" name="Example Request Patient"/>
 <page key="example-request-refresh" name="Example Request Refresh"/>
 <page key="example-request-token-post" name="Example Request Token Post"/>
-<page key="index" name="Home"/>
+<page key="index" name="Launch and Authorization"/>
 <page key="scopes-and-launch-context" name="Scopes and Launch Context"/>
 <page key="toc" name="Table of Contents"/>
 <page key="token-introspection" name="Token Introspection"/>

@@ -18,6 +18,27 @@ publisher:
   name: HL7 International - FHIR Infrastructure WG
   url: https://www.hl7.org/Special/committees/fiwg/index.cfm
   email: fhir@lists.HL7.org
+pages:
+  index.md:
+    title: Launch and Authorization
+    example-request-patient.md:  # verified
+      title: Example Request Patient
+    example-request-refresh.md:  # verified
+      title: Example Request Refresh
+    example-request-token-post.md:  # verified
+      title: Example Request Token Post
+    basic-auth-example.md:  # verified
+      title: Basic Auth Example
+  scopes-and-launch-context.md:
+    title: Scopes and Launch Context
+    worked_example_id_token.md: # verified
+      title: Worked Example Id Token
+  token-introspection.md:
+    title: Token Introspection
+  conformance.md:
+    title: Conformance
+  best-practices.md:
+    title: Best Practices
 
 # ╭────────────────────────────────────────────menu.xml────────────────────────────────────────────╮
 # │  To use a provided ig-data/input/includes/menu.xml file, delete the "menu" property below.     │
