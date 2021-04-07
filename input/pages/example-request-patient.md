@@ -1,7 +1,39 @@
 ### Example: Request Patient Clinical Data
 
 ```sh
-curl -i 'http://launch.smarthealthit.org/v/r2/sim/eyJoIjoiMSIsImoiOiIxIn0/fhir/Patient/f3ecf690-e035-498d-9e8c-1ef1e4db34b7' -H 'Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJuZWVkX3BhdGllbnRfYmFubmVyIjp0cnVlLCJzbWFydF9zdHlsZV91cmwiOiJodHRwczovL2xhdW5jaC5zbWFydGhlYWx0aGl0Lm9yZy9zbWFydC1zdHlsZS5qc29uIiwicGF0aWVudCI6ImYzZWNmNjkwLWUwMzUtNDk4ZC05ZThjLTFlZjFlNGRiMzRiNyIsImVuY291bnRlciI6IjQ2MzJlNjFiLTliMzQtNGFkNy1hNDMxLWYwMDhmMzViNGRkMyIsInJlZnJlc2hfdG9rZW4iOiJleUowZVhBaU9pSktWMVFpTENKaGJHY2lPaUpJVXpJMU5pSjkuZXlKamIyNTBaWGgwSWpwN0ltNWxaV1JmY0dGMGFXVnVkRjlpWVc1dVpYSWlPblJ5ZFdVc0luTnRZWEowWDNOMGVXeGxYM1Z5YkNJNkltaDBkSEJ6T2k4dmJHRjFibU5vTG5OdFlYSjBhR1ZoYkhSb2FYUXViM0puTDNOdFlYSjBMWE4wZVd4bExtcHpiMjRpTENKd1lYUnBaVzUwSWpvaVpqTmxZMlkyT1RBdFpUQXpOUzAwT1Roa0xUbGxPR010TVdWbU1XVTBaR0l6TkdJM0lpd2laVzVqYjNWdWRHVnlJam9pTkRZek1tVTJNV0l0T1dJek5DMDBZV1EzTFdFME16RXRaakF3T0dZek5XSTBaR1F6SW4wc0ltTnNhV1Z1ZEY5cFpDSTZJbTE1WDNkbFlsOWhjSEFpTENKelkyOXdaU0k2SW05d1pXNXBaQ0J3Y205bWFXeGxJRzltWm14cGJtVmZZV05qWlhOeklIVnpaWEl2S2k0cUlIQmhkR2xsYm5RdktpNHFJR3hoZFc1amFDOWxibU52ZFc1MFpYSWdiR0YxYm1Ob0wzQmhkR2xsYm5RaUxDSjFjMlZ5SWpvaVVISmhZM1JwZEdsdmJtVnlMMU5OUVZKVUxURXlNelFpTENKcFlYUWlPakUxTWprMk56TTVNRElzSW1WNGNDSTZNVFV5T1RZM05ESXdNbjAudDZZbjlOd0RZWU5IeWlOdXQ2N2xpOFRENzZZX0MtanEwVlExTVBFTGpXSSIsInRva2VuX3R5cGUiOiJiZWFyZXIiLCJzY29wZSI6Im9wZW5pZCBwcm9maWxlIG9mZmxpbmVfYWNjZXNzIHVzZXIvKi4qIHBhdGllbnQvKi4qIGxhdW5jaC9lbmNvdW50ZXIgbGF1bmNoL3BhdGllbnQiLCJjbGllbnRfaWQiOiJteV93ZWJfYXBwIiwiZXhwaXJlc19pbiI6MzYwMCwiaWRfdG9rZW4iOiJleUowZVhBaU9pSktWMVFpTENKaGJHY2lPaUpTVXpJMU5pSjkuZXlKd2NtOW1hV3hsSWpvaVVISmhZM1JwZEdsdmJtVnlMMU5OUVZKVUxURXlNelFpTENKaGRXUWlPaUp0ZVY5M1pXSmZZWEJ3SWl3aWMzVmlJam9pTnpaa05UTm1aalpqWTJRMk9XVmhNamRtTXpJek9UTTRNR0l6TURNNVlqUmhPRGN5T1RreVpqZ3hOVEZsWWpNeE9HTmxNVGcyWldRNVpqSm1NekV6WXlJc0ltbHpjeUk2SW1oMGRIQTZMeTlzWVhWdVkyZ3VjMjFoY25Sb1pXRnNkR2hwZEM1dmNtY2lMQ0pwWVhRaU9qRTFNamsyTnpNNU1EY3NJbVY0Y0NJNk1UVXlPVFkzTnpVd04zMC5LanJScTJYZ2lPYk0wQXpOcTVIcmUzd2tRRlFGNHhjc0Y3YzlnVnpWOHF6N0x2eXc0bnd1blBxbTlUdmJFaEYzM2k5anZPb1RUS0pjVTJJMGt1eHR3bEYzLUJ6WjdoZjRBWUZVY1poME9BZkFVRjNIaFRmRUQ5R1MxVmlDWjJBUmNkRWdyc0dqTk83OGFlODd2M2hlNFQtaG9KWkZ2T2FXaWZPaEdqcFA1WW14eEdpaGozbDluckpVZmtId0V6VFdCaUo4TEpQOVVCRXFZaTBHclc0TzJCRnJJSk14YWNyQmVrbkJ3cHJJbnJKNlg5TkpJbGpkVEI1Yk1iT1BPNVJGbDBldFdXMDVTNU1NRmdZT3duemJHM0xOa3YyWnlINWRSeDRoQWhaRVhFLW1aZndFSUVVRkc4WHdZeHc5WVNzSTlPOFVhQUh6OGtNQkVVSEg4U01ad2ciLCJpYXQiOjE1Mjk2NzM5MDcsImV4cCI6MTUyOTY3NzUwN30.RdYLx5aMfXdLdRTuzkvKB0jo_ZRqXSxcamrl7mwcEi0' -H 'Content-Type: application/json' -H 'Accept: application/json'
+
+curl -i 'http://launch.smarthealthit.org/v/r2/sim/eyJoIjoiMSIsImoiOiIxIn0/fhir/P
+atient/f3ecf690-e035-498d-9e8c-1ef1e4db34b7' -H 'Authorization: Bearer eyJ0eXAiO
+iJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJuZWVkX3BhdGllbnRfYmFubmVyIjp0cnVlLCJzbWFydF9zdHls
+ZV91cmwiOiJodHRwczovL2xhdW5jaC5zbWFydGhlYWx0aGl0Lm9yZy9zbWFydC1zdHlsZS5qc29uIiwi
+cGF0aWVudCI6ImYzZWNmNjkwLWUwMzUtNDk4ZC05ZThjLTFlZjFlNGRiMzRiNyIsImVuY291bnRlciI6
+IjQ2MzJlNjFiLTliMzQtNGFkNy1hNDMxLWYwMDhmMzViNGRkMyIsInJlZnJlc2hfdG9rZW4iOiJleUow
+ZVhBaU9pSktWMVFpTENKaGJHY2lPaUpJVXpJMU5pSjkuZXlKamIyNTBaWGgwSWpwN0ltNWxaV1JmY0dG
+MGFXVnVkRjlpWVc1dVpYSWlPblJ5ZFdVc0luTnRZWEowWDNOMGVXeGxYM1Z5YkNJNkltaDBkSEJ6T2k4
+dmJHRjFibU5vTG5OdFlYSjBhR1ZoYkhSb2FYUXViM0puTDNOdFlYSjBMWE4wZVd4bExtcHpiMjRpTENK
+d1lYUnBaVzUwSWpvaVpqTmxZMlkyT1RBdFpUQXpOUzAwT1Roa0xUbGxPR010TVdWbU1XVTBaR0l6TkdJ
+M0lpd2laVzVqYjNWdWRHVnlJam9pTkRZek1tVTJNV0l0T1dJek5DMDBZV1EzTFdFME16RXRaakF3T0dZ
+ek5XSTBaR1F6SW4wc0ltTnNhV1Z1ZEY5cFpDSTZJbTE1WDNkbFlsOWhjSEFpTENKelkyOXdaU0k2SW05
+d1pXNXBaQ0J3Y205bWFXeGxJRzltWm14cGJtVmZZV05qWlhOeklIVnpaWEl2S2k0cUlIQmhkR2xsYm5R
+dktpNHFJR3hoZFc1amFDOWxibU52ZFc1MFpYSWdiR0YxYm1Ob0wzQmhkR2xsYm5RaUxDSjFjMlZ5SWpv
+aVVISmhZM1JwZEdsdmJtVnlMMU5OUVZKVUxURXlNelFpTENKcFlYUWlPakUxTWprMk56TTVNRElzSW1W
+NGNDSTZNVFV5T1RZM05ESXdNbjAudDZZbjlOd0RZWU5IeWlOdXQ2N2xpOFRENzZZX0MtanEwVlExTVBF
+TGpXSSIsInRva2VuX3R5cGUiOiJiZWFyZXIiLCJzY29wZSI6Im9wZW5pZCBwcm9maWxlIG9mZmxpbmVf
+YWNjZXNzIHVzZXIvKi4qIHBhdGllbnQvKi4qIGxhdW5jaC9lbmNvdW50ZXIgbGF1bmNoL3BhdGllbnQi
+LCJjbGllbnRfaWQiOiJteV93ZWJfYXBwIiwiZXhwaXJlc19pbiI6MzYwMCwiaWRfdG9rZW4iOiJleUow
+ZVhBaU9pSktWMVFpTENKaGJHY2lPaUpTVXpJMU5pSjkuZXlKd2NtOW1hV3hsSWpvaVVISmhZM1JwZEds
+dmJtVnlMMU5OUVZKVUxURXlNelFpTENKaGRXUWlPaUp0ZVY5M1pXSmZZWEJ3SWl3aWMzVmlJam9pTnpa
+a05UTm1aalpqWTJRMk9XVmhNamRtTXpJek9UTTRNR0l6TURNNVlqUmhPRGN5T1RreVpqZ3hOVEZsWWpN
+eE9HTmxNVGcyWldRNVpqSm1NekV6WXlJc0ltbHpjeUk2SW1oMGRIQTZMeTlzWVhWdVkyZ3VjMjFoY25S
+b1pXRnNkR2hwZEM1dmNtY2lMQ0pwWVhRaU9qRTFNamsyTnpNNU1EY3NJbVY0Y0NJNk1UVXlPVFkzTnpV
+d04zMC5LanJScTJYZ2lPYk0wQXpOcTVIcmUzd2tRRlFGNHhjc0Y3YzlnVnpWOHF6N0x2eXc0bnd1blBx
+bTlUdmJFaEYzM2k5anZPb1RUS0pjVTJJMGt1eHR3bEYzLUJ6WjdoZjRBWUZVY1poME9BZkFVRjNIaFRm
+RUQ5R1MxVmlDWjJBUmNkRWdyc0dqTk83OGFlODd2M2hlNFQtaG9KWkZ2T2FXaWZPaEdqcFA1WW14eEdp
+aGozbDluckpVZmtId0V6VFdCaUo4TEpQOVVCRXFZaTBHclc0TzJCRnJJSk14YWNyQmVrbkJ3cHJJbnJK
+Nlg5TkpJbGpkVEI1Yk1iT1BPNVJGbDBldFdXMDVTNU1NRmdZT3duemJHM0xOa3YyWnlINWRSeDRoQWha
+RVhFLW1aZndFSUVVRkc4WHdZeHc5WVNzSTlPOFVhQUh6OGtNQkVVSEg4U01ad2ciLCJpYXQiOjE1Mjk2
+NzM5MDcsImV4cCI6MTUyOTY3NzUwN30.RdYLx5aMfXdLdRTuzkvKB0jo_ZRqXSxcamrl7mwcEi0' -H
+'Content-Type: application/json' -H 'Accept: application/json'
 HTTP/1.1 200 OK
 Server: Cowboy
 Connection: keep-alive
@@ -28,7 +60,10 @@ Via: 1.1 vegur
   },
   "text": {
     "status": "generated",
-    "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\">Generated by <a href=\"https://github.com/synthetichealth/synthea\">Synthea</a>. Version identifier: 1a8d765a5375bf72f3b7a92001940d05a6f21189</div>"
+
+    "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\">Generated by <a href=\"h
+ttps://github.com/synthetichealth/synthea\">Synthea</a>. Version identifier: 1a8
+d765a5375bf72f3b7a92001940d05a6f21189</div>"
   },
   "extension": [
     {
@@ -45,7 +80,9 @@ Via: 1.1 vegur
       }
     },
     {
-      "url": "http://hl7.org/fhir/us/core/StructureDefinition/us-core-ethnicity",
+
+      "url": "http://hl7.org/fhir/us/core/StructureDefinition/us-core-ethnicity"
+,
       "valueCodeableConcept": {
         "coding": [
           {
@@ -66,14 +103,19 @@ Via: 1.1 vegur
       }
     },
     {
-      "url": "http://hl7.org/fhir/StructureDefinition/patient-mothersMaidenName",
+
+      "url": "http://hl7.org/fhir/StructureDefinition/patient-mothersMaidenName"
+,
       "valueString": "Angelique Wiza"
     },
     {
+
       "url": "http://hl7.org/fhir/us/core/StructureDefinition/us-core-birthsex",
+
       "valueCode": "F"
     },
     {
+
       "url": "http://hl7.org/fhir/StructureDefinition/patient-interpreterRequired",
       "valueBoolean": false
     }
