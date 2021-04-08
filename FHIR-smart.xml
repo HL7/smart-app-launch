@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <specification xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" ballotUrl="http://hl7.org/fhir/uv/smart-app-launch/2021May" ciUrl="http://build.fhir.org/ig/HL7/smart-app-launch" defaultVersion="1.0.0" defaultWorkgroup="" gitUrl="https://github.com/HL7/smart-app-launch" url="http://fhir-registry.smarthealthit.org">
 <version code="current" url="http://build.fhir.org/ig/HL7/smart-app-launch"/>
-<version code="2.0.0" url="http://hl7.org/fhir/uv/smart-app-launch/2021May"/>
+<version code="1.1.0" url="http://hl7.org/fhir/uv/smart-app-launch/2021May"/>
 <version code="1.0.0" url="http://hl7.org/fhir/smart-app-launch/"/>
 <version code="0.8.0" deprecated="true" url="http://hl7.org/fhir/smart-app-launch/0.8.0/"/>
 <version code="1.0" deprecated="true"/>
