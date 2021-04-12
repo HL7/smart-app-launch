@@ -8,5 +8,5 @@ WARNING: StructureDefinition.where(url = 'http://fhir-registry.smarthealthit.org
 
 # ******* INFORMATION ******
 # validate against messages
-INFORMATION: ImplementationGuide/hl7.fhir.uv.smart: ImplementationGuide: Validate resource against profile http://hl7.org/fhir/StructureDefinition/ImplementationGuide
+INFORMATION: ImplementationGuide/hl7.fhir.uv.smart-app-launch: ImplementationGuide: Validate resource against profile http://hl7.org/fhir/StructureDefinition/ImplementationGuide
 INFORMATION: StructureDefinition/oauth-uris: StructureDefinition: Validate resource against profile http://hl7.org/fhir/StructureDefinition/StructureDefinition
