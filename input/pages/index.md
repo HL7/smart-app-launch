@@ -1,3 +1,20 @@
+<div markdown="1" class="note-to-balloters">
+The SMART on FHIR v1 IG has been widely adopted for clinician- and patient-facing app integration into EHRs and other FHIR data systems. Based on community feedback, the [Argonaut Project](https://confluence.hl7.org/display/AP/Argonaut+Project+Home) has undertaken a 2020 effort to revise and improve the SMART App Launch IG. A key area of focus in adding support for "granular permissions," e.g. to provide access to resources at the category level in addition to the type level. This would allow apps to request narrower access, like "all vital signs" rather than "all observations."
+
+Enhancements and Clarifications to the SMART App Launch specification for this ballot version 1.1.0:
+
+- Clarification on launch context scopes
+- New scope syntax for granular permissions
+- `POST`-based authorization
+- Addition of PKCE to authorization requirements
+- Profile token introspection
+- Guidance for communicating permissions to end users
+- Update discovery properties to support these changes
+
+ See the Jira tracker [FHIR-30578](https://jira.hl7.org/browse/FHIR-30578) for a log of changes included in the ballot:
+
+</div>
+
 The SMART App Launch Framework connects third-party applications to Electronic
 Health Record data, allowing apps to launch from inside or outside the user
 interface of an EHR system. The framework supports apps for use by clinicians,
