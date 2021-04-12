@@ -1,7 +1,7 @@
 {
-  "package-id": "hl7.fhir.uv.smart",
-  "title": "SMART App Launch)",
-  "canonical": "http://fhir-registry.smarthealthit.org",
+  "package-id": "hl7.fhir.uv.smart-app-launch",
+  "title": "Smart App Launch Implementation Guide",
+  "canonical": "http://hl7.org/fhir/smart-app-launch",
   "list": [
     {
       "version": "current",
@@ -13,30 +13,31 @@
     {
       "version": "1.1.0",
       "date": "2021-04-16",
-      "desc": "STU 2 Ballot #1",
-      "changes": "/changes.html",
-      "path": "http://hl7.org/fhir/uv/smart-app-launch/2021May",
-      "sequence": "STU2",
+      "desc": "STU 2 Ballot #1: The SMART on FHIR v1 IG has been widely adopted for clinician- and patient-facing app integration into EHRs and other FHIR data systems. Based on community feedback, the [Argonaut Project](https://confluence.hl7.org/display/AP/Argonaut+Project+Home) has undertaken a 2020 effort to revise and improve the SMART App Launch IG. A key area of focus in adding support for \"granular permissions,\" e.g. to provide access to resources at the category level in addition to the type level. This would allow apps to request narrower access, like \"all vital signs\" rather than \"all observations.\" \nEnhancements and Clarifications to the SMART App Launch specification (see Jira change request [FHIR-30578](https://jira.hl7.org/browse/FHIR-30578) for a log  of changes included in the ballot):\n- Clarification on launch context scopes - New scope syntax for granular permissions - `POST`-based authorization - Addition of PKCE to authorization requirements - Profile token introspection - Guidance for communicating permissions to end users - Update discovery properties to support these changes",
+      "path": "http://hl7.org/fhir/smart-app-launch/2021May",
+      "sequence": "STU 2",
       "fhirversion": "4.0.1",
       "status": "ballot"
     },
     {
       "version": "1.0.0",
+      "fhirversion": "3.0.1",
       "date": "2018-11-13",
       "desc": "Release 1.0.0 (STU)",
-      "path": "http://hl7.org/fhir/smart-app-launch/",
-      "sequence": "STU1",
-      "fhirversion": "3.0.1",
-      "status": "trial-use"
+      "path": "http://hl7.org/fhir/smart-app-launch/1.0.0",
+      "status": "trial-use",
+      "sequence": "STU 1",
+      "current": true
     },
     {
       "version": "0.8.0",
+      "fhirversion": "3.0.1",
       "date": "2017-07-29",
-      "desc": "STU1 Ballot",
-      "path": "http://hl7.org/fhir/smart-app-launch/0.8.0/",
+      "desc": "STU Ballot",
+      "path": "http://hl7.org/fhir/smart-app-launch/0.8.0",
       "status": "ballot",
-      "sequence": "STU1",
-      "fhirversion": "3.0.1"
+      "sequence": "STU 1"
     }
-  ]
+  ],
+  "category": "EHR Access"
 }
