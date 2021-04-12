@@ -2,7 +2,7 @@
 # │  The properties below are used to create the ImplementationGuide resource. For a list of       │
 # │  supported properties, see: https://fshschool.org/sushi/configuration/                         │
 # ╰────────────────────────────────────────────────────────────────────────────────────────────────╯
-id: hl7.fhir.uv.smart
+id: hl7.fhir.uv.smart-app-launch
 canonical: http://fhir-registry.smarthealthit.org
 name: SmartAppLaunch
 title: "SMART App Launch"
