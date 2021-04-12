@@ -38,5 +38,6 @@
       "sequence": "STU1",
       "fhirversion": "3.0.1"
     }
-  ]
+  ],
+  "category": "EHR Access"
 }
