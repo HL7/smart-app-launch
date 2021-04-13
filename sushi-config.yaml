@@ -39,6 +39,9 @@ pages:
     title: Conformance
   best-practices.md:
     title: Best Practices
+parameters:
+  path-history: http://hl7.org/fhir/smart-app-launch/history.html
+  jira-code: smart
 
 # ╭────────────────────────────────────────────menu.xml────────────────────────────────────────────╮
 # │  To use a provided ig-data/input/includes/menu.xml file, delete the "menu" property below.     │
