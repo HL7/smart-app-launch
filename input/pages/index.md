@@ -524,26 +524,9 @@ possible (and thus not required), since a client with no secret cannot prove its
 identity when it issues a call. (The end-to-end system can still be secure
 because the client comes from a known, https protected endpoint specified and
 enforced by the redirect uri.)  For <span class="label label-primary">confidential
-apps</span>, authentication is required.
-
-(*Note that conformance requirements determining support for these two methods of
-client authentication are still under consideration; tentative guidance is that
-clients SHOULD register for JWT assertion authentication and MAY instead register
-for Client Password authentication.*)
-
-* If a client has registered for Client Password authentication (i.e.,
-it possesses a `client_secret` that is also known to the EHR), the client
-authenticates using an `Authorization` header with HTTP Basic authentication,
-where the username is the app's `client_id` and the password is the app's
-`client_secret` (see [example](basic-auth-example.html)).
-
-* If a client has registered for [JWT
-assertion](https://tools.ietf.org/html/rfc7523)-based authentication (i.e., it
-possesses a public/private keypairn whose public key is known to the EHR), the
-client authenticates using two parameters: `client_assertion_type` and
-`client_assertion`, as profiled in [SMART Backend Services Protocol
-Details](https://hl7.org/fhir/uv/bulkdata/authorization/index.html#protocol-details)
-(see [example](https://github.com/HL7/bulk-data/blob/master/input/images/authorization-example-jwks-and-signatures.ipynb)).
+apps</span>, authentication is required. Confidential clients SHOULD use
+[Asymmetric Authentication](client-confidential-asymmetric.html) if available, and
+MAY use [Symmetric Authentication](client-confidential-symmetric.html).
 
 <table class="table">
   <thead>

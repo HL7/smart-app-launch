@@ -20,19 +20,23 @@ publisher:
   email: fhir@lists.HL7.org
 pages:
   index.md:
-    title: Launch and Authorization
+    title: App Launch
     example-request-patient.md:  # verified
       title: Example Request Patient
     example-request-refresh.md:  # verified
       title: Example Request Refresh
     example-request-token-post.md:  # verified
       title: Example Request Token Post
-    basic-auth-example.md:  # verified
-      title: Basic Auth Example
+  backend-services.md:
+      title: Backend Services
   scopes-and-launch-context.md:
     title: Scopes and Launch Context
     worked_example_id_token.md: # verified
       title: Worked Example Id Token
+  client-confidential-asymmetric.md:
+    title: Asymmetric Authentication
+  client-confidential-symmetric.md:
+    title: Symmetric Authentication
   token-introspection.md:
     title: Token Introspection
   conformance.md:
@@ -47,8 +51,13 @@ parameters:
 # │  To use a provided ig-data/input/includes/menu.xml file, delete the "menu" property below.     │
 # ╰────────────────────────────────────────────────────────────────────────────────────────────────╯
 menu:
-  Launch and Authorization: index.html
-  Scopes and Launch Context: scopes-and-launch-context.html
+  User-facing apps:
+    Launch and Authorization: index.html
+    Scopes and Launch Context: scopes-and-launch-context.html
+  Backend Services: backend-services.html
+  Client Authentication:
+    Asymmetric (public key): client-confidential-asymmetric.html
+    Symmetric (shared secret): client-confidential-symmetric.html
   Token Introspection: token-introspection.html
   Conformance:
     Declaring Conformance: conformance.html
