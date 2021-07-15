@@ -1,4 +1,4 @@
-## Confidential Clients with Asymmetric Keys
+## Authenticating with `client-confidential-asymmetric` 
 
 ### Profile Audience and Scope
 
@@ -282,8 +282,6 @@ the [OAuth 2.0 specification](https://tools.ietf.org/html/rfc6749#section-5.2).
 If an error is encountered during the authorization process, the server SHALL
 respond with the appropriate error message defined in [Section 5.2 of the OAuth 2.0 specification](https://tools.ietf.org/html/rfc6749#page-45).  The server SHOULD include an
 `error_uri` or `error_description` as defined in OAuth 2.0.  
-
-Rules regarding circumstances under which a client is required to obtain and present an access token along with a request are based on risk-management decisions that each FHIR resource service needs to make, considering the workflows involved, perceived risks, and the organization’s risk-management policies.  Refresh tokens SHOULD NOT be issued.
 
 ### Worked example
 
