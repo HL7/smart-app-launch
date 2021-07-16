@@ -3,7 +3,7 @@
 ### Profile Audience and Scope
 
 This profile desribes the mechanism for SMART's
-[`client-confidential-asymmetric`](conformance.html).  It is intended to be
+[`client-confidential-asymmetric`](conformance.html) authentication mechanism.  It is intended to be
 used for SMART clients that can manage asymmetric keys for authentication.
 Specifically, this profile describes the registration-time metadata required for
 a client using asymmetric keys, and the runtime process by which the client can
