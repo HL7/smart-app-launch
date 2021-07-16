@@ -2,13 +2,13 @@
 
 ### Profile Audience and Scope
 
-This profile desribes the mechanism for SMART's
-[`client-confidential-asymmetric`](conformance.html) authentication mechanism.  It is intended to be
-used for SMART clients that can manage asymmetric keys for authentication.
+This profile desribes SMART's
+[`client-confidential-asymmetric`](conformance.html) authentication mechanism.  It is intended for
+for SMART clients that can manage and sign assertions with asymmetric keys.
 Specifically, this profile describes the registration-time metadata required for
-a client using asymmetric keys, and the runtime process by which the client can
-authentication to an authorization servesr's Token Endpoint. This profile may be
-used by user-facing SMART apps in the context of the [SMART App Launch
+a client using asymmetric keys, and the runtime process by which a client can
+authenticate to an OAuth server's token endpoint. This profile can be
+implemented by user-facing SMART apps in the context of the [SMART App Launch
 flow](index.html) or by (SMART Backend Services)(backend-services.html) that
 establish a connection with user-facing authorization step.
 
