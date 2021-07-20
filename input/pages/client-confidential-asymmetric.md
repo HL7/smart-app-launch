@@ -14,7 +14,7 @@ establish a connection with user-facing authorization step.
 
 #### **Use this profile** when the following conditions apply:
 
-* The target FHIR server supports SMART's `client-confidential-asymmetric` capability
+* The target FHIR authorization server supports SMART's `client-confidential-asymmetric` capability
 * The client can maange asymmetric keys for authentication
 * The client is able to protect a private key
 
@@ -72,39 +72,39 @@ Content-Type: application/json
 
 Before a SMART client can run against a FHIR server, the client SHALL generate
 or obtain an asymmetric key pair and SHALL register its public key set with that
-FHIR server’s authorization service.  SMART does not require a
+FHIR server’s authorization service (referred to below as the "FHIR authorization server").
+SMART does not require a
 standards-based registration process, but we encourage FHIR service implementers to
 consider using the [OAuth 2.0 Dynamic Client Registration
 Protocol](https://tools.ietf.org/html/draft-ietf-oauth-dyn-reg).
 
-No matter how a client registers with a FHIR authorization service, the
+No matter how a client registers with a FHIR authorization server, the
 client SHALL register the **public key** the
-client will use to authenticate itself to the SMART FHIR authorization server.  The public key SHALL
+client will use to authenticate itself to the FHIR authorization server.  The public key SHALL
 be conveyed to the FHIR authorization server in a JSON Web Key (JWK) structure presented within
 a JWK Set, as defined in
 [JSON Web Key Set (JWKS)](https://tools.ietf.org/html/rfc7517).  The client SHALL
 protect the associated private key from unauthorized disclosure
 and corruption.
 
-For consistency in implementation, servers SHALL support registration of client JWKs using both of the following techniques (clients SHALL choose one of these methods at registration time):
+For consistency in implementation, FHIR authorization servers SHALL support registration of client JWKs using both of the following techniques (clients SHALL choose a server-supported method at registration time):
 
   1. URL to JWK Set (strongly preferred). This URL communicates the TLS-protected
   endpoint where the client's public JWK Set can be found.
   This endpoint SHALL be accessible via TLS without authentication or authorization. Advantages
   of this approach are that
   it allows a client to rotate its own keys by updating the hosted content at the
-  JWK Set URL, assures that the public key used by the FHIR server is current, and avoids the
-  need for the FHIR server to maintain and protect the JWK Set. The client SHOULD return a “Cache-Control”
-  header in its JWKS response
+  JWK Set URL, assures that the public key used by the FHIR authorization server is current, and avoids the
+  need for the FHIR authorization server to maintain and protect the JWK Set. The client SHOULD return a “Cache-Control” header in its JWKS response
 
   2. JWK Set directly (strongly discouraged). If a client cannot host the JWK
-  Set at a TLS-protected URL, it MAY supply the JWK Set directly to the FHIR server at
-  registration time.  In this case, the FHIR server SHALL protect the JWK Set from corruption,
+  Set at a TLS-protected URL, it MAY supply the JWK Set directly to the FHIR authorization server at
+  registration time.  In this case, the FHIR authorization server SHALL protect the JWK Set from corruption,
   and SHOULD remind the client to send an update whenever the key set changes.  Conveying
   the JWK Set directly carries the limitation that it does not enable the client to
-  rotate its keys in-band.  Incuding both the current and successor keys within the JWK Set
+  rotate its keys in-band.  Including both the current and successor keys within the JWK Set
   helps counter this limitation.  However, this approach places increased responsibility
-  on the FHIR server for protecting the integrity of the key(s) over time, and denies the FHIR server the
+  on the FHIR authorization server for protecting the integrity of the key(s) over time, and denies the FHIR authorization server the
   opportunity to validate the currency and integrity of the key at the time it is used.  
 
 The client SHALL be capable of generating a JSON Web Signature in accordance with [RFC7515](https://tools.ietf.org/html/rfc7515). The client SHALL support both `RS384` and `ES384` for the JSON Web Algorithm (JWA) header parameter as defined in [RFC7518](https://tools.ietf.org/html/rfc7518).
@@ -112,7 +112,7 @@ The FHIR authorization server SHALL be capable of validating signatures with at 
 Over time, best practices for asymmetric signatures are likely to evolve. While this specification mandates a baseline of support clients and servers MAY support and use additional algorithms for signature validation.
 As a reference, the signature algorithm discovery protocol `token_endpoint_auth_signing_alg_values_supported` property is defined in OpenID Connect as part of the [OAuth2 server metadata](https://tools.ietf.org/html/rfc8414).
 
-No matter how a JWK Set is communicated to the FHIR server, each JWK SHALL represent an
+No matter how a JWK Set is communicated to the FHIR authorization server, each JWK SHALL represent an
 asymmetric key by including `kty` and `kid` properties, with content conveyed using
 "bare key" properties (i.e., direct base64 encoding of key material as integer values).
 This means that:
@@ -136,7 +136,7 @@ To begin the exchange, the client SHALL use the [Transport Layer Security
 (TLS) Protocol Version 1.2 (RFC5246)](https://tools.ietf.org/html/rfc5246) or a more recent version of TLS to
 authenticate the identity of the FHIR authorization server and to establish an encrypted,
 integrity-protected link for securing all exchanges between the client
-and the authorization server's token endpoint.  All exchanges described herein between the client
+and the FHIR authorization server's token endpoint.  All exchanges described herein between the client
 and the FHIR server SHALL be secured using TLS V1.2 or a more recent version of TLS .
 
 <div>
@@ -177,10 +177,7 @@ tools and client libraries, see [https://jwt.io](https://jwt.io).
     <tr>
       <td><code>jku</code></td>
       <td><span class="label label-info">optional</span></td>
-      <td>The TLS-protected URL to the JWK Set containing the public key(s) accessible without authentication or authorization. When present,
-      this should match a value that the client supplied to the FHIR server at
-      client registration time.  (When absent, the FHIR server SHOULD fall back on the JWK
-      Set URL or the JWK Set supplied at registration time.</td>
+      <td>The TLS-protected URL to the JWK Set containing the public key(s) accessible without authentication or authorization. When present, this SHALL match the JWKS URL value that the client supplied to the FHIR authorization server at client registration time. When absent, the FHIR authorization server SHOULD fall back on the JWK Set URL or the JWK Set supplied at registration time. See <a href="#signature-verification">Signature Verification</a> for details.</td>
     </tr>
   </tbody>
 </table>
@@ -200,7 +197,7 @@ tools and client libraries, see [https://jwt.io](https://jwt.io).
     <tr>
       <td><code>sub</code></td>
       <td><span class="label label-success">required</span></td>
-      <td>The service's <code>client_id</code>, as determined during registration with the FHIR authorization server
+      <td>The client's <code>client_id</code>, as determined during registration with the FHIR authorization server
       (note that this is the same as the value for the <code>iss</code> claim)</td>
     </tr>
     <tr>
@@ -221,7 +218,7 @@ tools and client libraries, see [https://jwt.io](https://jwt.io).
   </tbody>
 </table>
 
-After generating an authentication JWT, the client requests a new access token following either the SMART App Launch or the SMART Backend Services specification (TODO: inclue links).  Authentication details are conveyed using the following additional properties on the token request:
+After generating an authentication JWT, the client requests an access token following either the SMART App Launch or the SMART Backend Services specification (TODO: inclue links).  Authentication details are conveyed using the following additional properties on the token request:
 
 <table class="table">
   <thead>
@@ -241,18 +238,18 @@ After generating an authentication JWT, the client requests a new access token f
   </tbody>
 </table>
 
-### Authorization Server Obligations
+### FHIR Authorization Server Obligations
 
 #### Signature Verification
 
-The EHR's authorization server SHALL validate the JWT according to the
+The FHIR authorization server SHALL validate the JWT according to the
 processing requirements defined in [Section 3 of RFC7523](https://tools.ietf.org/html/rfc7523#section-3) including validation of the signature on the JWT.
 
 In addition, the authentication server SHALL:
 * check that the `jti` value has not been previously encountered for the given `iss` within the maximum allowed authentication JWT lifetime (e.g., 5 minutes). This check prevents replay attacks.
 * ensure that the `client_id` provided is known and matches the JWT's `iss` claim
 
-To resolve a key to verify signatures, a server SHALL follow this algorithm:
+To resolve a key to verify signatures, a FHIR authorization server SHALL follow this algorithm:
 
 <ol>
   <li>If the <code>jku</code> header is present, verify that the <code>jku</code> is whitelisted (i.e., that it
@@ -262,25 +259,22 @@ To resolve a key to verify signatures, a server SHALL follow this algorithm:
       <li>If the <code>jku</code> header is whitelisted, create a set of potential keys by dereferencing the <code>jku</code> URL. Proceed to step 3.</li>
     </ol>
   </li>
-  <li> If <code>jku</code> is absent, create a set of potential key sources consisting of: all keys found by dereferencing the registration-time JWK Set URL (if any) + any keys supplied in the registration-time JWK Set (if any). Proceed to step 3.</li>
-  <li> Filter the potential keys to retain only those where the <code>kid</code> matches the value supplied in the client's JWK header, and the <code>kty</code> is consistent with the signature algorithm used for the JWT (e.g., <code>RSA</code> for a JWT using an RSA-based signature, or <code>EC</code> for a JWT using an EC-based signature).</li>
-  <li> Attempt to verify the JWK using each key in the potential keys list.
-    <ol type="a">
-      <li> If any attempt succeeds, the signature verification succeeds.</li>
-      <li> If all attempts fail, the signature verification fails.</li>
-    </ol>
-  </li>
+  <li>If the <code>jku</code> header is absent, create a set of potential key sources consisting of all keys found in the registration-time JWKS or found by dereferencing the registration-time JWK Set URL. Proceed to step 3.</li>
+  <li>Identify a set of candidate keys by filtering the potential keys to identify the single key where the <code>kid</code> matches the value supplied in the client's JWT header, and the <code>kty</code> is consistent with the signature algorithm supplied in the client's JWT header (e.g., <code>RSA</code> for a JWT using an RSA-based signature, or <code>EC</code> for a JWT using an EC-based signature). If no keys match, or more than one key matches, the verification fails.</li>
+  <li>Attempt to verify the JWK using the key identified in step 3.</li>
 </ol>
+
+To retrieve the keys from a JWKS URL in step 1 or step 2, a FHIR authorization server issues a HTTP GET request that URL to obtain a JWKS response. For example, if a client has registered a JWKS URL of https://client.example.com/path/to/jwks.json, the server retrieves the client's JWKS with a GET request for that URL, including a header of `Accept: application/json`.
 
 If an error is encountered during the authentication process, the server SHALL
 respond with an `invalid_client` error as defined by
 the [OAuth 2.0 specification](https://tools.ietf.org/html/rfc6749#section-5.2).
 
-* The authorization server SHALL NOT cache a JWKS for longer than the client's cache-control header indicates.
-* The authorization server SHOULD cache a client's JWK Set according to the client's cache-control header; it doesn't need to retrieve it anew every time. 
+* The FHIR authorization server SHALL NOT cache a JWKS for longer than the client's cache-control header indicates.
+* The FHIR authorization server SHOULD cache a client's JWK Set according to the client's cache-control header; it doesn't need to retrieve it anew every time. 
 
-If an error is encountered during the authorization process, the server SHALL
-respond with the appropriate error message defined in [Section 5.2 of the OAuth 2.0 specification](https://tools.ietf.org/html/rfc6749#page-45).  The server SHOULD include an
+If an error is encountered during the authorization process, the FHIR authorization server SHALL
+respond with the appropriate error message defined in [Section 5.2 of the OAuth 2.0 specification](https://tools.ietf.org/html/rfc6749#page-45).  The FHIR authorization server SHOULD include an
 `error_uri` or `error_description` as defined in OAuth 2.0.  
 
 ### Worked example
@@ -327,7 +321,7 @@ The plaintext JWT will be displayed in the "Decoded:Payload"  field, and a "Sign
 
 #### 3. Request an access token
 
-Following the SMART App Launch or SMART Backend Services flow, the client then calls the SMART authentication server's "token endpoint", passing in all parameters required by the flow, and including the additional `client_assertion_type` and `client_assertion` parameters as follows:
+Following the SMART App Launch or SMART Backend Services flow, the client then calls the FHIR authorization server's "token endpoint", passing in all parameters required by the flow, and including the additional `client_assertion_type` and `client_assertion` parameters as follows:
 
 
 ```
