@@ -4,4 +4,5 @@
 |--|--|--|--|
 |SMART App Standalone Launch| | | |
 |SMART App EHR Launch| | | |
+|SMART App Refreshing Access| | | |
 |SMART Backend Services|N/A| | |
