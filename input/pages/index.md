@@ -116,7 +116,7 @@ for example:
 
 for example:
 
-- App is an HTML5 or JS in-browser app that would expose the secret in user space
+- App is an HTML5 or JS in-browser app (including single-page applications) that would expose the secret in user space
 - App is a native app that can only distribute a secret statically
 
 #### Considerations for PKCE Support
