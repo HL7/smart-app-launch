@@ -533,7 +533,7 @@ possesses a public/private keypairn whose public key is known to the EHR), the
 client authenticates using two parameters: `client_assertion_type` and
 `client_assertion`, as profiled in [SMART Backend Services Protocol
 Details](https://hl7.org/fhir/uv/bulkdata/authorization/index.html#protocol-details)
-(see [example](https://github.com/HL7/bulk-data/blob/master/spec/authorization/authorization-example-jwks-and-signatures.ipynb)).
+(see [example](https://github.com/HL7/bulk-data/blob/master/input/images/authorization-example-jwks-and-signatures.ipynb)).
 
 <table class="table">
   <thead>
