@@ -39,7 +39,7 @@ SMART on FHIR defines OAuth2 access scopes that correspond directly to FHIR reso
   * Instance level [history](http://hl7.org/fhir/http.html#history)
 * `u` for `update`
   * Instance level [update](http://hl7.org/fhir/http.html#update)
-    Note that some servers allow for an [update operation to create a new instance](http://hl7.org/fhir/http.html#upsert)
+    Note that some servers allow for an [update operation to create a new instance](http://hl7.org/fhir/http.html#upsert), and this is allowed by the update scope
   * Instance level [patch](http://hl7.org/fhir/http.html#patch)
 * `d` for `delete`
   * Instance level [delete](http://hl7.org/fhir/http.html#delete)
