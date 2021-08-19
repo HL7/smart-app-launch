@@ -576,7 +576,7 @@ with the SMART's `sso-openid-connect` capability, the following requirements app
 
  * Response types: The EHR SHALL support the Authorization Code Flow, with the request parameters as defined in [this guide](index.html). Support is not required for parameters that OIDC lists as optional (e.g. `id_token_hint`, `acr_value`), but EHRs are encouraged to review these optional parameters.
 
- * Public Keys Published as SHALL Keys: The EHR SHALL publish public keys as bare JWK keys (which MAY also be accompanied by X.509 representations of those keys).
+ * Public Keys Published as Bare JWK Keys: The EHR SHALL publish public keys as bare JWK keys (which MAY also be accompanied by X.509 representations of those keys).
 
  * Claims: The EHR SHALL support the inclusion of SMART's `fhirUser` claim within the `id_token` issued for any requests that grant the `openid` and `fhirUser` scopes.
 
