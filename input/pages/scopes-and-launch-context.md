@@ -21,7 +21,7 @@ Here is a quick overview of the most commonly used scopes. Read on below for com
 |---|---
 |`patient/*.rs`|Permission to read and search any resource for the current patient (see notes on wildcard scopes below)|
 |`user/*.cruds`| Permission to read and write all resources that the current user can access (see notes on wildcard scopes below)|
-| `openid` `fhirUser` (or `openid` `profile`)| Permission to retrieve information about the current logged-in user|
+|`openid fhirUser`| Permission to retrieve information about the current logged-in user|
 |`launch`| Permission to obtain launch context when app is launched from an EHR|
 |`launch/patient`| When launching outside the EHR, ask for a patient to be selected at launch time|
 |`offline_access`| Request a `refresh_token` that can be used to obtain a new access token to replace an expired one, even after the end-user no longer is online after the access token expires|
@@ -556,10 +556,10 @@ that might occur from the immediate use of these values in the client app UI.
 
 ### Scopes for requesting identity data
 
-Some apps need to authenticate the clinical end-user. This can be accomplished
-by requesting a pair of OpenID Connect scopes: `openid` and  `fhirUser`. A
-client may also request `openid profile` instead of `openid fhirUser`, but the
-`profile` claim is being deprecated in favor of `fhirUser`.
+Some apps need to authenticate the end-user.  This can be accomplished by
+requesting the scope `openid`.  When the `openid` scope is requested, apps can
+also request the `fhirUser` scope to obtain a FHIR resource representation of
+the current user.
 
 When these scopes are requested (and the request is granted), the app will
 receive an [`id_token`](http://openid.net/specs/openid-connect-core-1_0.html#CodeIDToken)
@@ -578,7 +578,7 @@ with the SMART's `sso-openid-connect` capability, the following requirements app
 
  * Public Keys Published as SHALL Keys: The EHR SHALL publish public keys as bare JWK keys (which MAY also be accompanied by X.509 representations of those keys).
 
- * Claims: The EHR SHALL support the inclusion of SMART's `fhirUser` claim within the `id_token` issued for any requests that grant the `openid` and `fhirUser` scopes.  Some EHRs may use the `profile` claim as an alias for `fhirUser`, and to preserve compatibility, these EHRs should continue to support this claim during a deprecation phase.
+ * Claims: The EHR SHALL support the inclusion of SMART's `fhirUser` claim within the `id_token` issued for any requests that grant the `openid` and `fhirUser` scopes.
 
 * Signed ID Token: The EHR SHALL support Signing ID Tokens with RSA SHA-256.
 
