@@ -360,10 +360,24 @@ Let's look at a few examples:
 
 Goal | Scope | Notes
 -----|-------|-----
-Read a feed of all new lab observations across a patient population: | `user/Observation.rs` |
+Read a feed of all new lab observations across a patient population | `user/Observation.rs` |
 Manage all appointments to which the authorizing user has access | `user/Appointment.cruds` | Individual attributes such as `d` for delete could be removed if not required.
-Manage all resources on behalf of the authorizing user| `user/*.cruds`|
-Select a patient| `user/Patient.rs` | Allows the client app to select a patient
+Manage all resources on behalf of the authorizing user | `user/*.cruds`|
+Select a patient| `user/Patient.rs` | Allows the client app to select a patient.
+
+#### System-level scopes
+System-level scopes describe data that a client system is directly authorized
+to access; these scopes are useful in cases where there is no user in the loop,
+such as a data monitoring or reporting service.  System-level scopes start with
+`system/`.
+
+Let’s look at a few examples:
+
+Goal | Scope | Notes
+-----|-------|------
+Alert engine to monitor all lab observations in a health system | `system/Observation.rs` | Read-only access to observations.
+Perform bulk data export across all available data within a FHIR server | `system/*.rs` | Full read/search for all resources.
+System-level bridge, turning a V2 ADT feed into FHIR Encounter resources | `system/Encounter.cud` | Write access to Encounters.
 
 #### Wildcard scopes
 
