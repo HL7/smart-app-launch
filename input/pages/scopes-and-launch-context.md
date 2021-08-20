@@ -433,7 +433,7 @@ Granted Scope | Notes
 `patient/*.rs` | The client was granted read access to all data on the patient.
 `patient/*.cruds` | The client was granted its requested scopes as well as read/write access to all other data on the patient.
 `patient/Observation.rs` | The client was granted an entirely different scope: patient-level read access to the patient's observations. While this behavior is unlikely for a production quality authorization server, this scenario is technically possible.
-_none_ | The authorization server chose to not grant any of the requested scopes.
+`""` (empty scope string – no scopes granted) | The authorization server chose to not grant any of the requested scopes.
 
 As a best practice, clients are encouraged to request only the scopes and permissions they need to function and avoid the use of wildcard scopes purely for the sake of convenience. For instance, if your allergy management app requires patient-level read and write access to allergies, requesting the `patient/AllergyIntolerance.cruds` scope is acceptable. However, if your app only requires access to read allergies, requesting a scope of `patient/AllergyIntolerance.rs` would be more appropriate.
 
