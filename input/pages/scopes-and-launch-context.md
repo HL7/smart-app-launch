@@ -607,6 +607,51 @@ Additional context parameters and scopes can be used as extensions using the fol
 - use a *full URI* that you control (e.g. http://example.com/scope-name)
 - use any string starting with `__` (two underscores)
 
+#### Example: Extra context - `fhirContext` for FHIR Resource References
+
+##### EHR Launch
+
+Suppose a SMART on FHIR server supports additional launch context during an EHR
+Launch, perhaps communicating the ID of an `ImagingStudy` that is open in the
+EHR at the time of app launch.  The server could return an access token response
+where the `fhirContext` array includes a value such as `ImagingStudy/123`.
+
+##### Standalone Launch
+
+Suppose a SMART on FHIR server supports additional launch context during a
+Standalone Launch, perhaps providing an ability for the user to select an
+`ImagingStudy` during the launch.  A client could request this behavior by
+requesting a `launch/imagingstudy` scope (note that launch requests scopes are
+always lower case); then after allowing the user to select an `ImagingStudy`,
+the server could return an access token response where the `fhirContext` array
+includes a value such as `ImagingStudy/123`.
+
+#### Example: Extra context - extensions for non-FHIR context
+
+Suppose a SMART on FHIR server wishes to communicate additional context, such
+as a custom "dark mode" flag, providing clients a hint about whether they
+should render a UI suitable for use in low-light environments.  The EHR could
+accomplish this by returning an access token response where an extension
+property is present.  The EHR could choose an extension property as a full URL
+(e.g., `{..., "https://ehr.example.org/props/dark-mode": true}`) or by using a
+`"__"` prefix (e.g., `{..., "__darkMode": true}`).
+
+#### Example: Extra scopes - extensions for non-FHIR APIs
+
+Suppose a SMART on FHIR server supports a custom behavior like allowing users
+to choose their own profile photos through a custom non-FHIR API.  The server
+can designate a custom scope using a full URL (e.g.,
+`https://ehr.example.org/scopes/profilePhoto.manage`) or by using a `"__"`
+prefix (e.g., `__profilePhoto.manage`) and associate this scope with the custom
+behavior.  The server could advertise this scope in its developer-facing
+documentation, and also in the `scopes_supported` array of its
+`.well-known/smart-configuration` file.  Clients requesting authorization could
+include this scope alongside other standardized scopes, so the `scope`
+parameter of the authorization request might look like:
+`launch/patient patient/*.rs __profilePhoto.manage`.  If the user grants these
+scopes, the access token response would then include a `scope` value that
+matches the original request.
+
 ### Steps for using an ID token
 
  1. Examine the ID token for its "issuer" property
