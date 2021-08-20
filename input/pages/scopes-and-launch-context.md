@@ -17,15 +17,16 @@ SHALL provide a "patient" launch context parameter.
 
 Here is a quick overview of the most commonly used scopes. Read on below for complete details.
 
-|Scope | Grants|
-|---|---
-|`patient/*.rs`|Permission to read and search any resource for the current patient (see notes on wildcard scopes below)|
-|`user/*.cruds`| Permission to read and write all resources that the current user can access (see notes on wildcard scopes below)|
-|`openid fhirUser`| Permission to retrieve information about the current logged-in user|
-|`launch`| Permission to obtain launch context when app is launched from an EHR|
-|`launch/patient`| When launching outside the EHR, ask for a patient to be selected at launch time|
-|`offline_access`| Request a `refresh_token` that can be used to obtain a new access token to replace an expired one, even after the end-user no longer is online after the access token expires|
-|`online_access`| Request a `refresh_token` that can be used to obtain a new access token to replace an expired one, and that will be usable for as long as the end-user remains online.|
+Scope | Grants
+------|--------
+`patient/*.rs`    | Permission to read and search any resource for the current patient (see notes on wildcard scopes below).
+`user/*.cruds`    | Permission to read and write all resources that the current user can access (see notes on wildcard scopes below).
+`openid fhirUser` | Permission to retrieve information about the current logged-in user.
+`launch`          | Permission to obtain launch context when app is launched from an EHR.
+`launch/patient`  | When launching outside the EHR, ask for a patient to be selected at launch time.
+`offline_access`  | Request a `refresh_token` that can be used to obtain a new access token to replace an expired one, even after the end-user no longer is online after the access token expires.
+`online_access`   | Request a `refresh_token` that can be used to obtain a new access token to replace an expired one, and that will be usable for as long as the end-user remains online.
+{:.grid}
 
 #### SMART's scopes are used to delegate access
 
@@ -377,11 +378,12 @@ behavior.
 Let's look at a few examples:
 
 Goal | Scope | Notes
------|-------|-----
-Read all observations about a patient | `patient/Observation.rs` |
-Read demographics about a patient | `patient/Patient.r` | Note the difference in capitalization between "patient" the permission type and "Patient" the resource.
-Add new blood pressure readings for a patient| `patient/Observation.c`| Note that the permission is broader than our goal: with this scope, an app can add not only blood pressures, but other observations as well. Note also that write access does not imply read access.
-Read all available data about a patient| `patient/*.cruds`| See notes on wildcard scopes below |
+-----|-------|-------
+Read all observations about a patient         | `patient/Observation.rs` |
+Read demographics about a patient             | `patient/Patient.r`      | Note the difference in capitalization between "patient" the permission type and "Patient" the resource.
+Add new blood pressure readings for a patient | `patient/Observation.c`  | Note that the permission is broader than our goal: with this scope, an app can add not only blood pressures, but other observations as well. Note also that write access does not imply read access.
+Read all available data about a patient       | `patient/*.cruds`        | See notes on wildcard scopes below.
+{:.grid}
 
 #### User-level scopes
 
@@ -392,11 +394,12 @@ User-level scopes start with  `user/`.
 Let's look at a few examples:
 
 Goal | Scope | Notes
------|-------|-----
-Read a feed of all new lab observations across a patient population | `user/Observation.rs` |
-Manage all appointments to which the authorizing user has access | `user/Appointment.cruds` | Individual attributes such as `d` for delete could be removed if not required.
-Manage all resources on behalf of the authorizing user | `user/*.cruds`|
-Select a patient| `user/Patient.rs` | Allows the client app to select a patient.
+-----|-------|-------
+Read a feed of all new lab observations across a patient population | `user/Observation.rs`    |
+Manage all appointments to which the authorizing user has access    | `user/Appointment.cruds` | Individual attributes such as `d` for delete could be removed if not required.
+Manage all resources on behalf of the authorizing user              | `user/*.cruds`           |
+Select a patient                                                    | `user/Patient.rs`        | Allows the client app to select a patient.
+{:.grid}
 
 #### System-level scopes
 System-level scopes describe data that a client system is directly authorized
@@ -407,10 +410,11 @@ such as a data monitoring or reporting service.  System-level scopes start with
 Let’s look at a few examples:
 
 Goal | Scope | Notes
------|-------|------
-Alert engine to monitor all lab observations in a health system | `system/Observation.rs` | Read-only access to observations.
-Perform bulk data export across all available data within a FHIR server | `system/*.rs` | Full read/search for all resources.
-System-level bridge, turning a V2 ADT feed into FHIR Encounter resources | `system/Encounter.cud` | Write access to Encounters.
+-----|-------|-------
+Alert engine to monitor all lab observations in a health system          | `system/Observation.rs` | Read-only access to observations.
+Perform bulk data export across all available data within a FHIR server  | `system/*.rs`           | Full read/search for all resources.
+System-level bridge, turning a V2 ADT feed into FHIR Encounter resources | `system/Encounter.cud`  | Write access to Encounters.
+{:.grid}
 
 #### Wildcard scopes
 
@@ -425,15 +429,16 @@ As a best practice, clients should examine the granted scopes by the authorizati
 For example, imagine a client with the goal of obtaining read and write access to a patient's allergies and as such, requests the clinical scope of `patient/AllergyIntolerance.cruds`. The authorization server may respond in a variety of ways with respect to the scopes that are ultimately granted. The following table outlines several, but not an exhaustive list of scenarios for this example:
 
 Granted Scope | Notes
---------------|---------------
+--------------|-------
 `patient/AllergyIntolerance.cruds` | The client was granted exactly what it requested: patient-level read and write access to allergies via the same requested wildcard scope.
-`patient/AllergyIntolerance.rs`<br />`patient/AllergyIntolerance.cud` | The client was granted exactly what it requested: patient-level CRUDS access to allergies. However, note that this was communicated via two explicit scopes rather than a single  scope.
-`patient/AllergyIntolerance.rs` | The client was granted just patient-level read access to allergies.
-`patient/AllergyIntolerance.cud` | The client was granted just patient-level write access to allergies.
-`patient/*.rs` | The client was granted read access to all data on the patient.
-`patient/*.cruds` | The client was granted its requested scopes as well as read/write access to all other data on the patient.
-`patient/Observation.rs` | The client was granted an entirely different scope: patient-level read access to the patient's observations. While this behavior is unlikely for a production quality authorization server, this scenario is technically possible.
+`patient/AllergyIntolerance.rs`<br />`patient/AllergyIntolerance.cud` | The client was granted exactly what it requested: patient-level CRUDS access to allergies. However, note that this was communicated via two explicit scopes rather than a single scope.
+`patient/AllergyIntolerance.rs`    | The client was granted just patient-level read access to allergies.
+`patient/AllergyIntolerance.cud`   | The client was granted just patient-level write access to allergies.
+`patient/*.rs`                     | The client was granted read access to all data on the patient.
+`patient/*.cruds`                  | The client was granted its requested scopes as well as read/write access to all other data on the patient.
+`patient/Observation.rs`           | The client was granted an entirely different scope: patient-level read access to the patient's observations.  While this behavior is unlikely for a production quality authorization server, this scenario is technically possible.
 `""` (empty scope string – no scopes granted) | The authorization server chose to not grant any of the requested scopes.
+{:.grid}
 
 As a best practice, clients are encouraged to request only the scopes and permissions they need to function and avoid the use of wildcard scopes purely for the sake of convenience. For instance, if your allergy management app requires patient-level read and write access to allergies, requesting the `patient/AllergyIntolerance.cruds` scope is acceptable. However, if your app only requires access to read allergies, requesting a scope of `patient/AllergyIntolerance.rs` would be more appropriate.
 
@@ -472,10 +477,11 @@ Standalone apps that launch outside the EHR do not have any EHR context at the o
 ##### Requesting context with scopes
 
 Requested Scope | Meaning
-----------------|--------
-`launch/patient` | Need patient context at launch time (FHIR Patient resource). See note below.
+----------------|---------
+`launch/patient`   | Need patient context at launch time (FHIR Patient resource). See note below.
 `launch/encounter` | Need encounter context at launch time (FHIR Encounter resource).
-(Others)| This list can be extended by any SMART EHR if additional context is required.  When specifying resource types, convert the type names to *all lowercase* (e.g. `launch/diagnosticreport`).
+(Others)           | This list can be extended by any SMART EHR if additional context is required.  When specifying resource types, convert the type names to *all lowercase* (e.g. `launch/diagnosticreport`).
+{:.grid}
 
 Note on `launch/patient`: If an application requests a clinical scope which is restricted to a single patient (e.g. `patient/*.rs`), and the authorization results in the EHR granting that scope, the EHR SHALL establish a patient in context. The EHR MAY refuse authorization requests including `patient/` that do not also include a valid `launch/patient` scope, or it MAY infer the `launch/patient` scope.
 
@@ -500,14 +506,15 @@ parameters:
 Here are the launch context parameters to expect:
 
 Launch context parameter | Example value | Meaning
--------------------------|---------------|--------
-`patient` | `"123"`| String value with a patient id, indicating that the app was launched in the context of FHIR Patient 123. If the app has any patient-level scopes, they will be scoped to Patient 123.
-`encounter` | `"123"`| String value with an encounter id, indicating that the app was launched in the context of FHIR Encounter 123.
-`fhirContext` | `["Appointment/123"]` | Array of relative resource References to any resource type other than "Patient" or "Encounter".  It is not prohibited to have more than one Reference to a given *type* of resource.
-`need_patient_banner` | `true` or `false` (boolean) | Boolean value indicating whether the app was launched in a UX context where a patient banner is required (when `true`) or not required (when `false`). An app receiving a value of `false` should not take up screen real estate displaying a patient banner.
-`intent` | `"reconcile-medications"`| String value describing the intent of the application launch (see notes [below](#launch-intent))
-`smart_style_url` | `"https://ehr/styles/smart_v1.json"`| String URL where the host's style parameters can be retrieved (for apps that support [styling](#styling))
-`tenant` | `"2ddd6c3a-8e9a-44c6-a305-52111ad302a2"`| String conveying an opaque identifier for the healthcare organization that is launching the app. This parameter is intended primarily to support EHR Launch scenarios.
+-------------------------|---------------|---------
+`patient`             | `"123"`                                  | String value with a patient id, indicating that the app was launched in the context of FHIR Patient 123. If the app has any patient-level scopes, they will be scoped to Patient 123.
+`encounter`           | `"123"`                                  | String value with an encounter id, indicating that the app was launched in the context of FHIR Encounter 123.
+`fhirContext`         | `["Appointment/123"]`                    | Array of relative resource References to any resource type other than "Patient" or "Encounter".  It is not prohibited to have more than one Reference to a given *type* of resource.
+`need_patient_banner` | `true` or `false` (boolean)              | Boolean value indicating whether the app was launched in a UX context where a patient banner is required (when `true`) or not required (when `false`). An app receiving a value of `false` should not take up screen real estate displaying a patient banner.
+`intent`              | `"reconcile-medications"`                | String value describing the intent of the application launch (see notes [below](#launch-intent))
+`smart_style_url`     | `"https://ehr/styles/smart_v1.json"`     | String URL where the host's style parameters can be retrieved (for apps that support [styling](#styling))
+`tenant`              | `"2ddd6c3a-8e9a-44c6-a305-52111ad302a2"` | String conveying an opaque identifier for the healthcare organization that is launching the app. This parameter is intended primarily to support EHR Launch scenarios.
+{:.grid}
 
 ##### Notes on launch context parameters
 
@@ -576,17 +583,18 @@ of this JSON is changed.
 
 Style Property | Description
 ---------------|-------------
-`color_background` | The color used as the background of the app.
-`color_error` | The color used when UI elements need to indicate an area or item of concern or dangerous action, such as a button to be used to delete an item, or a display an error message.
-`color_highlight` | The color used when UI elements need to indicate an area or item of focus, such as a button used to submit a form, or a loading indicator.
+`color_background`     | The color used as the background of the app.
+`color_error`          | The color used when UI elements need to indicate an area or item of concern or dangerous action, such as a button to be used to delete an item, or a display an error message.
+`color_highlight`      | The color used when UI elements need to indicate an area or item of focus, such as a button used to submit a form, or a loading indicator.
 `color_modal_backdrop` | The color used when displaying a backdrop behind a modal dialog or window.
-`color_success` | The color used when UI elements need to indicate a positive outcome, such as a notice that an action was completed successfully.
-`color_text` | The color used for body text in the app.
-`dim_border_radius` | The base corner radius used for UI element borders (0px results in square corners).
-`dim_font_size` | The base size of body text displayed in the app.
-`dim_spacing_size` | The base dimension used to space UI elements.
-`font_family_body` | The list of typefaces to use for body text and elements.
-`font_family_heading` | The list of typefaces to use for content heading text and elements.
+`color_success`        | The color used when UI elements need to indicate a positive outcome, such as a notice that an action was completed successfully.
+`color_text`           | The color used for body text in the app.
+`dim_border_radius`    | The base corner radius used for UI element borders (0px results in square corners).
+`dim_font_size`        | The base size of body text displayed in the app.
+`dim_spacing_size`     | The base dimension used to space UI elements.
+`font_family_body`     | The list of typefaces to use for body text and elements.
+`font_family_heading`  | The list of typefaces to use for content heading text and elements.
+{:.grid}
 
 SMART client apps that can adjust their styles should incorporate the above
 property values into their stylesheets, but are not required to do so.
@@ -645,10 +653,11 @@ Note that support for the following features is optional:
 To request a `refresh_token` that can be used to obtain a new access token
 after the current access token expires, add one of the following scopes:
 
-Scope              | Grants
--------------------|-------
+Scope | Grants
+------|--------
 `online_access`    | Request a `refresh_token` that can be used to obtain a new access token to replace an expired one, and that will be usable for as long as the end-user remains online.
 `offline_access`   | Request a `refresh_token` that can be used to obtain a new access token to replace an expired token, and that will remain usable for as long as the authorization server and end-user will allow, regardless of whether the end-user is online.
+{:.grid}
 
 ### Extensions
 
