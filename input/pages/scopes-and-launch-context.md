@@ -379,7 +379,7 @@ Let's look at a few examples:
 Goal | Scope | Notes
 -----|-------|-----
 Read all observations about a patient | `patient/Observation.rs` |
-Read demographics about a patient | `patient/Patient.rs` | Note the difference in capitalization between "patient" the permission type and "Patient" the resource.
+Read demographics about a patient | `patient/Patient.r` | Note the difference in capitalization between "patient" the permission type and "Patient" the resource.
 Add new blood pressure readings for a patient| `patient/Observation.c`| Note that the permission is broader than our goal: with this scope, an app can add not only blood pressures, but other observations as well. Note also that write access does not imply read access.
 Read all available data about a patient| `patient/*.cruds`| See notes on wildcard scopes below |
 
