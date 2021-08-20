@@ -100,9 +100,9 @@ In SMART 1.0, scopes were based entirely on FHIR Resource types, as in `patient/
 
 #### Requirements for support
 
-While the search parameter based syntax here is quite general, and could be used for any search parameter defined in FHIR, we're seeking community consensus on a small common core of search parameters for broad support. Initially, servers supporting SMART v2 scopes SHALL support:
-
-* `category=` constraints for any supported resource types where `category` is a defined search parameter. This includes support for category-based Observation access on any server that supports Observation access.
+We’re seeking community consensus on a small common core of search parameters
+for broad support; we reserve the right to make some search parameters
+mandatory in the future.
 
 #### Experimental features
 
