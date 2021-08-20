@@ -480,14 +480,14 @@ Launch context parameter | Example value | Meaning
 <h5 id="launch-intent"><b>App Launch Intent</b> (optional)</h5>
 `intent`: Some SMART apps might offer more than one context or user interface
 that can be accessed during the SMART launch. The optional `intent` parameter
-in the launch context provides a mechanism for the SMART host to communicate to
+in the launch context provides a mechanism for the SMART EHR to communicate to
 the client app which specific context should be displayed as the outcome of the
 launch. This allows for closer integration between the host and client, so that
 different launch points in the host UI can target specific displays within the
 client app.
 
 For example, a patient timeline app might provide three specific UI contexts,
-and inform the SMART host (out of band, at app configuration time)  of the
+and inform the SMART EHR (out of band, at app configuration time)  of the
 `intent` values that can be used to launch the app directly into one of the
 three contexts. The app might respond to `intent` values like:
 
@@ -495,8 +495,8 @@ three contexts. The app might respond to `intent` values like:
 * `recent-history-timeline` - A history display, showing a list of entries
 * `encounter-focused-timeline` - A timeline focused on the currently in-context encounter
 
-If a SMART host provides a value that the client does not recognize, or does
-not provide a value, the client app should display a default application UI
+If a SMART EHR provides a value that the client does not recognize, or does
+not provide a value, the client app SHOULD display a default application UI
 context.
 
 Note:  *SMART makes no effort to standardize `intent` values*.  Intents simply
@@ -505,7 +505,7 @@ host. The meaning of intents must be negotiated between the app and the host.
 
 ###### SMART App Styling (experimental[^1])
 {: #styling}
-`smart_style_url`: In order to mimic the style of the SMART host more closely,
+`smart_style_url`: In order to mimic the style of the SMART EHR more closely,
 SMART apps can check for the existence of this launch context parameter and
 download the JSON file referenced by the URL value, if provided.
 
