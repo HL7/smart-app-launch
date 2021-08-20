@@ -367,7 +367,12 @@ Diagram(
 Patient-specific scopes allow access to specific data about a single patient.
 *Which* patient is not specified here: clinical data
 scopes are all about *what* and not *who* which is handled in the next section.
-Patient-specific scopes start with `patient/`.  Note that some EHRs may not enable access to all related resources - for example, Practitioners linked to/from Patient-specific resources.
+Patient-specific scopes start with `patient/`.
+Note that some EHRs may not enable access to all related resources - for
+example, Practitioners linked to/from Patient-specific resources.
+Note that if a FHIR server supports replacing one Patient record with another
+via `Patient.link`, the server documentation SHALL describe its authorization
+behavior.
 
 Let's look at a few examples:
 
