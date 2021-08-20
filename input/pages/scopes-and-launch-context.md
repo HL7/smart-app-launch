@@ -472,10 +472,10 @@ Standalone apps that launch outside the EHR do not have any EHR context at the o
 ##### Requesting context with scopes
 
 Requested Scope | Meaning
----------|-------------------
+----------------|--------
 `launch/patient` | Need patient context at launch time (FHIR Patient resource). See note below.
 `launch/encounter` | Need encounter context at launch time (FHIR Encounter resource).
-(Others)| This list can be extended by any SMART EHR if additional context is required.
+(Others)| This list can be extended by any SMART EHR if additional context is required.  When specifying resource types, convert the type names to *all lowercase* (e.g. `launch/diagnosticreport`).
 
 Note on `launch/patient`: If an application requests a clinical scope which is restricted to a single patient (e.g. `patient/*.rs`), and the authorization results in the EHR granting that scope, the EHR SHALL establish a patient in context. The EHR MAY refuse authorization requests including `patient/` that do not also include a valid `launch/patient` scope, or it MAY infer the `launch/patient` scope.
 
@@ -489,26 +489,36 @@ UX and UI expectations to the app (see `need_patient_banner` below).
 Launch context parameters come alongside the access token. They will appear as JSON
 parameters:
 
-```  text
+```js
 {
-  access_token: "secret-xyz",
-  patient: "123",
-	fhirContext: ["DiagnosticReport/123", "Organization/789"],
-  ...
+  "access_token": "secret-xyz",
+  "patient": "123",
+  "fhirContext": ["DiagnosticReport/123", "Organization/789"],
+//...
 }
 ```
 Here are the launch context parameters to expect:
 
 Launch context parameter | Example value | Meaning
-------|---------|-------------------
+-------------------------|---------------|--------
 `patient` | `"123"`| String value with a patient id, indicating that the app was launched in the context of FHIR Patient 123. If the app has any patient-level scopes, they will be scoped to Patient 123.
 `encounter` | `"123"`| String value with an encounter id, indicating that the app was launched in the context of FHIR Encounter 123.
+`fhirContext` | `["Appointment/123"]` | Array of relative resource References to any resource type other than "Patient" or "Encounter".  It is not prohibited to have more than one Reference to a given *type* of resource.
 `need_patient_banner` | `true` or `false` (boolean) | Boolean value indicating whether the app was launched in a UX context where a patient banner is required (when `true`) or not required (when `false`). An app receiving a value of `false` should not take up screen real estate displaying a patient banner.
 `intent` | `"reconcile-medications"`| String value describing the intent of the application launch (see notes [below](#launch-intent))
 `smart_style_url` | `"https://ehr/styles/smart_v1.json"`| String URL where the host's style parameters can be retrieved (for apps that support [styling](#styling))
 `tenant` | `"2ddd6c3a-8e9a-44c6-a305-52111ad302a2"`| String conveying an opaque identifier for the healthcare organization that is launching the app. This parameter is intended primarily to support EHR Launch scenarios.
 
 ##### Notes on launch context parameters
+
+##### `fhirContext`
+
+`fhirContext`: To allow application flexibility, while also maintaining
+backwards compatibility (and to keep a predictable JSON structure), any
+contextual resource types (other than Patient and Encounter) that were
+requested by a launch scope will appear in this parameter.  The Patient and
+Encounter resource types will *not be deprecated from top-level parameters*,
+and they will *not be permitted* within the `fhirContext` array.
 
 <h5 id="launch-intent"><b>App Launch Intent</b> (optional)</h5>
 `intent`: Some SMART apps might offer more than one context or user interface
