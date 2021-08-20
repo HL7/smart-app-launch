@@ -493,6 +493,7 @@ parameters:
 {
   access_token: "secret-xyz",
   patient: "123",
+	fhirContext: ["DiagnosticReport/123", "Organization/789"],
   ...
 }
 ```
@@ -502,7 +503,6 @@ Launch context parameter | Example value | Meaning
 ------|---------|-------------------
 `patient` | `"123"`| String value with a patient id, indicating that the app was launched in the context of FHIR Patient 123. If the app has any patient-level scopes, they will be scoped to Patient 123.
 `encounter` | `"123"`| String value with an encounter id, indicating that the app was launched in the context of FHIR Encounter 123.
-`appointment` | `"789"` | String value with an appointment id, indicating that the app was launched in the context of FHIR Appointment 789.
 `need_patient_banner` | `true` or `false` (boolean) | Boolean value indicating whether the app was launched in a UX context where a patient banner is required (when `true`) or not required (when `false`). An app receiving a value of `false` should not take up screen real estate displaying a patient banner.
 `intent` | `"reconcile-medications"`| String value describing the intent of the application launch (see notes [below](#launch-intent))
 `smart_style_url` | `"https://ehr/styles/smart_v1.json"`| String URL where the host's style parameters can be retrieved (for apps that support [styling](#styling))
