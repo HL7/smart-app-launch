@@ -27,6 +27,30 @@ Here is a quick overview of the most commonly used scopes. Read on below for com
 |`offline_access`| Request a `refresh_token` that can be used to obtain a new access token to replace an expired one, even after the end-user no longer is online after the access token expires|
 |`online_access`| Request a `refresh_token` that can be used to obtain a new access token to replace an expired one, and that will be usable for as long as the end-user remains online.|
 
+#### SMART's scopes are used to delegate access
+
+SMART's scopes allow a client to request the delegation of a specific set of
+access rights; such rights are always limited by underlying system policies and
+permissions.
+
+For example:
+
+* If a client uses SMART App Launch to request `user/*.cruds` and is granted these scopes by a user, these scopes convey "full access" relative to the user's underlying permissions.  If the underlying user has limited permissions, the client will face these same limitations.
+* If a client uses SMART Backend Services to request `system/*.cruds`, these scopes convey "full access" relative to a pre-configured client policy.  If the pre-configured policy imposes limited permissions, the client will face these same limitations.
+
+Neither SMART on FHIR nor the FHIR Core specification provide a way to model
+the "underlying" permissions at play here; this is a lower-level responsibility
+in the access control stack.  As such, clients can attempt to perform FHIR
+operations based on the scopes they are granted — but depending on the details
+of the underlying permission system (e.g., the permissions of the approving
+user and/or permissions assigned in a client-specific policy) these requests
+may be rejected, or results may be omitted from responses.
+
+For instance, a client may receive:
+
+* `200 OK` response to a search interaction that appears to be allowed by the granted scopes, but where results have been omitted from the response Bundle.
+* `403 Forbidden` response to a write interaction that appears to be allowed by the granted scopes.
+
 ### Scopes for requesting clinical data
 
 SMART on FHIR defines OAuth2 access scopes that correspond directly to FHIR resource types. These scopes impact the access an application may have to FHIR resources (and actions). We define permissions to support the following FHIR REST API interactions:
