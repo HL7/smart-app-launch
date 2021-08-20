@@ -473,7 +473,7 @@ Launch context parameter | Example value | Meaning
 `need_patient_banner` | `true` or `false` (boolean) | Boolean value indicating whether the app was launched in a UX context where a patient banner is required (when `true`) or not required (when `false`). An app receiving a value of `false` should not take up screen real estate displaying a patient banner.
 `intent` | `"reconcile-medications"`| String value describing the intent of the application launch (see notes [below](#launch-intent))
 `smart_style_url` | `"https://ehr/styles/smart_v1.json"`| String URL where the host's style parameters can be retrieved (for apps that support [styling](#styling))
-`tenant` | `"2ddd6c3a-8e9a-44c6-a305-52111ad302a2"`| String conveying an opaque identifier for the healthcare organization that is invoking the app.
+`tenant` | `"2ddd6c3a-8e9a-44c6-a305-52111ad302a2"`| String conveying an opaque identifier for the healthcare organization that is launching the app. This parameter is intended primarily to support EHR Launch scenarios.
 
 ##### Notes on launch context parameters
 
