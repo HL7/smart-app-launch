@@ -51,6 +51,10 @@ For instance, a client may receive:
 * `200 OK` response to a search interaction that appears to be allowed by the granted scopes, but where results have been omitted from the response Bundle.
 * `403 Forbidden` response to a write interaction that appears to be allowed by the granted scopes.
 
+Applications reading may receive results that have been filtered or redacted
+based on the underlying permissions of the delegating authority, or may be
+refused access (see guidance at [https://hl7.org/fhir/security.html#AccessDenied](https://hl7.org/fhir/security.html#AccessDenied)).
+
 ### Scopes for requesting clinical data
 
 SMART on FHIR defines OAuth2 access scopes that correspond directly to FHIR resource types. These scopes impact the access an application may have to FHIR resources (and actions). We define permissions to support the following FHIR REST API interactions:
