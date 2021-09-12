@@ -236,9 +236,10 @@ On receiving the launch notification, the app would query the issuer's `/metadat
 endpoint URLs for use in requesting authorization to access FHIR
 resources.
 
-Later, when the app prepares a list of access scopes to request from
-the EHR authorization server, it will be associated with the existing EHR context by
-including the launch notification in the scope.
+Later, when the app prepares its authorization request, it includes
+`launch` as a requested scope and includes a `launch={launch id}` URL
+parameter, echoing the value it received from the EHR in this
+notification.
 
 #### Standalone launch sequence
 
