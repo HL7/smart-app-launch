@@ -334,7 +334,9 @@ Scopes</a> details.
 An opaque value used by the client to maintain state between the request and
 callback. The authorization server includes this value when redirecting the
 user-agent back to the client. The parameter SHALL be used for preventing
-cross-site request forgery or session fixation attacks.
+cross-site request forgery or session fixation attacks.  The app SHALL use
+an unpredictable value for the state parameter with at least 122 bits of
+entropy (e.g., a properly configured random uuid is suitable).
 
       </td>
     </tr>
