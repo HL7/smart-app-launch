@@ -611,7 +611,7 @@ includes the following parameters:
     <tr>
       <td><code>id_token</code></td>
       <td><span class="label label-info">optional</span></td>
-      <td>Authenticated patient identity and user details, if requested</td>
+      <td>Authenticated user identity and user details, if requested</td>
     </tr>
       <tr>
       <td><code>refresh_token</code></td>
