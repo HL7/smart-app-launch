@@ -31,3 +31,10 @@ The choice of app architecture should be based based on context. Apps that alrea
 * Consider offering clients a way to bind refresh tokens to asymmetric secrets managed in hardware
 * E.g., per-device dynamic client registration (see ongoing work on [UDAP specifications](https://www.udap.org/))
 * E.g., techniques like the [draft DPOP specification](https://datatracker.ietf.org/doc/html/draft-ietf-oauth-dpop-03)
+
+### Best practices for app developers include
+
+* Ensure that refresh tokens are never used more than once
+* Take advantage of techniques to bind refresh tokens to asymmetric secrets managed in hardware, when available (see above)
+* If an app only needs to connect to EHR when the user is present, maintain secrets with best-available protection (e.g., biometric unlock)
+* Publicly document any code of conduct that an app adheres to (e.g., [CARIN Alliance code of conduct](https://www.carinalliance.com/our-work/trust-framework-and-code-of-conduct/))
