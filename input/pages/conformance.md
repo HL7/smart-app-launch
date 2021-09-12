@@ -99,6 +99,7 @@ completing the launch.
 ##### Permissions
 
 * `permission-offline`: support for refresh tokens (requested by `offline_access` scope)
+* `permission-online`: support for refresh tokens (requested by `online_access` scope)
 * `permission-patient`: support for patient-level scopes (e.g. `patient/Observation.rs`)
 * `permission-user`: support for user-level scopes (e.g. `user/Appointment.rs`)
 * `permission-v1`: support for SMARTv1 scope syntax (e.g., `patient/Observation.read`)
