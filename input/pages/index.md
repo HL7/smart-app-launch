@@ -342,11 +342,19 @@ cross-site request forgery or session fixation attacks.
       <td><code>aud</code></td>
       <td><span class="label label-success">required</span></td>
       <td>
-
 URL of the EHR resource server from which the app wishes to retrieve FHIR data.
 This parameter prevents leaking a genuine bearer token to a counterfeit
 resource server. (Note: in the case of an <span class="label label-primary">EHR launch</span>
 flow, this <code>aud</code> value is the same as the launch's <code>iss</code> value.)
+
+Note that the <code>aud</code> parameter is semantically equivalent to the 
+<code>resource</code> parameter defined in <a href="https://datatracker.ietf.org/doc/rfc8707">RFC8707</a>.
+SMART's <code>aud</code> parameter predates RFC8707 and we have decided not to
+rename it for reasons of backwards compatibility. We might consider renaming
+SMART's <code>aud</code> parameter in the future if implementer feedback
+indicates that alignment would be valuable.  For the current release, servers
+SHALL support the <code>aud</code> parameter and MAY support a <code>resource</code>
+parameter as a synonym for <code>aud</code>.
 
       </td>
     </tr>
