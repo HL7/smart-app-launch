@@ -129,7 +129,7 @@ for example:
 - App is a native app that can only distribute a secret statically
 
 #### Considerations for PKCE Support
-All SMART apps SHOULD support Proof Key for Code Exchange (PKCE), and public client SMART apps SHALL support PKCE.  PKCE is a standardized, cross-platform technique for public clients to mitigate the threat of authorization code interception. PKCE is described in [IETF RFC 7636](https://tools.ietf.org/html/rfc7636). SMART servers SHALL support the `S256` `code_challenge_method` and SHALL NOT support the `plain` method.
+All SMART apps SHALL support Proof Key for Code Exchange (PKCE).  PKCE is a standardized, cross-platform technique for public clients to mitigate the threat of authorization code interception. PKCE is described in [IETF RFC 7636](https://tools.ietf.org/html/rfc7636). SMART servers SHALL support the `S256` `code_challenge_method` and SHALL NOT support the `plain` method.
 
 #### Related reading
 
@@ -279,9 +279,7 @@ For full details, see [SMART launch context parameters](https://build.fhir.org/i
 At launch time, the app constructs a request for authorization by supplying the
 following parameters to the EHR’s "authorize" endpoint.
 
-*Note on PKCE Support: if an app supplies
-PKCE parameters in the authorization request (`code_challenge` and `code_challenge_method`, see table below for details)
-the EHR SHALL ensure that the `code_verifier` is present and valid in Step 3
+*Note on PKCE Support: the EHR SHALL ensure that the `code_verifier` is present and valid in Step 3
 ("App exchanges authorization code for access token"), at the completion of the OAuth flow.*
 
 <table class="table">
