@@ -23,6 +23,10 @@ The responsibility of supporting transparent consent falls on both the authoriza
 
 The choice of app architecture should be based based on context. Apps that already need to manage data in the cloud should consider a confidential client architecture; apps that don't should consider a purely-on-device architecture. But this decision only works if refresh tokens are available in either case; otherwise, app developers will switch architectures just to be able to maintain persistent access, even if the overall security posture is diminished.
 
+## Best Practices
+
+This page reflects best practices established at the time of publication.  For up-to-date community discussion, see [SMART on FHIR Best Practices on the HL7 Confluence Site](https://confluence.hl7.org/display/FHIRI/SMART+on+FHIR+Best+Practices)
+
 ### Best practices for server developers include
 
 * Remind users which apps have offline access (keeping in mind that too many reminders lead to alert fatigue)
