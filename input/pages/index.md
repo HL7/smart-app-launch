@@ -312,7 +312,7 @@ the EHR SHALL ensure that the `code_verifier` is present and valid in Step 3
       <td><span class="label label-success">required</span></td>
       <td>
 
-Must describe the access that the app needs, including clinical data scopes like
+Must describe the access that the app needs, including scopes like
 <code>patient/*.read</code>, <code>openid</code> and <code>fhirUser</code> (if app
 needs authenticated patient identity) and either:
 
