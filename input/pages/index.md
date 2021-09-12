@@ -376,13 +376,12 @@ flow, this <code>aud</code> value is the same as the launch's <code>iss</code> v
   </tbody>
 </table>
 
-The app SHALL use an unpredictable value for the state parameter
-with at least 122 bits of entropy (e.g., a properly configured random uuid is suitable). The app SHALL validate the value
-of the state parameter upon return to the redirect URL and SHALL ensure
-that the state value is securely tied to the user’s current session
-(e.g., by relating the state value to a session identifier issued
-by the app). The app SHOULD limit the grants, scope, and period of
-time requested to the minimum necessary.
+The app SHOULD limit its requested scopes to the minimum necessary (i.e.,
+minimizing the requested data categories and the requested duration of access).
+The app SHALL validate the value of the state parameter upon return to the
+redirect URL and SHALL ensure that the state value is securely tied to the
+user’s current session (e.g., by relating the state value to a session
+identifier issued by the app).
 
 If the app needs to authenticate the identity of the end-user, it should
 include two OpenID Connect scopes:  `openid` and `fhirUser`.   When these scopes
