@@ -4,7 +4,7 @@ may implement a subset of these.  The methods of declaring a server's SMART auth
 
 ### SMART on FHIR OAuth authorization Endpoints and Capabilities
 
-The server SHALL convey the FHIR OAuth authorization endpoints and any *optional* SMART Capabilitise it supports using a [Well-Known Uniform Resource Identifiers (URIs)](#using-well-known) JSON file. (In previous versions of SMART, some of these details were also conveyed in a server's CapabilityStatement; this mechanism is now deprecated.)
+The server SHALL convey the FHIR OAuth authorization endpoints and any *optional* SMART Capabilities it supports using a [Well-Known Uniform Resource Identifiers (URIs)](#using-well-known) JSON file. (In previous versions of SMART, some of these details were also conveyed in a server's CapabilityStatement; this mechanism is now deprecated.)
 
 
 #### Capability Sets
