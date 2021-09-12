@@ -20,16 +20,19 @@ Health Record data, allowing apps to launch from inside or outside the user
 interface of an EHR system. The framework supports apps for use by clinicians,
 patients, and others via a PHR or Patient Portal or any FHIR system where a user can give permissions to launch an app. It provides a reliable, secure authorization protocol for
 a variety of app architectures, including apps that run on an end-user's device
-as well as apps that run on a secure server.  The Launch Framework supports the
-[four uses
-cases](http://argonautwiki.hl7.org/images/4/4c/Argonaut_UseCasesV1.pdf) defined
-for Phase 1 of the
-[Argonaut Project](http://argonautwiki.hl7.org/index.php?title=Main_Page):
+as well as apps that run on a secure server.
+The Launch Framework supports four key use cases:
 
 1. Patients apps that launch standalone
 1. Patient apps that launch from a portal
 1. Provider apps that launch standalone
 1. Provider apps that launch from a portal
+
+These use cases support apps that perform data visualization, data collection,
+clinical decision support, data sharing, case reporting, and many other
+functions.  For background on these use cases, see the
+[Argonaut Project](http://argonautwiki.hl7.org/index.php?title=Main_Page)'s
+[Use Cases V1](http://argonautwiki.hl7.org/images/4/4c/Argonaut_UseCasesV1.pdf).
 
 ### Profile audience and scope
 
