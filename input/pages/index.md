@@ -84,7 +84,7 @@ over TLS-secured channels.
 session; SHALL include `state` with all authorization requests; and SHALL
 validate the `state` value for any request sent to its redirect URL.
 
-* An app SHALL NOT execute any inputs it receives as code.
+* An app SHALL NOT execute untrusted user-supplied inputs as code.
 
 * An app SHALL NOT forward values passed back to its redirect URL to any
 other arbitrary or user-provided URL (a practice known as an “open
