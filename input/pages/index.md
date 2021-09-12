@@ -81,9 +81,8 @@ authorization codes, tokens) is transmitted ONLY to authenticated servers,
 over TLS-secured channels.
 
 * Apps SHALL generate an unpredictable `state` parameter for each user
-session.  An app SHALL validate the `state` value for any request sent to its
-redirect URL; include `state` with all authorization requests; and validate
-the `state` value included in access tokens it receives.
+session; SHALL include `state` with all authorization requests; and SHALL
+validate the `state` value for any request sent to its redirect URL.
 
 * An app SHALL NOT execute any inputs it receives as code.
 
