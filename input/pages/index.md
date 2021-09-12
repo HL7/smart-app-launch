@@ -383,8 +383,7 @@ parameters](scopes-and-launch-context.html).
 The following requirements are adopted from [OpenID Connect Core 1.0 Specification section 3.1.2.1](https://openid.net/specs/openid-connect-core-1_0.html#AuthRequest):
 
 * Authorization Servers SHALL support the use of the HTTP GET and POST methods at the Authorization Endpoint.
-* Clients MAY use the HTTP GET or POST methods to send the Authorization Request to the Authorization Server. If using the HTTP GET method, the request parameters are serialized using URI Query String Serialization. If using the HTTP POST method, the request parameters are serialized using Form Serialization and the `application/x-www-form-urlencoded` content type.
-
+* Clients SHALL use either the HTTP GET or the HTTP POST method to send the Authorization Request to the Authorization Server.  If using the HTTP GET method, the request parameters are serialized using URI Query String Serialization.  If using the HTTP POST method, the request parameters are serialized using Form Serialization and the application/x-www-form-urlencoded content type.
 
 ###### *For example*
 If an app needs demographics and observations for a single
