@@ -148,7 +148,7 @@ A JSON document must be returned using the `application/json` mime type.
 - `token_endpoint_auth_methods_supported`: **OPTIONAL**, array of client authentication methods supported by the token endpoint. The options are "client_secret_post", "client_secret_basic", and "private_key_jwt".
 - `registration_endpoint`: **OPTIONAL**, if available, URL to the OAuth2 dynamic registration endpoint for this FHIR server.
 - `scopes_supported`: **RECOMMENDED**, array of scopes a client may request. See [scopes and launch context][smart-scopes]. The server SHALL support all scopes listed here; additional scopes MAY be supported (so clients should not consider this an exhaustive list).
-- `response_types_supported`: **RECOMMENDED**, array of OAuth2 `response_type` values that are supported
+- `response_types_supported`: **RECOMMENDED**, array of OAuth2 `response_type` values that are supported.  Implementers can refer to `response_type`s defined in OAuth 2.0 (https://datatracker.ietf.org/doc/html/rfc6749) and in OIDC Core (https://openid.net/specs/openid-connect-core-1_0.html#Authentication).
 - `management_endpoint`: **RECOMMENDED**, URL where an end-user can view which applications currently have access to data and can make adjustments to these access rights.
 - `introspection_endpoint` :  **RECOMMENDED**, URL to a server's introspection endpoint that can be used to validate a token.
 - `revocation_endpoint` :  **RECOMMENDED**, URL to a server's revoke endpoint that can be used to revoke a token.
@@ -168,7 +168,7 @@ Content-Type: application/json
   "token_endpoint_auth_methods_supported": ["client_secret_basic"],
   "registration_endpoint": "https://ehr.example.com/auth/register",
   "scopes_supported": ["openid", "profile", "launch", "launch/patient", "patient/*.rs", "user/*.rs", "offline_access"],
-  "response_types_supported": ["code", "code id_token", "id_token", "refresh_token"],
+  "response_types_supported": ["code", "code id_token", "id_token"],
   "management_endpoint": "https://ehr.example.com/user/manage",
   "introspection_endpoint": "https://ehr.example.com/user/introspect",
   "revocation_endpoint": "https://ehr.example.com/user/revoke",
