@@ -374,11 +374,11 @@ redirect URL and SHALL ensure that the state value is securely tied to the
 user’s current session (e.g., by relating the state value to a session
 identifier issued by the app).
 
-If the app needs to authenticate the identity of the end-user, it should
-include two OpenID Connect scopes:  `openid` and `fhirUser`.   When these scopes
-are requested, and the request is granted, the app will receive an id_token
-along with the access token.  For full details, see [SMART launch context
-parameters](scopes-and-launch-context.html).
+If the app needs to authenticate the identify of or retrieve information about
+the end-user, it should include two OpenID Connect scopes:  `openid` and
+`fhirUser`.   When these scopes are requested, and the request is granted, the
+app will receive an id_token along with the access token.  For full details,
+see [SMART launch context parameters](scopes-and-launch-context.html).
 
 The following requirements are adopted from [OpenID Connect Core 1.0 Specification section 3.1.2.1](https://openid.net/specs/openid-connect-core-1_0.html#AuthRequest):
 
