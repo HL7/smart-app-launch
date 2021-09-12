@@ -83,7 +83,7 @@ other arbitrary or user-provided URL (a practice known as an “open
 redirector”).
 
 * An app SHALL NOT store bearer tokens in cookies that are transmitted
-in the clear.
+as clear text.
 
 * Apps should persist tokens and other sensitive data in app-specific
 storage locations only, not in system-wide-discoverable locations.
