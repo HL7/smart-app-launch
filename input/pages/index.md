@@ -257,11 +257,13 @@ resources, the app discovers the EHR authorization server's OAuth
 `authorize` and `token` endpoint URLs by querying their
 [.well-known/smart-configuration] file.
 
-The app then can declare its launch context requirements by adding specific
-scopes to the request it sends to the EHR’s authorization server.  The 
-`authorize` endpoint will acquire the context the app needs and make it
-available.  For full details, see
-[SMART launch context parameters](https://build.fhir.org/ig/HL7/smart-app-launch/scopes-and-launch-context.html).
+The app then can request specific launch context elements (e.g., patient or
+encounter context) using corresponding scopes (e.g., `"launch/patient"` or
+`"launch/encounter"`) in the authorization request it sends to the EHR's
+authorization server.  The authorize endpoint will acquire the context the app
+needs and make it available.
+
+For full details, see [SMART launch context parameters](https://build.fhir.org/ig/HL7/smart-app-launch/scopes-and-launch-context.html).
 
 ### SMART authorization and resource retrieval
 
