@@ -693,7 +693,7 @@ redirect_uri=https%3A%2F%2Fapp%2Fafter-auth
   "access_token": "i8hweunweunweofiwweoijewiwe",
   "token_type": "bearer",
   "expires_in": 3600,
-  "scope": "patient/Observation.read patient/Patient.read",
+  "scope": "launch patient/Observation.read patient/Patient.read",
   "intent": "client-ui-name",
   "patient":  "123",
   "encounter": "456"
@@ -866,7 +866,7 @@ refresh_token=a47txjiipgxkvohibvsm
   "access_token": "m7rt6i7s9nuxkjvi8vsx",
   "token_type": "bearer",
   "expires_in": 3600,
-  "scope": "patient/Observation.read patient/Patient.read",
+  "scope": "launch patient/Observation.read patient/Patient.read",
   "refresh_token":"tGzv3JOkF0XG5Qx2TlKWIA"
 }
 ```
