@@ -85,8 +85,9 @@ redirector”).
 * An app SHALL NOT store bearer tokens in cookies that are transmitted
 as clear text.
 
-* Apps should persist tokens and other sensitive data in app-specific
-storage locations only, not in system-wide-discoverable locations.
+* Apps SHOULD persist tokens and other sensitive data in app-specific
+storage locations only, and SHOULD NOT persist them in
+system-wide-discoverable locations.
 
 #### Support for "public" and "confidential" apps
 
