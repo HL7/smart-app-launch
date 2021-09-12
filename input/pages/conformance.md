@@ -119,6 +119,12 @@ The authorization endpoints accepted by a FHIR resource server are exposed as a 
 FHIR endpoints requiring authorization SHALL serve a JSON document at the location formed by appending `/.well-known/smart-configuration` to their base URL.
 Contrary to RFC5785 Appendix B.4, the `.well-known` path component may be appended even if the FHIR endpoint already contains a path component.
 
+Responses for `/.well-known/smart-configuration` requests SHALL be JSON, regardless of `Accept` headers provided in the request.
+
+* clients MAY omit an `Accept` header
+* servers MAY ignore any client-supplied `Accept` headers
+* servers SHALL respond with `application/json`
+
 #### Request
 
 Sample requests:
