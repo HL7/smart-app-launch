@@ -22,3 +22,12 @@ The responsibility of supporting transparent consent falls on both the authoriza
 1. Client architectures where data are managed exclusively on end-user devices (e.g., many public clients including most native apps today, where an app is only registered once with a given EHR) are open to certain attacks that confidential clients can avoid (e.g., a malicious app on your device might steal tokens from a valid app, or might impersonate a valid app). A breach in this context is more likely to be isolated to a given user or device.
 
 The choice of app architecture should be based based on context. Apps that already need to manage data in the cloud should consider a confidential client architecture; apps that don't should consider a purely-on-device architecture. But this decision only works if refresh tokens are available in either case; otherwise, app developers will switch architectures just to be able to maintain persistent access, even if the overall security posture is diminished.
+
+### Best practices for server developers include
+
+* Remind users which apps have offline access (keeping in mind that too many reminders lead to alert fatigue)
+* Mitigate threats of compromised refreshed tokens
+* Expire an app's authorization if a refresh token is used more than once (see OAuth 2.1 [section 6.1](https://datatracker.ietf.org/doc/html/draft-ietf-oauth-v2-1-02#section-6.1))
+* Consider offering clients a way to bind refresh tokens to asymmetric secrets managed in hardware
+* E.g., per-device dynamic client registration (see ongoing work on [UDAP specifications](https://www.udap.org/))
+* E.g., techniques like the [draft DPOP specification](https://datatracker.ietf.org/doc/html/draft-ietf-oauth-dpop-03)
