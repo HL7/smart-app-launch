@@ -379,10 +379,6 @@ parameter as a synonym for <code>aud</code>.
 
 The app SHOULD limit its requested scopes to the minimum necessary (i.e.,
 minimizing the requested data categories and the requested duration of access).
-The app SHALL validate the value of the state parameter upon return to the
-redirect URL and SHALL ensure that the state value is securely tied to the
-user’s current session (e.g., by relating the state value to a session
-identifier issued by the app).
 
 If the app needs to authenticate the identify of or retrieve information about
 the end-user, it should include two OpenID Connect scopes:  `openid` and
@@ -493,6 +489,11 @@ risk of leaks.
     </tr>
   </tbody>
 </table>
+
+The app SHALL validate the value of the state parameter upon return to the
+redirect URL and SHALL ensure that the state value is securely tied to the
+user’s current session (e.g., by relating the state value to a session
+identifier issued by the app).
 
 ###### *For example*
 
