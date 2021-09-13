@@ -129,7 +129,7 @@ for example:
 - App is a native app that can only distribute a secret statically
 
 #### Considerations for PKCE Support
-All SMART apps SHALL support Proof Key for Code Exchange (PKCE).  PKCE is a standardized, cross-platform technique for public clients to mitigate the threat of authorization code interception. PKCE is described in [IETF RFC 7636](https://tools.ietf.org/html/rfc7636). SMART servers SHALL support the `S256` `code_challenge_method` and SHALL NOT support the `plain` method.
+All SMART apps SHALL support Proof Key for Code Exchange (PKCE).  PKCE is a standardized, cross-platform technique for clients to mitigate the threat of authorization code interception or injection. PKCE is described in [IETF RFC 7636](https://tools.ietf.org/html/rfc7636). SMART servers SHALL support the `S256` `code_challenge_method` and SHALL NOT support the `plain` method.
 
 #### Related reading
 
@@ -262,7 +262,7 @@ encounter context) using corresponding scopes (e.g., `"launch/patient"` or
 authorization server.  The authorize endpoint will acquire the context the app
 needs and make it available.
 
-For full details, see [SMART launch context parameters](https://build.fhir.org/ig/HL7/smart-app-launch/scopes-and-launch-context.html).
+For full details, see [SMART launch context parameters](scopes-and-launch-context.html#launch-context-arrives-with-your-access_token).
 
 ### SMART authorization and resource retrieval
 
@@ -379,10 +379,6 @@ parameter as a synonym for <code>aud</code>.
 
 The app SHOULD limit its requested scopes to the minimum necessary (i.e.,
 minimizing the requested data categories and the requested duration of access).
-The app SHALL validate the value of the state parameter upon return to the
-redirect URL and SHALL ensure that the state value is securely tied to the
-user’s current session (e.g., by relating the state value to a session
-identifier issued by the app).
 
 If the app needs to authenticate the identify of or retrieve information about
 the end-user, it should include two OpenID Connect scopes:  `openid` and
@@ -493,6 +489,11 @@ risk of leaks.
     </tr>
   </tbody>
 </table>
+
+The app SHALL validate the value of the state parameter upon return to the
+redirect URL and SHALL ensure that the state value is securely tied to the
+user’s current session (e.g., by relating the state value to a session
+identifier issued by the app).
 
 ###### *For example*
 
