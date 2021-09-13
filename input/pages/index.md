@@ -18,25 +18,28 @@ Enhancements and Clarifications to the SMART App Launch specification for this b
 The SMART App Launch Framework connects third-party applications to Electronic
 Health Record data, allowing apps to launch from inside or outside the user
 interface of an EHR system. The framework supports apps for use by clinicians,
-patients, and others via a PHR or Patient Portal or any FHIR system where a user can give permissions to launch an app. It provides a reliable, secure authorization protocol for
+patients, and others via a PHR or Patient Portal or any FHIR system where a user can launch an app. It provides a reliable, secure authorization protocol for
 a variety of app architectures, including apps that run on an end-user's device
-as well as apps that run on a secure server.  The Launch Framework supports the
-[four uses
-cases](http://argonautwiki.hl7.org/images/4/4c/Argonaut_UseCasesV1.pdf) defined
-for Phase 1 of the
-[Argonaut Project](http://argonautwiki.hl7.org/index.php?title=Main_Page):
+as well as apps that run on a secure server.
+The Launch Framework supports four key use cases:
 
 1. Patients apps that launch standalone
 1. Patient apps that launch from a portal
 1. Provider apps that launch standalone
 1. Provider apps that launch from a portal
 
+These use cases support apps that perform data visualization, data collection,
+clinical decision support, data sharing, case reporting, and many other
+functions.  For background on these use cases, see the
+[Argonaut Project](http://argonautwiki.hl7.org/index.php?title=Main_Page)'s
+[Use Cases V1](http://argonautwiki.hl7.org/images/4/4c/Argonaut_UseCasesV1.pdf).
+
 ### Profile audience and scope
 
 This profile is intended to be used by developers of apps that need to access
 FHIR resources by requesting access tokens from OAuth 2.0 compliant
 authorization servers. It is compatible with FHIR R2 (DSTU2) and later;
-this publication includes explicit definitions for FHIR R4.
+this publication includes explicit examples for FHIR R4.
 
 OAuth 2.0 authorization servers are configured to mediate access based on
 a set of rules configured to enforce institutional policy, which may
@@ -46,8 +49,14 @@ authorization server.
 
 The profile defines a method through which an app requests
 authorization to access a FHIR resource, and then uses that authorization
-to retrieve the resource. Synchronization of patient context is not addressed.  In other words, if the patient chart is changed during the session, the application will not inherently be updated.  Other security mechanisms, such as those mandated by HIPAA in the US (end-user authentication, session time-out, security auditing,
-and accounting of disclosures) are outside the scope of this profile.
+to retrieve the resource.  Synchronization of patient context is not addressed;
+for use cases that require context synchronization (e.g., learning about when
+the in-context patient changes within an EHR session) see 
+[FHIRcast](https://fhircast.org).  In other words, if the patient chart is 
+changed during the session, the application will not inherently be updated.
+Other security mechanisms, such as those mandated by HIPAA in the US (end-user
+authentication, session time-out, security auditing, and accounting of
+disclosures) are outside the scope of this profile.
 
 This profile provides a mechanism to *delegate* an entity's permissions (e.g., a user's permissions) to a 3rd-party app. The profile includes mechanisms to delegate a limited subset of an entity's permissions (e.g., only sharing access to certain data types). However, this profile does not model the permissiosn that the entity has in the first place (e.g., it provides no mechanism to specify that a given entity should or should not be able to access specific records in an EHR). Hence, this profile is designed to work on top of an EHR's existing user and permissions management system, enabling a standardized mechanism for delegation.
 
@@ -72,21 +81,21 @@ authorization codes, tokens) is transmitted ONLY to authenticated servers,
 over TLS-secured channels.
 
 * Apps SHALL generate an unpredictable `state` parameter for each user
-session.  An app SHALL validate the `state` value for any request sent to its
-redirect URL; include `state` with all authorization requests; and validate
-the `state` value included in access tokens it receives.
+session; SHALL include `state` with all authorization requests; and SHALL
+validate the `state` value for any request sent to its redirect URL.
 
-* An app SHALL NOT execute any inputs it receives as code.
+* An app SHALL NOT execute untrusted user-supplied inputs as code.
 
 * An app SHALL NOT forward values passed back to its redirect URL to any
 other arbitrary or user-provided URL (a practice known as an “open
 redirector”).
 
 * An app SHALL NOT store bearer tokens in cookies that are transmitted
-in the clear.
+as clear text.
 
-* Apps should persist tokens and other sensitive data in app-specific
-storage locations only, not in system-wide-discoverable locations.
+* Apps SHOULD persist tokens and other sensitive data in app-specific
+storage locations only, and SHOULD NOT persist them in
+system-wide-discoverable locations.
 
 #### Support for "public" and "confidential" apps
 
@@ -109,18 +118,18 @@ For strategies and best practices to protecting a client secret refer to:
 for example:
 
 - App runs on a trusted server with only server-side access to the secret
-- App is a native app that uses additional technology (such as dynamic client registration and universal redirect_uris) to protect the secret
+- App is a native app that uses additional technology (such as dynamic client registration and universal `redirect_uris`) to protect the secret
 
 
 ##### Use the <span class="label label-primary">public app</span> profile if your app is *unable* to protect a secret
 
 for example:
 
-- App is an HTML5 or JS in-browser app that would expose the secret in user space
+- App is an HTML5 or JS in-browser app (including single-page applications) that would expose the secret in user space
 - App is a native app that can only distribute a secret statically
 
 #### Considerations for PKCE Support
-All SMART apps SHOULD support Proof Key for Code Exchange (PKCE), and public client SMART apps SHALL support PKCE.  PKCE is a standardized, cross-platform technique for public clients to mitigate the threat of authorization code interception. PKCE is described in [IETF RFC 7636](https://tools.ietf.org/html/rfc7636). SMART requires the `S256` `code_challenge_method`. The `plain` method is not supported.
+All SMART apps SHALL support Proof Key for Code Exchange (PKCE).  PKCE is a standardized, cross-platform technique for clients to mitigate the threat of authorization code interception or injection. PKCE is described in [IETF RFC 7636](https://tools.ietf.org/html/rfc7636). SMART servers SHALL support the `S256` `code_challenge_method` and SHALL NOT support the `plain` method.
 
 #### Related reading
 
@@ -226,9 +235,10 @@ On receiving the launch notification, the app would query the issuer's `/metadat
 endpoint URLs for use in requesting authorization to access FHIR
 resources.
 
-Later, when the app prepares a list of access scopes to request from
-the EHR authorization server, it will be associated with the existing EHR context by
-including the launch notification in the scope.
+Later, when the app prepares its authorization request, it includes
+`launch` as a requested scope and includes a `launch={launch id}` URL
+parameter, echoing the value it received from the EHR in this
+notification.
 
 #### Standalone launch sequence
 
@@ -246,20 +256,13 @@ resources, the app discovers the EHR authorization server's OAuth
 `authorize` and `token` endpoint URLs by querying their
 [.well-known/smart-configuration] file.
 
-The app then can declare its launch context requirements
-by adding specific scopes to the request it sends to the EHR's authorization
-server.  The `authorize` endpoint
-will acquire the context the app needs and make it available.
+The app then can request specific launch context elements (e.g., patient or
+encounter context) using corresponding scopes (e.g., `"launch/patient"` or
+`"launch/encounter"`) in the authorization request it sends to the EHR's
+authorization server.  The authorize endpoint will acquire the context the app
+needs and make it available.
 
-##### *For example:*
-
-If the app needs patient context, the EHR's authorization server
-may provide the end-user with a
-patient selection widget.  For full details, see <a href="scopes-and-launch-context.html">SMART launch context parameters</a>.
-
-*	launch/patient - to indicate that the app needs to know a patient ID
-*	launch/encounter - to indicate the app needs an encounter
-
+For full details, see [SMART launch context parameters](scopes-and-launch-context.html#launch-context-arrives-with-your-access_token).
 
 ### SMART authorization and resource retrieval
 
@@ -276,9 +279,7 @@ patient selection widget.  For full details, see <a href="scopes-and-launch-cont
 At launch time, the app constructs a request for authorization by supplying the
 following parameters to the EHR’s "authorize" endpoint.
 
-*Note on PKCE Support: if an app supplies
-PKCE parameters in the authorization request (`code_challenge` and `code_challenge_method`, see table below for details)
-the EHR SHALL ensure that the `code_verifier` is present and valid in Step 3
+*Note on PKCE Support: the EHR SHALL ensure that the `code_verifier` is present and valid in Step 3
 ("App exchanges authorization code for access token"), at the completion of the OAuth flow.*
 
 <table class="table">
@@ -311,7 +312,7 @@ the EHR SHALL ensure that the `code_verifier` is present and valid in Step 3
       <td><span class="label label-success">required</span></td>
       <td>
 
-Must describe the access that the app needs, including clinical data scopes like
+Must describe the access that the app needs, including scopes like
 <code>patient/*.read</code>, <code>openid</code> and <code>fhirUser</code> (if app
 needs authenticated patient identity) and either:
 
@@ -333,7 +334,9 @@ Scopes</a> details.
 An opaque value used by the client to maintain state between the request and
 callback. The authorization server includes this value when redirecting the
 user-agent back to the client. The parameter SHALL be used for preventing
-cross-site request forgery or session fixation attacks.
+cross-site request forgery or session fixation attacks.  The app SHALL use
+an unpredictable value for the state parameter with at least 122 bits of
+entropy (e.g., a properly configured random uuid is suitable).
 
       </td>
     </tr>
@@ -341,50 +344,52 @@ cross-site request forgery or session fixation attacks.
       <td><code>aud</code></td>
       <td><span class="label label-success">required</span></td>
       <td>
-
 URL of the EHR resource server from which the app wishes to retrieve FHIR data.
 This parameter prevents leaking a genuine bearer token to a counterfeit
 resource server. (Note: in the case of an <span class="label label-primary">EHR launch</span>
 flow, this <code>aud</code> value is the same as the launch's <code>iss</code> value.)
+
+Note that the <code>aud</code> parameter is semantically equivalent to the 
+<code>resource</code> parameter defined in <a href="https://datatracker.ietf.org/doc/rfc8707">RFC8707</a>.
+SMART's <code>aud</code> parameter predates RFC8707 and we have decided not to
+rename it for reasons of backwards compatibility. We might consider renaming
+SMART's <code>aud</code> parameter in the future if implementer feedback
+indicates that alignment would be valuable.  For the current release, servers
+SHALL support the <code>aud</code> parameter and MAY support a <code>resource</code>
+parameter as a synonym for <code>aud</code>.
 
       </td>
     </tr>
 
     <tr>
       <td><code>code_challenge</code></td>
-      <td><span class="label label-info">conditional</span></td>
-      <td>This parameter is generated by the app and used for <a href="https://tools.ietf.org/html/rfc7636">PKCE</a>. This is the S256 hashed version of the <code>code_verifier</code> parameter, which will be used in the token request. All apps SHOULD implement PKCE support; see <a href="#considerations-for-pkce-support">Considerations for PKCE Support  above for additional requirements</a>.</td>
+      <td><span class="label label-info">required</span></td>
+      <td>This parameter is generated by the app and used for the code challenge, as specified by <a href="https://tools.ietf.org/html/rfc7636">PKCE</a>.  For example, when <code>code_challenge_method</code> is <code>'S256'</code>, this is the S256 hashed version of the <code>code_verifier</code> parameter.  See <a href="#considerations-for-pkce-support">considerations-for-pkce-support</a>.</td>
     </tr>
 
 
     <tr>
       <td><code>code_challenge_method</code></td>
-      <td><span class="label label-info">conditional</span></td>
-      <td>This parameter is required if an app is using <a href="https://tools.ietf.org/html/rfc7636">PKCE</a> and indicates the method used for the <code>code_challenge</code> parameter. Fixed value: <code>S256</code>.</td>
+      <td><span class="label label-info">required</span></td>
+      <td>Method used for the <code>code_challenge</code> parameter.  Example value: <code>S256</code>.  See <a href="#considerations-for-pkce-support">considerations-for-pkce-support</a>.</td>
     </tr>
 
   </tbody>
 </table>
 
-The app SHALL use an unpredictable value for the state parameter
-with at least 122 bits of entropy (e.g., a properly configured random uuid is suitable). The app SHALL validate the value
-of the state parameter upon return to the redirect URL and SHALL ensure
-that the state value is securely tied to the user’s current session
-(e.g., by relating the state value to a session identifier issued
-by the app). The app SHOULD limit the grants, scope, and period of
-time requested to the minimum necessary.
+The app SHOULD limit its requested scopes to the minimum necessary (i.e.,
+minimizing the requested data categories and the requested duration of access).
 
-If the app needs to authenticate the identity of the end-user, it should
-include two OpenID Connect scopes:  `openid` and `fhirUser`.   When these scopes
-are requested, and the request is granted, the app will receive an id_token
-along with the access token.  For full details, see [SMART launch context
-parameters](scopes-and-launch-context.html).
+If the app needs to authenticate the identify of or retrieve information about
+the end-user, it should include two OpenID Connect scopes:  `openid` and
+`fhirUser`.   When these scopes are requested, and the request is granted, the
+app will receive an id_token along with the access token.  For full details,
+see [SMART launch context parameters](scopes-and-launch-context.html).
 
 The following requirements are adopted from [OpenID Connect Core 1.0 Specification section 3.1.2.1](https://openid.net/specs/openid-connect-core-1_0.html#AuthRequest):
 
 * Authorization Servers SHALL support the use of the HTTP GET and POST methods at the Authorization Endpoint.
-* Clients MAY use the HTTP GET or POST methods to send the Authorization Request to the Authorization Server. If using the HTTP GET method, the request parameters are serialized using URI Query String Serialization. If using the HTTP POST method, the request parameters are serialized using Form Serialization and the `application/x-www-form-urlencoded` content type.
-
+* Clients SHALL use either the HTTP GET or the HTTP POST method to send the Authorization Request to the Authorization Server.  If using the HTTP GET method, the request parameters are serialized using URI Query String Serialization.  If using the HTTP POST method, the request parameters are serialized using Form Serialization and the application/x-www-form-urlencoded content type.
 
 ###### *For example*
 If an app needs demographics and observations for a single
@@ -485,6 +490,11 @@ risk of leaks.
   </tbody>
 </table>
 
+The app SHALL validate the value of the state parameter upon return to the
+redirect URL and SHALL ensure that the state value is securely tied to the
+user’s current session (e.g., by relating the state value to a session
+identifier issued by the app).
+
 ###### *For example*
 
 Based on the `client_id`, current EHR user, configured policy, and perhaps
@@ -507,7 +517,7 @@ Location: https://app/after-auth?
 After obtaining an authorization code, the app trades the code for an access
 token via HTTP `POST` to the EHR authorization server's token endpoint URL,
 using content-type `application/x-www-form-urlencoded`, as described in
-[section 4.1.3 of RFC6749](https://tools.ietf.org/html/rfc6749#section-4.1.3).
+section 4.1.3 of [RFC6749](https://tools.ietf.org/html/rfc6749#section-4.1.3).
 
 For <span class="label label-primary">public apps</span>, authentication is not
 possible (and thus not required), since a client with no secret cannot prove its
@@ -533,7 +543,7 @@ possesses a public/private keypairn whose public key is known to the EHR), the
 client authenticates using two parameters: `client_assertion_type` and
 `client_assertion`, as profiled in [SMART Backend Services Protocol
 Details](https://hl7.org/fhir/uv/bulkdata/authorization/index.html#protocol-details)
-(see [example](https://github.com/HL7/bulk-data/blob/master/spec/authorization/authorization-example-jwks-and-signatures.ipynb)).
+(see [example](https://github.com/HL7/bulk-data/blob/master/input/images/authorization-example-jwks-and-signatures.ipynb)).
 
 <table class="table">
   <thead>
@@ -601,7 +611,7 @@ includes the following parameters:
     <tr>
       <td><code>id_token</code></td>
       <td><span class="label label-info">optional</span></td>
-      <td>Authenticated patient identity and user details, if requested</td>
+      <td>Authenticated user identity and user details, if requested</td>
     </tr>
       <tr>
       <td><code>refresh_token</code></td>
@@ -683,7 +693,7 @@ redirect_uri=https%3A%2F%2Fapp%2Fafter-auth
   "access_token": "i8hweunweunweofiwweoijewiwe",
   "token_type": "bearer",
   "expires_in": 3600,
-  "scope": "patient/Observation.read patient/Patient.read",
+  "scope": "launch patient/Observation.read patient/Patient.read",
   "intent": "client-ui-name",
   "patient":  "123",
   "encounter": "456"
@@ -856,7 +866,7 @@ refresh_token=a47txjiipgxkvohibvsm
   "access_token": "m7rt6i7s9nuxkjvi8vsx",
   "token_type": "bearer",
   "expires_in": 3600,
-  "scope": "patient/Observation.read patient/Patient.read",
+  "scope": "launch patient/Observation.read patient/Patient.read",
   "refresh_token":"tGzv3JOkF0XG5Qx2TlKWIA"
 }
 ```

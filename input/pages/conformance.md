@@ -4,7 +4,7 @@ may implement a subset of these.  The methods of declaring a server's SMART auth
 
 ### SMART on FHIR OAuth authorization Endpoints and Capabilities
 
-The server SHALL convey the FHIR OAuth authorization endpoints and any *optional* SMART Capabilitise it supports using a [Well-Known Uniform Resource Identifiers (URIs)](#using-well-known) JSON file. (In previous versions of SMART, some of these details were also conveyed in a server's CapabilityStatement; this mechanism is now deprecated.)
+The server SHALL convey the FHIR OAuth authorization endpoints and any *optional* SMART Capabilities it supports using a [Well-Known Uniform Resource Identifiers (URIs)](#using-well-known) JSON file. (In previous versions of SMART, some of these details were also conveyed in a server's CapabilityStatement; this mechanism is now deprecated.)
 
 
 #### Capability Sets
@@ -99,6 +99,7 @@ completing the launch.
 ##### Permissions
 
 * `permission-offline`: support for refresh tokens (requested by `offline_access` scope)
+* `permission-online`: support for refresh tokens (requested by `online_access` scope)
 * `permission-patient`: support for patient-level scopes (e.g. `patient/Observation.rs`)
 * `permission-user`: support for user-level scopes (e.g. `user/Appointment.rs`)
 * `permission-v1`: support for SMARTv1 scope syntax (e.g., `patient/Observation.read`)
@@ -117,6 +118,12 @@ The authorization endpoints accepted by a FHIR resource server are exposed as a 
 
 FHIR endpoints requiring authorization SHALL serve a JSON document at the location formed by appending `/.well-known/smart-configuration` to their base URL.
 Contrary to RFC5785 Appendix B.4, the `.well-known` path component may be appended even if the FHIR endpoint already contains a path component.
+
+Responses for `/.well-known/smart-configuration` requests SHALL be JSON, regardless of `Accept` headers provided in the request.
+
+* clients MAY omit an `Accept` header
+* servers MAY ignore any client-supplied `Accept` headers
+* servers SHALL respond with `application/json`
 
 #### Request
 
@@ -144,10 +151,10 @@ A JSON document must be returned using the `application/json` mime type.
 - `issuer`: **CONDITIONAL**, String conveying this system's OpenID Connect Issuer URL. Required if the server's capabilities include `sso-openid-connect`; otherwise, omitted.
 - `authorization_endpoint`: **REQUIRED**, URL to the OAuth2 authorization endpoint.
 - `token_endpoint`: **REQUIRED**, URL to the OAuth2 token endpoint.
-- `token_endpoint_auth_methods`: **OPTIONAL**, array of client authentication methods supported by the token endpoint. The options are "client_secret_post" and "client_secret_basic".
+- `token_endpoint_auth_methods_supported`: **OPTIONAL**, array of client authentication methods supported by the token endpoint. The options are "client_secret_post", "client_secret_basic", and "private_key_jwt".
 - `registration_endpoint`: **OPTIONAL**, if available, URL to the OAuth2 dynamic registration endpoint for this FHIR server.
 - `scopes_supported`: **RECOMMENDED**, array of scopes a client may request. See [scopes and launch context][smart-scopes]. The server SHALL support all scopes listed here; additional scopes MAY be supported (so clients should not consider this an exhaustive list).
-- `response_types_supported`: **RECOMMENDED**, array of OAuth2 `response_type` values that are supported
+- `response_types_supported`: **RECOMMENDED**, array of OAuth2 `response_type` values that are supported.  Implementers can refer to `response_type`s defined in OAuth 2.0 ([RFC 6749](https://datatracker.ietf.org/doc/html/rfc6749)) and in [OIDC Core](https://openid.net/specs/openid-connect-core-1_0.html#Authentication).
 - `management_endpoint`: **RECOMMENDED**, URL where an end-user can view which applications currently have access to data and can make adjustments to these access rights.
 - `introspection_endpoint` :  **RECOMMENDED**, URL to a server's introspection endpoint that can be used to validate a token.
 - `revocation_endpoint` :  **RECOMMENDED**, URL to a server's revoke endpoint that can be used to revoke a token.
@@ -167,7 +174,7 @@ Content-Type: application/json
   "token_endpoint_auth_methods_supported": ["client_secret_basic"],
   "registration_endpoint": "https://ehr.example.com/auth/register",
   "scopes_supported": ["openid", "profile", "launch", "launch/patient", "patient/*.rs", "user/*.rs", "offline_access"],
-  "response_types_supported": ["code", "code id_token", "id_token", "refresh_token"],
+  "response_types_supported": ["code", "code id_token", "id_token"],
   "management_endpoint": "https://ehr.example.com/user/manage",
   "introspection_endpoint": "https://ehr.example.com/user/introspect",
   "revocation_endpoint": "https://ehr.example.com/user/revoke",

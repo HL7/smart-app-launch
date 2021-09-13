@@ -2,7 +2,11 @@ Extension: OauthUris
 Id: oauth-uris
 Title: "SMART on FHIR Oauth URIs"
 
-Description: "Declares support for automated dicovery of OAuth2 endpoints, if a
+Description: "DEPRECATION NOTICE: These discovery extensions have been
+deprecated in favor of SMART capability discovery via
+.well-known/smart-configuration.
+
+Declares support for automated dicovery of OAuth2 endpoints, if a
 server supports SMART on FHIR authorization for access. Any time a client sees
 this extension, it must be prepared to authorize using SMART’s OAuth2-based
 protocol."
