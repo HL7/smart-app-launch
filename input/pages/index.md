@@ -529,7 +529,7 @@ where the username is the app's `client_id` and the password is the app's
 
 * If a client has registered for [JWT
 assertion](https://tools.ietf.org/html/rfc7523)-based authentication (i.e., it
-possesses a public/private keypairn whose public key is known to the EHR), the
+possesses a public/private keypair whose public key is known to the EHR), the
 client authenticates using two parameters: `client_assertion_type` and
 `client_assertion`, as profiled in [SMART Backend Services Protocol
 Details](https://hl7.org/fhir/uv/bulkdata/authorization/index.html#protocol-details)
