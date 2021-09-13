@@ -512,7 +512,7 @@ Launch context parameter | Example value | Meaning
 `fhirContext`         | `["Appointment/123"]`                    | Array of relative resource References to any resource type other than "Patient" or "Encounter".  It is not prohibited to have more than one Reference to a given *type* of resource.
 `need_patient_banner` | `true` or `false` (boolean)              | Boolean value indicating whether the app was launched in a UX context where a patient banner is required (when `true`) or not required (when `false`). An app receiving a value of `false` should not take up screen real estate displaying a patient banner.
 `intent`              | `"reconcile-medications"`                | String value describing the intent of the application launch (see notes [below](#launch-intent))
-`smart_style_url`     | `"https://ehr/styles/smart_v1.json"`     | String URL where the host's style parameters can be retrieved (for apps that support [styling](#styling))
+`smart_style_url`     | `"https://ehr/styles/smart_v1.json"`     | String URL where the EHR's style parameters can be retrieved (for apps that support [styling](#styling))
 `tenant`              | `"2ddd6c3a-8e9a-44c6-a305-52111ad302a2"` | String conveying an opaque identifier for the healthcare organization that is launching the app. This parameter is intended primarily to support EHR Launch scenarios.
 {:.grid}
 
@@ -532,8 +532,8 @@ and they will *not be permitted* within the `fhirContext` array.
 that can be accessed during the SMART launch. The optional `intent` parameter
 in the launch context provides a mechanism for the SMART EHR to communicate to
 the client app which specific context should be displayed as the outcome of the
-launch. This allows for closer integration between the host and client, so that
-different launch points in the host UI can target specific displays within the
+launch. This allows for closer integration between the EHR and client, so that
+different launch points in the EHR UI can target specific displays within the
 client app.
 
 For example, a patient timeline app might provide three specific UI contexts,
@@ -551,7 +551,7 @@ context.
 
 Note:  *SMART makes no effort to standardize `intent` values*.  Intents simply
 provide a mechanism for tighter custom integration between an app and a SMART
-host. The meaning of intents must be negotiated between the app and the host.
+EHR. The meaning of intents must be negotiated between the app and the EHR.
 
 ###### SMART App Styling (experimental[^1])
 {: #styling}
@@ -578,7 +578,7 @@ The URL should serve a "SMART Style" JSON object with one or more of the followi
 ```
 
 The URL value itself is to be considered a version key for the contents of the SMART Style JSON:
-hosts must return a new URL value in the `smart_style_url` launch context parameter if the contents
+EHRs must return a new URL value in the `smart_style_url` launch context parameter if the contents
 of this JSON is changed.
 
 Style Property | Description
