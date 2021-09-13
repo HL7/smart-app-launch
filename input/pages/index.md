@@ -262,7 +262,7 @@ encounter context) using corresponding scopes (e.g., `"launch/patient"` or
 authorization server.  The authorize endpoint will acquire the context the app
 needs and make it available.
 
-For full details, see [SMART launch context parameters](https://build.fhir.org/ig/HL7/smart-app-launch/scopes-and-launch-context.html).
+For full details, see [SMART launch context parameters](scopes-and-launch-context.html#launch-context-arrives-with-your-access_token).
 
 ### SMART authorization and resource retrieval
 
