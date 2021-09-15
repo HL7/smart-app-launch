@@ -285,7 +285,7 @@ Assume that a "bilirubin result monitoring service" client has registered with t
 
 The client protects its private key from unauthorized access, use, and modification.  
 
-At runtime, when the bilirubin monitoring service wants to request authenticate to the token endpoint, it must generate a one-time-use authenticatin JWT.
+At runtime, when the bilirubin monitoring service wants to request authenticate to the token endpoint, it must generate a one-time-use authentication JWT.
 
 TODO: Update (see [example](authorization-example-jwks-and-signatures.md) [raw](authorization-example-jwks-and-signatures.ipynb), and update the signatures below from the example)
 
