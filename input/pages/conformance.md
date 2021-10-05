@@ -15,25 +15,25 @@ External implementation guides MAY define additional capabilities to be discover
 
 ##### Patient Access for Standalone Apps
 1. `launch-standalone`
-1. At least one of `client-public` or `client-confidential-symmetric`
+1. At least one of `client-public` or `client-confidential-symmetric`; and MAY support `client-confidential-asymmetric`
 1. `context-standalone-patient`
 1. `permission-patient`
 
 #####  Patient Access for EHR Launch (i.e. from Portal)
 1. `launch-ehr`
-1. At least one of `client-public` or `client-confidential-symmetric`
+1. At least one of `client-public` or `client-confidential-symmetric`; and MAY support `client-confidential-asymmetric`
 1. `context-ehr-patient`
 1. `permission-patient`
 
 #####  Clinician Access for Standalone
 1. `launch-standalone`
-1. At least one of `client-public` or `client-confidential-symmetric`
+1. At least one of `client-public` or `client-confidential-symmetric`; and MAY support `client-confidential-asymmetric`
 1. `permission-user`
 1. `permission-patient`
 
 #####  Clinician Access for EHR Launch
 1. `launch-ehr`
-1. At least one of `client-public` or `client-confidential-symmetric`
+1. At least one of `client-public` or `client-confidential-symmetric`; and MAY support `client-confidential-asymmetric`
 1. `context-ehr-patient` support
 1. `context-ehr-encounter` support
 1. `permission-user`
@@ -55,7 +55,8 @@ To promote interoperability, the following SMART on FHIR *Capabilities* have bee
 ##### Client Types
 
 * `client-public`: support for SMART's public client profile (no client authentication)  
-* `client-confidential-symmetric`: support for SMART's confidential client profile (symmetric client secret authentication)
+* `client-confidential-symmetric`: support for SMART's symmetric confidential client profile ("client secret" authentication). See [Client Authentication: Symmetric](client-confidential-symmetric.html).
+* `client-confidential-asymmetric`: support for SMART's asymmetric confidential client profile ("JWT authentication"). See [Client Authentication: Asymmetric](client-confidential-asymmetric.html).
 
 ##### Single Sign-on
 
