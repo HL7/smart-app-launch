@@ -313,7 +313,7 @@ following parameters to the EHR’s "authorize" endpoint.
       <td>
 
 Must describe the access that the app needs, including scopes like
-<code>patient/*.read</code>, <code>openid</code> and <code>fhirUser</code> (if app
+<code>patient/*.rs</code>, <code>openid</code> and <code>fhirUser</code> (if app
 needs authenticated patient identity) and either:
 
 <ul>
@@ -395,8 +395,8 @@ The following requirements are adopted from [OpenID Connect Core 1.0 Specificati
 If an app needs demographics and observations for a single
 patient, and also wants information about the current logged-in user, the app  can request:
 
-* `patient/Patient.read`
-* `patient/Observation.read`
+* `patient/Patient.rs`
+* `patient/Observation.rs`
 * `openid fhirUser`
 
 If the app was launched from an EHR, the app adds a `launch` scope and a
@@ -425,7 +425,7 @@ Location: https://ehr/authorize?
             client_id=app-client-id&
             redirect_uri=https%3A%2F%2Fapp%2Fafter-auth&
             launch=xyz123&
-            scope=launch+patient%2FObservation.read+patient%2FPatient.read+openid+fhirUser&
+            scope=launch+patient%2FObservation.rs+patient%2FPatient.rs+openid+fhirUser&
             state=98wrghuwuogerg97&
             aud=https://ehr/fhir
 ```
@@ -441,7 +441,7 @@ Alternatively, the following example shows one way for a client app to cause the
       <input type="hidden" name="client_id" value="app-client-id"/>
       <input type="hidden" name="redirect_uri" value="https://app/after-auth"/>
       <input type="hidden" name="launch" value="xyz123"/>
-      <input type="hidden" name="scope" value="launch patient/Observation.read patient/Patient.read openid fhirUser"/>
+      <input type="hidden" name="scope" value="launch patient/Observation.rs patient/Patient.rs openid fhirUser"/>
       <input type="hidden" name="state" value="98wrghuwuogerg97"/>
       <input type="hidden" name="aud" value="https://ehr/fhir"/>
     </form>
@@ -676,7 +676,7 @@ redirect_uri=https%3A%2F%2Fapp%2Fafter-auth
   "access_token": "i8hweunweunweofiwweoijewiwe",
   "token_type": "bearer",
   "expires_in": 3600,
-  "scope": "launch patient/Observation.read patient/Patient.read",
+  "scope": "launch patient/Observation.rs patient/Patient.rs",
   "intent": "client-ui-name",
   "patient":  "123",
   "encounter": "456"
@@ -849,7 +849,7 @@ refresh_token=a47txjiipgxkvohibvsm
   "access_token": "m7rt6i7s9nuxkjvi8vsx",
   "token_type": "bearer",
   "expires_in": 3600,
-  "scope": "launch patient/Observation.read patient/Patient.read",
+  "scope": "launch patient/Observation.rs patient/Patient.rs",
   "refresh_token":"tGzv3JOkF0XG5Qx2TlKWIA"
 }
 ```
