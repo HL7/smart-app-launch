@@ -227,8 +227,7 @@ A launch might cause the browser to navigate to:
 
     Location: https://app/launch?iss=https%3A%2F%2Fehr%2Ffhir&launch=xyz123
 
-On receiving the launch notification, the app would query the issuer's `/metadata/` endpoint or
-[.well-known/smart-configuration] endpoint which contains (among other details) the EHR's identifying the OAuth `authorize` and `token`
+On receiving the launch notification, the app would query the issuer's [.well-known/smart-configuration] endpoint which contains (among other details) the EHR's identifying the OAuth `authorize` and `token`
 endpoint URLs for use in requesting authorization to access FHIR
 resources.
 
