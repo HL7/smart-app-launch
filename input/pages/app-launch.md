@@ -144,12 +144,15 @@ scope, once the access token expires.
 ###  Top-level steps for SMART App Launch
 
 1. [Register App with EHR](#step-1-register) (*one-time step*, can be out-of-band)
-2. [Launch App](#step-2-launch) (EHR Launch or Standalone Launch)
+2. Launch App:  [Standalone Launch](#step-2-launch-standalone) or [EHR Launch](#step-2-launch-ehr)
 3. [Retrieve .well-known/smart-configuration](#step-3-discovery)
-4. [Request authorization code](#step-4-authorization-code)
+4. [Obtain authorization code](#step-4-authorization-code)
 5. [Retrieve access token](#step-5-access-token)
 6. [Access FHIR API](#step-6-fhir-api)
 7. [Refresh access token](#step-7-refresh)
+
+<div>{% include overview-app-launch.svg %}</div>
+<br clear="all"/>
 
 <a id="step-1-register"></a>
 
@@ -175,10 +178,7 @@ No matter how an app registers with an EHR's authorization service, at registrat
 The EHR confirms the app's registration parameters and communicates a `client_id` to the app.
 
 <a id="step-2-launch"></a>
-
-### Launch App
-
-The two alternative launch sequences are described below.
+<a id="step-2-launch-standalone"></a>
 
 ### Launch App: Standalone Launch
 
@@ -187,11 +187,13 @@ launch</span> flow, a user selects an app from outside the EHR,
 for example by tapping an app icon on a mobile phone home screen.  
 
 
-### Request
-There is no explicit request associated with this step of the SMART App Launch process. The app proceed with SMART App Launch flow [step 3: retrieve `.well-known/smart-configuration`](#step-3-discovery).
+#### Request
+There is no explicit request associated with this step of the SMART App Launch process.  The app proceeds to the [next step](#step-3-discovery) of the SMART App Launch flow.
 
-### Response
+#### Response
 N/A
+
+<a id="step-2-launch-ehr"></a>
 
 ### Launch App: EHR Launch
 
@@ -251,13 +253,11 @@ parameter, echoing the value it received from the EHR in this
 notification.
 
 #### Response
-The app proceeds with SMART App Launch flow [step 3: retrieve `.well-known/smart-configuration`](#step-3-discovery).
+The app proceeds to the [next step](#step-3-discovery) of the SMART App Launch flow.
 
 <a id="step-3-discovery"></a>
 
 ### Retrieve `.well-known/smart-configuration`
-
-### SMART authorization and resource retrieval
 
 In order to obtain launch context and request authorization to access FHIR
 resources, the app discovers the EHR FHIR server's SMART configuration metadata,
@@ -271,15 +271,14 @@ See [example response](conformance.html#example-response)
 
 <a id="step-4-authorization-code"></a>
 
-### Request authorization code
+### Obtain authorization code
 
 To proceed with a launch, the app constructs a request for an authorization code.
 
 #### Request
 The app supplies the following parameters to the EHR’s "authorize" endpoint.
 
-*Note on PKCE Support: the EHR SHALL ensure that the `code_verifier` is present and valid in Step 3
-("App exchanges authorization code for access token"), at the completion of the OAuth flow.*
+*Note on PKCE Support: the EHR SHALL ensure that the `code_verifier` is present and valid when the code is exchanged for an access token.*
 
 <table class="table">
   <thead>
@@ -561,7 +560,7 @@ MAY use [Symmetric Authentication](client-confidential-symmetric.html).
   </tbody>
 </table>
 
-### Response
+#### Response
 
 The EHR authorization server SHALL return a JSON object that includes an access token
 or a message indicating that the authorization request has been denied. The JSON structure

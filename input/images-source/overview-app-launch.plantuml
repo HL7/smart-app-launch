@@ -1,0 +1,29 @@
+@startuml
+participant App
+participant "EHR with Authorization Server" as EHR
+participant "FHIR Server" as FHIR
+
+opt  Precondition: Client Registration
+    App ->> EHR: (may be out of band)
+end
+alt EHR Launch
+    EHR->>EHR: EHR user \nlaunches app
+    EHR->> App: Launch request
+else Standalone Launch
+    App->>App: App user \nconnects to EHR
+end
+App ->> FHIR: Discovery request
+FHIR ->> App: Discovery response
+App ->> EHR: Authorization request
+opt 
+    EHR->> EHR: EHR incorporates user input\ninto authorization decision
+end
+alt Granted
+    EHR ->> App: Authorization granted
+    App ->> FHIR: Access token request
+    EHR ->> App: Access token response
+    App ->> FHIR: Request Resources
+else Denied
+    EHR ->> App: Authorization error
+end
+@enduml

@@ -281,7 +281,7 @@ Assume that a "bilirubin result monitoring service" client has registered with t
 
  * JWT "issuer" URL: `https://bili-monitor.example.com`
  * OAuth2 `client_id`: `bili_monitor`
- * JWK identfier: `kid` value (see [example JWK](sample-jwks/RS384.public.json))
+ * JWK identfier: `kid` value (see [example JWK](RS384.public.json))
 
 The client protects its private key from unauthorized access, use, and modification.  
 

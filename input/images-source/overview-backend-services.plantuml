@@ -1,0 +1,18 @@
+@startuml
+participant App as "Backend Service"
+participant "EHR with Authorization Server" as EHR
+participant "FHIR Server" as FHIR
+
+opt  Precondition: Client Registration
+    App ->> EHR: (may be out of band)
+end
+App ->> FHIR: Discovery request
+FHIR ->> App: Discovery response
+App ->> EHR: Access token request
+alt Granted
+    EHR ->> App: Access token response
+    App ->> FHIR: Request Resources
+else Denied
+    EHR ->> App: Authorization error
+end
+@enduml

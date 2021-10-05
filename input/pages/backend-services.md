@@ -72,12 +72,39 @@ and carefully weighed before choosing a different course
 4.  MAY: This is truly optional language for an implementation; can be included or omitted as the implementer decides with no implications
 
 
-### Registering a SMART Backend Service (communicating public keys)
+### Top-level steps for Backend Services Authorization
+
+<div>{% include overview-backend-services.svg %}</div>
+<br clear="all"/>
+
+1. [Register Backend Service](#step-1-register) (*one-time step*, can be out-of-band)
+2. [Retrieve .well-known/smart-configuration](#step-2-discovery)
+3. [Requets access token](#step-3-access-token)
+4. Access FHIR API
+
+
+<a id="step-1-register"></a>
+
+### Register SMART Backend Service (communicating public keys)
 
 Before a SMART client can run against a FHIR server, the client SHALL register
-with the server by following the registration steps described in `client-confidential-symmetric` authentication (TODO: link).
+with the server by following the [registration steps described in `client-confidential-asymmetric` authentication](client-confidential-asymmetric.html).
 
-### Obtaining an Access Token
+<a id="step-2-discovery"></a>
+
+### Retrieve `.well-known/smart-configuration`
+
+In order to request authorization to access FHIR resources, the app discovers the EHR FHIR server's SMART configuration metadata, including OAuth `token` endpoint URL.
+
+#### Request
+The app issues an HTTP GET with an `Accept` header supporting `application/json` to retrieve the SMART configuration file. See [example request](conformance.html#example-request)
+
+#### Response
+See [example response](conformance.html#example-response)
+
+<a id="step-3-access-token"></a>
+
+### Request acess token
 
 By the time a client has been registered with the FHIR authorization server, the key
 elements of organizational trust will have been established. That is, the

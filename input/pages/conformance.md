@@ -127,7 +127,8 @@ Responses for `/.well-known/smart-configuration` requests SHALL be JSON, regardl
 * servers SHALL respond with `application/json`
 
 <a id="example-request">
-#### Request
+
+#### Sample Request
 
 Sample requests:
 
@@ -164,7 +165,8 @@ A JSON document must be returned using the `application/json` mime type.
 - `code_challenge_methods_supported`|**REQUIRED**|Array of PKCE code challenge methods supported. The `S256` method SHALL be included in this list, and the `plain` method SHALL NOT be included in this list.
 
 
-<a id="example-request">
+<a id="example-response">
+
 #### Sample Response
 
 ```
