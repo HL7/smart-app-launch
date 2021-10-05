@@ -632,7 +632,7 @@ The [OpenID Connect Core specification](http://openid.net/specs/openid-connect-c
 describes a wide surface area with many optional capabilities. To be considered compatible
 with the SMART's `sso-openid-connect` capability, the following requirements apply:
 
- * Response types: The EHR SHALL support the Authorization Code Flow, with the request parameters as defined in [this guide](index.html). Support is not required for parameters that OIDC lists as optional (e.g. `id_token_hint`, `acr_value`), but EHRs are encouraged to review these optional parameters.
+ * Response types: The EHR SHALL support the Authorization Code Flow, with the request parameters as defined in [SMART App Launch](app-launch.html). Support is not required for parameters that OIDC lists as optional (e.g. `id_token_hint`, `acr_value`), but EHRs are encouraged to review these optional parameters.
 
  * Public Keys Published as Bare JWK Keys: The EHR SHALL publish public keys as bare JWK keys (which MAY also be accompanied by X.509 representations of those keys).
 

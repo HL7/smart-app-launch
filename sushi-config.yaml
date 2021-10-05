@@ -20,6 +20,8 @@ publisher:
   email: fhir@lists.HL7.org
 pages:
   index.md:
+    title: Overview
+  app-launch.md:
     title: App Launch
     example-request-patient.md:  # verified
       title: Example Request Patient
@@ -51,8 +53,9 @@ parameters:
 # │  To use a provided ig-data/input/includes/menu.xml file, delete the "menu" property below.     │
 # ╰────────────────────────────────────────────────────────────────────────────────────────────────╯
 menu:
+  Overview: index.html
   User-facing apps:
-    Launch and Authorization: index.html
+    Launch and Authorization: app-launch.html
     Scopes and Launch Context: scopes-and-launch-context.html
   Backend Services: backend-services.html
   Client Authentication:

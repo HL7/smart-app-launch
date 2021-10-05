@@ -7,7 +7,7 @@ Specifically, this profile describes the registration-time metadata required for
 a client using asymmetric keys, and the runtime process by which a client can
 authenticate to an OAuth server's token endpoint. This profile can be
 implemented by user-facing SMART apps in the context of the [SMART App Launch
-flow](index.html) or by (SMART Backend Services)(backend-services.html) that
+flow](app-launch.html) or by (SMART Backend Services)(backend-services.html) that
 establish a connection with user-facing authorization step.
 
 ### **Use this profile** when the following conditions apply:
