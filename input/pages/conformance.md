@@ -191,11 +191,4 @@ Content-Type: application/json
 }
 ```
 
-#### Well-Known URI Registry
-
-- URI Suffix: smart-configuration
-
-[well-known]: https://tools.ietf.org/html/rfc5785
-[oid]: https://openid.net/specs/openid-connect-discovery-1_0.html
-[smart-scopes]: http://docs.smarthealthit.org/authorization/scopes-and-launch-context/#quick-start
-[extensions]:{{site.data.fhir.path}}extensibility.html
+[smart-scopes]: scopes-and-launch-context.html/#quick-start
