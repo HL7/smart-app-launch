@@ -19,7 +19,7 @@ to any FHIR API endpoint, including both synchronous and asynchronous access.
 defined set of FHIR resources.
 * The client may run autonomously, or with user interaction that does not
 include access authorization.
-* The client supports `client-confidential-asymmetric` authentication (TODO: link)
+* The client supports [`client-confidential-asymmetric` authentication](client-confidential-asymmetric.html)
 * No compelling need exists for a user to authorize the access at runtime.
 
 *Note* See Also:
