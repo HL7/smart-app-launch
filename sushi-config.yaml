@@ -23,12 +23,12 @@ pages:
     title: Overview
   app-launch.md:
     title: App Launch
-    example-request-patient.md:  # verified
-      title: Example Request Patient
-    example-request-refresh.md:  # verified
-      title: Example Request Refresh
-    example-request-token-post.md:  # verified
-      title: Example Request Token Post
+    example-app-launch-public.md:
+      title: Example App Launch for Public Client
+    example-app-launch-asymmetric-auth.md:
+      title: Example App Launch for Asymmetric Client Auth
+    example-app-launch-symmetric-auth.md:
+      title: Example App Launch for Symmetric Client Auth
   backend-services.md:
       title: Backend Services
   scopes-and-launch-context.md:

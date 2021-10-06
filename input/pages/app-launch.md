@@ -173,6 +173,11 @@ No matter how an app registers with an EHR's authorization service, at registrat
 * Register zero or more fixed, fully-specified launch URL with the EHR's authorization server
 * Register one or more fixed, fully-specified `redirect_uri`s with the EHR's authorization server.  Note: In the case of native clients following the OAuth 2.0 for Native Apps specification [(RFC 8252)](https://tools.ietf.org/html/rfc8252), it may be appropriate to leave the port as a dynamic variable in an otherwise fixed redirect URI.
 
+For confidential clients, additional registration-time requirements are defined based on the client authentication method.
+
+* For asymmetric client authentication: a [JSON Web Key Set or JWSK URL](client-confidential-asymmetric.html#registering-a-client-communicting-public-keys) is established
+* For symmetric client authentication: a [client secret](client-confidential-symmetric.html) is established
+
 #### Response
 
 The EHR confirms the app's registration parameters and communicates a `client_id` to the app.
@@ -192,6 +197,12 @@ There is no explicit request associated with this step of the SMART App Launch p
 
 #### Response
 N/A
+
+#### Examples
+
+* [Public client](example-app-launch-public.html#step-2-launch)
+* [Confidential client, asymmetric authentication](example-app-launch-asymmetric-auth.html#step-2-launch)
+* [Confidential client, symmetric authentication](example-app-launch-symmetric-auth.html#step-2-launch)
 
 <a id="step-2-launch-ehr"></a>
 
@@ -255,19 +266,26 @@ notification.
 #### Response
 The app proceeds to the [next step](#step-3-discovery) of the SMART App Launch flow.
 
+
 <a id="step-3-discovery"></a>
 
 ### Retrieve `.well-known/smart-configuration`
 
 In order to obtain launch context and request authorization to access FHIR
 resources, the app discovers the EHR FHIR server's SMART configuration metadata,
-including OAuth `authorize` and `token` endpoint URLs.
+including OAuth `authorization_endpoint` and `token_endpoint` URLs.
 
 #### Request
-The app issues an HTTP GET with an `Accept` header supporting `application/json` to retrieve the SMART configuration file. See [example request](conformance.html#example-request)
+
+The discovery URL is constructed by appending `.well-known/smart-configuration` to the FHIR Base URL.  The app issues an HTTP GET to the discovery URL with an `Accept` header supporting `application/json`.
 
 #### Response
-See [example response](conformance.html#example-response)
+The EHR responds with a SMART configuration JSON document as described in [conformance](conformance.html)
+
+#### Examples
+
+* [Example request and response](conformance.html#example-request)
+
 
 <a id="step-4-authorization-code"></a>
 
@@ -504,6 +522,13 @@ Location: https://app/after-auth?
   state=98wrghuwuogerg97
 ```
 
+#### Examples
+
+* [Public client](example-app-launch-public.html#step-4-authorization-code)
+* [Confidential client, asymmetric authentication](example-app-launch-asymmetric-auth.html#step-4-authorization-code)
+* [Confidential client, symmetric authentication](example-app-launch-symmetric-auth.html#step-4-authorization-code)
+
+
 
 <a id="step-5-access-token"></a>
 
@@ -547,16 +572,15 @@ MAY use [Symmetric Authentication](client-confidential-symmetric.html).
       <td>The same redirect_uri used in the initial authorization request</td>
     </tr>
     <tr>
+      <td><code>code_verifier</code></td>
+      <td><span class="label label-warning">required</span></td>
+      <td>This parameter is used to verify against the <code>code_challenge</code> parameter previously provided in the authorize request.</td>
+    </tr>
+    <tr>
       <td><code>client_id</code></td>
       <td><span class="label label-warning">conditional</span></td>
       <td>Required for <span class="label label-primary">public apps</span>. Omit for <span class="label label-primary">confidential apps</span>.</td>
     </tr>
-    <tr>
-      <td><code>code_verifier</code></td>
-      <td><span class="label label-warning">conditional</span></td>
-      <td>Required for PKCE. This parameter is used to verify against the <code>code_challenge</code> parameter previously provided in the authorize request.</td>
-    </tr>
-
   </tbody>
 </table>
 
@@ -649,42 +673,15 @@ guess.  Using a reference may require an extra interaction between the
 resource server and the authorization server; the mechanics of such an
 interaction are not defined by this specification.*
 
-#### Example request and response
-
-Given an authorization code, the app trades it for an access token via HTTP
-`POST`.
-
-**Request**
-
-```
-POST /token HTTP/1.1
-Host: ehr
-Authorization: Basic bXktYXBwOm15LWFwcC1zZWNyZXQtMTIz
-Content-Type: application/x-www-form-urlencoded
-
-grant_type=authorization_code&
-code=123abc&
-redirect_uri=https%3A%2F%2Fapp%2Fafter-auth
-```
-
-**Response**
-
-```
-{
-  "access_token": "i8hweunweunweofiwweoijewiwe",
-  "token_type": "bearer",
-  "expires_in": 3600,
-  "scope": "launch patient/Observation.rs patient/Patient.rs",
-  "intent": "client-ui-name",
-  "patient":  "123",
-  "encounter": "456"
-}
-```
-
-[See full payload example](example-request-token-post.html).
-
 At this point, **the authorization flow is complete**. Follow steps below to work with
 data and refresh access tokens, as shown in the following sequence diagram.
+
+
+#### Examples
+
+* [Public client](example-app-launch-public.html#step-5-access-token)
+* [Confidential client, asymmetric authentication](example-app-launch-asymmetric-auth.html#step-5-access-token)
+* [Confidential client, symmetric authentication](example-app-launch-symmetric-auth.html#step-5-access-token)
 
 <a id="step-6-fhir-api"></a>
 
@@ -737,7 +734,6 @@ Authorization: Bearer i8hweunweunweofiwweoijewiwe
 }
 ```
 
-[See full payload example](example-request-patient.html).
 
 <a id="step-7-refresh"></a>
 
@@ -829,35 +825,11 @@ a parameter like `"patient": "123"` would indicate the FHIR resource
 https://[fhir-base]/Patient/123. Other context parameters may also
 be available. For full details see [SMART launch context parameters](scopes-and-launch-context.html).
 
-##### Example Request and Response
+#### Examples
 
-If the EHR supports refresh tokens, an app may be able to replace an expired
-access token programatically, without user interaction:
+* [Public client](example-app-launch-public.html#step-7-refresh)
+* [Confidential client, asymmetric authentication](example-app-launch-asymmetric-auth.html#step-7-refresh)
+* [Confidential client, symmetric authentication](example-app-launch-symmetric-auth.html#step-7-refresh)
 
-**Request**
-
-```
-POST /token HTTP/1.1
-Host: ehr
-Authorization: Basic bXktYXBwOm15LWFwcC1zZWNyZXQtMTIz
-Content-Type: application/x-www-form-urlencoded
-
-grant_type=refresh_token&
-refresh_token=a47txjiipgxkvohibvsm
-```
-
-**Response**
-
-```
-{
-  "access_token": "m7rt6i7s9nuxkjvi8vsx",
-  "token_type": "bearer",
-  "expires_in": 3600,
-  "scope": "launch patient/Observation.rs patient/Patient.rs",
-  "refresh_token":"tGzv3JOkF0XG5Qx2TlKWIA"
-}
-```
-
-[See full payload example](example-request-refresh.html).
 
 [.well-known/smart-configuration]: conformance.html#using-well-known
