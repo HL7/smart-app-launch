@@ -22,9 +22,9 @@ When clients need to authenticate, this implementation guide defines two methods
 
 *Note that client authentication is not required in all authorization scenarios, and not all SMART clients are capable of authenticating (see discussion of ["Public Clients"](app-launch.html#support-for-public-and-confidential-apps) in the SMART App Launch overview).*
 
-#### **[Asymmetric ("public key") authentication](client-confidential-asymmetric.html)**
+#### **[Asymmetric ("private key JWT") authentication](client-confidential-asymmetric.html)**
 
-Authenticates a client using a public/private keypair. This is SMART's preferred authentication method because it avoids sending a shared secret over the wire.
+Authenticates a client using an asymmetric keypair. This is SMART's preferred authentication method because it avoids sending a shared secret over the wire.
 
 
 #### **[Symmetric ("client secret") authentication](client-confidential-symmetric.html)**
