@@ -200,9 +200,9 @@ Rules regarding circumstances under which a client is required to obtain and pre
 
 ##### Validate Authentication JWS
 
-The FHIR authorization server validates a client's authentication JWT [according to the `client-confidential-asymmetric` authentication profile](client-confidential-asymmetric.html#fhir-authorization-server-obligations).
+The FHIR authorization server validates a client's authentication JWT according to the `client-confidential-asymmetric` authentication profile. [See JWT validation rules](client-confidential-asymmetric.html##signature-verification).
 
-##### Issuing Access Tokens
+##### Issue Access Token
 
 Once the client has been authenticated, the FHIR authorization server SHALL
 mediate the request to assure that the scope requested is within the scope pre-authorized
