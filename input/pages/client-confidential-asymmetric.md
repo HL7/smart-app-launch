@@ -216,7 +216,7 @@ tools and client libraries, see [https://jwt.io](https://jwt.io).
   </tbody>
 </table>
 
-After generating an authentication JWT, the client requests an access token following either the SMART App Launch or the SMART Backend Services specification (TODO: inclue links).  Authentication details are conveyed using the following additional properties on the token request:
+After generating an authentication JWT, the client requests an access token following either the [SMART App Launch](app-launch.html) or the [SMART Backend Services](backend-services.html) specification.  Authentication details are conveyed using the following additional properties on the token request:
 
 <table class="table">
   <thead>
