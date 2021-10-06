@@ -79,7 +79,7 @@ and carefully weighed before choosing a different course
 
 1. [Register Backend Service](#step-1-register) (*one-time step*, can be out-of-band)
 2. [Retrieve .well-known/smart-configuration](#step-2-discovery)
-3. [Requets access token](#step-3-access-token)
+3. [Obtain access token](#step-3-access-token)
 4. Access FHIR API
 
 
@@ -104,7 +104,7 @@ See [example response](conformance.html#example-response)
 
 <a id="step-3-access-token"></a>
 
-### Request acess token
+### Obtain acess token
 
 By the time a client has been registered with the FHIR authorization server, the key
 elements of organizational trust will have been established. That is, the
@@ -128,6 +128,9 @@ client's authentication mechanism. The exchange, as depicted below, allows the
 client to authenticate itself to the FHIR authorization server and to request a short-lived
 access token in a single exchange.
 
+
+#### Request
+
 To begin the exchange, the client SHALL use the [Transport Layer Security
 (TLS) Protocol Version 1.2 (RFC5246)](https://tools.ietf.org/html/rfc5246) or a more recent version of TLS to
 authenticate the identity of the FHIR authorization server and to establish an encrypted,
@@ -136,11 +139,10 @@ and the FHIR authorization server's token endpoint.  All exchanges described her
 and the FHIR server SHALL be secured using TLS V1.2 or a more recent version of TLS .
 
 
-#### Protocol details
-
 Before a client can request an access token, it generates a one-time-use
-authentication JWT as described in `client-confidential-symmetric`
-authentication (TODO: link).  After generating this authentication JWT, the client
+authentication JWT [as described in `client-confidential-symmetric`
+authentication](client-confidential-asymmetric.html#authenticating-to-the-token-endpoint).
+After generating this authentication JWT, the client
 requests an access token via HTTP `POST` to the FHIR authorization server's
 token endpoint URL, using content-type `application/x-www-form-urlencoded` with
 the following parameters:
@@ -173,7 +175,7 @@ the following parameters:
   </tbody>
 </table>
 
-### Scopes
+##### Scopes
 
 The client is pre-authorized by the server: at registration time or out of band,
 it is given the authority to access certain data. The client then includes a set
@@ -185,7 +187,9 @@ access token capable of reading all Observations that the client has been
 pre-authorized to access).
 
 
-### Enforcing Authorization
+#### Response
+
+##### Enforce Authorization
 
 There are several cases where a client might ask for data that the server cannot or will not return:
 * Client explicitly asks for data that it is not authorized to see (e.g. a client asks for Observation resources but has scopes that only permit access to Patient resources). In this case a server SHOULD respond with a failure to the initial request.
@@ -194,14 +198,11 @@ There are several cases where a client might ask for data that the server cannot
 
 Rules regarding circumstances under which a client is required to obtain and present an access token along with a request are based on risk-management decisions that each FHIR resource service needs to make, considering the workflows involved, perceived risks, and the organization’s risk-management policies.  Refresh tokens SHOULD NOT be issued.
 
+##### Validate Authentication JWS
 
-### FHIR Authorization Server Obligations
+The FHIR authorization server validates a client's authentication JWT [according to the `client-confidential-asymmetric` authentication profile](client-confidential-asymmetric.html#fhir-authorization-server-obligations).
 
-#### Signature Verification
-
-The FHIR authorization server validates a client's authentication JWT according to the `client-confidential-asymmetric` authentication profile (TODO: link).
-
-#### Issuing Access Tokens
+##### Issuing Access Tokens
 
 Once the client has been authenticated, the FHIR authorization server SHALL
 mediate the request to assure that the scope requested is within the scope pre-authorized
