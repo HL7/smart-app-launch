@@ -2,6 +2,10 @@
 
 This implementation guide describes foundational patterns based on OAuth 2.0 for client applications to authorize, authenticate, and integrate with FHIR-based data systems.
 
+### [Discovery of Server Capabilities and Configuration](conformance.html)
+
+SMART defines a discovery document available at `.well-known/smart-configuration` relative to a FHIR Server Base URL, allowing clients to learn the authorization endpoint URLs and features a server supports. This information helps client direct authorization requests to the right endpoint, and helps clients construct an authorization request that the server can support.
+
 ### SMART Defines Two Patterns For Client *Authorization*
 
 #### [Authorization via **SMART App Launch**](app-launch.html)
@@ -32,7 +36,6 @@ Authenticate a client using a secret that has been pre-shared between the client
 
 SMART uses a language of "scopes" to define specific access permissions that can be delegated to a client application. These scopes draw on FHIR API definitions for interactions, resource types, and search paramters to describe a permissions model. For example, an app might be granted scopes like `user/Encounter.rs`, allowing it to read and search for Encounters that are accessible to the user who has authorized the app. Similarly, a backend service might be granted scopes like `system/Encounter.rs`, allowing it to read and search for Encounters within the overall set of data it is configured to access. User-facing apps can also receive "launch context" to indicate details about the current patient or other aspects of a user's EHR session or a user's selections when launching the app.
 
+### [Token Introspection](token-introspection.html) for Resource Servers
 
-### [Discovery of Server Capabilities and Configuration](conformance.html)
-
-SMART defines a discovery document available at `.well-known/smart-configuration` relative to a FHIR Server Base URL, allowing clients to learn the authorization endpoint URLs and features a server supports. This information helps client direct authorization requests to the right endpoint, and helps clients construct an authorization request that the server can support.
+SMART defines a Token Introspection API allowing Resource Servers to understand the scopes, users, patients, and other context associated with access tokenes. This pattern allows a looseer coupling between Resource Servers and Authorization Servers.
