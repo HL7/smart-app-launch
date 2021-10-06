@@ -6,9 +6,9 @@ for SMART clients that can manage and sign assertions with asymmetric keys.
 Specifically, this profile describes the registration-time metadata required for
 a client using asymmetric keys, and the runtime process by which a client can
 authenticate to an OAuth server's token endpoint. This profile can be
-implemented by user-facing SMART apps in the context of the [SMART App Launch
-flow](app-launch.html) or by (SMART Backend Services)(backend-services.html) that
-establish a connection with user-facing authorization step.
+implemented by user-facing SMART apps in the context of the [SMART App Launch](app-launch.html)
+flow or by [SMART Backend Services](backend-services.html) that
+establish a connection with no user-facing authorization step.
 
 ### **Use this profile** when the following conditions apply:
 
@@ -125,10 +125,14 @@ requesting an access token.
 
 ## Authenticating to the Token endpoint
 
-This specification describes how a client authenticates when requesting an access token.
+This specification describes how a client authenticates using an asymmetric key,
+e.g. when requesting an access token during:
+
+* [SMART App Launch](app-launch.html#step-5-access-token)
+* [SMART Backend Services](backend-services.html#step-3-access-token)
+
 Authentication is based on the OAuth 2.0 client credentials flow, with a [JWT
-assertion](https://tools.ietf.org/html/rfc7523) as the
-client's authentication mechanism. 
+assertion](https://tools.ietf.org/html/rfc7523) as the client's authentication mechanism. 
 
 To begin the exchange, the client SHALL use the [Transport Layer Security
 (TLS) Protocol Version 1.2 (RFC5246)](https://tools.ietf.org/html/rfc5246) or a more recent version of TLS to
@@ -137,11 +141,7 @@ integrity-protected link for securing all exchanges between the client
 and the FHIR authorization server's token endpoint.  All exchanges described herein between the client
 and the FHIR server SHALL be secured using TLS V1.2 or a more recent version of TLS .
 
-<div>
-TODO: Update diagram
-<img class="sequence-diagram-raw"  src="backend-service-authorization-diagram.png"/></div>
-
-### Protocol details
+### Request
 
 Before a client can request an access token, it SHALL generate a
 one-time-use JSON Web Token (JWT) that will be used to authenticate the client to
@@ -236,9 +236,9 @@ After generating an authentication JWT, the client requests an access token foll
   </tbody>
 </table>
 
-## FHIR Authorization Server Obligations
+### Response
 
-### Signature Verification
+#### Signature Verification
 
 The FHIR authorization server SHALL validate the JWT according to the
 processing requirements defined in [Section 3 of RFC7523](https://tools.ietf.org/html/rfc7523#section-3) including validation of the signature on the JWT.
