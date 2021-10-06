@@ -30,13 +30,17 @@ pages:
     example-app-launch-symmetric-auth.md:
       title: Example App Launch for Symmetric Client Auth
   backend-services.md:
-      title: Backend Services
+    title: Backend Services
+    example-backend-services.md:
+      title: Example Backend Services Flow
   scopes-and-launch-context.md:
     title: Scopes and Launch Context
     worked_example_id_token.md: # verified
       title: Worked Example Id Token
   client-confidential-asymmetric.md:
     title: Asymmetric Authentication
+    authorization-example-jwks-and-signatures.md:
+      title: Example JWS generation for Asymmetric Client Auth
   client-confidential-symmetric.md:
     title: Symmetric Authentication
   token-introspection.md:
@@ -54,7 +58,7 @@ parameters:
 # ╰────────────────────────────────────────────────────────────────────────────────────────────────╯
 menu:
   Overview: index.html
-  User-facing apps:
+  App Launch:
     Launch and Authorization: app-launch.html
     Scopes and Launch Context: scopes-and-launch-context.html
   Backend Services: backend-services.html
@@ -62,8 +66,8 @@ menu:
     Asymmetric (public key): client-confidential-asymmetric.html
     Symmetric (shared secret): client-confidential-symmetric.html
   Token Introspection: token-introspection.html
-  Conformance:
+  See also:
     Declaring Conformance: conformance.html
     Artifacts: artifacts.html
-  Best Practices: best-practices.html
-  History: http://hl7.org/fhir/smart-app-launch/history.html
+    Best Practices: best-practices.html
+    History: http://hl7.org/fhir/smart-app-launch/history.html

@@ -6,7 +6,7 @@ This profile is intended to be used by developers of backend services (clients)
 that autonomously (or semi-autonomously) need to access resources from FHIR
 servers that have pre-authorized defined scopes of access.  This specification
 handles use cases complementary to the [SMART App Launch
-protocol](http://www.hl7.org/fhir/smart-app-launch/).  Specifically, this
+protocol](app-launch.html).  Specifically, this
 profile describes the runtime process by which the client acquires an access
 token that can be used to retrieve FHIR resources.  This specification is
 designed to work with [FHIR Bulk Data Access](http://hl7.org/fhir/uv/bulkdata/),
@@ -80,7 +80,7 @@ and carefully weighed before choosing a different course
 1. [Register Backend Service](#step-1-register) (*one-time step*, can be out-of-band)
 2. [Retrieve .well-known/smart-configuration](#step-2-discovery)
 3. [Obtain access token](#step-3-access-token)
-4. Access FHIR API
+4. [Access FHIR API](#step-4-fhir-api)
 
 
 <a id="step-1-register"></a>
@@ -97,10 +97,15 @@ with the server by following the [registration steps described in `client-confid
 In order to request authorization to access FHIR resources, the app discovers the EHR FHIR server's SMART configuration metadata, including OAuth `token` endpoint URL.
 
 #### Request
-The app issues an HTTP GET with an `Accept` header supporting `application/json` to retrieve the SMART configuration file. See [example request](conformance.html#example-request)
+The app issues an HTTP GET with an `Accept` header supporting `application/json` to retrieve the SMART configuration file. 
 
 #### Response
-See [example response](conformance.html#example-response)
+
+Servers respond with a discovery response that meets [discovery requirements described in `client-confidential-asymmetric` authentication](client-confidential-asymmetric.html#discovery-requirements).
+
+#### Example Request and Response
+
+For a full example, see [example request and response](example-backend-services.html#step-2-discovery).
 
 <a id="step-3-access-token"></a>
 
@@ -200,7 +205,7 @@ Rules regarding circumstances under which a client is required to obtain and pre
 
 ##### Validate Authentication JWS
 
-The FHIR authorization server validates a client's authentication JWT according to the `client-confidential-asymmetric` authentication profile. [See JWT validation rules](client-confidential-asymmetric.html##signature-verification).
+The FHIR authorization server validates a client's authentication JWT according to the `client-confidential-asymmetric` authentication profile. [See JWT validation rules](client-confidential-asymmetric.html#signature-verification).
 
 ##### Issue Access Token
 
@@ -243,8 +248,35 @@ the following properties:
 To minimize risks associated with token redirection, the scope of each access token SHOULD encompass, and be limited to, the resources requested. Access tokens issued under this profile SHALL be short-lived; the `expires_in`
 value SHOULD NOT exceed `300`, which represents an expiration-time of five minutes.
 
-### Worked example
+#### Example Token Request and Response
 
-TODO: rationalize examples into an examples.html overview page
+For a full example, see [example token request and response](example-backend-services.html#step-3-access-token).
 
-TODO: include content from https://github.com/HL7/bulk-data/blob/b930134d797e27201f5669de05b149e202d562d7/input/pagecontent/authorization.md#presenting-an-access-token-to-fhir-api
+<a id="step-4-fhir-api"></a>
+
+### Access FHIR API
+
+With a valid access token, the app can access protected EHR data by issuing a
+FHIR API call to the FHIR endpoint on the EHR's resource server. 
+
+#### Request
+
+From the access token resopnse, an app has received an OAuth2 bearer-type access token (`access_token` property) that can be used to fetch clinical data.  The app issues a request that includes an
+`Authorization` header that presents the `access_token` as a "Bearer" token:
+
+{% raw %}
+    Authorization: Bearer {{access_token}}
+{% endraw %}
+
+(Note that in a real request, `{% raw %}{{access_token}}{% endraw %}`{:.language-text} is replaced
+with the actual token value.)
+
+#### Response
+
+The resource server SHALL validate the access token and ensure that it has not expired and that its scope covers the requested resource. The method used by the EHR to validate the access token is beyond the scope of this specification but generally involves an interaction or coordination between the EHR’s resource server and the authorization server.
+
+On occasion, an Backend Service may receive a FHIR resource that contains a “reference” to a resource hosted on a different resource server.  The Backend Service SHOULD NOT blindly follow such references and send along its access_token, as the token may be subject to potential theft.   The Backend Service SHOULD either ignore the reference, or initiate a new request for access to that resource.
+
+#### Example Request and Response
+
+For a full example, see [example FHIR API request and response](example-backend-services.html#step-4-fhir-api).

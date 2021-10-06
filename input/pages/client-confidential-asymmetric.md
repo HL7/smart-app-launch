@@ -49,6 +49,7 @@ be valid reasons to ignore an item, but the full implications must be understood
 and carefully weighed before choosing a different course
 4.  MAY: This is truly optional language for an implementation; can be included or omitted as the implementer decides with no implications
 
+<a id="discovery-requirements"></a>
 
 ## Advertising server support for this profile
 As described in the [Conformance section](conformance.html), a server advertises its support for SMART Confidential Clients with Asymmetric Keys by including the `client-confidential-asymmetric` capability at is `.well-known/smart-configuration` endpoint; configuration properties include `token_endpoint`, `scopes_supported`, `token_endpoint_auth_methods_supported` (with values that include `private_key_jwt`), and `token_endpoint_auth_signing_alg_values_supported` (with values that include at least one of `RS384`, `ES384`).
@@ -277,7 +278,7 @@ respond with the appropriate error message defined in [Section 5.2 of the OAuth 
 
 ## Worked example
 
-Assume that a "bilirubin result monitoring service" client has registered with the FHIR authorization server, establishing the following
+Assume that a "bilirubin result monitoring service" client has registered with a FHIR authorization server whose token endpoint is at "https://authorize.smarthealthit.org/token", establishing the following
 
  * JWT "issuer" URL: `https://bili-monitor.example.com`
  * OAuth2 `client_id`: `bili_monitor`
@@ -285,11 +286,19 @@ Assume that a "bilirubin result monitoring service" client has registered with t
 
 The client protects its private key from unauthorized access, use, and modification.  
 
-At runtime, when the bilirubin monitoring service wants to request authenticate to the token endpoint, it must generate a one-time-use authenticatin JWT.
+At runtime, when the bilirubin monitoring service needs to authenticate to the token endpoint, it generates a one-time-use authentication JWT.
 
-TODO: Update (see [example](authorization-example-jwks-and-signatures.md) [raw](authorization-example-jwks-and-signatures.ipynb), and update the signatures below from the example)
+**JWT Headers:**
 
-### 1. Generate a JWT to use for client authentication:
+```
+{
+  "typ": "JWT",
+  "alg": "RS384",
+  "kid": "eee9f17a3b598fd86417a980b591fbe6"
+}
+```
+
+**JWT Payload:**
 
 ```
 {
@@ -301,9 +310,6 @@ TODO: Update (see [example](authorization-example-jwks-and-signatures.md) [raw](
 }
 ```
 
-
-### 2. Digitally sign the claims, as specified in RFC7515.  
-
 Using the client's RSA private key, with SHA-384 hashing (as specified for
 an `RS384` algorithm (`alg`) parameter value in RFC7518), the signed token
 value is:
@@ -314,14 +320,15 @@ eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzM4NCIsImtpZCI6ImVlZTlmMTdhM2I1OThmZDg2NDE3YTk4MGI1
 ```
 
 Note: to inspect this example JWT, you can visit https://jwt.io. Paste the signed
-JWT value above into the "Encoded"  field, and paste the [sample public signing key](sample-jwks/RS384.public.json) (starting with the `{"kty": "RSA"` JSON object, and excluding the `{ "keys": [` JWK Set wrapping array) into the "Public Key" box.
+JWT value above into the "Encoded"  field, and paste the [sample public signing key](RS384.public.json) (starting with the `{"kty": "RSA"` JSON object, and excluding the `{ "keys": [` JWK Set wrapping array) into the "Public Key" box.
 The plaintext JWT will be displayed in the "Decoded:Payload"  field, and a "Signature Verified" message will appear.
 
-### 3. Request an access token
-
-Following the SMART App Launch or SMART Backend Services flow, the client then calls the FHIR authorization server's "token endpoint", passing in all parameters required by the flow, and including the additional `client_assertion_type` and `client_assertion` parameters as follows:
+For a complete code example demonstrating how to generate this assertion, see: [rendered Jupyter Notebook](authorization-example-jwks-and-signatures.html), [source .ipynb file](authorization-example-jwks-and-signatures.ipynb).
 
 
-```
-&client_assertion_type=urn%3Aietf%3Aparams%3Aoauth%3Aclient-assertion-type%3Ajwt-bearer&client_assertion=eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzM4NCIsImtpZCI6ImVlZTlmMTdhM2I1OThmZDg2NDE3YTk4MGI1OTFmYmU2In0.eyJpc3MiOiJiaWxpX21vbml0b3IiLCJzdWIiOiJiaWxpX21vbml0b3IiLCJhdWQiOiJodHRwczovL2F1dGhvcml6ZS5zbWFydGhlYWx0aGl0Lm9yZy90b2tlbiIsImV4cCI6MTQyMjU2ODg2MCwianRpIjoicmFuZG9tLW5vbi1yZXVzYWJsZS1qd3QtaWQtMTIzIn0.l2E3-ThahEzJ_gaAK8sosc9uk1uhsISmJfwQOtooEcgUiqkdMFdAUE7sr8uJN0fTmTP9TUxssFEAQnCOF8QjkMXngEruIL190YVlwukGgv1wazsi_ptI9euWAf2AjOXaPFm6t629vzdznzVu08EWglG70l41697AXnFK8GUWSBf_8WHrcmFwLD_EpO_BWMoEIGDOOLGjYzOB_eN6abpUo4GCB9gX2-U8IGXAU8UG-axLb35qY7Mczwq9oxM9Z0_IcC8R8TJJQFQXzazo9YZmqts6qQ4pRlsfKpy9IzyLzyR9KZyKLZalBytwkr2lW7QU3tC-xPrf43jQFVKr07f9dA
-```
+#### Requesting an Access Token
+
+A `client_assertion` generated in this fashion can be used to request an access token as part of a SMART App Launch authorization flow, or as part of a SMART Backend Services authorization flow. See complete example:
+
+* SMART App Launch: [specification](app-launch.html); [full example](example-app-launch-asymmetric-auth.html#step-5-access-token)
+* SMART Backend Services: [specification](backend-services.html); [full example](example-backend-services.html#step-3-access-token)

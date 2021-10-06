@@ -47,6 +47,9 @@ curl -s 'https://smart.argo.run/v/r4/sim/eyJtIjoiMSIsImsiOiIxIiwiaSI6IjEiLCJqIjo
   "code_challenge_methods_supported": [
     "S256"
   ],
+  "grant_types_supported": [
+    "authorization_code"
+  ],
   "token_endpoint_auth_methods_supported": [
     "private_key_jwt",
     "client_secret_basic"

@@ -108,14 +108,11 @@ completing the launch.
 
 <br />
 
-[well-known]: ../well-known/index.html
-
-
 
 ### FHIR Authorization Endpoint and Capabilities Discovery using a Well-Known Uniform Resource Identifiers (URIs)
 {: #using-well-known}
 
-The authorization endpoints accepted by a FHIR resource server are exposed as a Well-Known Uniform Resource Identifiers (URIs) [(RFC5785)][well-known] JSON document.
+The authorization endpoints accepted by a FHIR resource server are exposed as a Well-Known Uniform Resource Identifiers (URIs) [(RFC5785)](https://datatracker.ietf.org/doc/html/rfc5785) JSON document.
 
 FHIR endpoints requiring authorization SHALL serve a JSON document at the location formed by appending `/.well-known/smart-configuration` to their base URL.
 Contrary to RFC5785 Appendix B.4, the `.well-known` path component may be appended even if the FHIR endpoint already contains a path component.
@@ -153,16 +150,17 @@ A JSON document must be returned using the `application/json` mime type.
 ##### Metadata
 - `issuer`: **CONDITIONAL**, String conveying this system's OpenID Connect Issuer URL. Required if the server's capabilities include `sso-openid-connect`; otherwise, omitted.
 - `authorization_endpoint`: **REQUIRED**, URL to the OAuth2 authorization endpoint.
+- `grant_types_supported`: **OPTIONAL**, Array of grant types supported at the token endpoint. The options are "authorization_code" and "client_credentials".
 - `token_endpoint`: **REQUIRED**, URL to the OAuth2 token endpoint.
 - `token_endpoint_auth_methods_supported`: **OPTIONAL**, array of client authentication methods supported by the token endpoint. The options are "client_secret_post", "client_secret_basic", and "private_key_jwt".
-- `registration_endpoint`: **OPTIONAL**, if available, URL to the OAuth2 dynamic registration endpoint for this FHIR server.
-- `scopes_supported`: **RECOMMENDED**, array of scopes a client may request. See [scopes and launch context][smart-scopes]. The server SHALL support all scopes listed here; additional scopes MAY be supported (so clients should not consider this an exhaustive list).
-- `response_types_supported`: **RECOMMENDED**, array of OAuth2 `response_type` values that are supported.  Implementers can refer to `response_type`s defined in OAuth 2.0 ([RFC 6749](https://datatracker.ietf.org/doc/html/rfc6749)) and in [OIDC Core](https://openid.net/specs/openid-connect-core-1_0.html#Authentication).
+- `registration_endpoint`: **OPTIONAL**, If available, URL to the OAuth2 dynamic registration endpoint for this FHIR server.
+- `scopes_supported`: **RECOMMENDED**, Array of scopes a client may request. See [scopes and launch context](scopes-and-launch-context.html#quick-start). The server SHALL support all scopes listed here; additional scopes MAY be supported (so clients should not consider this an exhaustive list).
+- `response_types_supported`: **RECOMMENDED**, Array of OAuth2 `response_type` values that are supported.  Implementers can refer to `response_type`s defined in OAuth 2.0 ([RFC 6749](https://datatracker.ietf.org/doc/html/rfc6749)) and in [OIDC Core](https://openid.net/specs/openid-connect-core-1_0.html#Authentication).
 - `management_endpoint`: **RECOMMENDED**, URL where an end-user can view which applications currently have access to data and can make adjustments to these access rights.
 - `introspection_endpoint` :  **RECOMMENDED**, URL to a server's introspection endpoint that can be used to validate a token.
 - `revocation_endpoint` :  **RECOMMENDED**, URL to a server's revoke endpoint that can be used to revoke a token.
-- `capabilities`: **REQUIRED**, array of strings representing SMART capabilities (e.g., `single-sign-on` or `launch-standalone`) that the server supports.
-- `code_challenge_methods_supported`|**REQUIRED**|Array of PKCE code challenge methods supported. The `S256` method SHALL be included in this list, and the `plain` method SHALL NOT be included in this list.
+- `capabilities`: **REQUIRED**, Array of strings representing SMART capabilities (e.g., `sso-openid-connect` or `launch-standalone`) that the server supports.
+- `code_challenge_methods_supported`: **REQUIRED**, Array of PKCE code challenge methods supported. The `S256` method SHALL be included in this list, and the `plain` method SHALL NOT be included in this list.
 
 
 <a id="example-response">
@@ -176,10 +174,17 @@ Content-Type: application/json
 {
   "authorization_endpoint": "https://ehr.example.com/auth/authorize",
   "token_endpoint": "https://ehr.example.com/auth/token",
-  "token_endpoint_auth_methods_supported": ["client_secret_basic"],
+  "token_endpoint_auth_methods_supported": [
+    "client_secret_basic",
+    "private_key_jwt"
+  ],
+  "grant_types_supported": [
+    "authorization_code",
+    "client_credentials"
+  ],
   "registration_endpoint": "https://ehr.example.com/auth/register",
   "scopes_supported": ["openid", "profile", "launch", "launch/patient", "patient/*.rs", "user/*.rs", "offline_access"],
-  "response_types_supported": ["code", "code id_token", "id_token"],
+  "response_types_supported": ["code"],
   "management_endpoint": "https://ehr.example.com/user/manage",
   "introspection_endpoint": "https://ehr.example.com/user/introspect",
   "revocation_endpoint": "https://ehr.example.com/user/revoke",
@@ -196,4 +201,3 @@ Content-Type: application/json
 }
 ```
 
-[smart-scopes]: scopes-and-launch-context.html/#quick-start
