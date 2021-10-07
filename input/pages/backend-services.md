@@ -207,11 +207,17 @@ Rules regarding circumstances under which a client is required to obtain and pre
 
 The FHIR authorization server validates a client's authentication JWT according to the `client-confidential-asymmetric` authentication profile. [See JWT validation rules](client-confidential-asymmetric.html#signature-verification).
 
-##### Issue Access Token
+
+##### Evaluate Requested Access
 
 Once the client has been authenticated, the FHIR authorization server SHALL
 mediate the request to assure that the scope requested is within the scope pre-authorized
 to the client.
+
+##### Issue Access Token
+
+If an error is encountered during the authorization process, the FHIR authorization server SHALL
+respond with the appropriate error message defined in [Section 5.2 of the OAuth 2.0 specification](https://tools.ietf.org/html/rfc6749#page-45).  The FHIR authorization server SHOULD include an `error_uri` or `error_description` as defined in OAuth 2.0.
 
 If the access token request is valid and authorized, the FHIR authorization server
 SHALL issue an access token in response.  The access token response SHALL be a JSON object with

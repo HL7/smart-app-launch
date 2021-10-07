@@ -217,7 +217,7 @@ tools and client libraries, see [https://jwt.io](https://jwt.io).
   </tbody>
 </table>
 
-After generating an authentication JWT, the client requests an access token following either the [SMART App Launch](app-launch.html) or the [SMART Backend Services](backend-services.html) specification.  Authentication details are conveyed using the following additional properties on the token request:
+After generating an authentication JWT, the client requests an access token following either the [SMART App Launch](app-launch.html#step-5-access-token) or the [SMART Backend Services](backend-services.html#step-3-access-token) specification.  Authentication details are conveyed using the following additional properties on the token request:
 
 <table class="table">
   <thead>
@@ -272,9 +272,7 @@ the [OAuth 2.0 specification](https://tools.ietf.org/html/rfc6749#section-5.2).
 * The FHIR authorization server SHALL NOT cache a JWKS for longer than the client's cache-control header indicates.
 * The FHIR authorization server SHOULD cache a client's JWK Set according to the client's cache-control header; it doesn't need to retrieve it anew every time. 
 
-If an error is encountered during the authorization process, the FHIR authorization server SHALL
-respond with the appropriate error message defined in [Section 5.2 of the OAuth 2.0 specification](https://tools.ietf.org/html/rfc6749#page-45).  The FHIR authorization server SHOULD include an
-`error_uri` or `error_description` as defined in OAuth 2.0.  
+Processing of the access token request proceeds according to either the [SMART App Launch](app-launch.html#step-5-access-token) or the [SMART Backend Services](backend-services.html#step-3-access-token) specification.
 
 ## Worked example
 
