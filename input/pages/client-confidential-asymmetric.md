@@ -1,4 +1,4 @@
-## Profile Audience and Scope
+### Profile Audience and Scope
 
 This profile desribes SMART's
 [`client-confidential-asymmetric`](conformance.html) authentication mechanism.  It is intended for
@@ -10,7 +10,7 @@ implemented by user-facing SMART apps in the context of the [SMART App Launch](a
 flow or by [SMART Backend Services](backend-services.html) that
 establish a connection with no user-facing authorization step.
 
-### **Use this profile** when the following conditions apply:
+#### **Use this profile** when the following conditions apply:
 
 * The target FHIR authorization server supports SMART's `client-confidential-asymmetric` capability
 * The client can maange asymmetric keys for authentication
@@ -22,7 +22,7 @@ and access control. These considerations apply to diverse use cases and provide
 general guidance for choosing among security specifications for particular use
 cases.
 
-## Underlying Standards
+### Underlying Standards
 
 * [HL7 FHIR RESTful API](http://www.hl7.org/fhir/http.html)
 * [RFC5246, The Transport Layer Security Protocol, V1.2](https://tools.ietf.org/html/rfc5246)
@@ -35,7 +35,7 @@ cases.
 * [RFC7523, JSON Web Token (JWT) Profile for OAuth 2.0 Client Authentication and Authorization Grants](https://tools.ietf.org/html/rfc7523)
 * [RFC7591, OAuth 2.0 Dynamic Client Registration Protocol](https://tools.ietf.org/html/rfc7591)
 
-## Conformance Language
+### Conformance Language
 This specification uses the conformance verbs SHALL, SHOULD, and MAY as defined
 in [RFC2119](https://www.ietf.org/rfc/rfc2119.txt). Unlike RFC 2119, however,
 this specification allows that different applications may not be able to
@@ -51,10 +51,10 @@ and carefully weighed before choosing a different course
 
 <a id="discovery-requirements"></a>
 
-## Advertising server support for this profile
+### Advertising server support for this profile
 As described in the [Conformance section](conformance.html), a server advertises its support for SMART Confidential Clients with Asymmetric Keys by including the `client-confidential-asymmetric` capability at is `.well-known/smart-configuration` endpoint; configuration properties include `token_endpoint`, `scopes_supported`, `token_endpoint_auth_methods_supported` (with values that include `private_key_jwt`), and `token_endpoint_auth_signing_alg_values_supported` (with values that include at least one of `RS384`, `ES384`).
 
-### Example `.well-known/smart-configuration` Response
+#### Example `.well-known/smart-configuration` Response
 ```
 HTTP/1.1 200 OK
 Content-Type: application/json
@@ -67,7 +67,7 @@ Content-Type: application/json
 }
 ```
 
-## Registering a client (communicting public keys)
+### Registering a client (communicting public keys)
 
 Before a SMART client can run against a FHIR server, the client SHALL generate
 or obtain an asymmetric key pair and SHALL register its public key set with that
@@ -124,7 +124,7 @@ Upon registration, the client SHALL be assigned a `client_id`, which the client 
 requesting an access token.
 
 
-## Authenticating to the Token endpoint
+### Authenticating to the Token endpoint
 
 This specification describes how a client authenticates using an asymmetric key,
 e.g. when requesting an access token during:
@@ -142,7 +142,7 @@ integrity-protected link for securing all exchanges between the client
 and the FHIR authorization server's token endpoint.  All exchanges described herein between the client
 and the FHIR server SHALL be secured using TLS V1.2 or a more recent version of TLS .
 
-### Request
+#### Request
 
 Before a client can request an access token, it SHALL generate a
 one-time-use JSON Web Token (JWT) that will be used to authenticate the client to
@@ -237,9 +237,9 @@ After generating an authentication JWT, the client requests an access token foll
   </tbody>
 </table>
 
-### Response
+#### Response
 
-#### Signature Verification
+##### Signature Verification
 
 The FHIR authorization server SHALL validate the JWT according to the
 processing requirements defined in [Section 3 of RFC7523](https://tools.ietf.org/html/rfc7523#section-3) including validation of the signature on the JWT.
@@ -274,7 +274,7 @@ the [OAuth 2.0 specification](https://tools.ietf.org/html/rfc6749#section-5.2).
 
 Processing of the access token request proceeds according to either the [SMART App Launch](app-launch.html#step-5-access-token) or the [SMART Backend Services](backend-services.html#step-3-access-token) specification.
 
-## Worked example
+### Worked example
 
 Assume that a "bilirubin result monitoring service" client has registered with a FHIR authorization server whose token endpoint is at "https://authorize.smarthealthit.org/token", establishing the following
 

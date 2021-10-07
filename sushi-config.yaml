@@ -49,6 +49,8 @@ pages:
     title: Conformance
   best-practices.md:
     title: Best Practices
+  examples.md:
+    title: Examples
 parameters:
   path-history: http://hl7.org/fhir/smart-app-launch/history.html
   jira-code: smart
@@ -57,7 +59,7 @@ parameters:
 # │  To use a provided ig-data/input/includes/menu.xml file, delete the "menu" property below.     │
 # ╰────────────────────────────────────────────────────────────────────────────────────────────────╯
 menu:
-  Overview: index.html
+  Overview of SMART on FHIR: index.html
   App Launch:
     Launch and Authorization: app-launch.html
     Scopes and Launch Context: scopes-and-launch-context.html
@@ -67,7 +69,8 @@ menu:
     Symmetric (shared secret): client-confidential-symmetric.html
   Token Introspection: token-introspection.html
   See also:
-    Declaring Conformance: conformance.html
+    Conformance and discovery: conformance.html
     Artifacts: artifacts.html
     Best Practices: best-practices.html
+    Examples: examples.html
     History: http://hl7.org/fhir/smart-app-launch/history.html

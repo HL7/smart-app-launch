@@ -1,5 +1,3 @@
-## SMART Backend Services
-
 ### Profile Audience and Scope
 
 This profile is intended to be used by developers of backend services (clients)

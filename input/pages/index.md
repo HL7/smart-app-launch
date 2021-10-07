@@ -1,5 +1,3 @@
-# Introduction to SMART on FHIR
-
 This implementation guide describes foundational patterns based on OAuth 2.0 for client applications to authorize, authenticate, and integrate with FHIR-based data systems.
 
 ### [Discovery of Server Capabilities and Configuration](conformance.html)
