@@ -147,7 +147,7 @@ scope, once the access token expires.
 2. Launch App:  [Standalone Launch](#step-2-launch-standalone) or [EHR Launch](#step-2-launch-ehr)
 3. [Retrieve .well-known/smart-configuration](#step-3-discovery)
 4. [Obtain authorization code](#step-4-authorization-code)
-5. [Retrieve access token](#step-5-access-token)
+5. [Obtain access token](#step-5-access-token)
 6. [Access FHIR API](#step-6-fhir-api)
 7. [Refresh access token](#step-7-refresh)
 
@@ -532,7 +532,7 @@ Location: https://app/after-auth?
 
 <a id="step-5-access-token"></a>
 
-### Retrieve access token
+### Obtain access token
 
 After obtaining an authorization code, the app trades the code for an access
 token.
