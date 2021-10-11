@@ -173,6 +173,8 @@ HTTP/1.1 200 OK
 Content-Type: application/json
 
 {
+  "issuer": "https://ehr.example.com",
+  "jwks_uri": "https://ehr.example.com/.well-known/jwks.json",
   "authorization_endpoint": "https://ehr.example.com/auth/authorize",
   "token_endpoint": "https://ehr.example.com/auth/token",
   "token_endpoint_auth_methods_supported": [
