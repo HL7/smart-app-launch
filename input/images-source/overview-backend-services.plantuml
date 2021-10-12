@@ -1,7 +1,7 @@
 @startuml
 participant App as "Backend Service"
-participant "EHR with Authorization Server" as EHR
-participant "FHIR Server" as FHIR
+participant "FHIR authorization server" as EHR
+participant "FHIR resource server" as FHIR
 
 opt  Precondition: Client Registration
     App ->> EHR: (may be out of band)
