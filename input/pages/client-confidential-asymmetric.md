@@ -252,7 +252,7 @@ To resolve a key to verify signatures, a FHIR authorization server SHALL follow 
 
 <ol>
   <li>If the <code>jku</code> header is present, verify that the <code>jku</code> is whitelisted (i.e., that it
-    matches the value supplied at registration time for the specified <code>client_id</code>).
+    matches the JWKS URL value supplied at registration time for the specified <code>client_id</code>).
     <ol type="a">
       <li>If the <code>jku</code> header is not whitelisted, the signature verification fails.</li>
       <li>If the <code>jku</code> header is whitelisted, create a set of potential keys by dereferencing the <code>jku</code> URL. Proceed to step 3.</li>
