@@ -34,6 +34,8 @@ Authenticate a client using a secret that has been pre-shared between the client
 
 SMART uses a language of "scopes" to define specific access permissions that can be delegated to a client application. These scopes draw on FHIR API definitions for interactions, resource types, and search paramters to describe a permissions model. For example, an app might be granted scopes like `user/Encounter.rs`, allowing it to read and search for Encounters that are accessible to the user who has authorized the app. Similarly, a backend service might be granted scopes like `system/Encounter.rs`, allowing it to read and search for Encounters within the overall set of data it is configured to access. User-facing apps can also receive "launch context" to indicate details about the current patient or other aspects of a user's EHR session or a user's selections when launching the app.
 
+*Note that the scope syntax has changed since SMARTv1. Details are at [Scopes for requesting clinical data](scopes-and-launch-context.html#scopes-for-requesting-clinical-data).*
+
 ### [Token Introspection](token-introspection.html)
 
 SMART defines a Token Introspection API allowing Resource Servers or software components to understand the scopes, users, patients, and other context associated with access tokenes. This pattern allows a looseer coupling between Resource Servers and Authorization Servers.
