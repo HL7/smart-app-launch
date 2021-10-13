@@ -260,8 +260,8 @@ For a full example, see [example token request and response](example-backend-ser
 
 ### Access FHIR API
 
-With a valid access token, the app can access protected EHR data by issuing a
-FHIR API call to the FHIR endpoint on the EHR's resource server. 
+With a valid access token, the app can access protected FHIR data by issuing a
+FHIR API call to the FHIR endpoint on the FHIR resource server. 
 
 #### Request
 
