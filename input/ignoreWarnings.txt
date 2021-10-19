@@ -1,12 +1,9 @@
 == Suppressed Messages ==
-# ****** Warnings ******
-# update jira file for smart pr #191,#193,#198,#203 and Merged #191,#193,#198,#203 into master on 03/30/2021,04/01/2021,04/06/2021, 04/08/2021
-WARNING: The jira specification file appears to be out of date with the versions, artifacts and pages currently defined in the IG.  A proposed revised file to be reviewed and, if appropriate, submitted as a pull request against the XML folder in https://github.com/HL7/JIRA-Spec-Artifacts.  To see the differences, perform a file compare on 'template/jira-current.xml' (a normalized view of what is in Github) and 'template/jira-new.xml' (reflects current IG content)
-# In previous versions of SMART, some of these details were also conveyed in a server’s CapabilityStatement; this mechanism is now deprecated.
-# Previous version of SMART have example CapabilityStatement that provide examples of these extenesions
-WARNING: StructureDefinition.where(url = 'http://fhir-registry.smarthealthit.org/StructureDefinition/oauth-uris'): The Implementation Guide contains no examples for this extension
 
-# ******* INFORMATION ******
-# validate against messages
-INFORMATION: ImplementationGuide/hl7.fhir.uv.smart-app-launch: ImplementationGuide: Validate resource against profile http://hl7.org/fhir/StructureDefinition/ImplementationGuide
-INFORMATION: StructureDefinition/oauth-uris: StructureDefinition: Validate resource against profile http://hl7.org/fhir/StructureDefinition/StructureDefinition
+# ****** ERRORs ******
+# NO FHIR artifacts in this IG
+ERROR: ImplementationGuide/hl7.fhir.uv.smart-app-launch: ImplementationGuide.definition: ImplementationGuide.definition.resource: minimum required = 1, but only found 0 (from http://hl7.org/fhir/StructureDefinition/ImplementationGuide)
+
+# ****** Warnings ******
+# update jira file for smart pr #313  merged into master on 10/19/2021
+WARNING: The jira specification file appears to be out of date with the versions, artifacts and pages currently defined in the IG.  A proposed revised file to be reviewed and, if appropriate, submitted as a pull request against the XML folder in https://github.com/HL7/JIRA-Spec-Artifacts.  To see the differences, perform a file compare on 'template/jira-current.xml' (a normalized view of what is in Github) and 'template/jira-new.xml' (reflects current IG content)
