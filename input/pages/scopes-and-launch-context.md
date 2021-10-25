@@ -10,8 +10,7 @@ negotiate) access requirements. Providing apps with access to broad data sets is
 Launch context is a negotiation where a client asks for specific launch context
 parameters (e.g. `launch/patient`). A server can decide which launch context
 parameters to provide, using the client's request as an input into the decision
-process.  When granting a patient-level scopes like `patient/*.rs`, the server
-SHALL provide a "patient" launch context parameter.
+process.  See ["scopes for requesting contxet data"](#scopes-for-requesting-context-data) for details.
 
 ### Quick Start
 
@@ -89,11 +88,11 @@ Scope requests with undefined or out of order interactions MAY be ignored, repla
 
 #### Batches and Transactions
 
-SMART 2.0 does not define specific scopes for [batch or transaction](http://hl7.org/fhir/http.html#transaction) interactions. These system-level interactions are simply convience wrappers for other interactions. As such, batch and transaction requests should be validated based on the actual requests within them.
+SMART 2.0 does not define specific scopes for [batch or transaction](http://hl7.org/fhir/http.html#transaction) interactions. These system-level interactions are simply convenience wrappers for other interactions. As such, batch and transaction requests should be validated based on the actual requests within them.
 
 #### Scope Equivalence
 
-Multiple scopes compounded or expanded are equivalent to each other.  E.g., `Observation.rs` is interchangeable with `Observation.r Observation.s`. In order to reduce token size, it is recomended that scopes be factored to their shortest form.
+Multiple scopes compounded or expanded are equivalent to each other.  E.g., `Observation.rs` is interchangeable with `Observation.r Observation.s`. In order to reduce token size, it is recommended that scopes be factored to their shortest form.
 
 #### Finer-grained resource constraints using search parameters
 
@@ -111,14 +110,14 @@ Because the search parameter based syntax here is quite general, it opens up the
 
 * Use of search modifiers such as `Observation.rs?code:in=http://valueset.example.org/ValueSet/diabetes-codes`
 * Use of search parameter chaining such as `Observation.rs?patient.birthdate=1990`
-* Use of FHIR's `_filter` capabilities
+* Use of [FHIR's `_filter` capabilities](https://www.hl7.org/fhir/search_filter.html)
 
 
 #### Scope size over the wire
 
 Scope strings appear over the wire at several points in an OAuth flow. Implementers should be aware that fine-grained controls can lead to a proliferation of scopes, increasing in the length of the `scope` string for app authorizations. As such, implementers should take care to avoid putting arbitrarily large scope strings in places where they might not "fit". The following considerations apply, presented in the sequential order of a SMART App Launch:
 
-* When initiating an authorization request, app developers should prefer POST-based authorization requests to GET-based requests, since this avoid URL length limits that might apply to GET-based authorization requests. (For example, somme current-generation browsers have a 32kB length limit for values displayed in the URL bar.)
+* When initiating an authorization request, app developers should prefer POST-based authorization requests to GET-based requests, since this avoids URL length limits that might apply to GET-based authorization requests. (For example, some current-generation browsers have a 32kB length limit for values displayed in the URL bar.)
 * In the authorization code redirect response, no scopes are included, so these considerations do not apply.
 * In the access token response, no specific limits apply, since this payload comes in response to a client-initiated POST.
 * In the token introspection response, no specific limits apply, since this payload comes in response to a client-initiated POST.
@@ -371,7 +370,7 @@ scopes are all about *what* and not *who* which is handled in the next section.
 Patient-specific scopes start with `patient/`.
 Note that some EHRs may not enable access to all related resources - for
 example, Practitioners linked to/from Patient-specific resources.
-Note that if a FHIR server supports replacing one Patient record with another
+Note that if a FHIR server supports linking one Patient record with another
 via `Patient.link`, the server documentation SHALL describe its authorization
 behavior.
 
@@ -379,7 +378,7 @@ Let's look at a few examples:
 
 Goal | Scope | Notes
 -----|-------|-------
-Read all observations about a patient         | `patient/Observation.rs` |
+Read and search for all observations about a patient         | `patient/Observation.rs` |
 Read demographics about a patient             | `patient/Patient.r`      | Note the difference in capitalization between "patient" the permission type and "Patient" the resource.
 Add new blood pressure readings for a patient | `patient/Observation.c`  | Note that the permission is broader than our goal: with this scope, an app can add not only blood pressures, but other observations as well. Note also that write access does not imply read access.
 Read all available data about a patient       | `patient/*.cruds`        | See notes on wildcard scopes below.
@@ -420,11 +419,11 @@ System-level bridge, turning a V2 ADT feed into FHIR Encounter resources | `syst
 
 As noted previously, clients can request clinical scopes that contain a wildcard (`*`) for the FHIR resource. When a wildcard is requested for the FHIR resource, the client is asking for all data for all available FHIR resources, both now _and in the future_. This is an important distinction to understand, especially for the entity responsible for granting authorization requests from clients.
 
-For instance, imagine a FHIR server that today just exposes the Patient resource. The authorization server asking a patient to authorize a SMART app requesting `patient/*.cruds` should inform the user that they are being asked to grant this SMART app access to not just the currently accessible data about them (patient demographics), but also any additional data the FHIR server may be enhanced to expose in the future (eg, genetics).
+For instance, imagine a FHIR server that today just exposes the Patient resource. The authorization server asking a patient to authorize a SMART app requesting `patient/*.cruds` should inform the user that they are being asked to grant this SMART app access to not just the currently accessible data about them (patient demographics), but also any additional data the FHIR server may be enhanced to expose in the future (e.g., genetics).
 
 As with any requested scope, the scopes ultimately granted by the authorization server may differ from the scopes requested by the client! When dealing with wildcard clinical scope requests, this is often true.
 
-As a best practice, clients should examine the granted scopes by the authorization server and respond accordingly. Failure to do so may lead to situations in which the client attempts to access FHIR resources they were not granted access only to receieve an authorization failure by the FHIR server.
+As a best practice, clients should examine the granted scopes by the authorization server and respond accordingly. Failure to do so may lead to situations in which the client attempts to access FHIR resources they were not granted access only to receive an authorization failure by the FHIR server.
 
 For example, imagine a client with the goal of obtaining read and write access to a patient's allergies and as such, requests the clinical scope of `patient/AllergyIntolerance.cruds`. The authorization server may respond in a variety of ways with respect to the scopes that are ultimately granted. The following table outlines several, but not an exhaustive list of scenarios for this example:
 
@@ -472,9 +471,7 @@ If an application requests a clinical scope which is restricted to a single pati
 
 #### Standalone apps
 
-Standalone apps that launch outside the EHR do not have any EHR context at the outset. These apps must explicitly request EHR context. The EHR SHOULD provide the requested context if requested by the following scopes, unless otherwise noted:
-
-##### Requesting context with scopes
+Standalone apps that launch outside the EHR do not have any EHR context at the outset. These apps must explicitly request EHR context. The EHR SHOULD provide the requested context if requested by the following scopes, unless otherwise noted.
 
 Requested Scope | Meaning
 ----------------|---------
@@ -516,7 +513,8 @@ Launch context parameter | Example value | Meaning
 `tenant`              | `"2ddd6c3a-8e9a-44c6-a305-52111ad302a2"` | String conveying an opaque identifier for the healthcare organization that is launching the app. This parameter is intended primarily to support EHR Launch scenarios.
 {:.grid}
 
-##### Notes on launch context parameters
+##### The following section provides further details on some of the context parameters
+
 
 ##### `fhirContext`
 
@@ -553,13 +551,13 @@ Note:  *SMART makes no effort to standardize `intent` values*.  Intents simply
 provide a mechanism for tighter custom integration between an app and a SMART
 EHR. The meaning of intents must be negotiated between the app and the EHR.
 
-###### SMART App Styling (experimental[^1])
+##### SMART App Styling (experimental[^1])
 {: #styling}
 `smart_style_url`: In order to mimic the style of the SMART EHR more closely,
 SMART apps can check for the existence of this launch context parameter and
 download the JSON file referenced by the URL value, if provided.
 
-The URL should serve a "SMART Style" JSON object with one or more of the following properties:
+The URL SHOULD serve a "SMART Style" JSON object with one or more of the following properties:
 
 ``` text
 {
@@ -578,7 +576,7 @@ The URL should serve a "SMART Style" JSON object with one or more of the followi
 ```
 
 The URL value itself is to be considered a version key for the contents of the SMART Style JSON:
-EHRs must return a new URL value in the `smart_style_url` launch context parameter if the contents
+EHRs SHALL return a new URL value in the `smart_style_url` launch context parameter if the contents
 of this JSON is changed.
 
 Style Property | Description
@@ -642,7 +640,7 @@ with the SMART's `sso-openid-connect` capability, the following requirements app
 
 * A SMART app SHALL NOT pass the `auth_time` claim or `max_age` parameter to a server that does not support receiving them.
 
-Note that support for the following features is optional:
+Servers MAY include support for the following features:
 
  * `claims` parameters on the authorization request
  * Request Objects on the authorization request
@@ -659,9 +657,9 @@ Scope | Grants
 `offline_access`   | Request a `refresh_token` that can be used to obtain a new access token to replace an expired token, and that will remain usable for as long as the authorization server and end-user will allow, regardless of whether the end-user is online.
 {:.grid}
 
-### Extensions
+### Extensibility
 
-Additional context parameters and scopes can be used as extensions using the following namespace conventions:
+In addition to conveying FHIR Resource references with the `fhirContext` array, additional context parameters and scopes can be used as extensions using the following namespace conventions:
 
 - use a *full URI* that you control (e.g. http://example.com/scope-name)
 - use any string starting with `__` (two underscores)
@@ -725,9 +723,9 @@ matches the original request.
 
 ### Appendix: URI representation of scopes
 
-In some circumstances - for example, exchanging what scopes users are allowed to have, or sharing what they did choose), the scopes must be represented as URIs. When this is done, the standard URI is to prefix the SMART scopes with  http://smarthealthit.org/fhir/scopes/, so that a scope would be `http://smarthealthit.org/fhir/scopes/patient/*.read`.
+In some circumstances, scopes must be represented as URIs. For example, when exchanging what scopes users are allowed to have, or sharing what scopes a user has chosen. When URI representations are required, the SMART scopes SHALL be prefixed with `http://smarthealthit.org/fhir/scopes/`, so that a `patient/*.r` scope would be `http://smarthealthit.org/fhir/scopes/patient/*.r`.
 
-openID scopes have a URI prefix of http://openid.net/specs/openid-connect-core-1_0#
+openID scopes the URI prefix of http://openid.net/specs/openid-connect-core-1_0# SHALL be used.
 
 ---
 

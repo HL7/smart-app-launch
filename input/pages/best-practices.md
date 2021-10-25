@@ -1,4 +1,22 @@
-### Considerations for Scope Consent (Non-Normative)
+This page reflects non-normative best practices established at the time of publication.  For up-to-date community discussion, see [SMART on FHIR Best Practices on the HL7 Confluence Site](https://confluence.hl7.org/display/FHIRI/SMART+on+FHIR+Best+Practices)
+
+### Best practices for server developers include
+
+* Remind users which apps have offline access (keeping in mind that too many reminders lead to alert fatigue)
+* Mitigate threats of compromised refreshed tokens
+* Expire an app's authorization if a refresh token is used more than once (see OAuth 2.1 [section 6.1](https://datatracker.ietf.org/doc/html/draft-ietf-oauth-v2-1-02#section-6.1))
+* Consider offering clients a way to bind refresh tokens to asymmetric secrets managed in hardware
+* E.g., per-device dynamic client registration (see ongoing work on [UDAP specifications](https://www.udap.org/))
+* E.g., techniques like the [draft DPOP specification](https://datatracker.ietf.org/doc/html/draft-ietf-oauth-dpop-03)
+
+### Best practices for app developers include
+
+* Ensure that refresh tokens are never used more than once
+* Take advantage of techniques to bind refresh tokens to asymmetric secrets managed in hardware, when available (see above)
+* If an app only needs to connect to EHR when the user is present, maintain secrets with best-available protection (e.g., biometric unlock)
+* Publicly document any code of conduct that an app adheres to (e.g., [CARIN Alliance code of conduct](https://www.carinalliance.com/our-work/trust-framework-and-code-of-conduct/))
+
+### Considerations for Scope Consent
 
 In 3rd-party authorization scenarios (where the client and the resource server are not from the same organization), it is a common requirement for authorization servers to obtain the user's consent prior to granting the scopes requested by the client. In order to collect the required consent in a transparent manner, it is important that the authorization server presents a summary of the requested scopes in concise, plain language that the user understands.
 
@@ -21,24 +39,4 @@ The responsibility of supporting transparent consent falls on both the authoriza
 
 1. Client architectures where data are managed exclusively on end-user devices (e.g., many public clients including most native apps today, where an app is only registered once with a given EHR) are open to certain attacks that confidential clients can avoid (e.g., a malicious app on your device might steal tokens from a valid app, or might impersonate a valid app). A breach in this context is more likely to be isolated to a given user or device.
 
-The choice of app architecture should be based based on context. Apps that already need to manage data in the cloud should consider a confidential client architecture; apps that don't should consider a purely-on-device architecture. But this decision only works if refresh tokens are available in either case; otherwise, app developers will switch architectures just to be able to maintain persistent access, even if the overall security posture is diminished.
-
-## Best Practices
-
-This page reflects best practices established at the time of publication.  For up-to-date community discussion, see [SMART on FHIR Best Practices on the HL7 Confluence Site](https://confluence.hl7.org/display/FHIRI/SMART+on+FHIR+Best+Practices)
-
-### Best practices for server developers include
-
-* Remind users which apps have offline access (keeping in mind that too many reminders lead to alert fatigue)
-* Mitigate threats of compromised refreshed tokens
-* Expire an app's authorization if a refresh token is used more than once (see OAuth 2.1 [section 6.1](https://datatracker.ietf.org/doc/html/draft-ietf-oauth-v2-1-02#section-6.1))
-* Consider offering clients a way to bind refresh tokens to asymmetric secrets managed in hardware
-* E.g., per-device dynamic client registration (see ongoing work on [UDAP specifications](https://www.udap.org/))
-* E.g., techniques like the [draft DPOP specification](https://datatracker.ietf.org/doc/html/draft-ietf-oauth-dpop-03)
-
-### Best practices for app developers include
-
-* Ensure that refresh tokens are never used more than once
-* Take advantage of techniques to bind refresh tokens to asymmetric secrets managed in hardware, when available (see above)
-* If an app only needs to connect to EHR when the user is present, maintain secrets with best-available protection (e.g., biometric unlock)
-* Publicly document any code of conduct that an app adheres to (e.g., [CARIN Alliance code of conduct](https://www.carinalliance.com/our-work/trust-framework-and-code-of-conduct/))
+The choice of app architecture should be based on context. Apps that already need to manage data in the cloud should consider a confidential client architecture; apps that don't should consider a purely-on-device architecture. But this decision only works if refresh tokens are available in either case; otherwise, app developers will switch architectures just to be able to maintain persistent access, even if the overall security posture is diminished.
