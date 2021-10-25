@@ -68,8 +68,8 @@ menu:
     Asymmetric (public key): client-confidential-asymmetric.html
     Symmetric (shared secret): client-confidential-symmetric.html
   Token Introspection: token-introspection.html
+  Conformance: conformance.html
   See also:
-    Conformance and discovery: conformance.html
     Artifacts: artifacts.html
     Best Practices: best-practices.html
     Examples: examples.html

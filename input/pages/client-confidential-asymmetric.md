@@ -1,7 +1,7 @@
 ### Profile Audience and Scope
 
-This profile desribes SMART's
-[`client-confidential-asymmetric`](conformance.html) authentication mechanism.  It is intended for
+This profile describes SMART's
+[`client-confidential-asymmetric`](conformance.html) authentication mechanism.  It is intended
 for SMART clients that can manage and sign assertions with asymmetric keys.
 Specifically, this profile describes the registration-time metadata required for
 a client using asymmetric keys, and the runtime process by which a client can
@@ -10,13 +10,13 @@ implemented by user-facing SMART apps in the context of the [SMART App Launch](a
 flow or by [SMART Backend Services](backend-services.html) that
 establish a connection with no user-facing authorization step.
 
-#### **Use this profile** when the following conditions apply:
+#### Use this profile when the following conditions apply:
 
 * The target FHIR authorization server supports SMART's `client-confidential-asymmetric` capability
-* The client can maange asymmetric keys for authentication
+* The client can manage asymmetric keys for authentication
 * The client is able to protect a private key
 
-*Note* See Also: The FHIR specification includes a set of [security
+*Note*: The FHIR specification includes a set of [security
 considerations](http://hl7.org/fhir/security.html) including security, privacy,
 and access control. These considerations apply to diverse use cases and provide
 general guidance for choosing among security specifications for particular use
@@ -34,20 +34,6 @@ cases.
 * [RFC7521, Assertion Framework for OAuth 2.0 Client Authentication and Authorization Grants](https://tools.ietf.org/html/rfc7521)
 * [RFC7523, JSON Web Token (JWT) Profile for OAuth 2.0 Client Authentication and Authorization Grants](https://tools.ietf.org/html/rfc7523)
 * [RFC7591, OAuth 2.0 Dynamic Client Registration Protocol](https://tools.ietf.org/html/rfc7591)
-
-### Conformance Language
-This specification uses the conformance verbs SHALL, SHOULD, and MAY as defined
-in [RFC2119](https://www.ietf.org/rfc/rfc2119.txt). Unlike RFC 2119, however,
-this specification allows that different applications may not be able to
-interoperate because of how they use optional features. In particular:
-
-1.  SHALL: an absolute requirement for all implementations
-2.  SHALL NOT: an absolute prohibition against inclusion for all implementations
-3.  SHOULD/SHOULD NOT: A best practice or recommendation to be considered by
-implementers within the context of their particular implementation; there may
-be valid reasons to ignore an item, but the full implications must be understood
-and carefully weighed before choosing a different course
-4.  MAY: This is truly optional language for an implementation; can be included or omitted as the implementer decides with no implications
 
 <a id="discovery-requirements"></a>
 
@@ -90,7 +76,7 @@ For consistency in implementation, FHIR authorization servers SHALL support regi
 
   1. URL to JWK Set (strongly preferred). This URL communicates the TLS-protected
   endpoint where the client's public JWK Set can be found.
-  This endpoint SHALL be accessible via TLS without authentication or authorization. Advantages
+  This endpoint SHALL be accessible via TLS without client authentication or authorization. Advantages
   of this approach are that
   it allows a client to rotate its own keys by updating the hosted content at the
   JWK Set URL, assures that the public key used by the FHIR authorization server is current, and avoids the
@@ -126,13 +112,7 @@ requesting an access token.
 
 ### Authenticating to the Token endpoint
 
-This specification describes how a client authenticates using an asymmetric key,
-e.g. when requesting an access token during:
-
-* [SMART App Launch](app-launch.html#step-5-access-token)
-* [SMART Backend Services](backend-services.html#step-3-access-token)
-
-Authentication is based on the OAuth 2.0 client credentials flow, with a [JWT
+This specification describes how a client authenticates using an asymmetric key, e.g. when requesting an access token during: [SMART App Launch](app-launch.html#step-5-access-token) or [SMART Backend Services](backend-services.html#step-3-access-token), authentication is based on the OAuth 2.0 client credentials flow, with a [JWT
 assertion](https://tools.ietf.org/html/rfc7523) as the client's authentication mechanism. 
 
 To begin the exchange, the client SHALL use the [Transport Layer Security

@@ -1,11 +1,9 @@
-## Example: App Launch with Asymmetric Authentication
-
 <a id="step-2-launch"></a>
 
 ### Launch App
-This is a user-driven stepm triggering the subsequent workflow.
+This is a user-driven step triggering the subsequent workflow.
 
-In this example, the launch is initiated aginst a FHIR server with a base URL of:
+In this example, the launch is initiated against a FHIR server with a base URL of:
 
     https://smart.argo.run/v/r4/sim/eyJtIjoiMSIsImsiOiIxIiwiaSI6IjEiLCJqIjoiMSIsImIiOiI4N2EzMzlkMC04Y2FlLTQxOGUtODljNy04NjUxZTZhYWIzYzYifQ/fhir
 
@@ -103,7 +101,7 @@ Receive authorization code when EHR redirects the browser back to (newlines adde
 
 ### Retrieve access token
 
-Generate a client authentication assertion and prepare arguments for POST to token API (newlines added for clarity):
+Prepare arguments for POST to token API (newlines added for clarity):
 
 ```
 client_id=demo_app_whatever&
@@ -171,7 +169,7 @@ curl 'https://smart.argo.run/v/r4/sim/eyJtIjoiMSIsImsiOiIxIiwiaSI6IjEiLCJqIjoiMS
 
 ### Refresh access token
 
-Generate a client authentication assertion and prepare arguments for POST to token API (newlines added for clarity)
+Prepare arguments for POST to token API (newlines added for clarity)
 
 ```
 client_id=demo_app_whatever&

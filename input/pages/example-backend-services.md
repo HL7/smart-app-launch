@@ -1,5 +1,3 @@
-## Example: Backend Services
-
 <a id="step-2-discovery"></a>
 
 ### Retrieve .well-known/smart-configuration
