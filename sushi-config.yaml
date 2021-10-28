@@ -3,7 +3,7 @@
 # │  supported properties, see: https://fshschool.org/sushi/configuration/                         │
 # ╰────────────────────────────────────────────────────────────────────────────────────────────────╯
 id: hl7.fhir.uv.smart-app-launch
-canonical: http://fhir-registry.smarthealthit.org
+canonical: http://hl7.org/fhir/smart-app-launch
 name: SmartAppLaunch
 title: "SMART App Launch"
 status: active
