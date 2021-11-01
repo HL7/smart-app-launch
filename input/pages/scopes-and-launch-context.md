@@ -1,20 +1,20 @@
 <!-- # SMART App Launch: Scopes and Launch Context-->
 
 SMART on FHIR's authorization scheme uses OAuth scopes to communicate (and
-negotiate) access requirements. Providing apps with access to broad data sets is consistent with current common practices (e.g. interface engines also provide access to broad data sets); access is also limited based on the privileges of the user in context.  In general, we use scopes for three kinds of data:
+negotiate) access requirements. Providing apps with access to broad data sets is consistent with current common practices (e.g., interface engines also provide access to broad data sets); access is also limited based on the privileges of the user in context.  In general, we use scopes for three kinds of data:
 
 1. [Clinical data](#scopes-for-requesting-clinical-data)
 1. [Contextual data](#scopes-for-requesting-context-data)
 1. [Identity data](#scopes-for-requesting-identity-data)
 
 Launch context is a negotiation where a client asks for specific launch context
-parameters (e.g. `launch/patient`). A server can decide which launch context
+parameters (e.g., `launch/patient`). A server can decide which launch context
 parameters to provide, using the client's request as an input into the decision
-process.  See ["scopes for requesting contxet data"](#scopes-for-requesting-context-data) for details.
+process.  See ["scopes for requesting context data"](#scopes-for-requesting-context-data) for details.
 
 ### Quick Start
 
-Here is a quick overview of the most commonly used scopes. Read on below for complete details.
+Here is a quick overview of the most commonly used scopes. The complete details are provided in the following sections.
 
 Scope | Grants
 ------|--------
@@ -23,7 +23,7 @@ Scope | Grants
 `openid fhirUser` | Permission to retrieve information about the current logged-in user.
 `launch`          | Permission to obtain launch context when app is launched from an EHR.
 `launch/patient`  | When launching outside the EHR, ask for a patient to be selected at launch time.
-`offline_access`  | Request a `refresh_token` that can be used to obtain a new access token to replace an expired one, even after the end-user no longer is online after the access token expires.
+`offline_access`  | Request a `refresh_token` that can be used to obtain a new access token to replace an expired one even after the end-user no longer is online after the access token expires.
 `online_access`   | Request a `refresh_token` that can be used to obtain a new access token to replace an expired one, and that will be usable for as long as the end-user remains online.
 {:.grid}
 
@@ -35,8 +35,8 @@ permissions.
 
 For example:
 
-* If a client uses SMART App Launch to request `user/*.cruds` and is granted these scopes by a user, these scopes convey "full access" relative to the user's underlying permissions.  If the underlying user has limited permissions, the client will face these same limitations.
-* If a client uses SMART Backend Services to request `system/*.cruds`, these scopes convey "full access" relative to a pre-configured client policy.  If the pre-configured policy imposes limited permissions, the client will face these same limitations.
+* If a client uses SMART App Launch to request `user/*.cruds` and is granted these scopes by a user, these scopes convey "full access" relative to the server's underlying permissions.  If the underlying user has limited permissions, the client will face these same limitations.
+* If a client uses SMART Backend Services to request `system/*.cruds`, these scopes convey "full access" relative to a pre-configured server policy.  If the pre-configured policy imposes limited permissions, the client will face these same limitations.
 
 Neither SMART on FHIR nor the FHIR Core specification provide a way to model
 the "underlying" permissions at play here; this is a lower-level responsibility
@@ -467,7 +467,7 @@ additional URL parameter of `launch=abc123`.
 
 The application could choose to also provide `launch/patient` and/or `launch/encounter` as "hints" regarding which contexts the app would like the EHR to gather. The EHR MAY ignore these hints (for example, if the user is in a workflow where these contexts do not exist).
 
-If an application requests a clinical scope which is restricted to a single patient (e.g. `patient/*.rs`), and the authorization results in the EHR is granting that scope, the EHR SHALL establish a patient in context. The EHR MAY refuse authorization requests including `patient/` that do not also include a valid `launch`, or it MAY infer the `launch/patient` scope.
+If an application requests a clinical scope which is restricted to a single patient (e.g., `patient/*.rs`), and the authorization results in the EHR is granting that scope, the EHR SHALL establish a patient in context. The EHR MAY refuse authorization requests including `patient/` that do not also include a valid `launch`, or it MAY infer the `launch/patient` scope.
 
 #### Standalone apps
 
@@ -477,10 +477,10 @@ Requested Scope | Meaning
 ----------------|---------
 `launch/patient`   | Need patient context at launch time (FHIR Patient resource). See note below.
 `launch/encounter` | Need encounter context at launch time (FHIR Encounter resource).
-(Others)           | This list can be extended by any SMART EHR if additional context is required.  When specifying resource types, convert the type names to *all lowercase* (e.g. `launch/diagnosticreport`).
+(Others)           | This list can be extended by any SMART EHR if additional context is required.  When specifying resource types, convert the type names to *all lowercase* (e.g., `launch/diagnosticreport`).
 {:.grid}
 
-Note on `launch/patient`: If an application requests a clinical scope which is restricted to a single patient (e.g. `patient/*.rs`), and the authorization results in the EHR granting that scope, the EHR SHALL establish a patient in context. The EHR MAY refuse authorization requests including `patient/` that do not also include a valid `launch/patient` scope, or it MAY infer the `launch/patient` scope.
+Note on `launch/patient`: If an application requests a clinical scope which is restricted to a single patient (e.g., `patient/*.rs`), and the authorization results in the EHR granting that scope, the EHR SHALL establish a patient in context. The EHR MAY refuse authorization requests including `patient/` that do not also include a valid `launch/patient` scope, or it MAY infer the `launch/patient` scope.
 
 #### Launch context arrives with your `access_token`
 
@@ -630,7 +630,7 @@ The [OpenID Connect Core specification](http://openid.net/specs/openid-connect-c
 describes a wide surface area with many optional capabilities. To be considered compatible
 with the SMART's `sso-openid-connect` capability, the following requirements apply:
 
- * Response types: The EHR SHALL support the Authorization Code Flow, with the request parameters as defined in [SMART App Launch](app-launch.html). Support is not required for parameters that OIDC lists as optional (e.g. `id_token_hint`, `acr_value`), but EHRs are encouraged to review these optional parameters.
+ * Response types: The EHR SHALL support the Authorization Code Flow, with the request parameters as defined in [SMART App Launch](app-launch.html). Support is not required for parameters that OIDC lists as optional (e.g., `id_token_hint`, `acr_value`), but EHRs are encouraged to review these optional parameters.
 
  * Public Keys Published as Bare JWK Keys: The EHR SHALL publish public keys as bare JWK keys (which MAY also be accompanied by X.509 representations of those keys).
 
@@ -661,7 +661,7 @@ Scope | Grants
 
 In addition to conveying FHIR Resource references with the `fhirContext` array, additional context parameters and scopes can be used as extensions using the following namespace conventions:
 
-- use a *full URI* that you control (e.g. http://example.com/scope-name)
+- use a *full URI* that you control (e.g., http://example.com/scope-name)
 - use any string starting with `__` (two underscores)
 
 #### Example: Extra context - `fhirContext` for FHIR Resource References
