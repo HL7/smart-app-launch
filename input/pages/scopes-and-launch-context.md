@@ -368,19 +368,19 @@ Patient-specific scopes allow access to specific data about a single patient.
 *Which* patient is not specified here: clinical data
 scopes are all about *what* and not *who* which is handled in the next section.
 Patient-specific scopes start with `patient/`.
-Note that some EHRs may not enable access to all related resources - for
-example, Practitioners linked to/from Patient-specific resources.
+Note that some EHRs may not enable access to all related resources (for
+example, Practitioners linked to/from Patient-specific resources).
 Note that if a FHIR server supports linking one Patient record with another
 via `Patient.link`, the server documentation SHALL describe its authorization
 behavior.
 
-Let's look at a few examples:
+Several examples are shown below:
 
 Goal | Scope | Notes
 -----|-------|-------
 Read and search for all observations about a patient         | `patient/Observation.rs` |
 Read demographics about a patient             | `patient/Patient.r`      | Note the difference in capitalization between "patient" the permission type and "Patient" the resource.
-Add new blood pressure readings for a patient | `patient/Observation.c`  | Note that the permission is broader than our goal: with this scope, an app can add not only blood pressures, but other observations as well. Note also that write access does not imply read access.
+Add new blood pressure readings for a patient | `patient/Observation.c`  | Note that the permission is broader than the goal: with this scope, an app can add not only blood pressures, but other observations as well. Note also that write access does not imply read access.
 Read all available data about a patient       | `patient/*.cruds`        | See notes on wildcard scopes below.
 {:.grid}
 
@@ -390,7 +390,7 @@ User-level scopes allow access to specific data that a user can access. Note
 that this isn't just data *about* the user; it's data *available to* that user.
 User-level scopes start with  `user/`.
 
-Let's look at a few examples:
+Several examples are shown below:
 
 Goal | Scope | Notes
 -----|-------|-------
@@ -406,7 +406,7 @@ to access; these scopes are useful in cases where there is no user in the loop,
 such as a data monitoring or reporting service.  System-level scopes start with
 `system/`.
 
-Let’s look at a few examples:
+Several examples are shown below:
 
 Goal | Scope | Notes
 -----|-------|-------
@@ -421,11 +421,11 @@ As noted previously, clients can request clinical scopes that contain a wildcard
 
 For instance, imagine a FHIR server that today just exposes the Patient resource. The authorization server asking a patient to authorize a SMART app requesting `patient/*.cruds` should inform the user that they are being asked to grant this SMART app access to not just the currently accessible data about them (patient demographics), but also any additional data the FHIR server may be enhanced to expose in the future (e.g., genetics).
 
-As with any requested scope, the scopes ultimately granted by the authorization server may differ from the scopes requested by the client! When dealing with wildcard clinical scope requests, this is often true.
+As with any requested scope, the scopes ultimately granted by the authorization server may differ from the scopes requested by the client! This is often true when dealing with wildcard clinical scope requests.
 
-As a best practice, clients should examine the granted scopes by the authorization server and respond accordingly. Failure to do so may lead to situations in which the client attempts to access FHIR resources they were not granted access only to receive an authorization failure by the FHIR server.
+As a best practice, clients should examine the granted scopes by the authorization server and respond accordingly. Failure to do so may lead to situations where the client receives an authorization failure by the FHIR server because it attempted to access FHIR resources beyond the granted scopes.
 
-For example, imagine a client with the goal of obtaining read and write access to a patient's allergies and as such, requests the clinical scope of `patient/AllergyIntolerance.cruds`. The authorization server may respond in a variety of ways with respect to the scopes that are ultimately granted. The following table outlines several, but not an exhaustive list of scenarios for this example:
+For example, consider a client with the goal of obtaining read and write access to a patient's allergies. If this client requests the clinical scope of `patient/AllergyIntolerance.cruds`, the authorization server may respond in a variety of ways with respect to the scopes that are ultimately granted. The following table outlines several, but not an exhaustive list of scenarios for this example:
 
 Granted Scope | Notes
 --------------|-------
@@ -547,7 +547,7 @@ If a SMART EHR provides a value that the client does not recognize, or does
 not provide a value, the client app SHOULD display a default application UI
 context.
 
-Note:  *SMART makes no effort to standardize `intent` values*.  Intents simply
+Note that *SMART makes no effort to standardize `intent` values*.  Intents simply
 provide a mechanism for tighter custom integration between an app and a SMART
 EHR. The meaning of intents must be negotiated between the app and the EHR.
 
