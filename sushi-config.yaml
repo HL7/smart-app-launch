@@ -16,7 +16,7 @@ license: 'CC-BY-4.0'
 jurisdiction: http://unstats.un.org/unsd/methods/m49/m49.htm#001 "World"
 publisher:
   name: HL7 International - FHIR Infrastructure WG
-  url: http://hl7.org/Special/committees/fiwg
+  url: https://hl7.org/Special/committees/fiwg
   email: fhir@lists.HL7.org
 pages:
   index.md:
