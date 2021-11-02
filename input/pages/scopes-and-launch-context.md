@@ -485,7 +485,7 @@ Note on `launch/patient`: If an application requests a clinical scope which is r
 #### Launch context arrives with your `access_token`
 
 Once an app is authorized, the token response will include any context data the
-app requested and any unsolicited context data the EHR may
+app requested and any (potentially) unsolicited context data the EHR may
 decide to communicate. For example, EHRs may use launch context to communicate
 UX and UI expectations to the app (see `need_patient_banner` below).
 
