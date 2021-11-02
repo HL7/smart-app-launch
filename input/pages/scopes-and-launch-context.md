@@ -36,7 +36,7 @@ permissions.
 For example:
 
 * If a client uses SMART App Launch to request `user/*.cruds` and is granted these scopes by a user, these scopes convey "full access" relative to the user's underlying permissions.  If the underlying user has limited permissions, the client will face these same limitations.
-* If a client uses SMART Backend Services to request `system/*.cruds`, these scopes convey "full access" relative to a pre-configured server policy.  If the pre-configured policy imposes limited permissions, the client will face these same limitations.
+* If a client uses SMART Backend Services to request `system/*.cruds`, these scopes convey "full access" relative to a server's pre-configured client-specific policy.  If the pre-configured policy imposes limited permissions, the client will face these same limitations.
 
 Neither SMART on FHIR nor the FHIR Core specification provide a way to model
 the "underlying" permissions at play here; this is a lower-level responsibility
