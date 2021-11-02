@@ -64,7 +64,7 @@ consider using the [OAuth 2.0 Dynamic Client Registration
 Protocol](https://tools.ietf.org/html/draft-ietf-oauth-dyn-reg).
 
 No matter how a client registers with a FHIR authorization server, the
-client SHALL register the **public key** the
+client SHALL register the **public key** that the
 client will use to authenticate itself to the FHIR authorization server.  The public key SHALL
 be conveyed to the FHIR authorization server in a JSON Web Key (JWK) structure presented within
 a JWK Set, as defined in
@@ -113,7 +113,7 @@ requesting an access token.
 ### Authenticating to the Token endpoint
 
 This specification describes how a client authenticates using an asymmetric key, e.g. when requesting an access token during: [SMART App Launch](app-launch.html#step-5-access-token) or [SMART Backend Services](backend-services.html#step-3-access-token), authentication is based on the OAuth 2.0 client credentials flow, with a [JWT
-assertion](https://tools.ietf.org/html/rfc7523) as the client's authentication mechanism. 
+assertion](https://tools.ietf.org/html/rfc7523) as the client's authentication mechanism.
 
 To begin the exchange, the client SHALL use the [Transport Layer Security
 (TLS) Protocol Version 1.2 (RFC5246)](https://tools.ietf.org/html/rfc5246) or a more recent version of TLS to
@@ -226,7 +226,7 @@ processing requirements defined in [Section 3 of RFC7523](https://tools.ietf.org
 
 In addition, the authentication server SHALL:
 * check that the `jti` value has not been previously encountered for the given `iss` within the maximum allowed authentication JWT lifetime (e.g., 5 minutes). This check prevents replay attacks.
-* ensure that the `client_id` provided is known and matches the JWT's `iss` claim
+* ensure that the `client_id` provided is known and matches the JWT's `iss` claim.
 
 To resolve a key to verify signatures, a FHIR authorization server SHALL follow this algorithm:
 
@@ -280,7 +280,7 @@ At runtime, when the bilirubin monitoring service needs to authenticate to the t
 
 ```
 {
-  "iss": "https://bili-monitor.example.com",
+  "iss": "bili-monitor",
   "sub": "bili_monitor",
   "aud": "https://authorize.smarthealthit.org/token",
   "exp": 1422568860,
