@@ -3,27 +3,27 @@ participant App
 participant "EHR with Authorization Server" as EHR
 participant "FHIR Server" as FHIR
 
-opt  Precondition: Client Registration
+opt  1. Precondition: Client Registration
     App ->> EHR: (may be out of band)
 end
-alt EHR Launch
+alt 2. EHR Launch
     EHR->>EHR: EHR user \nlaunches app
     EHR->> App: Launch request
-else Standalone Launch
+else 2. Standalone Launch
     App->>App: App user \nconnects to EHR
 end
-App ->> FHIR: Discovery request
-FHIR ->> App: Discovery response
-App ->> EHR: Authorization request
-opt 
-    EHR->> EHR: EHR incorporates user input\ninto authorization decision
+App ->> FHIR: 3. Discovery request
+FHIR ->> App: 3. Discovery response
+App ->> EHR: 4. Authorization request
+opt
+    EHR->> EHR: 4. EHR incorporates user input\ninto authorization decision
 end
 alt Granted
-    EHR ->> App: Authorization granted
-    App ->> FHIR: Access token request
-    EHR ->> App: Access token response
-    App ->> FHIR: Request Resources
+    EHR ->> App: 4. Authorization granted
+    App ->> FHIR: 5.,7. Access token request
+    EHR ->> App: 5.,7. Access token response
+    App ->> FHIR: 6. Request Resources
 else Denied
-    EHR ->> App: Authorization error
+    EHR ->> App: 4. Authorization error
 end
 @enduml
