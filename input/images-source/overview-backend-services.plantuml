@@ -3,16 +3,16 @@ participant App as "Backend Service"
 participant "FHIR authorization server" as EHR
 participant "FHIR resource server" as FHIR
 
-opt  Precondition: Client Registration
+opt  1. Precondition: Client Registration
     App ->> EHR: (may be out of band)
 end
-App ->> FHIR: Discovery request
-FHIR ->> App: Discovery response
-App ->> EHR: Access token request
+App ->> FHIR: 2. Discovery request
+FHIR ->> App: 2. Discovery response
+App ->> EHR: 3. Access token request
 alt Granted
-    EHR ->> App: Access token response
-    App ->> FHIR: Request Resources
+    EHR ->> App: 3. Access token response
+    App ->> FHIR: 4. Request Resources
 else Denied
-    EHR ->> App: Authorization error
+    EHR ->> App: 3. Authorization error
 end
 @enduml
