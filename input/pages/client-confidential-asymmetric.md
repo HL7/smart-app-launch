@@ -259,7 +259,7 @@ Processing of the access token request proceeds according to either the [SMART A
 Assume that a "bilirubin result monitoring service" client has registered with a FHIR authorization server whose token endpoint is at "https://authorize.smarthealthit.org/token", establishing the following
 
  * JWT "issuer" URL: `https://bili-monitor.example.com`
- * OAuth2 `client_id`: `bili_monitor`
+ * OAuth2 `client_id`: `https://bili-monitor.example.com`
  * JWK identfier: `kid` value (see [example JWK](RS384.public.json))
 
 The client protects its private key from unauthorized access, use, and modification.  
@@ -280,8 +280,8 @@ At runtime, when the bilirubin monitoring service needs to authenticate to the t
 
 ```
 {
-  "iss": "bili-monitor",
-  "sub": "bili_monitor",
+  "iss": "https://bili-monitor.example.com",
+  "sub": "https://bili-monitor.example.com",
   "aud": "https://authorize.smarthealthit.org/token",
   "exp": 1422568860,
   "jti": "random-non-reusable-jwt-id-123"
