@@ -693,11 +693,10 @@ property is present.  The server could choose an extension property as a full UR
 #### Example: Extra scopes - extensions for non-FHIR APIs
 
 If a SMART on FHIR server supports a custom behavior like allowing users
-to choose their own profile photos through a custom non-FHIR API.  The server
+to choose their own profile photos through a custom non-FHIR API, it
 can designate a custom scope using a full URL (e.g.,
 `https://ehr.example.org/scopes/profilePhoto.manage`) or by using a `"__"`
-prefix (e.g., `__profilePhoto.manage`) and associate this scope with the custom
-behavior.  The server could advertise this scope in its developer-facing
+prefix (e.g., `__profilePhoto.manage`).  The server could advertise this scope in its developer-facing
 documentation, and also in the `scopes_supported` array of its
 `.well-known/smart-configuration` file.  Clients requesting authorization could
 include this scope alongside other standardized scopes, so the `scope`
