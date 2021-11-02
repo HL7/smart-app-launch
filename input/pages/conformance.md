@@ -101,8 +101,8 @@ completing the launch.
 
 * `permission-offline`: support for refresh tokens (requested by `offline_access` scope)
 * `permission-online`: support for refresh tokens (requested by `online_access` scope)
-* `permission-patient`: support for patient-level scopes (e.g. `patient/Observation.rs`)
-* `permission-user`: support for user-level scopes (e.g. `user/Appointment.rs`)
+* `permission-patient`: support for patient-level scopes (e.g., `patient/Observation.rs`)
+* `permission-user`: support for user-level scopes (e.g., `user/Appointment.rs`)
 * `permission-v1`: support for SMARTv1 scope syntax (e.g., `patient/Observation.read`)
 * `permission-v2`: support for SMARTv2 granular scope syntax (e.g., `patient/Observation.rs?category=http://terminology.hl7.org/CodeSystem/observation-category|vital-signs`)
 
