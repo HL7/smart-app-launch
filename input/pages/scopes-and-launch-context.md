@@ -425,7 +425,7 @@ As with any requested scope, the scopes ultimately granted by the authorization 
 
 As a best practice, clients should examine the granted scopes by the authorization server and respond accordingly. Failure to do so may lead to situations where the client receives an authorization failure by the FHIR server because it attempted to access FHIR resources beyond the granted scopes.
 
-For example, a client with the goal of obtaining read and write access to a patient's allergies requests the clinical scope of `patient/AllergyIntolerance.cruds`. The authorization server may respond in a variety of ways with respect to the scopes that are ultimately granted. The following table outlines several, but not an exhaustive list of scenarios for this example:
+For example, consider a client with the goal of obtaining read and write access to a patient's allergies. If this client requests the clinical scope of `patient/AllergyIntolerance.cruds`, the authorization server may respond in a variety of ways with respect to the scopes that are ultimately granted. The following table outlines several, but not an exhaustive list of scenarios for this example:
 
 Granted Scope | Notes
 --------------|-------
