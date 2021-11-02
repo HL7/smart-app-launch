@@ -341,7 +341,7 @@ needs authenticated patient identity) and either:
 
 <ul>
 <li> a <code>launch</code> value indicating that the app wants to receive already-established launch context details from the EHR </li>
-<li> a set of launch context requirements in the form <code>launch/patient</code> which asks the EHR to establish context on your behalf.</li>
+<li> a set of launch context requirements in the form <code>launch/patient</code>, which asks the EHR to establish context on your behalf.</li>
 </ul>
 
 See <a href="scopes-and-launch-context.html">SMART on FHIR Access
