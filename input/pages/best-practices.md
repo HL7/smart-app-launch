@@ -6,8 +6,8 @@ This page reflects non-normative best practices established at the time of publi
 * Mitigate threats of compromised refreshed tokens
 * Expire an app's authorization if a refresh token is used more than once (see OAuth 2.1 [section 6.1](https://datatracker.ietf.org/doc/html/draft-ietf-oauth-v2-1-02#section-6.1))
 * Consider offering clients a way to bind refresh tokens to asymmetric secrets managed in hardware
-* E.g., per-device dynamic client registration (see ongoing work on [UDAP specifications](https://www.udap.org/))
-* E.g., techniques like the [draft DPOP specification](https://datatracker.ietf.org/doc/html/draft-ietf-oauth-dpop-03)
+  * E.g., per-device dynamic client registration (see ongoing work on [UDAP specifications](https://www.udap.org/))
+  * E.g., techniques like the [draft DPOP specification](https://datatracker.ietf.org/doc/html/draft-ietf-oauth-dpop-03)
 
 ### Best practices for app developers include
 
@@ -26,10 +26,10 @@ The responsibility of supporting transparent consent falls on both the authoriza
 * In a complex authorization scenario involving user consent, the complexity of the authorization request presented to the user should be considered and balanced against the concept of least privilege. Make effective use of both wildcard and SMART 2.0 fine grained resource scopes to reduce the number and complexity of scopes requested. The goal is to request an appropriate level of access in a transparent manner that the user fully understands and agrees with.
 
 *Authorization Server Considerations*
-* For each requested scope- present the user with both a short and long description of the access requested. The long description may be available in a pop-up window or some similar display method. These descriptions should be in plain language, localized to the language set in the user's browser.
-* Consider publishing consent design documentation for client developers- including user interface screenshots and full scope description metadata.  This will provide valuable transparency to client developers as they make decisions on what access to request at authorization time.
-* Avoid industry jargon when describing a given scope to the user. For example, an average patient may not know what is meant if a client application is requesting for access to their "Encounters".
-* If using the experimental query-based scopes, consider how the query will be represented in plain language. If the query cannot easily be explained in a single sentence, adjustment of the requested scope should be considered or proper documentation provided to educate the intended user population.
+* For each requested scope, present the user with both a short and long description of the access requested. The long description may be available in a pop-up window or some similar display method. These descriptions should be in plain language and localized to the user's browser language preference.
+* Consider publishing consent design documentation for client developers including user interface screenshots and full scope description metadata.  This will provide valuable transparency to client developers as they make decisions on what access to request at authorization time.
+* Avoid industry jargon when describing a given scope to the user. For example, an average patient may not know what is meant if a client application is requesting access to their "Encounters".
+* If using the [experimental query-based scopes](scopes-and-launch-context.html#experimental-features), consider how the query will be represented in plain language. If the query cannot easily be explained in a single sentence, adjustment of the requested scope should be considered or proper documentation provided to educate the intended user population.
 
 ### App and Server developers should consider trade-offs associated with confidential vs public app architectures
 
