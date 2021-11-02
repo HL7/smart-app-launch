@@ -670,7 +670,7 @@ clients may be issued longer-lived tokens than public clients.
 *A large range of threats to access tokens can be mitigated by digitally
 signing the token as specified in [RFC7515](https://tools.ietf.org/html/rfc7515)
 or by using a Message Authentication Code (MAC) instead.  Alternatively,
-an access token can contain a reference to authorization information
+an access token can contain a reference to authorization information,
 rather than encoding the information directly into the token itself.  
 To be effective, such references must be infeasible for an attacker to
 guess.  Using a reference may require an extra interaction between the
