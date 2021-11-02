@@ -221,7 +221,7 @@ The app proceeds to the [next step](#step-3-discovery) of the SMART App Launch f
 
 In SMART's <span class="label label-primary">EHR launch</span> flow,
 a user has established an EHR session and then decides to launch an app. This
-could be a single-patient app which runs in the context of a patient record, or
+could be a single-patient app that runs in the context of a patient record, or
 a user-level app (like an appointment manager or a population dashboard).
 
 #### Request
