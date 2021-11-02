@@ -662,7 +662,7 @@ access token.  If the app receives a refresh token along with the access
 token, it can exchange this refresh token for a new access token when the
 current access token expires (see step 5 below).
 
-Apps SHOULD store tokens in app-specific storage locations only and not in
+Apps SHOULD store tokens in app-specific storage locations only, and not in
 system-wide-discoverable locations.  Access tokens SHOULD have a valid
 lifetime no greater than one hour.  Confidential
 clients may be issued longer-lived tokens than public clients.
