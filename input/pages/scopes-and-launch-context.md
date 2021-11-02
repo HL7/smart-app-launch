@@ -683,7 +683,7 @@ includes a value such as `ImagingStudy/123`.
 #### Example: Extra context - extensions for non-FHIR context
 
 If a SMART on FHIR server wishes to communicate additional context (such
-as a custom "dark mode" flag to providing clients a hint about whether they
+as a custom "dark mode" flag to provide clients a hint about whether they
 should render a UI suitable for use in low-light environments), it could
 accomplish this by returning an access token response where an extension
 property is present.  The server could choose an extension property as a full URL
