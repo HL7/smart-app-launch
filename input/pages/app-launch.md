@@ -335,7 +335,7 @@ The app supplies the following parameters to the EHR’s "authorize" endpoint.
       <td><span class="label label-success">required</span></td>
       <td>
 
-Must describe the access that the app needs including scopes like
+Must describe the access that the app needs, including scopes like
 <code>patient/*.rs</code>, <code>openid</code> and <code>fhirUser</code> (if app
 needs authenticated patient identity) and either:
 
