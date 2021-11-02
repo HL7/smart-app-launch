@@ -812,7 +812,7 @@ The response is a JSON object containing a new access token, with the following 
     <tr>
       <td><code>scope</code></td>
       <td><span class="label label-success">required</span></td>
-      <td>Scope of access authorized. Note that this will be the same as the scope of the original access token and it can be different from the scopes requested by the app.</td>
+      <td>Scope of access authorized. Note that this will be the same as the scope of the original access token, and it can be different from the scopes requested by the app.</td>
     </tr>
     <tr>
       <td><code>refresh_token</code></td>
