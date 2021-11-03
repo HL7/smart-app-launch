@@ -19,11 +19,11 @@ opt
     EHR-->> EHR: EHR incorporates user input\ninto authorization decision
 end
 alt Granted
-    EHR --> App: Authorization granted
+    EHR -->> App: Authorization granted
     App -> FHIR: Access token request
     EHR --> App: Access token response
     App -> FHIR: Request Resources
 else Denied
-    EHR --> App: Authorization error
+    EHR -->> App: Authorization error
 end
 @enduml
