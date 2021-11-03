@@ -70,7 +70,7 @@ menu:
   Token Introspection: token-introspection.html
   Conformance: conformance.html
   See also:
-    Artifacts: artifacts.html
+    #Artifacts: artifacts.html # no artifacts to display!
     Best Practices: best-practices.html
     Examples: examples.html
     History: http://hl7.org/fhir/smart-app-launch/history.html

@@ -1,57 +1,57 @@
-# pip3 install python-jose
-
-#### Input
 ```python
+# To create a markdown of this notebook, run: jupyter nbconvert --to markdown authorization-example-jwks-and-signatures.ipynb
+# !pip3 install python-jose
+
 import json
 import jose.jwk
 import jose.jwt
 import jose.constants
 
 def get_signing_key(filename):
-   with open(filename) as private_key_file:
-       signing_keyset = json.load(private_key_file)
-       signing_key = [k for k in signing_keyset["keys"] if "sign" in k["key_ops"]][0]
-       return signing_key
-
+    with open(filename) as private_key_file:
+        signing_keyset = json.load(private_key_file)
+        signing_key = [k for k in signing_keyset["keys"] if "sign" in k["key_ops"]][0]
+        return signing_key
+    
 jwt_claims = {
- "iss": "bili_monitor",
- "sub": "bili_monitor",
- "aud": "https://authorize.smarthealthit.org/token",
- "exp": 1422568860,
- "jti": "random-non-reusable-jwt-id-123"
+  "iss": "https://bili-monitor.example.com",
+  "sub": "https://bili-monitor.example.com",
+  "aud": "https://authorize.smarthealthit.org/token",
+  "exp": 1422568860,
+  "jti": "random-non-reusable-jwt-id-123"
 }
 ```
 
-# Encoded JWT with RS384 Signature
-#### Input
 
 ```python
+print("# Encoded JWT with RS384 Signature")
 rsa_signing_jwk = get_signing_key("RS384.private.json")
 jose.jwt.encode(
-   jwt_claims,
-   rsa_signing_jwk,
-   algorithm='RS384',
-   headers={"kid": rsa_signing_jwk["kid"]})
+    jwt_claims,
+    rsa_signing_jwk,
+    algorithm='RS384',
+    headers={"kid": rsa_signing_jwk["kid"]})
 ```
 
-#### Output
+# Encoded JWT with RS384 Signature
 
-   'eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzM4NCIsImtpZCI6ImVlZTlmMTdhM2I1OThmZDg2NDE3YTk4MGI1OTFmYmU2In0.eyJpc3MiOiJiaWxpX21vbml0b3IiLCJzdWIiOiJiaWxpX21vbml0b3IiLCJhdWQiOiJodHRwczovL2F1dGhvcml6ZS5zbWFydGhlYWx0aGl0Lm9yZy90b2tlbiIsImV4cCI6MTQyMjU2ODg2MCwianRpIjoicmFuZG9tLW5vbi1yZXVzYWJsZS1qd3QtaWQtMTIzIn0.l2E3-ThahEzJ_gaAK8sosc9uk1uhsISmJfwQOtooEcgUiqkdMFdAUE7sr8uJN0fTmTP9TUxssFEAQnCOF8QjkMXngEruIL190YVlwukGgv1wazsi_ptI9euWAf2AjOXaPFm6t629vzdznzVu08EWglG70l41697AXnFK8GUWSBf_8WHrcmFwLD_EpO_BWMoEIGDOOLGjYzOB_eN6abpUo4GCB9gX2-U8IGXAU8UG-axLb35qY7Mczwq9oxM9Z0_IcC8R8TJJQFQXzazo9YZmqts6qQ4pRlsfKpy9IzyLzyR9KZyKLZalBytwkr2lW7QU3tC-xPrf43jQFVKr07f9dA'
+'eyJhbGciOiJSUzM4NCIsImtpZCI6ImVlZTlmMTdhM2I1OThmZDg2NDE3YTk4MGI1OTFmYmU2IiwidHlwIjoiSldUIn0.eyJpc3MiOiJodHRwczovL2JpbGktbW9uaXRvci5leGFtcGxlLmNvbSIsInN1YiI6Imh0dHBzOi8vYmlsaS1tb25pdG9yLmV4YW1wbGUuY29tIiwiYXVkIjoiaHR0cHM6Ly9hdXRob3JpemUuc21hcnRoZWFsdGhpdC5vcmcvdG9rZW4iLCJleHAiOjE0MjI1Njg4NjAsImp0aSI6InJhbmRvbS1ub24tcmV1c2FibGUtand0LWlkLTEyMyJ9.D5kAqNJwaftCqsRdVVQDq6dMBxuGFOF5svQJuXbcYp-oEyg5qOwK9ZE5cGLTHxqwfpUPNzRKgVdIGuhawAA-8g0s1nKQae8CuKs33hhKh4J34xSEwW3MYs1gwI4GHTtR_g3kYSX6QCi14Ed3GIAvYFgqRqt-gD7sewMUXL4SB8I8cXcDbCqVizm7uPVhjw6QaeKZygJJ_AVLhM4Xs9LTy4HAhdCHpN0FrNmCerUIYJvHDpcod7A0jDmxdoeW1KIBYlhdhQNwjtsTvT1ce4qacN_3KIv_fIzCKLIgDv9eWxkjAtxOmIm8aW5gX9xX7X0nbd0QglIyiic_bZVNNEh0kg'
 
 
 
-# Encoded JWT with ES384 Signature
-#### Input
+
 ```python
+print("# Encoded JWT with ES384 Signature")
 ec_signing_jwk  = get_signing_key("ES384.private.json")
 jose.jwt.encode(
-   jwt_claims,
-   ec_signing_jwk,
-   algorithm='ES384',
-   headers={"kid": ec_signing_jwk["kid"]})
+    jwt_claims,
+    ec_signing_jwk,
+    algorithm='ES384',
+    headers={"kid": ec_signing_jwk["kid"]})
 ```
 
+# Encoded JWT with ES384 Signature
 
-#### Output
+'eyJhbGciOiJFUzM4NCIsImtpZCI6ImNkNTIwMjExZTU2NjFkYmJhMjI1NmY2N2Y2ZDUzZjk3IiwidHlwIjoiSldUIn0.eyJpc3MiOiJodHRwczovL2JpbGktbW9uaXRvci5leGFtcGxlLmNvbSIsInN1YiI6Imh0dHBzOi8vYmlsaS1tb25pdG9yLmV4YW1wbGUuY29tIiwiYXVkIjoiaHR0cHM6Ly9hdXRob3JpemUuc21hcnRoZWFsdGhpdC5vcmcvdG9rZW4iLCJleHAiOjE0MjI1Njg4NjAsImp0aSI6InJhbmRvbS1ub24tcmV1c2FibGUtand0LWlkLTEyMyJ9.ddl5N8dt5PYI_7syKg_dm1wj1LR3dYVztFlTODs6pU1vKH1Zv3d9NctbnAsZ4aZ1K7HE83_fA_hIAL0JsU1GoB7roLmrpj8zfygG9Q1ZBAmKNoR60pyONPZsGTihoR29'
 
-   'eyJ0eXAiOiJKV1QiLCJhbGciOiJFUzM4NCIsImtpZCI6ImNkNTIwMjExZTU2NjFkYmJhMjI1NmY2N2Y2ZDUzZjk3In0.eyJpc3MiOiJiaWxpX21vbml0b3IiLCJzdWIiOiJiaWxpX21vbml0b3IiLCJhdWQiOiJodHRwczovL2F1dGhvcml6ZS5zbWFydGhlYWx0aGl0Lm9yZy90b2tlbiIsImV4cCI6MTQyMjU2ODg2MCwianRpIjoicmFuZG9tLW5vbi1yZXVzYWJsZS1qd3QtaWQtMTIzIn0.ijKknbYSIa-Ja6qjErSDakTHaaI--k91ll0z-yRaKeiYESoVGV6Qq6_5FyDMGmX-WQPfs57pDgb1iQAE3YogxqufFDDEbirAijTg8GaUjHuahpdBUuVLe5pdZj7c7BsB'
+

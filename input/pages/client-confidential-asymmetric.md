@@ -64,7 +64,7 @@ consider using the [OAuth 2.0 Dynamic Client Registration
 Protocol](https://tools.ietf.org/html/draft-ietf-oauth-dyn-reg).
 
 No matter how a client registers with a FHIR authorization server, the
-client SHALL register the **public key** the
+client SHALL register the **public key** that the
 client will use to authenticate itself to the FHIR authorization server.  The public key SHALL
 be conveyed to the FHIR authorization server in a JSON Web Key (JWK) structure presented within
 a JWK Set, as defined in
@@ -113,7 +113,7 @@ requesting an access token.
 ### Authenticating to the Token endpoint
 
 This specification describes how a client authenticates using an asymmetric key, e.g., when requesting an access token during: [SMART App Launch](app-launch.html#step-5-access-token) or [SMART Backend Services](backend-services.html#step-3-access-token), authentication is based on the OAuth 2.0 client credentials flow, with a [JWT
-assertion](https://tools.ietf.org/html/rfc7523) as the client's authentication mechanism. 
+assertion](https://tools.ietf.org/html/rfc7523) as the client's authentication mechanism.
 
 To begin the exchange, the client SHALL use the [Transport Layer Security
 (TLS) Protocol Version 1.2 (RFC5246)](https://tools.ietf.org/html/rfc5246) or a more recent version of TLS to
@@ -226,7 +226,7 @@ processing requirements defined in [Section 3 of RFC7523](https://tools.ietf.org
 
 In addition, the authentication server SHALL:
 * check that the `jti` value has not been previously encountered for the given `iss` within the maximum allowed authentication JWT lifetime (e.g., 5 minutes). This check prevents replay attacks.
-* ensure that the `client_id` provided is known and matches the JWT's `iss` claim
+* ensure that the `client_id` provided is known and matches the JWT's `iss` claim.
 
 To resolve a key to verify signatures, a FHIR authorization server SHALL follow this algorithm:
 
@@ -259,7 +259,7 @@ Processing of the access token request proceeds according to either the [SMART A
 Assume that a "bilirubin result monitoring service" client has registered with a FHIR authorization server whose token endpoint is at "https://authorize.smarthealthit.org/token", establishing the following
 
  * JWT "issuer" URL: `https://bili-monitor.example.com`
- * OAuth2 `client_id`: `bili_monitor`
+ * OAuth2 `client_id`: `https://bili-monitor.example.com`
  * JWK identfier: `kid` value (see [example JWK](RS384.public.json))
 
 The client protects its private key from unauthorized access, use, and modification.  
@@ -281,7 +281,7 @@ At runtime, when the bilirubin monitoring service needs to authenticate to the t
 ```
 {
   "iss": "https://bili-monitor.example.com",
-  "sub": "bili_monitor",
+  "sub": "https://bili-monitor.example.com",
   "aud": "https://authorize.smarthealthit.org/token",
   "exp": 1422568860,
   "jti": "random-non-reusable-jwt-id-123"
@@ -293,8 +293,7 @@ an `RS384` algorithm (`alg`) parameter value in RFC7518), the signed token
 value is:
 
 ```
-eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzM4NCIsImtpZCI6ImVlZTlmMTdhM2I1OThmZDg2NDE3YTk4MGI1OTFmYmU2In0.eyJpc3MiOiJiaWxpX21vbml0b3IiLCJzdWIiOiJiaWxpX21vbml0b3IiLCJhdWQiOiJodHRwczovL2F1dGhvcml6ZS5zbWFydGhlYWx0aGl0Lm9yZy90b2tlbiIsImV4cCI6MTQyMjU2ODg2MCwianRpIjoicmFuZG9tLW5vbi1yZXVzYWJsZS1qd3QtaWQtMTIzIn0.l2E3-ThahEzJ_gaAK8sosc9uk1uhsISmJfwQOtooEcgUiqkdMFdAUE7sr8uJN0fTmTP9TUxssFEAQnCOF8QjkMXngEruIL190YVlwukGgv1wazsi_ptI9euWAf2AjOXaPFm6t629vzdznzVu08EWglG70l41697AXnFK8GUWSBf_8WHrcmFwLD_EpO_BWMoEIGDOOLGjYzOB_eN6abpUo4GCB9gX2-U8IGXAU8UG-axLb35qY7Mczwq9oxM9Z0_IcC8R8TJJQFQXzazo9YZmqts6qQ4pRlsfKpy9IzyLzyR9KZyKLZalBytwkr2lW7QU3tC-xPrf43jQFVKr07f9dA
-
+eyJhbGciOiJSUzM4NCIsImtpZCI6ImVlZTlmMTdhM2I1OThmZDg2NDE3YTk4MGI1OTFmYmU2IiwidHlwIjoiSldUIn0.eyJpc3MiOiJodHRwczovL2JpbGktbW9uaXRvci5leGFtcGxlLmNvbSIsInN1YiI6Imh0dHBzOi8vYmlsaS1tb25pdG9yLmV4YW1wbGUuY29tIiwiYXVkIjoiaHR0cHM6Ly9hdXRob3JpemUuc21hcnRoZWFsdGhpdC5vcmcvdG9rZW4iLCJleHAiOjE0MjI1Njg4NjAsImp0aSI6InJhbmRvbS1ub24tcmV1c2FibGUtand0LWlkLTEyMyJ9.D5kAqNJwaftCqsRdVVQDq6dMBxuGFOF5svQJuXbcYp-oEyg5qOwK9ZE5cGLTHxqwfpUPNzRKgVdIGuhawAA-8g0s1nKQae8CuKs33hhKh4J34xSEwW3MYs1gwI4GHTtR_g3kYSX6QCi14Ed3GIAvYFgqRqt-gD7sewMUXL4SB8I8cXcDbCqVizm7uPVhjw6QaeKZygJJ_AVLhM4Xs9LTy4HAhdCHpN0FrNmCerUIYJvHDpcod7A0jDmxdoeW1KIBYlhdhQNwjtsTvT1ce4qacN_3KIv_fIzCKLIgDv9eWxkjAtxOmIm8aW5gX9xX7X0nbd0QglIyiic_bZVNNEh0kg
 ```
 
 Note: to inspect this example JWT, you can visit https://jwt.io. Paste the signed
