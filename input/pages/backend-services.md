@@ -20,8 +20,7 @@ include access authorization.
 * The client supports [`client-confidential-asymmetric` authentication](client-confidential-asymmetric.html)
 * No compelling need exists for a user to authorize the access at runtime.
 
-*Note* See Also:
-The FHIR specification includes a set of [security considerations](http://hl7.org/fhir/security.html) including security, privacy, and access control. These considerations apply to diverse use cases and provide general guidance for choosing among security specifications for particular use cases.
+Note that the FHIR specification includes a set of [security considerations](http://hl7.org/fhir/security.html) including security, privacy, and access control. These considerations apply to diverse use cases and provide general guidance for choosing among security specifications for particular use cases.
 
 #### Examples
 
@@ -95,7 +94,7 @@ with the server by following the [registration steps described in `client-confid
 In order to request authorization to access FHIR resources, the app discovers the EHR FHIR server's SMART configuration metadata, including OAuth `token` endpoint URL.
 
 #### Request
-The app issues an HTTP GET with an `Accept` header supporting `application/json` to retrieve the SMART configuration file. 
+The app issues an HTTP GET with an `Accept` header supporting `application/json` to retrieve the SMART configuration file.
 
 #### Response
 
@@ -127,7 +126,7 @@ protecting its authentication credential.
 This specification describes requirements for requesting an access token
 through the use of an OAuth 2.0 client credentials flow, with a [JWT
 assertion](https://tools.ietf.org/html/rfc7523) as the
-client's authentication mechanism. The exchange, as depicted below, allows the
+client's authentication mechanism. The exchange, as depicted above, allows the
 client to authenticate itself to the FHIR authorization server and to request a short-lived
 access token in a single exchange.
 
@@ -261,7 +260,7 @@ For a full example, see [example token request and response](example-backend-ser
 ### Access FHIR API
 
 With a valid access token, the app can access protected FHIR data by issuing a
-FHIR API call to the FHIR endpoint on the FHIR resource server. 
+FHIR API call to the FHIR endpoint on the FHIR resource server.
 
 #### Request
 
