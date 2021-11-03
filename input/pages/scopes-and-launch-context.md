@@ -1,14 +1,14 @@
 <!-- # SMART App Launch: Scopes and Launch Context-->
 
 SMART on FHIR's authorization scheme uses OAuth scopes to communicate (and
-negotiate) access requirements. Providing apps with access to broad data sets is consistent with current common practices (e.g. interface engines also provide access to broad data sets); access is also limited based on the privileges of the user in context.  In general, we use scopes for three kinds of data:
+negotiate) access requirements. Providing apps with access to broad data sets is consistent with current common practices (e.g., interface engines also provide access to broad data sets); access is also limited based on the privileges of the user in context.  In general, we use scopes for three kinds of data:
 
 1. [Clinical data](#scopes-for-requesting-clinical-data)
 1. [Contextual data](#scopes-for-requesting-context-data)
 1. [Identity data](#scopes-for-requesting-identity-data)
 
 Launch context is a negotiation where a client asks for specific launch context
-parameters (e.g. `launch/patient`). A server can decide which launch context
+parameters (e.g., `launch/patient`). A server can decide which launch context
 parameters to provide, using the client's request as an input into the decision
 process.  See ["scopes for requesting contxet data"](#scopes-for-requesting-context-data) for details.
 
@@ -467,7 +467,7 @@ additional URL parameter of `launch=abc123`.
 
 The application could choose to also provide `launch/patient` and/or `launch/encounter` as "hints" regarding which contexts the app would like the EHR to gather. The EHR MAY ignore these hints (for example, if the user is in a workflow where these contexts do not exist).
 
-If an application requests a clinical scope which is restricted to a single patient (e.g. `patient/*.rs`), and the authorization results in the EHR is granting that scope, the EHR SHALL establish a patient in context. The EHR MAY refuse authorization requests including `patient/` that do not also include a valid `launch`, or it MAY infer the `launch/patient` scope.
+If an application requests a clinical scope which is restricted to a single patient (e.g., `patient/*.rs`), and the authorization results in the EHR is granting that scope, the EHR SHALL establish a patient in context. The EHR MAY refuse authorization requests including `patient/` that do not also include a valid `launch`, or it MAY infer the `launch/patient` scope.
 
 #### Standalone apps
 
@@ -477,10 +477,10 @@ Requested Scope | Meaning
 ----------------|---------
 `launch/patient`   | Need patient context at launch time (FHIR Patient resource). See note below.
 `launch/encounter` | Need encounter context at launch time (FHIR Encounter resource).
-(Others)           | This list can be extended by any SMART EHR if additional context is required.  When specifying resource types, convert the type names to *all lowercase* (e.g. `launch/diagnosticreport`).
+(Others)           | This list can be extended by any SMART EHR if additional context is required.  When specifying resource types, convert the type names to *all lowercase* (e.g., `launch/diagnosticreport`).
 {:.grid}
 
-Note on `launch/patient`: If an application requests a clinical scope which is restricted to a single patient (e.g. `patient/*.rs`), and the authorization results in the EHR granting that scope, the EHR SHALL establish a patient in context. The EHR MAY refuse authorization requests including `patient/` that do not also include a valid `launch/patient` scope, or it MAY infer the `launch/patient` scope.
+Note on `launch/patient`: If an application requests a clinical scope which is restricted to a single patient (e.g., `patient/*.rs`), and the authorization results in the EHR granting that scope, the EHR SHALL establish a patient in context. The EHR MAY refuse authorization requests including `patient/` that do not also include a valid `launch/patient` scope, or it MAY infer the `launch/patient` scope.
 
 #### Launch context arrives with your `access_token`
 
@@ -630,7 +630,7 @@ The [OpenID Connect Core specification](http://openid.net/specs/openid-connect-c
 describes a wide surface area with many optional capabilities. To be considered compatible
 with the SMART's `sso-openid-connect` capability, the following requirements apply:
 
- * Response types: The EHR SHALL support the Authorization Code Flow, with the request parameters as defined in [SMART App Launch](app-launch.html). Support is not required for parameters that OIDC lists as optional (e.g. `id_token_hint`, `acr_value`), but EHRs are encouraged to review these optional parameters.
+ * Response types: The EHR SHALL support the Authorization Code Flow, with the request parameters as defined in [SMART App Launch](app-launch.html). Support is not required for parameters that OIDC lists as optional (e.g., `id_token_hint`, `acr_value`), but EHRs are encouraged to review these optional parameters.
 
  * Public Keys Published as Bare JWK Keys: The EHR SHALL publish public keys as bare JWK keys (which MAY also be accompanied by X.509 representations of those keys).
 
@@ -661,7 +661,7 @@ Scope | Grants
 
 In addition to conveying FHIR Resource references with the `fhirContext` array, additional context parameters and scopes can be used as extensions using the following namespace conventions:
 
-- use a *full URI* that you control (e.g. http://example.com/scope-name)
+- use a *full URI* that you control (e.g., http://example.com/scope-name)
 - use any string starting with `__` (two underscores)
 
 #### Example: Extra context - `fhirContext` for FHIR Resource References

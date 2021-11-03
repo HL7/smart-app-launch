@@ -112,7 +112,7 @@ requesting an access token.
 
 ### Authenticating to the Token endpoint
 
-This specification describes how a client authenticates using an asymmetric key, e.g. when requesting an access token during: [SMART App Launch](app-launch.html#step-5-access-token) or [SMART Backend Services](backend-services.html#step-3-access-token), authentication is based on the OAuth 2.0 client credentials flow, with a [JWT
+This specification describes how a client authenticates using an asymmetric key, e.g., when requesting an access token during: [SMART App Launch](app-launch.html#step-5-access-token) or [SMART Backend Services](backend-services.html#step-3-access-token), authentication is based on the OAuth 2.0 client credentials flow, with a [JWT
 assertion](https://tools.ietf.org/html/rfc7523) as the client's authentication mechanism. 
 
 To begin the exchange, the client SHALL use the [Transport Layer Security
