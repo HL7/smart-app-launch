@@ -10,11 +10,11 @@ negotiate) access requirements. Providing apps with access to broad data sets is
 Launch context is a negotiation where a client asks for specific launch context
 parameters (e.g., `launch/patient`). A server can decide which launch context
 parameters to provide, using the client's request as an input into the decision
-process.  See ["scopes for requesting contxet data"](#scopes-for-requesting-context-data) for details.
+process.  See ["scopes for requesting context data"](#scopes-for-requesting-context-data) for details.
 
 ### Quick Start
 
-Here is a quick overview of the most commonly used scopes. Read on below for complete details.
+Here is a quick overview of the most commonly used scopes. The complete details are provided in the following sections.
 
 Scope | Grants
 ------|--------
@@ -36,7 +36,7 @@ permissions.
 For example:
 
 * If a client uses SMART App Launch to request `user/*.cruds` and is granted these scopes by a user, these scopes convey "full access" relative to the user's underlying permissions.  If the underlying user has limited permissions, the client will face these same limitations.
-* If a client uses SMART Backend Services to request `system/*.cruds`, these scopes convey "full access" relative to a pre-configured client policy.  If the pre-configured policy imposes limited permissions, the client will face these same limitations.
+* If a client uses SMART Backend Services to request `system/*.cruds`, these scopes convey "full access" relative to a server's pre-configured client-specific policy.  If the pre-configured policy imposes limited permissions, the client will face these same limitations.
 
 Neither SMART on FHIR nor the FHIR Core specification provide a way to model
 the "underlying" permissions at play here; this is a lower-level responsibility
