@@ -12,18 +12,18 @@ alt EHR Launch
 else Standalone Launch
     App->>App: App user \nconnects to EHR
 end
-App ->> FHIR: Discovery request
-FHIR ->> App: Discovery response
+App -> FHIR: Discovery request
+FHIR --> App: Discovery response
 App ->> EHR: Authorization request
 opt 
-    EHR->> EHR: EHR incorporates user input\ninto authorization decision
+    EHR-->> EHR: EHR incorporates user input\ninto authorization decision
 end
 alt Granted
-    EHR ->> App: Authorization granted
-    App ->> FHIR: Access token request
-    EHR ->> App: Access token response
-    App ->> FHIR: Request Resources
+    EHR --> App: Authorization granted
+    App -> FHIR: Access token request
+    EHR --> App: Access token response
+    App -> FHIR: Request Resources
 else Denied
-    EHR ->> App: Authorization error
+    EHR --> App: Authorization error
 end
 @enduml

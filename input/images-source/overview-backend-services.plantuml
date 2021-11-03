@@ -6,13 +6,13 @@ participant "FHIR resource server" as FHIR
 opt  Precondition: Client Registration
     App ->> EHR: (may be out of band)
 end
-App ->> FHIR: Discovery request
-FHIR ->> App: Discovery response
-App ->> EHR: Access token request
+App -> FHIR: Discovery request
+FHIR --> App: Discovery response
+App -> EHR: Access token request
 alt Granted
-    EHR ->> App: Access token response
-    App ->> FHIR: Request Resources
+    EHR --> App: Access token response
+    App -> FHIR: Request Resources
 else Denied
-    EHR ->> App: Authorization error
+    EHR --> App: Authorization error
 end
 @enduml
