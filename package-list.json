@@ -17,7 +17,8 @@
       "path": "http://hl7.org/fhir/smart-app-launch/STU2",
       "sequence": "STU 2",
       "fhirversion": "4.0.1",
-      "status": "trial-use"
+      "status": "trial-use",
+      "current": true
     },
     {
       "version": "1.1.0",
@@ -35,8 +36,7 @@
       "desc": "Release 1.0.0 (STU)",
       "path": "http://hl7.org/fhir/smart-app-launch/1.0.0",
       "status": "trial-use",
-      "sequence": "STU 1",
-      "current": true
+      "sequence": "STU 1"
     },
     {
       "version": "0.8.0",

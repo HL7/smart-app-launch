@@ -29,8 +29,8 @@ The profile defines a method through which an app requests
 authorization to access a FHIR resource, and then uses that authorization
 to retrieve the resource.  Synchronization of patient context is not addressed;
 for use cases that require context synchronization (e.g., learning about when
-the in-context patient changes within an EHR session) see 
-[FHIRcast](https://fhircast.org).  In other words, if the patient chart is 
+the in-context patient changes within an EHR session) see
+[FHIRcast](https://fhircast.org).  In other words, if the patient chart is
 changed during the session, the application will not inherently be updated.
 
 Security mechanisms such as those mandated by HIPAA in the US (end-user
@@ -139,11 +139,11 @@ Once an app receives a launch request, it requests authorization to access FHIR 
 instructing the browser to navigate to the EHR's authorization endpoint. Based
 on pre-defined rules and possibly end-user authorization, the EHR authorization
 server either grants the request by returning an authorization code to the app’s
-redirect URL, or denies the request. The app then exchanges the authorization
-code for an access token, which the app presents to the EHR’s resource server to
+redirect URL or denies the request. The app then exchanges the authorization
+code for an access token. The app presents the access token to the EHR’s resource server to
 access requested FHIR resources. If a refresh token is returned along with the
-access token, the app may use this to request a new access token, with the same
-scope, once the access token expires.
+access token, the app may use it to request a new access token with the same
+scope, once the old access token expires.
 
 ###  Top-level steps for SMART App Launch
 
@@ -175,14 +175,14 @@ encourage EHR implementers to consider the [OAuth 2.0 Dynamic Client
 Registration Protocol](https://tools.ietf.org/html/rfc7591)
 for an out-of-the-box solution.
 
-*Note: this is a one-time setup step, and can occur out-of-band*.
+*Note that this is a one-time setup step, and can occur out-of-band*.
 
 #### Request
 
 No matter how an app registers with an EHR's authorization service, at registration time **every SMART app SHALL**:
 
 * Register zero or more fixed, fully-specified launch URL with the EHR's authorization server
-* Register one or more fixed, fully-specified `redirect_uri`s with the EHR's authorization server.  Note: In the case of native clients following the OAuth 2.0 for Native Apps specification [(RFC 8252)](https://tools.ietf.org/html/rfc8252), it may be appropriate to leave the port as a dynamic variable in an otherwise fixed redirect URI.
+* Register one or more fixed, fully-specified `redirect_uri`s with the EHR's authorization server.  Note that in the case of native clients following the OAuth 2.0 for Native Apps specification [(RFC 8252)](https://tools.ietf.org/html/rfc8252), it may be appropriate to leave the port as a dynamic variable in an otherwise fixed redirect URI.
 
 For confidential clients, additional registration-time requirements are defined based on the client authentication method.
 
@@ -199,8 +199,8 @@ The EHR confirms the app's registration parameters and communicates a `client_id
 ### Launch App: Standalone Launch
 
 In SMART's <span class="label label-primary">standalone
-launch</span> flow, a user selects an app from outside the EHR,
-for example by tapping an app icon on a mobile phone home screen.  
+launch</span> flow, a user selects an app from outside the EHR
+(for example, by tapping an app icon on a mobile phone home screen).  
 
 
 #### Request
@@ -220,8 +220,8 @@ The app proceeds to the [next step](#step-3-discovery) of the SMART App Launch f
 ### Launch App: EHR Launch
 
 In SMART's <span class="label label-primary">EHR launch</span> flow,
-a user has established an EHR session, and then decides to launch an app. This
-could be a single-patient app (which runs in the context of a patient record), or
+a user has established an EHR session and then decides to launch an app. This
+could be a single-patient app that runs in the context of a patient record, or
 a user-level app (like an appointment manager or a population dashboard).
 
 #### Request
@@ -241,7 +241,7 @@ The following parameters are included:
       <td>
 
 Identifies the EHR's FHIR endpoint, which the app can use to obtain
-additional details about the EHR, including its authorization URL.
+additional details about the EHR including its authorization URL.
 
       </td>
     </tr>
@@ -250,7 +250,7 @@ additional details about the EHR, including its authorization URL.
       <td><span class="label label-success">required</span></td>
       <td>
 
-      Opaque identifier for this specific launch, and any EHR context associated
+      Opaque identifier for this specific launch and any EHR context associated
 with it. This parameter must be communicated back to the EHR  at authorization
 time by passing along a <code>launch</code> parameter (see example below).
 
@@ -267,7 +267,7 @@ A launch might cause the browser to navigate to:
 
 Later, when the app prepares its [authorization request](#step-4-authorization-code), it includes
 `launch` as a requested scope and includes a `launch={launch id}` URL
-parameter, echoing the value it received from the EHR in this
+parameter echoing the value it received from the EHR in this
 notification.
 
 #### Response
@@ -369,10 +369,10 @@ entropy (e.g., a properly configured random uuid is suitable).
       <td>
 URL of the EHR resource server from which the app wishes to retrieve FHIR data.
 This parameter prevents leaking a genuine bearer token to a counterfeit
-resource server. (Note: in the case of an <span class="label label-primary">EHR launch</span>
+resource server. (Note that in the case of an <span class="label label-primary">EHR launch</span>
 flow, this <code>aud</code> value is the same as the launch's <code>iss</code> value.)
 
-Note that the <code>aud</code> parameter is semantically equivalent to the 
+Note that the <code>aud</code> parameter is semantically equivalent to the
 <code>resource</code> parameter defined in <a href="https://datatracker.ietf.org/doc/rfc8707">RFC8707</a>.
 SMART's <code>aud</code> parameter predates RFC8707 and we have decided not to
 rename it for reasons of backwards compatibility. We might consider renaming
@@ -405,7 +405,7 @@ minimizing the requested data categories and the requested duration of access).
 
 If the app needs to authenticate the identity of or retrieve information about
 the end-user, it should include two OpenID Connect scopes:  `openid` and
-`fhirUser`.   When these scopes are requested, and the request is granted, the
+`fhirUser`.   When these scopes are requested and the request is granted, the
 app will receive an id_token along with the access token.  For full details,
 see [SMART launch context parameters](scopes-and-launch-context.html).
 
@@ -423,7 +423,7 @@ patient and wants information about the current logged-in user, the app  can req
 * `openid fhirUser`
 
 If the app was launched from an EHR, the app adds a `launch` scope and a
-`launch={launch id}` URL parameter, echoing the value it received from the EHR
+`launch={launch id}` URL parameter echoing the value it received from the EHR
 to be associated with the EHR context of this launch notification.
 
 *Apps using the <span class="label label-primary">standalone launch</span> flow
@@ -453,7 +453,7 @@ Location: https://ehr/authorize?
             aud=https://ehr/fhir
 ```
 
-Alternatively, the following example shows one way for a client app to cause the browser to issue a `POST`, using HTML and javascript:
+Alternatively, the following example shows one way for a client app to cause the browser to issue a `POST` using HTML and javascript:
 
 
 ```
@@ -474,16 +474,15 @@ Alternatively, the following example shows one way for a client app to cause the
 
 #### Response
 
-The authorization decision is up to the EHR authorization server,
-which may request authorization from the end-user. The EHR authorization
+The authorization decision is up to the EHR authorization server which may request authorization from the end-user. The EHR authorization
 server will enforce access rules based on local policies and optionally direct
 end-user input.
 
 The EHR decides whether to grant or deny access.  This decision is
 communicated to the app when the EHR authorization server returns an
-authorization code (or, if denying access, an error response).  Authorization codes are short-lived, usually expiring
+authorization code or, if denying access, an error response.  Authorization codes are short-lived, usually expiring
 within around one minute.  The code is sent when the EHR authorization server
-causes the browser to navigate to the app's <code>redirect_uri</code>, with the
+causes the browser to navigate to the app's <code>redirect_uri</code> with the
 following URL parameters:
 
 <table class="table">
@@ -545,12 +544,10 @@ After obtaining an authorization code, the app trades the code for an access
 token.
 
 #### Request
-The app issues an HTTP `POST` to the EHR authorization server's token endpoint URL,
-using content-type `application/x-www-form-urlencoded`, as described in
+The app issues an HTTP `POST` to the EHR authorization server's token endpoint URL using content-type `application/x-www-form-urlencoded` as described in
 section 4.1.3 of [RFC6749](https://tools.ietf.org/html/rfc6749#section-4.1.3).
 
-For <span class="label label-primary">public apps</span>, authentication is not
-possible (and thus not required), since a client with no secret cannot prove its
+For <span class="label label-primary">public apps</span>, authentication not required because a client with no secret cannot prove its
 identity when it issues a call. (The end-to-end system can still be secure
 because the client comes from a known, https protected endpoint specified and
 enforced by the redirect uri.)  For <span class="label label-primary">confidential
@@ -648,7 +645,7 @@ The access token is a string of characters as defined in
 [RFC6749](https://tools.ietf.org/html/rfc6749) and
 [RFC6750](http://tools.ietf.org/html/rfc6750).  The token is essentially
 a private message that the authorization server
-passes to the FHIR Resource Server, telling the FHIR server that the
+passes to the FHIR Resource Server telling the FHIR server that the
 "message bearer" has been authorized to access the specified resources.  
 Defining the format and content of the access token is left up to the
 organization that issues the access token and holds the requested resource.
@@ -663,9 +660,9 @@ access token and whether to issue a refresh token, as defined in section 1.5
 of [RFC6749](https://tools.ietf.org/html/rfc6749#page-10), along with the
 access token.  If the app receives a refresh token along with the access
 token, it can exchange this refresh token for a new access token when the
-current access token expires (see step 5 below). 
+current access token expires (see step 5 below).
 
-Apps SHOULD store tokens in app-specific storage locations only, not in
+Apps SHOULD store tokens in app-specific storage locations only, and not in
 system-wide-discoverable locations.  Access tokens SHOULD have a valid
 lifetime no greater than one hour.  Confidential
 clients may be issued longer-lived tokens than public clients.
@@ -680,8 +677,7 @@ guess.  Using a reference may require an extra interaction between the
 resource server and the authorization server; the mechanics of such an
 interaction are not defined by this specification.*
 
-At this point, **the authorization flow is complete**. Follow steps below to work with
-data and refresh access tokens, as shown in the following sequence diagram.
+At this point, **the authorization flow is complete**.
 
 
 #### Examples
@@ -695,11 +691,11 @@ data and refresh access tokens, as shown in the following sequence diagram.
 ### Access FHIR API
 
 With a valid access token, the app can access protected EHR data by issuing a
-FHIR API call to the FHIR endpoint on the EHR's resource server. 
+FHIR API call to the FHIR endpoint on the EHR's resource server.
 
 #### Request
 
-From the access token resopnse, an app has received an OAuth2 bearer-type access token (`access_token` property) that can be used to fetch clinical data.  The app issues a request that includes an
+From the access token response, an app has received an OAuth2 bearer-type access token (`access_token` property) that can be used to fetch clinical data.  The app issues a request that includes an
 `Authorization` header that presents the `access_token` as a "Bearer" token:
 
 {% raw %}
@@ -748,7 +744,7 @@ Authorization: Bearer i8hweunweunweofiwweoijewiwe
 
 Refresh tokens are issued to enable sessions to last longer than the validity period of an access token.  The app can use the `expires_in` field from the token response (see <a href="#step-5-access-token">Obtain access token</a>) to determine when its access token will expire.  EHR implementers are also encouraged to consider using the [OAuth 2.0 Token Introspection Protocol](https://tools.ietf.org/html/rfc7662) to provide an introspection endpoint that clients can use to examine the validity and meaning of tokens. An app with "online access" can continue to get new access tokens as long as the end-user remains online.  Apps with "offline access" can continue to get new access tokens without the user being interactively engaged for cases where an application should have long-term access extending beyond the time when a user is still interacting with the client.
 
-The app requests a refresh token in its authorization request via the `online_access` or `offline_access` scope (see <a href="scopes-and-launch-context.html">SMART on FHIR Access Scopes</a> for details).  A server can decide which client types (public or confidential) are eligible for offline access and able to receive a refresh token.  If granted, the EHR supplies a refresh_token in the token response.  A refresh token SHALL BE bound to the same `client_id` and SHALL contain the same, or a subset of, the set of claims authorized for the access token with which it is associated. After an access token expires, the app requests a new access token by providing its refresh token to the EHR's token endpoint.]
+The app requests a refresh token in its authorization request via the `online_access` or `offline_access` scope (see <a href="scopes-and-launch-context.html">SMART on FHIR Access Scopes</a> for details).  A server can decide which client types (public or confidential) are eligible for offline access and able to receive a refresh token.  If granted, the EHR supplies a refresh_token in the token response.  A refresh token SHALL be bound to the same `client_id` and SHALL contain the same or a subset of the claims authorized for the access token with which it is associated. After an access token expires, the app requests a new access token by providing its refresh token to the EHR's token endpoint.
 
 
 #### Request
@@ -821,7 +817,7 @@ The response is a JSON object containing a new access token, with the following 
     <tr>
       <td><code>refresh_token</code></td>
       <td><span class="label label-info">optional</span></td>
-      <td>The refresh token issued by the authorization server. If present, the app should discard any previous <code>refresh_token</code> associated with this launch, replacing it with this new value.</td>
+      <td>The refresh token issued by the authorization server. If present, the app should discard any previous <code>refresh_token</code> associated with this launch and replace it with this new value.</td>
     </tr>
   </tbody>
 </table>
