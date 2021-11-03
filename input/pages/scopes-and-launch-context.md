@@ -454,7 +454,7 @@ addition to whatever clinical access scopes it needs. Launch context scopes are
 easy to tell apart from clinical data scopes, because they always begin with
 `launch`.
 
-There are two general approaches to asking for launch context data, depending
+There are two general approaches to asking for launch context data depending
 on the details of how your app is launched.
 
 #### Apps that launch from the EHR
@@ -485,8 +485,8 @@ Note on `launch/patient`: If an application requests a clinical scope which is r
 #### Launch context arrives with your `access_token`
 
 Once an app is authorized, the token response will include any context data the
-app requested -- along with (potentially!) any unsolicited context data the EHR
-decides to communicate. For example, EHRs may use launch context to communicate
+app requested and any (potentially) unsolicited context data the EHR may
+decide to communicate. For example, EHRs may use launch context to communicate
 UX and UI expectations to the app (see `need_patient_banner` below).
 
 Launch context parameters come alongside the access token. They will appear as JSON
@@ -500,7 +500,7 @@ parameters:
 //...
 }
 ```
-Here are the launch context parameters to expect:
+Some common launch context parameters are shown below. The following sections provides further details:
 
 Launch context parameter | Example value | Meaning
 -------------------------|---------------|---------
@@ -513,13 +513,10 @@ Launch context parameter | Example value | Meaning
 `tenant`              | `"2ddd6c3a-8e9a-44c6-a305-52111ad302a2"` | String conveying an opaque identifier for the healthcare organization that is launching the app. This parameter is intended primarily to support EHR Launch scenarios.
 {:.grid}
 
-##### The following section provides further details on some of the context parameters
-
-
 ##### `fhirContext`
 
-`fhirContext`: To allow application flexibility, while also maintaining
-backwards compatibility (and to keep a predictable JSON structure), any
+`fhirContext`: To allow application flexibility, maintain
+backwards compatibility, and keep a predictable JSON structure, any
 contextual resource types (other than Patient and Encounter) that were
 requested by a launch scope will appear in this parameter.  The Patient and
 Encounter resource types will *not be deprecated from top-level parameters*,
@@ -549,13 +546,13 @@ context.
 
 Note that *SMART makes no effort to standardize `intent` values*.  Intents simply
 provide a mechanism for tighter custom integration between an app and a SMART
-EHR. The meaning of intents must be negotiated between the app and the EHR.
+EHR. The meaning of intent values must be negotiated between the app and the EHR.
 
 ##### SMART App Styling (experimental[^1])
 {: #styling}
 `smart_style_url`: In order to mimic the style of the SMART EHR more closely,
-SMART apps can check for the existence of this launch context parameter and
-download the JSON file referenced by the URL value, if provided.
+SMART apps can check for the existence of this launch context parameter and,  if provided,
+download the JSON file referenced by the URL value.
 
 The URL SHOULD serve a "SMART Style" JSON object with one or more of the following properties:
 
@@ -668,15 +665,15 @@ In addition to conveying FHIR Resource references with the `fhirContext` array, 
 
 ##### EHR Launch
 
-Suppose a SMART on FHIR server supports additional launch context during an EHR
-Launch, perhaps communicating the ID of an `ImagingStudy` that is open in the
+If a SMART on FHIR server supports additional launch context during an EHR
+Launch, it could communicate the ID of an `ImagingStudy` that is open in the
 EHR at the time of app launch.  The server could return an access token response
 where the `fhirContext` array includes a value such as `ImagingStudy/123`.
 
 ##### Standalone Launch
 
-Suppose a SMART on FHIR server supports additional launch context during a
-Standalone Launch, perhaps providing an ability for the user to select an
+If a SMART on FHIR server supports additional launch context during a
+Standalone Launch, it could provide an ability for the user to select an
 `ImagingStudy` during the launch.  A client could request this behavior by
 requesting a `launch/imagingstudy` scope (note that launch requests scopes are
 always lower case); then after allowing the user to select an `ImagingStudy`,
@@ -685,22 +682,21 @@ includes a value such as `ImagingStudy/123`.
 
 #### Example: Extra context - extensions for non-FHIR context
 
-Suppose a SMART on FHIR server wishes to communicate additional context, such
-as a custom "dark mode" flag, providing clients a hint about whether they
-should render a UI suitable for use in low-light environments.  The EHR could
+If a SMART on FHIR server wishes to communicate additional context (such
+as a custom "dark mode" flag to provide clients a hint about whether they
+should render a UI suitable for use in low-light environments), it could
 accomplish this by returning an access token response where an extension
-property is present.  The EHR could choose an extension property as a full URL
+property is present.  The server could choose an extension property as a full URL
 (e.g., `{..., "https://ehr.example.org/props/dark-mode": true}`) or by using a
 `"__"` prefix (e.g., `{..., "__darkMode": true}`).
 
 #### Example: Extra scopes - extensions for non-FHIR APIs
 
-Suppose a SMART on FHIR server supports a custom behavior like allowing users
-to choose their own profile photos through a custom non-FHIR API.  The server
+If a SMART on FHIR server supports a custom behavior like allowing users
+to choose their own profile photos through a custom non-FHIR API, it
 can designate a custom scope using a full URL (e.g.,
 `https://ehr.example.org/scopes/profilePhoto.manage`) or by using a `"__"`
-prefix (e.g., `__profilePhoto.manage`) and associate this scope with the custom
-behavior.  The server could advertise this scope in its developer-facing
+prefix (e.g., `__profilePhoto.manage`).  The server could advertise this scope in its developer-facing
 documentation, and also in the `scopes_supported` array of its
 `.well-known/smart-configuration` file.  Clients requesting authorization could
 include this scope alongside other standardized scopes, so the `scope`
