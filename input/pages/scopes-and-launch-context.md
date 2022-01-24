@@ -715,7 +715,7 @@ matches the original request.
 
 ### Worked examples
 
-- Worked Python example: [rendered](worked_example_id_token.html)
+- Worked Python example: [rendered](example_worked_id_token.html)
 
 ### Appendix: URI representation of scopes
 

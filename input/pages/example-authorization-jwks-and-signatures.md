@@ -1,5 +1,5 @@
 ```python
-# To create a markdown of this notebook, run: jupyter nbconvert --to markdown authorization-example-jwks-and-signatures.ipynb
+# To create a markdown of this notebook, run: jupyter nbconvert --to markdown example-authorization-jwks-and-signatures.ipynb
 # !pip3 install python-jose
 
 import json
@@ -24,7 +24,7 @@ jwt_claims = {
 
 
 ```python
-print("# Encoded JWT with RS384 Signature")
+print("### Encoded JWT with RS384 Signature")
 rsa_signing_jwk = get_signing_key("RS384.private.json")
 jose.jwt.encode(
     jwt_claims,
@@ -33,7 +33,7 @@ jose.jwt.encode(
     headers={"kid": rsa_signing_jwk["kid"]})
 ```
 
-# Encoded JWT with RS384 Signature
+### Encoded JWT with RS384 Signature
 
     eyJhbGciOiJSUzM4NCIsImtpZCI6ImVlZTlmMTdhM2I1OThmZDg2NDE3YTk4MGI1OTFmYmU2IiwidHlwIjoiSldUIn0.eyJpc3MiOiJodHRwczovL2JpbGktbW9uaXRvci5leGFtcGxlLmNvbSIsInN1YiI6Imh0dHBzOi8vYmlsaS1tb25pdG9yLmV4YW1wbGUuY29tIiwiYXVkIjoiaHR0cHM6Ly9hdXRob3JpemUuc21hcnRoZWFsdGhpdC5vcmcvdG9rZW4iLCJleHAiOjE0MjI1Njg4NjAsImp0aSI6InJhbmRvbS1ub24tcmV1c2FibGUtand0LWlkLTEyMyJ9.D5kAqNJwaftCqsRdVVQDq6dMBxuGFOF5svQJuXbcYp-oEyg5qOwK9ZE5cGLTHxqwfpUPNzRKgVdIGuhawAA-8g0s1nKQae8CuKs33hhKh4J34xSEwW3MYs1gwI4GHTtR_g3kYSX6QCi14Ed3GIAvYFgqRqt-gD7sewMUXL4SB8I8cXcDbCqVizm7uPVhjw6QaeKZygJJ_AVLhM4Xs9LTy4HAhdCHpN0FrNmCerUIYJvHDpcod7A0jDmxdoeW1KIBYlhdhQNwjtsTvT1ce4qacN_3KIv_fIzCKLIgDv9eWxkjAtxOmIm8aW5gX9xX7X0nbd0QglIyiic_bZVNNEh0kg
 
@@ -41,7 +41,7 @@ jose.jwt.encode(
 
 
 ```python
-print("# Encoded JWT with ES384 Signature")
+print("### Encoded JWT with ES384 Signature")
 ec_signing_jwk  = get_signing_key("ES384.private.json")
 jose.jwt.encode(
     jwt_claims,
@@ -50,7 +50,7 @@ jose.jwt.encode(
     headers={"kid": ec_signing_jwk["kid"]})
 ```
 
-# Encoded JWT with ES384 Signature
+### Encoded JWT with ES384 Signature
 
     eyJhbGciOiJFUzM4NCIsImtpZCI6ImNkNTIwMjExZTU2NjFkYmJhMjI1NmY2N2Y2ZDUzZjk3IiwidHlwIjoiSldUIn0.eyJpc3MiOiJodHRwczovL2JpbGktbW9uaXRvci5leGFtcGxlLmNvbSIsInN1YiI6Imh0dHBzOi8vYmlsaS1tb25pdG9yLmV4YW1wbGUuY29tIiwiYXVkIjoiaHR0cHM6Ly9hdXRob3JpemUuc21hcnRoZWFsdGhpdC5vcmcvdG9rZW4iLCJleHAiOjE0MjI1Njg4NjAsImp0aSI6InJhbmRvbS1ub24tcmV1c2FibGUtand0LWlkLTEyMyJ9.ddl5N8dt5PYI_7syKg_dm1wj1LR3dYVztFlTODs6pU1vKH1Zv3d9NctbnAsZ4aZ1K7HE83_fA_hIAL0JsU1GoB7roLmrpj8zfygG9Q1ZBAmKNoR60pyONPZsGTihoR29
 
