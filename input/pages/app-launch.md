@@ -112,6 +112,15 @@ for example:
 #### Considerations for PKCE Support
 All SMART apps SHALL support Proof Key for Code Exchange (PKCE).  PKCE is a standardized, cross-platform technique for clients to mitigate the threat of authorization code interception or injection. PKCE is described in [IETF RFC 7636](https://tools.ietf.org/html/rfc7636). SMART servers SHALL support the `S256` `code_challenge_method` and SHALL NOT support the `plain` method.
 
+The app SHALL store the PKCE `code_verifier` on the end-user's device before navigating to the authorize endpoint, and later retrieve it at the app's `redirect_uri`. Storing the verifier on a centralized server defeats the purpose of PKCE.
+
+Established storage methods (such as those discussed in the Openid Connect [Nonce Implementation Notes](https://openid.net/specs/openid-connect-core-1_0.html#NonceNotes)) include:
+1. An encrypted HttpOnly cookie (for web-server based clients)
+2. HTML5 local or session storage ([Web Storage API](https://developer.mozilla.org/en-US/docs/Web/API/Web_Storage_API))
+3. Storing in the browser's memory using [Web Workers](https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API) or [JavaScript closures](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Closures#emulating_private_methods_with_closures)
+
+Web-server based clients that use options 2 or 3 SHOULD consider generating the `code_verifier` from their server and encrypting it before storing in the browser.
+
 #### Related reading
 
 Implementers can review the [OAuth Security Topics](https://tools.ietf.org/html/draft-ietf-oauth-security-topics-16) guidance from IETF as a collection of Best Current Practices.
