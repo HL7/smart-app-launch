@@ -79,6 +79,14 @@ curl -s 'https://smart.argo.run/v/r4/sim/eyJtIjoiMSIsImsiOiIxIiwiaSI6IjEiLCJqIjo
 
 ### Obtain authorization code
 
+The client generates the following:
+- state parameter
+- PKCE code challenge and verifier
+
+To mitigate attacks against the client (such as [CSRF](https://datatracker.ietf.org/doc/html/rfc6819#section-4.4.1.8)), the client saves the `state` and `code_verifier` into a pre-login session, such as in [HTML5 sessionStorage](https://cheatsheetseries.owasp.org/cheatsheets/Session_Management_Cheat_Sheet.html#the-sessionstorage-api). The client will retrieve/check these values at its redirect_uri.
+
+Using these parameters, the client redirects the browser to the `authorize_endpoint` from the discovery response (newlines added for clarity):
+
 Generate a PKCE code challenge and verifier, then redirect browser to the `authorize_endpoint` from the discovery response (newlines added for clarity):
 
     https://smart.argo.run/v/r4/sim/eyJtIjoiMSIsImsiOiIxIiwiaSI6IjEiLCJqIjoiMSIsImIiOiI4N2EzMzlkMC04Y2FlLTQxOGUtODljNy04NjUxZTZhYWIzYzYifQ/auth/authorize?
@@ -86,7 +94,8 @@ Generate a PKCE code challenge and verifier, then redirect browser to the `autho
       client_id=demo_app_whatever&
       scope=launch%2Fpatient%20patient%2FObservation.rs%20patient%2FPatient.rs%20offline_access&
       redirect_uri=https%3A%2F%2Fsharp-lake-word.glitch.me%2Fgraph.html&
-      aud=https%3A%2F%2Fsmart.argo.run%2Fv%2Fr4%2Fsim%2FeyJtIjoiMSIsImsiOiIxIiwiaSI6IjEiLCJqIjoiMSIsImIiOiI4N2EzMzlkMC04Y2FlLTQxOGUtODljNy04NjUxZTZhYWIzYzYifQ%2Ffhir&state=0hJc1S9O4oW54XuY&
+      aud=https%3A%2F%2Fsmart.argo.run%2Fv%2Fr4%2Fsim%2FeyJtIjoiMSIsImsiOiIxIiwiaSI6IjEiLCJqIjoiMSIsImIiOiI4N2EzMzlkMC04Y2FlLTQxOGUtODljNy04NjUxZTZhYWIzYzYifQ%2Ffhir&
+      state=0hJc1S9O4oW54XuY&
       code_challenge=YPXe7B8ghKrj8PsT4L6ltupgI12NQJ5vblB07F4rGaw&
       code_challenge_method=S256
 
@@ -96,6 +105,14 @@ Receive authorization code when EHR redirects the browser back to (newlines adde
     https://sharp-lake-word.glitch.me/graph.html?
       code=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjb250ZXh0Ijp7Im5lZWRfcGF0aWVudF9iYW5uZXIiOnRydWUsInNtYXJ0X3N0eWxlX3VybCI6Imh0dHBzOi8vc21hcnQuYXJnby5ydW4vL3NtYXJ0LXN0eWxlLmpzb24iLCJwYXRpZW50IjoiODdhMzM5ZDAtOGNhZS00MThlLTg5YzctODY1MWU2YWFiM2M2In0sImNsaWVudF9pZCI6ImRlbW9fYXBwX3doYXRldmVyIiwiY29kZV9jaGFsbGVuZ2VfbWV0aG9kIjoiUzI1NiIsImNvZGVfY2hhbGxlbmdlIjoiWVBYZTdCOGdoS3JqOFBzVDRMNmx0dXBnSTEyTlFKNXZibEIwN0Y0ckdhdyIsInNjb3BlIjoibGF1bmNoL3BhdGllbnQgcGF0aWVudC9PYnNlcnZhdGlvbi5ycyBwYXRpZW50L1BhdGllbnQucnMiLCJyZWRpcmVjdF91cmkiOiJodHRwczovL3NoYXJwLWxha2Utd29yZC5nbGl0Y2gubWUvZ3JhcGguaHRtbCIsImlhdCI6MTYzMzUzMjAxNCwiZXhwIjoxNjMzNTMyMzE0fQ.xilM68Bavtr9IpklYG-j96gTxAda9r4Z_boe2zv3A3E&
       state=0hJc1S9O4oW54XuY 
+
+At this point the client should check the `state` stored in it's pre-login session against the one presented in the redirect. If the state does not match then the client should clear the pre-login session and reject the authorization code.
+
+If the authorization had failed, the authorization server will present both the `error` and `state` parameter so that the client can clear the pre-login session (newlines added for clarity):
+
+  https://sharp-lake-word.glitch.me/graph.html
+    error=server_error&
+    error_description=You+entered+an+invalid+user+ID+or+authentication+credential.%0aToo+many+authentication+failures.&state=0hJc1S9O4oW54XuY
 
 <a id="step-5-access-token"></a>
 
