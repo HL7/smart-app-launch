@@ -4,7 +4,7 @@ This implementation guide describes a set of foundational patterns based on OAut
 
 SMART defines a discovery document available at `.well-known/smart-configuration` relative to a FHIR Server Base URL, allowing clients to learn the authorization endpoint URLs and features a server supports. This information helps client direct authorization requests to the right endpoint, and helps clients construct an authorization request that the server can support.
 
-### SMART Defines Two Patterns For Client *Authorization*
+### SMART Defines Three Patterns For Client *Authorization*
 
 #### [Authorization via **SMART App Launch**](app-launch.html)
 
@@ -13,6 +13,11 @@ Authorizes a user-facing client application ("App") to connect to a FHIR Server.
 #### [Authorization via **SMART Backend Services**](backend-services.html)
 
 Authorizes a headless or automated client application ("Backend Service") to connect to a FHIR Server. This pattern allows for backend services to connect and interact with an EHR when there is no user directly involved in the launch process, or in other circumstances where permissions are assigned to the client out-of-band.
+
+#### [Authorization via **SMART Protected Dynamic Client Registration**](public-dynreg.html)
+
+An extension to the SMART App Launch specification that allows apps without a trusted server component to request persistent access to APIs.
+
 
 ### SMART Defines Two Patterns For Client *Authentication*
 

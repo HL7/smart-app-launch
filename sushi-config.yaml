@@ -51,6 +51,8 @@ pages:
     title: Best Practices
   examples.md:
     title: Examples
+  public-dynreg.md:
+    title: Persistent Access for Public Apps
 parameters:
   path-history: http://hl7.org/fhir/smart-app-launch/history.html
   jira-code: smart
