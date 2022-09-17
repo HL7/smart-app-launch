@@ -496,7 +496,7 @@ parameters:
 {
   "access_token": "secret-xyz",
   "patient": "123",
-  "fhirContext": ["DiagnosticReport/123", "Organization/789"],
+  "fhirContext": [{"reference": "DiagnosticReport/123"}, {"reference": "Organization/789"}],
 //...
 }
 ```
@@ -506,21 +506,35 @@ Launch context parameter | Example value | Meaning
 -------------------------|---------------|---------
 `patient`             | `"123"`                                  | String value with a patient id, indicating that the app was launched in the context of FHIR Patient 123. If the app has any patient-level scopes, they will be scoped to Patient 123.
 `encounter`           | `"123"`                                  | String value with an encounter id, indicating that the app was launched in the context of FHIR Encounter 123.
-`fhirContext`         | `["Appointment/123"]`                    | Array of relative resource References to any resource type other than "Patient" or "Encounter".  It is not prohibited to have more than one Reference to a given *type* of resource.
+`fhirContext`         | `[{"reference": "Appointment/123"}]`                    | Array of objects referring to any resource type other than "Patient" or "Encounter". See [details below](#fhir-context).
 `need_patient_banner` | `true` or `false` (boolean)              | Boolean value indicating whether the app was launched in a UX context where a patient banner is required (when `true`) or not required (when `false`). An app receiving a value of `false` should not take up screen real estate displaying a patient banner.
 `intent`              | `"reconcile-medications"`                | String value describing the intent of the application launch (see notes [below](#launch-intent))
 `smart_style_url`     | `"https://ehr/styles/smart_v1.json"`     | String URL where the EHR's style parameters can be retrieved (for apps that support [styling](#styling))
 `tenant`              | `"2ddd6c3a-8e9a-44c6-a305-52111ad302a2"` | String conveying an opaque identifier for the healthcare organization that is launching the app. This parameter is intended primarily to support EHR Launch scenarios.
 {:.grid}
 
-##### `fhirContext`
+<h5 id="fhir-context"><code>fhirContext</code></h5>
 
-`fhirContext`: To allow application flexibility, maintain
-backwards compatibility, and keep a predictable JSON structure, any
-contextual resource types (other than Patient and Encounter) that were
-requested by a launch scope will appear in this parameter.  The Patient and
+To allow application flexibility, maintain backwards compatibility, and keep a
+predictable JSON structure, any contextual resource types that were requested
+by a launch scope will appear in the `fhirContext` array. The Patient and
 Encounter resource types will *not be deprecated from top-level parameters*,
-and they will *not be permitted* within the `fhirContext` array.
+and they will *not be permitted* within the `fhirContext` array unless they
+include a `role` other than `"launch"`.
+
+Each object in the `fhirContext` array SHALL have a  `reference` property with
+a string value containing a relative reference to a FHIR resource. Note that
+there MAY be more than one Reference to a given *type* of resource
+
+Each object in the `fhirContext` array MAY have a  `role` property with a
+string value containing a URI identifying the role. The `role` property is
+OPTIONAL; it MAY be omitted and SHALL NOT be the empty string. Relative URIs
+can only be used if they are defined in this specification; other roles require
+the use of absolute URIs. The absence of a role property is semantically
+equivalent to a role of `"launch"`, indicating to a client that the app launch
+was performed in the context of the referenced resource. More granular role
+URIs can be adopted in use-case-specific ways. Note that `role` need not be
+unique; multiple entries in `fhirContext` may have the same role.
 
 <h5 id="launch-intent"><b>App Launch Intent</b> (optional)</h5>
 `intent`: Some SMART apps might offer more than one context or user interface
@@ -668,7 +682,7 @@ In addition to conveying FHIR Resource references with the `fhirContext` array, 
 If a SMART on FHIR server supports additional launch context during an EHR
 Launch, it could communicate the ID of an `ImagingStudy` that is open in the
 EHR at the time of app launch.  The server could return an access token response
-where the `fhirContext` array includes a value such as `ImagingStudy/123`.
+where the `fhirContext` array includes a value such as `{"reference": "ImagingStudy/123"}`.
 
 ##### Standalone Launch
 
@@ -678,7 +692,26 @@ Standalone Launch, it could provide an ability for the user to select an
 requesting a `launch/imagingstudy` scope (note that launch requests scopes are
 always lower case); then after allowing the user to select an `ImagingStudy`,
 the server could return an access token response where the `fhirContext` array
-includes a value such as `ImagingStudy/123`.
+includes a value such as  `{"reference": "ImagingStudy/123"}`.
+
+If a medication reconciliation app expects distinct contextual inputs
+representing an at-home medication list and an in-hospital medication list, the
+EHR might supply `fhirContext` like:
+
+```json
+{
+  // other properties omitted for brevity
+  "patient": "123",
+  "fhirContext": [{
+	"reference": "List/123",
+	"role": "https://example.org/med-list-at-home"
+  }, {
+	"reference": "List/456",
+	"role": "https://example.org/med-list-at-hospital"
+  }]
+}
+```
+
 
 #### Example: Extra context - extensions for non-FHIR context
 
