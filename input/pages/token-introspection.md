@@ -53,7 +53,7 @@ Example Token Introspection response:
       "client_id": "07a89bd2-52ce-4576-8b85-71698efa8328",
       "scope": "patient/*.read openid fhirUser",
       "sub": "c91dfe96-731d-4e66-b4f9-01f8f8a4b7b2",
-      "patient": "Patient/456",
+      "patient": "456",
       "fhirUser": "https://ehr.example.org/fhir/Patient/123",
       "exp": 1597678964,
      }
