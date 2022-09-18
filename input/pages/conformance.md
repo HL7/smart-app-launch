@@ -123,6 +123,14 @@ Responses for `/.well-known/smart-configuration` requests SHALL be JSON, regardl
 * servers MAY ignore any client-supplied `Accept` headers
 * servers SHALL respond with `application/json`
 
+All endpoint URLs in the response document SHALL be absolute URLs. Clients
+encountering relative endpoint URLs (e.g., in the context of legacy or
+non-conformant servers) SHOULD evaluate them relative to the FHIR Server Base
+URL following [RFC1808](https://datatracker.ietf.org/doc/html/rfc1808#section-4).
+For example, in a browser context the absolute URL could be determined via 
+`new URL(relativeUrl, fhirBaseUrl).toString()` .
+
+
 <a id="example-request">
 
 #### Sample Request
