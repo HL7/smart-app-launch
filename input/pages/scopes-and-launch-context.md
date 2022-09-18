@@ -631,7 +631,7 @@ URL of a FHIR resource representing the current user.  This URL MAY be absolute
 (e.g., `https://ehr.example.org/Practitioner/123`), or it MAY be relative to
 the FHIR server base URL associated with the current authorization request
 (e.g., `Practitioner/123`).  This will be a resource of type `Patient`,
-`Practitioner`, `RelatedPerson`, or `Person`.
+`Practitioner`, `PractitionerRole`, `RelatedPerson`, or `Person`.
 Note that the FHIR server base URL is the same as the URL represented in the
 `aud` parameter passed in to the authorization request.
 Note that `Person` is only used if the other resource types do not apply to the
