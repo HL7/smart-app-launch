@@ -106,6 +106,10 @@ completing the launch.
 * `permission-v1`: support for SMARTv1 scope syntax (e.g., `patient/Observation.read`)
 * `permission-v2`: support for SMARTv2 granular scope syntax (e.g., `patient/Observation.rs?category=http://terminology.hl7.org/CodeSystem/observation-category|vital-signs`)
 
+##### App State (Experimental)
+
+* `smart-app-state`: support for managing [SMART App State](./app-state.html)
+
 <br />
 
 
@@ -155,6 +159,7 @@ A JSON document must be returned using the `application/json` mime type.
 - `token_endpoint`: **REQUIRED**, URL to the OAuth2 token endpoint.
 - `token_endpoint_auth_methods_supported`: **OPTIONAL**, array of client authentication methods supported by the token endpoint. The options are "client_secret_post", "client_secret_basic", and "private_key_jwt".
 - `registration_endpoint`: **OPTIONAL**, If available, URL to the OAuth2 dynamic registration endpoint for this FHIR server.
+- `smart_app_state_endpoint`: **CONDITIONAL**, URL to the EHR's app state endpoint. SHALL be present when the EHR supports the `smart-app-state` capability and the endpoint is distinct from the EHR's primary endpoint.
 - `scopes_supported`: **RECOMMENDED**, Array of scopes a client may request. See [scopes and launch context](scopes-and-launch-context.html#quick-start). The server SHALL support all scopes listed here; additional scopes MAY be supported (so clients should not consider this an exhaustive list).
 - `response_types_supported`: **RECOMMENDED**, Array of OAuth2 `response_type` values that are supported.  Implementers can refer to `response_type`s defined in OAuth 2.0 ([RFC 6749](https://datatracker.ietf.org/doc/html/rfc6749)) and in [OIDC Core](https://openid.net/specs/openid-connect-core-1_0.html#Authentication).
 - `management_endpoint`: **RECOMMENDED**, URL where an end-user can view which applications currently have access to data and can make adjustments to these access rights.

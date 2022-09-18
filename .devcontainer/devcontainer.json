@@ -1,0 +1,14 @@
+// For format details, see https://aka.ms/devcontainer.json.
+{
+	"name": "FHIR Publisher Image",
+	"image": "hl7fhir/ig-publisher-base",
+	"forwardPorts": [8080],
+	"postCreateCommand": "npx http-server output",
+	"remoteUser": "publisher",
+	"extensions": [
+		"MITRE-Health.vscode-language-fsh"
+	],
+	"settings": {
+		"terminal.integrated.shell.linux": "/bin/bash"
+	}
+}

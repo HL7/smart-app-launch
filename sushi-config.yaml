@@ -33,6 +33,8 @@ pages:
     title: 'App Launch: Scopes and Launch Context'
     worked_example_id_token.md:
       title: Worked Example Id Token
+  app-state.md:
+    title: 'Persisting App State (Experimental)'
   backend-services.md:
     title: Backend Services
     example-backend-services.md:
@@ -63,6 +65,7 @@ menu:
   App Launch:
     Launch and Authorization: app-launch.html
     Scopes and Launch Context: scopes-and-launch-context.html
+    Persisting App State: app-state.html
   Backend Services: backend-services.html
   Client Authentication:
     Asymmetric (public key): client-confidential-asymmetric.html
