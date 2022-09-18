@@ -182,7 +182,7 @@ for an out-of-the-box solution.
 No matter how an app registers with an EHR's authorization service, at registration time **every SMART app SHALL**:
 
 * Register zero or more fixed, fully-specified launch URL with the EHR's authorization server
-* Register one or more fixed, fully-specified `redirect_uri`s with the EHR's authorization server.  Note that in the case of native clients following the OAuth 2.0 for Native Apps specification [(RFC 8252)](https://tools.ietf.org/html/rfc8252), it may be appropriate to leave the port as a dynamic variable in an otherwise fixed redirect URI.
+* Register one or more fixed, fully-specified `redirect_uri`s with the EHR's authorization server. 
 
 For confidential clients, additional registration-time requirements are defined based on the client authentication method.
 
