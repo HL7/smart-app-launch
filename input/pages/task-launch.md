@@ -56,7 +56,7 @@ An example of such Task is presented below:
           "display": "Application context related to this launch."
         }]
     },
-    "valueUrl": "{\"field1\":\"value\"}"
+    "valueString": "{\"field1\":\"value\"}"
   }]
 }
 ```
