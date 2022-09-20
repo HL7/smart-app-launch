@@ -10,7 +10,7 @@ Parent: Task
 * input ^slicing.discriminator.path = "coding.system"
 * input ^slicing.rules = #open
 * input contains launchurl 1..1 and launchcontext 0..1
-* input[launchcontext].type = SmartOnFhirCodes#smartonfhir-application
+* input[launchurl].type = SmartOnFhirCodes#smartonfhir-application
 * input[launchurl].value[x] only url
 * input[launchurl].valueUrl 1..1
 * input[launchcontext].type = SmartOnFhirCodes#smartonfhir-appcontext
