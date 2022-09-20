@@ -13,6 +13,7 @@ Two profiles are defined:
 The [Task/task-ehr-launch](Task-task-ehr-launch.html), requests an EHR launch with optional appContext.
 
 The subject field, if present indicates the patient resource to be used in the launch context.
+
 the encounter field, if present indicates the encounter reource to be used in the launch context.
  
 The input field contains:
@@ -65,6 +66,7 @@ An example of such Task is presented below:
 The [Task/task-standalone-launch](Task-task-standalone-launch.html), requests an standalone launch.
 
 The input field contains:
+
 * the url of the application to be launched
 
 An example of such Task is presented below: 
