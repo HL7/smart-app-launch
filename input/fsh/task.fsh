@@ -14,7 +14,7 @@ Parent: Task
 * input[launchurl].value[x] only url
 * input[launchurl].valueUrl 1..1
 * input[launchcontext].type = SmartOnFhirCodes#smartonfhir-appcontext
-* input[launchcontext].value[x]] only string
+* input[launchcontext].value[x] only string
 
 Profile: TaskStandaloneLaunch
 Id: task-standalone-launch
