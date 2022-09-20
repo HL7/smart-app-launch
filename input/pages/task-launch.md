@@ -5,12 +5,12 @@ This section defines a set of profiles of the FHIR Task resource that requests l
 
 Two profiles are defined:
 
-* [Task/task-ehr-launch](Task-task-ehr-launch.html), requests an EHR launch with optional appContext.
-* [Task/task-standalone-launch](Task-task-standalone-launch.html), requests a standalone launch.
+* [Task/task-ehr-launch](StructureDefinition-task-ehr-launch.html), requests an EHR launch with optional appContext.
+* [Task/task-standalone-launch](StructureDefinition-task-standalone-launch.html), requests a standalone launch.
 
 #### Requesting an EHR launch
 
-The [Task/task-ehr-launch](Task-task-ehr-launch.html), requests an EHR launch with optional appContext.
+The [Task/task-ehr-launch](StructureDefinition-task-ehr-launch.html), requests an EHR launch with optional appContext.
 
 The subject field, if present indicates the patient resource to be used in the launch context.
 
