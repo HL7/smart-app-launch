@@ -8,7 +8,7 @@ Parent: Task
 * input 1..*
 * input ^slicing.discriminator.type = #value
 * input ^slicing.discriminator.path = "coding.system"
-* input ^slicing.discriminator.rules = #open
+* input ^slicing.rules = #open
 * input contains launchurl 1..1 and launchcontext 0..1
 * input[launchcontext].type = SmartOnFhirCodes#smartonfhir-application
 * input[launchurl].value[x] only url
@@ -26,7 +26,7 @@ Parent: Task
 * input 1..*
 * input ^slicing.discriminator.type = #value
 * input ^slicing.discriminator.path = "coding.system"
-* input ^slicing.discriminator.rules = #open
+* input ^slicing.rules = #open
 * input contains launchtype 1..1 and launchurl 1..1
 * input[launchtype].type 1..*
 * input[launchurl].value[x] only url
@@ -43,8 +43,8 @@ ValueSet: SmartLaunchInformation
 Id: smart-launch-info
 Title: "Codes for tasks to application launches"
 Description: "Defines codes for Tasks that request launch of SMART applications."
-* #smartonfhir-application "SMART on FHIR application URL."
-* #smartonfhir-appcontext "Application context related to this launch."
+* SmartOnFhirCodes#smartonfhir-application "SMART on FHIR application URL."
+* SmartOnFhirCodes#smartonfhir-appcontext "Application context related to this launch."
 
 CodeSystem: SmartOnFhirCodes
 Id: smart-codes
