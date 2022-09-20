@@ -1,0 +1,66 @@
+Profile: TaskEhrLaunch
+Id: task-ehr-launch
+Description: "Defines a Task that indicates the user should launch an application using the SMART on FHIR EHR launch."
+Parent: Task
+* code 1..1 MS
+* code from SmartLaunchTypes
+* coding 1..*
+* coding[0] = SmartLaunchTypes#launch-app-ehr
+* input 1..*
+* input ^slicing.discriminator.type = #value
+* input ^slicing.discriminator.path= "coding.system"
+* input ^slicing.discriminator.rules = #open
+* input contains launchurl 1..1 and launchcontext 0..1
+* input[launchcontext].type = SmartLaunchInformation#smartonfhir-application
+* input[launchurl].value[x] only url
+* input[launchurl].valueUrl 1..1
+* input[launchcontext].type = SmartLaunchInformation#smartonfhir-appcontext
+* input[launchcontext].value[x]] only string
+
+Profile: TaskStandaloneLaunch
+Id: task-standalone-launch
+Description: "Defines a Task that indicates the user should launch an application as a standalone application."
+Parent: Task
+* code 1..1 MS
+* code from SmartLaunchTypes
+* coding 1..*
+* coding[0] = SmartLaunchTypes#launch-app-standalone
+* input 1..*
+* input ^slicing.discriminator.type = #value
+* input ^slicing.discriminator.path= "coding.system"
+* input ^slicing.discriminator.rules = #open
+* input contains launchtype 1..1 and launchurl 1..1
+* input[launchtype].coding 1..*
+* input[launchurl].value[x] only url
+* input[launchurl].valueUrl 1..1
+
+ValueSet: SmartLaunchTypes
+Id: smart-launch-types
+Title: "Codes for tasks to application launches."
+Description: "Defines codes for Tasks that request launch of SMART applications.".
+* SmartOnFhirCodes#launch-app-ehr "Launch application using the SMART EHR launch"
+  "The task suggest launching an application using the SMART on FHIR EHR launch."
+* SmartOnFhirCodes#launch-app-standalone "Launch application using the SMART standalone launch"
+  "The task suggest launching an application using the SMART on FHIR standalone launch."
+
+ValueSet: SmartLaunchInformation
+Id: smart-launch-info
+Title: "Codes for tasks to application launches."
+Description: "Defines codes for Tasks that request launch of SMART applications.".
+* #smartonfhir-application "SMART on FHIR application URL."
+    "The URL of a SMART on FHIR application."
+* #smartonfhir-appcontext "Application context related to this launch."
+    "The application context (appContext) to be passed to the application after launch."
+
+CodeSystem: SmartOnFhirCodes
+Id: smart-codes
+Title: "SMART on FHIR terminology."
+Description: "Codes used to in profiles related to SMART on FHIR."
+* #launch-app-ehr "Launch application using the SMART EHR launch"
+  "The task suggest launching an application using the SMART on FHIR EHR launch."
+* #launch-app-standalone "Launch application using the SMART standalone launch"
+  "The task suggest launching an application using the SMART on FHIR standalone launch."
+* #smartonfhir-application "SMART on FHIR application URL."
+    "The URL of a SMART on FHIR application."
+* #smartonfhir-appcontext "Application context related to this launch."
+    "The application context (appContext) to be passed to the application after launch."

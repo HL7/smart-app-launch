@@ -25,6 +25,8 @@ pages:
     title: 'App Launch: Launch and Authorization'
   scopes-and-launch-context.md:
     title: 'App Launch: Scopes and Launch Context'
+  task-launch.md:
+    title: 'Task profile for requesting SMART launch'
   backend-services.md:
     title: Backend Services
   client-confidential-asymmetric.md:
@@ -63,6 +65,7 @@ menu:
   App Launch:
     Launch and Authorization: app-launch.html
     Scopes and Launch Context: scopes-and-launch-context.html
+    Task requesting launch: task-launch.html
   Backend Services: backend-services.html
   Client Authentication:
     Asymmetric (public key): client-confidential-asymmetric.html
