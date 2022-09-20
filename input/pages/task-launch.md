@@ -18,7 +18,7 @@ the encounter field, if present indicates the encounter reource to be used in th
  
 The input field contains:
 * the url of the application to be launched
-* optional appContext to be included in the token response as is specified in a [CDShooks Link](* [Task/task-ehr-launch](Task-task-ehr-launch.html)
+* optional appContext to be included in the token response as is specified in a [CDShooks Link](https://cds-hooks.org/specification/current/#link)
 
 An example of such Task is presented below: 
 
@@ -63,7 +63,7 @@ An example of such Task is presented below:
 
 #### Requesting an standalone launch
 
-The [Task/task-standalone-launch](Task-task-standalone-launch.html), requests an standalone launch.
+The [Task/task-standalone-launch](StructureDefinition-task-standalone-launch.html), requests an standalone launch.
 
 The input field contains:
 
