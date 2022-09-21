@@ -405,12 +405,12 @@ This means the EHR tracks (e.g., in some internal, implementation-specific
 format) sets of `Coding`s representing the SMART App State types (i.e.,
 `Basic.code.coding`) that the app is allowed to
 
-  * query, when the subject is the in-context app user
   * query, when the subject is the in-context patient
-  * modify, when the subject is the in-context app user
   * modify, when the subject is the in-context patient
-  * query, when the subject is omitted (for global app config)
-  * modify, when the subject is omitted (for global app config)
+  * query, when the subject is the in-context app user
+  * modify, when the subject is the in-context app user
+  * query, with `subject:missing=true` (for global app config)
+  * modify, with `subject:missing=true` (for global app config)
 
 EHRs SHALL only associate state codes with an app if the app is trusted to access
 those data. These decisions can be made out-of-band during or after the app
