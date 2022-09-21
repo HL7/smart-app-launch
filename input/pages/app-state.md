@@ -23,6 +23,13 @@ interoperable mechanisms for clinical data sharing.
 `smart-app-state`**  unless specific agreements are made outside the scope of
 this capability.
 
+Note that while state can be associated with a user account or with a patient
+record, this capability does not enable state associated with (user, patient)
+pairs. For instance, there is no defined mechanism to save information like
+"Practitioner A prefers her diabetes management app to start with the 'recent
+labs' screen for Patient A, and the 'in-range glucose time' screen for Patient
+B."
+
 ### Formal definitions
 
 The narrative documentation below provides formal requirements, usage notes, and examples.
@@ -486,14 +493,46 @@ hospital-defined configuration with:
 
 In the case of user-facing authorization interactions (e.g., for a
 patient-facing SMART App), it's important to ensure that such scopes can be
-explained in plain language. EHRs may need to gather additional information
-from app developers at registration time with explanations, or may apply
-additional protections to facilitate access control decisions. For example, an
-EHR might partition app state management for each patient-facing app, to ensure
-that no patient-facing app is allowed to read another app's data; and with this
-sort of limitation in place, app state scopes might not require any specific
-review or user approval, or might use generic langauge like "store and manage
-its own data".
+explained in plain language. For example, it is important to explain to users
+that any information their app submits to the EHR may be considered part of the
+health record and may be accessible to their healthcare provider team. To
+support authorization, EHRs may need to gather additional information from app
+developers at registration time with explanations, or may apply additional
+protections to facilitate access control decisions. 
+
+#### Implementation considerations for EHRs
+
+EHRs can implement support for `smart-app-state` using their internal resource
+server infrastructure, or can deploy a decoupled resource server that
+communicates with the EHR authorization server using [SMART on FHIR Token
+Introspection](token-introspection.html), signed tokens, or some other
+mechanism. While some access control decisions can be made directly based on
+standardized scopes, other decisions may require additional policy information.
+See ["scopes are used to delegate
+access"](scopes-and-launch-context.html#smarts-scopes-are-used-to-delegate-access)
+for background on this point.
+
+Consider the following examples:
+
+* a token granting `patient/Basic.s?code=https://app|1` with a context of
+  `"patient": "a"` would be authorized to query
+  `Basic?subject=Patient/a&code=https://app|1`
+
+* a token granting `user/Basic.s?code=https://app|1` with a context of
+  `"fhirUser": "Practitioner/b"` would be authorized to query
+  `Basic?subject=Practitioner/b&code=https://app|1`
+
+* a token granting `user/Basic.s?code=https://app|1` with no patient context
+  and a user context of `"fhirUser": "Practitioner/b"` would require additional
+  policy information to decide whether to allow
+  `Basic?subject=Patient/a&code=https://app|1`. Specifically, a resource server
+  would need to determine whether Practitioner B has access to resources in the
+  record of Patient A. Such policy information could be static (e.g., a simple
+  GP system could maintain a policy like "all Practitioner users can access all
+  patient records") or dynamically available in EHR-specific ways such as FHIR
+  Groups, CareTeams, PractitionerRoles, or non-FHIR APIs such as
+  [SCIM](https://www.simplecloud.info/) or others. Such policy details are
+  beyond the scope of SMART on FHIR.
 
 ### Design Notes
 
