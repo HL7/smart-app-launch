@@ -98,9 +98,9 @@ policies in their developer documentation.
 
 To create app state, an app submits to the EHR's App State endpoint:
 
-    POST /Basic/[id]
+    POST /Basic
 
-The request body is a `Basic` resource to `/Basic` where:
+The request body is a `Basic` resource where:
 
 1. Total resource size as serialized in the POST body SHALL NOT exceed 256KB unless the EHR's documentation establishes a higher limit
 2. `Basic.id` SHALL NOT be included
@@ -170,15 +170,16 @@ requests about this `Basic.id` as a failed precondition.
 
 #### Querying app state
 
-An app can query for app state via:
+An app SHALL query for state by supplying a state type code and optionally a
+subject:
 
-* `GET /Basic?subject={}&code={}` for state associated with a specific subject
-* `GET /Basic?code={}` for global state associated with the app overall
+* `GET /Basic?code={}&subject={}` for state associated with a specific subject
+* `GET /Basic?code={}&subject:missing=true` for global state associated with the app overall
 
 The EHR SHALL support the following query parameters:
 
-* `?subject`, restricted to absolute references that exactly match `Basic.subject.reference`
 * `?code` , restricted to fixed state codes that exactly match `Basic.code.coding[0]` (i.e., `${system}` + `|` + `${code}`)
+* `?subject`, restricted to absolute references that exactly match `Basic.subject.reference`, with support for the `:missing=true` modifier to find global state
 
 The response body is a FHIR Bundle where each entry is a `Basic` resource as persisted by the EHR.
 
