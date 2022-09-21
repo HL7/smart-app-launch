@@ -525,12 +525,14 @@ Consider the following examples:
 * a token granting `user/Basic.s?code=https://app|1` with no patient context
   and a user context of `"fhirUser": "Practitioner/b"` would require additional
   policy information to decide whether to allow
-  `Basic?subject=Patient/a&code=https://app|1`. Specifically, a resource server
-  would need to determine whether Practitioner B has access to resources in the
-  record of Patient A. Such policy information could be static (e.g., a simple
-  GP system could maintain a policy like "all Practitioner users can access all
-  patient records") or dynamically available in EHR-specific ways such as FHIR
-  Groups, CareTeams, PractitionerRoles, or non-FHIR APIs such as
+  `Basic?subject=Patient/a&code=https://app|1`. A server MAY simply reject
+  queries like this as unauthorized, while still supporting many use cases. To
+  properly authorize this request, a resource server would need to determine
+  whether EHR policy allows Practitioner B to access Patient A's records. Such
+  policy information could be static (e.g., a simple system could maintain a
+  policy like "all Practitioner users can access all patient records") or
+  dynamically available in EHR-specific ways such as FHIR Groups, CareTeams,
+  PractitionerRoles, or non-FHIR APIs such as
   [SCIM](https://www.simplecloud.info/) or others. Such policy details are
   beyond the scope of SMART on FHIR.
 
