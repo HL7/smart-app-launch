@@ -129,7 +129,7 @@ If the EHR cannot meet all of these obligations, it SHALL reject the request.
 The response headers include an `ETag` header following [FHIR Core "Managing Resource
 Contention"](https://hl7.org/fhir/http.html#concurrency).
 
-The response body is a `Basic` resource representing the state persisted by the EHR (details below).
+The response body is a `Basic` resource representing the state persisted by the EHR.
 
 ##### Updates
 
@@ -154,7 +154,7 @@ previously-persisted value.
 The successful response headers include an `ETag` header following [FHIR Core "Managing Resource
 Contention"](https://hl7.org/fhir/http.html#concurrency).
 
-The response body is a `Basic` resource representing the state persisted by the EHR (details below).
+The response body is a `Basic` resource representing the state persisted by the EHR.
 
 ##### Deletes
 
