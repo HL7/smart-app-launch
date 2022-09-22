@@ -58,7 +58,7 @@ The EHR's "App State FHIR endpoint" is defined as:
 
 #### Example discovery document
 
-Assume a FHIR server with base URL `https://ehr.example.org/fhir`.
+Consider a FHIR server with base URL `https://ehr.example.org/fhir`.
 
 The discovery document at
 `https://ehr.example.org/fhir/.well-known/smart-configuration` might include:
@@ -69,7 +69,7 @@ The discovery document at
     "smart-app-state",
     // <other capabilities snipped>
   ],
-  "smart_app_state_endpoint": "https://ehr.example.org/appstate/fhir"
+  "smart_app_state_endpoint": "https://ehr.example.org/appstate"
   // <other properties snipped>
 }
 ```
@@ -231,7 +231,7 @@ Authorization: Bearer <snipped>
 The API response populates `id` and `meta.versionId`, like:
 
 ```
-Location: https://ehr.example.org/appstate/fhir/Basic/1000
+Location: https://ehr.example.org/appstate/Basic/1000
 ETag: W/"a"
 ```
 
@@ -298,7 +298,7 @@ object as it has been persisted. The API response populates `id` and
 `meta.versionId`, like:
 
 ```
-Location: https://ehr.example.org/appstate/fhir/Basic/1001
+Location: https://ehr.example.org/appstate/Basic/1001
 ETag: W/"a"
 ```
 
