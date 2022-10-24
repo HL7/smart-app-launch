@@ -36,7 +36,8 @@ Parent: Task
 
 ValueSet: SmartLaunchTypes
 Id: smart-launch-types
-Title: "Codes for tasks to application launches"
+Title: "Launch Types for tasks to application launches"
+
 Description: "Defines codes for Tasks that request launch of SMART applications."
 * SmartOnFhirCodes#launch-app-ehr "Launch application using the SMART EHR launch"
 * SmartOnFhirCodes#launch-app-standalone "Launch application using the SMART standalone launch"
