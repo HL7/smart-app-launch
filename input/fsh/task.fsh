@@ -38,7 +38,8 @@ ValueSet: SmartLaunchTypes
 Id: smart-launch-types
 Title: "Launch Types for tasks to application launches"
 
-Description: "Defines codes for Tasks that request launch of SMART applications."
+Description: "Defines Launch Type codes for Tasks that request launch of SMART applications."
+
 * SmartOnFhirCodes#launch-app-ehr "Launch application using the SMART EHR launch"
 * SmartOnFhirCodes#launch-app-standalone "Launch application using the SMART standalone launch"
 
