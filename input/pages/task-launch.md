@@ -17,7 +17,8 @@ A Task with the profile [task-ehr-launch](StructureDefinition-task-ehr-launch.ht
 The `Task.for` field, if present indicates the Patient resource to be used in the launch context.
 
 
-the encounter field, if present indicates the encounter reource to be used in the launch context.
+the `Task.encounter` field, if present indicates the Encounter resource to be used in the launch context.
+
  
 The input field contains:
 * the url of the application to be launched
