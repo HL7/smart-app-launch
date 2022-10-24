@@ -27,6 +27,10 @@ pages:
     title: 'App Launch: Scopes and Launch Context'
   task-launch.md:
     title: 'Task profile for requesting SMART launch'
+  worked_example_id_token.md:
+      title: Worked Example Id Token
+  app-state.md:
+    title: 'Persisting App State (Experimental)'
   backend-services.md:
     title: Backend Services
   client-confidential-asymmetric.md:
@@ -61,13 +65,14 @@ parameters:
 # │  To use a provided ig-data/input/includes/menu.xml file, delete the "menu" property below.     │
 # ╰────────────────────────────────────────────────────────────────────────────────────────────────╯
 menu:
-  Overview of SMART on FHIR: index.html
+  Overview: index.html
   App Launch:
     Launch and Authorization: app-launch.html
     Scopes and Launch Context: scopes-and-launch-context.html
     Task requesting launch: task-launch.html
+    Persisting App State: app-state.html
   Backend Services: backend-services.html
-  Client Authentication:
+  Authentication:
     Asymmetric (public key): client-confidential-asymmetric.html
     Symmetric (shared secret): client-confidential-symmetric.html
   Token Introspection: token-introspection.html

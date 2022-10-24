@@ -112,6 +112,12 @@ for example:
 #### Considerations for PKCE Support
 All SMART apps SHALL support Proof Key for Code Exchange (PKCE).  PKCE is a standardized, cross-platform technique for clients to mitigate the threat of authorization code interception or injection. PKCE is described in [IETF RFC 7636](https://tools.ietf.org/html/rfc7636). SMART servers SHALL support the `S256` `code_challenge_method` and SHALL NOT support the `plain` method.
 
+#### Considerations for Cross-Origin Resource Sharing (CORS) support
+Servers that support purely browser-based apps SHALL enable [Cross-Origin Resource Sharing (CORS)](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS) as follows:
+
+1. For requests from any origin, CORS configuration permits access to the public discovery endpoints (`.well-known/smart-configuration` and `metadata`)
+2. For requests from a client's registered origin(s), CORS configuration permits access to the token endpoint and to FHIR REST API endpoints 
+
 #### Related reading
 
 Implementers can review the [OAuth Security Topics](https://tools.ietf.org/html/draft-ietf-oauth-security-topics-16) guidance from IETF as a collection of Best Current Practices.
@@ -182,7 +188,7 @@ for an out-of-the-box solution.
 No matter how an app registers with an EHR's authorization service, at registration time **every SMART app SHALL**:
 
 * Register zero or more fixed, fully-specified launch URL with the EHR's authorization server
-* Register one or more fixed, fully-specified `redirect_uri`s with the EHR's authorization server.  Note that in the case of native clients following the OAuth 2.0 for Native Apps specification [(RFC 8252)](https://tools.ietf.org/html/rfc8252), it may be appropriate to leave the port as a dynamic variable in an otherwise fixed redirect URI.
+* Register one or more fixed, fully-specified `redirect_uri`s with the EHR's authorization server. 
 
 For confidential clients, additional registration-time requirements are defined based on the client authentication method.
 
