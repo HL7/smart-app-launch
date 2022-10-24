@@ -1,7 +1,8 @@
 ### Task profile for launch SMART applications (EXPERIMENTAL)
 
 
-This section defines a set of profiles of the FHIR Task resource that requests launch of a SMART application. These tasks could be used to instruct staff to run an application or as a result of a Clinical Reasoning deployment.
+This section defines a set of profiles of the FHIR Task resource that requests launch of a SMART application. These tasks could be used to recommend an application for staff to launch, e.g. as a result of a Clinical Reasoning deployment.
+
 
 Two profiles are defined:
 
