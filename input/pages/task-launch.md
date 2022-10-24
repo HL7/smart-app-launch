@@ -11,7 +11,8 @@ Two profiles are defined:
 
 #### Requesting an EHR launch
 
-A Task with the profile [task-ehr-launch](StructureDefinition-task-ehr-launch.html), requests an EHR launch with optional appContext.
+A Task with the profile [task-ehr-launch](StructureDefinition-task-ehr-launch.html), requests an EHR launch with optional `appContext`.
+
 
 The subject field, if present indicates the patient resource to be used in the launch context.
 
