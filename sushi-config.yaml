@@ -23,18 +23,28 @@ pages:
     title: Overview
   app-launch.md:
     title: 'App Launch: Launch and Authorization'
+    example-app-launch-public.md:
+      title: Example App Launch for Public Client
+    example-app-launch-asymmetric-auth.md:
+      title: Example App Launch for Asymmetric Client Auth
+    example-app-launch-symmetric-auth.md:
+      title: Example App Launch for Symmetric Client Auth
   scopes-and-launch-context.md:
     title: 'App Launch: Scopes and Launch Context'
-  task-launch.md:
-    title: 'Task profile for requesting SMART launch'
   worked_example_id_token.md:
-      title: Worked Example Id Token
+    title: Worked Example Id Token
   app-state.md:
     title: 'Persisting App State (Experimental)'
+  task-launch.md:
+    title: 'Task profile for requesting SMART launch'
   backend-services.md:
     title: Backend Services
+    example-backend-services.md:
+      title: Example Backend Services Flow
   client-confidential-asymmetric.md:
     title: 'Client Authentication: Asymmetric (public key)'
+    authorization-example-jwks-and-signatures.md:
+      title: Example JWS generation for Asymmetric Client Auth
   client-confidential-symmetric.md:
     title: 'Client Authentication: Symmetric (shared secret)'
   token-introspection.md:
@@ -45,18 +55,6 @@ pages:
     title: Best Practices
   examples.md:
     title: Examples
-    example-app-launch-public.md:
-      title: Example App Launch for Public Client
-    example-app-launch-asymmetric-auth.md:
-      title: Example App Launch for Asymmetric Client Auth
-    example-app-launch-symmetric-auth.md:
-      title: Example App Launch for Symmetric Client Auth
-    example-backend-services.md:
-      title: Example Backend Services Flow
-    example_worked_id_token.md:
-      title: Worked Example Id Token
-    example-authorization-jwks-and-signatures.md:
-      title: Example JWS generation for Asymmetric Client Auth
 parameters:
   path-history: http://hl7.org/fhir/smart-app-launch/history.html
   jira-code: smart
@@ -69,8 +67,8 @@ menu:
   App Launch:
     Launch and Authorization: app-launch.html
     Scopes and Launch Context: scopes-and-launch-context.html
-    Task requesting launch: task-launch.html
     Persisting App State: app-state.html
+    Task requesting launch: task-launch.html
   Backend Services: backend-services.html
   Authentication:
     Asymmetric (public key): client-confidential-asymmetric.html

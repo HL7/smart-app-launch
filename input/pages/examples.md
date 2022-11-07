@@ -6,18 +6,9 @@ These examples demonstrate all the steps involved in the SMART App Launch author
 * [Confidential client, asymmetric authentication](example-app-launch-asymmetric-auth.html)
 * [Confidential client, symmetric authentication](example-app-launch-symmetric-auth.html)
 
+
 ### SMART Backend Services Examples
 
 This example demonstrates all the steps involved in the SMART Backend Services authorization process.
 
 * [Backend Services](example-backend-services.html)
-
-### Client Authorization Examples
-
-The following example demonstrates the generation of a JWS
-
-* [JWS generation](example-authorization-jwks-and-signatures.html)
-
-Worked Python example of Asymmetric Client authorization:
-
-* [JWS generation for asymmetric client](example_worked_id_token.html)

@@ -300,7 +300,7 @@ Note: to inspect this example JWT, you can visit https://jwt.io. Paste the signe
 JWT value above into the "Encoded"  field, and paste the [sample public signing key](RS384.public.json) (starting with the `{"kty": "RSA"` JSON object, and excluding the `{ "keys": [` JWK Set wrapping array) into the "Public Key" box.
 The plaintext JWT will be displayed in the "Decoded:Payload"  field, and a "Signature Verified" message will appear.
 
-For a complete code example demonstrating how to generate this assertion, see: [rendered Jupyter Notebook](example-authorization-jwks-and-signatures.html), [source .ipynb file](example-authorization-jwks-and-signatures.ipynb).
+For a complete code example demonstrating how to generate this assertion, see: [rendered Jupyter Notebook](authorization-example-jwks-and-signatures.html), [source .ipynb file](authorization-example-jwks-and-signatures.ipynb).
 
 
 #### Requesting an Access Token
