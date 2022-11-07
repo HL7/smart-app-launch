@@ -36,7 +36,7 @@ pages:
   app-state.md:
     title: 'Persisting App State (Experimental)'
   task-launch.md:
-    title: 'Task profile for requesting SMART launch'
+    title: 'Task profile for requesting SMART launch (Experimental)'
   backend-services.md:
     title: Backend Services
     example-backend-services.md:

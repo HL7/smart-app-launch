@@ -1,26 +1,20 @@
-### Task profile for launch SMART applications (EXPERIMENTAL)
-
-
 This section defines a set of profiles of the FHIR Task resource that requests launch of a SMART application. These tasks could be used to recommend an application for staff to launch, e.g. as a result of a Clinical Reasoning deployment.
-
 
 Two profiles are defined:
 
 * [task-ehr-launch](StructureDefinition-task-ehr-launch.html), requests an EHR launch with optional appContext.
 * [task-standalone-launch](StructureDefinition-task-standalone-launch.html), requests a standalone launch.
 
-#### Requesting an EHR launch
+### Requesting an EHR launch
 
 A Task with the profile [task-ehr-launch](StructureDefinition-task-ehr-launch.html), requests an EHR launch with optional `appContext`.
 
-
 The `Task.for` field, if present indicates the Patient resource to be used in the launch context.
 
-
 the `Task.encounter` field, if present indicates the Encounter resource to be used in the launch context.
-
  
 The input field contains:
+
 * the url of the application to be launched
 * optional appContext to be included in the token response as is specified in a [CDShooks Link](https://cds-hooks.org/specification/current/#link)
 
@@ -65,7 +59,7 @@ An example of such Task is presented below:
 }
 ```
 
-#### Requesting an standalone launch
+### Requesting an standalone launch
 
 A Task according to the profile [task-standalone-launch](StructureDefinition-task-standalone-launch.html), requests an standalone launch.
 
@@ -103,5 +97,3 @@ An example of such Task is presented below:
   }]
 }
 ```
-
-
