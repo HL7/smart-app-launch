@@ -18,6 +18,8 @@ publisher:
   name: HL7 International - FHIR Infrastructure WG
   url: https://hl7.org/Special/committees/fiwg
   email: fhir@lists.HL7.org
+instanceOptions:
+  setMetaProfile: never
 pages:
   index.md:
     title: Overview
