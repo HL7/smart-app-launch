@@ -4,5 +4,5 @@
     "path": "http://hl7.org/fhir/smart-app-launch/2023Jan",
     "status": "draft",
     "sequence": "STU 2.1",
-    "desc": "STU 2.1 Jan 2023 Ballot"
+    "desc": "Allow for more detailed fhirContext when launching apps. Allow PractitionerRole for fhirUser Document absolute URL requirement for smart-configuration links. Remove note on dynamic ports in redirect_uri. Add experimental support for SMART App State Persistence. Add Task profiles for describing app launch."
 }
