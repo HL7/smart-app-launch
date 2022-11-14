@@ -7,7 +7,7 @@ Parent: Task
 * code = SmartOnFhirCodes#launch-app-ehr
 * input 1..*
 * input ^slicing.discriminator.type = #value
-* input ^slicing.discriminator.path = "coding.system"
+* input ^slicing.discriminator.path = "type"
 * input ^slicing.rules = #open
 * input contains launchurl 1..1 and launchcontext 0..1
 * input[launchurl].type = SmartOnFhirCodes#smartonfhir-application
@@ -25,7 +25,7 @@ Parent: Task
 * code = SmartOnFhirCodes#launch-app-standalone
 * input 1..*
 * input ^slicing.discriminator.type = #value
-* input ^slicing.discriminator.path = "coding.system"
+* input ^slicing.discriminator.path = "type"
 * input ^slicing.rules = #open
 * input contains launchurl 1..1 and launchcontext 0..1
 * input[launchurl].type = SmartOnFhirCodes#smartonfhir-application

@@ -23,25 +23,25 @@ An example of such Task is presented below:
 ```js
 {
   "resourceType": "Task",
+  "id": "task-for-ehr-launch",
   "status": "requested",
   "intent": "proposal",
-  "code": 
-  {
+  "code": {
     "coding": [{
       "system": "http://hl7.org/fhir/smart-app-launch/CodeSystem/smart-codes",
       "code": "launch-app-ehr",
-      "display": "Request launch of an application using SMART of FHIR EHR launch."
+      "display": "Launch application using the SMART EHR launch"
     }]
   },
-  "for": "Patient/asdjksaj",
-  "encounter": "Encounter/djsafioir",
+  "for": {"reference": "https://example.org/fhir/Patient/123"},
+  "encounter": {"reference": "https://example.org/fhir/Encounter/456"},
   "input": [
   {
     "type": {
         "coding":[{
           "system": "http://hl7.org/fhir/smart-app-launch/CodeSystem/smart-codes",
           "code": "smartonfhir-application",
-          "display": "URL of the application to be launched."
+          "display": "SMART on FHIR application URL."
         }]
     },
     "valueUrl": "https://www.example.org/myapplication"
@@ -55,8 +55,7 @@ An example of such Task is presented below:
         }]
     },
     "valueString": "{\"field1\":\"value\"}"
-  }]
-}
+  }
 ```
 
 ### Requesting an standalone launch
@@ -72,25 +71,26 @@ An example of such Task is presented below:
 ```js
 {
   "resourceType": "Task",
+  "id": "task-for-standalone-launch",
   "status": "requested",
   "intent": "proposal",
   "code": 
   {
     "coding": [{
       "system": "http://hl7.org/fhir/smart-app-launch/CodeSystem/smart-codes",
-      "code": "launch-standalone-ehr",
-      "display": "Request launch of an application using SMART of FHIR standalone launch."
+      "code": "launch-app-standalone",
+      "display": "Launch application using the SMART standalone launch"
     }]
   },
-  "for": "Patient/asdjkdadasdasaj",
-  "encounter": "Encounter/djsaeiruiurwfioir",
+  "for": {"reference": "https://example.org/fhir/Patient/123"},
+  "encounter": {"reference": "https://example.org/fhir/Encounter/456"},
   "input": [
   {
     "type": {
         "coding":[{
           "system": "http://hl7.org/fhir/smart-app-launch/CodeSystem/smart-codes",
           "code": "smartonfhir-application",
-          "display": "URL of the application to be launched."
+          "display": "SMART on FHIR application URL."
         }]
     },
     "valueUrl": "https://www.example.org/myapplication"
