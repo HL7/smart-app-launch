@@ -7,7 +7,7 @@ canonical: http://hl7.org/fhir/smart-app-launch
 name: SmartAppLaunch
 title: "SMART App Launch"
 status: active
-version: 2.1.0
+version: 2.1.0-ballot
 fhirVersion: 4.0.1
 copyrightYear: 2020+
 releaseLabel: Release #ci-build|draft|qa-preview|ballot|trial-use|release|update|normative+trial-use
