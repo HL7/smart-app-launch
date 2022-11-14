@@ -17,6 +17,6 @@ Description: "App State Example"
 Usage: #example
 * subject.reference = "https://ehr.example.org/fhir/Practitioner/123"
 * code.coding[0].system = "https://myapp.example.org"
-* code.coding[0].code = "display-preferences"
+* code.coding[0].code = #display-preferences
 * extension[0].url = "https://myapp.example.org/display-preferences-v2.0.1"
 * extension[0].valueString = "{\"defaultView\":\"problem-list\",\"colorblindMode\":\"D\",\"resultsPerPage\":150}"
