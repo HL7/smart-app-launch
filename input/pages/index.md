@@ -39,3 +39,22 @@ SMART uses a language of "scopes" to define specific access permissions that can
 ### [Token Introspection](token-introspection.html)
 
 SMART defines a Token Introspection API allowing Resource Servers or software components to understand the scopes, users, patients, and other context associated with access tokens. This pattern allows a looser coupling between Resource Servers and Authorization Servers.
+
+
+### FHIR Publication Details
+
+#### Intellectual Property Statements
+
+{% include ip-statements.xhtml %}
+
+#### Cross Version Analysis
+
+{% include cross-version-analysis.xhtml %}
+
+#### Package Dependencies
+
+{% include dependency-table.xhtml %}
+
+#### Global Profile Definitions
+
+{% include globals-table.xhtml %}

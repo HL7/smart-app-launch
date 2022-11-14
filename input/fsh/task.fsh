@@ -39,7 +39,8 @@ Id: smart-launch-types
 Title: "Launch Types for tasks to application launches"
 
 Description: "Defines Launch Type codes for Tasks that request launch of SMART applications."
-
+* ^caseSensitive = true
+* ^experimental = false
 * SmartOnFhirCodes#launch-app-ehr "Launch application using the SMART EHR launch"
 * SmartOnFhirCodes#launch-app-standalone "Launch application using the SMART standalone launch"
 
@@ -47,6 +48,7 @@ ValueSet: SmartLaunchInformation
 Id: smart-launch-info
 Title: "Codes for tasks to application launches"
 Description: "Defines codes for Tasks that request launch of SMART applications."
+* ^caseSensitive = true
 * SmartOnFhirCodes#smartonfhir-application "SMART on FHIR application URL."
 * SmartOnFhirCodes#smartonfhir-appcontext "Application context related to this launch."
 
@@ -54,6 +56,8 @@ CodeSystem: SmartOnFhirCodes
 Id: smart-codes
 Title: "SMART on FHIR terminology."
 Description: "Codes used to in profiles related to SMART on FHIR."
+* ^caseSensitive = true
+* ^experimental = false
 * #launch-app-ehr "Launch application using the SMART EHR launch"
   "The task suggest launching an application using the SMART on FHIR EHR launch."
 * #launch-app-standalone "Launch application using the SMART standalone launch"
