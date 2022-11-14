@@ -53,7 +53,7 @@ Content-Type: application/json
 }
 ```
 
-### Registering a client (communicting public keys)
+### Registering a client (communicating public keys)
 
 Before a SMART client can run against a FHIR server, the client SHALL generate
 or obtain an asymmetric key pair and SHALL register its public key set with that
@@ -260,7 +260,7 @@ Assume that a "bilirubin result monitoring service" client has registered with a
 
  * JWT "issuer" URL: `https://bili-monitor.example.com`
  * OAuth2 `client_id`: `https://bili-monitor.example.com`
- * JWK identfier: `kid` value (see [example JWK](RS384.public.json))
+ * JWK identifier: `kid` value (see [example JWK](RS384.public.json))
 
 The client protects its private key from unauthorized access, use, and modification.  
 

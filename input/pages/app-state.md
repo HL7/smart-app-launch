@@ -91,7 +91,7 @@ App State data can include details like encryption keys. EHRs SHALL evaluate
 storage requirements and MAY store App State data separately from their routine
 FHIR Resource storage space. 
 
-App State is always assoiated with a "state code" (`Basic.code.coding`) and
+App State is always associated with a "state code" (`Basic.code.coding`) and
 optionally associated with a subject (`Basic.subject`).
 
 EHRs SHALL allow at least one `smart-app-state` resource per state code, and at
@@ -443,7 +443,7 @@ This scope would allow the app to manage any app state that the user is permitte
 
 #### Granting access at the patient level
 
-An app writing patient-specific state (e.g., access keys for an externally managed encryted data set) can request a SMART scope like:
+An app writing patient-specific state (e.g., access keys for an externally managed encrypted data set) can request a SMART scope like:
 
     patient/Basic.cuds // query and modify state
 
@@ -476,7 +476,7 @@ of the form:
     user/Basic.cuds // query and modify global app state
     user/Basic.s // query global app state
 
-For exapmle, a family of apps could be deployed with read access to a
+For example, a family of apps could be deployed with read access to a
 "configuration" state type, with a management app authorized to modify this
 state type. Using this pattern, a local site administrator could establish
 settings across the family of apps.
@@ -550,7 +550,7 @@ design:
   information is `/Basic` (e.g., for `POST /Basic` on the EHR's main FHIR
   endpoint), since non-App-State CRUD operations on `Basic` would use this same
   path. Providing the option for a distinct FHIR base URL allows EHRs to
-  establish predictable and distint paths when this is desirable.
+  establish predictable and distinct paths when this is desirable.
 
 * Ensure that App State can be persisted separately from other `Basic`
   resources managed by the EHR. This stems from the fact that App State is
