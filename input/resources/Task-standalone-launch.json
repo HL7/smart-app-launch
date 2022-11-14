@@ -1,0 +1,31 @@
+{
+  "resourceType": "Task",
+  "id": "standalone-launch",
+  "meta": {
+    "profile": ["http://hl7.org/fhir/smart-app-launch/StructureDefinition/task-ehr-launch"]
+  },
+ 
+  "status": "requested",
+  "intent": "proposal",
+  "code": 
+  {
+    "coding": [{
+      "system": "http://hl7.org/fhir/smart-app-launch/CodeSystem/smart-codes",
+      "code": "launch-standalone-ehr",
+      "display": "Request launch of an application using SMART of FHIR standalone launch."
+    }]
+  },
+  "for": {"reference": "Patient/asdjkdadasdasaj"},
+  "encounter": {"reference": "Encounter/djsaeiruiurwfioir"},
+  "input": [
+  {
+    "type": {
+        "coding":[{
+          "system": "http://hl7.org/fhir/smart-app-launch/CodeSystem/smart-codes",
+          "code": "smartonfhir-application",
+          "display": "SMART on FHIR application URL."
+        }]
+    },
+    "valueUrl": "https://www.example.org/myapplication"
+  }]
+}
