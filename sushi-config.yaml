@@ -31,10 +31,12 @@ pages:
       title: Example App Launch for Symmetric Client Auth
   scopes-and-launch-context.md:
     title: 'App Launch: Scopes and Launch Context'
-    worked_example_id_token.md:
-      title: Worked Example Id Token
+  worked_example_id_token.md:
+    title: Worked Example Id Token
   app-state.md:
     title: 'Persisting App State (Experimental)'
+  task-launch.md:
+    title: 'Task profile for requesting SMART launch (Experimental)'
   backend-services.md:
     title: Backend Services
     example-backend-services.md:
@@ -66,6 +68,7 @@ menu:
     Launch and Authorization: app-launch.html
     Scopes and Launch Context: scopes-and-launch-context.html
     Persisting App State: app-state.html
+    Task requesting launch: task-launch.html
   Backend Services: backend-services.html
   Authentication:
     Asymmetric (public key): client-confidential-asymmetric.html
