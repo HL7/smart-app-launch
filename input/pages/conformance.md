@@ -67,7 +67,7 @@ To promote interoperability, the following SMART on FHIR *Capabilities* have bee
 The following capabilities convey that a SMART on FHIR server is capable of providing context
 to an app at launch time.
 
-###### Lauch Context for UI Integration
+###### Launch Context for UI Integration
 
 These capabilities only apply during an EHR Launch, and `context-style` only for an embedded EHR Launch.
 

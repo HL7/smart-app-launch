@@ -106,7 +106,7 @@ For a full example, see [example request and response](example-backend-services.
 
 <a id="step-3-access-token"></a>
 
-### Obtain acess token
+### Obtain access token
 
 By the time a client has been registered with the FHIR authorization server, the key
 elements of organizational trust will have been established. That is, the
@@ -264,7 +264,7 @@ FHIR API call to the FHIR endpoint on the FHIR resource server.
 
 #### Request
 
-From the access token resopnse, an app has received an OAuth2 bearer-type access token (`access_token` property) that can be used to fetch clinical data.  The app issues a request that includes an
+From the access token response, an app has received an OAuth2 bearer-type access token (`access_token` property) that can be used to fetch clinical data.  The app issues a request that includes an
 `Authorization` header that presents the `access_token` as a "Bearer" token:
 
 {% raw %}
