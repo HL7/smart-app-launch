@@ -18,6 +18,19 @@ publisher:
   name: HL7 International - FHIR Infrastructure WG
   url: https://hl7.org/Special/committees/fiwg
   email: fhir@lists.HL7.org
+resources:
+  Basic/app-state:
+    name: Example App State
+    description: Example App State
+    exampleCanonical: http://hl7.org/fhir/smart-app-launch/StructureDefinition/smart-app-state-basic
+  Task/task-for-ehr-launch:
+    name: Example Task for EHR Launch
+    description: Example Task for EHR Launch
+    exampleCanonical: http://hl7.org/fhir/smart-app-launch/StructureDefinition/task-ehr-launch
+  Task/task-for-standalone-launch:
+    name: Example Task for Standalone Launch
+    description: Example Task for Standalone Launch
+    exampleCanonical: http://hl7.org/fhir/smart-app-launch/StructureDefinition/task-standalone-launch
 instanceOptions:
   setMetaProfile: never
 pages:
@@ -60,7 +73,7 @@ pages:
 parameters:
   path-history: http://hl7.org/fhir/smart-app-launch/history.html
   jira-code: smart
-
+  no-narrative: true
 # ╭────────────────────────────────────────────menu.xml────────────────────────────────────────────╮
 # │  To use a provided ig-data/input/includes/menu.xml file, delete the "menu" property below.     │
 # ╰────────────────────────────────────────────────────────────────────────────────────────────────╯

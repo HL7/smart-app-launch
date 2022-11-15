@@ -11,9 +11,8 @@ Description: """
 * code.coding 1..1
 * extension.value[x] only string
 
-Instance: AppStateExample
+Instance: app-state
 InstanceOf: SMARTAppStateBasic
-Description: "App State Example"
 Usage: #example
 * subject.reference = "https://ehr.example.org/fhir/Practitioner/123"
 * code.coding[0].system = "https://myapp.example.org"
