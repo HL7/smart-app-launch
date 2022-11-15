@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<specification xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" ballotUrl="http://hl7.org/fhir/smart-app-launch/2021May" ciUrl="http://build.fhir.org/ig/HL7/smart-app-launch" defaultVersion="2.0.0" defaultWorkgroup="fhir-i" gitUrl="https://github.com/HL7/smart-app-launch" url="http://hl7.org/fhir/smart-app-launch">
+<version code="current" url="http://build.fhir.org/ig/HL7/smart-app-launch"/>
+<version code="2.1.0-ballot" url="http://hl7.org/fhir/smart-app-launch/2023Jan"/>
+<version code="2.0.0" url="http://hl7.org/fhir/smart-app-launch/STU2"/>
+<version code="1.1.0" url="http://hl7.org/fhir/smart-app-launch/2021May"/>
+<version code="1.0.0" url="http://hl7.org/fhir/smart-app-launch/1.0.0"/>
+<version code="0.8.0" deprecated="true" url="http://hl7.org/fhir/smart-app-launch/0.8.0"/>
+<version code="1.0" deprecated="true"/>
+<artifactPageExtension value="-definitions"/>
+<artifactPageExtension value="-examples"/>
+<artifactPageExtension value="-mappings"/>
+<artifact id="Basic/AppStateExample" key="Basic-AppStateExample" name="App State Example"/>
+<artifact id="ValueSet/smart-launch-info" key="ValueSet-smart-launch-info" name="Codes for tasks to application launches"/>
+<artifact id="Task/task-for-ehr-launch" key="Task-task-for-ehr-launch" name="Example Task - task-for-ehr-launch"/>
+<artifact id="Task/task-for-standalone-launch" key="Task-task-for-standalone-launch" name="Example Task - task-for-standalone-launch"/>
+<artifact id="Task/TaskEhrLaunchExample1" key="Task-TaskEhrLaunchExample1" name="Example Task requesting SMART on FHIR EHR launch"/>
+<artifact id="Task/TaskEhrLaunchExample2" key="Task-TaskEhrLaunchExample2" name="Example Task requesting SMART on FHIR EHR launch"/>
+<artifact id="Task/TaskStandaloneLaunchExample1" key="Task-TaskStandaloneLaunchExample1" name="Example Task requesting SMART on FHIR standalone launch"/>
+<artifact id="Task/TaskStandaloneLaunchExample2" key="Task-TaskStandaloneLaunchExample2" name="Example Task requesting SMART on FHIR standalone launch"/>
+<artifact id="ValueSet/smart-launch-types" key="ValueSet-smart-launch-types" name="Launch Types for tasks to application launches"/>
+<artifact id="StructureDefinition/smart-app-state-basic" key="StructureDefinition-smart-app-state-basic" name="SMART App State"/>
+<artifact deprecated="true" id="StructureDefinition/oauth-uris" key="StructureDefinition-oauth-uris" name="SMART on FHIR Oauth URIs"/>
+<artifact id="CodeSystem/smart-codes" key="CodeSystem-smart-codes" name="SMART on FHIR terminology."/>
+<artifact id="StructureDefinition/task-ehr-launch" key="StructureDefinition-task-ehr-launch" name="TaskEhrLaunch"/>
+<artifact id="StructureDefinition/task-standalone-launch" key="StructureDefinition-task-standalone-launch" name="TaskStandaloneLaunch"/>
+<artifact deprecated="true" id="CapabilityStatement/smart-app-launch-example" key="CapabilityStatement-smart-app-launch-example" name="smart-app-launch-example"/>
+<artifact id="CapabilityStatement/smart-app-state-server" key="CapabilityStatement-smart-app-state-server" name="smart-app-state-server"/>
+<page key="NA" name="(NA)"/>
+<page key="many" name="(many)"/>
+<page deprecated="true" key="profiles" name="(profiles)"/>
+<page key="app-launch" name="App Launch: Launch and Authorization"/>
+<page key="scopes-and-launch-context" name="App Launch: Scopes and Launch Context"/>
+<page key="artifacts" name="Artifacts Summary"/>
+<page key="backend-services" name="Backend Services"/>
+<page deprecated="true" key="basic-auth-example" name="Basic Auth Example"/>
+<page key="best-practices" name="Best Practices"/>
+<page key="client-confidential-asymmetric" name="Client Authentication: Asymmetric (public key)"/>
+<page key="client-confidential-symmetric" name="Client Authentication: Symmetric (shared secret)"/>
+<page key="conformance" name="Conformance"/>
+<page key="example-app-launch-asymmetric-auth" name="Example App Launch for Asymmetric Client Auth"/>
+<page key="example-app-launch-public" name="Example App Launch for Public Client"/>
+<page key="example-app-launch-symmetric-auth" name="Example App Launch for Symmetric Client Auth"/>
+<page key="example-backend-services" name="Example Backend Services Flow"/>
+<page key="authorization-example-jwks-and-signatures" name="Example JWS generation for Asymmetric Client Auth"/>
+<page deprecated="true" key="example-request-access-token" name="Example Request Access Token"/>
+<page deprecated="true" key="example-request-patient" name="Example Request Patient"/>
+<page deprecated="true" key="example-request-refresh" name="Example Request Refresh"/>
+<page deprecated="true" key="example-request-token-post" name="Example Request Token Post"/>
+<page key="examples" name="Examples"/>
+<page key="index" name="Overview"/>
+<page key="app-state" name="Persisting App State (Experimental)"/>
+<page key="toc" name="Table of Contents"/>
+<page key="task-launch" name="Task profile for requesting SMART launch (Experimental)"/>
+<page key="token-introspection" name="Token Introspection"/>
+<page key="worked_example_id_token" name="Worked Example Id Token"/>
+<page deprecated="true" key="smart-app-launch" name="smart-app-launch" url="smart-app-launch"/>
+</specification>

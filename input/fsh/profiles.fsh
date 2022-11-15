@@ -13,7 +13,8 @@ Description: """
 
 Instance: AppStateExample
 InstanceOf: SMARTAppStateBasic
-Description: "App State Example"
+Title: "App State Example"
+Description: "App State Example of a practitioner specific AppState"
 Usage: #example
 * subject.reference = "https://ehr.example.org/fhir/Practitioner/123"
 * code.coding[0].system = "https://myapp.example.org"
