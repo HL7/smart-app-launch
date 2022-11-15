@@ -1,11 +1,5 @@
 == Suppressed Messages ==
 
-# Example descriptions not needed when they only recapitulate the example resource id
-
-Unable to find ImplementationGuide.definition.resource.description for the resource Task/task-for-ehr-launch. Descriptions are strongly encouraged if they cannot be inferred from the resource to allow proper population of the artifact list.
-
-Unable to find ImplementationGuide.definition.resource.description for the resource Task/task-for-standalone-launch. Descriptions are strongly encouraged if they cannot be inferred from the resource to allow proper population of the artifact list.
-
 # ****** ERRORs ******
 # NO FHIR artifacts in this IG variance request approved on 10/27/2021 FMG Call
 ERROR: ImplementationGuide/hl7.fhir.uv.smart-app-launch: ImplementationGuide.definition: ImplementationGuide.definition.resource: minimum required = 1, but only found 0 (from http://hl7.org/fhir/StructureDefinition/ImplementationGuide)
