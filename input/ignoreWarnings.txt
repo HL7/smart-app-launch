@@ -1,8 +1,4 @@
 == Suppressed Messages ==
 
-# ****** ERRORs ******
-# NO FHIR artifacts in this IG variance request approved on 10/27/2021 FMG Call
-ERROR: ImplementationGuide/hl7.fhir.uv.smart-app-launch: ImplementationGuide.definition: ImplementationGuide.definition.resource: minimum required = 1, but only found 0 (from http://hl7.org/fhir/StructureDefinition/ImplementationGuide)
-
 # Example URI in example.org domain does not need to be validated
 Code System URI 'https://myapp.example.org' is unknown so the code cannot be validated
