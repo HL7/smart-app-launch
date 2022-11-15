@@ -73,7 +73,9 @@ pages:
 parameters:
   path-history: http://hl7.org/fhir/smart-app-launch/history.html
   jira-code: smart
-  no-narrative: true
+  no-narrative:
+    - 'Task/*'
+    - 'Basic/*'
 # ╭────────────────────────────────────────────menu.xml────────────────────────────────────────────╮
 # │  To use a provided ig-data/input/includes/menu.xml file, delete the "menu" property below.     │
 # ╰────────────────────────────────────────────────────────────────────────────────────────────────╯
