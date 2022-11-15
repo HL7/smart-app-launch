@@ -13,15 +13,17 @@ Parent: Task
 * input ^slicing.discriminator.path = "type"
 * input ^slicing.rules = #open
 * input contains launchurl 1..1 and launchcontext 0..1
+* input[launchurl].type from SmartLaunchInformation
 * input[launchurl].type = SmartOnFhirCodes#smartonfhir-application
 * input[launchurl].value[x] only url
 * input[launchurl].valueUrl 1..1
+* input[launchcontext].type from SmartLaunchInformation
 * input[launchcontext].type = SmartOnFhirCodes#smartonfhir-appcontext
 * input[launchcontext].value[x] only string
 
 Instance: TaskEhrLaunchExample1
 InstanceOf: TaskEhrLaunch
-Title: "Example Task requesting SMART on FHIR EHR launch"
+Title: "Example Task requesting SMART on FHIR EHR launch 1"
 Description: """
   Task instance requesting the launch of a SMART app using the EHR launch mechanism without appcontext, patient or encounter references.
   """
@@ -35,7 +37,7 @@ Usage: #example
 
 Instance: TaskEhrLaunchExample2
 InstanceOf: TaskEhrLaunch
-Title: "Example Task requesting SMART on FHIR EHR launch"
+Title: "Example Task requesting SMART on FHIR EHR launch 2"
 Description: """
   Task instance requesting the launch of a SMART app using the EHR launch mechanism, referring to a patient and encounter and holds appcontext values.
   """
@@ -71,15 +73,18 @@ Parent: Task
 * input ^slicing.discriminator.path = "type"
 * input ^slicing.rules = #open
 * input contains launchurl 1..1 and launchcontext 0..1
+* input[launchurl].type from SmartLaunchInformation
 * input[launchurl].type = SmartOnFhirCodes#smartonfhir-application
 * input[launchurl].value[x] only url
 * input[launchurl].valueUrl 1..1
+* input[launchcontext].type from SmartLaunchInformation
 * input[launchcontext].type = SmartOnFhirCodes#smartonfhir-appcontext
 * input[launchcontext].value[x] only string
 
+
 Instance: TaskStandaloneLaunchExample1
 InstanceOf: TaskStandaloneLaunch
-Title: "Example Task requesting SMART on FHIR standalone launch"
+Title: "Example Task requesting SMART on FHIR standalone launch 1"
 Description: """
   Task instance requesting the standalone launch of a SMART app without patient and encounter references.
   """
@@ -93,7 +98,7 @@ Usage: #example
 
 Instance: TaskStandaloneLaunchExample2
 InstanceOf: TaskStandaloneLaunch
-Title: "Example Task requesting SMART on FHIR standalone launch"
+Title: "Example Task requesting SMART on FHIR standalone launch 2"
 Description: """
   Task instance requesting the standalone launch of a SMART app that includes a Patient and Encounter reference.
   """

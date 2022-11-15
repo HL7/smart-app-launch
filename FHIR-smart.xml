@@ -12,12 +12,10 @@
 <artifactPageExtension value="-mappings"/>
 <artifact id="Basic/AppStateExample" key="Basic-AppStateExample" name="App State Example"/>
 <artifact id="ValueSet/smart-launch-info" key="ValueSet-smart-launch-info" name="Codes for tasks to application launches"/>
-<artifact id="Task/task-for-ehr-launch" key="Task-task-for-ehr-launch" name="Example Task - task-for-ehr-launch"/>
-<artifact id="Task/task-for-standalone-launch" key="Task-task-for-standalone-launch" name="Example Task - task-for-standalone-launch"/>
-<artifact id="Task/TaskEhrLaunchExample1" key="Task-TaskEhrLaunchExample1" name="Example Task requesting SMART on FHIR EHR launch"/>
-<artifact id="Task/TaskEhrLaunchExample2" key="Task-TaskEhrLaunchExample2" name="Example Task requesting SMART on FHIR EHR launch"/>
-<artifact id="Task/TaskStandaloneLaunchExample1" key="Task-TaskStandaloneLaunchExample1" name="Example Task requesting SMART on FHIR standalone launch"/>
-<artifact id="Task/TaskStandaloneLaunchExample2" key="Task-TaskStandaloneLaunchExample2" name="Example Task requesting SMART on FHIR standalone launch"/>
+<artifact id="Task/TaskEhrLaunchExample1" key="Task-TaskEhrLaunchExample1" name="Example Task requesting SMART on FHIR EHR launch 1"/>
+<artifact id="Task/TaskEhrLaunchExample2" key="Task-TaskEhrLaunchExample2" name="Example Task requesting SMART on FHIR EHR launch 2"/>
+<artifact id="Task/TaskStandaloneLaunchExample1" key="Task-TaskStandaloneLaunchExample1" name="Example Task requesting SMART on FHIR standalone launch 1"/>
+<artifact id="Task/TaskStandaloneLaunchExample2" key="Task-TaskStandaloneLaunchExample2" name="Example Task requesting SMART on FHIR standalone launch 2"/>
 <artifact id="ValueSet/smart-launch-types" key="ValueSet-smart-launch-types" name="Launch Types for tasks to application launches"/>
 <artifact id="StructureDefinition/smart-app-state-basic" key="StructureDefinition-smart-app-state-basic" name="SMART App State"/>
 <artifact deprecated="true" id="StructureDefinition/oauth-uris" key="StructureDefinition-oauth-uris" name="SMART on FHIR Oauth URIs"/>

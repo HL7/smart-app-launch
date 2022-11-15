@@ -18,7 +18,7 @@ The input field contains:
 * the url of the application to be launched
 * optional appContext to be included in the token response as is specified in a [CDShooks Link](https://cds-hooks.org/specification/current/#link)
 
-An example of such Task is presented below: 
+An example of such Task is presented below:
 
 ```js
 {
