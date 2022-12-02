@@ -192,7 +192,7 @@ No matter how an app registers with an EHR's authorization service, at registrat
 
 For confidential clients, additional registration-time requirements are defined based on the client authentication method.
 
-* For asymmetric client authentication: a [JSON Web Key Set or JWSK URL](client-confidential-asymmetric.html#registering-a-client-communicting-public-keys) is established
+* For asymmetric client authentication: a [JSON Web Key Set or JWSK URL](client-confidential-asymmetric.html#registering-a-client-communicating-public-keys) is established
 * For symmetric client authentication: a [client secret](client-confidential-symmetric.html) is established
 
 #### Response
