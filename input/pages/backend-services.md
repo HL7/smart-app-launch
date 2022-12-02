@@ -85,7 +85,7 @@ and carefully weighed before choosing a different course
 ### Register SMART Backend Service (communicating public keys)
 
 Before a SMART client can run against a FHIR server, the client SHALL register
-with the server by following the [registration steps described in `client-confidential-asymmetric` authentication](client-confidential-asymmetric.html#registering-a-client-communicting-public-keys).
+with the server by following the [registration steps described in `client-confidential-asymmetric` authentication](client-confidential-asymmetric.html#registering-a-client-communicating-public-keys).
 
 <a id="step-2-discovery"></a>
 
