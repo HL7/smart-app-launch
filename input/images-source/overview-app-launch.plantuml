@@ -20,7 +20,7 @@ opt
 end
 alt Granted
     EHR -->> App: Authorization granted
-    App -> FHIR: Access token request
+    App -> EHR: Access token request
     EHR --> App: Access token response
     App -> FHIR: Request Resources
 else Denied
