@@ -7,11 +7,11 @@ canonical: http://hl7.org/fhir/smart-app-launch
 name: SmartAppLaunch
 title: "SMART App Launch"
 status: active
-version: 2.1.0
+version: 2.2.0-preview
 fhirVersion: 4.0.1
 copyrightYear: 2020+
-releaseLabel: Release #ci-build|draft|qa-preview|ballot|trial-use|release|update|normative+trial-use
-date: '2021-10-30'
+releaseLabel: CI-Build #ci-build|draft|qa-preview|ballot|trial-use|release|update|normative+trial-use
+date: '2023-03-01'
 license: 'CC-BY-4.0'
 jurisdiction: http://unstats.un.org/unsd/methods/m49/m49.htm#001 "World"
 publisher:
@@ -60,6 +60,10 @@ pages:
     title: Conformance
   best-practices.md:
     title: Best Practices
+  brands.md:
+    title: Patient-Access Brands and Endpoints
+    example-brands.md:
+      title: Patient-Access Brand Examples
   examples.md:
     title: Examples
     example-app-launch-public.md:
@@ -81,8 +85,13 @@ parameters:
   path-history: http://hl7.org/fhir/smart-app-launch/history.html
   jira-code: smart
   no-narrative:
+<<<<<<< HEAD
     - 'Basic/*'
     - 'Task/*'
+=======
+    - '*/*'
+  path-output: docs #output #docs
+>>>>>>> fd01c70 (commit brands pages to smart)
 # ╭────────────────────────────────────────────menu.xml────────────────────────────────────────────╮
 # │  To use a provided ig-data/input/includes/menu.xml file, delete the "menu" property below.     │
 # ╰────────────────────────────────────────────────────────────────────────────────────────────────╯
@@ -110,6 +119,7 @@ menu:
   See also:
     #Artifacts: artifacts.html # no artifacts to display!
     Best Practices: best-practices.html
+    Patient-Access Brands and Endpoints: brands.html
     Examples: examples.html
     References: references.html
     History: http://hl7.org/fhir/smart-app-launch/history.html
