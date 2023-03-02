@@ -1,4 +1,6 @@
-*Note: The brands below are real and fake data mashups. I've used real names and locations to maintain a sense of authenticity and to keep things intuitive, but nothing about the payloads below should be considered official.*
+{% capture SQUARE %}<span style="font-size:1em">&#9634;</span>{% endcapture %}
+
+*Note: Although real names and locations have been used, the information presented below is not real. The brands below are fabricated for the purpose of these examples.*
 
 ### LabCorp: Lab with Thousands of Locations Nationwide
 
@@ -12,10 +14,10 @@ The configuration below establishes a single top-level Brand with a long list of
 
 ![](https://i.imgur.com/Kv5gq3Z.png) **LabCorp** ([labcorp.com](https://labcorp.com))
 
-
 |Source|API|Portal|
 |--|--|--|
-|**Labcorp Patient™ portal**| :black_square_button:  Connect|:black_square_button: View |
+|**Labcorp Patient™ portal**|{{SQUARE}} Connect|{{SQUARE}} View |
+{:.grid style="background-color: white"}
 
 Nearest location: 1 mile (Madison)
 
@@ -144,9 +146,11 @@ The system displays the following cards to a user:
 
 <div class="bg-info" markdown="1">
 ![](https://i.imgur.com/dP83Tuq.png)  **UnityPoint Health** ([unitypoint.org](https://www.unitypoint.org))
+
 |Source|API|Portal|
 |--|--|--|
-|**MyUnityPoint**| :black_square_button:  Connect|:black_square_button: View |
+|**MyUnityPoint**| {{SQUARE}}  Connect|{{SQUARE}} View |
+{:.grid style="background-color: white"}
 
 Nearest location: 13 miles (Madison)
 
@@ -154,18 +158,22 @@ Nearest location: 13 miles (Madison)
 
 <div class="bg-info" markdown="1">
 ![](https://i.imgur.com/1RbPNCv.png) **Associated Physicians of Madison** ([apmadison.com](https://www.apmadison.com/))
+
 |Source|API|Portal|
 |--|--|--|
-|**MyUnityPoint**| :black_square_button:  Connect|:black_square_button: View |
+|**MyUnityPoint**| {{SQUARE}}  Connect|{{SQUARE}} View |
+{:.grid style="background-color: white"}
 
 Nearest location: 1 mile (Madison)
 </div><!-- info -->
 
 <div class="bg-info" markdown="1">
 ![](https://i.imgur.com/GjS3s6U.png)  **Stewart Memorial Community Hospital** ([stewartmemorial.org](https://www.stewartmemorial.org/))
+
 |Source|API|Portal|
 |--|--|--|
-|**MyUnityPoint**| :black_square_button:  Connect|:black_square_button: View |
+|**MyUnityPoint**| {{SQUARE}}  Connect|{{SQUARE}} View |
+{:.grid style="background-color: white"}
 
 Nearest location: 120 miles (Lake City)
 </div><!-- info -->
@@ -418,7 +426,8 @@ Based on the definitions below, there would be top-level Brand cards for MGB and
 
 |Source|API|Portal|
 |--|--|--|
-|**Patient Gateway**|:black_square_button: Connect |:black_square_button: View|
+|**Patient Gateway**|{{SQUARE}} Connect |{{SQUARE}} View|
+{:.grid style="background-color: white"}
 
 Nearest location: 3 miles (Boston)
 </div><!-- info -->
@@ -429,7 +438,8 @@ Nearest location: 3 miles (Boston)
 
 |Source|API|Portal|
 |--|--|--|
-|**MyChildren's Patient Portal**|:black_square_button: Connect |:black_square_button: View|
+|**MyChildren's Patient Portal**|{{SQUARE}} Connect |{{SQUARE}} View|
+{:.grid style="background-color: white"}
 
 Nearest location: 3 miles (Boston)
 </div><!-- info -->
@@ -442,7 +452,8 @@ Without a consistent identifier  on both Organizations, Dana Farber would have t
 
 |Source|API|Portal|
 |--|--|--|
-|**Patient Gateway.** *Patient Gateway is an online tool to help adult patients connect with healthcare providers, manage appointments, and refill prescriptions.*|:black_square_button:Connect|:black_square_button: View|
+|**Patient Gateway.** *Patient Gateway is an online tool to help adult patients connect with healthcare providers, manage appointments, and refill prescriptions.*|{{SQUARE}}Connect|{{SQUARE}} View|
+{:.grid style="background-color: white"}
 
 Nearest location: 3 miles (Boston)
 </div><!-- info -->
@@ -452,7 +463,8 @@ Nearest location: 3 miles (Boston)
 
 |Source|API|Portal|
 |--|--|--|
-|**MyChildren's Patient Portal.** *MyChildren's Patient Portal is a Web-based, easy-to-use, and secure way to access your child's information at your convenience.*|:black_square_button: Connect |:black_square_button: View|
+|**MyChildren's Patient Portal.** *MyChildren's Patient Portal is a Web-based, easy-to-use, and secure way to access your child's information at your convenience.*|{{SQUARE}} Connect |{{SQUARE}} View|
+{:.grid style="background-color: white"}
 
 Nearest location: 3 miles (Boston)
 </div><!-- info -->
@@ -465,8 +477,9 @@ Since the definitions below include a consistent identifier (system `urn:ietf:rf
 
 |Source|API|Portal|
 |--|--|--|
-|**Patient Gateway.** *Patient Gateway is an online tool to help adult patients connect with healthcare providers, manage appointments, and refill prescriptions.*| :black_square_button:  Connect|:black_square_button: View |
-|**MyChildren's Patient Portal.** *MyChildren's Patient Portal is a Web-based, easy-to-use, and secure way to access your child's information at your convenience.*|:black_square_button: Connect |:black_square_button: View|
+|**Patient Gateway.** *Patient Gateway is an online tool to help adult patients connect with healthcare providers, manage appointments, and refill prescriptions.*| {{SQUARE}}  Connect|{{SQUARE}} View |
+|**MyChildren's Patient Portal.** *MyChildren's Patient Portal is a Web-based, easy-to-use, and secure way to access your child's information at your convenience.*|{{SQUARE}} Connect |{{SQUARE}} View|
+{:.grid style="background-color: white"}
 
 Nearest location: 3 miles (Boston)
 </div><!-- info -->
