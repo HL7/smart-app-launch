@@ -10,11 +10,19 @@
 <artifactPageExtension value="-definitions"/>
 <artifactPageExtension value="-examples"/>
 <artifactPageExtension value="-mappings"/>
+<artifact id="ValueSet/PatientAccessBrandCategoryValueSet" key="ValueSet-PatientAccessBrandCategoryValueSet" name="Category for PatientAccessBrands"/>
+<artifact id="CodeSystem/PatientAccessBrandCategory" key="CodeSystem-PatientAccessBrandCategory" name="Category for PatientAccessBrands"/>
 <artifact id="ValueSet/smart-launch-info" key="ValueSet-smart-launch-info" name="Codes for tasks to application launches"/>
 <artifact id="Basic/app-state" key="Basic-app-state" name="Example App State"/>
 <artifact id="Task/task-for-ehr-launch" key="Task-task-for-ehr-launch" name="Example Task for EHR Launch"/>
 <artifact id="Task/task-for-standalone-launch" key="Task-task-for-standalone-launch" name="Example Task for Standalone Launch"/>
 <artifact id="ValueSet/smart-launch-types" key="ValueSet-smart-launch-types" name="Launch Types for tasks to application launches"/>
+<artifact id="StructureDefinition/PatientAccessBrand" key="StructureDefinition-PatientAccessBrand" name="Patient Access Brand (Organization)"/>
+<artifact id="StructureDefinition/PatientAccessBrandLogo" key="StructureDefinition-PatientAccessBrandLogo" name="Patient Access Brand: Audience"/>
+<artifact id="StructureDefinition/PatientAccessBrandHidden" key="StructureDefinition-PatientAccessBrandHidden" name="Patient Access Brand: Hide from display"/>
+<artifact id="StructureDefinition/PatientAccessBrandPortalAudience" key="StructureDefinition-PatientAccessBrandPortalAudience" name="Patient Access Brand: Logo"/>
+<artifact id="StructureDefinition/PatientAccessBrandLogoUseAgreement" key="StructureDefinition-PatientAccessBrandLogoUseAgreement" name="Patient Access Brand: Logo Use Agreement"/>
+<artifact id="StructureDefinition/PatientAccessBrandPortalUrl" key="StructureDefinition-PatientAccessBrandPortalUrl" name="Patient Access Brand: Portal URL"/>
 <artifact id="StructureDefinition/smart-app-state-basic" key="StructureDefinition-smart-app-state-basic" name="SMART App State"/>
 <artifact deprecated="true" id="StructureDefinition/oauth-uris" key="StructureDefinition-oauth-uris" name="SMART on FHIR Oauth URIs"/>
 <artifact id="CodeSystem/smart-codes" key="CodeSystem-smart-codes" name="SMART on FHIR terminology."/>

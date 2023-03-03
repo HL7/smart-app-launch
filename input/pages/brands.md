@@ -8,16 +8,16 @@ This page documents the concept of API and 'Patient-access Brands', how healthca
 * Providers publish Brand details (name, logo, etc.) that patients will recognize
 * Apps display Brands to create a "connect to my health records" UX
 
-### Conceptual Model: "Patient-access Brands"
+### Conceptual Model: Patient-Access Brands
 
 *We describe a model UX where apps display a collection of cards or tiles, each representing a "Patient-access Brand" that patients can recognize and connect to.* (To be clear: we don't expect app developers to follow this model precisely; the model exists to keep our design grounded/tangible and to give us a shared vocabulary.)
 
 
-### API Providers *publish Brands* associated with endpoints
+### API Providers *Publish Brands* Associated with Endpoints
 
 A healthcare provider, payer, or other organization exposing a FHIR patient access API can **decide which and how many brands to publish**  with their FHIR endpoints. Each Brand includes data describing the organization offering patient access (e.g., organization name and logo) together with details about their patient access offering (e.g., name and description of their patient portal) in terms that patients should recognize.
 
-### Apps *collect and present Brands* to users
+### Apps *Collect and Present Brands* to Users
 An app can:
 
 * **Display** the Brands it has collected (e.g., as cards or tiles in a UX)
@@ -25,7 +25,7 @@ An app can:
 * Allow users to **select and connect** to a Brand's API endpoint
 
 
-### What's in a Brand?
+### What Is In a Brand?
 Each Brand includes the following information intended to support an app-based card or tile UX:
 
 * `1..1` Primary name for the organization to display on a card (e.g., "Mass General Brigham")
@@ -43,7 +43,7 @@ Each Brand includes the following information intended to support an app-based c
     * `0..1` "Patient access provided by" -- conveys that an affiliated Brand hosts this Brand's API technology and patient portal
     * `0..1` Portal logo to be displayed on a card for Brands that have a portal logo in addition to their brand logo
 
-### Relationship between Brands and endpoints
+### Relationship Between Brands and Endpoints
 
 Commonly, a single endpoint is associated with a single Brand. But the following cases are supported by this conceptual model:
 
@@ -55,7 +55,7 @@ Commonly, a single endpoint is associated with a single Brand. But the following
     * For instance, a Hospital offering more than one patient portal for legacy purposes, or a patient portal hosting multiple FHIR API versions simultaneously
 
 
-##### De-duplicating Brands
+##### De-Duplicating Brands
 
 If multiple endpoints independently publish the same Brand, apps can de-duplicate or merge as needed:
 
@@ -64,7 +64,7 @@ If multiple endpoints independently publish the same Brand, apps can de-duplicat
 2. *Different EHR portals advertise Brands that should merge into a single card at display time*. For instance, a hospital transitioning between EHRs offers two distinct patient portals for an interim period and would like to surface both in a single card.
     * To indicate that it's OK for apps to merge a Brand's card into another Brand's card, publishers SHALL populate the same `identifier` in both Brands. In addition, publishers SHOULD include a patient-facing description for any merged Brands. Finally, apps SHOULD merge Brands into a single target Brand's card by displaying the target Brand's title and logo. Each Brand displays a distinct "connect" button with a patient-facing description or name.
 
-## Specification (FHIR data, statically published)
+### FHIR Specification
 
 An app assembles its collection of Brands (potentially as an offline, configuration-time process) by gathering  FHIR `PatientAccessEndpoint` (Endpoints) and `PatientAccessBrand` (Organizations) data from:
 
@@ -75,15 +75,15 @@ An app assembles its collection of Brands (potentially as an offline, configurat
 
 For fine-grained organizational management, apps SHALL select the FHIR resources linked from `.well-known/smart-configuration` if they differ from the resources in a vendor-consolidated Brand Bundle.
 
-### Caching
+#### Caching
 
 Publishers SHOULD include a weak `ETag` header in all HTTP responses. Clients SHOULD cache responses by ETag and SHOULD consist of an `If-None-Match` header in all requests to avoid re-fetching data that have not changed. See https://www.hl7.org/fhir/http.html for background.
 
-### CORS
+#### CORS
 
 Publishers SHALL support [Cross-Origin Resource Sharing (CORS)](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Access-Control-Allow-Origin) for all GET requests to the artifacts described in this guide.
 
-### Brand Bundle
+#### Brand Bundle
 
 JSON FHIR Bundle (type: `collection`) of Endpoint and related resources is hosted at a stable, publicly available, publicly disclosed location. Bundle Entries include:
   * [`PatientAccessEndpoint`](#FHIR-Profile-for-Endpoint-PatientAccessEndpoint) (Endpoint) resources.
@@ -92,11 +92,11 @@ JSON FHIR Bundle (type: `collection`) of Endpoint and related resources is hoste
 Brand Bundles SHALL populate `Bundle.meta.lastUpdated` to advertise the timestamp of the last change to the contents. In addition, Brand Bundles SHOULD populate `Bundle.entry.resource.meta.lastUpdated` with a more detailed timestamp if the system tracks updates per Resource.
   
   
-#### Example Brand Bundle (scaffold)
+##### Example Brand Bundle
 
-For full examples, see https://hackmd.io/@argonaut/patient-access-brand-examples.
+The following example illustrates how Brand data is compiled into a Bundle. See [Patient-Access Brand Examples](example-brands.html) page for full examples.
 
-```json
+```javascript
 {
   "resourceType": "Bundle",
   "meta": {
@@ -127,7 +127,7 @@ For full examples, see https://hackmd.io/@argonaut/patient-access-brand-examples
 
 ```
 
-### Metadata in `.well-known/smart-configuration`
+#### Metadata in `.well-known/smart-configuration`
 
 FHIR servers supporting this IG SHOULD include the following property in the SMART configuration JSON response:
 
@@ -138,9 +138,9 @@ The Brand Bundle SHALL include a Brand whose `Organization.identifier` matches t
 
 The Brand Bundle SHOULD include only the Brands and Endpoints associated with the SMART on FHIR server that links to the Bundle. However, the Brand Bundle MAY have additional Brands or Endpoints (e.g., supporting a publication pattern where endpoints from a given vendor might point to a comprehensive, centralized vendor-managed list). 
 
-#### Example `.well-known/smart-configuration`
+##### Example `.well-known/smart-configuration`
 
-```json
+```javascript
 {
   // details at http://hl7.org/fhir/smart-app-launch/conformance.html
   "patientAccessBrandBundle": "https://example.org/brands.json",
@@ -153,13 +153,13 @@ The Brand Bundle SHOULD include only the Brands and Endpoints associated with th
 
 Dereferencing the `patientAccessBrandBundle` URL above would return a Brand Bundle.
 
-### Must-Support Definition (`MS`) and Data Absent Reasons
+#### Must-Support Definition (`MS`) and Data Absent Reasons
 Below, "must support" means publishers must provide a way for Brands to populate value. For example, marking a Brand's "address" as `0..* MS` means that a publisher needs to give Brands a way to supply multiple addresses, even if some choose not to provide any.
 
 The EHR that publishes a Brand Bundle may not have some required data elements (Brand Website, Portal Website, Portal Name). If the EHR has asked, but a Brand administrator has not supplied a value, the EHR MAY provide a [Data Absent Reason](extension-data-absent-reason.html) of `asked-declined` or `asked-unknown`. The EHR SHALL NOT use other Data Absent Reasons.
 
 
-### FHIR Profile for Endpoint (`PatientAccessEndpoint`)
+#### FHIR Profile for Endpoint (`PatientAccessEndpoint`)
 
 * `1..1 MS` `address` FHIR base URL for server supporting patient access
 * `1..1 MS` `connectionType` -- fixed Coding for `hl7-fhir-rest`
@@ -174,20 +174,20 @@ The EHR that publishes a Brand Bundle may not have some required data elements (
        * `url` `http://fhir.org/argonaut/StructureDefinition/brand-bundle`
        * `valueUrl` URL for a customer-managed Patient Access Brands Bundle that defines the identified Brand and related Brands (the Bundle SHALL contain exactly one entry matching the specified identifier).
 * `extension`
-    * `1..* MS` `http://fhir.org/argonaut/StructureDefinition/endpoint-fhir-version` to convey the endpoint's FHIR Version. This element is a denormalization to help clients focus on supported endpoints. The `valueCode` is any version from http://hl7.org/fhir/valueset-FHIR-version.html. For ONC-certified EHRs, `4.0.1` is expected.
+    * `1..* MS` `http://fhir.org/argonaut/StructureDefinition/endpoint-fhir-version` to convey the endpoint's FHIR Version. This element is a denormalization to help clients focus on supported endpoints. The `valueCode` is any version from http://hl7.org/fhir/valueset-FHIR-version.html. (As of this publication, `4.0.1` is expected for ONC-certified EHRs).
     
-#### Example
+##### Example
 
-```json
+```javascript
 {
   "resourceType": "Endpoint",
-  "id": "tufts-fhir-r4",
+  "id": "example-fhir-r4",
   "extension": [{
     "url": "http://fhir.org/argonaut/StructureDefinition/endpoint-fhir-version",
     "valueCode": "4.0.1"
   }],
-  "address": "https://tufts.example.org/r4",
-  "name": "FHIR R4 Endpoint for Tufts Medical Center",
+  "address": "https://example.org/r4",
+  "name": "FHIR R4 Endpoint for Example Medical Center",
   "contact": [{
     "system": "url",
     "value": "https://dev-portal.example.org"
@@ -197,7 +197,7 @@ The EHR that publishes a Brand Bundle may not have some required data elements (
     "code": "hl7-fhir-rest"
   },
   "managingOrganization": {
-    "reference": "Organization/tufts",
+    "reference": "Organization/example",
     "identifier": {
       "value": "e625fd34e7c456dc",
       "extension": [{
@@ -210,14 +210,14 @@ The EHR that publishes a Brand Bundle may not have some required data elements (
 
 ```
 
-### FHIR Profile for Organization (`PatientAccessBrand`)
+#### FHIR Profile for Organization (`PatientAccessBrand`)
 
 
 * `1..1 MS` `name` Primary brand name to display on a card
 * `1..1 MS` `telecom` with `system` of `url` and `value` conveying the primary public website for the Brand. Note this is distinct from the patient access portal website (described below)
 * `0..* MS` `alias` Aliases (e.g., former names like "Partners Healthcare") for filtering/search
 * `0..* MS` `identifier`(s) that apps can use to link this Brand across publishers or with external data sets. EHRs SHALL support customer-supplied identifiers (`system` and `value`).
-    * It is RECOMMENDED that each Brand include an identifier where `system` is `urn:ietf:rfc:3986` (meaning the identifier is a URL) `value` is the HTTPS URL for the Brand's primary web presence, omitting any "www." prefix from the domain and omitting any path component. E.g., since the main web presence of Boston Children's Hospital is https://www.childrenshospital.org/, a recommended identifier would be:
+    * It is RECOMMENDED that each Brand include an identifier where `system` is `urn:ietf:rfc:3986` (meaning the identifier is a URL) and `value` is the HTTPS URL for the Brand's primary web presence, omitting any "www." prefix from the domain and omitting any path component. For example, since the main web presence of Boston Children's Hospital is https://www.childrenshospital.org/, a recommended identifier would be:
         `{"system": "urn:ietf:rfc:3986", "value": "https://childrenshospital.org"}`
 * `0..1 MS` `partOf` "Patient access provided by", to convey that an affiliated Brand hosts this Brand's API technology and patient portal. The hierarchy of "access provided by" links SHALL NOT exceed a depth of two (i.e., a Brand either includes portal details or links directly to a Brand that provides them).
 * `0..* MS` `address` Locations (e.g., zip codes and/or street addresses) associated with the Brand. The following combinations are allowed:
@@ -257,7 +257,7 @@ The EHR that publishes a Brand Bundle may not have some required data elements (
  
 ### Examples
 
-[These examples](example-brands.html) show how to represent:
+[Patient-Access Brand Examples](example-brands.html) show how to represent:
 
 * Lab with thousands of locations nationwide
 * Regional health system with independently branded affiliated practices sharing a portal

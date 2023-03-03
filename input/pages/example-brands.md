@@ -29,7 +29,7 @@ The FHIR server's `.well-known/smart-configuration` file would include a link li
     
 And the hosted `branding.json` file would look like:
 
-```json=
+```javascript
 {
   "resourceType": "Bundle",
   "type": "collection",
@@ -180,7 +180,7 @@ Nearest location: 120 miles (Lake City)
 
 (And two more cards for other affiliated brands sharing the MyUnityPoint portal.)
 
-```json=
+```javascript
 {
   "resourceType": "Bundle",
   "type": "collection",
@@ -486,7 +486,7 @@ Nearest location: 3 miles (Boston)
 
 
 #### Epic content for Mass General Brigham (with Dana Farber as `partOf`)
-```json=
+```javascript
 {
   "resourceType": "Bundle",
   "type": "collection",
@@ -628,7 +628,7 @@ Nearest location: 3 miles (Boston)
 #### Cerner Content for Boston Children's Hospital (with Dana Farber as `partOf`)
 
 
-```json=
+```javascript
 {
   "resourceType": "Bundle",
   "type": "collection",
@@ -768,7 +768,7 @@ Nearest location: 3 miles (Boston)
 * One endpoint with links to two primary brands
 * No brand hierarchy
 
-```json
+```javascript
 {
   "resourceType": "Bundle",
   "type": "collection",
