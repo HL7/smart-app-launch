@@ -23,6 +23,9 @@
 <artifact id="StructureDefinition/PatientAccessBrandPortalAudience" key="StructureDefinition-PatientAccessBrandPortalAudience" name="Patient Access Brand: Logo"/>
 <artifact id="StructureDefinition/PatientAccessBrandLogoUseAgreement" key="StructureDefinition-PatientAccessBrandLogoUseAgreement" name="Patient Access Brand: Logo Use Agreement"/>
 <artifact id="StructureDefinition/PatientAccessBrandPortalUrl" key="StructureDefinition-PatientAccessBrandPortalUrl" name="Patient Access Brand: Portal URL"/>
+<artifact id="StructureDefinition/patient-access-endpoint-brand-bundle" key="StructureDefinition-patient-access-endpoint-brand-bundle" name="Patient Access Endpoint Brand Bundle Extension"/>
+<artifact id="StructureDefinition/patient-access-endpoint-fhir-version" key="StructureDefinition-patient-access-endpoint-fhir-version" name="Patient Access Endpoint FHIR Version Extension"/>
+<artifact id="StructureDefinition/patient-access-endpoint" key="StructureDefinition-patient-access-endpoint" name="Patient Access Endpoint Profile"/>
 <artifact id="StructureDefinition/smart-app-state-basic" key="StructureDefinition-smart-app-state-basic" name="SMART App State"/>
 <artifact deprecated="true" id="StructureDefinition/oauth-uris" key="StructureDefinition-oauth-uris" name="SMART on FHIR Oauth URIs"/>
 <artifact id="CodeSystem/smart-codes" key="CodeSystem-smart-codes" name="SMART on FHIR terminology."/>
