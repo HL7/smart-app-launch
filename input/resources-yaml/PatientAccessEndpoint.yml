@@ -9,8 +9,30 @@ title: Patient Access Endpoint Profile
 status: active
 date: '2023-03-03'
 
-description: >-
-   Profile on Endpoint associated with a Patient Access Brand (Organization)
+description: |
+   Profile on Endpoint associated with a Patient Access Brand (Organization):
+   **TODO Name this something else? like Patient Access Brands Endpoint**
+
+   The following *Mandatory* (min =1) elements are defined:
+
+    * One or more `extensions` to convey the endpoint's FHIR Version. This element is a denormalization to help clients focus on supported endpoints. The `valueCode` is any version from http://hl7.org/fhir/valueset-FHIR-version.html. (As of this publication, `4.0.1` is expected for ONC-certified EHRs). The *Mandatory* (min =1) Extension sub-elements are:
+      *  An 'url' = `http://fhir.org/argonaut/StructureDefinition/endpoint-fhir-version`
+      *  A `valueCode`: any version from http://hl7.org/fhir/valueset-FHIR-version.html. (As of this publication, `4.0.1` is expected for ONC-certified EHRs).
+    * A `connectionType`: a fixed Coding for `hl7-fhir-rest`
+    * A `managingOrganization`: references to a [Patient Access Brand (Organization)](StructureDefinition-PatientAccessBrand.html). This property associates a single "primary brand" with the endpoint. Additional affiliated Brands or parent brands can be associated via "Patient access provided by" links (`Organization.partOf`). **EHR vendors SHALL support integrated publication of Organizations in the same JSON Bundle, as well as external customer-managed publication. TODO what does this mean** The following *[Must Support](brands.html#must-support-definition-ms-and-data-absent-reasons)* (min = 0) `managingOrganization` sub-elements are:
+      * One or more `extensions` URL for a customer-managed Patient Access Brands Bundle that defines the identified Brand and related Brands (**the Bundle SHALL contain exactly one entry matching the specified identifier - TODO does this need an invariant?**). The *Mandatory* (min =1) Extension sub-elements are:
+          *  An `url` `http://fhir.org/argonaut/StructureDefinition/brand-bundle`
+          *  A `valueUrl` 
+      * A `reference`:  a relative URL to a Brand within this Bundle
+      * An `identifier`: customer-supplied identifier for the primary Brand
+    * `contact`: website where developers can to configure access to this endpoint. The *Mandatory* (min =1) `contact` sub-elements are:
+        * A `system` = "url"
+        * A `value`: an `https://` URL for app developers
+    *  An `address`: FHIR base URL for server supporting patient access
+
+   The following *[Must Support](brands.html#must-support-definition-ms-and-data-absent-reasons)* (min = 0) elements are defined:
+
+    *  A `name`: fallback or default name describing the endpoint and the organization offering Patient API access at this endpoint. This value MAY contain technical details like FHIR API Version designations, and apps SHOULD preferentially use names from an associated `PatientAccessBrand`, rather than displaying this value to users.
 
 
 fhirVersion: 4.0.1
@@ -130,11 +152,13 @@ differential:
       short: Website where developers can to configure access to this endpoint
       definition: >-
         Contact information for the endpoint. This is the website where developers can to configure access to this endpoint.
+      min: 1
       mustSupport: true
 
     - id: Endpoint.contact:configuration-url.system
       path: Endpoint.contact.system
       fixedCode: url
+      min: 1
       mustSupport: true
 
     - id: Endpoint.contact:configuration-url.value

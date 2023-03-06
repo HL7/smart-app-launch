@@ -53,7 +53,7 @@ And the hosted `branding.json` file would look like:
             "valueCode": "4.0.1"
           },
           {
-            "url": "http://fhir.org/argonaut/StructureDefinition/patient-access-developer-url",
+            "url": "http://fhir.org/argonaut/StructureDefinition/patient-access-developer-url",   \\<<<<<Where is this extension defined?>>>>>
             "valueUrl": "https://www.labcorp.com/help/contact-info-for-patient/patient-portal-inquiry"
           }
         ],
@@ -74,11 +74,11 @@ And the hosted `branding.json` file would look like:
             "valueUrl": "https://www.labcorp.com/themes/custom/labcorp/images/newbrand/Labcorp_Logo.svg"
           },
           {
-            "url": "http://fhir.org/argonaut/StructureDefinition/patient-access-url",
+            "url": "http://fhir.org/argonaut/StructureDefinition/patient-access-url", \\\\<<<<<Where is this extension defined?>>>>>
             "valueUrl": "https://patient.labcorp.com/landing"
           },
           {
-            "url": "http://fhir.org/argonaut/StructureDefinition/patient-access-name",
+            "url": "http://fhir.org/argonaut/StructureDefinition/patient-access-name", \\\\<<<<<Where is this extension defined?>>>>>
             "valueString": "Labcorp Patient™ portal"
           }
         ],
@@ -531,7 +531,7 @@ Nearest location: 3 miles (Boston)
             "valueUrl": "https://www.massgeneralbrigham.org/themes/custom/partners_mgb/logo.svg"
           },
           {
-            "url": "http://fhir.org/argonaut/StructureDefinition/patient-access-url",
+            "url": "http://fhir.org/argonaut/StructureDefinition/patient-access-url", 
             "valueUrl": "https://patientgateway.massgeneralbrigham.org/"
           },
           {
@@ -713,11 +713,11 @@ Nearest location: 3 miles (Boston)
         },
         "extension": [
           {
-            "url": "http://fhir.org/argonaut/StructureDefinition/brand-logo",
+            "url": "http://fhir.org/argonaut/StructureDefinition/brand-logo", 
             "valueUrl": "https://www.dana-farber.org/ui/images/img-logo-2x-new.webp"
           },
           {
-            "url": "http://fhir.org/argonaut/StructureDefinition/patient-access-description",
+            "url": "http://fhir.org/argonaut/StructureDefinition/patient-access-description",  \\<<<Where is this extension defined >>>
             "valueMarkdown": "MyChildren's Patient Portal is a Web-based, easy-to-use, and secure way to access your child's information at your convenience."
           }
         ],

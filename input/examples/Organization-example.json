@@ -1,0 +1,87 @@
+{
+  "resourceType": "Organization",
+  "id": "example",
+  "meta": {
+    "profile": [
+      "http://hl7.org/fhir/smart-app-launch/StructureDefinition/patient-access-brand"
+    ]
+  },
+  "extension": [
+    {
+      "url": "http://fhir.org/argonaut/StructureDefinition/patient-portal-url",
+      "valueUrl": "https://example.org/myportal"
+    },
+    {
+      "url": "http://hl7.org/fhir/smart-app-launch/StructureDefinition/patient-portal-audience",
+      "valueString": "for all patients"
+    },
+    {
+      "url": "http://fhir.org/argonaut/StructureDefinition/brand-logo",
+      "valueUrl": "https://example.org/logo/main.1024x102.png"
+    },
+    {
+      "url": "http://hl7.org/fhir/smart-app-launch/StructureDefinition/brand-logo-use-agreement",
+      "valueUrl": "https://example.org/logo/use-agreement.html"
+    },
+    {
+      "url": "http://hl7.org/fhir/smart-app-launch/StructureDefinition/brand-hidden",
+      "valueBoolean": false
+    }
+  ],
+  "identifier": [
+    {
+      "system": "http://hl7.org/fhir/sid/us-npi",
+      "value": "1407071236"
+    },
+    {
+      "system": "http://example.org/identifiers/brands",
+      "value": "https://hospital.example.org"
+    }
+  ],
+  "active": true,
+  "type": [
+    {
+      "coding": [
+        {
+          "system": "http://hl7.org/fhir/smart-app-launch/CodeSystem/patient-access-brand-category",
+          "code": "health-system",
+          "display": "A health system (e.g., regional or national)"
+        }
+      ]
+    }
+  ],
+  "name": "Example Organization",
+  "alias": [
+    "Example Health System"
+  ],
+  "address": [
+    {
+      "line": [
+        "100 1st Avenue, Suite 227"
+      ],
+      "city": "Pleasanton",
+      "state": "MA",
+      "postalCode": "01002"
+    }
+  ],
+  "partOf": {
+    "display": "Larger Health System"
+  },
+  "contact": [
+    {
+      "purpose": {
+        "text": "technical"
+      },
+      "telecom": [
+        {
+          "system": "email",
+          "value": "technical-support@example.org"
+        },
+        {
+          "system": "url",
+          "value": "https://example.org/technical-support"
+        }
+      ]
+    }
+  ]
+}
