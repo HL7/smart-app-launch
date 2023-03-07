@@ -126,7 +126,7 @@ Some resources shared with apps following this IG may be considered [Patient Sen
 
 ### SMART authorization & FHIR access: overview
 
-An app can launch from within an existing EHR or Patient Portal session; this is known as an EHR launch.  Alternatively, it can launch as a standalone app.
+An app can launch from within an existing session in an EHR, Patient Portal, or other FHIR system. Alternatively, it can launch as a standalone app.
 
 In an <span class="label label-primary">EHR launch</span>, an opaque handle to
 the EHR context is passed along to the app as part of the launch URL.  The app
