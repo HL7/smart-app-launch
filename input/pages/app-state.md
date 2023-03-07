@@ -79,7 +79,7 @@ The discovery document at
 
 The EHR's App State FHIR endpoint SHALL provide support for:
 
-2. `POST /Basic` requiring the presence of `If-Match` to prevent contention
+2. `POST /Basic`
 2. `PUT /Basic/[id]` requiring the presence of `If-Match` to prevent contention
 2. `DELETE /Basic/[id]` requiring the presence of `If-Match` to prevent contention
 1. `GET /Basic?code={}&subject={}`
