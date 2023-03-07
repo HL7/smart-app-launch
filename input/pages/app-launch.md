@@ -347,7 +347,7 @@ The app supplies the following parameters to the EHR’s "authorize" endpoint.
 
 Must describe the access that the app needs, including scopes like
 <code>patient/*.rs</code>, <code>openid</code> and <code>fhirUser</code> (if app
-needs authenticated patient identity) and either:
+needs authenticated end-user identity) and either:
 
 <ul>
 <li> a <code>launch</code> value indicating that the app wants to receive already-established launch context details from the EHR </li>
