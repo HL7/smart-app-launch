@@ -117,7 +117,7 @@ The request body is a `Basic` resource where:
 2. `Basic.meta.versionId` SHALL NOT be included
 3. `Basic.subject.reference` is optional, associating App State with <a href="#at-most-one-subject">at most one subject</a>. When omitted, global configuration can be stored in App State. When present, this SHALL be an absolute reference to a resource in the EHR's primary FHIR server. The EHR SHALL support at least Patient, Practitioner, PractitionerRole, RelatedPerson, Person. The EHR's documentation MAY establish support for a broader set of resources.
 5. `Basic.code.coding[]`  SHALL include exactly one app-specified Coding
-6. `Basic.extension` MAY include non-complex extensions. Extensions SHALL be limited to the `valueString` type unless the EHR's documentation establishes a broader set of allowed extension types
+6. `Basic.extension` Extensions SHALL be limited to the `valueString` type unless the EHR's documentation establishes a broader set of allowed extension types
 
 If the EHR accepts the request, the EHR SHALL persist the submitted resource including:
 
