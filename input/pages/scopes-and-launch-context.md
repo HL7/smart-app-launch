@@ -100,9 +100,11 @@ In SMART 1.0, scopes were based entirely on FHIR Resource types, as in `patient/
 
 #### Requirements for support
 
+<div class="stu-note">
 We’re seeking community consensus on a small common core of search parameters
 for broad support; we reserve the right to make some search parameters
 mandatory in the future.
+</div>
 
 #### Experimental features
 
