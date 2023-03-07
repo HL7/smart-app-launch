@@ -85,7 +85,12 @@ The EHR's App State FHIR endpoint SHALL provide support for:
 1. `GET /Basic?code={}&subject={}`
 1. `GET /Basic?code={}&subject:missing=true` // for global app config
 
+The semantics of these FHIR API interactions are defined in the [core FHIR
+specification](https://hl7.org/fhir/http.html). In the case of discrepancies,
+the core specification takes precedence.
+
 This specification does not impose additional requirements on the App State FHIR endpoint.
+
 
 ### Managing app state (CRUDS)
 
