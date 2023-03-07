@@ -92,7 +92,7 @@ SMART 2.0 does not define specific scopes for [batch or transaction](http://hl7.
 
 #### Scope Equivalence
 
-Multiple scopes compounded or expanded are equivalent to each other.  E.g., `Observation.rs` is interchangeable with `Observation.r Observation.s`. In order to reduce token size, it is recommended that scopes be factored to their shortest form.
+Scopes can be combined to represent a union of access. For example, "patient/Condition.rs patient/AllergyIntolerance.rs" expresses access to the Conditions and Allergies associated with the in-context patient. Similarly, "Observation.rs" expresses access equivalent to "Observation.r Observation.s". In order to reduce token size, it is recommended that scopes be factored to their shortest form.
 
 #### Finer-grained resource constraints using search parameters
 
