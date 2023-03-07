@@ -186,8 +186,9 @@ additional access restrictions following the [SMART Scopes
 syntax](scopes-and-launch-context.html).  For Backend Services, requested scopes
 will be `system/` scopes (for example `system/Observation.rs`, which requests an
 access token capable of reading all Observations that the client has been
-pre-authorized to access).
-
+pre-authorized to access). The use of Backend Services with `user/` and
+`patient/` scopes is not prohibited, but would required out-of-band coordination
+to establish context (e.g., to establish which user or patient applies).
 
 #### Response
 
@@ -248,8 +249,7 @@ the following properties:
   </tbody>
 </table>
 
-To minimize risks associated with token redirection, the scope of each access token SHOULD encompass, and be limited to, the resources requested. Access tokens issued under this profile SHALL be short-lived; the `expires_in`
-value SHOULD NOT exceed `300`, which represents an expiration-time of five minutes.
+To minimize risks associated with token redirection, the scope of each access token SHOULD encompass, and be limited to, the resources requested. Access tokens issued under this profile SHALL be short-lived; the `expires_in` value SHOULD NOT exceed `300`, which represents an expiration-time of five minutes. To establish longer-term access, clients can request new access tokens as needed.
 
 #### Example Token Request and Response
 
