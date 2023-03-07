@@ -168,8 +168,8 @@ The top-level steps for Smart App Launch are:
 6. [Access FHIR API](#step-6-fhir-api)
 7. [Refresh access token](#step-7-refresh)
 
-"The actors involved in each step and the order in which steps are used is illustrated in the figure below.
-"
+The actors involved in each step and the order in which steps are used is illustrated in the figure below.
+
 <div>{% include overview-app-launch.svg %}</div>
 <br clear="all"/>
 
@@ -563,7 +563,7 @@ token.
 The app issues an HTTP `POST` to the EHR authorization server's token endpoint URL using content-type `application/x-www-form-urlencoded` as described in
 section 4.1.3 of [RFC6749](https://tools.ietf.org/html/rfc6749#section-4.1.3).
 
-For <span class="label label-primary">public apps</span>, authentication not required because a client with no secret cannot prove its
+For <span class="label label-primary">public apps</span>, authentication is not required because a client with no secret cannot prove its
 identity when it issues a call. (The end-to-end system can still be secure
 because the client comes from a known, https-protected endpoint specified and
 enforced by the redirect uri.)  For <span class="label label-primary">confidential
