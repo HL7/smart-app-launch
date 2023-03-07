@@ -297,7 +297,7 @@ including OAuth `authorization_endpoint` and `token_endpoint` URLs.
 The discovery URL is constructed by appending `.well-known/smart-configuration` to the FHIR Base URL.  The app issues an HTTP GET to the discovery URL with an `Accept` header supporting `application/json`.
 
 #### Response
-The EHR responds with a SMART configuration JSON document as described in [conformance](conformance.html)
+The EHR responds with a SMART configuration JSON document as described in [Conformance](conformance.html)
 
 #### Examples
 
