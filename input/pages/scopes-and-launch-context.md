@@ -538,6 +538,46 @@ was performed in the context of the referenced resource. More granular role
 URIs can be adopted in use-case-specific ways. Note that `role` need not be
 unique; multiple entries in `fhirContext` may have the same role.
 
+<a id="fhircontext-examples"></a>
+
+##### `fhirContext` example: EHR Launch with Imaging Study
+
+If a SMART on FHIR server supports additional launch context during an EHR
+Launch, it could communicate the ID of an `ImagingStudy` that is open in the
+EHR at the time of app launch.  The server could return an access token response
+where the `fhirContext` array includes a value such as `{"reference": "ImagingStudy/123"}`.
+
+##### `fhirContext` example: Standalone Launch with Imaging Study
+
+If a SMART on FHIR server supports additional launch context during a
+Standalone Launch, it could provide an ability for the user to select an
+`ImagingStudy` during the launch.  A client could request this behavior by
+requesting a `launch/imagingstudy` scope (note that launch requests scopes are
+always lower case); then after allowing the user to select an `ImagingStudy`,
+the server could return an access token response where the `fhirContext` array
+includes a value such as  `{"reference": "ImagingStudy/123"}`.
+
+##### `fhirContext` example: Medication Reconciliation
+
+If a medication reconciliation app expects distinct contextual inputs
+representing an at-home medication list and an in-hospital medication list, the
+EHR might supply `fhirContext` like:
+
+```json
+{
+  // other properties omitted for brevity
+  "patient": "123",
+  "fhirContext": [{
+	"reference": "List/123",
+	"role": "https://example.org/med-list-at-home"
+  }, {
+	"reference": "List/456",
+	"role": "https://example.org/med-list-at-hospital"
+  }]
+}
+```
+
+
 <h5 id="launch-intent"><b>App Launch Intent</b> (optional)</h5>
 `intent`: Some SMART apps might offer more than one context or user interface
 that can be accessed during the SMART launch. The optional `intent` parameter
@@ -681,41 +721,7 @@ In addition to conveying FHIR Resource references with the `fhirContext` array, 
 
 #### Example: Extra context - `fhirContext` for FHIR Resource References
 
-##### EHR Launch
-
-If a SMART on FHIR server supports additional launch context during an EHR
-Launch, it could communicate the ID of an `ImagingStudy` that is open in the
-EHR at the time of app launch.  The server could return an access token response
-where the `fhirContext` array includes a value such as `{"reference": "ImagingStudy/123"}`.
-
-##### Standalone Launch
-
-If a SMART on FHIR server supports additional launch context during a
-Standalone Launch, it could provide an ability for the user to select an
-`ImagingStudy` during the launch.  A client could request this behavior by
-requesting a `launch/imagingstudy` scope (note that launch requests scopes are
-always lower case); then after allowing the user to select an `ImagingStudy`,
-the server could return an access token response where the `fhirContext` array
-includes a value such as  `{"reference": "ImagingStudy/123"}`.
-
-If a medication reconciliation app expects distinct contextual inputs
-representing an at-home medication list and an in-hospital medication list, the
-EHR might supply `fhirContext` like:
-
-```json
-{
-  // other properties omitted for brevity
-  "patient": "123",
-  "fhirContext": [{
-	"reference": "List/123",
-	"role": "https://example.org/med-list-at-home"
-  }, {
-	"reference": "List/456",
-	"role": "https://example.org/med-list-at-hospital"
-  }]
-}
-```
-
+See Section [`fhirContext` Examples](#fhircontext-examples).
 
 #### Example: Extra context - extensions for non-FHIR context
 
