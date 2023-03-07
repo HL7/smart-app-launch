@@ -179,8 +179,9 @@ the following parameters:
 
 ##### Scopes
 
-The client is pre-authorized by the server: at registration time or out of band,
-it is given the authority to access certain data. The client then includes a set
+The client is pre-authorized by the server. In other words, by the time a client
+initiates an access token request, the server has already associated the client
+with the authority to access certain data. The client then includes a set
 of scopes in the access token request, which causes the server to apply
 additional access restrictions following the [SMART Scopes
 syntax](scopes-and-launch-context.html).  For Backend Services, requested scopes
