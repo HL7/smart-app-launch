@@ -711,7 +711,7 @@ FHIR API call to the FHIR endpoint on the EHR's resource server.
 
 #### Request
 
-From the access token response, an app has received an OAuth2 bearer-type access token (`access_token` property) that can be used to fetch clinical data.  The app issues a request that includes an
+From the access token response, an app has received an OAuth2 bearer-type access token (`access_token` property) that can be used to fetch FHIR Resources.  The app issues a request that includes an
 `Authorization` header that presents the `access_token` as a "Bearer" token:
 
 {% raw %}

@@ -3,7 +3,7 @@
 SMART on FHIR's authorization scheme uses OAuth scopes to communicate (and
 negotiate) access requirements. Providing apps with access to broad data sets is consistent with current common practices (e.g., interface engines also provide access to broad data sets); access is also limited based on the privileges of the user in context.  In general, we use scopes for three kinds of data:
 
-1. [Clinical data](#scopes-for-requesting-clinical-data)
+1. [FHIR Resources](#scopes-for-requesting-fhir-resources)
 1. [Contextual data](#scopes-for-requesting-context-data)
 1. [Identity data](#scopes-for-requesting-identity-data)
 
@@ -55,7 +55,7 @@ Applications reading may receive results that have been filtered or redacted
 based on the underlying permissions of the delegating authority, or may be
 refused access (see guidance at [https://hl7.org/fhir/security.html#AccessDenied](https://hl7.org/fhir/security.html#AccessDenied)).
 
-### Scopes for requesting clinical data
+### Scopes for requesting FHIR Resources
 
 SMART on FHIR defines OAuth2 access scopes that correspond directly to FHIR resource types. These scopes impact the access an application may have to FHIR resources (and actions). We define permissions to support the following FHIR REST API interactions:
 
@@ -126,7 +126,7 @@ Scope strings appear over the wire at several points in an OAuth flow. Implement
 * In the access token itself, implementation-specific considerations may apply. SMART leaves access token formats out of scope, so formally there are no restrictions. But since access tokens are included in HTTP headers, servers should take care to ensure they do not get too large. For example, some current-generation HTTP servers have an 8kB limit on header length. To remain under this limit, authorization servers that use structured token formats like JWT might consider embedding handles or pointers to scopes, rather than embedding literal scopes in an access token. Alternatively, authorization servers might establish an internal convention mapping shorter scope names into longer scopes (or common combinations of longer scopes).
 
 
-#### Clinical Scope Syntax
+#### FHIR Resource Scope Syntax
 
 Expressed as a railroad diagram, the scope language is:
 
@@ -367,7 +367,7 @@ Diagram(
 #### Patient-specific scopes
 
 Patient-specific scopes allow access to specific data about a single patient.
-*Which* patient is not specified here: clinical data
+*Which* patient is not specified here: FHIR Resource
 scopes are all about *what* and not *who* which is handled in the next section.
 Patient-specific scopes start with `patient/`.
 Note that some EHRs may not enable access to all related resources (for
@@ -419,15 +419,15 @@ System-level bridge, turning a V2 ADT feed into FHIR Encounter resources | `syst
 
 #### Wildcard scopes
 
-As noted previously, clients can request clinical scopes that contain a wildcard (`*`) for the FHIR resource. When a wildcard is requested for the FHIR resource, the client is asking for all data for all available FHIR resources, both now _and in the future_. This is an important distinction to understand, especially for the entity responsible for granting authorization requests from clients.
+As noted previously, clients can request FHIR Resource scopes that contain a wildcard (`*`) for the FHIR resource. When a wildcard is requested for the FHIR resource, the client is asking for all data for all available FHIR resources, both now _and in the future_. This is an important distinction to understand, especially for the entity responsible for granting authorization requests from clients.
 
 For instance, imagine a FHIR server that today just exposes the Patient resource. The authorization server asking a patient to authorize a SMART app requesting `patient/*.cruds` should inform the user that they are being asked to grant this SMART app access to not just the currently accessible data about them (patient demographics), but also any additional data the FHIR server may be enhanced to expose in the future (e.g., genetics).
 
-As with any requested scope, the scopes ultimately granted by the authorization server may differ from the scopes requested by the client! This is often true when dealing with wildcard clinical scope requests.
+As with any requested scope, the scopes ultimately granted by the authorization server may differ from the scopes requested by the client! This is often true when dealing with wildcard FHIR Resource scope requests.
 
 As a best practice, clients should examine the granted scopes by the authorization server and respond accordingly. Failure to do so may lead to situations where the client receives an authorization failure by the FHIR server because it attempted to access FHIR resources beyond the granted scopes.
 
-For example, consider a client with the goal of obtaining read and write access to a patient's allergies. If this client requests the clinical scope of `patient/AllergyIntolerance.cruds`, the authorization server may respond in a variety of ways with respect to the scopes that are ultimately granted. The following table outlines several, but not an exhaustive list of scenarios for this example:
+For example, consider a client with the goal of obtaining read and write access to a patient's allergies. If this client requests the FHIR Resource scope of `patient/AllergyIntolerance.cruds`, the authorization server may respond in a variety of ways with respect to the scopes that are ultimately granted. The following table outlines several, but not an exhaustive list of scenarios for this example:
 
 Granted Scope | Notes
 --------------|-------
@@ -452,8 +452,8 @@ These scopes affect what context parameters will be provided in the access token
 * At which clinic, hospital ward, or patient room is the end-user currently working?
 
 To request access to such details, an app asks for "launch context" scopes in
-addition to whatever clinical access scopes it needs. Launch context scopes are
-easy to tell apart from clinical data scopes, because they always begin with
+addition to whatever FHIR Resource access scopes it needs. Launch context scopes are
+easy to tell apart from FHIR Resource scopes, because they always begin with
 `launch`.
 
 There are two general approaches to asking for launch context data depending
@@ -469,7 +469,7 @@ additional URL parameter of `launch=abc123`.
 
 The application could choose to also provide `launch/patient` and/or `launch/encounter` as "hints" regarding which contexts the app would like the EHR to gather. The EHR MAY ignore these hints (for example, if the user is in a workflow where these contexts do not exist).
 
-If an application requests a clinical scope which is restricted to a single patient (e.g., `patient/*.rs`), and the authorization results in the EHR is granting that scope, the EHR SHALL establish a patient in context. The EHR MAY refuse authorization requests including `patient/` that do not also include a valid `launch`, or it MAY infer the `launch/patient` scope.
+If an application requests a FHIR Resource scope which is restricted to a single patient (e.g., `patient/*.rs`), and the authorization results in the EHR is granting that scope, the EHR SHALL establish a patient in context. The EHR MAY refuse authorization requests including `patient/` that do not also include a valid `launch`, or it MAY infer the `launch/patient` scope.
 
 #### Standalone apps
 
@@ -482,7 +482,7 @@ Requested Scope | Meaning
 (Others)           | This list can be extended by any SMART EHR to support additional context.  When specifying resource types, convert the type names to *all lowercase* (e.g., `launch/diagnosticreport`).
 {:.grid}
 
-Note on `launch/patient`: If an application requests a clinical scope which is restricted to a single patient (e.g., `patient/*.rs`), and the authorization results in the EHR granting that scope, the EHR SHALL establish a patient in context. The EHR MAY refuse authorization requests including `patient/` that do not also include a valid `launch/patient` scope, or it MAY infer the `launch/patient` scope.
+Note on `launch/patient`: If an application requests a scope which is restricted to a single patient (e.g., `patient/*.rs`), and the authorization results in the EHR granting that scope, the EHR SHALL establish a patient in context. The EHR MAY refuse authorization requests including `patient/` that do not also include a valid `launch/patient` scope, or it MAY infer the `launch/patient` scope.
 
 #### Launch context arrives with your `access_token`
 
