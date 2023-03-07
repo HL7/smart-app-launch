@@ -15,6 +15,9 @@ These use cases support apps that perform data visualization, data collection,
 clinical decision support, data sharing, case reporting, and many other
 functions.
 
+For additional functionality defined in this implementation guide, see section
+[Overview](index.html).
+
 ### Profile audience and scope
 
 This profile on OAuth 2.0 is intended to be used by developers of apps that need to access user identity information or other FHIR resources by requesting authorization from OAuth 2.0-compliant authorization servers. It is compatible with FHIR R2 (DSTU2) and later; this publication includes explicit definitions for FHIR R4.
