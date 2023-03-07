@@ -44,11 +44,11 @@ In addition, the following conformance resources can support automated processin
 
 EHRs supporting this capability SHALL advertise support by including
 `"smart-app-state"` in the capabilities array of their FHIR server's
-`.well-known/smart-configuration` file (see [Conformance](conformance.html)).
+`.well-known/smart-configuration` file (see section [Conformance](conformance.html)).
 
 EHRs supporting this capability MAY include a `smart_app_state_endpoint`
 property if they want to maintain App State management functionality at a
-location distinct form the core EHR's FHIR endpoint (see [Design
+location distinct form the core EHR's FHIR endpoint (see section [Design
 Notes](#design-notes)).
 
 The EHR's "App State FHIR endpoint" is defined as:
@@ -428,7 +428,7 @@ query state written by the patient-facing app.
 
 Further consideration is required when granting an app the ability to modify
 global app state (i.e., where `Basic.subject` is absent). Such permissions
-should be limited to administrative apps. See [global app
+should be limited to administrative apps. See section [global app
 configuration](#global-app-configuration).
 
 Where appropriate, the EHR MAY expose these controls using SMART scopes as follows.
