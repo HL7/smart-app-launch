@@ -85,6 +85,8 @@ The EHR's App State FHIR endpoint SHALL provide support for:
 1. `GET /Basic?code={}&subject={}`
 1. `GET /Basic?code={}&subject:missing=true` // for global app config
 
+This specification does not impose additional requirements on the App State FHIR endpoint.
+
 ### Managing app state (CRUDS)
 
 App State data can include details like encryption keys. EHRs SHALL evaluate
