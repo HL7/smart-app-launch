@@ -14,6 +14,7 @@ Usage: #definition
 * fhirVersion = #4.0.1
 * rest.mode = #server
 * rest.resource[+].type = #Basic
+* rest.resource[=].supportedProfile = "http://hl7.org/fhir/smart-app-launch/StructureDefinition/smart-app-state-basic"
 * rest.resource[=].extension[0].url = $exp
 * rest.resource[=].extension[0].valueCode = #SHALL
 * rest.resource[=].interaction[+].code = #search-type
