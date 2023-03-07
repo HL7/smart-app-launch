@@ -94,20 +94,18 @@ For strategies and best practices to protecting a client secret refer to:
 - OAuth 2.0 for Native Apps: [8.5. Client Authentication](https://tools.ietf.org/html/draft-ietf-oauth-native-apps-12#section-8.5)
 - [OAuth 2.0 Dynamic Client Registration Protocol](https://tools.ietf.org/html/rfc7591)
 
-##### Use the <span class="label label-primary">confidential app</span>  profile if your app is *able* to protect a secret
+##### Determining the appropriate app type
 
-for example:
+To determine the appropriate app type, first answer the question "*is your app able to protect a secret?*"
 
-- App runs on a trusted server with only server-side access to the secret
-- App is a native app that uses additional technology (such as dynamic client registration and universal `redirect_uris`) to protect the secret
+* If "Yes", use a <span class="label label-primary">confidential app</span>
+  * Example: App runs on a trusted server with only server-side access to the secret
+  * Example: App is a native app that uses additional technology (such as dynamic client registration and universal `redirect_uris`) to protect the secret
 
+* If "No",  use a <span class="label label-primary">public app</span>
+  * Example: App is an HTML5 or JS in-browser app (including single-page applications) that would expose the secret in user space
+  * Example: App is a native app that can only distribute a secret statically
 
-##### Use the <span class="label label-primary">public app</span> profile if your app is *unable* to protect a secret
-
-for example:
-
-- App is an HTML5 or JS in-browser app (including single-page applications) that would expose the secret in user space
-- App is a native app that can only distribute a secret statically
 
 #### Considerations for PKCE Support
 All SMART apps SHALL support Proof Key for Code Exchange (PKCE).  PKCE is a standardized, cross-platform technique for clients to mitigate the threat of authorization code interception or injection. PKCE is described in [IETF RFC 7636](https://tools.ietf.org/html/rfc7636). SMART servers SHALL support the `S256` `code_challenge_method` and SHALL NOT support the `plain` method.
