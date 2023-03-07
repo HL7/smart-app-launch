@@ -151,6 +151,10 @@ access requested FHIR resources. If a refresh token is returned along with the
 access token, the app may use it to request a new access token with the same
 scope, once the old access token expires.
 
+This specification is agnostic about how the EHR resource server and the EHR
+authorization server are integrated, as long as they implement the required
+app-facing behaviors
+
 ###  Top-level steps for SMART App Launch
 
 The top-level steps for Smart App Launch are:
