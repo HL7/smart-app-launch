@@ -621,8 +621,9 @@ that might occur from the immediate use of these values in the client app UI.
 Some apps need to authenticate the end-user.  This can be accomplished by
 requesting the scope `openid`.  When the `openid` scope is requested, apps can
 also request the `fhirUser` scope to obtain a FHIR resource representation of
-the current user.  If the EHR cannot represent the user with a FHIR resource, it
-cannot support the `fhirUser` scope.
+the current user.  Single sign-on support with `fhirUser` requires that users
+can be represented as FHIR resources. If the EHR cannot represent the user with
+a FHIR resource, it cannot support the `fhirUser` scope.
 
 When these scopes are requested (and the request is granted), the app will
 receive an [`id_token`](http://openid.net/specs/openid-connect-core-1_0.html#CodeIDToken)
