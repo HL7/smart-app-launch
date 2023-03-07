@@ -559,7 +559,7 @@ section 4.1.3 of [RFC6749](https://tools.ietf.org/html/rfc6749#section-4.1.3).
 
 For <span class="label label-primary">public apps</span>, authentication not required because a client with no secret cannot prove its
 identity when it issues a call. (The end-to-end system can still be secure
-because the client comes from a known, https protected endpoint specified and
+because the client comes from a known, https-protected endpoint specified and
 enforced by the redirect uri.)  For <span class="label label-primary">confidential
 apps</span>, authentication is required. Confidential clients SHOULD use
 [Asymmetric Authentication](client-confidential-asymmetric.html) if available, and
