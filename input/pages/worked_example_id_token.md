@@ -1,6 +1,8 @@
+This example demonstrates the creation and validation of an Id Token.
 
-# Working with SMART on FHIR ID Tokens (examples)
+### Setup
 
+#### Python
 
 ```python
 # !pip3 install python-jose
@@ -11,7 +13,8 @@ import jose.jwt
 import jose.constants
 ```
 
-## Setup
+#### Create RSA key
+
 To create self-contained example, we'll generate a new RSA Key for a fake
 organization called "my-ehr.org", and we'll use that for the operations below.
 
@@ -63,17 +66,17 @@ print(public, "\n\n", private)
     -----END RSA PRIVATE KEY-----
 
 
-# Creating an ID Token (for servers)
+### Creating an ID Token (for servers)
 Servers will create a signed JWT by following a process like this.
 
-### Create a set of claims
+#### Create a set of claims
 These should include:
  * `sub`: the user
  * `aud`: the app for whom this ID Token is being produced
  * `iss`: an identifier for this EHR system)
  * `profile`: the absolute URL of the FHIR resource representing the current user
 
-### Encode them in a JWT
+#### Encode them in a JWT
 Signing with the server's private key
 
 
@@ -97,7 +100,7 @@ print(id_token)
     eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzM4NCJ9.eyJzdWIiOiJhbGljZSIsImF1ZCI6Imdyb3d0aC1jaGFydC1hcHAtMTIzIiwiaXNzIjoiaHR0cHM6Ly9teS1laHIub3JnL2ZoaXIiLCJmaGlyVXNlciI6Imh0dHBzOi8vbXktZWhyLm9yZy9maGlyL1ByYWN0aXRpb25lci8xMjMifQ.BuivDG9lOu0mI5ESm2Cl4EoGTW0BFA3N5oPcEX30Q77vxBuMspRd9N6kKLgTj8TsAFAutXKlTztdbbyDsTVcjYRZervUMgfS5gv2ERmTTy6wnWRxcsxA8oCmwJ8nqIz9VztCd73IZ8zvCebnaIwTjqt3r5a1aWNqRftncUa5pA2nN3DezMPrWaQ6U_S-QcyVrS_NznqRzI_2JFXlnLn6xSD6CXAfSHRy-1M2VZA4b6m6K3LXM2Pe_WF8HJ1GCLKLMqvYM0oQGLgy4tpDrDr8T8kxd4nLisIjQoXVjx5kASSaSiEuPYMG5E0h9eeSUZFVG-FvYtkgXF3vKaBJjX40BA
 
 
-## Validating and using an ID Token (for clients)
+### Validating and using an ID Token (for clients)
 A client obtains the ID Token as the result of an authorization operation. To validate the token, the client fetches the servers's public key, and then decodes the token. While decoding the token, the client must verify that the audience ('aud') matches its own client_id
 
 
