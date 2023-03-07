@@ -420,7 +420,7 @@ state codes where the `system` matches the app's verified origin. For instance,
 if the EHR has verified that the app developer manages the origin
 `https://app.example.org`, the app could be associated with SMART App State
 types like `https://app.example.org|user-preferences` or
-`https://app.exmample.org|phr-keys`. If an app requires access to other App
+`https://app.example.org|phr-keys`. If an app requires access to other App
 State types, these could be reviewed through an out-of-band process. This
 situation is expected when one developer supplies a patient-facing app and
 another developer supplies a provider-facing "companion app" that needs to
