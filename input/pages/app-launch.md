@@ -57,9 +57,9 @@ Considerations](https://tools.ietf.org/html/rfc6819).
 
 Specific requirements are:
 
-* Apps SHALL ensure that sensitive information (authentication secrets,
-authorization codes, tokens) is transmitted ONLY to authenticated servers,
-over TLS-secured channels.
+* Apps SHALL ensure that when protocol steps include transmission of sensitive
+information (authentication secrets, authorization codes, tokens), transmission
+is ONLY to authenticated servers, over TLS-secured channels.
 
 * Apps SHALL generate an unpredictable `state` parameter for each user
 session; SHALL include `state` with all authorization requests; and SHALL
