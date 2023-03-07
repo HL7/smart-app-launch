@@ -49,9 +49,13 @@ SMART defines a Token Introspection API allowing Resource Servers or software co
 
 #### Cross Version Analysis
 
+*Note: While this publication includes artifacts for FHIR R4, SMART App Launch is compatible with any version of FHIR from DSTU2 and onward.*
+
 {% include cross-version-analysis.xhtml %}
 
 #### Package Dependencies
+
+*Note: While this publication includes artifacts for FHIR R4, SMART App Launch is compatible with any version of FHIR from DSTU2 and onward.*
 
 {% include dependency-table.xhtml %}
 
