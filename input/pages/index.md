@@ -27,7 +27,7 @@ Authenticates a client using an asymmetric keypair. This is SMART's preferred au
 
 #### **[Symmetric ("client secret") authentication](client-confidential-symmetric.html)**
 
-Authenticate a client using a secret that has been pre-shared between the client and server
+Authenticates a client using a secret that has been pre-shared between the client and server
 
 
 ### [Scopes for Limiting Access](scopes-and-launch-context.html)
