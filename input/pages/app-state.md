@@ -193,6 +193,8 @@ The EHR SHALL support the following query parameters:
 
 The response body is a FHIR Bundle where each entry is a `Basic` resource as persisted by the EHR.
 
+The EHR MAY support additional queries, and an app MAY issue additional queries when they are supported.
+
 ### API Examples
 
 #### Example 1: App-specific User Preferences
