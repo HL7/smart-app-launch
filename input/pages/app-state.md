@@ -109,7 +109,7 @@ EHRs SHOULD retain app state data for as long as the originating app remains
 actively registered with the EHR. EHRs MAY establish additional retention
 policies in their developer documentation.
 
-##### Create
+#### Create
 
 To create app state, an app submits to the EHR's App State endpoint:
 
@@ -139,7 +139,7 @@ Contention"](https://hl7.org/fhir/http.html#concurrency).
 
 The response body is a `Basic` resource representing the state persisted by the EHR.
 
-##### Updates
+#### Updates
 
 To update app state, an app submits to the EHR's App State endpoint:
 
@@ -164,7 +164,7 @@ Contention"](https://hl7.org/fhir/http.html#concurrency).
 
 The response body is a `Basic` resource representing the state persisted by the EHR.
 
-##### Deletes
+#### Deletes
 
 To delete app state, an app submits to the EHR's App State endpoint:
 

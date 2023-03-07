@@ -8,6 +8,13 @@ The server SHALL convey the FHIR OAuth authorization endpoints and any *optional
 
 Capabilities designated *"experimental"* indicate features where community feedback is especially welcome; they are ready for adoption but could change over time based on implementation experience.
 
+### Conformance Language
+
+This specification uses the conformance verbs SHALL, SHOULD, and MAY as defined
+in [RFC2119](https://www.ietf.org/rfc/rfc2119.txt). Unlike RFC 2119, however,
+this specification allows that different applications may not be able to
+interoperate because of how they use optional features.
+
 #### Capability Sets
 
 A *Capability Set* combines individual capabilities to enable a specific use-case. A SMART on FHIR server SHOULD support one or more *Capability Set*s. Unless otherwise noted, each capability listed is required to satisfy a *Capability Set*. Any individual SMART server will publish a granular list of its capabilities; from this list a client can determine which of these Capability Sets are supported:

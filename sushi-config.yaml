@@ -70,6 +70,9 @@ pages:
     title: Best Practices
   examples.md:
     title: Examples
+  references.md:
+    title: References
+
 parameters:
   path-history: http://hl7.org/fhir/smart-app-launch/history.html
   jira-code: smart
@@ -95,4 +98,5 @@ menu:
     #Artifacts: artifacts.html # no artifacts to display!
     Best Practices: best-practices.html
     Examples: examples.html
+    References: references.html
     History: http://hl7.org/fhir/smart-app-launch/history.html
