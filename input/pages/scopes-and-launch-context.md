@@ -755,7 +755,7 @@ matches the original request.
 
 In some circumstances, scopes must be represented as URIs. For example, when exchanging what scopes users are allowed to have, or sharing what scopes a user has chosen. When URI representations are required, the SMART scopes SHALL be prefixed with `http://smarthealthit.org/fhir/scopes/`, so that a `patient/*.r` scope would be `http://smarthealthit.org/fhir/scopes/patient/*.r`.
 
-openID scopes the URI prefix of http://openid.net/specs/openid-connect-core-1_0# SHALL be used.
+To represent OpenID scopes as URIs, the prefix `http://openid.net/specs/openid-connect-core-1_0#` SHALL be used.
 
 ---
 
