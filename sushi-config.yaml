@@ -36,16 +36,22 @@ instanceOptions:
 pages:
   index.md:
     title: Overview
-  app-launch.md:
-    title: 'App Launch: Launch and Authorization'
-  scopes-and-launch-context.md:
-    title: 'App Launch: Scopes and Launch Context'
-  client-authentication.md:
-    title: Client Authentication
-    client-confidential-asymmetric.md:
-      title: 'Client Authentication: Asymmetric (public key)'
-    client-confidential-symmetric.md:
-      title: 'Client Authentication: Symmetric (shared secret)'
+  apps.md:
+    title: Apps
+    app-launch.md:
+      title: 'App Launch: Launch and Authorization'
+    scopes-and-launch-context.md:
+      title: 'App Launch: Scopes and Launch Context'
+    client-authentication.md:
+      title: Client Authentication
+      client-confidential-asymmetric.md:
+        title: 'Client Authentication: Asymmetric (public key)'
+      client-confidential-symmetric.md:
+        title: 'Client Authentication: Symmetric (shared secret)'
+    app-state.md:
+      title: 'Persisting App State (Experimental)'
+    task-launch.md:
+      title: 'Task profile for requesting SMART launch (Experimental)'
   backend-services.md:
     title: Backend Services
   token-introspection.md:
@@ -54,12 +60,6 @@ pages:
     title: Conformance
   best-practices.md:
     title: Best Practices
-  extensions.md:
-    title: Extensions
-    app-state.md:
-      title: 'Persisting App State (Experimental)'
-    task-launch.md:
-      title: 'Task profile for requesting SMART launch (Experimental)'
   examples.md:
     title: Examples
     example-app-launch-public.md:
@@ -84,7 +84,7 @@ parameters:
 # ╰────────────────────────────────────────────────────────────────────────────────────────────────╯
 menu:
   Overview: index.html
-  App Launch:
+  Apps:
     Intro: app-launch.html
     Register App: app-launch.html#register-app-with-ehr
     Standalone Launch: app-launch.html#launch-app-standalone-launch
@@ -94,14 +94,15 @@ menu:
     Request Access Code: app-launch.html#obtain-access-token
     Access FHIR API: app-launch.html#access-fhir-api
     Scopes and Launch Context: scopes-and-launch-context.html
-    Client Authentication - Asymmetric (public key): client-confidential-asymmetric.html
-    Client Authentication - Symmetric (shared secret): client-confidential-symmetric.html
-    Conformance: conformance.html
-  Backend Services: backend-services.html
-  Token Introspection: token-introspection.html
-  Extensions:
     Persisting App State: app-state.html
     Task requesting launch: task-launch.html
+  Backend Services:
+    Backend Services: backend-services.html
+    Token Introspection: token-introspection.html
+  Authentication:
+    Client Authentication - Asymmetric (public key): client-confidential-asymmetric.html
+    Client Authentication - Symmetric (shared secret): client-confidential-symmetric.html
+  Conformance: conformance.html
   See also:
     #Artifacts: artifacts.html # no artifacts to display!
     Best Practices: best-practices.html
