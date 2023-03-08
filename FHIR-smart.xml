@@ -10,8 +10,6 @@
 <artifactPageExtension value="-definitions"/>
 <artifactPageExtension value="-examples"/>
 <artifactPageExtension value="-mappings"/>
-<artifact id="ValueSet/PatientAccessBrandCategoryValueSet" key="ValueSet-PatientAccessBrandCategoryValueSet" name="Category for PatientAccessBrands"/>
-<artifact id="CodeSystem/PatientAccessBrandCategory" key="CodeSystem-PatientAccessBrandCategory" name="Category for PatientAccessBrands"/>
 <artifact id="ValueSet/smart-launch-info" key="ValueSet-smart-launch-info" name="Codes for tasks to application launches"/>
 <artifact id="Endpoint/example" key="Endpoint-example" name="Endpoint Example"/>
 <artifact id="Basic/app-state" key="Basic-app-state" name="Example App State"/>
@@ -20,11 +18,18 @@
 <artifact id="ValueSet/smart-launch-types" key="ValueSet-smart-launch-types" name="Launch Types for tasks to application launches"/>
 <artifact id="Organization/example" key="Organization-example" name="Organization Example"/>
 <artifact id="StructureDefinition/PatientAccessBrand" key="StructureDefinition-PatientAccessBrand" name="Patient Access Brand (Organization)"/>
-<artifact id="StructureDefinition/PatientAccessBrandLogo" key="StructureDefinition-PatientAccessBrandLogo" name="Patient Access Brand: Audience"/>
-<artifact id="StructureDefinition/PatientAccessBrandHidden" key="StructureDefinition-PatientAccessBrandHidden" name="Patient Access Brand: Hide from display"/>
-<artifact id="StructureDefinition/PatientAccessBrandPortalAudience" key="StructureDefinition-PatientAccessBrandPortalAudience" name="Patient Access Brand: Logo"/>
-<artifact id="StructureDefinition/PatientAccessBrandLogoUseAgreement" key="StructureDefinition-PatientAccessBrandLogoUseAgreement" name="Patient Access Brand: Logo Use Agreement"/>
-<artifact id="StructureDefinition/PatientAccessBrandPortalUrl" key="StructureDefinition-PatientAccessBrandPortalUrl" name="Patient Access Brand: Portal URL"/>
+<artifact id="CodeSystem/patient-access-brand-category" key="CodeSystem-patient-access-brand-category" name="Patient Access Brand Category Code System"/>
+<artifact id="ValueSet/patient-access-brand-category" key="ValueSet-patient-access-brand-category" name="Patient Access Brand Category Value Set"/>
+<artifact id="CodeSystem/patient-access-brand-flags" key="CodeSystem-patient-access-brand-flags" name="Patient Access Brand Flags Code System"/>
+<artifact id="StructureDefinition/patient-access-brand-flags" key="StructureDefinition-patient-access-brand-flags" name="Patient Access Brand Flags Extension"/>
+<artifact id="ValueSet/patient-access-brand-flags" key="ValueSet-patient-access-brand-flags" name="Patient Access Brand Flags Value Set"/>
+<artifact id="StructureDefinition/patient-access-brand-logo" key="StructureDefinition-patient-access-brand-logo" name="Patient Access Brand Logo Extension"/>
+<artifact id="StructureDefinition/patient-access-brand-logo-use" key="StructureDefinition-patient-access-brand-logo-use" name="Patient Access Brand Logo Use Extension"/>
+<artifact id="StructureDefinition/patient-access-brand-portal-description" key="StructureDefinition-patient-access-brand-portal-description" name="Patient Access Brand Portal Description Extension"/>
+<artifact id="StructureDefinition/patient-access-brand-portal-logo" key="StructureDefinition-patient-access-brand-portal-logo" name="Patient Access Brand Portal Logo Extension"/>
+<artifact id="StructureDefinition/patient-access-brand-portal-logo-use" key="StructureDefinition-patient-access-brand-portal-logo-use" name="Patient Access Brand Portal Logo Use Extension"/>
+<artifact id="StructureDefinition/patient-access-brand-portal-name" key="StructureDefinition-patient-access-brand-portal-name" name="Patient Access Brand Portal Name Extension"/>
+<artifact id="StructureDefinition/patient-access-brand-portal-url" key="StructureDefinition-patient-access-brand-portal-url" name="Patient Access Brand Portal URL Extension"/>
 <artifact id="StructureDefinition/patient-access-brands-bundle" key="StructureDefinition-patient-access-brands-bundle" name="Patient Access Brands Bundle Profile"/>
 <artifact id="StructureDefinition/patient-access-endpoint-brand-bundle" key="StructureDefinition-patient-access-endpoint-brand-bundle" name="Patient Access Endpoint Brand Bundle Extension"/>
 <artifact id="StructureDefinition/patient-access-endpoint-fhir-version" key="StructureDefinition-patient-access-endpoint-fhir-version" name="Patient Access Endpoint FHIR Version Extension"/>

@@ -11,20 +11,12 @@
     "count": 8,
     "concept": [
         {
-            "code": "health-system",
-            "display": "A health system (e.g., regional or national)"
-        },
-        {
-            "code": "hospital",
-            "display": "Hospital, residential, or inpatient facility"
-        },
-        {
-            "code": "outpatient",
-            "display": "Outpatient office or clinic"
+            "code": "clinical",
+            "display": "Clinical Care provider"
         },
         {
             "code": "insurer",
-            "display": "Health insuraance provider"
+            "display": "Health insurance provider"
         },
         {
             "code": "lab",
