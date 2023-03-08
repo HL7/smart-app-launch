@@ -1,5 +1,5 @@
 resourceType: StructureDefinition
-id: PatientAccessBrand
+id: patient-access-brand
 url: 'http://hl7.org/fhir/smart-app-launch/StructureDefinition/patient-access-brand'
 
 name: PatientAccessBrand
@@ -122,7 +122,7 @@ differential:
         - code: Extension
           profile:
             - >-
-              http://hl7.org/fhir/smart-app-launch/StructureDefinition/patient-access-brand-logo-use
+              http://hl7.org/fhir/smart-app-launch/StructureDefinition/patient-access-brand-flags
       mustSupport: true
 
     - id: 'Organization.extension:portalLogo'

@@ -17,7 +17,7 @@
 <artifact id="Task/task-for-standalone-launch" key="Task-task-for-standalone-launch" name="Example Task for Standalone Launch"/>
 <artifact id="ValueSet/smart-launch-types" key="ValueSet-smart-launch-types" name="Launch Types for tasks to application launches"/>
 <artifact id="Organization/example" key="Organization-example" name="Organization Example"/>
-<artifact id="StructureDefinition/PatientAccessBrand" key="StructureDefinition-PatientAccessBrand" name="Patient Access Brand (Organization)"/>
+<artifact id="StructureDefinition/patient-access-brand" key="StructureDefinition-patient-access-brand" name="Patient Access Brand (Organization)"/>
 <artifact id="CodeSystem/patient-access-brand-category" key="CodeSystem-patient-access-brand-category" name="Patient Access Brand Category Code System"/>
 <artifact id="ValueSet/patient-access-brand-category" key="ValueSet-patient-access-brand-category" name="Patient Access Brand Category Value Set"/>
 <artifact id="CodeSystem/patient-access-brand-flags" key="CodeSystem-patient-access-brand-flags" name="Patient Access Brand Flags Code System"/>

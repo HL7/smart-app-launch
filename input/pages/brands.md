@@ -152,49 +152,10 @@ The EHR that publishes a Brand Bundle may not have some required data elements (
 #### FHIR Patient Access Brands (Organization) Profile
 
 
-* `1..1 MS` `name` Primary brand name to display on a card
-* `1..1 MS` `telecom` with `system` of `url` and `value` conveying the primary public website for the Brand. Note this is distinct from the patient access portal website (described below)
-* `0..* MS` `alias` Aliases (e.g., former names like "Partners Healthcare") for filtering/search
-* `0..* MS` `identifier`(s) that apps can use to link this Brand across publishers or with external data sets. EHRs SHALL support customer-supplied identifiers (`system` and `value`).
-    * It is RECOMMENDED that each Brand include an identifier where `system` is `urn:ietf:rfc:3986` (meaning the identifier is a URL) and `value` is the HTTPS URL for the Brand's primary web presence, omitting any "www." prefix from the domain and omitting any path component. For example, since the main web presence of Boston Children's Hospital is https://www.childrenshospital.org/, a recommended identifier would be:
-        `{"system": "urn:ietf:rfc:3986", "value": "https://childrenshospital.org"}`
-* `0..1 MS` `partOf` "Patient access provided by", to convey that an affiliated Brand hosts this Brand's API technology and patient portal. The hierarchy of "access provided by" links SHALL NOT exceed a depth of two (i.e., a Brand either includes portal details or links directly to a Brand that provides them).
-* `0..* MS` `address` Locations (e.g., zip codes and/or street addresses) associated with the Brand. The following combinations are allowed:
-  * State
-  * City, state
-  * City, state, zip code
-  * Street address, city, state, zip code
-  * zip code alone
-* `0..*` `type` Categories for this organization (system: `http://fhir.org/argonaut/CodeSystem/patient-access-category`, code from: `clinical`, `lab`, `pharmacy`, `insurer`, `network`, `aggregator`)
-* `extension's about the **Brand**
-    * `0..* MS` Logo
-        * `url` is `http://fhir.org/argonaut/StructureDefinition/brand-logo`
-        * `valueUrl` SHOULD be optimized for display as a 1" square and formatted as SVG or 1024x1024 pixel PNG with transparent background. Multiple logos may be supplied. The URL can be an absolute URL  with the `https://` schema, or a [Data URL](https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/Data_URLs) with the `data:` schema that directly embeds content.
-    * `0..1 MS` Logo use agreement
-        *  `url` is `http://fhir.org/argonaut/StructureDefinition/brand-logo-use-agreement`.
-        *  `valueUrl` MAY include a link to terms for logo use by patient access apps.
-    * `0..*` Brand flags
-        * `url` is `http://fhir.org/argonaut/StructureDefinition/brand-flags`.
-      * `valueCode` of `hidden` allows systems to designate Organizations as part of a hierarchy without necessarily being shown in a UX card or tile. This flag is intended to help app developers understand and debug the organizational relationships that underpin published Brands. Marking Brands `hidden` can also be used to associate many affiliated organizations with a parent Brand (e.g., each with its street address) without apps displaying redundant information to users.
-* `extension`s about the Brand's **Patient Access** ("portal"). *Note: the extensions in this set represent the "Patient Access Details" described in the conceptual model above. These extensions are "**Inheritable**", meaning systems MAY be omit their values whenever correct values are inferrable by following the "Patient access provided by" links (`Organization.partOf`).*
-    * `1..1 MS` Patient access name ("portal name")
-        * `url` is `http://fhir.org/argonaut/StructureDefinition/patient-access-name`.
-        * `valueString` indicates the name by which patients know the portal (e.g., "MyChildrens" or "Patient Gateway")
-    * `1..1 MS` Patient access URL ("portal URL")8899
-        * `url` is `http://fhir.org/argonaut/StructureDefinition/patient-access-url`.
-        * `valueUrl` indicates the location of the patient portal associated with this Brand -- i.e., a URL where patients can go to see their data and manage access. 
-   * `0..1 MS` Patient access description ("portal description")
-        * `url` is  `http://fhir.org/argonaut/StructureDefinition/patient-access-description`.
-        * `valueMarkdown` explains, if necessary (in patient-friendly language), the subset of patients eligible to connect and the data available. This capability supports (for example) a cancer center that uses one EHR for pediatric patients and another for adult patients. In this scenario, each EHR would publish a different `PatientAccessBrand`; apps would display the description to disambiguate the user's selection. For instance, one Brand might indicate "Access records for childhood cancer care" and another might indicate "Access records for adult cancer care".
-    * `0..* MS` Patient access logo ("portal logo"). Used if the portal has its own logo in addition to the Brand's logo
-        * `url` is `http://fhir.org/argonaut/StructureDefinition/patient-access-logo`
-        * `valueUrl` See documentation for "brand logo"
-    * `0..1 MS` Patient access logo use agreement
-        *  `url` is `http://fhir.org/argonaut/StructureDefinition/patient-access-logo-use-agreement`.
-        *  `valueUrl` See documentation for "brand logo use agreement".
+{{site.data.structuredefinitions.patient-access-brand.description}}
 
 
-[Formal Views of Profile Contents](SStructureDefinition-PatientAccessBrand.html)
+[Formal Views of Profile Contents](StructureDefinition-patient-access-brand.html)
 
 ##### Example
 
