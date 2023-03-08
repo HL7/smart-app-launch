@@ -355,7 +355,7 @@ needs authenticated end-user identity) and either:
 <li> a set of launch context requirements in the form <code>launch/patient</code>, which asks the EHR to establish context on your behalf.</li>
 </ul>
 
-See section <a href="scopes-and-launch-context.html">SMART on FHIR Access
+See the section on <a href="scopes-and-launch-context.html">SMART on FHIR Access
 Scopes</a> for details.
 
       </td>
