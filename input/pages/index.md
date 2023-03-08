@@ -1,4 +1,4 @@
-This implementation guide describes a set of foundational patterns based on OAuth 2.0 for client applications to authorize, authenticate, and integrate with FHIR-based data systems. The patterns defined in this specification are introduced in the sections below.
+This implementation guide describes a set of foundational patterns based on [OAuth 2.0](https://tools.ietf.org/html/rfc6749) for client applications to authorize, authenticate, and integrate with FHIR-based data systems. The patterns defined in this specification are introduced in the sections below. For background on SMART Health IT, see [smarthealthit.org](https://smarthealthit.org).
 
 ### [Discovery of Server Capabilities and Configuration](conformance.html)
 
@@ -27,7 +27,7 @@ Authenticates a client using an asymmetric keypair. This is SMART's preferred au
 
 #### **[Symmetric ("client secret") authentication](client-confidential-symmetric.html)**
 
-Authenticate a client using a secret that has been pre-shared between the client and server
+Authenticates a client using a secret that has been pre-shared between the client and server.
 
 
 ### [Scopes for Limiting Access](scopes-and-launch-context.html)
@@ -49,9 +49,13 @@ SMART defines a Token Introspection API allowing Resource Servers or software co
 
 #### Cross Version Analysis
 
+*Note: While this publication includes artifacts for FHIR R4, SMART App Launch is compatible with any version of FHIR from DSTU2 and onward.*
+
 {% include cross-version-analysis.xhtml %}
 
 #### Package Dependencies
+
+*Note: While this publication includes artifacts for FHIR R4, SMART App Launch is compatible with any version of FHIR from DSTU2 and onward.*
 
 {% include dependency-table.xhtml %}
 

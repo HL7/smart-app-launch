@@ -79,11 +79,18 @@ The discovery document at
 
 The EHR's App State FHIR endpoint SHALL provide support for:
 
-2. `POST /Basic` requiring the presence of `If-Match` to prevent contention
+2. `POST /Basic`
 2. `PUT /Basic/[id]` requiring the presence of `If-Match` to prevent contention
 2. `DELETE /Basic/[id]` requiring the presence of `If-Match` to prevent contention
 1. `GET /Basic?code={}&subject={}`
 1. `GET /Basic?code={}&subject:missing=true` // for global app config
+
+The semantics of these FHIR API interactions are defined in the [core FHIR
+specification](https://hl7.org/fhir/http.html). In the case of discrepancies,
+the core specification takes precedence.
+
+This specification does not impose additional requirements on the App State FHIR endpoint.
+
 
 ### Managing app state (CRUDS)
 
@@ -102,7 +109,7 @@ EHRs SHOULD retain app state data for as long as the originating app remains
 actively registered with the EHR. EHRs MAY establish additional retention
 policies in their developer documentation.
 
-##### Create
+#### Create
 
 To create app state, an app submits to the EHR's App State endpoint:
 
@@ -115,7 +122,7 @@ The request body is a `Basic` resource where:
 2. `Basic.meta.versionId` SHALL NOT be included
 3. `Basic.subject.reference` is optional, associating App State with <a href="#at-most-one-subject">at most one subject</a>. When omitted, global configuration can be stored in App State. When present, this SHALL be an absolute reference to a resource in the EHR's primary FHIR server. The EHR SHALL support at least Patient, Practitioner, PractitionerRole, RelatedPerson, Person. The EHR's documentation MAY establish support for a broader set of resources.
 5. `Basic.code.coding[]`  SHALL include exactly one app-specified Coding
-6. `Basic.extension` MAY include non-complex extensions. Extensions SHALL be limited to the `valueString` type unless the EHR's documentation establishes a broader set of allowed extension types
+6. `Basic.extension` Extensions SHALL be limited to the `valueString` type unless the EHR's documentation establishes a broader set of allowed extension types
 
 If the EHR accepts the request, the EHR SHALL persist the submitted resource including:
 
@@ -132,7 +139,7 @@ Contention"](https://hl7.org/fhir/http.html#concurrency).
 
 The response body is a `Basic` resource representing the state persisted by the EHR.
 
-##### Updates
+#### Updates
 
 To update app state, an app submits to the EHR's App State endpoint:
 
@@ -157,7 +164,7 @@ Contention"](https://hl7.org/fhir/http.html#concurrency).
 
 The response body is a `Basic` resource representing the state persisted by the EHR.
 
-##### Deletes
+#### Deletes
 
 To delete app state, an app submits to the EHR's App State endpoint:
 
@@ -190,6 +197,8 @@ The EHR SHALL support the following query parameters:
 * `?subject`, restricted to absolute references that exactly match `Basic.subject.reference`, with support for the `:missing=true` modifier to find global state
 
 The response body is a FHIR Bundle where each entry is a `Basic` resource as persisted by the EHR.
+
+The EHR MAY support additional queries, and an app MAY issue additional queries when they are supported.
 
 ### API Examples
 
@@ -420,7 +429,7 @@ state codes where the `system` matches the app's verified origin. For instance,
 if the EHR has verified that the app developer manages the origin
 `https://app.example.org`, the app could be associated with SMART App State
 types like `https://app.example.org|user-preferences` or
-`https://app.exmample.org|phr-keys`. If an app requires access to other App
+`https://app.example.org|phr-keys`. If an app requires access to other App
 State types, these could be reviewed through an out-of-band process. This
 situation is expected when one developer supplies a patient-facing app and
 another developer supplies a provider-facing "companion app" that needs to

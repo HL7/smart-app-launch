@@ -11,7 +11,7 @@ designed to work with [FHIR Bulk Data Access](http://hl7.org/fhir/uv/bulkdata/),
 but is not restricted to use for retrieving bulk data; it may be used to connect
 to any FHIR API endpoint, including both synchronous and asynchronous access.
 
-#### Use this profile when the following conditions apply:
+#### Use this profile when the following conditions all apply:
 
 * The target FHIR authorization server can register the client and pre-authorize access to a
 defined set of FHIR resources.
@@ -43,31 +43,7 @@ bed and room usage and displays statistics on a wall monitor.
 
 ### Underlying Standards
 
-* [HL7 FHIR RESTful API](http://www.hl7.org/fhir/http.html)
-* [RFC5246, The Transport Layer Security Protocol, V1.2](https://tools.ietf.org/html/rfc5246)
-* [RFC6749, The OAuth 2.0 Authorization Framework](https://tools.ietf.org/html/rfc6749)
-* [RFC7515, JSON Web Signature](https://tools.ietf.org/html/rfc7515)
-* [RFC7517, JSON Web Key](https://www.rfc-editor.org/rfc/rfc7517.txt)
-* [RFC7518, JSON Web Algorithms](https://tools.ietf.org/html/rfc7518)
-* [RFC7519, JSON Web Token (JWT)](https://tools.ietf.org/html/rfc7519)
-* [RFC7521, Assertion Framework for OAuth 2.0 Client Authentication and Authorization Grants](https://tools.ietf.org/html/rfc7521)
-* [RFC7523, JSON Web Token (JWT) Profile for OAuth 2.0 Client Authentication and Authorization Grants](https://tools.ietf.org/html/rfc7523)
-* [RFC7591, OAuth 2.0 Dynamic Client Registration Protocol](https://tools.ietf.org/html/rfc7591)
-
-### Conformance Language
-This specification uses the conformance verbs SHALL, SHOULD, and MAY as defined
-in [RFC2119](https://www.ietf.org/rfc/rfc2119.txt). Unlike RFC 2119, however,
-this specification allows that different applications may not be able to
-interoperate because of how they use optional features. In particular:
-
-1.  SHALL: an absolute requirement for all implementations
-2.  SHALL NOT: an absolute prohibition against inclusion for all implementations
-3.  SHOULD/SHOULD NOT: A best practice or recommendation to be considered by
-implementers within the context of their particular implementation; there may
-be valid reasons to ignore an item, but the full implications must be understood
-and carefully weighed before choosing a different course
-4.  MAY: This is truly optional language for an implementation; can be included or omitted as the implementer decides with no implications
-
+See section [References](references.html).
 
 ### Top-level steps for Backend Services Authorization
 
@@ -179,15 +155,17 @@ the following parameters:
 
 ##### Scopes
 
-The client is pre-authorized by the server: at registration time or out of band,
-it is given the authority to access certain data. The client then includes a set
+The client is pre-authorized by the server. In other words, by the time a client
+initiates an access token request, the server has already associated the client
+with the authority to access certain data. The client then includes a set
 of scopes in the access token request, which causes the server to apply
 additional access restrictions following the [SMART Scopes
 syntax](scopes-and-launch-context.html).  For Backend Services, requested scopes
 will be `system/` scopes (for example `system/Observation.rs`, which requests an
 access token capable of reading all Observations that the client has been
-pre-authorized to access).
-
+pre-authorized to access). The use of Backend Services with `user/` and
+`patient/` scopes is not prohibited, but would required out-of-band coordination
+to establish context (e.g., to establish which user or patient applies).
 
 #### Response
 
@@ -248,8 +226,7 @@ the following properties:
   </tbody>
 </table>
 
-To minimize risks associated with token redirection, the scope of each access token SHOULD encompass, and be limited to, the resources requested. Access tokens issued under this profile SHALL be short-lived; the `expires_in`
-value SHOULD NOT exceed `300`, which represents an expiration-time of five minutes.
+To minimize risks associated with token redirection, the scope of each access token SHOULD encompass, and be limited to, the resources requested. Access tokens issued under this profile SHALL be short-lived; the `expires_in` value SHOULD NOT exceed `300`, which represents an expiration-time of five minutes. To establish longer-term access, clients can request new access tokens as needed.
 
 #### Example Token Request and Response
 

@@ -15,9 +15,12 @@ These use cases support apps that perform data visualization, data collection,
 clinical decision support, data sharing, case reporting, and many other
 functions.
 
+For additional functionality defined in this implementation guide, see section
+[Overview](index.html).
+
 ### Profile audience and scope
 
-This profile is intended to be used by developers of apps that need to access user identity information or other FHIR resources by requesting authorization from OAuth 2.0 compliant authorization servers. It is compatible with FHIR R2 (DSTU2) and later; this publication includes explicit definitions for FHIR R4.
+This profile on OAuth 2.0 is intended to be used by developers of apps that need to access user identity information or other FHIR resources by requesting authorization from OAuth 2.0-compliant authorization servers. It is compatible with FHIR R2 (DSTU2) and later; this publication includes explicit definitions for FHIR R4 and R4B.
 
 OAuth 2.0 authorization servers are configured to mediate access based on
 a set of rules configured to enforce institutional policy, which may
@@ -57,9 +60,9 @@ Considerations](https://tools.ietf.org/html/rfc6819).
 
 Specific requirements are:
 
-* Apps SHALL ensure that sensitive information (authentication secrets,
-authorization codes, tokens) is transmitted ONLY to authenticated servers,
-over TLS-secured channels.
+* Apps SHALL ensure that when protocol steps include transmission of sensitive
+information (authentication secrets, authorization codes, tokens), transmission
+is ONLY to authenticated servers, over TLS-secured channels.
 
 * Apps SHALL generate an unpredictable `state` parameter for each user
 session; SHALL include `state` with all authorization requests; and SHALL
@@ -94,20 +97,18 @@ For strategies and best practices to protecting a client secret refer to:
 - OAuth 2.0 for Native Apps: [8.5. Client Authentication](https://tools.ietf.org/html/draft-ietf-oauth-native-apps-12#section-8.5)
 - [OAuth 2.0 Dynamic Client Registration Protocol](https://tools.ietf.org/html/rfc7591)
 
-##### Use the <span class="label label-primary">confidential app</span>  profile if your app is *able* to protect a secret
+##### Determining the appropriate app type
 
-for example:
+To determine the appropriate app type, first answer the question "*is your app able to protect a secret?*"
 
-- App runs on a trusted server with only server-side access to the secret
-- App is a native app that uses additional technology (such as dynamic client registration and universal `redirect_uris`) to protect the secret
+* If "Yes", use a <span class="label label-primary">confidential app</span>
+  * Example: App runs on a trusted server with only server-side access to the secret
+  * Example: App is a native app that uses additional technology (such as dynamic client registration and universal `redirect_uris`) to protect the secret
 
+* If "No",  use a <span class="label label-primary">public app</span>
+  * Example: App is an HTML5 or JS in-browser app (including single-page applications) that would expose the secret in user space
+  * Example: App is a native app that can only distribute a secret statically
 
-##### Use the <span class="label label-primary">public app</span> profile if your app is *unable* to protect a secret
-
-for example:
-
-- App is an HTML5 or JS in-browser app (including single-page applications) that would expose the secret in user space
-- App is a native app that can only distribute a secret statically
 
 #### Considerations for PKCE Support
 All SMART apps SHALL support Proof Key for Code Exchange (PKCE).  PKCE is a standardized, cross-platform technique for clients to mitigate the threat of authorization code interception or injection. PKCE is described in [IETF RFC 7636](https://tools.ietf.org/html/rfc7636). SMART servers SHALL support the `S256` `code_challenge_method` and SHALL NOT support the `plain` method.
@@ -126,7 +127,7 @@ Some resources shared with apps following this IG may be considered [Patient Sen
 
 ### SMART authorization & FHIR access: overview
 
-An app can launch from within an existing EHR or Patient Portal session; this is known as an EHR launch.  Alternatively, it can launch as a standalone app.
+An app can launch from within an existing session in an EHR, Patient Portal, or other FHIR system. Alternatively, it can launch as a standalone app.
 
 In an <span class="label label-primary">EHR launch</span>, an opaque handle to
 the EHR context is passed along to the app as part of the launch URL.  The app
@@ -151,6 +152,10 @@ access requested FHIR resources. If a refresh token is returned along with the
 access token, the app may use it to request a new access token with the same
 scope, once the old access token expires.
 
+This specification is agnostic about how the EHR resource server and the EHR
+authorization server are integrated, as long as they implement the required
+app-facing behaviors
+
 ###  Top-level steps for SMART App Launch
 
 The top-level steps for Smart App Launch are:
@@ -163,8 +168,8 @@ The top-level steps for Smart App Launch are:
 6. [Access FHIR API](#step-6-fhir-api)
 7. [Refresh access token](#step-7-refresh)
 
-"The actors involved in each step and the order in which steps are used is illustrated in the figure below.
-"
+The actors involved in each step and the order in which steps are used is illustrated in the figure below.
+
 <div>{% include overview-app-launch.svg %}</div>
 <br clear="all"/>
 
@@ -343,7 +348,7 @@ The app supplies the following parameters to the EHR’s "authorize" endpoint.
 
 Must describe the access that the app needs, including scopes like
 <code>patient/*.rs</code>, <code>openid</code> and <code>fhirUser</code> (if app
-needs authenticated patient identity) and either:
+needs authenticated end-user identity) and either:
 
 <ul>
 <li> a <code>launch</code> value indicating that the app wants to receive already-established launch context details from the EHR </li>
@@ -373,33 +378,38 @@ entropy (e.g., a properly configured random uuid is suitable).
       <td><code>aud</code></td>
       <td><span class="label label-success">required</span></td>
       <td>
+<p>
 URL of the EHR resource server from which the app wishes to retrieve FHIR data.
 This parameter prevents leaking a genuine bearer token to a counterfeit
 resource server. (Note that in the case of an <span class="label label-primary">EHR launch</span>
 flow, this <code>aud</code> value is the same as the launch's <code>iss</code> value.)
+</p>
 
-Note that the <code>aud</code> parameter is semantically equivalent to the
-<code>resource</code> parameter defined in <a href="https://datatracker.ietf.org/doc/rfc8707">RFC8707</a>.
-SMART's <code>aud</code> parameter predates RFC8707 and we have decided not to
-rename it for reasons of backwards compatibility. We might consider renaming
-SMART's <code>aud</code> parameter in the future if implementer feedback
-indicates that alignment would be valuable.  For the current release, servers
-SHALL support the <code>aud</code> parameter and MAY support a <code>resource</code>
-parameter as a synonym for <code>aud</code>.
+<p> Note that the <code>aud</code> parameter is semantically equivalent to the
+<code>resource</code> parameter defined in <a
+href="https://datatracker.ietf.org/doc/rfc8707">RFC8707</a>.  SMART's
+<code>aud</code> parameter predates RFC8707 and we have decided not to rename it
+for reasons of backwards compatibility. We might consider renaming SMART's
+<code>aud</code> parameter in the future if implementer feedback indicates that
+alignment would be valuable.</p>
+
+For the current release, servers SHALL support the <code>aud</code> parameter
+and MAY support a <code>resource</code> parameter as a synonym for
+<code>aud</code>.
 
       </td>
     </tr>
 
     <tr>
       <td><code>code_challenge</code></td>
-      <td><span class="label label-info">required</span></td>
-      <td>This parameter is generated by the app and used for the code challenge, as specified by <a href="https://tools.ietf.org/html/rfc7636">PKCE</a>.  For example, when <code>code_challenge_method</code> is <code>'S256'</code>, this is the S256 hashed version of the <code>code_verifier</code> parameter.  See section <a href="#considerations-for-pkce-support">considerations-for-pkce-support</a>.</td>
+      <td><span class="label label-success">required</span></td>
+      <td>This parameter is generated by the app and used for the code challenge, as specified by <a href="https://tools.ietf.org/html/rfc7636">PKCE</a>.  For example, when <code>code_challenge_method</code> is <code>'S256'</code>, this is the S256 hashed version of the <code>code_verifier</code> parameter.  See <a href="#considerations-for-pkce-support">considerations-for-pkce-support</a>.</td>
     </tr>
 
 
     <tr>
       <td><code>code_challenge_method</code></td>
-      <td><span class="label label-info">required</span></td>
+      <td><span class="label label-success">required</span></td>
       <td>Method used for the <code>code_challenge</code> parameter.  Example value: <code>S256</code>.  See <a href="#considerations-for-pkce-support">considerations-for-pkce-support</a>.</td>
     </tr>
 
@@ -503,7 +513,7 @@ following URL parameters:
       <td>
 
 The authorization code generated by the authorization server. The
-authorization code *must* expire shortly after it is issued to mitigate the
+authorization code needs to expire shortly after it is issued to mitigate the
 risk of leaks.
 
       </td>
@@ -553,9 +563,9 @@ token.
 The app issues an HTTP `POST` to the EHR authorization server's token endpoint URL using content-type `application/x-www-form-urlencoded` as described in
 section 4.1.3 of [RFC6749](https://tools.ietf.org/html/rfc6749#section-4.1.3).
 
-For <span class="label label-primary">public apps</span>, authentication not required because a client with no secret cannot prove its
+For <span class="label label-primary">public apps</span>, authentication is not required because a client with no secret cannot prove its
 identity when it issues a call. (The end-to-end system can still be secure
-because the client comes from a known, https protected endpoint specified and
+because the client comes from a known, https-protected endpoint specified and
 enforced by the redirect uri.)  For <span class="label label-primary">confidential
 apps</span>, authentication is required. Confidential clients SHOULD use
 [Asymmetric Authentication](client-confidential-asymmetric.html) if available, and
@@ -583,12 +593,12 @@ MAY use [Symmetric Authentication](client-confidential-symmetric.html).
     </tr>
     <tr>
       <td><code>code_verifier</code></td>
-      <td><span class="label label-warning">required</span></td>
+      <td><span class="label label-success">required</span></td>
       <td>This parameter is used to verify against the <code>code_challenge</code> parameter previously provided in the authorize request.</td>
     </tr>
     <tr>
       <td><code>client_id</code></td>
-      <td><span class="label label-warning">conditional</span></td>
+      <td><span class="label label-info">conditional</span></td>
       <td>Required for <span class="label label-primary">public apps</span>. Omit for <span class="label label-primary">confidential apps</span>.</td>
     </tr>
   </tbody>
@@ -701,7 +711,7 @@ FHIR API call to the FHIR endpoint on the EHR's resource server.
 
 #### Request
 
-From the access token response, an app has received an OAuth2 bearer-type access token (`access_token` property) that can be used to fetch clinical data.  The app issues a request that includes an
+From the access token response, an app has received an OAuth2 bearer-type access token (`access_token` property) that can be used to fetch FHIR Resources.  The app issues a request that includes an
 `Authorization` header that presents the `access_token` as a "Bearer" token:
 
 {% raw %}
