@@ -1,0 +1,46 @@
+{
+    "resourceType": "CodeSystem",
+    "id": "patient-access-brand-category",
+    "url": "http://hl7.org/fhir/smart-app-launch/CodeSystem/patient-access-brand-category",
+    "name": "PatientAccessBrandCategoryCodeSystem",
+    "title": "Patient Access Brand Category Code System",
+    "status": "active",
+    "date": "2023-03-05T22:40:04-08:00",
+    "description": "Categorizes a PatientAccessBrand into high-level taxonomy",
+    "content": "complete",
+    "count": 8,
+    "concept": [
+        {
+            "code": "health-system",
+            "display": "A health system (e.g., regional or national)"
+        },
+        {
+            "code": "hospital",
+            "display": "Hospital, residential, or inpatient facility"
+        },
+        {
+            "code": "outpatient",
+            "display": "Outpatient office or clinic"
+        },
+        {
+            "code": "insurer",
+            "display": "Health insuraance provider"
+        },
+        {
+            "code": "lab",
+            "display": "Laboratory"
+        },
+        {
+            "code": "pharmacy",
+            "display": "Pharmacy"
+        },
+        {
+            "code": "network",
+            "display": "Network access provider such as a TEFCA QHIN"
+        },
+        {
+            "code": "aggregator",
+            "display": "Aggregator of healthcare data offering individual access"
+        }
+    ]
+}

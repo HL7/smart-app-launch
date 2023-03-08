@@ -194,7 +194,7 @@ The EHR that publishes a Brand Bundle may not have some required data elements (
         *  `valueUrl` See documentation for "brand logo use agreement".
 
 
-[Formal Views of Profile Contents](StructureDefinition-patient-access-brand.html)
+[Formal Views of Profile Contents](SStructureDefinition-PatientAccessBrand.html)
 
 ##### Example
 

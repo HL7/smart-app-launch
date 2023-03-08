@@ -1,0 +1,59 @@
+{
+    "resourceType": "StructureDefinition",
+    "id": "patient-access-brand-flags",
+    "url": "http://hl7.org/fhir/smart-app-launch/StructureDefinition/patient-access-brand-flags",
+    "name": "PatientAccessBrandFlags",
+    "title": "Patient Access Brand Flags Extension",
+    "description": "valueCode of hidden allows systems to designate Organizations as part of a hierarchy without necessarily being shown in a UX card or tile. This flag is intended to help app developers understand and debug the organizational relationships that underpin published Brands. Marking Brands hidden can also be used to associate many affiliated organizations with a parent Brand (e.g., each with its street address) without apps displaying redundant information to users. Multiple logos may be supplied. The URL can be an absolute URL with the https:// schema, or a Data URL with the data: schema that directly embeds content.",
+    "status": "active",
+    "date": "2023-03-03",
+    "fhirVersion": "4.0.1",
+    "kind": "complex-type",
+    "abstract": false,
+    "context": [
+        {
+            "type": "element",
+            "expression": "Organization"
+        }
+    ],
+    "type": "Extension",
+    "baseDefinition": "http://hl7.org/fhir/StructureDefinition/Extension",
+    "derivation": "constraint",
+    "differential": {
+        "element": [
+            {
+                "id": "Extension",
+                "path": "Extension",
+                "short": "Flags",
+                "definition": "valueCode of hidden allows systems to designate Organizations as part of a hierarchy without necessarily being shown in a UX card or tile. This flag is intended to help app developers understand and debug the organizational relationships that underpin published Brands. Marking Brands hidden can also be used to associate many affiliated organizations with a parent Brand (e.g., each with its street address) without apps displaying redundant information to users. Multiple logos may be supplied. The URL can be an absolute URL with the https:// schema, or a Data URL with the data: schema that directly embeds content.",
+                "min": 0,
+                "max": "*"
+            },
+            {
+                "id": "Extension.extension",
+                "path": "Extension.extension",
+                "max": "0"
+            },
+            {
+                "id": "Extension.url",
+                "path": "Extension.url",
+                "fixedUri": "http://hl7.org/fhir/smart-app-launch/StructureDefinition/patient-access-brand-flags"
+            },
+            {
+                "id": "Extension.value[x]",
+                "path": "Extension.value[x]",
+                "min": 1,
+                "type": [
+                    {
+                        "code": "code"
+                    }
+                ],
+                "binding": {
+                    "strength": "extensible",
+                    "description": "Patient Access Brand Flags Codes.",
+                    "valueSet": "http://hl7.org/fhir/smart-app-launch/ValueSet/patient-access-brand-flags"
+                }
+            }
+        ]
+    }
+}

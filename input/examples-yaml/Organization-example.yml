@@ -10,34 +10,48 @@ meta:
     - 'http://hl7.org/fhir/smart-app-launch/StructureDefinition/patient-access-brand'
 
 extension:
+
     - 
-        url: 'http://fhir.org/argonaut/StructureDefinition/patient-portal-url'
-        valueUrl: 'https://example.org/myportal'
-    - 
-        url: 'http://hl7.org/fhir/smart-app-launch/StructureDefinition/patient-portal-audience'
-        valueString: for all patients
-    - 
-        url: 'http://fhir.org/argonaut/StructureDefinition/brand-logo'
+        url: 'http://fhir.org/argonaut/StructureDefinition/patient-access-brand-logo'
         valueUrl: 'https://example.org/logo/main.1024x102.png'
     - 
-        url: 'http://hl7.org/fhir/smart-app-launch/StructureDefinition/brand-logo-use-agreement'
+        url: 'http://hl7.org/fhir/smart-app-launch/StructureDefinition/patient-access-brand-logo-use'
         valueUrl: 'https://example.org/logo/use-agreement.html'
     - 
-        url: 'http://hl7.org/fhir/smart-app-launch/StructureDefinition/brand-hidden'
-        valueBoolean: false
+        url: 'http://hl7.org/fhir/smart-app-launch/StructureDefinition/patient-access-brand-flags'
+        valueCode: hidden
 
+# portal extensions
+
+    - 
+        url: 'http://hl7.org/fhir/smart-app-launch/StructureDefinition/patient-access-brand-portal-name'
+        valueString: Example Health Portal
+    - 
+        url: 'http://hl7.org/fhir/smart-app-launch/StructureDefinition/patient-access-brand-portal-url'
+        valueUrl: 'https://example.org/myportal'
+
+    - 
+        url: 'http://hl7.org/fhir/smart-app-launch/StructureDefinition/patient-access-brand-portal-description'
+        valueMarkdown: |
+            This is the description of the portal. It can be multiple lines.
+            It can also be **markdown**.
+    - 
+        url: 'http://hl7.org/fhir/smart-app-launch/StructureDefinition/patient-access-brand-portal-logo'
+        valueUrl:  'https://example.org/portal-logo/main.1024x102.png'
+
+    - 
+        url: 'http://hl7.org/fhir/smart-app-launch/StructureDefinition/patient-access-brand-portal-logo-use'
+        valueUrl: 'https://example.org/portal-logo/use-agreement.html'
 
 identifier:
-  - system: 'http://hl7.org/fhir/sid/us-npi'
-    value: '1407071236'
-  - system: 'http://example.org/identifiers/brands'
-    value: https://hospital.example.org
+  - system: 'urn:ietf:rfc:3986'
+    value: 'https://examplehospital.org'
 active: true
 type:
   - coding:
       - system: 'http://hl7.org/fhir/smart-app-launch/CodeSystem/patient-access-brand-category'
-        code: health-system
-        display: A health system (e.g., regional or national)
+        code: clinical
+        display: Clinical Care provider
 name: Example Organization
 alias:
   - Example Health System
@@ -49,13 +63,9 @@ address:
     postalCode: '01002'
 partOf:
   display: Larger Health System
-contact:
-  - purpose:
-      text: technical
-    telecom:
-      - system: email
-        value: 'technical-support@example.org'
-      - system: url
-        value: 'https://example.org/technical-support'
+
+telecom:
+    - system: url
+      value: 'https://example.org/brand-home'
   
 
