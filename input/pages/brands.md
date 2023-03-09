@@ -143,6 +143,8 @@ The EHR that publishes a Brand Bundle may not have some required data elements (
     
 ##### Example
 
+[Endpoint Example](Endpoint-example.html)
+
 ```javascript
 
 {% include_relative Endpoint-example.json %}
@@ -159,6 +161,8 @@ The EHR that publishes a Brand Bundle may not have some required data elements (
 
 ##### Example
 
+[Organization Example](Organization-example.html)
+
 ```javascript
 
 {% include_relative Organization-example.json %}
@@ -172,7 +176,7 @@ The EHR that publishes a Brand Bundle may not have some required data elements (
 [Formal Views of Profile Contents](StructureDefinition-patient-access-brands-bundle.html)
   
   
-##### Partial Patient-Access Brand Bundle Example
+##### Partial View Patient-Access Brand Bundle Example
 
 The following Bundle fragments in the example below illustrate how Brand data is compiled into a Bundle and how each Endpoint references a Brand (in other words, an Organization) within the same Bundle. 
 
