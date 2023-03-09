@@ -42,18 +42,18 @@ pages:
       title: 'App Launch: Launch and Authorization'
     scopes-and-launch-context.md:
       title: 'App Launch: Scopes and Launch Context'
-    client-authentication.md:
-      title: Client Authentication
-      client-confidential-asymmetric.md:
-        title: 'Client Authentication: Asymmetric (public key)'
-      client-confidential-symmetric.md:
-        title: 'Client Authentication: Symmetric (shared secret)'
     app-state.md:
       title: 'Persisting App State (Experimental)'
     task-launch.md:
       title: 'Task profile for requesting SMART launch (Experimental)'
   backend-services.md:
     title: Backend Services
+  client-authentication.md:
+    title: Client Authentication
+    client-confidential-asymmetric.md:
+      title: 'Client Authentication: Asymmetric (public key)'
+    client-confidential-symmetric.md:
+      title: 'Client Authentication: Symmetric (shared secret)'
   token-introspection.md:
     title: Token Introspection
   conformance.md:
