@@ -18,7 +18,8 @@ description: |
     * One or more `extensions` to convey the endpoint's FHIR Version. This element is a denormalization to help clients focus on supported endpoints. The `valueCode` is any version from http://hl7.org/fhir/valueset-FHIR-version.html. (As of this publication, `4.0.1` is expected for ONC-certified EHRs). The *Mandatory* (min =1) Extension sub-elements are:
       *  An 'url' = `http://fhir.org/argonaut/StructureDefinition/endpoint-fhir-version`
       *  A `valueCode`: any version from http://hl7.org/fhir/valueset-FHIR-version.html. (As of this publication, `4.0.1` is expected for ONC-certified EHRs).
-    * A `connectionType`: a fixed Coding for `hl7-fhir-rest`
+    * A `status`
+    * A `connectionType`: a fixed Coding for "hl7-fhir-rest"
     * A `managingOrganization`: references to a [Patient Access Brand (Organization)](StructureDefinition-PatientAccessBrand.html). This property associates a single "primary brand" with the endpoint. Additional affiliated Brands or parent brands can be associated via "Patient access provided by" links (`Organization.partOf`). **EHR vendors SHALL support integrated publication of Organizations in the same JSON Bundle, as well as external customer-managed publication. TODO what does this mean** The following *[Must Support](brands.html#must-support-definition-ms-and-data-absent-reasons)* (min = 0) `managingOrganization` sub-elements are:
       * One or more `extensions` URL for a customer-managed Patient Access Brands Bundle that defines the identified Brand and related Brands (**the Bundle SHALL contain exactly one entry matching the specified identifier - TODO does this need an invariant?**). The *Mandatory* (min =1) Extension sub-elements are:
           *  An `url` `http://fhir.org/argonaut/StructureDefinition/brand-bundle`
@@ -28,6 +29,7 @@ description: |
     * `contact`: website where developers can to configure access to this endpoint. The *Mandatory* (min =1) `contact` sub-elements are:
         * A `system` = "url"
         * A `value`: an `https://` URL for app developers
+    * A `payloadType`: a fixed Coding for "none"
     *  An `address`: FHIR base URL for server supporting patient access
 
    The following *[Must Support](brands.html#must-support-definition-ms-and-data-absent-reasons)* (min = 0) elements are defined:
@@ -74,10 +76,9 @@ differential:
               http://hl7.org/fhir/smart-app-launch/StructureDefinition/patient-access-endpoint-fhir-version
       mustSupport: true
 
-    # - id: Endpoint.status
-    #   path: Endpoint.status
-    #   fixedCode: active
-    #   mustSupport: true
+    - id: Endpoint.status
+      path: Endpoint.status
+      mustSupport: true
 
     - id: Endpoint.connectionType
       path: Endpoint.connectionType
@@ -135,7 +136,7 @@ differential:
       mustSupport: true
 
     - id: Endpoint.contact
-      path: Endpoint.contact3
+      path: Endpoint.contact
       short: Contact information for the endpoint.
       definition: >-
         Contact information for the endpoint.
@@ -169,10 +170,14 @@ differential:
       min: 1
       mustSupport: true
 
-    # - id: Endpoint.payloadType
-    #   path: Endpoint.payloadType
-    #   max: '1'
-    #   mustSupport: true
+    - id: Endpoint.payloadType
+      path: Endpoint.payloadType
+      max: '1'
+      patternCodeableConcept:
+        coding:
+          - system: 'http://terminology.hl7.org/CodeSystem/endpoint-payload-type'
+            code:  none
+      mustSupport: true
     #   binding:
     #     strength: extensible
     #     valueSet: >-

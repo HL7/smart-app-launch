@@ -24,7 +24,7 @@
             {
                 "id": "Extension",
                 "path": "Extension",
-                "short": "Portal Name ",
+                "short": "Portal Name",
                 "definition": "Indicates the name by which patients know the portal (for example, \u201cMyChildrens\u201d or \u201cPatient Gateway\u201d). ",
                 "min": 0,
                 "max": "*"

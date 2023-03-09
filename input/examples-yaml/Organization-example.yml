@@ -12,7 +12,7 @@ meta:
 extension:
 
     - 
-        url: 'http://fhir.org/argonaut/StructureDefinition/patient-access-brand-logo'
+        url: 'http://hl7.org/fhir/smart-app-launch/StructureDefinition/patient-access-brand-logo'
         valueUrl: 'https://example.org/logo/main.1024x102.png'
     - 
         url: 'http://hl7.org/fhir/smart-app-launch/StructureDefinition/patient-access-brand-logo-use'

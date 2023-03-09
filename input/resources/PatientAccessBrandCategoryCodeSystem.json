@@ -5,8 +5,10 @@
     "name": "PatientAccessBrandCategoryCodeSystem",
     "title": "Patient Access Brand Category Code System",
     "status": "active",
+    "experimental": false,
     "date": "2023-03-05T22:40:04-08:00",
     "description": "Categorizes a PatientAccessBrand into high-level taxonomy",
+    "caseSensitive": true,
     "content": "complete",
     "count": 8,
     "concept": [

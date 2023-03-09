@@ -5,6 +5,7 @@
     "name": "PatientAccessBrandCategoryValueSet",
     "title": "Patient Access Brand Category Value Set",
     "status": "active",
+    "experimental": false,
     "date": "2023-03-05T22:40:04-08:00",
     "description": "Categorizes a PatientAccessBrand into high-level taxonomy",
     "compose": {

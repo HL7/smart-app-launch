@@ -10,6 +10,7 @@
 <artifactPageExtension value="-definitions"/>
 <artifactPageExtension value="-examples"/>
 <artifactPageExtension value="-mappings"/>
+<artifact id="Bundle/example1" key="Bundle-example1" name="Bundle Example 1"/>
 <artifact id="ValueSet/smart-launch-info" key="ValueSet-smart-launch-info" name="Codes for tasks to application launches"/>
 <artifact id="Endpoint/example" key="Endpoint-example" name="Endpoint Example"/>
 <artifact id="Basic/app-state" key="Basic-app-state" name="Example App State"/>

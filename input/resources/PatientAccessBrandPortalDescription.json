@@ -24,7 +24,7 @@
             {
                 "id": "Extension",
                 "path": "Extension",
-                "short": "Portal Description ",
+                "short": "Portal Description",
                 "definition": "Explains, if necessary (in patient-friendly language), the subset of patients eligible to connect and the data available. This capability supports (for example) a cancer center that uses one EHR for pediatric patients and another for adult patients. In this scenario, each EHR would publish a different `PatientAccessBrand`; apps would display the description to disambiguate the user's selection. For instance, one Brand might indicate \"Access records for childhood cancer care\" and another might indicate \"Access records for adult cancer care\".",
                 "min": 0,
                 "max": "*"

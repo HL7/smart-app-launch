@@ -1,22 +1,22 @@
 {% capture SQUARE %}<span style="font-size:1em">&#9634;</span>{% endcapture %}
 
-*Note: Although real names and locations have been used, the information presented below is not real. The brands below are fabricated for the purpose of these examples.*
+*The brands below are fabricated for the purpose of these examples.*
 
-### LabCorp: Lab with Thousands of Locations Nationwide
+### Bundle Example 1: Lab with Thousands of Locations Nationwide
 
 * One national brand
 * Locations in thousands of cities
 
-The configuration below establishes a single top-level Brand with a long list of associated addresses. (The organization can also group  their locations into sub-brands such as "LabCorp Alaska")
+The configuration below establishes a single top-level Brand with a long list of associated addresses. (The organization can also group  their locations into sub-brands such as "ExampleLabs Alaska")
 
 
 <div class="bg-info" markdown="1">
 
-![](https://i.imgur.com/Kv5gq3Z.png) **LabCorp** ([labcorp.com](https://labcorp.com))
+![](https://i.imgur.com/Kv5gq3Z.png) **ExampleLabs** ([examplelabs.com](https://example.org/examplelabs.com)
 
 |Source|API|Portal|
 |--|--|--|
-|**Labcorp Patient™ portal**|{{SQUARE}} Connect|{{SQUARE}} View |
+|**RxampleLabs Patient™ portal**|{{SQUARE}} Connect|{{SQUARE}} View |
 {:.grid style="background-color: white"}
 
 Nearest location: 1 mile (Madison)
@@ -25,9 +25,11 @@ Nearest location: 1 mile (Madison)
 
 The FHIR server's `.well-known/smart-configuration` file would include a link like
 
-    "patientAccessBrands": "https://labcorp.example.com/branding.json"
+    "patientAccessBrands": "https://examplelabs.example.com/branding.json"
     
-And the hosted `branding.json` file would look like:
+And the hosted` Patient Access Brands Bundle file would look like:
+
+[ExampleLabs Brands Bundle](Bundle-example1.html)
 
 ```javascript
 {
@@ -38,14 +40,14 @@ And the hosted `branding.json` file would look like:
   },
   "entry": [
     {
-      "fullUrl": "https://labcorp.example.org/Endpoint/fhir-r4",
+      "fullUrl": "https://examplelabs.example.org/Endpoint/fhir-r4",
       "resource": {
         "resourceType": "Endpoint",
         "id": "bch-r4",
-        "address": "https://fhir.labcorp.example.org/r4",
-        "name": "FHIR R4 Endpoint for Labcorp",
+        "address": "https://fhir.examplelabs.example.org/r4",
+        "name": "FHIR R4 Endpoint for RxampleLabs",
         "managingOrganization": {
-          "reference": "Organization/labcorp"
+          "reference": "Organization/examplelabs"
         },
         "extension": [
           {
@@ -54,7 +56,7 @@ And the hosted `branding.json` file would look like:
           },
           {
             "url": "http://fhir.org/argonaut/StructureDefinition/patient-access-developer-url",   \\<<<<<Where is this extension defined?>>>>>
-            "valueUrl": "https://www.labcorp.com/help/contact-info-for-patient/patient-portal-inquiry"
+            "valueUrl": "https://www.examplelabs.com/help/contact-info-for-patient/patient-portal-inquiry"
           }
         ],
         "connectionType": {
@@ -64,22 +66,22 @@ And the hosted `branding.json` file would look like:
       }
     },
     {
-      "fullUrl": "https://labcorp.example.org/Organization/labcorp",
+      "fullUrl": "https://examplelabs.example.org/Organization/examplelabs",
       "resource": {
         "resourceType": "Organization",
-        "id": "labcorp",
+        "id": "examplelabs",
         "extension": [
           {
             "url": "http://fhir.org/argonaut/StructureDefinition/brand-logo",
-            "valueUrl": "https://www.labcorp.com/themes/custom/labcorp/images/newbrand/Labcorp_Logo.svg"
+            "valueUrl": "https://www.examplelabs.com/themes/custom/examplelabs/images/newbrand/RxampleLabs_Logo.svg"
           },
           {
             "url": "http://fhir.org/argonaut/StructureDefinition/patient-access-url", \\\\<<<<<Where is this extension defined?>>>>>
-            "valueUrl": "https://patient.labcorp.com/landing"
+            "valueUrl": "https://patient.examplelabs.com/landing"
           },
           {
             "url": "http://fhir.org/argonaut/StructureDefinition/patient-access-name", \\\\<<<<<Where is this extension defined?>>>>>
-            "valueString": "Labcorp Patient™ portal"
+            "valueString": "RxampleLabs Patient™ portal"
           }
         ],
         "name": "LabCorp",
@@ -87,13 +89,13 @@ And the hosted `branding.json` file would look like:
         "identifier": [
           {
             "system": "urn:ietf:rfc:3986",
-            "value": "https://labcorp.com"
+            "value": "https://examplelabs.com"
           }
         ],
         "telecom": [
           {
             "system": "url",
-            "value": "https://www.labcorp.com"
+            "value": "https://www.examplelabs.com"
           }
         ],
         "address": [

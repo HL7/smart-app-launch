@@ -5,6 +5,7 @@
     "name": "PatientAccessBrandFlagsValueSet",
     "title": "Patient Access Brand Flags Value Set",
     "status": "active",
+    "experimental": false,
     "date": "2023-03-05T22:40:04-08:00",
     "description": "Patient Access Brand Flags Codes help app developers understand and debug the organizational relationships that underpin published Brands.",
     "compose": {

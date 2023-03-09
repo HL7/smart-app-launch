@@ -25,7 +25,7 @@ differential:
     - id: Extension
       path: Extension
       short: >-
-        Portal Name 
+        Portal Name
       definition: >-
         Indicates the name by which patients know the portal (for example, “MyChildrens” or “Patient Gateway”). 
       min: 0

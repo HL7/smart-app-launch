@@ -11,20 +11,6 @@ description: |
   Profile on Organization to communicate the branding associated with a Patient
   Access API endpoint.
 
-  * `1..1 MS` `name` Primary brand name to display on a card
-  * `1..1 MS` `telecom` with `system` of `url` and `value` conveying the primary public website for the Brand. Note this is distinct from the patient access portal website (described below)
-  * `0..* MS` `alias` Aliases (e.g., former names like "Partners Healthcare") for filtering/search
-  * `0..* MS` `identifier`(s) that apps can use to link this Brand across publishers or with external data sets. EHRs SHALL support customer-supplied identifiers (`system` and `value`).
-      * It is RECOMMENDED that each Brand include an identifier where `system` is `urn:ietf:rfc:3986` (meaning the identifier is a URL) and `value` is the HTTPS URL for the Brand's primary web presence, omitting any "www." prefix from the domain and omitting any path component. For example, since the main web presence of Boston Children's Hospital is https://www.childrenshospital.org/, a recommended identifier would be:
-          `{"system": "urn:ietf:rfc:3986", "value": "https://childrenshospital.org"}`
-  * `0..1 MS` `partOf` "Patient access provided by", to convey that an affiliated Brand hosts this Brand's API technology and patient portal. The hierarchy of "access provided by" links SHALL NOT exceed a depth of two (i.e., a Brand either includes portal details or links directly to a Brand that provides them).
-  * `0..* MS` `address` Locations (e.g., zip codes and/or street addresses) associated with the Brand. The following combinations are allowed:
-    * State
-    * City, state
-    * City, state, zip code
-    * Street address, city, state, zip code
-    * zip code alone
-  * `0..*` `type` Categories for this organization (system: `http://fhir.org/argonaut/CodeSystem/patient-access-category`, code from: `clinical`, `lab`, `pharmacy`, `insurer`, `network`, `aggregator`)
   * `extension's about the **Brand**
       * `0..* MS` Logo
           * `url` is `http://fhir.org/argonaut/StructureDefinition/brand-logo`
@@ -51,6 +37,22 @@ description: |
       * `0..1 MS` Patient access logo use agreement
           *  `url` is `http://fhir.org/argonaut/StructureDefinition/patient-access-logo-use-agreement`.
           *  `valueUrl` See documentation for "brand logo use agreement".
+  * `0..* MS` `identifier`(s) that apps can use to link this Brand across publishers or with external data sets. EHRs SHALL support customer-supplied identifiers (`system` and `value`).
+      * It is RECOMMENDED that each Brand include an identifier where `system` is `urn:ietf:rfc:3986` (meaning the identifier is a URL) and `value` is the HTTPS URL for the Brand's primary web presence, omitting any "www." prefix from the domain and omitting any path component. For example, since the main web presence of Boston Children's Hospital is https://www.childrenshospital.org/, a recommended identifier would be:
+          `{"system": "urn:ietf:rfc:3986", "value": "https://childrenshospital.org"}`
+  * `0..*` `type` Categories for this organization (system: `http://fhir.org/argonaut/CodeSystem/patient-access-category`, code from: `clinical`, `lab`, `pharmacy`, `insurer`, `network`, `aggregator`)
+  * `1..1 MS` `name` Primary brand name to display on a card
+  * `0..* MS` `alias` Aliases (e.g., former names like "Partners Healthcare") for filtering/search
+  * `1..1 MS` `telecom` with `system` of `url` and `value` conveying the primary public website for the Brand. Note this is distinct from the patient access portal website (described below)
+  * `0..* MS` `address` Locations (e.g., zip codes and/or street addresses) associated with the Brand. The following combinations are allowed:
+    * State
+    * City, state
+    * City, state, zip code
+    * Street address, city, state, zip code
+    * zip code alone
+  * `0..1 MS` `partOf` "Patient access provided by", to convey that an affiliated Brand hosts this Brand's API technology and patient portal. The hierarchy of "access provided by" links SHALL NOT exceed a depth of two (i.e., a Brand either includes portal details or links directly to a Brand that provides them).
+
+
 
 
 fhirVersion: 4.0.1
@@ -124,22 +126,6 @@ differential:
             - >-
               http://hl7.org/fhir/smart-app-launch/StructureDefinition/patient-access-brand-flags
       mustSupport: true
-
-    - id: 'Organization.extension:portalLogo'
-      path: Organization.extension
-      sliceName: portalLogo
-      short: >-
-        Patient Access Brand Portal Logo
-      min: 0
-      max: '*'
-      type:
-        - code: Extension
-          profile:
-            - >-
-              http://hl7.org/fhir/smart-app-launch/StructureDefinition/patient-access-brand-portal-logo
-      mustSupport: true
-
-
 
     - id: 'Organization.extension:portalName'
       path: Organization.extension
@@ -260,6 +246,15 @@ differential:
       mustSupport: true
 
 
+    - id: Organization.telecom
+      path: Organization.telecom
+      short: The primary public website for the Brand.
+      definition: >-
+        `telecom` with `system` of `url` and `value` conveying the primary public website for the Brand. Note this is distinct from the patient access portal website.
+      min: 1
+      max: "1"
+      mustSupport: true
+
     - id: Organization.address
       path: Organization.address
       short: >-
@@ -281,13 +276,4 @@ differential:
       definition: >-
         Affiliated "parent brand", if this Brand is part of a larger health
         system.  "Patient access provided by", to convey that an affiliated Brand hosts this Brand's API technology and patient portal. The hierarchy of "access provided by" links SHALL NOT exceed a depth of two (i.e., a Brand either includes portal details or links directly to a Brand that provides them).
-      mustSupport: true
-
-    - id: Organization.telecom
-      path: Organization.telecom
-      short: The primary public website for the Brand.
-      definition: >-
-        `telecom` with `system` of `url` and `value` conveying the primary public website for the Brand. Note this is distinct from the patient access portal website.
-      min: 1
-      max: "1"
       mustSupport: true

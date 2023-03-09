@@ -24,7 +24,7 @@
             {
                 "id": "Extension",
                 "path": "Extension",
-                "short": "Portal URL ",
+                "short": "Portal URL",
                 "definition": "Indicates the location of the patient portal associated with this Brand - i.e., a URL where patients can go to see their data and manage access. ",
                 "min": 0,
                 "max": "*"

@@ -25,7 +25,7 @@ differential:
     - id: Extension
       path: Extension
       short: >-
-        Portal Logo 
+        Portal Logo
       definition: >-
         Patient access brand portal logo. Used if the portal has its own logo in addition to the Brand's logo. See the documentation for “brand logo”.
       min: 0

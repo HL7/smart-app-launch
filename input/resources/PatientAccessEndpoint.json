@@ -6,7 +6,7 @@
     "title": "Patient Access Endpoint Profile",
     "status": "active",
     "date": "2023-03-03",
-    "description": "Profile on Endpoint associated with a Patient Access Brand (Organization):\n**TODO Name this something else? like Patient Access Brands Endpoint**\n\nThe following *Mandatory* (min =1) elements are defined:\n\n * One or more `extensions` to convey the endpoint's FHIR Version. This element is a denormalization to help clients focus on supported endpoints. The `valueCode` is any version from http://hl7.org/fhir/valueset-FHIR-version.html. (As of this publication, `4.0.1` is expected for ONC-certified EHRs). The *Mandatory* (min =1) Extension sub-elements are:\n   *  An 'url' = `http://fhir.org/argonaut/StructureDefinition/endpoint-fhir-version`\n   *  A `valueCode`: any version from http://hl7.org/fhir/valueset-FHIR-version.html. (As of this publication, `4.0.1` is expected for ONC-certified EHRs).\n * A `connectionType`: a fixed Coding for `hl7-fhir-rest`\n * A `managingOrganization`: references to a [Patient Access Brand (Organization)](StructureDefinition-PatientAccessBrand.html). This property associates a single \"primary brand\" with the endpoint. Additional affiliated Brands or parent brands can be associated via \"Patient access provided by\" links (`Organization.partOf`). **EHR vendors SHALL support integrated publication of Organizations in the same JSON Bundle, as well as external customer-managed publication. TODO what does this mean** The following *[Must Support](brands.html#must-support-definition-ms-and-data-absent-reasons)* (min = 0) `managingOrganization` sub-elements are:\n   * One or more `extensions` URL for a customer-managed Patient Access Brands Bundle that defines the identified Brand and related Brands (**the Bundle SHALL contain exactly one entry matching the specified identifier - TODO does this need an invariant?**). The *Mandatory* (min =1) Extension sub-elements are:\n       *  An `url` `http://fhir.org/argonaut/StructureDefinition/brand-bundle`\n       *  A `valueUrl` \n   * A `reference`:  a relative URL to a Brand within this Bundle\n   * An `identifier`: customer-supplied identifier for the primary Brand\n * `contact`: website where developers can to configure access to this endpoint. The *Mandatory* (min =1) `contact` sub-elements are:\n     * A `system` = \"url\"\n     * A `value`: an `https://` URL for app developers\n *  An `address`: FHIR base URL for server supporting patient access\n\nThe following *[Must Support](brands.html#must-support-definition-ms-and-data-absent-reasons)* (min = 0) elements are defined:\n\n *  A `name`: fallback or default name describing the endpoint and the organization offering Patient API access at this endpoint. This value MAY contain technical details like FHIR API Version designations, and apps SHOULD preferentially use names from an associated `PatientAccessBrand`, rather than displaying this value to users.\n",
+    "description": "Profile on Endpoint associated with a Patient Access Brand (Organization):\n**TODO Name this something else? like Patient Access Brands Endpoint**\n\nThe following *Mandatory* (min =1) elements are defined:\n\n * One or more `extensions` to convey the endpoint's FHIR Version. This element is a denormalization to help clients focus on supported endpoints. The `valueCode` is any version from http://hl7.org/fhir/valueset-FHIR-version.html. (As of this publication, `4.0.1` is expected for ONC-certified EHRs). The *Mandatory* (min =1) Extension sub-elements are:\n   *  An 'url' = `http://fhir.org/argonaut/StructureDefinition/endpoint-fhir-version`\n   *  A `valueCode`: any version from http://hl7.org/fhir/valueset-FHIR-version.html. (As of this publication, `4.0.1` is expected for ONC-certified EHRs).\n * A `status`\n * A `connectionType`: a fixed Coding for \"hl7-fhir-rest\"\n * A `managingOrganization`: references to a [Patient Access Brand (Organization)](StructureDefinition-PatientAccessBrand.html). This property associates a single \"primary brand\" with the endpoint. Additional affiliated Brands or parent brands can be associated via \"Patient access provided by\" links (`Organization.partOf`). **EHR vendors SHALL support integrated publication of Organizations in the same JSON Bundle, as well as external customer-managed publication. TODO what does this mean** The following *[Must Support](brands.html#must-support-definition-ms-and-data-absent-reasons)* (min = 0) `managingOrganization` sub-elements are:\n   * One or more `extensions` URL for a customer-managed Patient Access Brands Bundle that defines the identified Brand and related Brands (**the Bundle SHALL contain exactly one entry matching the specified identifier - TODO does this need an invariant?**). The *Mandatory* (min =1) Extension sub-elements are:\n       *  An `url` `http://fhir.org/argonaut/StructureDefinition/brand-bundle`\n       *  A `valueUrl` \n   * A `reference`:  a relative URL to a Brand within this Bundle\n   * An `identifier`: customer-supplied identifier for the primary Brand\n * `contact`: website where developers can to configure access to this endpoint. The *Mandatory* (min =1) `contact` sub-elements are:\n     * A `system` = \"url\"\n     * A `value`: an `https://` URL for app developers\n * A `payloadType`: a fixed Coding for \"none\"\n *  An `address`: FHIR base URL for server supporting patient access\n\nThe following *[Must Support](brands.html#must-support-definition-ms-and-data-absent-reasons)* (min = 0) elements are defined:\n\n *  A `name`: fallback or default name describing the endpoint and the organization offering Patient API access at this endpoint. This value MAY contain technical details like FHIR API Version designations, and apps SHOULD preferentially use names from an associated `PatientAccessBrand`, rather than displaying this value to users.\n",
     "fhirVersion": "4.0.1",
     "kind": "resource",
     "abstract": false,
@@ -36,6 +36,11 @@
                         ]
                     }
                 ],
+                "mustSupport": true
+            },
+            {
+                "id": "Endpoint.status",
+                "path": "Endpoint.status",
                 "mustSupport": true
             },
             {
@@ -103,7 +108,7 @@
             },
             {
                 "id": "Endpoint.contact",
-                "path": "Endpoint.contact3",
+                "path": "Endpoint.contact",
                 "short": "Contact information for the endpoint.",
                 "definition": "Contact information for the endpoint.",
                 "slicing": {
@@ -139,6 +144,20 @@
                 "short": "an https:// URL for app developers",
                 "definition": "an `https://` URL for app developers",
                 "min": 1,
+                "mustSupport": true
+            },
+            {
+                "id": "Endpoint.payloadType",
+                "path": "Endpoint.payloadType",
+                "max": "1",
+                "patternCodeableConcept": {
+                    "coding": [
+                        {
+                            "system": "http://terminology.hl7.org/CodeSystem/endpoint-payload-type",
+                            "code": "none"
+                        }
+                    ]
+                },
                 "mustSupport": true
             },
             {
