@@ -1,14 +1,8 @@
-### SMART App Launch Examples
+These examples demonstrate various aspects of SMART on FHIR.
 
-These examples demonstrate all the steps involved in the SMART App Launch authorization process.
-
-* [Public client](example-app-launch-public.html)
-* [Confidential client, asymmetric authentication](example-app-launch-asymmetric-auth.html)
-* [Confidential client, symmetric authentication](example-app-launch-symmetric-auth.html)
-
-
-### SMART Backend Services Examples
-
-This example demonstrates all the steps involved in the SMART Backend Services authorization process.
-
+* [Launch a Public client](example-app-launch-public.html)
+* [Launch a Confidential client using asymmetric authentication](example-app-launch-asymmetric-auth.html)
+* [Launch a Confidential client using symmetric authentication](example-app-launch-symmetric-auth.html)
 * [Backend Services](example-backend-services.html)
+* [Id Token](worked_example_id_token.html)
+* [JWS generation for Asymmetric Client Auth](authorization-example-jwks-and-signatures.html)
