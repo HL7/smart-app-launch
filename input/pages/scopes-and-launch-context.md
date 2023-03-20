@@ -56,6 +56,7 @@ based on the underlying permissions of the delegating authority, or may be
 refused access (see guidance at [https://hl7.org/fhir/security.html#AccessDenied](https://hl7.org/fhir/security.html#AccessDenied)).
 
 ### Scopes for requesting FHIR Resources
+<a id="scopes-for-requesting-clinical-data"></a>
 
 SMART on FHIR defines OAuth2 access scopes that correspond directly to FHIR resource types. These scopes impact the access an application may have to FHIR resources (and actions). We define permissions to support the following FHIR REST API interactions:
 
