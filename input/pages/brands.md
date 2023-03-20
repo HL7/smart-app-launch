@@ -25,6 +25,7 @@ The [Patient-Access Brand Examples](example-brands.html) illustrate the model fo
 * A Lab with thousands of locations nationwide
 * Regional health system with independently branded affiliated practices sharing a portal
 * Cancer center affiliated with one provider's portal for adult patients and another provider's portal for pediatric patients
+* Two co-equal brands
 
 ##### Demonstration Brand Editor
 
@@ -89,15 +90,6 @@ Commonly, a single endpoint is associated with a single Brand. But the following
       2. *Different EHR portals advertise Brands that should merge into a single card at display time*. For instance, a hospital transitioning between EHRs offers two distinct patient portals for an interim period and would like to surface both in a single card.
           * To indicate that it's OK for apps to merge a Brand's card into another Brand's card, publishers SHALL populate the same `identifier` in both Brands. In addition, publishers SHOULD include a patient-facing description for any merged Brands. Finally, apps SHOULD merge Brands into a single target Brand's card by displaying the target Brand's title and logo. Each Brand displays a distinct "connect" button with a patient-facing description or name.
 
-
-### Caching and CORS
-
-#### Guidelines For Caching And Managing Cross Origin Resource Sharing (CORS) For FHIR Resources
-
-Publishers SHOULD include a weak `ETag` header in all HTTP responses. Clients SHOULD cache responses by ETag and SHOULD consist of an `If-None-Match` header in all requests to avoid re-fetching data that have not changed. See <https://www.hl7.org/fhir/http.html> for background.
-
-Publishers SHALL support [Cross-Origin Resource Sharing (CORS)](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Access-Control-Allow-Origin) for all GET requests to the artifacts described in this guide.
-
 ### FHIR Profiles
 
 #### Explanation Of FHIR Profiles For Endpoint And Organization Resources
@@ -109,55 +101,7 @@ An app assembles its collection of Brands (potentially as an offline, configurat
 
 which are defined below. For fine-grained organizational management, apps SHALL select the FHIR resources linked from `.well-known/smart-configuration` if they differ from the resources in a vendor-consolidated Brand Bundle.
 
-#### Rules And Best Practices For Creating And Implementing FHIR Profiles
-
-##### Metadata in `.well-known/smart-configuration`
-
-FHIR servers supporting this IG SHOULD include the following property in the SMART configuration JSON response:
-
-* `0..1` `patientAccessBrandBundle` URL of a Brand Bundle. The Bundle entries include any Brand and "peer endpoints" associated with this FHIR endpoint. In addition, FHIR servers SHOULD include any resource servers that an app might also be authorized to access.
-* `0..1` `patientAccessPrimaryBrandIdentifier`: FHIR Identifier for this server's primary Brand within the Bundle. Publishers SHALL populate this property if the referenced Brand Bundle includes more than one Brand. When present, this identifier SHALL consist of a `value` and SHOULD have a `system`. 
-
-The Brand Bundle SHALL include a Brand whose `Organization.identifier` matches the primary Brand identifier from SMART configuration JSON.
-
-The Brand Bundle SHOULD include only the Brands and Endpoints associated with the SMART on FHIR server that links to the Bundle. However, the Brand Bundle MAY have additional Brands or Endpoints (e.g., supporting a publication pattern where endpoints from a given vendor might point to a comprehensive, centralized vendor-managed list). 
-
-###### Example `.well-known/smart-configuration`
-
-```javascript
-{
-  // details at http://hl7.org/fhir/smart-app-launch/conformance.html
-  "patientAccessBrandBundle": "https://example.org/brands.json",
-  "patientAccessPrimaryBrandIdentifier": {
-      "value": "https://example.org"
-  },
-  ...
-}
-```
-
-Dereferencing the `patientAccessBrandBundle` URL above would return a Brand Bundle.
-
-##### Must-Support Definition (`MS`) and Data Absent Reasons
-For this specification a profile element labeled as "must support" means publishers must provide a way for Brands to populate value. For example, marking a Brand's "address" as `0..* MS` means that a publisher needs to give Brands a way to supply multiple addresses, even if some choose not to provide any.
-
-The EHR that publishes a Brand Bundle may not have some required data elements (Brand Website, Portal Website, Portal Name). If the EHR has asked, but a Brand administrator has not supplied a value, the EHR MAY provide a [Data Absent Reason](extension-data-absent-reason.html) of `asked-declined` or `asked-unknown`. The EHR SHALL NOT use other Data Absent Reasons.
-
 #### FHIR Patient Access Endpoint Profile
-
-<!-- * `1..1 MS` `address` FHIR base URL for server supporting patient access
-* `1..1 MS` `connectionType` -- fixed Coding for `hl7-fhir-rest`
-* `0..1` `name` fallback or default name describing the endpoint and the organization offering Patient API access at this endpoint. This value MAY contain technical details like FHIR API Version designations, and apps SHOULD preferentially use names from an associated `PatientAccessBrand`, rather than displaying this value to users.
-* `1..* MS` `contact` website where developers can to configure access to this endpoint
-    * `system` is `url`
-    * `value` is an `https://` URL for app developers
-* `1..1 MS` `managingOrganization` references a [`PatientAccessBrand` Organization](#FHIR-Profile-for-Organization-PatientAccessBrand). This property associates a single "primary brand" with the endpoint. Additional affiliated Brands or parent brands can be associated via "Patient access provided by" links (`Organization.partOf`). EHR vendors SHALL support integrated publication of Organizations in the same JSON Bundle, as well as external customer-managed publication:
-  * `0..1 MS`  `reference` containing a relative URL to a Brand within this Bundle
-   * `0..1 MS` `identifier` with a customer-supplied identifier for the primary Brand
-   * `0..* MS` `extension` with
-       * `url` `http://fhir.org/argonaut/StructureDefinition/brand-bundle`
-       * `valueUrl` URL for a customer-managed Patient Access Brands Bundle that defines the identified Brand and related Brands (the Bundle SHALL contain exactly one entry matching the specified identifier).
-* `extension`
-    * `1..* MS` `http://fhir.org/argonaut/StructureDefinition/endpoint-fhir-version` to convey the endpoint's FHIR Version. This element is a denormalization to help clients focus on supported endpoints. The `valueCode` is any version from http://hl7.org/fhir/valueset-FHIR-version.html. (As of this publication, `4.0.1` is expected for ONC-certified EHRs). -->
 
 {{site.data.structuredefinitions.patient-access-endpoint.description}}
 
@@ -191,14 +135,14 @@ The EHR that publishes a Brand Bundle may not have some required data elements (
 
 ```
  
-#### FHIR Brands Bundle Profile
+#### FHIR Patient Access Brand Bundle Profile
 
 {{site.data.structuredefinitions.patient-access-brands-bundle.description}}
 
 [Formal Views of Profile Contents](StructureDefinition-patient-access-brands-bundle.html)
   
   
-##### Partial View Of Brands Bundle Example
+##### Partial View Of Brand Bundle Example
 
 The following Bundle fragments in the example below illustrate how Brand data is compiled into a Bundle and how each Endpoint references a Brand (in other words, an Organization) within the same Bundle. See the[Patient-Access Brand Examples](example-brands.html) for complete examples. 
 
@@ -233,4 +177,45 @@ The following Bundle fragments in the example below illustrate how Brand data is
 ```
 
 
+
+
+
+#### Rules And Best Practices For Creating And Using Patient Access Profiles
+
+##### Guidelines For Caching And Managing Cross Origin Resource Sharing (CORS) For FHIR Resources
+
+Publishers SHOULD include a weak `ETag` header in all HTTP responses. Clients SHOULD cache responses by ETag and SHOULD consist of an `If-None-Match` header in all requests to avoid re-fetching data that have not changed. See <https://www.hl7.org/fhir/http.html> for background.
+
+Publishers SHALL support [Cross-Origin Resource Sharing (CORS)](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Access-Control-Allow-Origin) for all GET requests to the artifacts described in this guide.
+
+##### Metadata in `.well-known/smart-configuration`
+
+FHIR servers supporting this IG SHOULD include the following property in the SMART configuration JSON response:
+
+* `0..1` `patientAccessBrandBundle` URL of a Brand Bundle. The Bundle entries include any Brand and "peer endpoints" associated with this FHIR endpoint. In addition, FHIR servers SHOULD include any resource servers that an app might also be authorized to access.
+* `0..1` `patientAccessPrimaryBrandIdentifier`: FHIR Identifier for this server's primary Brand within the Bundle. Publishers SHALL populate this property if the referenced Brand Bundle includes more than one Brand. When present, this identifier SHALL consist of a `value` and SHOULD have a `system`. 
+
+The Brand Bundle SHALL include a Brand whose `Organization.identifier` matches the primary Brand identifier from SMART configuration JSON.
+
+The Brand Bundle SHOULD include only the Brands and Endpoints associated with the SMART on FHIR server that links to the Bundle. However, the Brand Bundle MAY have additional Brands or Endpoints (e.g., supporting a publication pattern where endpoints from a given vendor might point to a comprehensive, centralized vendor-managed list). 
+
+###### Example `.well-known/smart-configuration`
+
+```javascript
+{
+  // details at http://hl7.org/fhir/smart-app-launch/conformance.html
+  "patientAccessBrandBundle": "https://example.org/brands.json",
+  "patientAccessPrimaryBrandIdentifier": {
+      "value": "https://example.org"
+  },
+  ...
+}
+```
+
+Dereferencing the `patientAccessBrandBundle` URL above would return a Brand Bundle.
+
+##### Must-Support Definition (`MS`) and Data Absent Reasons
+For this specification a profile element labeled as "must support" means publishers must provide a way for Brands to populate value. For example, marking a Brand's "address" as `0..* MS` means that a publisher needs to give Brands a way to supply multiple addresses, even if some choose not to provide any.
+
+The EHR that publishes a Brand Bundle may not have some required data elements (Brand Website, Portal Website, Portal Name). If the EHR has asked, but a Brand administrator has not supplied a value, the EHR MAY provide a [Data Absent Reason](extension-data-absent-reason.html) of `asked-declined` or `asked-unknown`. The EHR SHALL NOT use other Data Absent Reasons.
 

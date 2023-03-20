@@ -1,9 +1,9 @@
 resourceType: StructureDefinition
-id: patient-access-endpoint-brand-bundle
-url: 'http://hl7.org/fhir/smart-app-launch/StructureDefinition/patient-access-endpoint-brand-bundle'
+id: brand-bundle
+url: 'http://hl7.org/fhir/smart-app-launch/StructureDefinition/brand-bundle'
 
-name: PatientAccessEndpointBrandBundle
-title: Patient Access Endpoint Brand Bundle Extension
+name: BrandBundle
+title: Brand Bundle Extension
 status: active
 date: '2023-03-03'
 description: >-
@@ -34,7 +34,7 @@ differential:
     - id: Extension.url
       path: Extension.url
       fixedUri: >-
-        http://hl7.org/fhir/smart-app-launch/StructureDefinition/patient-access-endpoint-brand-bundle
+        http://hl7.org/fhir/smart-app-launch/StructureDefinition/brand-bundle
     - id: 'Extension.value[x]'
       path: 'Extension.value[x]'
       min: 1

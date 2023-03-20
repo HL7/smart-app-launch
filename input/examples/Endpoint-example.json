@@ -18,7 +18,7 @@
     },
     "extension": [
         {
-            "url": "http://hl7.org/fhir/smart-app-launch/StructureDefinition/patient-access-endpoint-fhir-version",
+            "url": "http://hl7.org/fhir/smart-app-launch/StructureDefinition/endpoint-fhir-version",
             "valueCode": "4.0.1"
         }
     ],
@@ -52,7 +52,7 @@
         },
         "extension": [
             {
-                "url": "http://hl7.org/fhir/smart-app-launch/StructureDefinition/patient-access-endpoint-brand-bundle",
+                "url": "http://hl7.org/fhir/smart-app-launch/StructureDefinition/brand-bundle",
                 "valueUrl": "https://example.org/brands.json"
             }
         ]

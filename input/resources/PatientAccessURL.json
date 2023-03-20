@@ -1,0 +1,54 @@
+{
+    "resourceType": "StructureDefinition",
+    "id": "patient-access-url",
+    "url": "http://hl7.org/fhir/smart-app-launch/StructureDefinition/patient-access-url",
+    "name": "PatientAccessURL",
+    "title": "Patient Access URL Extension",
+    "description": "Indicates the location of the patient portal associated with this Brand - i.e., a URL where patients can go to see their data and manage access. ",
+    "status": "active",
+    "date": "2023-03-03",
+    "fhirVersion": "4.0.1",
+    "kind": "complex-type",
+    "abstract": false,
+    "context": [
+        {
+            "type": "element",
+            "expression": "Organization"
+        }
+    ],
+    "type": "Extension",
+    "baseDefinition": "http://hl7.org/fhir/StructureDefinition/Extension",
+    "derivation": "constraint",
+    "differential": {
+        "element": [
+            {
+                "id": "Extension",
+                "path": "Extension",
+                "short": "Portal URL",
+                "definition": "Indicates the location of the patient portal associated with this Brand - i.e., a URL where patients can go to see their data and manage access. ",
+                "min": 0,
+                "max": "*"
+            },
+            {
+                "id": "Extension.extension",
+                "path": "Extension.extension",
+                "max": "0"
+            },
+            {
+                "id": "Extension.url",
+                "path": "Extension.url",
+                "fixedUri": "http://hl7.org/fhir/smart-app-launch/StructureDefinition/patient-access-url"
+            },
+            {
+                "id": "Extension.value[x]",
+                "path": "Extension.value[x]",
+                "min": 1,
+                "type": [
+                    {
+                        "code": "url"
+                    }
+                ]
+            }
+        ]
+    }
+}

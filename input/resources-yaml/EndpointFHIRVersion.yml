@@ -1,11 +1,11 @@
 resourceType: StructureDefinition
-id: patient-access-endpoint-fhir-version
-url: 'http://hl7.org/fhir/smart-app-launch/StructureDefinition/patient-access-endpoint-fhir-version'
+id: endpoint-fhir-version
+url: 'http://hl7.org/fhir/smart-app-launch/StructureDefinition/endpoint-fhir-version'
 
-name: PatientAccessEndpointFHIRVersion
-title: Patient Access Endpoint FHIR Version Extension
+name: EndpointFHIRVersion
+title: Endpoint FHIR Version Extension
 description: >-
-  The Endpoint's FHIR Version. This Extension is a denormalization to help clients focus on supported endpoints. (As of this publication, 4.0.1 is expected for ONC-certified EHRs). 
+  The Patient Access Endpoint's FHIR Version. This Extension is a denormalization to help clients focus on supported endpoints. (As of this publication, 4.0.1 is expected for ONC-certified EHRs). 
 
 status: active
 date: '2023-03-03'
@@ -36,7 +36,7 @@ differential:
     - id: Extension.url
       path: Extension.url
       fixedUri: >-
-        http://hl7.org/fhir/smart-app-launch/StructureDefinition/patient-access-endpoint-fhir-version
+        http://hl7.org/fhir/smart-app-launch/StructureDefinition/endpoint-fhir-version
     - id: 'Extension.value[x]'
       path: 'Extension.value[x]'
       min: 1

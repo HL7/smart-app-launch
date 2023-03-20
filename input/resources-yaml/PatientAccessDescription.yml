@@ -1,9 +1,9 @@
 resourceType: StructureDefinition
-id: patient-access-brand-portal-description
-url: 'http://hl7.org/fhir/smart-app-launch/StructureDefinition/patient-access-brand-portal-description'
+id: patient-access-description
+url: 'http://hl7.org/fhir/smart-app-launch/StructureDefinition/patient-access-description'
 
-name: PatientAccessBrandPortalDescription
-title: Patient Access Brand Portal Description Extension
+name: PatientAccessDescription
+title: Patient Access Description Extension
 description: >-
    Explains, if necessary (in patient-friendly language), the subset of patients eligible to connect and the data available. This capability supports (for example) a cancer center that uses one EHR for pediatric patients and another for adult patients. In this scenario, each EHR would publish a different `PatientAccessBrand`; apps would display the description to disambiguate the user's selection. For instance, one Brand might indicate "Access records for childhood cancer care" and another might indicate "Access records for adult cancer care".
 status: active
@@ -35,7 +35,7 @@ differential:
     - id: Extension.url
       path: Extension.url
       fixedUri: >-
-        http://hl7.org/fhir/smart-app-launch/StructureDefinition/patient-access-brand-portal-description
+        http://hl7.org/fhir/smart-app-launch/StructureDefinition/patient-access-description
       
         
     - id: 'Extension.value[x]'

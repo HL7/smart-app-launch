@@ -1,9 +1,9 @@
 resourceType: CodeSystem
-id: patient-access-brand-category
-url: 'http://hl7.org/fhir/smart-app-launch/CodeSystem/patient-access-brand-category'
+id: patient-access-category
+url: 'http://hl7.org/fhir/smart-app-launch/CodeSystem/patient-access-category'
 
-name: PatientAccessBrandCategoryCodeSystem
-title: Patient Access Brand Category Code System
+name: PatientAccessCategoryCodeSystem
+title: Patient Access Category Code System
 status: active
 experimental: false
 date: '2023-03-05T22:40:04-08:00'

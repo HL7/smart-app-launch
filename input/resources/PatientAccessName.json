@@ -1,0 +1,54 @@
+{
+    "resourceType": "StructureDefinition",
+    "id": "patient-access-name",
+    "url": "http://hl7.org/fhir/smart-app-launch/StructureDefinition/patient-access-name",
+    "name": "PatientAccessName",
+    "title": "Patient Access Name Extension",
+    "description": "Indicates the name by which patients know the portal (for example, \u201cMyChildrens\u201d or \u201cPatient Gateway\u201d). ",
+    "status": "active",
+    "date": "2023-03-03",
+    "fhirVersion": "4.0.1",
+    "kind": "complex-type",
+    "abstract": false,
+    "context": [
+        {
+            "type": "element",
+            "expression": "Organization"
+        }
+    ],
+    "type": "Extension",
+    "baseDefinition": "http://hl7.org/fhir/StructureDefinition/Extension",
+    "derivation": "constraint",
+    "differential": {
+        "element": [
+            {
+                "id": "Extension",
+                "path": "Extension",
+                "short": "Portal Name",
+                "definition": "Indicates the name by which patients know the portal (for example, \u201cMyChildrens\u201d or \u201cPatient Gateway\u201d). ",
+                "min": 0,
+                "max": "*"
+            },
+            {
+                "id": "Extension.extension",
+                "path": "Extension.extension",
+                "max": "0"
+            },
+            {
+                "id": "Extension.url",
+                "path": "Extension.url",
+                "fixedUri": "http://hl7.org/fhir/smart-app-launch/StructureDefinition/patient-access-name"
+            },
+            {
+                "id": "Extension.value[x]",
+                "path": "Extension.value[x]",
+                "min": 1,
+                "type": [
+                    {
+                        "code": "string"
+                    }
+                ]
+            }
+        ]
+    }
+}

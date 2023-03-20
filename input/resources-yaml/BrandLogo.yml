@@ -1,9 +1,8 @@
 resourceType: StructureDefinition
-id: patient-access-brand-logo
-url: 'http://hl7.org/fhir/smart-app-launch/StructureDefinition/patient-access-brand-logo'
-
-name: PatientAccessBrandLogo
-title: Patient Access Brand Logo Extension
+id: brand-logo
+url: 'http://hl7.org/fhir/smart-app-launch/StructureDefinition/brand-logo'
+name: BrandLogo
+title: Brand Logo Extension
 description: >-
    Patient access brand logo. SHOULD be optimized for display as a 1” square and formatted as SVG or 1024x1024 pixel PNG with transparent background. Multiple logos may be supplied. The URL can be an absolute URL with the https:// schema, or a Data URL with the data: schema that directly embeds content.
 
@@ -36,7 +35,7 @@ differential:
     - id: Extension.url
       path: Extension.url
       fixedUri: >-
-        http://hl7.org/fhir/smart-app-launch/StructureDefinition/patient-access-brand-logo
+        http://hl7.org/fhir/smart-app-launch/StructureDefinition/brand-logo
     - id: 'Extension.value[x]'
       path: 'Extension.value[x]'
       min: 1

@@ -4,10 +4,10 @@ id: patient-access-brands-bundle
 url: >-
   http://hl7.org/fhir/smart-app-launch/StructureDefinition/patient-access-brands-bundle
 
-name: PatientAccessBrandsBundle
-title: Patient Access Brands Bundle Profile
+name: PatientAccessBrandBundle
+title: Patient Access Brand Bundle Profile
 status: active
-date: '2023-03-03'
+date: '2023-03-19'
 
 description: |
    JSON FHIR Bundle (type: `collection`) of Endpoint and related resources is hosted at a stable, publicly available, publicly disclosed location. Bundle Entries include:

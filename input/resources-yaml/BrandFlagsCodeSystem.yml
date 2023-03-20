@@ -1,9 +1,9 @@
 resourceType: CodeSystem
-id: patient-access-brand-flags
-url: 'http://hl7.org/fhir/smart-app-launch/CodeSystem/patient-access-brand-flags'
+id: brand-flags
+url: 'http://hl7.org/fhir/smart-app-launch/CodeSystem/brand-flags'
 
-name: PatientAccessBrandFlagsCodeSystem
-title: Patient Access Brand Flags Code System
+name: BrandFlagsCodeSystem
+title: Brand Flags Code System
 status: active
 experimental: false
 date: '2023-03-05T22:40:04-08:00'

@@ -1,11 +1,11 @@
 resourceType: StructureDefinition
-id: patient-access-brand-portal-name
-url: 'http://hl7.org/fhir/smart-app-launch/StructureDefinition/patient-access-brand-portal-name'
+id: brand-logo-use-agreement
+url: 'http://hl7.org/fhir/smart-app-launch/StructureDefinition/brand-logo-use-agreement'
 
-name: PatientAccessBrandPortalName
-title: Patient Access Brand Portal Name Extension
+name: BrandLogoUseAgreement
+title: Brand Logo Use Agreement Extension
 description: >-
-   Indicates the name by which patients know the portal (for example, “MyChildrens” or “Patient Gateway”). 
+   Patient access brand logo use agreement. It includes a link to terms for logo use by patient access apps.
 
 status: active
 date: '2023-03-03'
@@ -25,9 +25,9 @@ differential:
     - id: Extension
       path: Extension
       short: >-
-        Portal Name
-      definition: >-
-        Indicates the name by which patients know the portal (for example, “MyChildrens” or “Patient Gateway”). 
+         Logo Use Agreement
+      definition: >-        
+          Patient access brand logo use agreement. It includes a link to terms for logo use by patient access apps.
       min: 0
       max: '*'
     - id: Extension.extension
@@ -36,11 +36,11 @@ differential:
     - id: Extension.url
       path: Extension.url
       fixedUri: >-
-        http://hl7.org/fhir/smart-app-launch/StructureDefinition/patient-access-brand-portal-name
+        http://hl7.org/fhir/smart-app-launch/StructureDefinition/brand-logo-use-agreement
         
     - id: 'Extension.value[x]'
       path: 'Extension.value[x]'
       min: 1
       type:
-        - code: string
+        - code: url
 

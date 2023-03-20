@@ -1,0 +1,54 @@
+{
+    "resourceType": "StructureDefinition",
+    "id": "brand-bundle",
+    "url": "http://hl7.org/fhir/smart-app-launch/StructureDefinition/brand-bundle",
+    "name": "BrandBundle",
+    "title": "Brand Bundle Extension",
+    "status": "active",
+    "date": "2023-03-03",
+    "description": "Extension on Endpoint.managingOrganization that defines the URL for a customer-managed Patient Access Brands Bundle that defines the identified Brand and related Brands (the Bundle SHALL contain exactly one entry matching the specified identifier).",
+    "fhirVersion": "4.0.1",
+    "kind": "complex-type",
+    "abstract": false,
+    "context": [
+        {
+            "type": "element",
+            "expression": "Endpoint.managingOrganization"
+        }
+    ],
+    "type": "Extension",
+    "baseDefinition": "http://hl7.org/fhir/StructureDefinition/Extension",
+    "derivation": "constraint",
+    "differential": {
+        "element": [
+            {
+                "id": "Extension",
+                "path": "Extension",
+                "short": "URL that defines Patient Access Brands Bundle",
+                "definition": "URL for a customer-managed Patient Access Brands Bundle that defines the identified Brand and related Brands (the Bundle SHALL contain exactly one entry matching the specified identifier). ",
+                "min": 0,
+                "max": "*"
+            },
+            {
+                "id": "Extension.extension",
+                "path": "Extension.extension",
+                "max": "0"
+            },
+            {
+                "id": "Extension.url",
+                "path": "Extension.url",
+                "fixedUri": "http://hl7.org/fhir/smart-app-launch/StructureDefinition/brand-bundle"
+            },
+            {
+                "id": "Extension.value[x]",
+                "path": "Extension.value[x]",
+                "min": 1,
+                "type": [
+                    {
+                        "code": "url"
+                    }
+                ]
+            }
+        ]
+    }
+}

@@ -3,7 +3,7 @@ id: patient-access-brand
 url: 'http://hl7.org/fhir/smart-app-launch/StructureDefinition/patient-access-brand'
 
 name: PatientAccessBrand
-title: Patient Access Brand (Organization)
+title: Patient Access Brand (Organization)Profile
 status: active
 date: '2023-03-05T22:40:04-08:00'
 
@@ -16,11 +16,11 @@ description: |
           * `url` is `http://fhir.org/argonaut/StructureDefinition/brand-logo`
           * `valueUrl` SHOULD be optimized for display as a 1" square and formatted as SVG or 1024x1024 pixel PNG with transparent background. Multiple logos may be supplied. The URL can be an absolute URL  with the `https://` schema, or a [Data URL](https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/Data_URLs) with the `data:` schema that directly embeds content.
       * `0..1 MS` Logo use agreement
-          *  `url` is `http://fhir.org/argonaut/StructureDefinition/brand-logo-use-agreement`.
+          *  `url` is `http://fhir.org/argonaut/StructureDefinition/brand-logo-use-agreement-agreement`.
           *  `valueUrl` MAY include a link to terms for logo use by patient access apps.
       * `0..*` Brand flags
           * `url` is `http://fhir.org/argonaut/StructureDefinition/brand-flags`.
-        * `valueCode` of `hidden` allows systems to designate Organizations as part of a hierarchy without necessarily being shown in a UX card or tile. This flag is intended to help app developers understand and debug the organizational relationships that underpin published Brands. Marking Brands `hidden` can also be used to associate many affiliated organizations with a parent Brand (e.g., each with its street address) without apps displaying redundant information to users.
+        * This flag is intended to help app developers understand and debug the organizational relationships that underpin published Brands. For example, a `valueCode` of `hidden` allows systems to designate Organizations as part of a hierarchy without necessarily being shown in a UX card or tile.  Marking Brands `hidden` can also be used to associate many affiliated organizations with a parent Brand (e.g., each with its street address) without apps displaying redundant information to users.
   * `extension`s about the Brand's **Patient Access** ("portal"). *Note: the extensions in this set represent the "Patient Access Details" described in the conceptual model above. These extensions are "**Inheritable**", meaning systems MAY be omit their values whenever correct values are inferrable by following the "Patient access provided by" links (`Organization.partOf`).*
       * `1..1 MS` Patient access name ("portal name")
           * `url` is `http://fhir.org/argonaut/StructureDefinition/patient-access-name`.
@@ -95,7 +95,7 @@ differential:
         - code: Extension
           profile:
             - >-
-              http://hl7.org/fhir/smart-app-launch/StructureDefinition/patient-access-brand-logo
+              http://hl7.org/fhir/smart-app-launch/StructureDefinition/brand-logo
       mustSupport: true
 
 
@@ -110,7 +110,7 @@ differential:
         - code: Extension
           profile:
             - >-
-              http://hl7.org/fhir/smart-app-launch/StructureDefinition/patient-access-brand-logo-use
+              http://hl7.org/fhir/smart-app-launch/StructureDefinition/brand-logo-use-agreement
       mustSupport: true
 
     - id: 'Organization.extension:flags'
@@ -124,7 +124,7 @@ differential:
         - code: Extension
           profile:
             - >-
-              http://hl7.org/fhir/smart-app-launch/StructureDefinition/patient-access-brand-flags
+              http://hl7.org/fhir/smart-app-launch/StructureDefinition/brand-flags
       mustSupport: true
 
     - id: 'Organization.extension:portalName'
@@ -138,7 +138,7 @@ differential:
         - code: Extension
           profile:
             - >-
-              http://hl7.org/fhir/smart-app-launch/StructureDefinition/patient-access-brand-portal-name
+              http://hl7.org/fhir/smart-app-launch/StructureDefinition/patient-access-name
       mustSupport: true
 
 
@@ -153,7 +153,7 @@ differential:
         - code: Extension
           profile:
             - >-
-              http://hl7.org/fhir/smart-app-launch/StructureDefinition/patient-access-brand-portal-url
+              http://hl7.org/fhir/smart-app-launch/StructureDefinition/patient-access-url
       mustSupport: true
 
     - id: 'Organization.extension:portalDescription'
@@ -167,7 +167,7 @@ differential:
         - code: Extension
           profile:
             - >-
-              http://hl7.org/fhir/smart-app-launch/StructureDefinition/patient-access-brand-portal-description
+              http://hl7.org/fhir/smart-app-launch/StructureDefinition/patient-access-description
       mustSupport: true
 
 
@@ -197,7 +197,7 @@ differential:
         - code: Extension
           profile:
             - >-
-              http://hl7.org/fhir/smart-app-launch/StructureDefinition/patient-access-brand-portal-logo-use
+              http://hl7.org/fhir/smart-app-launch/StructureDefinition/patient-access-logo-use-agreement
       mustSupport: true
 
     - id: Organization.identifier
@@ -224,7 +224,7 @@ differential:
       binding:
         strength: extensible
         valueSet: >-
-          http://hl7.org/fhir/smart-app-launch/ValueSet/patient-access-brand-category
+          http://hl7.org/fhir/smart-app-launch/ValueSet/patient-access-category
           
     - id: Organization.name
       path: Organization.name
