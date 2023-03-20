@@ -3,10 +3,7 @@
   "id": "example2",
   "type": "collection",
   "meta": {
-    "lastUpdated": "2023-03-08T20:07:57Z",
-    "profile": [
-      "http://hl7.org/fhir/smart-app-launch/StructureDefinition/brand-bundle"
-    ]
+    "lastUpdated": "2023-03-08T20:07:57Z"
   },
   "entry": [
     {
