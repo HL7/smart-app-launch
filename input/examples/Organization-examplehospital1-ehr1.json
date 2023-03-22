@@ -1,0 +1,60 @@
+{
+  "resourceType": "Organization",
+  "id": "examplehospital1-ehr1",
+  "extension": [
+    {
+      "url": "http://hl7.org/fhir/smart-app-launch/StructureDefinition/brand-logo",
+      "valueUrl": "https://example.org/examplehospital1-ehr1/themes/custom/logo.svg"
+    },
+    {
+      "url": "http://hl7.org/fhir/smart-app-launch/StructureDefinition/patient-access-name",
+      "valueString": "ExampleHospital1 Patient Gateway"
+    },
+    {
+      "url": "http://hl7.org/fhir/smart-app-launch/StructureDefinition/patient-access-url",
+      "valueUrl": "https://patientgateway.examplehospital1-ehr1.org"
+    }
+  ],
+  "identifier": [
+    {
+      "system": "urn:ietf:rfc:3986",
+      "value": "https://examplehospital1.org"
+    }
+  ],
+  "active": true,
+  "type": [
+    {
+      "coding": [
+        {
+          "system": "http://hl7.org/fhir/smart-app-launch/CodeSystem/patient-access-category",
+          "code": "clinical",
+          "display": "Clinical Care provider"
+        }
+      ]
+    }
+  ],
+  "name": "ExampleHospital1",
+  "alias": [
+    "GoodHealth Healthcare"
+  ],
+  "telecom": [
+    {
+      "system": "url",
+      "value": "https://www.example.org/examplehospital1.org"
+    }
+  ],
+  "address": [
+    {
+      "city": "Boston",
+      "state": "MA"
+    },
+    {
+      "city": "Newton",
+      "state": "MA"
+    },
+    {
+      "city": "Waltham",
+      "state": "MA"
+    }
+  ]
+}

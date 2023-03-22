@@ -90,6 +90,8 @@ parameters:
     - 'Task/*'
 =======
     - '*/*'
+  # validation:
+  #   - check-aggregation
   path-output: docs #output #docs
 >>>>>>> fd01c70 (commit brands pages to smart)
 # ╭────────────────────────────────────────────menu.xml────────────────────────────────────────────╮

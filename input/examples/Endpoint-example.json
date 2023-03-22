@@ -37,7 +37,7 @@
     },
     "extension": [
       {
-        "url": "http://hl7.org/fhir/smart-app-launch/StructureDefinition/brand-bundle",
+        "url": "http://hl7.org/fhir/smart-app-launch/StructureDefinition/brands-bundle",
         "valueUrl": "https://example.org/brands.json"
       }
     ]

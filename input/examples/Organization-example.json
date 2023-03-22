@@ -3,35 +3,35 @@
   "id": "example",
   "extension": [
     {
-      "url": "http://hl7.org/fhir/smart-app-launch/StructureDefinition/patient-access-brand-logo",
+      "url": "http://hl7.org/fhir/smart-app-launch/StructureDefinition/brand-logo",
       "valueUrl": "https://example.org/logo/main.1024x102.png"
     },
     {
-      "url": "http://hl7.org/fhir/smart-app-launch/StructureDefinition/patient-access-brand-logo-use",
+      "url": "http://hl7.org/fhir/smart-app-launch/StructureDefinition/brand-logo-use-agreement",
       "valueUrl": "https://example.org/logo/use-agreement.html"
     },
     {
-      "url": "http://hl7.org/fhir/smart-app-launch/StructureDefinition/patient-access-brand-flags",
+      "url": "http://hl7.org/fhir/smart-app-launch/StructureDefinition/brand-flags",
       "valueCode": "hidden"
     },
     {
-      "url": "http://hl7.org/fhir/smart-app-launch/StructureDefinition/patient-access-brand-portal-name",
+      "url": "http://hl7.org/fhir/smart-app-launch/StructureDefinition/patient-access-name",
       "valueString": "Example Health Portal"
     },
     {
-      "url": "http://hl7.org/fhir/smart-app-launch/StructureDefinition/patient-access-brand-portal-url",
+      "url": "http://hl7.org/fhir/smart-app-launch/StructureDefinition/patient-access-url",
       "valueUrl": "https://example.org/myportal"
     },
     {
-      "url": "http://hl7.org/fhir/smart-app-launch/StructureDefinition/patient-access-brand-portal-description",
+      "url": "http://hl7.org/fhir/smart-app-launch/StructureDefinition/patient-access-description",
       "valueMarkdown": "This is the description of the portal. It can be multiple lines.\nIt can also be **markdown**.\n"
     },
     {
-      "url": "http://hl7.org/fhir/smart-app-launch/StructureDefinition/patient-access-brand-portal-logo",
+      "url": "http://hl7.org/fhir/smart-app-launch/StructureDefinition/patient-access-logo",
       "valueUrl": "https://example.org/portal-logo/main.1024x102.png"
     },
     {
-      "url": "http://hl7.org/fhir/smart-app-launch/StructureDefinition/patient-access-brand-portal-logo-use",
+      "url": "http://hl7.org/fhir/smart-app-launch/StructureDefinition/patient-access-logo-use-agreement",
       "valueUrl": "https://example.org/portal-logo/use-agreement.html"
     }
   ],
@@ -46,7 +46,7 @@
     {
       "coding": [
         {
-          "system": "http://hl7.org/fhir/smart-app-launch/CodeSystem/patient-access-brand-category",
+          "system": "http://hl7.org/fhir/smart-app-launch/CodeSystem/patient-access-category",
           "code": "clinical",
           "display": "Clinical Care provider"
         }

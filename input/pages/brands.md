@@ -144,7 +144,7 @@ which are defined below. For fine-grained organizational management, apps SHALL 
   
 ##### Partial View Of Brand Bundle Example
 
-The following Bundle fragments in the example below illustrate how Brand data is compiled into a Bundle and how each Endpoint references a Brand (in other words, an Organization) within the same Bundle. See the[Patient-Access Brand Examples](example-brands.html) for complete examples. 
+The following Bundle fragments in the example below illustrate how Brand data is compiled into a Bundle and how each Endpoint's `managingOrganization` element references a Brand (in other words, an Organization) within the same Bundle. See the [Patient-Access Brand Examples](example-brands.html) for complete examples. 
 
 ```javascript
 {
@@ -217,5 +217,5 @@ Dereferencing the `patientAccessBrandBundle` URL above would return a Brand Bund
 ##### Must-Support Definition (`MS`) and Data Absent Reasons
 For this specification a profile element labeled as "must support" means publishers must provide a way for Brands to populate value. For example, marking a Brand's "address" as `0..* MS` means that a publisher needs to give Brands a way to supply multiple addresses, even if some choose not to provide any.
 
-The EHR that publishes a Brand Bundle may not have some required data elements (Brand Website, Portal Website, Portal Name). If the EHR has asked, but a Brand administrator has not supplied a value, the EHR MAY provide a [Data Absent Reason](extension-data-absent-reason.html) of `asked-declined` or `asked-unknown`. The EHR SHALL NOT use other Data Absent Reasons.
+The EHR that publishes a Brand Bundle may not have some required data elements (Brand Website, Portal Website, Portal Name). If the EHR has asked, but a Brand administrator has not supplied a value, the EHR MAY provide a [Data Absent Reason](http://hl7.org/fhir/StructureDefinition/data-absent-reason) of `asked-declined` or `asked-unknown`. The EHR SHALL NOT use other Data Absent Reasons.
 

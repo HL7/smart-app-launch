@@ -4,7 +4,7 @@
     "url": "http://hl7.org/fhir/smart-app-launch/StructureDefinition/patient-access-name",
     "name": "PatientAccessName",
     "title": "Patient Access Name Extension",
-    "description": "Indicates the name by which patients know the portal (for example, \u201cMyChildrens\u201d or \u201cPatient Gateway\u201d). ",
+    "description": "Indicates the name by which patients know the portal (for example, \u201cMyChildrens\u201d or \u201cPatient Gateway\u201d).",
     "status": "active",
     "date": "2023-03-03",
     "fhirVersion": "4.0.1",
@@ -25,7 +25,7 @@
                 "id": "Extension",
                 "path": "Extension",
                 "short": "Portal Name",
-                "definition": "Indicates the name by which patients know the portal (for example, \u201cMyChildrens\u201d or \u201cPatient Gateway\u201d). ",
+                "definition": "Indicates the name by which patients know the portal (for example, \u201cMyChildrens\u201d or \u201cPatient Gateway\u201d).",
                 "min": 0,
                 "max": "*"
             },

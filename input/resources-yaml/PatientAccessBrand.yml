@@ -7,7 +7,7 @@ title: Patient Access Brand (Organization)Profile
 status: active
 date: '2023-03-05T22:40:04-08:00'
 
-description: |
+description: |-
   Profile on Organization to communicate the branding associated with a Patient
   Access API endpoint.
 
@@ -51,9 +51,6 @@ description: |
     * Street address, city, state, zip code
     * zip code alone
   * `0..1 MS` `partOf` "Patient access provided by", to convey that an affiliated Brand hosts this Brand's API technology and patient portal. The hierarchy of "access provided by" links SHALL NOT exceed a depth of two (i.e., a Brand either includes portal details or links directly to a Brand that provides them).
-
-
-
 
 fhirVersion: 4.0.1
 
@@ -182,7 +179,7 @@ differential:
         - code: Extension
           profile:
             - >-
-              http://hl7.org/fhir/smart-app-launch/StructureDefinition/patient-access-brand-portal-logo
+              http://hl7.org/fhir/smart-app-launch/StructureDefinition/patient-access-logo
       mustSupport: true
 
 

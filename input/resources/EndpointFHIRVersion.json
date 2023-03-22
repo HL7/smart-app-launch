@@ -4,7 +4,7 @@
     "url": "http://hl7.org/fhir/smart-app-launch/StructureDefinition/endpoint-fhir-version",
     "name": "EndpointFHIRVersion",
     "title": "Endpoint FHIR Version Extension",
-    "description": "The Patient Access Endpoint's FHIR Version. This Extension is a denormalization to help clients focus on supported endpoints. (As of this publication, 4.0.1 is expected for ONC-certified EHRs). ",
+    "description": "The Patient Access Endpoint's FHIR Version. This Extension is a denormalization to help clients focus on supported endpoints. (As of this publication, 4.0.1 is expected for ONC-certified EHRs).",
     "status": "active",
     "date": "2023-03-03",
     "fhirVersion": "4.0.1",
@@ -25,7 +25,7 @@
                 "id": "Extension",
                 "path": "Extension",
                 "short": "The Endpoint's FHIR Version\"",
-                "definition": "The Endpoint's FHIR Version. This Extension is a denormalization to help clients focus on supported endpoints. (As of this publication, 4.0.1 is expected for ONC-certified EHRs). ",
+                "definition": "The Endpoint's FHIR Version. This Extension is a denormalization to help clients focus on supported endpoints. (As of this publication, 4.0.1 is expected for ONC-certified EHRs).",
                 "min": 0,
                 "max": "*"
             },

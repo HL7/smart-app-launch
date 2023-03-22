@@ -9,10 +9,10 @@ title: Patient Access Brand Bundle Profile
 status: active
 date: '2023-03-19'
 
-description: |
+description: |-
    JSON FHIR Bundle (type: `collection`) of Endpoint and related resources is hosted at a stable, publicly available, publicly disclosed location. Bundle Entries include:
    * [Patient Access Endpoint Profile](StructureDefinition-patient-access-endpoint.html) resources.
-   * [Patient Access Brand (Organization)](StructureDefinition-PatientAccessBrand.html) resources. **Vendors SHALL publish at least a "primary brand" for each endpoint and SHOULD support the publication of a more detailed Brand hierarchy.TODO: does this need an invariant?**
+   * [Patient Access Brand (Organization)](StructureDefinition-patient-access-brand.html) resources. Vendors SHALL publish at least a "primary brand" for each endpoint and SHOULD support the publication of a more detailed Brand hierarchy.
   
    Brand Bundles SHALL populate `Bundle.meta.lastUpdated` to advertise the timestamp of the last change to the contents. In addition, Brand Bundles SHOULD populate `Bundle.entry.resource.meta.lastUpdated` with a more detailed timestamp if the system tracks updates per Resource.
 

@@ -6,7 +6,7 @@ meta:
   - url: http://hl7.org/fhir/StructureDefinition/instance-name
     valueString: Endpoint Example
   - url: http://hl7.org/fhir/StructureDefinition/instance-description
-    valueMarkdown: This is an Endpoint example for the **Patient Access Endpoint Profile**.
+    valueMarkdown: This is an Endpoint example for the *Patient Access Endpoint Profile*.
   profile:
         - 'http://hl7.org/fhir/smart-app-launch/StructureDefinition/patient-access-endpoint'
 extension:
@@ -37,5 +37,5 @@ managingOrganization:
         value: e625fd34e7c456dc
     extension:
         - 
-            url: 'http://hl7.org/fhir/smart-app-launch/StructureDefinition/brand-bundle'
+            url: 'http://hl7.org/fhir/smart-app-launch/StructureDefinition/brands-bundle'
             valueUrl: 'https://example.org/brands.json'

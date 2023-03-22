@@ -7,80 +7,101 @@
   },
   "entry": [
     {
-      "fullUrl": "https://epic.example.org/Endpoint/unity-point-r4",
+      "fullUrl": "https://ehr.example.org/Endpoint/examplehealth-r4",
       "resource": {
         "resourceType": "Endpoint",
-        "id": "unity-point-r4",
-        "address": "https://epicfhir.examplehealth.org/ProdFHIR/api/FHIR/R4",
-        "name": "FHIR R4 Endpoint for ExampleHealth",
-        "managingOrganization": {
-          "reference": "Organization/unity-point"
-        },
+        "id": "examplehealth",
         "extension": [
           {
-            "url": "http://fhir.org/argonaut/StructureDefinition/endpoint-fhir-version",
+            "url": "http://hl7.org/fhir/smart-app-launch/StructureDefinition/endpoint-fhir-version",
             "valueCode": "4.0.1"
-          },
+          }
+        ],
+        "status": "active",
+        "address": "https://ehrfhir.examplehealth.org/ProdFHIR/api/FHIR/R4",
+        "name": "FHIR R4 Endpoint for ExampleHealth",
+        "contact": [
           {
-            "url": "http://fhir.org/argonaut/StructureDefinition/patient-access-developer-url",
-            "valueUrl": "https://open.epic.com"
+            "system": "url",
+            "value": "https://open.ehr.com"
           }
         ],
         "connectionType": {
           "system": "http://terminology.hl7.org/CodeSystem/endpoint-connection-type",
           "code": "hl7-fhir-rest"
+        },
+        "payloadType": [
+          {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/endpoint-payload-type",
+                "code": "none"
+              }
+            ]
+          }
+        ],
+        "managingOrganization": {
+          "reference": "Organization/examplehealth"
         }
       }
     },
     {
-      "fullUrl": "https://epic.example.org/Endpoint/unity-point-r2",
+      "fullUrl": "https://ehr.example.org/Endpoint/examplehealth-r2",
       "resource": {
         "resourceType": "Endpoint",
-        "id": "unity-point-r2",
-        "address": "https://epicfhir.examplehealth.org/ProdFHIR/api/FHIR/DSTU2",
-        "name": "FHIR DSTU2 Endpoint for ExampleHealth",
-        "managingOrganization": {
-          "reference": "Organization/unity-point"
-        },
+        "id": "examplehealth-r2",
         "extension": [
           {
-            "url": "http://fhir.org/argonaut/StructureDefinition/endpoint-fhir-version",
+            "url": "http://hl7.org/fhir/smart-app-launch/StructureDefinition/endpoint-fhir-version",
             "valueCode": "1.0.2"
-          },
+          }
+        ],
+        "status": "active",
+        "address": "https://ehrfhir.examplehealth.org/ProdFHIR/api/FHIR/R4",
+        "name": "FHIR DSTU2 Endpoint for ExampleHealth",
+        "contact": [
           {
-            "url": "http://fhir.org/argonaut/StructureDefinition/patient-access-developer-url",
-            "valueUrl": "https://open.epic.com"
+            "system": "url",
+            "value": "https://open.ehr.com"
           }
         ],
         "connectionType": {
           "system": "http://terminology.hl7.org/CodeSystem/endpoint-connection-type",
           "code": "hl7-fhir-rest"
+        },
+        "payloadType": [
+          {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/endpoint-payload-type",
+                "code": "none"
+              }
+            ]
+          }
+        ],
+        "managingOrganization": {
+          "reference": "Organization/examplehealth"
         }
       }
     },
     {
-      "fullUrl": "https://epic.example.org/Organization/unity-point",
+      "fullUrl": "https://ehr.example.org/Organization/examplehealth",
       "resource": {
         "resourceType": "Organization",
-        "id": "unity-point",
+        "id": "examplehealth",
         "extension": [
           {
-            "url": "http://fhir.org/argonaut/StructureDefinition/brand-logo",
-            "valueUrl": "https://examplehealth.org/logo/main.1024x102.png"
+            "url": "http://hl7.org/fhir/smart-app-launch/StructureDefinition/brand-logo",
+            "valueUrl": "https://example.org/examplehealth/logo/main.1024x102.png"
           },
           {
-            "url": "http://fhir.org/argonaut/StructureDefinition/patient-access-url",
-            "valueUrl": "https://chart.myexamplehealth.org"
+            "url": "http://hl7.org/fhir/smart-app-launch/StructureDefinition/patient-access-name",
+            "valueString": "My ExampleHealth Portal"
           },
           {
-            "url": "http://fhir.org/argonaut/StructureDefinition/patient-access-name",
-            "valueString": "MyExampleHospital"
+            "url": "http://hl7.org/fhir/smart-app-launch/StructureDefinition/patient-access-url",
+            "valueUrl": "https://example.org/chart.myexamplehealth.org"
           }
-        ],
-        "name": "ExampleHealth",
-        "alias": [
-          "Meriter   Hospital",
-          "Eyerly Ball Mental Health"
         ],
         "identifier": [
           {
@@ -88,10 +109,27 @@
             "value": "https://examplehealth.org"
           }
         ],
+        "active": true,
+        "type": [
+          {
+            "coding": [
+              {
+                "system": "http://hl7.org/fhir/smart-app-launch/CodeSystem/patient-access-category",
+                "code": "clinical",
+                "display": "Clinical Care provider"
+              }
+            ]
+          }
+        ],
+        "name": "ExampleHealth",
+        "alias": [
+          "GoodHealth Hospital",
+          "GoodHealth Mental Health"
+        ],
         "telecom": [
           {
             "system": "url",
-            "value": "https://www.examplehealth.org"
+            "value": "https://www.examplehealth.com"
           }
         ],
         "address": [
@@ -147,26 +185,45 @@
       }
     },
     {
-      "fullUrl": "https://epic.example.org/Organization/ExampleHealth-physicians-madison",
+      "fullUrl": "https://ehr.example.org/Organization/ehpmadison",
       "resource": {
         "resourceType": "Organization",
-        "id": "ExampleHealth-physicians-madison",
-        "partOf": {
-          "reference": "Organization/unity-point"
-        },
+        "id": "ehpmadison",
         "extension": [
           {
-            "url": "http://fhir.org/argonaut/StructureDefinition/brand-logo",
-            "valueUrl": "https://static.wixstatic.com/media/9f38bc_b5e81faf3c3645b3869556e8a83433ee~mv2.png"
+            "url": "http://hl7.org/fhir/smart-app-launch/StructureDefinition/brand-logo",
+            "valueUrl": "https://example.org/examplehealth.org/logo/ehp-madison.png"
+          },
+          {
+            "url": "http://hl7.org/fhir/smart-app-launch/StructureDefinition/patient-access-name",
+            "valueString": "My ExampleHealth Portal"
+          },
+          {
+            "url": "http://hl7.org/fhir/smart-app-launch/StructureDefinition/patient-access-url",
+            "valueUrl": "https://example.org/chart.myexamplehealth.org"
           }
         ],
-        "name": "ExampleHealth Physicians Madison",
-        "alias": [],
         "identifier": [
           {
             "system": "urn:ietf:rfc:3986",
             "value": "https://ehpmadison.com"
           }
+        ],
+        "active": true,
+        "type": [
+          {
+            "coding": [
+              {
+                "system": "http://hl7.org/fhir/smart-app-launch/CodeSystem/patient-access-category",
+                "code": "clinical",
+                "display": "Clinical Care provider"
+              }
+            ]
+          }
+        ],
+        "name": "ExampleHealth Physicians Madison",
+        "alias": [
+          "GoodHealth Madison"
         ],
         "telecom": [
           {
@@ -179,34 +236,57 @@
             "city": "Madison",
             "state": "WI"
           }
-        ]
+        ],
+        "partOf": {
+          "reference": "Organization/examplehealth"
+        }
       }
     },
     {
-      "fullUrl": "https://epic.example.org/Organization/stewart-memorial",
+      "fullUrl": "https://ehr.example.org/Organization/examplehealth-community-memorial",
       "resource": {
         "resourceType": "Organization",
-        "id": "stewart-memorial",
-        "partOf": {
-          "reference": "Organization/unity-point"
-        },
+        "id": "ehchospital",
         "extension": [
           {
-            "url": "http://fhir.org/argonaut/StructureDefinition/brand-logo",
-            "valueUrl": "data:image/svg+xml;base64,PHN2ZyB0aXRsZT0iU3Rld2FydCBNZW1vcmlhbCBIb3Nw.........+IDwvc3ZnPgo="
+            "url": "http://hl7.org/fhir/smart-app-launch/StructureDefinition/brand-logo",
+            "valueUrl": "data:image/svg+xml;base64,PHN2ZyB0aXRsZT0iU3Rld2FydCBNZW1vcmlhbCBIb3Nw...+IDwvc3ZnPgo="
+          },
+          {
+            "url": "http://hl7.org/fhir/smart-app-launch/StructureDefinition/patient-access-name",
+            "valueString": "My ExampleHealth Portal"
+          },
+          {
+            "url": "http://hl7.org/fhir/smart-app-launch/StructureDefinition/patient-access-url",
+            "valueUrl": "https://example.org/chart.myexamplehealth.org"
           }
         ],
-        "name": "ExampleHealth Community Hospital",
         "identifier": [
           {
             "system": "urn:ietf:rfc:3986",
             "value": "https://ehchospital.org"
           }
         ],
+        "active": true,
+        "type": [
+          {
+            "coding": [
+              {
+                "system": "http://hl7.org/fhir/smart-app-launch/CodeSystem/patient-access-category",
+                "code": "clinical",
+                "display": "Clinical Care provider"
+              }
+            ]
+          }
+        ],
+        "name": "ExampleHealth Community Hospital",
+        "alias": [
+          "GoodHealth Madison"
+        ],
         "telecom": [
           {
             "system": "url",
-            "value": "https://www.ehchospital.org"
+            "value": "https://www.ehchospital.com"
           }
         ],
         "address": [
@@ -214,7 +294,10 @@
             "city": "Lake City",
             "state": "IA"
           }
-        ]
+        ],
+        "partOf": {
+          "reference": "Organization/examplehealth"
+        }
       }
     }
   ]

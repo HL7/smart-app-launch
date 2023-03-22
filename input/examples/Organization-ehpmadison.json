@@ -1,0 +1,55 @@
+{
+  "resourceType": "Organization",
+  "id": "ehpmadison",
+  "extension": [
+    {
+      "url": "http://hl7.org/fhir/smart-app-launch/StructureDefinition/brand-logo",
+      "valueUrl": "https://example.org/examplehealth.org/logo/ehp-madison.png"
+    },
+    {
+      "url": "http://hl7.org/fhir/smart-app-launch/StructureDefinition/patient-access-name",
+      "valueString": "My ExampleHealth Portal"
+    },
+    {
+      "url": "http://hl7.org/fhir/smart-app-launch/StructureDefinition/patient-access-url",
+      "valueUrl": "https://example.org/chart.myexamplehealth.org"
+    }
+  ],
+  "identifier": [
+    {
+      "system": "urn:ietf:rfc:3986",
+      "value": "https://ehpmadison.com"
+    }
+  ],
+  "active": true,
+  "type": [
+    {
+      "coding": [
+        {
+          "system": "http://hl7.org/fhir/smart-app-launch/CodeSystem/patient-access-category",
+          "code": "clinical",
+          "display": "Clinical Care provider"
+        }
+      ]
+    }
+  ],
+  "name": "ExampleHealth Physicians Madison",
+  "alias": [
+    "GoodHealth Madison"
+  ],
+  "telecom": [
+    {
+      "system": "url",
+      "value": "https://www.ehpmadison.com"
+    }
+  ],
+  "address": [
+    {
+      "city": "Madison",
+      "state": "WI"
+    }
+  ],
+  "partOf": {
+    "reference": "Organization/examplehealth"
+  }
+}

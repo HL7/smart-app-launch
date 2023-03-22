@@ -1,0 +1,201 @@
+resourceType: Bundle
+id: example4
+type: collection
+meta:
+  lastUpdated: '2023-03-08T20:07:57Z'
+  extension:
+    - url: http://hl7.org/fhir/StructureDefinition/instance-name
+      valueString:  Bundle Example 4
+    - url: http://hl7.org/fhir/StructureDefinition/instance-description
+      valueMarkdown: This is an Bundle example for the **Patient Access Brands Bundle Profile**. and represents Example 3, different EHRs for different sub populations displayed in a unified card.
+  profile:
+        - 'http://hl7.org/fhir/smart-app-launch/StructureDefinition/patient-access-brands-bundle'
+
+entry:
+    - 
+        fullUrl: 'https://ehr.example.org/Endpoint/examplehospital1-ehr1'
+        resource:
+
+          resourceType: Endpoint
+          id: examplehospital2-ehr2
+          # meta:
+          #   extension:
+          #   - url: http://hl7.org/fhir/StructureDefinition/instance-name
+          #     valueString: Endpoint Example Hospital2 EHR2
+          #   - url: http://hl7.org/fhir/StructureDefinition/instance-description
+          #     valueMarkdown: This is an Endpoint example for the *Patient Access Endpoint Profile* and is used in Example 3 Different EHRs for different sub-populations displayed in a unified card.
+          #   profile:
+          #         - 'http://hl7.org/fhir/smart-app-launch/StructureDefinition/patient-access-endpoint'
+          extension:
+              - 
+                  url: 'http://hl7.org/fhir/smart-app-launch/StructureDefinition/endpoint-fhir-version'
+                  valueCode: 4.0.1
+          status: active
+          address: 'https://example.org/examplehospital2.ehr2/r4'
+          name: FHIR R4 EHR2 Endpoint for ExampleHospital2 
+          contact:
+              - 
+                  system: url
+                  value: 'https://code.ehr2.com'
+          connectionType:
+              system: 'http://terminology.hl7.org/CodeSystem/endpoint-connection-type'
+              code: hl7-fhir-rest
+
+          payloadType:
+              - 
+                coding:
+                  -
+                    system: 'http://terminology.hl7.org/CodeSystem/endpoint-payload-type'
+                    code:  none
+
+          managingOrganization:
+              reference: Organization/examplehospital2-ehr2
+              # identifier:
+              #     value: e625fd34e7c456dc
+              # extension:
+              #     - 
+              #         url: 'http://hl7.org/fhir/smart-app-launch/StructureDefinition/brands-bundle'
+              #         valueUrl: 'Bundle/example1'
+
+    - 
+        fullUrl: 'https://ehr.example.org/Organization/examplehospital2-ehr2'
+        resource:
+        
+          resourceType: Organization
+          id: examplehospital2-ehr2
+
+          # meta:
+          #   extension:
+          #     - url: 'http://hl7.org/fhir/StructureDefinition/instance-name'
+          #       valueString: Organization Example Hospital2 EHR2
+          #     - url: 'http://hl7.org/fhir/StructureDefinition/instance-description'
+          #       valueMarkdown: This is an Organization example for the *Patient Access Brand Profile* and is used in Example 3 Different EHRs for different sub-populations displayed in a unified card.
+          #   profile:
+          #     - 'http://hl7.org/fhir/smart-app-launch/StructureDefinition/patient-access-brand'
+
+          extension:
+
+              - 
+                  url: 'http://hl7.org/fhir/smart-app-launch/StructureDefinition/brand-logo'
+                  valueUrl: 'https://www.example.org/hospital2/media/logo.ashx?h=85&w=600&la=en&hash=AF50B39C3F246D61E4C012ED25A2D8CF4C3A1607'
+              # - 
+              #     url: 'http://hl7.org/fhir/smart-app-launch/StructureDefinition/brand-logo-use-agreement'
+              #     valueUrl: 'https://example.org/logo/use-agreement.html'
+              # - 
+              #     url: 'http://hl7.org/fhir/smart-app-launch/StructureDefinition/brand-flags'
+              #     valueCode: hidden
+
+          # portal extensions
+
+              - 
+                  url: 'http://hl7.org/fhir/smart-app-launch/StructureDefinition/patient-access-name'
+                  valueString: ExampleHospital2 Pediatrics Portal
+              - 
+                  url: 'http://hl7.org/fhir/smart-app-launch/StructureDefinition/patient-access-url'
+                  valueUrl: 'https://apps.examplehospital2/pediatrics-portal/index.html'
+
+              # - 
+              #     url: 'http://hl7.org/fhir/smart-app-launch/StructureDefinition/patient-access-description'
+              #     valueMarkdown: |
+              #         This is the description of the portal. It can be multiple lines.
+              #         It can also be **markdown**.
+              # - 
+              #     url: 'http://hl7.org/fhir/smart-app-launch/StructureDefinition/patient-access-logo'
+              #     valueUrl:  'https://example.org/portal-logo/main.1024x102.png'
+
+              # - 
+              #     url: 'http://hl7.org/fhir/smart-app-launch/StructureDefinition/patient-access-logo-use-agreement'
+              #     valueUrl: 'https://example.org/portal-logo/use-agreement.html'
+
+          identifier:
+            - system: 'urn:ietf:rfc:3986'
+              value: https://examplehospital2
+          active: true
+          type:
+            - coding:
+                - system: 'http://hl7.org/fhir/smart-app-launch/CodeSystem/patient-access-category'
+                  code: clinical
+                  display: Clinical Care provider
+          name: Example Hospital1
+
+          telecom:
+              - 
+                  system: url
+                  value: https://www.example.org/examplehospital2/
+          address:
+                          - 
+                              city: Boston
+                              state: MA
+
+
+  
+
+
+
+            
+
+
+
+    - 
+        fullUrl: 'https://ehr.example.org/Organization/examplehospital3-ehr1'
+        resource:
+
+
+          resourceType: Organization
+          id: examplehospital3-ehr2
+
+          # meta:
+          #     extension:
+          #         - 
+          #             url: 'http://hl7.org/fhir/StructureDefinition/instance-name'
+          #             valueString: Organization Example Hospital3 EHR2
+          #         - 
+          #             url: 'http://hl7.org/fhir/StructureDefinition/instance-description'
+          #             valueMarkdown: 'This is an Organization example for the *Patient Access Brand Profile* and is used in Example 3 Different EHRs for different sub-populations displayed in a unified card.'
+          #     profile:
+          #         - 'http://hl7.org/fhir/smart-app-launch/StructureDefinition/patient-access-brand'
+
+          extension:
+              - 
+                  url: 'http://hl7.org/fhir/smart-app-launch/StructureDefinition/brand-logo'
+                  valueUrl: 'https://example.org/examplehospital3/ui/images/img-logo-2x-new.webp'
+              - 
+                  url: 'http://hl7.org/fhir/smart-app-launch/StructureDefinition/patient-access-name'
+                  valueString: ExampleHospital1 Patient Gateway
+              - 
+                  url: 'http://hl7.org/fhir/smart-app-launch/StructureDefinition/patient-access-url'
+                  valueUrl: 'https://patientgateway.examplehospital1-ehr1.org'
+              - 
+                  url: 'http://hl7.org/fhir/smart-app-launch/StructureDefinition/patient-access-description'
+                  valueMarkdown: "Pediatrics Portal is a Web-based, easy-to-use, and secure way to access your child's information at your convenience."
+          identifier:
+              - 
+                  system: 'urn:ietf:rfc:3986'
+                  value: 'https://examplehospital3.org'
+          active: true
+          type:
+              - 
+                  coding:
+                      - 
+                          system: 'http://hl7.org/fhir/smart-app-launch/CodeSystem/patient-access-category'
+                          code: clinical
+                          display: Clinical Care provider
+          name: ExampleHospital3
+          alias:
+              - GoodCare Cancer Center
+          telecom:
+              - 
+                  system: url
+                  value: 'https://www.example.org/examplehospital3/'
+          address:
+              - 
+                  city: Boston
+                  state: MA
+          partOf:
+              reference: Organization/examplehospital2-ehr2
+
+  
+
+
+
+

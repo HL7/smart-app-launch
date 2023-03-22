@@ -37,7 +37,7 @@
             {
                 "id": "Extension.url",
                 "path": "Extension.url",
-                "fixedUri": "http://hl7.org/fhir/smart-app-launch/StructureDefinition/patient-access-brand-portal-logo"
+                "fixedUri": "http://hl7.org/fhir/smart-app-launch/StructureDefinition/patient-access-logo"
             },
             {
                 "id": "Extension.value[x]",
