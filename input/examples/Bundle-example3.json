@@ -119,14 +119,6 @@
             "valueUrl": "https://example.org/examplehospital3/ui/images/img-logo-2x-new.webp"
           },
           {
-            "url": "http://hl7.org/fhir/smart-app-launch/StructureDefinition/patient-access-name",
-            "valueString": "ExampleHospital1 Patient Gateway"
-          },
-          {
-            "url": "http://hl7.org/fhir/smart-app-launch/StructureDefinition/patient-access-url",
-            "valueUrl": "https://patientgateway.examplehospital1-ehr1.org"
-          },
-          {
             "url": "http://hl7.org/fhir/smart-app-launch/StructureDefinition/patient-access-description",
             "valueMarkdown": "Patient Gateway is an online tool to help adult patients connect with health care providers, manage appointments, and refill prescriptions.\n"
           }

@@ -45,6 +45,7 @@ differential:
       path: Endpoint
       short: Patient Access Endpoint
       definition: Endpoint associated with a Patient Access Brand (Organization)
+
     # - id: Endpoint.meta.lastUpdated
     #   path: Endpoint.meta.lastUpdated
     #   min: 1

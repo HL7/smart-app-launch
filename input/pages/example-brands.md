@@ -31,7 +31,7 @@ And the hosted` Patient Access Brands Bundle file would look like:
 
 [Raw JSON](Bundle-example1.json)
 
-~~~json
+~~~
 {% include_relative Bundle-example1.json %}
 ~~~
 
@@ -81,7 +81,7 @@ Nearest location: 120 miles (Lake City)
 
 [Raw JSON](Bundle-example2.json)
 
-~~~json
+~~~
 {% include_relative Bundle-example2.json %}
 ~~~
 
@@ -165,7 +165,7 @@ Nearest location: 3 miles (Boston)
 
 [Raw JSON](Bundle-example3.json)
 
-~~~json
+~~~
 {% include_relative Bundle-example3.json %}
 ~~~
 
@@ -176,7 +176,7 @@ Nearest location: 3 miles (Boston)
 
 [Raw JSON](Bundle-example4.json)
 
-~~~json
+~~~
 {% include_relative Bundle-example4.json %}
 ~~~
 
@@ -184,128 +184,52 @@ Nearest location: 3 miles (Boston)
 
 ### Example 4: Two co-equal brands ("Brand1" + "Brand2")
 
-##### Option 1: Combine both Brands as Affiliated with a Hidden Brand
+All three option described below would have two cards:
+
+<div class="bg-info" markdown="1">
+<img src="Logo10.svg" alt="Brand1" width="40"/> **Brand1** ([brand1.org](#))
+
+|Source|API|Portal|
+|--|--|--|
+|**Brand1 Portal**|{{SQUARE}}Connect|{{SQUARE}} View|
+{:.grid style="background-color: white"}
+
+Nearest location: 1 miles (Napa)
+</div><!-- info -->
+
+<div class="bg-info" markdown="1">
+<img src="Logo11.svg" alt="Brand2" width="40"/> **Brand2** ([brand2.org](#))
+
+|Source|API|Portal|
+|--|--|--|
+|**Brand2 Portal**|{{SQUARE}}Connect|{{SQUARE}} View|
+{:.grid style="background-color: white"}
+
+Nearest location: 13 miles (Sonoma)
+</div><!-- info -->
+
+#### Option 1: Combine both Brands as Affiliated with a Hidden Brand
 
 * One endpoint with a parent brand
 * Parent brand marked as "hidden"
 * Child brands for Brand1 + Brand2, pointing up to "primary brand"
 
-##### Option 2: Duplicate the Endpoint
+#### Option 2: Duplicate the Endpoint
 
 * two endpoints with the same address
 * Each endpoint points to its primary brand
 * No brand hierarchy
 
-
-##### Option 3: Replace Endpoint.managingOrganization with a Multi-cardinality Extension
+#### Option 3: Replace Endpoint.managingOrganization with a Multi-cardinality Extension
 
 * One endpoint with links to two primary brands
 * No brand hierarchy
 
-```javascript
-{
-  "resourceType": "Bundle",
-  "type": "collection",
-  "meta": {
-    "lastUpdated": "2022-03-14T15:09:26.535Z"
-  },
-  "entry": [
-    {
-      "fullUrl": "https://epic.example.org/Endpoint/brand2",
-      "resource": {
-        "resourceType": "Endpoint",
-        "id": "brand2",
-        "address": "https://brand1.org/ProdFHIR/api/FHIR/R4",
-        "name": "FHIR R4 Endpoint for Brand1/Brand2",
-        "managingOrganization": {
-          "reference": "Organization/brand2"
-        },
-        "extension": [
-          {
-            "url": "http://fhir.org/argonaut/StructureDefinition/endpoint-fhir-version",
-            "valueCode": "4.0.1"
-          },
-          {
-            "url": "http://fhir.org/argonaut/StructureDefinition/patient-access-developer-url",
-            "valueUrl":  "https://open.epic.com"
-          }
- 
-        ],
-        "connectionType": {
-          "system": "http://terminology.hl7.org/CodeSystem/endpoint-connection-type",
-          "code": "hl7-fhir-rest"
-        }
-      }
-    }, {
-      "fullUrl": "https://epic.example.org/Endpoint/brand1",
-      "resource": {
-        "resourceType": "Endpoint",
-        "id": "brand1",
-        "address": "https://brand1.org/ProdFHIR/api/FHIR/R4",
-        "name": "FHIR R4 Endpoint for Brand1/Brand2",
-        "managingOrganization": {
-          "reference": "Organization/brand1"
-        },
-        "extension": [
-          {
-            "url": "http://fhir.org/argonaut/StructureDefinition/endpoint-fhir-version",
-            "valueCode": "4.0.1"
-          },
-          {
-            "url": "http://fhir.org/argonaut/StructureDefinition/patient-access-developer-url",
-            "valueUrl":  "https://open.epic.com"
-          }
- 
-        ],
-        "connectionType": {
-          "system": "http://terminology.hl7.org/CodeSystem/endpoint-connection-type",
-          "code": "hl7-fhir-rest"
-        }
-      }
-    },{
-      "fullUrl": "https://epic.example.org/Organization/brand1",
-      "resource": {
-        "resourceType": "Organization",
-        "id": "brand1",
-        "extension": [
-          {
-            "url": "http://fhir.org/argonaut/StructureDefinition/brand-logo",
-            "valueUrl": "https://examplehealth.org/logo/main.1024x102.png"
-          },
-          {
-            "url": "http://fhir.org/argonaut/StructureDefinition/patient-access-url",
-            "valueUrl": "https://chart.brand1.org"
-          }
-        ],
-        "name": "Brand1",
-        "alias": [],
-        "identifier": [],
-        "telecom": [],
-        "address": []
-      }
-    }, {
-      "fullUrl": "https://epic.example.org/Organization/brand2",
-      "resource": {
-        "resourceType": "Organization",
-        "id": "brand2",
-        "extension": [
-          {
-            "url": "http://fhir.org/argonaut/StructureDefinition/brand-logo",
-            "valueUrl": "https://examplehealth.org/logo/main.1024x102.png"
-          },
-          {
-            "url": "http://fhir.org/argonaut/StructureDefinition/patient-access-url",
-            "valueUrl": "https://chart.brand1.org"
-          }
-        ],
-        "name": "Brand2",
-        "alias": [],
-        "identifier": [],
-        "telecom": [],
-        "address": []
-      }
-    }
-  ]
-}
+##### Brand Bundle for Option 2: Duplicate the Endpoint
 
-```
+
+[Raw JSON](Bundle-example5.json)
+
+~~~
+{% include_relative Bundle-example5.json %}
+~~~

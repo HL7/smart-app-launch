@@ -5,14 +5,6 @@
     {
       "url": "http://hl7.org/fhir/smart-app-launch/StructureDefinition/brand-logo",
       "valueUrl": "data:image/svg+xml;base64,PHN2ZyB0aXRsZT0iU3Rld2FydCBNZW1vcmlhbCBIb3Nw...+IDwvc3ZnPgo="
-    },
-    {
-      "url": "http://hl7.org/fhir/smart-app-launch/StructureDefinition/patient-access-name",
-      "valueString": "My ExampleHealth Portal"
-    },
-    {
-      "url": "http://hl7.org/fhir/smart-app-launch/StructureDefinition/patient-access-url",
-      "valueUrl": "https://example.org/chart.myexamplehealth.org"
     }
   ],
   "identifier": [

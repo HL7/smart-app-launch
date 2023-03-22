@@ -1,11 +1,11 @@
 resourceType: Organization
-id: ehchospital
+id: brand1-opt2
 meta:
   extension:
     - url: 'http://hl7.org/fhir/StructureDefinition/instance-name'
-      valueString: Organization ExampleHealth Community Hospital
+      valueString: Organization Brand1 Option 2
     - url: 'http://hl7.org/fhir/StructureDefinition/instance-description'
-      valueMarkdown: This is an Organization example for the *Patient Access Brand Profile* and is used in Example 2 Regional Health System With Independently Branded Affiliates.
+      valueMarkdown: 'This is an Organization example for the *Patient Access Endpoint Profile* and is used in Example 4: Two co-equal brands (“Brand1” + “Brand2”)'
   profile:
     - 'http://hl7.org/fhir/smart-app-launch/StructureDefinition/patient-access-brand'
 
@@ -13,8 +13,7 @@ extension:
 
     - 
         url: 'http://hl7.org/fhir/smart-app-launch/StructureDefinition/brand-logo'
-        valueUrl: 'data:image/svg+xml;base64,PHN2ZyB0aXRsZT0iU3Rld2FydCBNZW1vcmlhbCBIb3Nw...+IDwvc3ZnPgo='
-
+        valueUrl: 'https://example.org/brand1/logo/main.svg'
     # - 
     #     url: 'http://hl7.org/fhir/smart-app-launch/StructureDefinition/brand-logo-use-agreement'
     #     valueUrl: 'https://example.org/logo/use-agreement.html'
@@ -24,12 +23,12 @@ extension:
 
 # portal extensions
 
-    # - 
-    #     url: 'http://hl7.org/fhir/smart-app-launch/StructureDefinition/patient-access-name'
-    #     valueString: My ExampleHealth Portal
-    # - 
-    #     url: 'http://hl7.org/fhir/smart-app-launch/StructureDefinition/patient-access-url'
-    #     valueUrl: 'https://example.org/chart.myexamplehealth.org'
+    - 
+        url: 'http://hl7.org/fhir/smart-app-launch/StructureDefinition/patient-access-name'
+        valueString: Brand1 Portal
+    - 
+        url: 'http://hl7.org/fhir/smart-app-launch/StructureDefinition/patient-access-url'
+        valueUrl: 'https://example.org/chart.brand1.org'
 
     # - 
     #     url: 'http://hl7.org/fhir/smart-app-launch/StructureDefinition/patient-access-description'
@@ -46,27 +45,30 @@ extension:
 
 identifier:
   - system: 'urn:ietf:rfc:3986'
-    value: 'https://ehchospital.org'
+    value: 'https://brand1.org'
 active: true
 type:
   - coding:
       - system: 'http://hl7.org/fhir/smart-app-launch/CodeSystem/patient-access-category'
-        code: clinical
-        display: Clinical Care provider
-name: ExampleHealth Community Hospital
+        code: insurer
+        display: Health Insurance provider
+name: Brand1
 alias:
-  - GoodHealth Madison
+  - Umbrella Insurance
 
 telecom:
     - 
         system: url
-        value: 'https://www.ehchospital.com'
+        value: 'https://www.brand1.com'
 address:
-      - 
-        city: Lake City
-        state: IA
-
-partOf:
-  reference: Organization/examplehealth
+                - 
+                    city: Napa
+                    state: CA
+                - 
+                    city: Sonoma
+                    state: CA
+                -
+                    city: St Helena
+                    state: CA
 
 

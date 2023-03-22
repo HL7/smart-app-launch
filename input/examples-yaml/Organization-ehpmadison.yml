@@ -23,12 +23,12 @@ extension:
 
 # portal extensions
 
-    - 
-        url: 'http://hl7.org/fhir/smart-app-launch/StructureDefinition/patient-access-name'
-        valueString: My ExampleHealth Portal
-    - 
-        url: 'http://hl7.org/fhir/smart-app-launch/StructureDefinition/patient-access-url'
-        valueUrl: 'https://example.org/chart.myexamplehealth.org'
+    # - 
+    #     url: 'http://hl7.org/fhir/smart-app-launch/StructureDefinition/patient-access-name'
+    #     valueString: My ExampleHealth Portal
+    # - 
+    #     url: 'http://hl7.org/fhir/smart-app-launch/StructureDefinition/patient-access-url'
+    #     valueUrl: 'https://example.org/chart.myexamplehealth.org'
 
     # - 
     #     url: 'http://hl7.org/fhir/smart-app-launch/StructureDefinition/patient-access-description'

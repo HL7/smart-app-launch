@@ -3,14 +3,6 @@
   "id": "examplehospital3-ehr2",
   "extension": [
     {
-      "url": "http://hl7.org/fhir/smart-app-launch/StructureDefinition/brand-logo",
-      "valueUrl": "https://example.org/examplehospital3/ui/images/img-logo-2x-new.webp"
-    },
-    {
-      "url": "http://hl7.org/fhir/smart-app-launch/StructureDefinition/patient-access-name",
-      "valueString": "ExampleHospital1 Patient Gateway"
-    },
-    {
       "url": "http://hl7.org/fhir/smart-app-launch/StructureDefinition/patient-access-url",
       "valueUrl": "https://patientgateway.examplehospital1-ehr1.org"
     },

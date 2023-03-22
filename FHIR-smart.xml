@@ -20,7 +20,10 @@
 <artifact id="Bundle/example2" key="Bundle-example2" name="Bundle Example 2"/>
 <artifact id="Bundle/example3" key="Bundle-example3" name="Bundle Example 3"/>
 <artifact id="Bundle/example4" key="Bundle-example4" name="Bundle Example 4"/>
+<artifact id="Bundle/example5" key="Bundle-example5" name="Bundle Example 5"/>
 <artifact id="ValueSet/smart-launch-info" key="ValueSet-smart-launch-info" name="Codes for tasks to application launches"/>
+<artifact id="Endpoint/brand2-opt1" key="Endpoint-brand2-opt1" name="Endpoint Brand 1 Option 1"/>
+<artifact id="Endpoint/brand1-opt2" key="Endpoint-brand1-opt2" name="Endpoint Brand 1 Option 2"/>
 <artifact id="Endpoint/example" key="Endpoint-example" name="Endpoint Example"/>
 <artifact id="Endpoint/examplehospital1-ehr1" key="Endpoint-examplehospital1-ehr1" name="Endpoint Example Hospital1 EHR1"/>
 <artifact id="Endpoint/examplehospital2-ehr2" key="Endpoint-examplehospital2-ehr2" name="Endpoint Example Hospital2 EHR2"/>
@@ -32,6 +35,8 @@
 <artifact id="Task/task-for-ehr-launch" key="Task-task-for-ehr-launch" name="Example Task for EHR Launch"/>
 <artifact id="Task/task-for-standalone-launch" key="Task-task-for-standalone-launch" name="Example Task for Standalone Launch"/>
 <artifact id="ValueSet/smart-launch-types" key="ValueSet-smart-launch-types" name="Launch Types for tasks to application launches"/>
+<artifact id="Organization/brand1-opt2" key="Organization-brand1-opt2" name="Organization Brand1 Option 2"/>
+<artifact id="Organization/brand2-opt2" key="Organization-brand2-opt2" name="Organization Brand2 Option 2"/>
 <artifact id="Organization/example" key="Organization-example" name="Organization Example"/>
 <artifact id="Organization/examplehospital1-ehr1" key="Organization-examplehospital1-ehr1" name="Organization Example Hospital1 EHR1"/>
 <artifact id="Organization/examplehospital2-ehr2" key="Organization-examplehospital2-ehr2" name="Organization Example Hospital2 EHR2"/>

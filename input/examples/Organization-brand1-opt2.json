@@ -1,0 +1,60 @@
+{
+  "resourceType": "Organization",
+  "id": "brand1-opt2",
+  "extension": [
+    {
+      "url": "http://hl7.org/fhir/smart-app-launch/StructureDefinition/brand-logo",
+      "valueUrl": "https://example.org/brand1/logo/main.svg"
+    },
+    {
+      "url": "http://hl7.org/fhir/smart-app-launch/StructureDefinition/patient-access-name",
+      "valueString": "Brand1 Portal"
+    },
+    {
+      "url": "http://hl7.org/fhir/smart-app-launch/StructureDefinition/patient-access-url",
+      "valueUrl": "https://example.org/chart.brand1.org"
+    }
+  ],
+  "identifier": [
+    {
+      "system": "urn:ietf:rfc:3986",
+      "value": "https://brand1.org"
+    }
+  ],
+  "active": true,
+  "type": [
+    {
+      "coding": [
+        {
+          "system": "http://hl7.org/fhir/smart-app-launch/CodeSystem/patient-access-category",
+          "code": "insurer",
+          "display": "Health Insurance provider"
+        }
+      ]
+    }
+  ],
+  "name": "Brand1",
+  "alias": [
+    "Umbrella Insurance"
+  ],
+  "telecom": [
+    {
+      "system": "url",
+      "value": "https://www.brand1.com"
+    }
+  ],
+  "address": [
+    {
+      "city": "Napa",
+      "state": "CA"
+    },
+    {
+      "city": "Sonoma",
+      "state": "CA"
+    },
+    {
+      "city": "St Helena",
+      "state": "CA"
+    }
+  ]
+}
