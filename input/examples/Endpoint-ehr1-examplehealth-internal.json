@@ -1,15 +1,15 @@
 {
   "resourceType": "Endpoint",
-  "id": "brand2-opt2",
+  "id": "ehr1-examplehealth-internal",
   "extension": [
     {
       "url": "http://hl7.org/fhir/smart-app-launch/StructureDefinition/endpoint-fhir-version",
-      "valueCode": "4.0.1"
+      "valueCode": "1.0.2"
     }
   ],
   "status": "active",
-  "address": "https://example.org/brand2.org/ProdFHIR/api/FHIR/R4",
-  "name": "FHIR R4 Endpoint for Brand1/Brand2",
+  "address": "https://example.org/EHR1/ExampleHealth/api/FHIR/DSTU2",
+  "name": "FHIR DSTU2 Endpoint for ExampleHealth's EHR1 Patient Gateway",
   "contact": [
     {
       "system": "url",
@@ -31,6 +31,6 @@
     }
   ],
   "managingOrganization": {
-    "reference": "Organization/brand2-opt2"
+    "reference": "Organization/ehr1-examplehealth-internal"
   }
 }

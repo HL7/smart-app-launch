@@ -26,6 +26,7 @@ The [Patient-Access Brand Examples](example-brands.html) illustrate the model fo
 * Regional health system with independently branded affiliated practices sharing a portal
 * Cancer center affiliated with one provider's portal for adult patients and another provider's portal for pediatric patients
 * Two co-equal brands
+* EHR and EHR Customer Hosted Brands Bundles
 
 ##### Demonstration Brand Editor
 

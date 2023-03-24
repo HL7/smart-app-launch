@@ -7,7 +7,7 @@ meta:
     - url: http://hl7.org/fhir/StructureDefinition/instance-name
       valueString:  Bundle Example 3
     - url: http://hl7.org/fhir/StructureDefinition/instance-description
-      valueMarkdown: This is an Bundle example for the **Patient Access Brands Bundle Profile**. and represents Example 3, different EHRs for different sub populations displayed in a unified card.
+      valueMarkdown: This is an Bundle example for the **Patient Access Brands Bundle Profile**. and represents Example 3, different EHRs for different sub populations displayed in a unified card.  This Bundle is also referenced by Example 5 - EHR and EHR Customer Hosted Brands Bundles.
   profile:
         - 'http://hl7.org/fhir/smart-app-launch/StructureDefinition/patient-access-brands-bundle'
 

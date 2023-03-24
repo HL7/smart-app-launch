@@ -49,7 +49,7 @@
       "fullUrl": "https://ehr.example.org/Endpoint/brand2-opt2",
       "resource": {
         "resourceType": "Endpoint",
-        "id": "brand2-opt1",
+        "id": "brand2-opt2",
         "extension": [
           {
             "url": "http://hl7.org/fhir/smart-app-launch/StructureDefinition/endpoint-fhir-version",

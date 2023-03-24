@@ -208,28 +208,54 @@ Nearest location: 1 miles (Napa)
 Nearest location: 13 miles (Sonoma)
 </div><!-- info -->
 
-#### Option 1: Combine both Brands as Affiliated with a Hidden Brand
-
-* One endpoint with a parent brand
-* Parent brand marked as "hidden"
-* Child brands for Brand1 + Brand2, pointing up to "primary brand"
-
-#### Option 2: Duplicate the Endpoint
+#### Option 1: Duplicate the Endpoint
 
 * two endpoints with the same address
 * Each endpoint points to its primary brand
 * No brand hierarchy
+
+#### Option 2: Combine both Brands as Affiliated with a Hidden Brand
+
+* One endpoint with a parent brand
+* Parent brand marked as "hidden"
+* Child brands for Brand1 + Brand2, pointing up to "primary brand"
 
 #### Option 3: Replace Endpoint.managingOrganization with a Multi-cardinality Extension
 
 * One endpoint with links to two primary brands
 * No brand hierarchy
 
-##### Brand Bundle for Option 2: Duplicate the Endpoint
+##### Brand Bundle for Option 1: Duplicate the Endpoint
 
 
 [Raw JSON](Bundle-example5.json)
 
 ~~~
 {% include_relative Bundle-example5.json %}
+~~~
+
+### Example 5: EHR and EHR Customer Hosted Brands Bundles
+
+ExampleHealth uses EHR1, and its endpoint is listed in EHR1's Brands Bundle.  As shown above, [ExampleHealth](#example-2-regional-health-system-with-independently-branded-affiliates) *also* hosts its own branding bundle (with mores details about every clinic location, specialty, etc.). In EHR1 Brands Bundle, one Patient Access Endpoint that points ExampleHealth within the Bundle, and there is another that points the external Brand Bundle managed by ExampleHealth.
+
+For EHR1 Brands Bundle, the system displays the following card to a user:
+
+<div class="bg-info" markdown="1">
+<img src="Logo13.png" alt="ExampleHealth" width="40"/>  **ExampleHealth** ([examplehealth.org](#))
+
+|Source|API|Portal|
+|--|--|--|
+|**MyExampleHospital**| {{SQUARE}}  Connect|{{SQUARE}} View |
+{:.grid style="background-color: white"}
+
+</div><!-- info -->
+
+
+#### EHR1 Content for ExampleHealth
+
+
+[Raw JSON](Bundle-example6.json)
+
+~~~
+{% include_relative Bundle-example6.json %}
 ~~~
