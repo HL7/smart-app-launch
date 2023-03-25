@@ -1,10 +1,10 @@
 {
   "resourceType": "Organization",
-  "id": "ehr1-examplehealth-internal",
+  "id": "ehr1-examplehealth",
   "extension": [
     {
       "url": "http://hl7.org/fhir/smart-app-launch/StructureDefinition/brand-logo",
-      "valueUrl": "https://example.org/ehr1-examplehealth-internal/themes/custom/logo.svg"
+      "valueUrl": "https://example.org/ehr1-examplehealth/themes/custom/logo.svg"
     },
     {
       "url": "http://hl7.org/fhir/smart-app-launch/StructureDefinition/patient-access-name",
@@ -12,7 +12,7 @@
     },
     {
       "url": "http://hl7.org/fhir/smart-app-launch/StructureDefinition/patient-access-url",
-      "valueUrl": "https://patientgateway.ehr1-examplehealth-internal.org"
+      "valueUrl": "https://patientgateway.ehr1-examplehealth.org"
     }
   ],
   "identifier": [

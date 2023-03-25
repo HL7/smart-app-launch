@@ -74,6 +74,14 @@
                         ]
                     }
                 ],
+                "constraint": [
+                    {
+                        "key": "pae-1",
+                        "severity": "error",
+                        "human": "A Patient Access Endpoint managingOrganization SHALL have both or neither an `identifier` and a \"brands-bundle\" extension.",
+                        "expression": "(identifier.exists() xor extension.where(url='http://hl7.org/fhir/smart-app-launch/StructureDefinition/brands-bundle').exists()).not()"
+                    }
+                ],
                 "mustSupport": true
             },
             {
@@ -90,6 +98,9 @@
                         ]
                     }
                 ],
+                "condition": [
+                    "pae-1"
+                ],
                 "mustSupport": true
             },
             {
@@ -104,6 +115,9 @@
                 "path": "Endpoint.managingOrganization.identifier",
                 "short": "Customer-supplied identifier for the primary Brand",
                 "definition": "Customer-supplied identifier for the primary Brand",
+                "condition": [
+                    "pae-1"
+                ],
                 "mustSupport": true
             },
             {

@@ -1,12 +1,12 @@
 resourceType: Endpoint
-id: ehr1-examplehealth-external
+id: ehr1-examplehealth
 
 meta:
   extension:
   - url: http://hl7.org/fhir/StructureDefinition/instance-name
-    valueString: Ehr1 Examplehealth External Example
+    valueString: Ehr1 Examplehealth Example
   - url: http://hl7.org/fhir/StructureDefinition/instance-description
-    valueMarkdown: This is an Endpoint example for the *Patient Access Endpoint Profile* and is used in Example 5 - EHR and EHR Customer Hosted Brands Bundles.  This endpoint references examplehealth as externally customer-managed Bundle.
+    valueMarkdown: This is an Endpoint example for the *Patient Access Endpoint Profile* and is used in Example 5 - EHR and EHR Customer Hosted Brands Bundles.  This endpoint references examplehealth Organization *within* the same Bundle and an external customer-hosted Brands Bundle
   profile:
         - 'http://hl7.org/fhir/smart-app-launch/StructureDefinition/patient-access-endpoint'
 
@@ -29,15 +29,15 @@ connectionType:
 payloadType:
     - 
       coding:
-        -
-          system: 'http://terminology.hl7.org/CodeSystem/endpoint-payload-type'
-          code:  none
+          -
+            system: 'http://terminology.hl7.org/CodeSystem/endpoint-payload-type'
+            code:  none
 
 managingOrganization:
-    # reference: Organization/examplehealth
-    identifier:
-        value: https://examplehealth.org
-    extension:
-        - 
-            url: 'http://hl7.org/fhir/smart-app-launch/StructureDefinition/brands-bundle'
-            valueUrl: 'https://example.org/examplehealth.org/bundle.json'
+    reference: Organization/ehr1-examplehealth
+    # identifier:
+    #     value: https://examplehealth.org
+    # extension:
+    #     - 
+    #         url: 'http://hl7.org/fhir/smart-app-launch/StructureDefinition/brands-bundle'
+    #         valueUrl: "https://example.org/examplehealth.org/bundle.json"

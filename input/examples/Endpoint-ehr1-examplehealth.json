@@ -1,6 +1,6 @@
 {
   "resourceType": "Endpoint",
-  "id": "ehr1-examplehealth-internal",
+  "id": "ehr1-examplehealth",
   "extension": [
     {
       "url": "http://hl7.org/fhir/smart-app-launch/StructureDefinition/endpoint-fhir-version",
@@ -31,6 +31,6 @@
     }
   ],
   "managingOrganization": {
-    "reference": "Organization/ehr1-examplehealth-internal"
+    "reference": "Organization/ehr1-examplehealth"
   }
 }

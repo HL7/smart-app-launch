@@ -41,10 +41,7 @@
           }
         ],
         "managingOrganization": {
-          "reference": "Organization/examplelabs",
-          "identifier": {
-            "value": "e625fd34e7c456dc"
-          }
+          "reference": "Organization/examplelabs"
         }
       }
     },

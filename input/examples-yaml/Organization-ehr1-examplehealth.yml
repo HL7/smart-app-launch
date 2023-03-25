@@ -1,11 +1,11 @@
 resourceType: Organization
-id: ehr1-examplehealth-internal
+id: ehr1-examplehealth
 
 
 meta:
   extension:
     - url: 'http://hl7.org/fhir/StructureDefinition/instance-name'
-      valueString: Organization Example Health EHR1
+      valueString: Organization EHR1 Example Health
     - url: 'http://hl7.org/fhir/StructureDefinition/instance-description'
       valueMarkdown: This is an Organization example for the *Patient Access Brand Profile* and is used in Example 5 - EHR and EHR Customer Hosted Brands Bundles. It is the Organization in the EHR Brands Bundle.
   profile:
@@ -15,7 +15,7 @@ extension:
 
     - 
         url: 'http://hl7.org/fhir/smart-app-launch/StructureDefinition/brand-logo'
-        valueUrl: 'https://example.org/ehr1-examplehealth-internal/themes/custom/logo.svg'
+        valueUrl: 'https://example.org/ehr1-examplehealth/themes/custom/logo.svg'
     # - 
     #     url: 'http://hl7.org/fhir/smart-app-launch/StructureDefinition/brand-logo-use-agreement'
     #     valueUrl: 'https://example.org/logo/use-agreement.html'
@@ -30,7 +30,7 @@ extension:
         valueString: EHR1 ExampleHealth Patient Gateway
     - 
         url: 'http://hl7.org/fhir/smart-app-launch/StructureDefinition/patient-access-url'
-        valueUrl: 'https://patientgateway.ehr1-examplehealth-internal.org'
+        valueUrl: 'https://patientgateway.ehr1-examplehealth.org'
 
     # - 
     #     url: 'http://hl7.org/fhir/smart-app-launch/StructureDefinition/patient-access-description'

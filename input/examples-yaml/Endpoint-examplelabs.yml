@@ -32,8 +32,8 @@ payloadType:
 
 managingOrganization:
     reference: Organization/examplelabs
-    identifier:
-        value: e625fd34e7c456dc
+    # identifier:
+    #     value: e625fd34e7c456dc
     # extension:
     #     - 
     #         url: 'http://hl7.org/fhir/smart-app-launch/StructureDefinition/brands-bundle'
