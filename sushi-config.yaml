@@ -85,15 +85,8 @@ parameters:
   path-history: http://hl7.org/fhir/smart-app-launch/history.html
   jira-code: smart
   no-narrative:
-<<<<<<< HEAD
     - 'Basic/*'
     - 'Task/*'
-=======
-    - '*/*'
-  # validation:
-  #   - check-aggregation
-  path-output: docs #output #docs
->>>>>>> fd01c70 (commit brands pages to smart)
 # ╭────────────────────────────────────────────menu.xml────────────────────────────────────────────╮
 # │  To use a provided ig-data/input/includes/menu.xml file, delete the "menu" property below.     │
 # ╰────────────────────────────────────────────────────────────────────────────────────────────────╯
