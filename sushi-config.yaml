@@ -85,6 +85,8 @@ parameters:
   path-history: http://hl7.org/fhir/smart-app-launch/history.html
   jira-code: smart
   no-narrative:
+    - 'Organization/*'
+    - 'Endpoint/*'
     - 'Basic/*'
     - 'Task/*'
 # ╭────────────────────────────────────────────menu.xml────────────────────────────────────────────╮

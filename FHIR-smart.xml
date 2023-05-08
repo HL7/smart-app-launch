@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<specification xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" ballotUrl="http://hl7.org/fhir/smart-app-launch/2021May" ciUrl="http://build.fhir.org/ig/HL7/smart-app-launch" defaultVersion="2.0.0" defaultWorkgroup="fhir-i" gitUrl="https://github.com/HL7/smart-app-launch" url="http://hl7.org/fhir/smart-app-launch">
+<specification xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" ballotUrl="http://hl7.org/fhir/smart-app-launch/2021May" ciUrl="http://build.fhir.org/ig/HL7/smart-app-launch" defaultVersion="2.1.0" defaultWorkgroup="fhir-i" gitUrl="https://github.com/HL7/smart-app-launch" url="http://hl7.org/fhir/smart-app-launch">
 <version code="current" url="http://build.fhir.org/ig/HL7/smart-app-launch"/>
+<version code="2.1.0" url="http://hl7.org/fhir/smart-app-launch/STU2.1"/>
 <version code="2.1.0-ballot" url="http://hl7.org/fhir/smart-app-launch/2023Jan"/>
 <version code="2.0.0" url="http://hl7.org/fhir/smart-app-launch/STU2"/>
 <version code="1.1.0" url="http://hl7.org/fhir/smart-app-launch/2021May"/>
@@ -16,39 +17,12 @@
 <artifact id="StructureDefinition/brand-logo" key="StructureDefinition-brand-logo" name="Brand Logo Extension"/>
 <artifact id="StructureDefinition/brand-logo-use-agreement" key="StructureDefinition-brand-logo-use-agreement" name="Brand Logo Use Agreement Extension"/>
 <artifact id="StructureDefinition/brands-bundle" key="StructureDefinition-brands-bundle" name="Brands Bundle Extension"/>
-<artifact id="Bundle/example1" key="Bundle-example1" name="Bundle Example 1"/>
-<artifact id="Bundle/example2" key="Bundle-example2" name="Bundle Example 2"/>
-<artifact id="Bundle/example3" key="Bundle-example3" name="Bundle Example 3"/>
-<artifact id="Bundle/example4" key="Bundle-example4" name="Bundle Example 4"/>
-<artifact id="Bundle/example5" key="Bundle-example5" name="Bundle Example 5"/>
-<artifact id="Bundle/example6" key="Bundle-example6" name="Bundle Example 6"/>
 <artifact id="ValueSet/smart-launch-info" key="ValueSet-smart-launch-info" name="Codes for tasks to application launches"/>
-<artifact id="Endpoint/ehr1-examplehealth" key="Endpoint-ehr1-examplehealth" name="Ehr1 Examplehealth Example"/>
-<artifact id="Endpoint/brand1-opt2" key="Endpoint-brand1-opt2" name="Endpoint Brand 1 Option 2"/>
-<artifact id="Endpoint/brand2-opt2" key="Endpoint-brand2-opt2" name="Endpoint Brand2 Option 2"/>
-<artifact id="Endpoint/example" key="Endpoint-example" name="Endpoint Example"/>
-<artifact id="Endpoint/examplehospital1-ehr1" key="Endpoint-examplehospital1-ehr1" name="Endpoint Example Hospital1 EHR1"/>
-<artifact id="Endpoint/examplehospital2-ehr2" key="Endpoint-examplehospital2-ehr2" name="Endpoint Example Hospital2 EHR2"/>
-<artifact id="Endpoint/examplehealth-r2" key="Endpoint-examplehealth-r2" name="Endpoint ExampleHealth R2"/>
-<artifact id="Endpoint/examplehealth-r4" key="Endpoint-examplehealth-r4" name="Endpoint ExampleHealth R4"/>
-<artifact id="Endpoint/examplelabs" key="Endpoint-examplelabs" name="Endpoint ExampleLabs"/>
 <artifact id="StructureDefinition/endpoint-fhir-version" key="StructureDefinition-endpoint-fhir-version" name="Endpoint FHIR Version Extension"/>
 <artifact id="Basic/app-state" key="Basic-app-state" name="Example App State"/>
 <artifact id="Task/task-for-ehr-launch" key="Task-task-for-ehr-launch" name="Example Task for EHR Launch"/>
 <artifact id="Task/task-for-standalone-launch" key="Task-task-for-standalone-launch" name="Example Task for Standalone Launch"/>
 <artifact id="ValueSet/smart-launch-types" key="ValueSet-smart-launch-types" name="Launch Types for tasks to application launches"/>
-<artifact id="Organization/brand1-opt2" key="Organization-brand1-opt2" name="Organization Brand1 Option 2"/>
-<artifact id="Organization/brand2-opt2" key="Organization-brand2-opt2" name="Organization Brand2 Option 2"/>
-<artifact id="Organization/ehr1-examplehealth" key="Organization-ehr1-examplehealth" name="Organization EHR1 Example Health"/>
-<artifact id="Organization/example" key="Organization-example" name="Organization Example"/>
-<artifact id="Organization/examplehospital1-ehr1" key="Organization-examplehospital1-ehr1" name="Organization Example Hospital1 EHR1"/>
-<artifact id="Organization/examplehospital2-ehr2" key="Organization-examplehospital2-ehr2" name="Organization Example Hospital2 EHR2"/>
-<artifact id="Organization/examplehospital3-ehr1" key="Organization-examplehospital3-ehr1" name="Organization Example Hospital3 EHR1"/>
-<artifact id="Organization/examplehospital3-ehr2" key="Organization-examplehospital3-ehr2" name="Organization Example Hospital3 EHR2"/>
-<artifact id="Organization/examplehealth" key="Organization-examplehealth" name="Organization ExampleHealth"/>
-<artifact id="Organization/ehchospital" key="Organization-ehchospital" name="Organization ExampleHealth Community Hospital"/>
-<artifact id="Organization/ehpmadison" key="Organization-ehpmadison" name="Organization ExampleHealth Physicians Madison"/>
-<artifact id="Organization/examplelabs" key="Organization-examplelabs" name="Organization ExampleLabs"/>
 <artifact id="StructureDefinition/patient-access-brand" key="StructureDefinition-patient-access-brand" name="Patient Access Brand (Organization)Profile"/>
 <artifact id="StructureDefinition/patient-access-brands-bundle" key="StructureDefinition-patient-access-brands-bundle" name="Patient Access Brand Bundle Profile"/>
 <artifact id="CodeSystem/patient-access-category" key="CodeSystem-patient-access-category" name="Patient Access Category Code System"/>
@@ -64,6 +38,33 @@
 <artifact id="CodeSystem/smart-codes" key="CodeSystem-smart-codes" name="SMART on FHIR terminology."/>
 <artifact id="StructureDefinition/task-ehr-launch" key="StructureDefinition-task-ehr-launch" name="TaskEhrLaunch"/>
 <artifact id="StructureDefinition/task-standalone-launch" key="StructureDefinition-task-standalone-launch" name="TaskStandaloneLaunch"/>
+<artifact id="Endpoint/brand1-opt2" key="Endpoint-brand1-opt2" name="brand1-opt2"/>
+<artifact id="Organization/brand1-opt2" key="Organization-brand1-opt2" name="brand1-opt2"/>
+<artifact id="Endpoint/brand2-opt2" key="Endpoint-brand2-opt2" name="brand2-opt2"/>
+<artifact id="Organization/brand2-opt2" key="Organization-brand2-opt2" name="brand2-opt2"/>
+<artifact id="Organization/ehchospital" key="Organization-ehchospital" name="ehchospital"/>
+<artifact id="Organization/ehpmadison" key="Organization-ehpmadison" name="ehpmadison"/>
+<artifact id="Endpoint/ehr1-examplehealth" key="Endpoint-ehr1-examplehealth" name="ehr1-examplehealth"/>
+<artifact id="Organization/ehr1-examplehealth" key="Organization-ehr1-examplehealth" name="ehr1-examplehealth"/>
+<artifact id="Endpoint/example" key="Endpoint-example" name="example"/>
+<artifact id="Organization/example" key="Organization-example" name="example"/>
+<artifact id="Bundle/example1" key="Bundle-example1" name="example1"/>
+<artifact id="Bundle/example2" key="Bundle-example2" name="example2"/>
+<artifact id="Bundle/example3" key="Bundle-example3" name="example3"/>
+<artifact id="Bundle/example4" key="Bundle-example4" name="example4"/>
+<artifact id="Bundle/example5" key="Bundle-example5" name="example5"/>
+<artifact id="Bundle/example6" key="Bundle-example6" name="example6"/>
+<artifact id="Organization/examplehealth" key="Organization-examplehealth" name="examplehealth"/>
+<artifact id="Endpoint/examplehealth-r2" key="Endpoint-examplehealth-r2" name="examplehealth-r2"/>
+<artifact id="Endpoint/examplehealth-r4" key="Endpoint-examplehealth-r4" name="examplehealth-r4"/>
+<artifact id="Endpoint/examplehospital1-ehr1" key="Endpoint-examplehospital1-ehr1" name="examplehospital1-ehr1"/>
+<artifact id="Organization/examplehospital1-ehr1" key="Organization-examplehospital1-ehr1" name="examplehospital1-ehr1"/>
+<artifact id="Endpoint/examplehospital2-ehr2" key="Endpoint-examplehospital2-ehr2" name="examplehospital2-ehr2"/>
+<artifact id="Organization/examplehospital2-ehr2" key="Organization-examplehospital2-ehr2" name="examplehospital2-ehr2"/>
+<artifact id="Organization/examplehospital3-ehr1" key="Organization-examplehospital3-ehr1" name="examplehospital3-ehr1"/>
+<artifact id="Organization/examplehospital3-ehr2" key="Organization-examplehospital3-ehr2" name="examplehospital3-ehr2"/>
+<artifact id="Endpoint/examplelabs" key="Endpoint-examplelabs" name="examplelabs"/>
+<artifact id="Organization/examplelabs" key="Organization-examplelabs" name="examplelabs"/>
 <artifact deprecated="true" id="CapabilityStatement/smart-app-launch-example" key="CapabilityStatement-smart-app-launch-example" name="smart-app-launch-example"/>
 <artifact id="CapabilityStatement/smart-app-state-server" key="CapabilityStatement-smart-app-state-server" name="smart-app-state-server"/>
 <page key="NA" name="(NA)"/>
@@ -71,12 +72,12 @@
 <page deprecated="true" key="profiles" name="(profiles)"/>
 <page key="app-launch" name="App Launch: Launch and Authorization"/>
 <page key="scopes-and-launch-context" name="App Launch: Scopes and Launch Context"/>
-<page deprecated="true" key="apps" name="Apps"/>
+<page key="apps" name="Apps"/>
 <page key="artifacts" name="Artifacts Summary"/>
 <page key="backend-services" name="Backend Services"/>
 <page deprecated="true" key="basic-auth-example" name="Basic Auth Example"/>
 <page key="best-practices" name="Best Practices"/>
-<page deprecated="true" key="client-authentication" name="Client Authentication"/>
+<page key="client-authentication" name="Client Authentication"/>
 <page key="client-confidential-asymmetric" name="Client Authentication: Asymmetric (public key)"/>
 <page key="client-confidential-symmetric" name="Client Authentication: Symmetric (shared secret)"/>
 <page key="conformance" name="Conformance"/>
@@ -84,6 +85,7 @@
 <page key="example-app-launch-public" name="Example App Launch for Public Client"/>
 <page key="example-app-launch-symmetric-auth" name="Example App Launch for Symmetric Client Auth"/>
 <page key="example-backend-services" name="Example Backend Services Flow"/>
+<page key="worked_example_id_token" name="Example Id Token"/>
 <page key="authorization-example-jwks-and-signatures" name="Example JWS generation for Asymmetric Client Auth"/>
 <page deprecated="true" key="example-request-access-token" name="Example Request Access Token"/>
 <page deprecated="true" key="example-request-patient" name="Example Request Patient"/>
@@ -94,10 +96,9 @@
 <page key="example-brands" name="Patient-Access Brand Examples"/>
 <page key="brands" name="Patient-Access Brands and Endpoints"/>
 <page key="app-state" name="Persisting App State (Experimental)"/>
-<page deprecated="true" key="references" name="References"/>
+<page key="references" name="References"/>
 <page key="toc" name="Table of Contents"/>
 <page key="task-launch" name="Task profile for requesting SMART launch (Experimental)"/>
 <page key="token-introspection" name="Token Introspection"/>
-<page key="worked_example_id_token" name="Worked Example Id Token"/>
 <page deprecated="true" key="smart-app-launch" name="smart-app-launch" url="smart-app-launch"/>
 </specification>
