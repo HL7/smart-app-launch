@@ -92,14 +92,14 @@ menu:
     Intro: app-launch.html
     Register App: app-launch.html#register-app-with-ehr
     Standalone Launch: app-launch.html#launch-app-standalone-launch
-    EHR launch: app-launch.html#launch-app-ehr-launch
+    EHR Launch: app-launch.html#launch-app-ehr-launch
     Discovery: app-launch.html#retrieve-well-knownsmart-configuration
     Request Authorization Code: app-launch.html#obtain-authorization-code
-    Request Access Code: app-launch.html#obtain-access-token
+    Request Access Token: app-launch.html#obtain-access-token
     Access FHIR API: app-launch.html#access-fhir-api
     Scopes and Launch Context: scopes-and-launch-context.html
     Persisting App State: app-state.html
-    Task requesting launch: task-launch.html
+    Task Requesting Launch: task-launch.html
   Backend Services:
     Backend Services: backend-services.html
     Token Introspection: token-introspection.html
