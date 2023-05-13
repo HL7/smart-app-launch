@@ -749,7 +749,7 @@ Authorization: Bearer i8hweunweunweofiwweoijewiwe
 ```
 {
   "resourceType": "Patient",
-  "birthTime": ...
+  "birthDate": ...
 }
 ```
 
