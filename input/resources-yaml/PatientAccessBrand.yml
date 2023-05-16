@@ -40,7 +40,7 @@ description: |-
   * `0..* MS` `identifier`(s) that apps can use to link this Brand across publishers or with external data sets. EHRs SHALL support customer-supplied identifiers (`system` and `value`).
       * It is RECOMMENDED that each Brand include an identifier where `system` is `urn:ietf:rfc:3986` (meaning the identifier is a URL) and `value` is the HTTPS URL for the Brand's primary web presence, omitting any "www." prefix from the domain and omitting any path component. For example, since the main web presence of Boston Children's Hospital is https://www.childrenshospital.org/, a recommended identifier would be:
           `{"system": "urn:ietf:rfc:3986", "value": "https://childrenshospital.org"}`
-  * `0..*` `type` Categories for this organization (system: `http://fhir.org/argonaut/CodeSystem/patient-access-category`, code from: `clinical`, `lab`, `pharmacy`, `insurer`, `network`, `aggregator`)
+  * `0..*` `type` Categories for this organization (system: `http://hl7.org/fhir/smart-app-launch/CodeSystem/patient-access-category`, code from: `clinical`, `lab`, `pharmacy`, `insurer`, `network`, `aggregator`)
   * `1..1 MS` `name` Primary brand name to display on a card
   * `0..* MS` `alias` Aliases (e.g., former names like "Partners Healthcare") for filtering/search
   * `1..1 MS` `telecom` with `system` of `url` and `value` conveying the primary public website for the Brand. Note this is distinct from the patient access portal website (described below)
@@ -230,7 +230,7 @@ differential:
         Categories for this organization (health-system, hospital, outpatient,
         insurer, lab, pharmacy)
       definition: >-
-        Categories for this organization (system: `http://fhir.org/argonaut/CodeSystem/patient-access-category`, code from: `clinical`, `lab`, `pharmacy`, `insurer`, `network`, `aggregator`)
+        Categories for this organization (system: `http://hl7.org/fhir/smart-app-launch/CodeSystem/patient-access-category`, code from: `clinical`, `lab`, `pharmacy`, `insurer`, `network`, `aggregator`)
       binding:
         strength: extensible
         valueSet: >-
