@@ -92,7 +92,7 @@
         "extension": [
           {
             "url": "http://hl7.org/fhir/smart-app-launch/StructureDefinition/brand-logo",
-            "valueUrl": "https://example.org/examplehealth/logo/main.1024x102.png"
+            "valueUrl": "https://example.org/examplehealth/logo/main.1024x1024.png"
           },
           {
             "url": "http://hl7.org/fhir/smart-app-launch/StructureDefinition/patient-access-name",
