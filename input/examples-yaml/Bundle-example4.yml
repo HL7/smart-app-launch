@@ -101,7 +101,7 @@ entry:
               #         It can also be **markdown**.
               # - 
               #     url: 'http://hl7.org/fhir/smart-app-launch/StructureDefinition/patient-access-logo'
-              #     valueUrl:  'https://example.org/portal-logo/main.1024x102.png'
+              #     valueUrl:  'https://example.org/portal-logo/main.1024x1024.png'
 
               # - 
               #     url: 'http://hl7.org/fhir/smart-app-launch/StructureDefinition/patient-access-logo-use-agreement'
