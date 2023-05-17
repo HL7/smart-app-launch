@@ -4,7 +4,7 @@
     "url": "http://hl7.org/fhir/smart-app-launch/StructureDefinition/brand-logo",
     "name": "BrandLogo",
     "title": "Brand Logo Extension",
-    "description": "Patient access brand logo. SHOULD be optimized for display as a 1\u201d square and formatted as SVG or 1024x1024 pixel PNG with transparent background. Multiple logos may be supplied. The URL can be an absolute URL with the https:// schema, or a Data URL with the data: schema that directly embeds content.",
+    "description": "Patient access brand logo. SHOULD be optimized for display as a 1\u201d square and formatted as SVG or 1024x1024 pixel PNG with transparent background. Logo should be be legible at small sizes (e.g., as small as 50x50 pixels). Tips to achieve this: if the logo contains both a brandmark and a wordmark, separate them and use just the brandmark. If the logo is predominantly horizontal, consider creating a vertically-oriented logo that is still recognizable when scaled to smaller sizes. Multiple logos may be supplied. The URL can be an absolute URL with the https:// schema, or a Data URL with the data: schema that directly embeds content.",
     "status": "active",
     "date": "2023-03-03",
     "fhirVersion": "4.0.1",
@@ -25,7 +25,7 @@
                 "id": "Extension",
                 "path": "Extension",
                 "short": "Logo",
-                "definition": "Patient access brand logo. SHOULD be optimized for display as a 1\u201d square and formatted as SVG or 1024x1024 pixel PNG with transparent background. Multiple logos may be supplied. The URL can be an absolute URL with the https:// schema, or a Data URL with the data: schema that directly embeds content.",
+                "definition": "Patient access brand logo. SHOULD be optimized for display as a 1\u201d square and formatted as SVG or 1024x1024 pixel PNG with transparent background. Logo should be be legible at small sizes (e.g., as small as 50x50 pixels). Tips to achieve this: if the logo contains both a brandmark and a wordmark, separate them and use just the brandmark. If the logo is predominantly horizontal, consider creating a vertically-oriented logo that is still recognizable when scaled to smaller sizes. Multiple logos may be supplied. The URL can be an absolute URL with the https:// schema, or a Data URL with the data: schema that directly embeds content.",
                 "min": 0,
                 "max": "*"
             },
