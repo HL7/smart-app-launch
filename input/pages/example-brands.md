@@ -220,11 +220,6 @@ Nearest location: 13 miles (Sonoma)
 * Parent brand marked as "hidden"
 * Child brands for Brand1 + Brand2, pointing up to "primary brand"
 
-#### Option 3: Replace Endpoint.managingOrganization with a Multi-cardinality Extension
-
-* One endpoint with links to two primary brands
-* No brand hierarchy
-
 ##### Brand Bundle for Option 1: Duplicate the Endpoint
 
 
