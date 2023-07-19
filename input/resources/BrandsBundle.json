@@ -6,7 +6,7 @@
     "title": "Brands Bundle Extension",
     "status": "active",
     "date": "2023-03-03",
-    "description": "Extension on Endpoint.managingOrganization that defines the URL for a customer-managed Patient Access Brands Bundle that defines the identified Brand and related Brands (the Bundle SHALL contain exactly one entry matching the specified identifier).",
+    "description": "Extension on Endpoint.managingOrganization that defines the URL for a customer-managed Patient Access Brands Bundle that defines the identified Brand and related Brands (the Bundle SHALL contain exactly one entry matching the specified identifier). This extension allows customers to self-publish additional information about the Brand.",
     "fhirVersion": "4.0.1",
     "kind": "complex-type",
     "abstract": false,
