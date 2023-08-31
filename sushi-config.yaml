@@ -90,6 +90,7 @@ parameters:
     - 'Endpoint/*'
     - 'Basic/*'
     - 'Task/*'
+  path-output: docs #output
 # ╭────────────────────────────────────────────menu.xml────────────────────────────────────────────╮
 # │  To use a provided ig-data/input/includes/menu.xml file, delete the "menu" property below.     │
 # ╰────────────────────────────────────────────────────────────────────────────────────────────────╯
