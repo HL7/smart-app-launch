@@ -2,9 +2,9 @@ name: CI
 
 on:
   push:
-    branches: [ master, pab]
+    branches: [pab]
   pull_request:
-    branches: [ master, pab]
+    branches: [pab]
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
