@@ -2,7 +2,7 @@ name: CI
 
 on:
   push:
-    branches: [ master, pab ]
+    branches: [ master, pab]
   pull_request:
     branches: [ master, pab]
 
