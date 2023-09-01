@@ -33,7 +33,13 @@ jobs:
             -v $(pwd):/home/publisher/ig \
             hl7fhir/ig-publisher-base \
             sh -c "sushi && ./scripts/_updatePublisher.sh --yes && ./scripts/_genonce.sh"
-      - name: Deploy to GitHub Pages  # action from the GitHub Marketplace
-        uses: JamesIves/github-pages-deploy-action@v4.4.3
+      - name: Setup Pages
+        uses: actions/configure-pages@v3
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v2
         with:
-          folder: /home/publisher/ig/output # deploy from the output folder from the prior step
+          # deploy from the output from the prior step
+          path: 'output'
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v2
