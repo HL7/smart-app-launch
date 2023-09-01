@@ -1,0 +1,41 @@
+resourceType: Endpoint
+id: brand2-opt2
+meta:
+
+  extension:
+  - url: http://hl7.org/fhir/StructureDefinition/instance-name
+    valueString: Endpoint Brand2 Option 2
+  - url: http://hl7.org/fhir/StructureDefinition/instance-description
+    valueMarkdown: 'This is an Endpoint example for the *Patient Access Endpoint Profile* and is used in Example 4: Two co-equal brands (“Brand1” + “Brand2”)'
+  profile:
+        - 'http://hl7.org/fhir/smart-app-launch/StructureDefinition/patient-access-endpoint'
+extension:
+    - 
+        url: 'http://hl7.org/fhir/smart-app-launch/StructureDefinition/endpoint-fhir-version'
+        valueCode: 4.0.1
+status: active
+address: 'https://example.org/brand2.org/ProdFHIR/api/FHIR/R4'
+name: FHIR R4 Endpoint for Brand1/Brand2
+contact:
+    - 
+        system: url
+        value: 'https://open.ehr.com'
+connectionType:
+    system: 'http://terminology.hl7.org/CodeSystem/endpoint-connection-type'
+    code: hl7-fhir-rest
+
+payloadType:
+    - 
+      coding:
+        -
+          system: 'http://terminology.hl7.org/CodeSystem/endpoint-payload-type'
+          code:  none
+
+managingOrganization:
+    reference: Organization/brand2-opt2
+    # identifier:
+    #     value: e625fd34e7c456dc
+    # extension:
+    #     - 
+    #         url: 'http://hl7.org/fhir/smart-app-launch/StructureDefinition/brands-bundle'
+    #         valueUrl: 'https://example.org/brands.json'

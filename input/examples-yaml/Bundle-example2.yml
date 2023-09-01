@@ -1,0 +1,356 @@
+resourceType: Bundle
+id: example2
+type: collection
+meta:
+  lastUpdated: '2023-03-08T20:07:57Z'
+  extension:
+    - url: http://hl7.org/fhir/StructureDefinition/instance-name
+      valueString:  Bundle Example 2
+    - url: http://hl7.org/fhir/StructureDefinition/instance-description
+      valueMarkdown: This is an Bundle example for the **Patient Access Brands Bundle Profile**. and represents a regional health system with independently branded affiliates.
+  profile:
+        - 'http://hl7.org/fhir/smart-app-launch/StructureDefinition/patient-access-brands-bundle'
+
+entry:
+    - 
+        fullUrl: 'https://ehr.example.org/Endpoint/examplehealth-r4'
+        resource:
+          resourceType: Endpoint
+          id: examplehealth
+          # meta:
+          #   extension:
+          #   - url: http://hl7.org/fhir/StructureDefinition/instance-name
+          #     valueString: Endpoint ExampleHealth
+          #   - url: http://hl7.org/fhir/StructureDefinition/instance-description
+          #     valueMarkdown: This is an Endpoint example for the *Patient Access Endpoint Profile* and is used in Example 2 Regional Health System With Independently Branded Affiliates.
+          #   profile:
+          #         - 'http://hl7.org/fhir/smart-app-launch/StructureDefinition/patient-access-endpoint'
+          extension:
+              - 
+                  url: 'http://hl7.org/fhir/smart-app-launch/StructureDefinition/endpoint-fhir-version'
+                  valueCode: 4.0.1
+          status: active
+          address: 'https://ehrfhir.examplehealth.org/ProdFHIR/api/FHIR/R4'
+          name: FHIR R4 Endpoint for ExampleHealth
+          contact:
+              - 
+                  system: url
+                  value: 'https://open.ehr.com'
+          connectionType:
+              system: 'http://terminology.hl7.org/CodeSystem/endpoint-connection-type'
+              code: hl7-fhir-rest
+
+          payloadType:
+              - 
+                coding:
+                  -
+                    system: 'http://terminology.hl7.org/CodeSystem/endpoint-payload-type'
+                    code:  none
+
+          managingOrganization:
+              reference: Organization/examplehealth
+              # identifier:
+              #     value: e625fd34e7c456dc
+              # extension:
+              #     - 
+              #         url: 'http://hl7.org/fhir/smart-app-launch/StructureDefinition/brands-bundle'
+              #         valueUrl: 'Bundle/example1'
+    - 
+        fullUrl: 'https://ehr.example.org/Endpoint/examplehealth-r2'
+        resource:
+          resourceType: Endpoint
+          id: examplehealth-r2
+          # meta:
+          #   extension:
+          #   - url: http://hl7.org/fhir/StructureDefinition/instance-name
+          #     valueString: Endpoint ExampleHealth R2
+          #   - url: http://hl7.org/fhir/StructureDefinition/instance-description
+          #     valueMarkdown: This is an Endpoint example for the *Patient Access Endpoint Profile* and is used in Example 2 Regional Health System With Independently Branded Affiliates.
+          #   profile:
+          #         - 'http://hl7.org/fhir/smart-app-launch/StructureDefinition/patient-access-endpoint'
+          extension:
+              - 
+                  url: 'http://hl7.org/fhir/smart-app-launch/StructureDefinition/endpoint-fhir-version'
+                  valueCode: 1.0.2
+          status: active
+          address: 'https://ehrfhir.examplehealth.org/ProdFHIR/api/FHIR/R4'
+          name: FHIR DSTU2 Endpoint for ExampleHealth
+          contact:
+              - 
+                  system: url
+                  value: 'https://open.ehr.com'
+          connectionType:
+              system: 'http://terminology.hl7.org/CodeSystem/endpoint-connection-type'
+              code: hl7-fhir-rest
+
+          payloadType:
+              - 
+                coding:
+                  -
+                    system: 'http://terminology.hl7.org/CodeSystem/endpoint-payload-type'
+                    code:  none
+          managingOrganization:
+              reference: Organization/examplehealth
+              # identifier:
+              #     value: e625fd34e7c456dc
+              # extension:
+              #     - 
+              #         url: 'http://hl7.org/fhir/smart-app-launch/StructureDefinition/brands-bundle'
+              #         valueUrl: 'Bundle/example1'
+
+    - 
+        fullUrl: 'https://ehr.example.org/Organization/examplehealth'
+        resource:
+          resourceType: Organization
+          id: examplehealth
+          # meta:
+          #   extension:
+          #     - url: 'http://hl7.org/fhir/StructureDefinition/instance-name'
+          #       valueString: Organization ExampleHealth
+          #     - url: 'http://hl7.org/fhir/StructureDefinition/instance-description'
+          #       valueMarkdown: This is an Organization example for the *Patient Access Brand Profile* and is used in Example 2 Regional Health System With Independently Branded Affiliates.
+          #   profile:
+          #     - 'http://hl7.org/fhir/smart-app-launch/StructureDefinition/patient-access-brand'
+
+          extension:
+
+              - 
+                  url: 'http://hl7.org/fhir/smart-app-launch/StructureDefinition/brand-logo'
+                  valueUrl: 'https://example.org/examplehealth/logo/main.1024x102.png'
+              # - 
+              #     url: 'http://hl7.org/fhir/smart-app-launch/StructureDefinition/brand-logo-use-agreement'
+              #     valueUrl: 'https://example.org/logo/use-agreement.html'
+              # - 
+              #     url: 'http://hl7.org/fhir/smart-app-launch/StructureDefinition/brand-flags'
+              #     valueCode: hidden
+
+          # portal extensions
+
+              - 
+                  url: 'http://hl7.org/fhir/smart-app-launch/StructureDefinition/patient-access-name'
+                  valueString: My ExampleHealth Portal
+              - 
+                  url: 'http://hl7.org/fhir/smart-app-launch/StructureDefinition/patient-access-url'
+                  valueUrl: 'https://example.org/chart.myexamplehealth.org'
+
+              # - 
+              #     url: 'http://hl7.org/fhir/smart-app-launch/StructureDefinition/patient-access-description'
+              #     valueMarkdown: |
+              #         This is the description of the portal. It can be multiple lines.
+              #         It can also be **markdown**.
+              # - 
+              #     url: 'http://hl7.org/fhir/smart-app-launch/StructureDefinition/patient-access-logo'
+              #     valueUrl:  'https://example.org/portal-logo/main.1024x102.png'
+
+              # - 
+              #     url: 'http://hl7.org/fhir/smart-app-launch/StructureDefinition/patient-access-logo-use-agreement'
+              #     valueUrl: 'https://example.org/portal-logo/use-agreement.html'
+
+          identifier:
+            - system: 'urn:ietf:rfc:3986'
+              value: 'https://examplehealth.org'
+          active: true
+          type:
+            - coding:
+                - system: 'http://hl7.org/fhir/smart-app-launch/CodeSystem/patient-access-category'
+                  code: clinical
+                  display: Clinical Care provider
+          name: ExampleHealth
+          alias:
+            - GoodHealth Hospital
+            - GoodHealth Mental Health
+
+          telecom:
+              - 
+                  system: url
+                  value: 'https://www.examplehealth.com'
+          address:
+                          - 
+                              city: Madison
+                              state: WI
+                          - 
+                              city: Anamosa
+                              state: IA
+                          - 
+                              city: Cedar Rapids
+                              state: IA
+                          - 
+                              city: Des Moines
+                              state: IA
+                          - 
+                              city: Dubuque
+                              state: IA
+                          - 
+                              city: Fort Dodge
+                              state: IA
+                          - 
+                              city: Grinnell
+                              state: IA
+                          - 
+                              city: Marshalltown
+                              state: IA
+                          - 
+                              city: Peoria
+                              state: IA
+                          - 
+                              city: Pekin
+                              state: IA
+                          - 
+                              city: Muscatine
+                              state: IA
+                          - 
+                              city: Sioux City
+                              state: IA
+            
+
+
+    - 
+        fullUrl: 'https://ehr.example.org/Organization/ehpmadison'
+        resource:
+          resourceType: Organization
+          id: ehpmadison
+          # meta:
+          #   extension:
+          #     - url: 'http://hl7.org/fhir/StructureDefinition/instance-name'
+          #       valueString: Organization ExampleHealth Physicians Madison
+          #     - url: 'http://hl7.org/fhir/StructureDefinition/instance-description'
+          #       valueMarkdown: This is an Organization example for the *Patient Access Brand Profile* and is used in Example 2 Regional Health System With Independently Branded Affiliates.
+          #   profile:
+          #     - 'http://hl7.org/fhir/smart-app-launch/StructureDefinition/patient-access-brand'
+
+          extension:
+
+              - 
+                  url: 'http://hl7.org/fhir/smart-app-launch/StructureDefinition/brand-logo'
+                  valueUrl: 'https://example.org/examplehealth.org/logo/ehp-madison.png'
+              # - 
+              #     url: 'http://hl7.org/fhir/smart-app-launch/StructureDefinition/brand-logo-use-agreement'
+              #     valueUrl: 'https://example.org/logo/use-agreement.html'
+              # - 
+              #     url: 'http://hl7.org/fhir/smart-app-launch/StructureDefinition/brand-flags'
+              #     valueCode: hidden
+
+          # portal extensions
+
+              # - 
+              # - 
+              #     url: 'http://hl7.org/fhir/smart-app-launch/StructureDefinition/patient-access-name'
+              #     valueString: My ExampleHealth Portal
+              # - 
+              #     url: 'http://hl7.org/fhir/smart-app-launch/StructureDefinition/patient-access-url'
+              #     valueUrl: 'https://example.org/chart.myexamplehealth.org'
+
+              # - 
+              #     url: 'http://hl7.org/fhir/smart-app-launch/StructureDefinition/patient-access-description'
+              #     valueMarkdown: |
+              #         This is the description of the portal. It can be multiple lines.
+              #         It can also be **markdown**.
+              # - 
+              #     url: 'http://hl7.org/fhir/smart-app-launch/StructureDefinition/patient-access-logo'
+              #     valueUrl:  'https://example.org/portal-logo/main.1024x102.png'
+
+              # - 
+              #     url: 'http://hl7.org/fhir/smart-app-launch/StructureDefinition/patient-access-logo-use-agreement'
+              #     valueUrl: 'https://example.org/portal-logo/use-agreement.html'
+
+          identifier:
+            - system: 'urn:ietf:rfc:3986'
+              value: 'https://ehpmadison.com'
+          active: true
+          type:
+            - coding:
+                - system: 'http://hl7.org/fhir/smart-app-launch/CodeSystem/patient-access-category'
+                  code: clinical
+                  display: Clinical Care provider
+          name: ExampleHealth Physicians Madison
+          alias:
+            - GoodHealth Madison
+
+          telecom:
+              - 
+                  system: url
+                  value: 'https://www.ehpmadison.com'
+          address:
+                - 
+                    city: Madison
+                    state: WI
+
+          partOf:
+            reference: Organization/examplehealth
+
+
+
+    - 
+        fullUrl: 'https://ehr.example.org/Organization/examplehealth-community-memorial'
+        resource:
+          resourceType: Organization
+          id: ehchospital
+          # meta:
+          #   extension:
+          #     - url: 'http://hl7.org/fhir/StructureDefinition/instance-name'
+          #       valueString: Organization ExampleHealth Community Hospital
+          #     - url: 'http://hl7.org/fhir/StructureDefinition/instance-description'
+          #       valueMarkdown: This is an Organization example for the *Patient Access Brand Profile* and is used in Example 2 Regional Health System With Independently Branded Affiliates.
+          #   profile:
+          #     - 'http://hl7.org/fhir/smart-app-launch/StructureDefinition/patient-access-brand'
+
+          extension:
+
+              - 
+                  url: 'http://hl7.org/fhir/smart-app-launch/StructureDefinition/brand-logo'
+                  valueUrl: 'data:image/svg+xml;base64,PHN2ZyB0aXRsZT0iU3Rld2FydCBNZW1vcmlhbCBIb3Nw...+IDwvc3ZnPgo='
+
+              # - 
+              #     url: 'http://hl7.org/fhir/smart-app-launch/StructureDefinition/brand-logo-use-agreement'
+              #     valueUrl: 'https://example.org/logo/use-agreement.html'
+              # - 
+              #     url: 'http://hl7.org/fhir/smart-app-launch/StructureDefinition/brand-flags'
+              #     valueCode: hidden
+
+          # portal extensions
+
+              # - 
+              #     url: 'http://hl7.org/fhir/smart-app-launch/StructureDefinition/patient-access-name'
+              #     valueString: My ExampleHealth Portal
+              # - 
+              #     url: 'http://hl7.org/fhir/smart-app-launch/StructureDefinition/patient-access-url'
+              #     valueUrl: 'https://example.org/chart.myexamplehealth.org'
+              # - 
+              #     url: 'http://hl7.org/fhir/smart-app-launch/StructureDefinition/patient-access-description'
+              #     valueMarkdown: |
+              #         This is the description of the portal. It can be multiple lines.
+              #         It can also be **markdown**.
+              # - 
+              #     url: 'http://hl7.org/fhir/smart-app-launch/StructureDefinition/patient-access-logo'
+              #     valueUrl:  'https://example.org/portal-logo/main.1024x102.png'
+
+              # - 
+              #     url: 'http://hl7.org/fhir/smart-app-launch/StructureDefinition/patient-access-logo-use-agreement'
+              #     valueUrl: 'https://example.org/portal-logo/use-agreement.html'
+
+          identifier:
+            - system: 'urn:ietf:rfc:3986'
+              value: 'https://ehchospital.org'
+          active: true
+          type:
+            - coding:
+                - system: 'http://hl7.org/fhir/smart-app-launch/CodeSystem/patient-access-category'
+                  code: clinical
+                  display: Clinical Care provider
+          name: ExampleHealth Community Hospital
+          alias:
+            - GoodHealth Madison
+
+          telecom:
+              - 
+                  system: url
+                  value: 'https://www.ehchospital.com'
+          address:
+                - 
+                  city: Lake City
+                  state: IA
+
+          partOf:
+            reference: Organization/examplehealth
+
+

@@ -2,7 +2,7 @@ resourceType: StructureDefinition
 id: patient-access-brand
 url: 'http://hl7.org/fhir/smart-app-launch/StructureDefinition/patient-access-brand'
 name: PatientAccessBrand
-title: Patient Access Brand (Organization)Profile
+title: Patient Access Brand (Organization) Profile
 status: active
 date: '2023-03-05'
 description: >-
