@@ -36,6 +36,4 @@ jobs:
       - name: Deploy to GitHub Pages  # action from the GitHub Marketplace
         uses: JamesIves/github-pages-deploy-action@v4.4.3
         with:
-          folder: output # deploy from the docs from the prior step
-        id: deployment
-        uses: actions/deploy-pages@v2
+          folder: output # deploy from the output folder from the prior step
