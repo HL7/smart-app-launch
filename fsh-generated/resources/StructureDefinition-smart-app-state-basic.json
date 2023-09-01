@@ -1,0 +1,51 @@
+{
+  "resourceType": "StructureDefinition",
+  "id": "smart-app-state-basic",
+  "url": "http://hl7.org/fhir/smart-app-launch/StructureDefinition/smart-app-state-basic",
+  "name": "SMARTAppStateBasic",
+  "title": "SMART App State",
+  "status": "active",
+  "description": "SMART App State profile on Basic resource\n\n**See [App State capability](./app-state.html) for requirements, usage notes, and examples.**",
+  "fhirVersion": "4.0.1",
+  "mapping": [
+    {
+      "identity": "rim",
+      "uri": "http://hl7.org/v3",
+      "name": "RIM Mapping"
+    },
+    {
+      "identity": "w5",
+      "uri": "http://hl7.org/fhir/fivews",
+      "name": "FiveWs Pattern Mapping"
+    }
+  ],
+  "kind": "resource",
+  "abstract": false,
+  "type": "Basic",
+  "baseDefinition": "http://hl7.org/fhir/StructureDefinition/Basic",
+  "derivation": "constraint",
+  "differential": {
+    "element": [
+      {
+        "id": "Basic.extension.extension",
+        "path": "Basic.extension.extension",
+        "max": "0"
+      },
+      {
+        "id": "Basic.extension.value[x]",
+        "path": "Basic.extension.value[x]",
+        "type": [
+          {
+            "code": "string"
+          }
+        ]
+      },
+      {
+        "id": "Basic.code.coding",
+        "path": "Basic.code.coding",
+        "min": 1,
+        "max": "1"
+      }
+    ]
+  }
+}

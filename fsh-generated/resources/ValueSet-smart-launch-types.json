@@ -1,0 +1,27 @@
+{
+  "resourceType": "ValueSet",
+  "status": "active",
+  "name": "SmartLaunchTypes",
+  "id": "smart-launch-types",
+  "title": "Launch Types for tasks to application launches",
+  "description": "Defines Launch Type codes for Tasks that request launch of SMART applications.",
+  "url": "http://hl7.org/fhir/smart-app-launch/ValueSet/smart-launch-types",
+  "experimental": false,
+  "compose": {
+    "include": [
+      {
+        "system": "http://hl7.org/fhir/smart-app-launch/CodeSystem/smart-codes",
+        "concept": [
+          {
+            "code": "launch-app-ehr",
+            "display": "Launch application using the SMART EHR launch"
+          },
+          {
+            "code": "launch-app-standalone",
+            "display": "Launch application using the SMART standalone launch"
+          }
+        ]
+      }
+    ]
+  }
+}
