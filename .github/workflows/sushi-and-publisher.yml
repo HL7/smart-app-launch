@@ -36,4 +36,4 @@ jobs:
       - name: Deploy to GitHub Pages  # action from the GitHub Marketplace
         uses: JamesIves/github-pages-deploy-action@v4.4.3
         with:
-          folder: output # deploy from the output folder from the prior step
+          folder: /home/publisher/ig/output # deploy from the output folder from the prior step
