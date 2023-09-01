@@ -2,7 +2,7 @@
 
 This specification provides a standardized method for Electronic Health Record (EHR) systems to publish Fast Healthcare Interoperability Resources (FHIR) endpoints and associated branding information to create a seamless user experience connecting patients to their health records through various applications. The specification focuses on the concept of "Patient-access Brands," where apps display recognizable cards or tiles representing different healthcare providers, payers, or organizations offering patient access through their FHIR endpoints.
 
-The specification defines FHIR profiles for Endpoint, Organization, and Bundle resources. It outlines the process for API providers to publish Brands associated with their FHIR endpoints and for apps to collect and present these Brands to users. Each Brand includes essential information such as the organization's name, logo, and patient access details, which apps can display in their user interface. Additionally, the specification addresses the relationship between Brands and endpoints, supporting cases where an endpoint publishes one or multiple Brands or where multiple endpoints publish the same Brand. It also provides guidance on caching and CORS. 
+The specification defines FHIR profiles for [Endpoint]({{site.data.fhir.path}}endpoint.html), Organization({{site.data.fhir.path}}organization.html), and Bundle({{site.data.fhir.path}}bundle.html) resources. It outlines the process for API providers to publish Brands associated with their FHIR endpoints and for apps to collect and present these Brands to users. Each Brand includes essential information such as the organization's name, logo, and patient access details, which apps can display in their user interface. Additionally, the specification addresses the relationship between Brands and endpoints, supporting cases where an endpoint publishes one or multiple Brands or where multiple endpoints publish the same Brand. It also provides guidance on caching and CORS. 
 
 EHR systems, healthcare providers, and app developers can ensure a consistent and recognizable user experience when connecting patients to their health records across various platforms and services by following this specification.
 
@@ -145,7 +145,7 @@ which are defined below. For fine-grained organizational management, apps SHALL 
   
 ##### Partial View Of Brand Bundle Example
 
-The following Bundle fragments in the example below illustrate how Brand data is compiled into a Bundle and how each Endpoint's `managingOrganization` element references a Brand (in other words, an Organization) within the same Bundle. See the [Patient-Access Brand Examples](example-brands.html) for complete examples. 
+The following Bundle fragments in the example below illustrate how Brand data is compiled into a Bundle and how <span class="bg-success" markdown="1">a Brand (in other words, an Organization) references an Endpoints</span><!-- new-content --> within the same Bundle. See the [Patient-Access Brand Examples](example-brands.html) for complete examples. 
 
 ```javascript
 {

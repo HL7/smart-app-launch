@@ -5,8 +5,8 @@
     "name": "PatientAccessEndpoint",
     "title": "Patient Access Endpoint Profile",
     "status": "active",
-    "date": "2023-03-03",
-    "description": "Profile on Endpoint associated with a Patient Access Brand.\n\n * `extension`\n     * `1..* MS` `http://hl7.org/fhir/smart-app-launch/StructureDefinition/endpoint-fhir-version` to convey the endpoint's FHIR Version. This element is a denormalization to help clients focus on supported endpoints. The `valueCode` is any version from http://hl7.org/fhir/valueset-FHIR-version.html. (As of this publication, `4.0.1` is expected for ONC-certified EHRs).\n * `1..1 MS` `status`\n * `1..1 MS` `connectionType` -- fixed Coding for `hl7-fhir-rest`\n * `0..1` `name` fallback or default name describing the endpoint and the organization offering Patient API access at this endpoint. This value MAY contain technical details like FHIR API Version designations and apps SHOULD preferentially use names from an associated `PatientAccessBrand` rather than displaying this value to users.\n * `1..1 MS` `managingOrganization` references a `PatientAccessBrand`. This property associates a single \"primary brand\" with the endpoint. Additional affiliated Brands or parent brands can be associated via \"Patient access provided by\" links (`Organization.partOf`). EHR vendors SHALL support integrated publication of Organizations in the same JSON Bundle, as well as external customer-managed publications:\n   * `0..* MS` `extension` with\n       * `url` `http://hl7.org/fhir/smart-app-launch/StructureDefinition/brands-bundle`\n       * `valueUrl` URL for a customer-managed Patient Access Brands Bundle that defines the identified Brand and related Brands (the Bundle SHALL contain exactly one entry matching the specified identifier). This extension allows customers to self-publish additional information about the Brand.\n   * `0..1 MS`  `reference` containing a relative URL to a Brand within this Bundle\n   * `0..1 MS` `identifier` with a customer-supplied identifier for the primary Brand\n * `1..* MS` `contact` website where developers can configure access to this endpoint\n     * `1..* MS` `system` is `url`\n     * `1..* MS` `value` is an `https://` URL for app developers\n * `1..1 MS` `payloadType` -- fixed Coding for `none`\n * `1..1 MS` `address` FHIR base URL for server supporting patient access",
+    "date": "2023-08-31",
+    "description": "Profile on Endpoint associated with a Patient Access Brand.\n\n\n\n * `extension`\n\n     * `1..* MS`\n`http://hl7.org/fhir/smart-app-launch/StructureDefinition/endpoint-fhir-version` to convey the endpoint's FHIR Version. This element is a denormalization to help clients focus on supported endpoints. The `valueCode` is any version from http://hl7.org/fhir/valueset-FHIR-version.html. (As of this publication, `4.0.1` is expected for ONC-certified EHRs).\n\n * `1..1 MS` `status`\n\n * `1..1 MS` `connectionType` -- fixed Coding for `hl7-fhir-rest`\n\n * `0..1` `name` fallback or default name describing the endpoint and the\norganization offering Patient API access at this endpoint. This value MAY contain technical details like FHIR API Version designations and apps SHOULD preferentially use names from an associated `PatientAccessBrand` rather than displaying this value to users.\n\n * `1..* MS` `contact` website where developers can configure access to this\nendpoint\n\n     * `1..* MS` `system` is `url`\n\n     * `1..* MS` `value` is an `https://` URL for app developers\n\n * `1..1 MS` `payloadType` -- fixed Coding for `none`\n\n * `1..1 MS` `address` FHIR base URL for server supporting patient access",
     "fhirVersion": "4.0.1",
     "kind": "resource",
     "abstract": false,
@@ -58,69 +58,6 @@
                 "definition": "Fallback or default name describing the endpoint and the organization offering Patient API access at this endpoint. This value MAY contain technical details like FHIR API Version designations, and apps SHOULD preferentially use the name from an associated PatientAccessBrand, rather than displaying this value to users."
             },
             {
-                "id": "Endpoint.managingOrganization",
-                "path": "Endpoint.managingOrganization",
-                "short": "Reference to a PatientAccessBrand Organization.",
-                "definition": "This property associates a single \u201cprimary brand\u201d with the endpoint. Additional affiliated Brands or parent brands can be associated via \u201cPatient access provided by\u201d links (Organization.partOf). EHR vendors SHALL support integrated publication of Organizations in the same JSON Bundle, as well as external customer-managed publication.",
-                "min": 1,
-                "type": [
-                    {
-                        "code": "Reference",
-                        "targetProfile": [
-                            "http://hl7.org/fhir/smart-app-launch/StructureDefinition/patient-access-brand"
-                        ],
-                        "aggregation": [
-                            "bundled"
-                        ]
-                    }
-                ],
-                "constraint": [
-                    {
-                        "key": "pae-1",
-                        "severity": "error",
-                        "human": "A Patient Access Endpoint managingOrganization SHALL have both or neither an `identifier` and a \"brands-bundle\" extension.",
-                        "expression": "(identifier.exists() xor extension.where(url='http://hl7.org/fhir/smart-app-launch/StructureDefinition/brands-bundle').exists()).not()"
-                    }
-                ],
-                "mustSupport": true
-            },
-            {
-                "id": "Endpoint.managingOrganization.extension:brands-bundle",
-                "path": "Endpoint.managingOrganization.extension",
-                "short": "URL for a customer-managed Patient Access Brands Bundle",
-                "sliceName": "brands-bundle",
-                "definition": "URL for a customer-managed Patient Access Brands Bundle that defines the identified Brand and related Brands (the Bundle SHALL contain exactly one entry matching the specified identifier).",
-                "type": [
-                    {
-                        "code": "Extension",
-                        "profile": [
-                            "http://hl7.org/fhir/smart-app-launch/StructureDefinition/brands-bundle"
-                        ]
-                    }
-                ],
-                "condition": [
-                    "pae-1"
-                ],
-                "mustSupport": true
-            },
-            {
-                "id": "Endpoint.managingOrganization.reference",
-                "path": "Endpoint.managingOrganization.reference",
-                "short": "Relative URL to a Brand within the Patient Access Brands Bundle",
-                "definition": "Relative URL to a Brand within the Patient Access Brands Bundle",
-                "mustSupport": true
-            },
-            {
-                "id": "Endpoint.managingOrganization.identifier",
-                "path": "Endpoint.managingOrganization.identifier",
-                "short": "Customer-supplied identifier for the primary Brand",
-                "definition": "Customer-supplied identifier for the primary Brand",
-                "condition": [
-                    "pae-1"
-                ],
-                "mustSupport": true
-            },
-            {
                 "id": "Endpoint.contact",
                 "path": "Endpoint.contact",
                 "short": "Contact information for the endpoint.",
@@ -134,6 +71,7 @@
                     ],
                     "rules": "open"
                 },
+                "min": 1,
                 "mustSupport": true
             },
             {
