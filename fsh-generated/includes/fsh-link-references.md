@@ -8,6 +8,7 @@
 [brand2-opt2]: Endpoint-brand2-opt2.html
 [brand2-opt2]: Organization-brand2-opt2.html
 [BrandsBundle]: StructureDefinition-brands-bundle.html
+[example6]: Bundle-example6.html
 [SmartLaunchInformation]: ValueSet-smart-launch-info.html
 [ehchospital]: Organization-ehchospital.html
 [ehpmadison]: Organization-ehpmadison.html
@@ -24,7 +25,6 @@
 [example3]: Bundle-example3.html
 [example4]: Bundle-example4.html
 [example5]: Bundle-example5.html
-[example6]: Bundle-example6.html
 [examplehealth]: Organization-examplehealth.html
 [examplehealth-r2]: Endpoint-examplehealth-r2.html
 [examplehealth-r4]: Endpoint-examplehealth-r4.html

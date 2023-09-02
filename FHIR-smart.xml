@@ -17,13 +17,14 @@
 <artifact id="StructureDefinition/brand-logo" key="StructureDefinition-brand-logo" name="Brand Logo Extension"/>
 <artifact id="StructureDefinition/brand-logo-use-agreement" key="StructureDefinition-brand-logo-use-agreement" name="Brand Logo Use Agreement Extension"/>
 <artifact id="StructureDefinition/brands-bundle" key="StructureDefinition-brands-bundle" name="Brands Bundle Extension"/>
+<artifact id="Bundle/example6" key="Bundle-example6" name="Bundle Example 6"/>
 <artifact id="ValueSet/smart-launch-info" key="ValueSet-smart-launch-info" name="Codes for tasks to application launches"/>
 <artifact id="StructureDefinition/endpoint-fhir-version" key="StructureDefinition-endpoint-fhir-version" name="Endpoint FHIR Version Extension"/>
 <artifact id="Basic/app-state" key="Basic-app-state" name="Example App State"/>
 <artifact id="Task/task-for-ehr-launch" key="Task-task-for-ehr-launch" name="Example Task for EHR Launch"/>
 <artifact id="Task/task-for-standalone-launch" key="Task-task-for-standalone-launch" name="Example Task for Standalone Launch"/>
 <artifact id="ValueSet/smart-launch-types" key="ValueSet-smart-launch-types" name="Launch Types for tasks to application launches"/>
-<artifact id="StructureDefinition/patient-access-brand" key="StructureDefinition-patient-access-brand" name="Patient Access Brand (Organization)Profile"/>
+<artifact id="StructureDefinition/patient-access-brand" key="StructureDefinition-patient-access-brand" name="Patient Access Brand (Organization) Profile"/>
 <artifact id="StructureDefinition/patient-access-brands-bundle" key="StructureDefinition-patient-access-brands-bundle" name="Patient Access Brand Bundle Profile"/>
 <artifact id="CodeSystem/patient-access-category" key="CodeSystem-patient-access-category" name="Patient Access Category Code System"/>
 <artifact id="ValueSet/patient-access-category" key="ValueSet-patient-access-category" name="Patient Access Category Value Set"/>
@@ -53,7 +54,6 @@
 <artifact id="Bundle/example3" key="Bundle-example3" name="example3"/>
 <artifact id="Bundle/example4" key="Bundle-example4" name="example4"/>
 <artifact id="Bundle/example5" key="Bundle-example5" name="example5"/>
-<artifact id="Bundle/example6" key="Bundle-example6" name="example6"/>
 <artifact id="Organization/examplehealth" key="Organization-examplehealth" name="examplehealth"/>
 <artifact id="Endpoint/examplehealth-r2" key="Endpoint-examplehealth-r2" name="examplehealth-r2"/>
 <artifact id="Endpoint/examplehealth-r4" key="Endpoint-examplehealth-r4" name="examplehealth-r4"/>

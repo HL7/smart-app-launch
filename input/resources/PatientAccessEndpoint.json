@@ -6,7 +6,7 @@
     "title": "Patient Access Endpoint Profile",
     "status": "active",
     "date": "2023-08-31",
-    "description": "Profile on Endpoint associated with a Patient Access Brand.\n\n * `extension`\n     * `1..* MS` http://hl7.org/fhir/smart-app-launch/StructureDefinition/endpoint-fhir-version\n to convey the endpoint's FHIR Version. This element is a denormalization to\nhelp clients focus on supported endpoints. The `valueCode` is any version from http://hl7.org/fhir/valueset-FHIR-version.html. (As of this publication, `4.0.1` is expected for ONC-certified EHRs).\n * `1..1 MS` `status`\n * `1..1 MS` `connectionType` -- fixed Coding for `hl7-fhir-rest`\n * `0..1` `name` fallback or default name describing the endpoint and the organization offering Patient API access at this endpoint. This value MAY\ncontain technical details like FHIR API Version designations and apps SHOULD preferentially use names from an associated `PatientAccessBrand` rather than displaying this value to users.\n * `1..* MS` `contact` website where developers can configure access to this endpoint\n     * `1..* MS` `system` is `url`\n     * `1..* MS` `value` is an `https://` URL for app developers\n * `1..1 MS` `payloadType` -- fixed Coding for `none`\n * `1..1 MS` `address` FHIR base URL for server supporting patient access",
+    "description": "Profile on Endpoint associated with a Patient Access Brand.\n * `extension`\n     * `1..* MS `http://hl7.org/fhir/smart-app-launch/StructureDefinition/endpoint-fhir-version\n to convey the endpoint's FHIR Version. This element is a denormalization to\nhelp clients focus on supported endpoints. The `valueCode` is any version from http://hl7.org/fhir/valueset-FHIR-version.html. (As of this publication, `4.0.1` is expected for ONC-certified EHRs).\n * `1..1 MS` `status`\n * `1..1 MS` `connectionType` -- fixed Coding for `hl7-fhir-rest`\n * `0..1` `name` fallback or default name describing the endpoint and the\norganization offering Patient API access at this endpoint. This value MAY contain technical details like FHIR API Version designations and apps SHOULD preferentially use names from an associated `PatientAccessBrand` rather than displaying this value to users.\n * `1..* MS` `contact` website where developers can configure access to this\nendpoint\n     * `1..* MS` `system` is `url`\n     * `1..* MS` `value` is an `https://` URL for app developers\n * `1..1 MS` `payloadType` -- fixed Coding for `none`\n * `1..1 MS` `address` FHIR base URL for server supporting patient access",
     "fhirVersion": "4.0.1",
     "kind": "resource",
     "abstract": false,
@@ -86,8 +86,8 @@
             {
                 "id": "Endpoint.contact:configuration-url.system",
                 "path": "Endpoint.contact.system",
-                "fixedCode": "url",
                 "min": 1,
+                "fixedCode": "url",
                 "mustSupport": true
             },
             {

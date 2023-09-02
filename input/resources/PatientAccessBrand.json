@@ -253,6 +253,33 @@
                         ]
                     }
                 ],
+                "constraint": [
+                    {
+                        "key": "pab-3",
+                        "severity": "error",
+                        "human": "A Patient Access Endpoint SHALL have both or neither an `identifier` and a \"brands-bundle\" extension.",
+                        "expression": "(identifier.exists() xor extension.where(url='http://hl7.org/fhir/smart-app-launch/StructureDefinition/brands-bundle').exists()).not()"
+                    }
+                ],
+                "mustSupport": true
+            },
+            {
+                "id": "Organization.endpoint.extension:endpoint-bundle",
+                "path": "Organization.endpoint.extension",
+                "sliceName": "endpoint-bundle",
+                "short": "URL for a customer-managed Patient Access Brands Bundle",
+                "definition": "URL for a customer-managed Patient Access Brands Bundle that defines the identified  and related Brands (the Bundle SHALL contain exactly one entry matching the specified identifier).",
+                "type": [
+                    {
+                        "code": "Extension",
+                        "profile": [
+                            "http://hl7.org/fhir/smart-app-launch/StructureDefinition/brands-bundle"
+                        ]
+                    }
+                ],
+                "condition": [
+                    "pab-3"
+                ],
                 "mustSupport": true
             },
             {
@@ -262,6 +289,18 @@
                 "definition": "Relative URL to an Endpoint within the Patient Access Brands Bundle",
                 "min": 0,
                 "max": "1",
+                "mustSupport": true
+            },
+            {
+                "id": "Organization.endpoint.identifier",
+                "path": "Organization.endpoint.identifier",
+                "short": "Customer-supplied identifier for the primary Endpoint",
+                "definition": "Customer-supplied identifier for the primary Endpoint",
+                "min": 0,
+                "max": "1",
+                "condition": [
+                    "pab-3"
+                ],
                 "mustSupport": true
             }
         ]
