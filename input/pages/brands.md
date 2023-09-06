@@ -77,15 +77,15 @@ The details of the Patient Access Brand communicated to the patient.
 
 #### Explanation Of The Relationship Between Brands And Endpoints
 
-Commonly, a single endpoint is associated with a single Brand. But the following cases are supported by this conceptual model:
+Commonly, a single endpoint is<span class="bg-success" markdown="1"> typically </span><!-- new-content -->associated with a single Brand. But the following cases are supported by this conceptual model:
 
-* *An endpoint publishes one Brand*
+* *An endpoint <span class="bg-success" markdown="1">is associated with </span><!-- new-content -->one Brand*
     * For instance, a national lab might publish a Brand associated with their overall organization, including a complete list of zip codes where they operate.
-* *An endpoint publishes multiple Brands*
+* *An endpoint <span class="bg-success" markdown="1">is associated with </span><!-- new-content -->multiple Brands*
     * For instance, a regional health system might publish a small collection of brands based on a specific hospital or clinic that their patients will recognize.
-* *Multiple endpoints publish the same Brand*
+* *Multiple endpoints <span class="bg-success" markdown="1">are associated with </span><!-- new-content -->the same Brand*
     * For instance, a Hospital offering more than one patient portal for legacy purposes, or a patient portal hosting multiple FHIR API versions simultaneously
-    * If multiple endpoints independently publish the same Brand, apps can de-duplicate or merge as needed:
+    * If multiple endpoints <span class="bg-success" markdown="1">are independently associated with </span><!-- new-content -->the same Brand, apps can de-duplicate or merge as needed:
       1. *A single EHR portal hosts multiple FHIR API endpoints advertising the same Brand* — for instance,  an EHR vendor hosting endpoints for FHIR DSTU2 alongside FHIR R4.
           * Publishers SHALL publish all "peer" endpoints in the same Bundle, and peer endpoints SHALL reference the same Brand. With these restrictions in place, this scenario does not require apps to perform any de-duplicate or merging.
       2. *Different EHR portals advertise Brands that should merge into a single card at display time*. For instance, a hospital transitioning between EHRs offers two distinct patient portals for an interim period and would like to surface both in a single card.
@@ -157,9 +157,7 @@ The following Bundle fragments in the example below illustrate how Brand data is
     "fullUrl": "https://pab.example.org/Endpoint/example",
     "resource": {
       "resourceType": "Endpoint",
-      "managingOrganization": {
-        "reference": "Organization/example"
-      },
+      "id": "examplelabs",
       ...
     }
   }, {
@@ -167,10 +165,14 @@ The following Bundle fragments in the example below illustrate how Brand data is
     "resource": {
       "resourceType": "Organization",
       "name": "Example Hospital",
-      "identifier": [{
-        "value": "https://hospital.example.org"
-      }],
-      ...
+    ...
+    "endpoint": [
+          {
+              "reference": "Endpoint/examplelabs",
+              "display": "FHIR R4 Endpoint for ExampleLabs Brand"
+          }
+      ]
+
     }
   }],
   ...
