@@ -73,3 +73,7 @@ address:
 
   
 
+endpoint:
+    - 
+        reference: Endpoint/examplehospital1-ehr1
+        display: FHIR DSTU2 Endpoint for ExampleHospital1's EHR1 Patient Gateway Brand

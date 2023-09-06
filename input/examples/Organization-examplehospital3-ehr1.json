@@ -1,51 +1,66 @@
 {
-  "resourceType": "Organization",
-  "id": "examplehospital3-ehr1",
-  "extension": [
-    {
-      "url": "http://hl7.org/fhir/smart-app-launch/StructureDefinition/brand-logo",
-      "valueUrl": "https://example.org/examplehospital3/ui/images/img-logo-2x-new.webp"
+    "resourceType": "Organization",
+    "id": "examplehospital3-ehr1",
+    "meta": {
+        "extension": [
+            {
+                "url": "http://hl7.org/fhir/StructureDefinition/instance-name",
+                "valueString": "Organization Example Hospital3 EHR1"
+            },
+            {
+                "url": "http://hl7.org/fhir/StructureDefinition/instance-description",
+                "valueMarkdown": "This is an Organization example for the *Patient Access Brand Profile* and is used in Example 3 Different EHRs for different sub-populations displayed in a unified card."
+            }
+        ],
+        "profile": [
+            "http://hl7.org/fhir/smart-app-launch/StructureDefinition/patient-access-brand"
+        ]
     },
-    {
-      "url": "http://hl7.org/fhir/smart-app-launch/StructureDefinition/patient-access-description",
-      "valueMarkdown": "Patient Gateway is an online tool to help adult patients connect with health care providers, manage appointments, and refill prescriptions.\n"
-    }
-  ],
-  "identifier": [
-    {
-      "system": "urn:ietf:rfc:3986",
-      "value": "https://examplehospital3.org"
-    }
-  ],
-  "active": true,
-  "type": [
-    {
-      "coding": [
+    "extension": [
         {
-          "system": "http://hl7.org/fhir/smart-app-launch/CodeSystem/patient-access-category",
-          "code": "clinical",
-          "display": "Clinical Care provider"
+            "url": "http://hl7.org/fhir/smart-app-launch/StructureDefinition/brand-logo",
+            "valueUrl": "https://example.org/examplehospital3/ui/images/img-logo-2x-new.webp"
+        },
+        {
+            "url": "http://hl7.org/fhir/smart-app-launch/StructureDefinition/patient-access-description",
+            "valueMarkdown": "Patient Gateway is an online tool to help adult patients connect with health care providers, manage appointments, and refill prescriptions.\n"
         }
-      ]
+    ],
+    "identifier": [
+        {
+            "system": "urn:ietf:rfc:3986",
+            "value": "https://examplehospital3.org"
+        }
+    ],
+    "active": true,
+    "type": [
+        {
+            "coding": [
+                {
+                    "system": "http://hl7.org/fhir/smart-app-launch/CodeSystem/patient-access-category",
+                    "code": "clinical",
+                    "display": "Clinical Care provider"
+                }
+            ]
+        }
+    ],
+    "name": "ExampleHospital3",
+    "alias": [
+        "GoodCare Cancer Center"
+    ],
+    "telecom": [
+        {
+            "system": "url",
+            "value": "https://www.example.org/examplehospital3.org"
+        }
+    ],
+    "address": [
+        {
+            "city": "Boston",
+            "state": "MA"
+        }
+    ],
+    "partOf": {
+        "reference": "Organization/examplehospital1-ehr1"
     }
-  ],
-  "name": "ExampleHospital3",
-  "alias": [
-    "GoodCare Cancer Center"
-  ],
-  "telecom": [
-    {
-      "system": "url",
-      "value": "https://www.example.org/examplehospital3.org"
-    }
-  ],
-  "address": [
-    {
-      "city": "Boston",
-      "state": "MA"
-    }
-  ],
-  "partOf": {
-    "reference": "Organization/examplehospital1-ehr1"
-  }
 }

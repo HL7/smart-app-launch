@@ -63,6 +63,14 @@ address:
                     city: Boston
                     state: MA
 
+endpoint:
+    - 
+        reference: Endpoint/examplehospital2-ehr2
+        display: FHIR R4 EHR2 Endpoint for ExampleHospital2 Brand
+
+   
+
+
 
   
 

@@ -1,36 +1,48 @@
 {
-  "resourceType": "Endpoint",
-  "id": "examplehealth-r2",
-  "extension": [
-    {
-      "url": "http://hl7.org/fhir/smart-app-launch/StructureDefinition/endpoint-fhir-version",
-      "valueCode": "1.0.2"
-    }
-  ],
-  "status": "active",
-  "address": "https://ehrfhir.examplehealth.org/ProdFHIR/api/FHIR/R4",
-  "name": "FHIR DSTU2 Endpoint for ExampleHealth",
-  "contact": [
-    {
-      "system": "url",
-      "value": "https://open.ehr.com"
-    }
-  ],
-  "connectionType": {
-    "system": "http://terminology.hl7.org/CodeSystem/endpoint-connection-type",
-    "code": "hl7-fhir-rest"
-  },
-  "payloadType": [
-    {
-      "coding": [
+    "resourceType": "Endpoint",
+    "id": "examplehealth-r2",
+    "meta": {
+        "extension": [
+            {
+                "url": "http://hl7.org/fhir/StructureDefinition/instance-name",
+                "valueString": "Endpoint ExampleHealth R2"
+            },
+            {
+                "url": "http://hl7.org/fhir/StructureDefinition/instance-description",
+                "valueMarkdown": "This is an Endpoint example for the *Patient Access Endpoint Profile* and is used in Example 2 Regional Health System With Independently Branded Affiliates."
+            }
+        ],
+        "profile": [
+            "http://hl7.org/fhir/smart-app-launch/StructureDefinition/patient-access-endpoint"
+        ]
+    },
+    "extension": [
         {
-          "system": "http://terminology.hl7.org/CodeSystem/endpoint-payload-type",
-          "code": "none"
+            "url": "http://hl7.org/fhir/smart-app-launch/StructureDefinition/endpoint-fhir-version",
+            "valueCode": "1.0.2"
         }
-      ]
-    }
-  ],
-  "managingOrganization": {
-    "reference": "Organization/examplehealth"
-  }
+    ],
+    "status": "active",
+    "address": "https://ehrfhir.examplehealth.org/ProdFHIR/api/FHIR/R4",
+    "name": "FHIR DSTU2 Endpoint for ExampleHealth",
+    "contact": [
+        {
+            "system": "url",
+            "value": "https://open.ehr.com"
+        }
+    ],
+    "connectionType": {
+        "system": "http://terminology.hl7.org/CodeSystem/endpoint-connection-type",
+        "code": "hl7-fhir-rest"
+    },
+    "payloadType": [
+        {
+            "coding": [
+                {
+                    "system": "http://terminology.hl7.org/CodeSystem/endpoint-payload-type",
+                    "code": "none"
+                }
+            ]
+        }
+    ]
 }

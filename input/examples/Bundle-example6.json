@@ -1,23 +1,24 @@
 {
     "resourceType": "Bundle",
     "id": "example6",
-    "type": "collection",
     "meta": {
-        "lastUpdated": "2023-09-02T03:51:21.114Z",
         "extension": [
             {
                 "url": "http://hl7.org/fhir/StructureDefinition/instance-name",
-                "valueString": "Bundle Example 6"
+                "valueString": "Bundle Example6"
             },
             {
                 "url": "http://hl7.org/fhir/StructureDefinition/instance-description",
-                "valueMarkdown": "This is an Bundle example for the **Patient Access Brands Bundle Profile**. and represents Example 5 - EHR and EHR Customer Hosted Brands Bundles."
+                "valueMarkdown": "This is an Bundle example for the **Patient Access Brands Bundle Profile**. and represents Example 5 - EHR and EHR Customer Hosted Brands Bundles"
             }
         ],
+        "lastUpdated": "2023-09-05T20:49:08.419567-07:00",
         "profile": [
             "http://hl7.org/fhir/smart-app-launch/StructureDefinition/patient-access-brands-bundle"
         ]
     },
+    "type": "collection",
+    "timestamp": "2023-09-05T20:49:08.418823-07:00",
     "entry": [
         {
             "fullUrl": "https://ehr.example.org/Endpoint/ehr1-examplehealth",
@@ -33,12 +34,6 @@
                     {
                         "url": "http://hl7.org/fhir/smart-app-launch/StructureDefinition/endpoint-fhir-version",
                         "valueCode": "1.0.2"
-                    }
-                ],
-                "identifier": [
-                    {
-                        "system": "urn:ietf:rfc:3986",
-                        "value": "https://examplehealth.org"
                     }
                 ],
                 "status": "active",
@@ -67,10 +62,10 @@
             }
         },
         {
-            "fullUrl": "https://ehr.example.org/Organization/ehr1-examplehealth",
+            "fullUrl": "https://ehr.example.org/Organization/cust-hosted-examplehealth",
             "resource": {
                 "resourceType": "Organization",
-                "id": "ehr1-examplehealth",
+                "id": "cust-hosted-examplehealth",
                 "meta": {
                     "profile": [
                         "http://hl7.org/fhir/smart-app-launch/StructureDefinition/patient-access-brand"
@@ -88,6 +83,10 @@
                     {
                         "url": "http://hl7.org/fhir/smart-app-launch/StructureDefinition/patient-access-url",
                         "valueUrl": "https://patientgateway.ehr1-examplehealth.org"
+                    },
+                    {
+                        "url": "http://hl7.org/fhir/smart-app-launch/StructureDefinition/brands-bundle",
+                        "valueUrl": "https://example.org/examplehealth.org/bundle.json"
                     }
                 ],
                 "identifier": [
@@ -127,15 +126,7 @@
                 "endpoint": [
                     {
                         "reference": "Endpoint/ehr1-examplehealth",
-                        "identifier": {
-                            "value": "https://examplehealth.org"
-                        },
-                        "extension": [
-                            {
-                                "url": "http://hl7.org/fhir/smart-app-launch/StructureDefinition/brands-bundle",
-                                "valueUrl": "https://example.org/examplehealth.org/bundle.json"
-                            }
-                        ]
+                        "display": "FHIR DSTU2 Endpoint for ExampleHealth's EHR1 Patient Gateway"
                     }
                 ]
             }

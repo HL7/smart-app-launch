@@ -91,7 +91,7 @@ address:
                     state: IA
                 - 
                     city: Pekin
-                    state: IA
+                    state: I
                 - 
                     city: Muscatine
                     state: IA
@@ -100,3 +100,10 @@ address:
                     state: IA
   
 
+endpoint:
+    - 
+        reference: Endpoint/examplehealth-r4
+        display: FHIR R4 Endpoint for ExampleHealth Brand
+    -
+        reference: Endpoint/examplehealth-r2
+        display: FHIR DSTU2 Endpoint for ExampleHealth Brand

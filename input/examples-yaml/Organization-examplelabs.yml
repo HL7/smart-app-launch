@@ -82,5 +82,11 @@ address:
         postalCode: '99701'
     # - 
     #     ...: 'etc, etc for ~2000 other locations'
+
+endpoint:
+    - 
+        reference: Endpoint/examplelabs
+        display: FHIR R4 Endpoint for ExampleLabs Brand
+
   
 

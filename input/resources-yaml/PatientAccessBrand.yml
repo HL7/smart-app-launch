@@ -42,6 +42,12 @@ description: >-
       * `0..1 MS` Patient access logo use agreement
           *  `url` is `http://hl7.org/fhir/smart-app-launch/StructureDefinition/patient-access-logo-use-agreement`.
           *  `valueUrl` See documentation for "brand logo use agreement".
+  
+  * Extensions about customer-managed Brands
+      * `0..* MS` Logo
+          * `url` is `http://hl7.org/fhir/smart-app-launch/StructureDefinition/brands-bundle`
+          * `valueUrl` for a customer-managed Patient Access Brands Bundle that defines this Brand and related Brands. **It allows customers to self-publish additional information about the Brand.**
+
   * `0..* MS` `identifier`(s) that apps can use to link this Brand across
   publishers or with external data sets. EHRs SHALL support customer-supplied
   identifiers (`system` and `value`).
@@ -83,22 +89,7 @@ description: >-
     provided by" links (`Organization.partOf`). EHR vendors SHALL support
     integrated publication of Organizations in the same JSON Bundle, as well as
     external customer-managed publications:
-    
-        # * `0..* MS` `extension` with
-
-        #    * `url`
-        #      `http://hl7.org/fhir/smart-app-launch/StructureDefinition/brands-bundle`
-
-        #     * `valueUrl` URL for a customer-managed Patient Access Brands Bundle
-        #        that defines the identified Brand and related Brands (the Bundle SHALL
-        #        contain exactly one entry matching the specified identifier). This extension
-        #        allows customers to self-publish additional information about the Brand.
-
-        * `0..1 MS`  `reference` containing a relative URL to an Endpoint within a Brand Bundle
-
-        # * `0..1 MS` `identifier` with a customer-supplied identifier for the
-        #    primary Endpoint
-
+      * `0..1 MS`  `reference` containing a relative URL to an Endpoint within a Brand Bundle
 
 fhirVersion: 4.0.1
 kind: resource
@@ -233,6 +224,25 @@ differential:
             - >-
               http://hl7.org/fhir/smart-app-launch/StructureDefinition/patient-access-logo-use-agreement
       mustSupport: true
+
+    - id: 'Organization.extension:brands-bundle'
+      path: Organization.extension
+      sliceName: brands-bundle
+      short: URL for a customer-managed Patient Access Brands Bundle
+      definition: >-
+        URL for a customer-managed Patient Access Brands Bundle that defines the
+        identified and related Brands (the Bundle SHALL contain exactly
+        one entry matching the specified identifier).
+      type:
+        - code: Extension
+          profile:
+            - >-
+              http://hl7.org/fhir/smart-app-launch/StructureDefinition/brands-bundle
+      # condition:
+      #   - pab-3
+      mustSupport: true
+
+
     - id: Organization.identifier
       path: Organization.identifier
       short: Unique identifier for the brand
@@ -333,9 +343,8 @@ differential:
         property associates a single "primary brand" with the endpoint. Additional
         affiliated Brands or parent brands can be associated via "Patient access
         provided by" links (`Organization.partOf`). EHR vendors SHALL support
-        integrated publication of Organizations in the same JSON Bundle, as well as
-        external customer-managed publications:
-      min: 1
+        integrated publication of Organizations in the same JSON Bundle, **as well as
+        external customer-managed publications**
 
       type:
         - code: Reference
@@ -344,34 +353,37 @@ differential:
               http://hl7.org/fhir/smart-app-launch/StructureDefinition/patient-access-endpoint
           aggregation:
             - bundled
-      constraint:
-        - key: pab-3
-          severity: error
-          human: >-
-            A Patient Access Endpoint SHALL have both or
-            neither an `identifier` and a "brands-bundle" extension.
-          expression: >-
-            (identifier.exists() xor
-            extension.where(url='http://hl7.org/fhir/smart-app-launch/StructureDefinition/brands-bundle').exists()).not()
+
+      # constraint:
+      #   - key: pab-3
+      #     severity: error
+      #     human: >-
+      #       A Patient Access Endpoint SHALL have both or
+      #       neither an `identifier` and a "brands-bundle" extension.
+      #     expression: >-
+      #       (identifier.exists() xor
+      #       extension.where(url='http://hl7.org/fhir/smart-app-launch/StructureDefinition/brands-bundle').exists()).not()
+
+
       mustSupport: true
 
 
-    - id: 'Organization.endpoint.extension:endpoint-bundle'
-      path: Organization.endpoint.extension
-      sliceName: endpoint-bundle
-      short: URL for a customer-managed Patient Access Brands Bundle
-      definition: >-
-        URL for a customer-managed Patient Access Brands Bundle that defines the
-        identified  and related Brands (the Bundle SHALL contain exactly
-        one entry matching the specified identifier).
-      type:
-        - code: Extension
-          profile:
-            - >-
-              http://hl7.org/fhir/smart-app-launch/StructureDefinition/brands-bundle
-      condition:
-        - pab-3
-      mustSupport: true
+    # - id: 'Organization.endpoint.extension:endpoint-bundle'
+    #   path: Organization.endpoint.extension
+    #   sliceName: endpoint-bundle
+    #   short: URL for a customer-managed Patient Access Brands Bundle
+    #   definition: >-
+    #     URL for a customer-managed Patient Access Brands Bundle that defines the
+    #     identified  and related Brands (the Bundle SHALL contain exactly
+    #     one entry matching the specified identifier).
+    #   type:
+    #     - code: Extension
+    #       profile:
+    #         - >-
+    #           http://hl7.org/fhir/smart-app-launch/StructureDefinition/brands-bundle
+    #   condition:
+    #     - pab-3
+    #   mustSupport: true
 
 
 
@@ -387,14 +399,14 @@ differential:
       mustSupport: true
 
 
-    - id: 'Organization.endpoint.identifier'
-      path: Organization.endpoint.identifier
-      short: >-
-          Customer-supplied identifier for the primary Endpoint
-      definition: >-
-          Customer-supplied identifier for the primary Endpoint
-      min: 0
-      max: '1'
-      condition:
-        - pab-3
-      mustSupport: true
+    # - id: 'Organization.endpoint.identifier'
+    #   path: Organization.endpoint.identifier
+    #   short: >-
+    #       Customer-supplied identifier for the primary Endpoint
+    #   definition: >-
+    #       Customer-supplied identifier for the primary Endpoint
+    #   min: 0
+    #   max: '1'
+    #   condition:
+    #     - pab-3
+    #   mustSupport: true

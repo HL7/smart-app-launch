@@ -67,5 +67,10 @@ partOf:
 telecom:
     - system: url
       value: 'https://example.org/brand-home'
-  
+
+endpoint:
+    - 
+        reference: Endpoint/example
+        display: FHIR R4 Endpoint for Example Medical Center Brand
+
 

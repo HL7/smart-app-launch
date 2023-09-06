@@ -10,7 +10,7 @@
     "description": "Categorizes a PatientAccessBrand into high-level taxonomy",
     "caseSensitive": true,
     "content": "complete",
-    "count": 8,
+    "count": 6,
     "concept": [
         {
             "code": "clinical",

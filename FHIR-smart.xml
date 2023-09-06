@@ -17,15 +17,41 @@
 <artifact id="StructureDefinition/brand-logo" key="StructureDefinition-brand-logo" name="Brand Logo Extension"/>
 <artifact id="StructureDefinition/brand-logo-use-agreement" key="StructureDefinition-brand-logo-use-agreement" name="Brand Logo Use Agreement Extension"/>
 <artifact id="StructureDefinition/brands-bundle" key="StructureDefinition-brands-bundle" name="Brands Bundle Extension"/>
-<artifact id="Bundle/example6" key="Bundle-example6" name="Bundle Example 6"/>
+<artifact id="Bundle/example1" key="Bundle-example1" name="Bundle Example1"/>
+<artifact id="Bundle/example2" key="Bundle-example2" name="Bundle Example2"/>
+<artifact id="Bundle/example3" key="Bundle-example3" name="Bundle Example3"/>
+<artifact id="Bundle/example4" key="Bundle-example4" name="Bundle Example4"/>
+<artifact id="Bundle/example5" key="Bundle-example5" name="Bundle Example5"/>
+<artifact id="Bundle/example6" key="Bundle-example6" name="Bundle Example6"/>
 <artifact id="ValueSet/smart-launch-info" key="ValueSet-smart-launch-info" name="Codes for tasks to application launches"/>
+<artifact id="Endpoint/ehr1-examplehealth" key="Endpoint-ehr1-examplehealth" name="Ehr1 Examplehealth Example"/>
+<artifact id="Endpoint/brand1-opt2" key="Endpoint-brand1-opt2" name="Endpoint Brand 1 Option 2"/>
+<artifact id="Endpoint/brand2-opt2" key="Endpoint-brand2-opt2" name="Endpoint Brand2 Option 2"/>
+<artifact id="Endpoint/example" key="Endpoint-example" name="Endpoint Example"/>
+<artifact id="Endpoint/examplehospital1-ehr1" key="Endpoint-examplehospital1-ehr1" name="Endpoint Example Hospital1 EHR1"/>
+<artifact id="Endpoint/examplehospital2-ehr2" key="Endpoint-examplehospital2-ehr2" name="Endpoint Example Hospital2 EHR2"/>
+<artifact id="Endpoint/examplehealth-r2" key="Endpoint-examplehealth-r2" name="Endpoint ExampleHealth R2"/>
+<artifact id="Endpoint/examplehealth-r4" key="Endpoint-examplehealth-r4" name="Endpoint ExampleHealth R4"/>
+<artifact id="Endpoint/examplelabs" key="Endpoint-examplelabs" name="Endpoint ExampleLabs"/>
 <artifact id="StructureDefinition/endpoint-fhir-version" key="StructureDefinition-endpoint-fhir-version" name="Endpoint FHIR Version Extension"/>
 <artifact id="Basic/app-state" key="Basic-app-state" name="Example App State"/>
 <artifact id="Task/task-for-ehr-launch" key="Task-task-for-ehr-launch" name="Example Task for EHR Launch"/>
 <artifact id="Task/task-for-standalone-launch" key="Task-task-for-standalone-launch" name="Example Task for Standalone Launch"/>
 <artifact id="ValueSet/smart-launch-types" key="ValueSet-smart-launch-types" name="Launch Types for tasks to application launches"/>
+<artifact id="Organization/brand1-opt2" key="Organization-brand1-opt2" name="Organization Brand1 Option 2"/>
+<artifact id="Organization/brand2-opt2" key="Organization-brand2-opt2" name="Organization Brand2 Option 2"/>
+<artifact id="Organization/cust-hosted-examplehealth" key="Organization-cust-hosted-examplehealth" name="Organization EHR1 Example Health"/>
+<artifact id="Organization/example" key="Organization-example" name="Organization Example"/>
+<artifact id="Organization/examplehospital1-ehr1" key="Organization-examplehospital1-ehr1" name="Organization Example Hospital1 EHR1"/>
+<artifact id="Organization/examplehospital2-ehr2" key="Organization-examplehospital2-ehr2" name="Organization Example Hospital2 EHR2"/>
+<artifact id="Organization/examplehospital3-ehr1" key="Organization-examplehospital3-ehr1" name="Organization Example Hospital3 EHR1"/>
+<artifact id="Organization/examplehospital3-ehr2" key="Organization-examplehospital3-ehr2" name="Organization Example Hospital3 EHR2"/>
+<artifact id="Organization/examplehealth" key="Organization-examplehealth" name="Organization ExampleHealth"/>
+<artifact id="Organization/ehchospital" key="Organization-ehchospital" name="Organization ExampleHealth Community Hospital"/>
+<artifact id="Organization/ehpmadison" key="Organization-ehpmadison" name="Organization ExampleHealth Physicians Madison"/>
+<artifact id="Organization/examplelabs" key="Organization-examplelabs" name="Organization ExampleLabs"/>
 <artifact id="StructureDefinition/patient-access-brand" key="StructureDefinition-patient-access-brand" name="Patient Access Brand (Organization) Profile"/>
-<artifact id="StructureDefinition/patient-access-brands-bundle" key="StructureDefinition-patient-access-brands-bundle" name="Patient Access Brand Bundle Profile"/>
+<artifact id="StructureDefinition/patient-access-brands-bundle" key="StructureDefinition-patient-access-brands-bundle" name="Patient Access Brands Bundle Profile"/>
 <artifact id="CodeSystem/patient-access-category" key="CodeSystem-patient-access-category" name="Patient Access Category Code System"/>
 <artifact id="ValueSet/patient-access-category" key="ValueSet-patient-access-category" name="Patient Access Category Value Set"/>
 <artifact id="StructureDefinition/patient-access-description" key="StructureDefinition-patient-access-description" name="Patient Access Description Extension"/>
@@ -39,32 +65,6 @@
 <artifact id="CodeSystem/smart-codes" key="CodeSystem-smart-codes" name="SMART on FHIR terminology."/>
 <artifact id="StructureDefinition/task-ehr-launch" key="StructureDefinition-task-ehr-launch" name="TaskEhrLaunch"/>
 <artifact id="StructureDefinition/task-standalone-launch" key="StructureDefinition-task-standalone-launch" name="TaskStandaloneLaunch"/>
-<artifact id="Endpoint/brand1-opt2" key="Endpoint-brand1-opt2" name="brand1-opt2"/>
-<artifact id="Organization/brand1-opt2" key="Organization-brand1-opt2" name="brand1-opt2"/>
-<artifact id="Endpoint/brand2-opt2" key="Endpoint-brand2-opt2" name="brand2-opt2"/>
-<artifact id="Organization/brand2-opt2" key="Organization-brand2-opt2" name="brand2-opt2"/>
-<artifact id="Organization/ehchospital" key="Organization-ehchospital" name="ehchospital"/>
-<artifact id="Organization/ehpmadison" key="Organization-ehpmadison" name="ehpmadison"/>
-<artifact id="Endpoint/ehr1-examplehealth" key="Endpoint-ehr1-examplehealth" name="ehr1-examplehealth"/>
-<artifact id="Organization/ehr1-examplehealth" key="Organization-ehr1-examplehealth" name="ehr1-examplehealth"/>
-<artifact id="Endpoint/example" key="Endpoint-example" name="example"/>
-<artifact id="Organization/example" key="Organization-example" name="example"/>
-<artifact id="Bundle/example1" key="Bundle-example1" name="example1"/>
-<artifact id="Bundle/example2" key="Bundle-example2" name="example2"/>
-<artifact id="Bundle/example3" key="Bundle-example3" name="example3"/>
-<artifact id="Bundle/example4" key="Bundle-example4" name="example4"/>
-<artifact id="Bundle/example5" key="Bundle-example5" name="example5"/>
-<artifact id="Organization/examplehealth" key="Organization-examplehealth" name="examplehealth"/>
-<artifact id="Endpoint/examplehealth-r2" key="Endpoint-examplehealth-r2" name="examplehealth-r2"/>
-<artifact id="Endpoint/examplehealth-r4" key="Endpoint-examplehealth-r4" name="examplehealth-r4"/>
-<artifact id="Endpoint/examplehospital1-ehr1" key="Endpoint-examplehospital1-ehr1" name="examplehospital1-ehr1"/>
-<artifact id="Organization/examplehospital1-ehr1" key="Organization-examplehospital1-ehr1" name="examplehospital1-ehr1"/>
-<artifact id="Endpoint/examplehospital2-ehr2" key="Endpoint-examplehospital2-ehr2" name="examplehospital2-ehr2"/>
-<artifact id="Organization/examplehospital2-ehr2" key="Organization-examplehospital2-ehr2" name="examplehospital2-ehr2"/>
-<artifact id="Organization/examplehospital3-ehr1" key="Organization-examplehospital3-ehr1" name="examplehospital3-ehr1"/>
-<artifact id="Organization/examplehospital3-ehr2" key="Organization-examplehospital3-ehr2" name="examplehospital3-ehr2"/>
-<artifact id="Endpoint/examplelabs" key="Endpoint-examplelabs" name="examplelabs"/>
-<artifact id="Organization/examplelabs" key="Organization-examplelabs" name="examplelabs"/>
 <artifact deprecated="true" id="CapabilityStatement/smart-app-launch-example" key="CapabilityStatement-smart-app-launch-example" name="smart-app-launch-example"/>
 <artifact id="CapabilityStatement/smart-app-state-server" key="CapabilityStatement-smart-app-state-server" name="smart-app-state-server"/>
 <page key="NA" name="(NA)"/>

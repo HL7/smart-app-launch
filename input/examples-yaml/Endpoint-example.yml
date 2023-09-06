@@ -31,11 +31,11 @@ payloadType:
           system: 'http://terminology.hl7.org/CodeSystem/endpoint-payload-type'
           code:  none
 
-managingOrganization:
-    reference: Organization/example
-    identifier:
-        value: e625fd34e7c456dc
-    extension:
-        - 
-            url: 'http://hl7.org/fhir/smart-app-launch/StructureDefinition/brands-bundle'
-            valueUrl: 'https://example.org/brands.json'
+# managingOrganization:
+#     reference: Organization/example
+#     identifier:
+#         value: e625fd34e7c456dc
+#     extension:
+#         - 
+#             url: 'http://hl7.org/fhir/smart-app-launch/StructureDefinition/brands-bundle'
+#             valueUrl: 'https://example.org/brands.json'

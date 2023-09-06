@@ -70,5 +70,7 @@ address:
                 -
                     city: St Helena
                     state: CA
-
+endpoint:
+  - reference: Endpoint/brand1-opt2
+    display: FHIR R4 Endpoint for Brand1/Brand2
 

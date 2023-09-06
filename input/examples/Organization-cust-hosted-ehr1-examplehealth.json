@@ -1,15 +1,15 @@
 {
     "resourceType": "Organization",
-    "id": "examplehospital1-ehr1",
+    "id": "cust-hosted-examplehealth",
     "meta": {
         "extension": [
             {
                 "url": "http://hl7.org/fhir/StructureDefinition/instance-name",
-                "valueString": "Organization Example Hospital1 EHR1"
+                "valueString": "Organization EHR1 Example Health"
             },
             {
                 "url": "http://hl7.org/fhir/StructureDefinition/instance-description",
-                "valueMarkdown": "This is an Organization example for the *Patient Access Brand Profile* and is used in Example 3 Different EHRs for different sub-populations displayed in a unified card."
+                "valueMarkdown": "This is an Organization example for the *Patient Access Brand Profile* and is used in Example 5 - EHR and EHR Customer Hosted Brands Bundles. It is the Organization in the EHR Brands Bundle."
             }
         ],
         "profile": [
@@ -19,21 +19,25 @@
     "extension": [
         {
             "url": "http://hl7.org/fhir/smart-app-launch/StructureDefinition/brand-logo",
-            "valueUrl": "https://example.org/examplehospital1-ehr1/themes/custom/logo.svg"
+            "valueUrl": "https://example.org/ehr1-examplehealth/themes/custom/logo.svg"
         },
         {
             "url": "http://hl7.org/fhir/smart-app-launch/StructureDefinition/patient-access-name",
-            "valueString": "ExampleHospital1 Patient Gateway"
+            "valueString": "EHR1 ExampleHealth Patient Gateway"
         },
         {
             "url": "http://hl7.org/fhir/smart-app-launch/StructureDefinition/patient-access-url",
-            "valueUrl": "https://patientgateway.examplehospital1-ehr1.org"
+            "valueUrl": "https://patientgateway.ehr1-examplehealth.org"
+        },
+        {
+            "url": "http://hl7.org/fhir/smart-app-launch/StructureDefinition/brands-bundle",
+            "valueUrl": "https://example.org/examplehealth.org/bundle.json"
         }
     ],
     "identifier": [
         {
             "system": "urn:ietf:rfc:3986",
-            "value": "https://examplehospital1.org"
+            "value": "https://examplehealth.org"
         }
     ],
     "active": true,
@@ -48,34 +52,26 @@
             ]
         }
     ],
-    "name": "ExampleHospital1",
+    "name": "ExampleHealth",
     "alias": [
         "GoodHealth Healthcare"
     ],
     "telecom": [
         {
             "system": "url",
-            "value": "https://www.example.org/examplehospital1.org"
+            "value": "https://www.example.org/examplehealth.org"
         }
     ],
     "address": [
         {
-            "city": "Boston",
-            "state": "MA"
-        },
-        {
-            "city": "Newton",
-            "state": "MA"
-        },
-        {
-            "city": "Waltham",
-            "state": "MA"
+            "city": "Madison",
+            "state": "WI"
         }
     ],
     "endpoint": [
         {
-            "reference": "Endpoint/examplehospital1-ehr1",
-            "display": "FHIR DSTU2 Endpoint for ExampleHospital1's EHR1 Patient Gateway Brand"
+            "reference": "Endpoint/ehr1-examplehealth",
+            "display": "FHIR DSTU2 Endpoint for ExampleHealth's EHR1 Patient Gateway"
         }
     ]
 }

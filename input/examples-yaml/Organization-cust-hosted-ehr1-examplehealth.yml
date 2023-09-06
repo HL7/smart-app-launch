@@ -1,5 +1,5 @@
 resourceType: Organization
-id: ehr1-examplehealth
+id: cust-hosted-examplehealth
 
 
 meta:
@@ -45,6 +45,13 @@ extension:
     #     url: 'http://hl7.org/fhir/smart-app-launch/StructureDefinition/patient-access-logo-use-agreement'
     #     valueUrl: 'https://example.org/portal-logo/use-agreement.html'
 
+# ====================== Customer Hosted Brand ======================
+
+          #     extension:
+    - 
+          url: 'http://hl7.org/fhir/smart-app-launch/StructureDefinition/brands-bundle'
+          valueUrl: 'https://example.org/examplehealth.org/bundle.json'
+
 identifier:
   - system: 'urn:ietf:rfc:3986'
     value: https://examplehealth.org
@@ -66,6 +73,11 @@ address:
                 - 
                     city: Madison
                     state: WI
+
+endpoint:
+    - 
+        reference: Endpoint/ehr1-examplehealth
+        display: FHIR DSTU2 Endpoint for ExampleHealth's EHR1 Patient Gateway
 
 
 

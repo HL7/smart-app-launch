@@ -73,3 +73,6 @@ address:
                     state: CA
 
 
+endpoint:
+  - reference: Endpoint/brand2-opt2
+    display: FHIR R4 Endpoint for Brand1/Brand2

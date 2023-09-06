@@ -5,7 +5,7 @@ name: BrandsBundle
 title: Brands Bundle Extension
 status: active
 date: '2023-03-03'
-description: Extension on Endpoint.managingOrganization that defines the URL for a customer-managed Patient Access Brands Bundle that defines the identified Brand and related Brands (the Bundle SHALL contain exactly one entry matching the specified identifier). This extension allows customers to self-publish additional information about the Brand.
+description: This extension references a URL for a customer-managed Patient Access Brands Bundle that defines this Brand and related Brands. **It allows customers to self-publish additional information about the Brand.**
 fhirVersion: 4.0.1
 kind: complex-type
 abstract: false
@@ -13,7 +13,7 @@ context:
     - 
         type: element
         # expression: Endpoint.managingOrganization
-        expression: Organization.endpoint
+        expression: Organization
 type: Extension
 baseDefinition: 'http://hl7.org/fhir/StructureDefinition/Extension'
 derivation: constraint
@@ -23,7 +23,7 @@ differential:
             id: Extension
             path: Extension
             short: URL that defines Patient Access Brands Bundle
-            definition: 'URL for a customer-managed Patient Access Brands Bundle that defines the identified Brand and related Brands (the Bundle SHALL contain exactly one entry matching the specified identifier). '
+            definition: This extension references a URL for a customer-managed Patient Access Brands Bundle that defines this Brand and related Brands. **It allows customers to self-publish additional information about the Brand.**
             min: 0
             max: '*'
         - 
@@ -37,6 +37,7 @@ differential:
         - 
             id: 'Extension.value[x]'
             path: 'Extension.value[x]'
+            short: URL that defines a customer-managed Patient Access Brands Bundle
             min: 1
             type:
                 - 

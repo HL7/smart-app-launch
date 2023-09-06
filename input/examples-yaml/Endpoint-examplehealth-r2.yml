@@ -30,8 +30,8 @@ payloadType:
           system: 'http://terminology.hl7.org/CodeSystem/endpoint-payload-type'
           code:  none
 
-managingOrganization:
-    reference: Organization/examplehealth
+# managingOrganization:
+#     reference: Organization/examplehealth
     # identifier:
     #     value: e625fd34e7c456dc
     # extension:
