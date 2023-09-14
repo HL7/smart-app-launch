@@ -231,7 +231,7 @@ Nearest location: 13 miles (Sonoma)
 
 ### Example 5: EHR and EHR Customer Hosted Brands Bundles
 
-ExampleHealth uses EHR1, and its endpoint is listed in EHR1's Brands Bundle.  As shown above, [ExampleHealth](#example-2-regional-health-system-with-independently-branded-affiliates) *also* hosts its own branding bundle (with mores details about every clinic location, specialty, etc.). <span class="bg-success" markdown="1">In EHR1 Brands Bundle, ExampleHealth points to the Patient Access Endpoint within the Bundle and to an external Brand Bundle.</span><!-- new-content -->
+ExampleHealth uses EHR1, and its endpoint is listed in EHR1's Brands Bundle.  As shown above, [ExampleHealth](#example-2-regional-health-system-with-independently-branded-affiliates) *also* hosts its own branding bundle (with mores details about every clinic location, specialty, etc.). In EHR1 Brands Bundle, ExampleHealth points to the Patient Access Endpoint within the Bundle and to an external Brand Bundle.
 
 For EHR1 Brands Bundle, the system displays the following card to a user:
 

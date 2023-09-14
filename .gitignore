@@ -1,6 +1,6 @@
 .DS_Store
 Thumbs.db
-#/fsh-generated
+/fsh-generated
 /input-cache
 /output
 /template
@@ -16,4 +16,6 @@ eh-pub-notes.md
 /_genonce.sh
 /_updatePublisher.bat
 /_updatePublisher.sh
+/resources-yaml
+/examples-yaml
 

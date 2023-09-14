@@ -1,70 +1,60 @@
 {
-    "resourceType": "Organization",
-    "id": "examplehospital2-ehr2",
-    "meta": {
-        "extension": [
-            {
-                "url": "http://hl7.org/fhir/StructureDefinition/instance-name",
-                "valueString": "Organization Example Hospital2 EHR2"
-            },
-            {
-                "url": "http://hl7.org/fhir/StructureDefinition/instance-description",
-                "valueMarkdown": "This is an Organization example for the *Patient Access Brand Profile* and is used in Example 3 Different EHRs for different sub-populations displayed in a unified card."
-            }
-        ],
-        "profile": [
-            "http://hl7.org/fhir/smart-app-launch/StructureDefinition/patient-access-brand"
-        ]
-    },
-    "extension": [
-        {
-            "url": "http://hl7.org/fhir/smart-app-launch/StructureDefinition/brand-logo",
-            "valueUrl": "https://www.example.org/hospital2/media/logo.ashx?h=85&w=600&la=en&hash=AF50B39C3F246D61E4C012ED25A2D8CF4C3A1607"
-        },
-        {
-            "url": "http://hl7.org/fhir/smart-app-launch/StructureDefinition/patient-access-name",
-            "valueString": "ExampleHospital2 Pediatrics Portal"
-        },
-        {
-            "url": "http://hl7.org/fhir/smart-app-launch/StructureDefinition/patient-access-url",
-            "valueUrl": "https://apps.examplehospital2/pediatrics-portal/index.html"
-        }
-    ],
-    "identifier": [
-        {
-            "system": "urn:ietf:rfc:3986",
-            "value": "https://examplehospital2"
-        }
-    ],
-    "active": true,
-    "type": [
-        {
-            "coding": [
-                {
-                    "system": "http://hl7.org/fhir/smart-app-launch/CodeSystem/patient-access-category",
-                    "code": "clinical",
-                    "display": "Clinical Care provider"
-                }
-            ]
-        }
-    ],
-    "name": "Example Hospital1",
-    "telecom": [
-        {
-            "system": "url",
-            "value": "https://www.example.org/examplehospital2/"
-        }
-    ],
-    "address": [
-        {
-            "city": "Boston",
-            "state": "MA"
-        }
-    ],
-    "endpoint": [
-        {
-            "reference": "Endpoint/examplehospital2-ehr2",
-            "display": "FHIR R4 EHR2 Endpoint for ExampleHospital2 Brand"
-        }
+  "resourceType": "Organization",
+  "id": "examplehospital2-ehr2",
+  "meta": {
+    "profile": [
+      "http://hl7.org/fhir/smart-app-launch/StructureDefinition/patient-access-brand"
     ]
+  },
+  "extension": [
+    {
+      "url": "http://hl7.org/fhir/smart-app-launch/StructureDefinition/brand-logo",
+      "valueUrl": "https://www.example.org/hospital2/media/logo.ashx?h=85&w=600&la=en&hash=AF50B39C3F246D61E4C012ED25A2D8CF4C3A1607"
+    },
+    {
+      "url": "http://hl7.org/fhir/smart-app-launch/StructureDefinition/patient-access-name",
+      "valueString": "ExampleHospital2 Pediatrics Portal"
+    },
+    {
+      "url": "http://hl7.org/fhir/smart-app-launch/StructureDefinition/patient-access-url",
+      "valueUrl": "https://apps.examplehospital2/pediatrics-portal/index.html"
+    }
+  ],
+  "identifier": [
+    {
+      "system": "urn:ietf:rfc:3986",
+      "value": "https://examplehospital2"
+    }
+  ],
+  "active": true,
+  "type": [
+    {
+      "coding": [
+        {
+          "system": "http://hl7.org/fhir/smart-app-launch/CodeSystem/patient-access-category",
+          "code": "clinical",
+          "display": "Clinical Care provider"
+        }
+      ]
+    }
+  ],
+  "name": "Example Hospital1",
+  "telecom": [
+    {
+      "system": "url",
+      "value": "https://www.example.org/examplehospital2/"
+    }
+  ],
+  "address": [
+    {
+      "city": "Boston",
+      "state": "MA"
+    }
+  ],
+  "endpoint": [
+    {
+      "reference": "Endpoint/examplehospital2-ehr2",
+      "display": "FHIR R4 EHR2 Endpoint for ExampleHospital2 Brand"
+    }
+  ]
 }

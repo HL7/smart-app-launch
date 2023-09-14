@@ -82,14 +82,14 @@
   <li>
     <a href="conformance.html">Conformance</a>
   </li>
-  <li>
-    <a href="artifacts.html">Artifact Index</a>
-  </li>
   <li class="dropdown">
     <a data-toggle="dropdown" href="#" class="dropdown-toggle">See also
       <b class="caret"></b>
     </a>
     <ul class="dropdown-menu">
+      <li>
+        <a href="artifacts.html">Artifacts</a>
+      </li>
       <li>
         <a href="best-practices.html">Best Practices</a>
       </li>

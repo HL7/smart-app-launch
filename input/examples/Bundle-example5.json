@@ -1,254 +1,244 @@
 {
-    "resourceType": "Bundle",
-    "id": "example5",
-    "meta": {
-        "extension": [
-            {
-                "url": "http://hl7.org/fhir/StructureDefinition/instance-name",
-                "valueString": "Bundle Example5"
-            },
-            {
-                "url": "http://hl7.org/fhir/StructureDefinition/instance-description",
-                "valueMarkdown": "This is an Bundle example for the **Patient Access Brands Bundle Profile** and is used in Example 4: It represents two co-equal brands (\u201cBrand1\u201d + \u201cBrand2\u201d)."
-            }
-        ],
-        "lastUpdated": "2023-09-05T20:36:42.269187-07:00",
-        "profile": [
-            "http://hl7.org/fhir/smart-app-launch/StructureDefinition/patient-access-brands-bundle"
-        ]
-    },
-    "type": "collection",
-    "timestamp": "2023-09-05T20:36:42.268403-07:00",
-    "entry": [
-        {
-            "fullUrl": "https://ehr.example.org/Endpoint/brand1-opt2",
-            "resource": {
-                "resourceType": "Endpoint",
-                "id": "brand1-opt2",
-                "meta": {
-                    "profile": [
-                        "http://hl7.org/fhir/smart-app-launch/StructureDefinition/patient-access-endpoint"
-                    ]
-                },
-                "extension": [
-                    {
-                        "url": "http://hl7.org/fhir/smart-app-launch/StructureDefinition/endpoint-fhir-version",
-                        "valueCode": "4.0.1"
-                    }
-                ],
-                "status": "active",
-                "address": "https://example.org/brand1.org/ProdFHIR/api/FHIR/R4",
-                "name": "FHIR R4 Endpoint for Brand1/Brand2",
-                "contact": [
-                    {
-                        "system": "url",
-                        "value": "https://open.ehr.com"
-                    }
-                ],
-                "connectionType": {
-                    "system": "http://terminology.hl7.org/CodeSystem/endpoint-connection-type",
-                    "code": "hl7-fhir-rest"
-                },
-                "payloadType": [
-                    {
-                        "coding": [
-                            {
-                                "system": "http://terminology.hl7.org/CodeSystem/endpoint-payload-type",
-                                "code": "none"
-                            }
-                        ]
-                    }
-                ]
-            }
-        },
-        {
-            "fullUrl": "https://ehr.example.org/Endpoint/brand2-opt2",
-            "resource": {
-                "resourceType": "Endpoint",
-                "id": "brand2-opt2",
-                "meta": {
-                    "profile": [
-                        "http://hl7.org/fhir/smart-app-launch/StructureDefinition/patient-access-endpoint"
-                    ]
-                },
-                "extension": [
-                    {
-                        "url": "http://hl7.org/fhir/smart-app-launch/StructureDefinition/endpoint-fhir-version",
-                        "valueCode": "4.0.1"
-                    }
-                ],
-                "status": "active",
-                "address": "https://example.org/brand2.org/ProdFHIR/api/FHIR/R4",
-                "name": "FHIR R4 Endpoint for Brand1/Brand2",
-                "contact": [
-                    {
-                        "system": "url",
-                        "value": "https://open.ehr.com"
-                    }
-                ],
-                "connectionType": {
-                    "system": "http://terminology.hl7.org/CodeSystem/endpoint-connection-type",
-                    "code": "hl7-fhir-rest"
-                },
-                "payloadType": [
-                    {
-                        "coding": [
-                            {
-                                "system": "http://terminology.hl7.org/CodeSystem/endpoint-payload-type",
-                                "code": "none"
-                            }
-                        ]
-                    }
-                ]
-            }
-        },
-        {
-            "fullUrl": "https://ehr.example.org/Organization/brand1-opt2",
-            "resource": {
-                "resourceType": "Organization",
-                "id": "brand1-opt2",
-                "meta": {
-                    "profile": [
-                        "http://hl7.org/fhir/smart-app-launch/StructureDefinition/patient-access-brand"
-                    ]
-                },
-                "extension": [
-                    {
-                        "url": "http://hl7.org/fhir/smart-app-launch/StructureDefinition/brand-logo",
-                        "valueUrl": "https://example.org/brand1/logo/main.svg"
-                    },
-                    {
-                        "url": "http://hl7.org/fhir/smart-app-launch/StructureDefinition/patient-access-name",
-                        "valueString": "Brand1 Portal"
-                    },
-                    {
-                        "url": "http://hl7.org/fhir/smart-app-launch/StructureDefinition/patient-access-url",
-                        "valueUrl": "https://example.org/chart.brand1.org"
-                    }
-                ],
-                "identifier": [
-                    {
-                        "system": "urn:ietf:rfc:3986",
-                        "value": "https://brand1.org"
-                    }
-                ],
-                "active": true,
-                "type": [
-                    {
-                        "coding": [
-                            {
-                                "system": "http://hl7.org/fhir/smart-app-launch/CodeSystem/patient-access-category",
-                                "code": "insurer",
-                                "display": "Health Insurance provider"
-                            }
-                        ]
-                    }
-                ],
-                "name": "Brand1",
-                "alias": [
-                    "Umbrella Insurance"
-                ],
-                "telecom": [
-                    {
-                        "system": "url",
-                        "value": "https://www.brand1.com"
-                    }
-                ],
-                "address": [
-                    {
-                        "city": "Napa",
-                        "state": "CA"
-                    },
-                    {
-                        "city": "Sonoma",
-                        "state": "CA"
-                    },
-                    {
-                        "city": "St Helena",
-                        "state": "CA"
-                    }
-                ],
-                "endpoint": [
-                    {
-                        "reference": "Endpoint/brand1-opt2",
-                        "display": "FHIR R4 Endpoint for Brand1/Brand2"
-                    }
-                ]
-            }
-        },
-        {
-            "fullUrl": "https://ehr.example.org/Organization/brand2-opt2",
-            "resource": {
-                "resourceType": "Organization",
-                "id": "brand2-opt2",
-                "meta": {
-                    "profile": [
-                        "http://hl7.org/fhir/smart-app-launch/StructureDefinition/patient-access-brand"
-                    ]
-                },
-                "extension": [
-                    {
-                        "url": "http://hl7.org/fhir/smart-app-launch/StructureDefinition/brand-logo",
-                        "valueUrl": "https://example.org/brand2/logo/main.svg"
-                    },
-                    {
-                        "url": "http://hl7.org/fhir/smart-app-launch/StructureDefinition/patient-access-name",
-                        "valueString": "Brand2 Portal"
-                    },
-                    {
-                        "url": "http://hl7.org/fhir/smart-app-launch/StructureDefinition/patient-access-url",
-                        "valueUrl": "https://example.org/chart.brand2.org"
-                    }
-                ],
-                "identifier": [
-                    {
-                        "system": "urn:ietf:rfc:3986",
-                        "value": "https://brand2.org"
-                    }
-                ],
-                "active": true,
-                "type": [
-                    {
-                        "coding": [
-                            {
-                                "system": "http://hl7.org/fhir/smart-app-launch/CodeSystem/patient-access-category",
-                                "code": "insurer",
-                                "display": "Health Insurance provider"
-                            }
-                        ]
-                    }
-                ],
-                "name": "Brand2",
-                "alias": [
-                    "Shield Insurance"
-                ],
-                "telecom": [
-                    {
-                        "system": "url",
-                        "value": "https://www.brand2.com"
-                    }
-                ],
-                "address": [
-                    {
-                        "city": "Sonoma",
-                        "state": "CA"
-                    },
-                    {
-                        "city": "San Rafael",
-                        "state": "CA"
-                    },
-                    {
-                        "city": "Santa Rosa",
-                        "state": "CA"
-                    }
-                ],
-                "endpoint": [
-                    {
-                        "reference": "Endpoint/brand2-opt2",
-                        "display": "FHIR R4 Endpoint for Brand1/Brand2"
-                    }
-                ]
-            }
-        }
+  "resourceType": "Bundle",
+  "id": "example5",
+  "meta": {
+    "lastUpdated": "2023-09-05T20:36:42.269187-07:00",
+    "profile": [
+      "http://hl7.org/fhir/smart-app-launch/StructureDefinition/patient-access-brands-bundle"
     ]
+  },
+  "type": "collection",
+  "timestamp": "2023-09-05T20:36:42.268403-07:00",
+  "entry": [
+    {
+      "fullUrl": "https://ehr.example.org/Endpoint/brand1-opt2",
+      "resource": {
+        "resourceType": "Endpoint",
+        "id": "brand1-opt2",
+        "meta": {
+          "profile": [
+            "http://hl7.org/fhir/smart-app-launch/StructureDefinition/patient-access-endpoint"
+          ]
+        },
+        "extension": [
+          {
+            "url": "http://hl7.org/fhir/smart-app-launch/StructureDefinition/endpoint-fhir-version",
+            "valueCode": "4.0.1"
+          }
+        ],
+        "status": "active",
+        "address": "https://example.org/brand1.org/ProdFHIR/api/FHIR/R4",
+        "name": "FHIR R4 Endpoint for Brand1/Brand2",
+        "contact": [
+          {
+            "system": "url",
+            "value": "https://open.ehr.com"
+          }
+        ],
+        "connectionType": {
+          "system": "http://terminology.hl7.org/CodeSystem/endpoint-connection-type",
+          "code": "hl7-fhir-rest"
+        },
+        "payloadType": [
+          {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/endpoint-payload-type",
+                "code": "none"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "https://ehr.example.org/Endpoint/brand2-opt2",
+      "resource": {
+        "resourceType": "Endpoint",
+        "id": "brand2-opt2",
+        "meta": {
+          "profile": [
+            "http://hl7.org/fhir/smart-app-launch/StructureDefinition/patient-access-endpoint"
+          ]
+        },
+        "extension": [
+          {
+            "url": "http://hl7.org/fhir/smart-app-launch/StructureDefinition/endpoint-fhir-version",
+            "valueCode": "4.0.1"
+          }
+        ],
+        "status": "active",
+        "address": "https://example.org/brand2.org/ProdFHIR/api/FHIR/R4",
+        "name": "FHIR R4 Endpoint for Brand1/Brand2",
+        "contact": [
+          {
+            "system": "url",
+            "value": "https://open.ehr.com"
+          }
+        ],
+        "connectionType": {
+          "system": "http://terminology.hl7.org/CodeSystem/endpoint-connection-type",
+          "code": "hl7-fhir-rest"
+        },
+        "payloadType": [
+          {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/endpoint-payload-type",
+                "code": "none"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "https://ehr.example.org/Organization/brand1-opt2",
+      "resource": {
+        "resourceType": "Organization",
+        "id": "brand1-opt2",
+        "meta": {
+          "profile": [
+            "http://hl7.org/fhir/smart-app-launch/StructureDefinition/patient-access-brand"
+          ]
+        },
+        "extension": [
+          {
+            "url": "http://hl7.org/fhir/smart-app-launch/StructureDefinition/brand-logo",
+            "valueUrl": "https://example.org/brand1/logo/main.svg"
+          },
+          {
+            "url": "http://hl7.org/fhir/smart-app-launch/StructureDefinition/patient-access-name",
+            "valueString": "Brand1 Portal"
+          },
+          {
+            "url": "http://hl7.org/fhir/smart-app-launch/StructureDefinition/patient-access-url",
+            "valueUrl": "https://example.org/chart.brand1.org"
+          }
+        ],
+        "identifier": [
+          {
+            "system": "urn:ietf:rfc:3986",
+            "value": "https://brand1.org"
+          }
+        ],
+        "active": true,
+        "type": [
+          {
+            "coding": [
+              {
+                "system": "http://hl7.org/fhir/smart-app-launch/CodeSystem/patient-access-category",
+                "code": "insurer",
+                "display": "Health Insurance provider"
+              }
+            ]
+          }
+        ],
+        "name": "Brand1",
+        "alias": [
+          "Umbrella Insurance"
+        ],
+        "telecom": [
+          {
+            "system": "url",
+            "value": "https://www.brand1.com"
+          }
+        ],
+        "address": [
+          {
+            "city": "Napa",
+            "state": "CA"
+          },
+          {
+            "city": "Sonoma",
+            "state": "CA"
+          },
+          {
+            "city": "St Helena",
+            "state": "CA"
+          }
+        ],
+        "endpoint": [
+          {
+            "reference": "Endpoint/brand1-opt2",
+            "display": "FHIR R4 Endpoint for Brand1/Brand2"
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "https://ehr.example.org/Organization/brand2-opt2",
+      "resource": {
+        "resourceType": "Organization",
+        "id": "brand2-opt2",
+        "meta": {
+          "profile": [
+            "http://hl7.org/fhir/smart-app-launch/StructureDefinition/patient-access-brand"
+          ]
+        },
+        "extension": [
+          {
+            "url": "http://hl7.org/fhir/smart-app-launch/StructureDefinition/brand-logo",
+            "valueUrl": "https://example.org/brand2/logo/main.svg"
+          },
+          {
+            "url": "http://hl7.org/fhir/smart-app-launch/StructureDefinition/patient-access-name",
+            "valueString": "Brand2 Portal"
+          },
+          {
+            "url": "http://hl7.org/fhir/smart-app-launch/StructureDefinition/patient-access-url",
+            "valueUrl": "https://example.org/chart.brand2.org"
+          }
+        ],
+        "identifier": [
+          {
+            "system": "urn:ietf:rfc:3986",
+            "value": "https://brand2.org"
+          }
+        ],
+        "active": true,
+        "type": [
+          {
+            "coding": [
+              {
+                "system": "http://hl7.org/fhir/smart-app-launch/CodeSystem/patient-access-category",
+                "code": "insurer",
+                "display": "Health Insurance provider"
+              }
+            ]
+          }
+        ],
+        "name": "Brand2",
+        "alias": [
+          "Shield Insurance"
+        ],
+        "telecom": [
+          {
+            "system": "url",
+            "value": "https://www.brand2.com"
+          }
+        ],
+        "address": [
+          {
+            "city": "Sonoma",
+            "state": "CA"
+          },
+          {
+            "city": "San Rafael",
+            "state": "CA"
+          },
+          {
+            "city": "Santa Rosa",
+            "state": "CA"
+          }
+        ],
+        "endpoint": [
+          {
+            "reference": "Endpoint/brand2-opt2",
+            "display": "FHIR R4 Endpoint for Brand1/Brand2"
+          }
+        ]
+      }
+    }
+  ]
 }

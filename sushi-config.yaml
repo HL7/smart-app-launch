@@ -232,9 +232,8 @@ menu:
     Client Authentication - Asymmetric (public key): client-confidential-asymmetric.html
     Client Authentication - Symmetric (shared secret): client-confidential-symmetric.html
   Conformance: conformance.html
-  Artifact Index: artifacts.html
   See also:
-    #Artifacts: artifacts.html # no artifacts to display!
+    Artifacts: artifacts.html # no artifacts to display!
     Best Practices: best-practices.html
     Patient-Access Brands and Endpoints: brands.html
     Examples: examples.html

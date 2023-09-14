@@ -1,81 +1,71 @@
 {
-    "resourceType": "Organization",
-    "id": "brand2-opt2",
-    "meta": {
-        "extension": [
-            {
-                "url": "http://hl7.org/fhir/StructureDefinition/instance-name",
-                "valueString": "Organization Brand2 Option 2"
-            },
-            {
-                "url": "http://hl7.org/fhir/StructureDefinition/instance-description",
-                "valueMarkdown": "This is an Organization example for the *Patient Access Endpoint Profile* and is used in Example 4: Two co-equal brands (\u201cBrand1\u201d + \u201cBrand2\u201d)"
-            }
-        ],
-        "profile": [
-            "http://hl7.org/fhir/smart-app-launch/StructureDefinition/patient-access-brand"
-        ]
-    },
-    "extension": [
-        {
-            "url": "http://hl7.org/fhir/smart-app-launch/StructureDefinition/brand-logo",
-            "valueUrl": "https://example.org/brand2/logo/main.svg"
-        },
-        {
-            "url": "http://hl7.org/fhir/smart-app-launch/StructureDefinition/patient-access-name",
-            "valueString": "Brand2 Portal"
-        },
-        {
-            "url": "http://hl7.org/fhir/smart-app-launch/StructureDefinition/patient-access-url",
-            "valueUrl": "https://example.org/chart.brand2.org"
-        }
-    ],
-    "identifier": [
-        {
-            "system": "urn:ietf:rfc:3986",
-            "value": "https://brand2.org"
-        }
-    ],
-    "active": true,
-    "type": [
-        {
-            "coding": [
-                {
-                    "system": "http://hl7.org/fhir/smart-app-launch/CodeSystem/patient-access-category",
-                    "code": "insurer",
-                    "display": "Health Insurance provider"
-                }
-            ]
-        }
-    ],
-    "name": "Brand2",
-    "alias": [
-        "Shield Insurance"
-    ],
-    "telecom": [
-        {
-            "system": "url",
-            "value": "https://www.brand2.com"
-        }
-    ],
-    "address": [
-        {
-            "city": "Sonoma",
-            "state": "CA"
-        },
-        {
-            "city": "San Rafael",
-            "state": "CA"
-        },
-        {
-            "city": "Santa Rosa",
-            "state": "CA"
-        }
-    ],
-    "endpoint": [
-        {
-            "reference": "Endpoint/brand2-opt2",
-            "display": "FHIR R4 Endpoint for Brand1/Brand2"
-        }
+  "resourceType": "Organization",
+  "id": "brand2-opt2",
+  "meta": {
+    "profile": [
+      "http://hl7.org/fhir/smart-app-launch/StructureDefinition/patient-access-brand"
     ]
+  },
+  "extension": [
+    {
+      "url": "http://hl7.org/fhir/smart-app-launch/StructureDefinition/brand-logo",
+      "valueUrl": "https://example.org/brand2/logo/main.svg"
+    },
+    {
+      "url": "http://hl7.org/fhir/smart-app-launch/StructureDefinition/patient-access-name",
+      "valueString": "Brand2 Portal"
+    },
+    {
+      "url": "http://hl7.org/fhir/smart-app-launch/StructureDefinition/patient-access-url",
+      "valueUrl": "https://example.org/chart.brand2.org"
+    }
+  ],
+  "identifier": [
+    {
+      "system": "urn:ietf:rfc:3986",
+      "value": "https://brand2.org"
+    }
+  ],
+  "active": true,
+  "type": [
+    {
+      "coding": [
+        {
+          "system": "http://hl7.org/fhir/smart-app-launch/CodeSystem/patient-access-category",
+          "code": "insurer",
+          "display": "Health Insurance provider"
+        }
+      ]
+    }
+  ],
+  "name": "Brand2",
+  "alias": [
+    "Shield Insurance"
+  ],
+  "telecom": [
+    {
+      "system": "url",
+      "value": "https://www.brand2.com"
+    }
+  ],
+  "address": [
+    {
+      "city": "Sonoma",
+      "state": "CA"
+    },
+    {
+      "city": "San Rafael",
+      "state": "CA"
+    },
+    {
+      "city": "Santa Rosa",
+      "state": "CA"
+    }
+  ],
+  "endpoint": [
+    {
+      "reference": "Endpoint/brand2-opt2",
+      "display": "FHIR R4 Endpoint for Brand1/Brand2"
+    }
+  ]
 }

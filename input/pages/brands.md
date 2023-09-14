@@ -78,13 +78,13 @@ The details of the Patient Access Brand communicated to the patient.
 
 #### Explanation Of The Relationship Between Brands And Endpoints
 
-Commonly, a single endpoint is<span class="bg-success" markdown="1"> typically </span><!-- new-content -->associated with a single Brand. But the following cases are supported by this conceptual model:
+Commonly, a single Brand is typically associated with a single Endpoint. But the following cases are supported by this conceptual model:
 
-* *One Brand <span class="bg-success" markdown="1">is associated with </span> one Endpoint*
+* *One Brand is associated with one Endpoint*
     * For instance, a national lab might publish a Brand associated with their overall organization, including a complete list of zip codes where they operate.
-* *Multiple Brands <span class="bg-success" markdown="1">are associated with </span> one Endpoint*
+* *Multiple Brands are associated with one Endpoint*
     * For instance, a regional health system might publish a small collection of brands based on a specific hospital or clinic that their patients will recognize.
-* *One Brand <span class="bg-success" markdown="1">is associated with </span><!-- new-content --> multiple Endpoints*
+* *One Brand is associated with  multiple Endpoints*
     * For instance, a Hospital offering more than one patient portal for legacy purposes, or a patient portal hosting multiple FHIR API versions simultaneously
     * Becaues Brand information may be published in multiple place, Organizations include the same `identifier` to facilitate matching, merging, and de-duplication. Apps can merge Brands into a single target Brand's card by displaying the target Brand's title and logo. Within the Brand's card, the app displays a distinct "connect" button for each set of Patient Access Details.
 
@@ -142,7 +142,8 @@ which are defined below. For fine-grained organizational management, apps SHALL 
   
 ##### Partial View Of Brand Bundle Example
 
-The following Bundle fragments in the example below illustrate how Brand data is compiled into a Bundle and how <span class="bg-success" markdown="1">a Brand (in other words, an Organization) references an Endpoints</span><!-- new-content --> within the same Bundle. See the [Patient-Access Brand Examples](example-brands.html) for complete examples. 
+The following Bundle fragments in the example below illustrate how Brand data is compiled into a Bundle and how 
+a Brand (in other words, an Organization) references an Endpoint within the same Bundle. See the [Patient-Access Brand Examples](example-brands.html) for complete examples. 
 
 ```javascript
 {

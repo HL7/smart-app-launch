@@ -1,48 +1,38 @@
 {
-    "resourceType": "Endpoint",
-    "id": "examplehospital1-ehr1",
-    "meta": {
-        "extension": [
-            {
-                "url": "http://hl7.org/fhir/StructureDefinition/instance-name",
-                "valueString": "Endpoint Example Hospital1 EHR1"
-            },
-            {
-                "url": "http://hl7.org/fhir/StructureDefinition/instance-description",
-                "valueMarkdown": "This is an Endpoint example for the *Patient Access Endpoint Profile* and is used in Example 3 Different EHRs for different sub-populations displayed in a unified card."
-            }
-        ],
-        "profile": [
-            "http://hl7.org/fhir/smart-app-launch/StructureDefinition/patient-access-endpoint"
-        ]
-    },
-    "extension": [
-        {
-            "url": "http://hl7.org/fhir/smart-app-launch/StructureDefinition/endpoint-fhir-version",
-            "valueCode": "1.0.2"
-        }
-    ],
-    "status": "active",
-    "address": "https://example.org/EHR1/ExampleHospital1/api/FHIR/DSTU2",
-    "name": "FHIR DSTU2 Endpoint for ExampleHospital1's EHR1 Patient Gateway",
-    "contact": [
-        {
-            "system": "url",
-            "value": "https://open.ehr.com"
-        }
-    ],
-    "connectionType": {
-        "system": "http://terminology.hl7.org/CodeSystem/endpoint-connection-type",
-        "code": "hl7-fhir-rest"
-    },
-    "payloadType": [
-        {
-            "coding": [
-                {
-                    "system": "http://terminology.hl7.org/CodeSystem/endpoint-payload-type",
-                    "code": "none"
-                }
-            ]
-        }
+  "resourceType": "Endpoint",
+  "id": "examplehospital1-ehr1",
+  "meta": {
+    "profile": [
+      "http://hl7.org/fhir/smart-app-launch/StructureDefinition/patient-access-endpoint"
     ]
+  },
+  "extension": [
+    {
+      "url": "http://hl7.org/fhir/smart-app-launch/StructureDefinition/endpoint-fhir-version",
+      "valueCode": "1.0.2"
+    }
+  ],
+  "status": "active",
+  "address": "https://example.org/EHR1/ExampleHospital1/api/FHIR/DSTU2",
+  "name": "FHIR DSTU2 Endpoint for ExampleHospital1's EHR1 Patient Gateway",
+  "contact": [
+    {
+      "system": "url",
+      "value": "https://open.ehr.com"
+    }
+  ],
+  "connectionType": {
+    "system": "http://terminology.hl7.org/CodeSystem/endpoint-connection-type",
+    "code": "hl7-fhir-rest"
+  },
+  "payloadType": [
+    {
+      "coding": [
+        {
+          "system": "http://terminology.hl7.org/CodeSystem/endpoint-payload-type",
+          "code": "none"
+        }
+      ]
+    }
+  ]
 }
