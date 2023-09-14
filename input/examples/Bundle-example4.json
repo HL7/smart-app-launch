@@ -1,16 +1,25 @@
 {
   "resourceType": "Bundle",
   "id": "example4",
-  "type": "collection",
   "meta": {
-    "lastUpdated": "2023-03-08T20:07:57Z"
+    "lastUpdated": "2023-09-05T20:31:01.224902-07:00",
+    "profile": [
+      "http://hl7.org/fhir/smart-app-launch/StructureDefinition/patient-access-brands-bundle"
+    ]
   },
+  "type": "collection",
+  "timestamp": "2023-09-05T20:31:01.224122-07:00",
   "entry": [
     {
-      "fullUrl": "https://ehr.example.org/Endpoint/examplehospital1-ehr1",
+      "fullUrl": "https://ehr.example.org/Endpoint/examplehospital2-ehr2",
       "resource": {
         "resourceType": "Endpoint",
         "id": "examplehospital2-ehr2",
+        "meta": {
+          "profile": [
+            "http://hl7.org/fhir/smart-app-launch/StructureDefinition/patient-access-endpoint"
+          ]
+        },
         "extension": [
           {
             "url": "http://hl7.org/fhir/smart-app-launch/StructureDefinition/endpoint-fhir-version",
@@ -39,10 +48,7 @@
               }
             ]
           }
-        ],
-        "managingOrganization": {
-          "reference": "Organization/examplehospital2-ehr2"
-        }
+        ]
       }
     },
     {
@@ -50,6 +56,11 @@
       "resource": {
         "resourceType": "Organization",
         "id": "examplehospital2-ehr2",
+        "meta": {
+          "profile": [
+            "http://hl7.org/fhir/smart-app-launch/StructureDefinition/patient-access-brand"
+          ]
+        },
         "extension": [
           {
             "url": "http://hl7.org/fhir/smart-app-launch/StructureDefinition/brand-logo",
@@ -94,18 +105,29 @@
             "city": "Boston",
             "state": "MA"
           }
+        ],
+        "endpoint": [
+          {
+            "reference": "Endpoint/examplehospital2-ehr2",
+            "display": "FHIR R4 EHR2 Endpoint for ExampleHospital2 Brand"
+          }
         ]
       }
     },
     {
-      "fullUrl": "https://ehr.example.org/Organization/examplehospital3-ehr1",
+      "fullUrl": "https://ehr.example.org/Organization/examplehospital3-ehr2",
       "resource": {
         "resourceType": "Organization",
         "id": "examplehospital3-ehr2",
+        "meta": {
+          "profile": [
+            "http://hl7.org/fhir/smart-app-launch/StructureDefinition/patient-access-brand"
+          ]
+        },
         "extension": [
           {
-            "url": "http://hl7.org/fhir/smart-app-launch/StructureDefinition/brand-logo",
-            "valueUrl": "https://example.org/examplehospital3/ui/images/img-logo-2x-new.webp"
+            "url": "http://hl7.org/fhir/smart-app-launch/StructureDefinition/patient-access-url",
+            "valueUrl": "https://patientgateway.examplehospital1-ehr1.org"
           },
           {
             "url": "http://hl7.org/fhir/smart-app-launch/StructureDefinition/patient-access-description",

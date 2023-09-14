@@ -1,6 +1,11 @@
 {
   "resourceType": "Endpoint",
   "id": "examplehospital2-ehr2",
+  "meta": {
+    "profile": [
+      "http://hl7.org/fhir/smart-app-launch/StructureDefinition/patient-access-endpoint"
+    ]
+  },
   "extension": [
     {
       "url": "http://hl7.org/fhir/smart-app-launch/StructureDefinition/endpoint-fhir-version",
@@ -29,8 +34,5 @@
         }
       ]
     }
-  ],
-  "managingOrganization": {
-    "reference": "Organization/examplehospital2-ehr2"
-  }
+  ]
 }

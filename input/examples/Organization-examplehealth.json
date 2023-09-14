@@ -1,10 +1,15 @@
 {
   "resourceType": "Organization",
   "id": "examplehealth",
+  "meta": {
+    "profile": [
+      "http://hl7.org/fhir/smart-app-launch/StructureDefinition/patient-access-brand"
+    ]
+  },
   "extension": [
     {
       "url": "http://hl7.org/fhir/smart-app-launch/StructureDefinition/brand-logo",
-      "valueUrl": "https://example.org/examplehealth/logo/main.1024x1024.png"
+      "valueUrl": "https://example.org/examplehealth/logo/main.1024x102.png"
     },
     {
       "url": "http://hl7.org/fhir/smart-app-launch/StructureDefinition/patient-access-name",
@@ -83,7 +88,7 @@
     },
     {
       "city": "Pekin",
-      "state": "IA"
+      "state": "I"
     },
     {
       "city": "Muscatine",
@@ -92,6 +97,16 @@
     {
       "city": "Sioux City",
       "state": "IA"
+    }
+  ],
+  "endpoint": [
+    {
+      "reference": "Endpoint/examplehealth-r4",
+      "display": "FHIR R4 Endpoint for ExampleHealth Brand"
+    },
+    {
+      "reference": "Endpoint/examplehealth-r2",
+      "display": "FHIR DSTU2 Endpoint for ExampleHealth Brand"
     }
   ]
 }

@@ -1,6 +1,11 @@
 {
   "resourceType": "Organization",
   "id": "examplehospital2-ehr2",
+  "meta": {
+    "profile": [
+      "http://hl7.org/fhir/smart-app-launch/StructureDefinition/patient-access-brand"
+    ]
+  },
   "extension": [
     {
       "url": "http://hl7.org/fhir/smart-app-launch/StructureDefinition/brand-logo",
@@ -44,6 +49,12 @@
     {
       "city": "Boston",
       "state": "MA"
+    }
+  ],
+  "endpoint": [
+    {
+      "reference": "Endpoint/examplehospital2-ehr2",
+      "display": "FHIR R4 EHR2 Endpoint for ExampleHospital2 Brand"
     }
   ]
 }

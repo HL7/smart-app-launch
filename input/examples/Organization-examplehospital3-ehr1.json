@@ -1,6 +1,11 @@
 {
   "resourceType": "Organization",
   "id": "examplehospital3-ehr1",
+  "meta": {
+    "profile": [
+      "http://hl7.org/fhir/smart-app-launch/StructureDefinition/patient-access-brand"
+    ]
+  },
   "extension": [
     {
       "url": "http://hl7.org/fhir/smart-app-launch/StructureDefinition/brand-logo",

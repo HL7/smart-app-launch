@@ -1,16 +1,25 @@
 {
   "resourceType": "Bundle",
   "id": "example5",
-  "type": "collection",
   "meta": {
-    "lastUpdated": "2023-03-08T20:07:57Z"
+    "lastUpdated": "2023-09-05T20:36:42.269187-07:00",
+    "profile": [
+      "http://hl7.org/fhir/smart-app-launch/StructureDefinition/patient-access-brands-bundle"
+    ]
   },
+  "type": "collection",
+  "timestamp": "2023-09-05T20:36:42.268403-07:00",
   "entry": [
     {
       "fullUrl": "https://ehr.example.org/Endpoint/brand1-opt2",
       "resource": {
         "resourceType": "Endpoint",
         "id": "brand1-opt2",
+        "meta": {
+          "profile": [
+            "http://hl7.org/fhir/smart-app-launch/StructureDefinition/patient-access-endpoint"
+          ]
+        },
         "extension": [
           {
             "url": "http://hl7.org/fhir/smart-app-launch/StructureDefinition/endpoint-fhir-version",
@@ -39,10 +48,7 @@
               }
             ]
           }
-        ],
-        "managingOrganization": {
-          "reference": "Organization/brand1-opt2"
-        }
+        ]
       }
     },
     {
@@ -50,6 +56,11 @@
       "resource": {
         "resourceType": "Endpoint",
         "id": "brand2-opt2",
+        "meta": {
+          "profile": [
+            "http://hl7.org/fhir/smart-app-launch/StructureDefinition/patient-access-endpoint"
+          ]
+        },
         "extension": [
           {
             "url": "http://hl7.org/fhir/smart-app-launch/StructureDefinition/endpoint-fhir-version",
@@ -78,10 +89,7 @@
               }
             ]
           }
-        ],
-        "managingOrganization": {
-          "reference": "Organization/brand2-opt2"
-        }
+        ]
       }
     },
     {
@@ -89,6 +97,11 @@
       "resource": {
         "resourceType": "Organization",
         "id": "brand1-opt2",
+        "meta": {
+          "profile": [
+            "http://hl7.org/fhir/smart-app-launch/StructureDefinition/patient-access-brand"
+          ]
+        },
         "extension": [
           {
             "url": "http://hl7.org/fhir/smart-app-launch/StructureDefinition/brand-logo",
@@ -144,6 +157,12 @@
             "city": "St Helena",
             "state": "CA"
           }
+        ],
+        "endpoint": [
+          {
+            "reference": "Endpoint/brand1-opt2",
+            "display": "FHIR R4 Endpoint for Brand1/Brand2"
+          }
         ]
       }
     },
@@ -152,6 +171,11 @@
       "resource": {
         "resourceType": "Organization",
         "id": "brand2-opt2",
+        "meta": {
+          "profile": [
+            "http://hl7.org/fhir/smart-app-launch/StructureDefinition/patient-access-brand"
+          ]
+        },
         "extension": [
           {
             "url": "http://hl7.org/fhir/smart-app-launch/StructureDefinition/brand-logo",
@@ -206,6 +230,12 @@
           {
             "city": "Santa Rosa",
             "state": "CA"
+          }
+        ],
+        "endpoint": [
+          {
+            "reference": "Endpoint/brand2-opt2",
+            "display": "FHIR R4 Endpoint for Brand1/Brand2"
           }
         ]
       }

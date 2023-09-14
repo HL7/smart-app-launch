@@ -1,6 +1,11 @@
 {
   "resourceType": "Organization",
   "id": "brand1-opt2",
+  "meta": {
+    "profile": [
+      "http://hl7.org/fhir/smart-app-launch/StructureDefinition/patient-access-brand"
+    ]
+  },
   "extension": [
     {
       "url": "http://hl7.org/fhir/smart-app-launch/StructureDefinition/brand-logo",
@@ -55,6 +60,12 @@
     {
       "city": "St Helena",
       "state": "CA"
+    }
+  ],
+  "endpoint": [
+    {
+      "reference": "Endpoint/brand1-opt2",
+      "display": "FHIR R4 Endpoint for Brand1/Brand2"
     }
   ]
 }

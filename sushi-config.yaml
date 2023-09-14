@@ -33,6 +33,124 @@ resources:
     exampleCanonical: http://hl7.org/fhir/smart-app-launch/StructureDefinition/task-standalone-launch
 instanceOptions:
   setMetaProfile: never
+
+groups:
+
+  PABProfiles:
+    name: Patient Access Brands Profiles
+    description: Patient Access Brands Profiles
+    resources:
+
+      - StructureDefinition/patient-access-brand
+      - StructureDefinition/patient-access-brands-bundle
+      - StructureDefinition/patient-access-endpoint
+
+  PABExtensions:
+    name: Patient Access Brands Extensions
+    description: Patient Access Brands Extensions
+    resources:
+
+      - StructureDefinition/brand-flags
+      - StructureDefinition/brand-logo-use-agreement
+      - StructureDefinition/brand-logo
+      - StructureDefinition/brands-bundle
+      - StructureDefinition/endpoint-fhir-version
+      - StructureDefinition/patient-access-description
+      - StructureDefinition/patient-access-logo-use-agreement
+      - StructureDefinition/patient-access-logo
+      - StructureDefinition/patient-access-name
+      - StructureDefinition/patient-access-url
+
+  PABTerminology:
+      name: Patient Access Brands Terminology
+      description: Patient Access Brands Terminology
+      resources:
+
+      - CodeSystem/brand-flags
+      - CodeSystem/patient-access-category
+      - ValueSet/brand-flags
+      - ValueSet/patient-access-category
+
+  PAB:
+    name: Patient Access Brands (Organization) Examples
+    description: Patient Access Brands (Organization) Examples
+    resources:
+
+      - Organization/brand1-opt2
+      - Organization/brand2-opt2
+      - Organization/cust-hosted-examplehealth
+      - Organization/ehchospital
+      - Organization/ehpmadison
+      - Organization/example
+      - Organization/examplehealth
+      - Organization/examplehospital1-ehr1
+      - Organization/examplehospital2-ehr2
+      - Organization/examplehospital3-ehr1
+      - Organization/examplehospital3-ehr2
+      - Organization/examplelabs
+
+  PAE:
+    name: Patient Access Endpoint Examples
+    description: Patient Access Endpoint Examples
+    resources:
+
+      - Endpoint/brand1-opt2
+      - Endpoint/brand2-opt2
+      - Endpoint/ehr1-examplehealth
+      - Endpoint/example
+      - Endpoint/examplehealth-r2
+      - Endpoint/examplehealth-r4
+      - Endpoint/examplehospital1-ehr1
+      - Endpoint/examplehospital2-ehr2
+      - Endpoint/examplelabs
+
+  PABundle:
+    name: Patient Access Brands Bundle Examples
+    description: Patient Access Brands Bundle Examples
+    resources:
+
+      - Bundle/example1
+      - Bundle/example6
+      - Bundle/example4
+      - Bundle/example5
+      - Bundle/example2
+      - Bundle/example3
+
+  SMARTExtensions:
+    name: SMART Launch Extension
+    description: SMART Launch Extensions
+    resources:
+
+      - StructureDefinition/smart-app-state-basic
+      - StructureDefinition/task-ehr-launch
+      - StructureDefinition/task-standalone-launch
+
+  SMARTTerminology:
+    name: SMART Launch Terminology
+    description: SMART Launch Terminology
+    resources:
+
+      - CodeSystem/smart-codes
+      - ValueSet/smart-launch-info
+      - ValueSet/smart-launch-types
+
+  SMARTResources:
+    name: SMART Launch Basic and Task Resources
+    description: SMART Launch Basic and Task Resources
+    resources: 
+
+      - Basic/app-state
+      - Task/task-for-standalone-launch
+      - Task/task-for-ehr-launch
+
+  SMARTCap:
+    name: SMART Launch CapabilityStatement
+    description: SMART Launch CapabilityStatement
+    resources:    
+
+      - CapabilityStatement/smart-app-state-server
+
+
 pages:
   index.md:
     title: Overview
@@ -115,7 +233,7 @@ menu:
     Client Authentication - Symmetric (shared secret): client-confidential-symmetric.html
   Conformance: conformance.html
   See also:
-    #Artifacts: artifacts.html # no artifacts to display!
+    Artifacts: artifacts.html # no artifacts to display!
     Best Practices: best-practices.html
     Patient-Access Brands and Endpoints: brands.html
     Examples: examples.html

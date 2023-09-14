@@ -1,16 +1,25 @@
 {
   "resourceType": "Bundle",
   "id": "example6",
-  "type": "collection",
   "meta": {
-    "lastUpdated": "2023-03-08T20:07:57Z"
+    "lastUpdated": "2023-09-05T20:49:08.419567-07:00",
+    "profile": [
+      "http://hl7.org/fhir/smart-app-launch/StructureDefinition/patient-access-brands-bundle"
+    ]
   },
+  "type": "collection",
+  "timestamp": "2023-09-05T20:49:08.418823-07:00",
   "entry": [
     {
       "fullUrl": "https://ehr.example.org/Endpoint/ehr1-examplehealth",
       "resource": {
         "resourceType": "Endpoint",
         "id": "ehr1-examplehealth",
+        "meta": {
+          "profile": [
+            "http://hl7.org/fhir/smart-app-launch/StructureDefinition/patient-access-endpoint"
+          ]
+        },
         "extension": [
           {
             "url": "http://hl7.org/fhir/smart-app-launch/StructureDefinition/endpoint-fhir-version",
@@ -39,26 +48,19 @@
               }
             ]
           }
-        ],
-        "managingOrganization": {
-          "reference": "Organization/ehr1-examplehealth",
-          "identifier": {
-            "value": "https://examplehealth.org"
-          },
-          "extension": [
-            {
-              "url": "http://hl7.org/fhir/smart-app-launch/StructureDefinition/brands-bundle",
-              "valueUrl": "https://example.org/examplehealth.org/bundle.json"
-            }
-          ]
-        }
+        ]
       }
     },
     {
-      "fullUrl": "https://ehr.example.org/Organization/ehr1-examplehealth",
+      "fullUrl": "https://ehr.example.org/Organization/cust-hosted-examplehealth",
       "resource": {
         "resourceType": "Organization",
-        "id": "ehr1-examplehealth",
+        "id": "cust-hosted-examplehealth",
+        "meta": {
+          "profile": [
+            "http://hl7.org/fhir/smart-app-launch/StructureDefinition/patient-access-brand"
+          ]
+        },
         "extension": [
           {
             "url": "http://hl7.org/fhir/smart-app-launch/StructureDefinition/brand-logo",
@@ -71,6 +73,10 @@
           {
             "url": "http://hl7.org/fhir/smart-app-launch/StructureDefinition/patient-access-url",
             "valueUrl": "https://patientgateway.ehr1-examplehealth.org"
+          },
+          {
+            "url": "http://hl7.org/fhir/smart-app-launch/StructureDefinition/brands-bundle",
+            "valueUrl": "https://example.org/examplehealth.org/bundle.json"
           }
         ],
         "identifier": [
@@ -105,6 +111,12 @@
           {
             "city": "Madison",
             "state": "WI"
+          }
+        ],
+        "endpoint": [
+          {
+            "reference": "Endpoint/ehr1-examplehealth",
+            "display": "FHIR DSTU2 Endpoint for ExampleHealth's EHR1 Patient Gateway"
           }
         ]
       }

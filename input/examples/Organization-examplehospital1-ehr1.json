@@ -1,6 +1,11 @@
 {
   "resourceType": "Organization",
   "id": "examplehospital1-ehr1",
+  "meta": {
+    "profile": [
+      "http://hl7.org/fhir/smart-app-launch/StructureDefinition/patient-access-brand"
+    ]
+  },
   "extension": [
     {
       "url": "http://hl7.org/fhir/smart-app-launch/StructureDefinition/brand-logo",
@@ -55,6 +60,12 @@
     {
       "city": "Waltham",
       "state": "MA"
+    }
+  ],
+  "endpoint": [
+    {
+      "reference": "Endpoint/examplehospital1-ehr1",
+      "display": "FHIR DSTU2 Endpoint for ExampleHospital1's EHR1 Patient Gateway Brand"
     }
   ]
 }

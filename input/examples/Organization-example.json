@@ -1,10 +1,15 @@
 {
   "resourceType": "Organization",
   "id": "example",
+  "meta": {
+    "profile": [
+      "http://hl7.org/fhir/smart-app-launch/StructureDefinition/patient-access-brand"
+    ]
+  },
   "extension": [
     {
       "url": "http://hl7.org/fhir/smart-app-launch/StructureDefinition/brand-logo",
-      "valueUrl": "https://example.org/logo/main.1024x1024.png"
+      "valueUrl": "https://example.org/logo/main.1024x102.png"
     },
     {
       "url": "http://hl7.org/fhir/smart-app-launch/StructureDefinition/brand-logo-use-agreement",
@@ -28,7 +33,7 @@
     },
     {
       "url": "http://hl7.org/fhir/smart-app-launch/StructureDefinition/patient-access-logo",
-      "valueUrl": "https://example.org/portal-logo/main.1024x1024.png"
+      "valueUrl": "https://example.org/portal-logo/main.1024x102.png"
     },
     {
       "url": "http://hl7.org/fhir/smart-app-launch/StructureDefinition/patient-access-logo-use-agreement",
@@ -74,6 +79,12 @@
     {
       "system": "url",
       "value": "https://example.org/brand-home"
+    }
+  ],
+  "endpoint": [
+    {
+      "reference": "Endpoint/example",
+      "display": "FHIR R4 Endpoint for Example Medical Center Brand"
     }
   ]
 }
