@@ -6,7 +6,7 @@
     "title": "Patient Access Brand (Organization) Profile",
     "status": "active",
     "date": "2023-03-05",
-    "description": "Profile on Organization to communicate the branding associated with a Patient\nAccess API endpoint.\n\n* Extensions about the **Brand**\n    * `0..* MS` Logo\n        * `url` is `http://hl7.org/fhir/smart-app-launch/StructureDefinition/brand-logo`\n        * `valueUrl` SHOULD be optimized for display as a 1\" square and formatted as SVG or 1024x1024 pixel PNG with transparent background. Logo should be be legible at small sizes (e.g., as small as 50x50 pixels). Tips to achieve this: if the logo contains both a brandmark and a wordmark, separate them and use just the brandmark. If the logo is predominantly horizontal, consider creating a vertically-oriented logo that is still recognizable when scaled to smaller sizes. Multiple logos may be supplied. The URL can be an absolute URL  with the `https://` schema, or a [Data URL](https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/Data_URLs) with the `data:` schema that directly embeds content.\n    * `0..1 MS` Logo use agreement\n        *  `url` is `http://hl7.org/fhir/smart-app-launch/StructureDefinition/brand-logo-use-agreement-agreement`.\n        *  `valueUrl` MAY include a link to terms for logo use by patient access apps.\n    * `0..*` Brand flags\n        * `url` is `http://hl7.org/fhir/smart-app-launch/StructureDefinition/brand-flags`.\n      * This flag is intended to help app developers understand and debug the organizational relationships that underpin published Brands. For example, a `valueCode` of `hidden` allows systems to designate Organizations as part of a hierarchy without necessarily being shown in a UX card or tile.  Marking Brands `hidden` can also be used to associate many affiliated organizations with a parent Brand (e.g., each with its street address) without apps displaying redundant information to users.\n* Extensions about the Brand's **Patient Access** (\"portal\"). These extensions represent the \"Patient Access Details\" described in the conceptual model above. These extensions are \"**inheritable**\", which means Brand entries in the Brand Bundle systems MAY be omit these extension whenever correct values are inferrable by following the entry's \"Patient access provided by\" links (`Organization.partOf`).\n    * `0..1 MS` Patient access name (\"portal name\") Note: A Brand MUST include a this extension or inherit the value from the Brand referenced by `Organization.partOf`.\n        * `url` is `http://hl7.org/fhir/smart-app-launch/StructureDefinition/patient-access-name`.\n        * `valueString` indicates the name by which patients know the portal (e.g.,\"MyChildren\" or \"Patient Gateway\") \n    * `0..1 MS` Patient access URL (\"portal URL\") Note: A Brand MUST include a this extension or inherit the value from the Brand referenced by `Organization.partOf`.\n        * `url` is `http://hl7.org/fhir/smart-app-launch/StructureDefinition/patient-access-url`.\n        * `valueUrl` indicates the location of the patient portal associated with this Brand -- i.e., a URL where patients can go to see their data and manage access.\n    * `0..1 MS` Patient access description (\"portal description\")\n        * `url` is  `http://hl7.org/fhir/smart-app-launch/StructureDefinition/patient-access-description`.\n        * `valueMarkdown` explains, if necessary (in patient-friendly language), the subset of patients eligible to connect and the data available. This capability supports (for example) a cancer center that uses one EHR for pediatric patients and another for adult patients. In this scenario, each EHR would publish a different `PatientAccessBrand`; apps would display the description to disambiguate the user's selection. For instance, one Brand might indicate \"Access records for childhood cancer care\" and another might indicate \"Access records for adult cancer care\".\n    * `0..* MS` Patient access logo (\"portal logo\"). Used if the portal has its own logo in addition to the Brand's logo\n        * `url` is `http://hl7.org/fhir/smart-app-launch/StructureDefinition/patient-access-logo`\n        * `valueUrl` See documentation for \"brand logo\"\n    * `0..1 MS` Patient access logo use agreement\n        *  `url` is `http://hl7.org/fhir/smart-app-launch/StructureDefinition/patient-access-logo-use-agreement`.\n        *  `valueUrl` See documentation for \"brand logo use agreement\".\n\n* Extensions about customer-managed Brands\n    * `0..* MS` Logo\n        * `url` is `http://hl7.org/fhir/smart-app-launch/StructureDefinition/brands-bundle`\n        * `valueUrl` for a customer-managed Patient Access Brands Bundle that defines this Brand and related Brands. **It allows customers to self-publish additional information about the Brand.**\n\n* `0..* MS` `identifier`(s) that apps can use to link this Brand across publishers or with external data sets. EHRs SHALL support customer-supplied identifiers (`system` and `value`).\n    * It is RECOMMENDED that each Brand include an identifier where `system` is `urn:ietf:rfc: 3986` (meaning the identifier is a URL) and `value` is the HTTPS URL for the Brand's primary web presence, omitting any \"www.\" prefix from the domain and omitting any path component. For example, since the main web presence of Boston Children's Hospital is https: //www.childrenshospital.org/, a recommended identifier would be:\n\n     `{\n     \"system\": \"urn:ietf:rfc:3986\",\n     \"value\": \"https://childrenshospital.org\"\n      }`\n\n* `0..*` `type` Categories for this organization (system: `http://hl7.org/fhir/smart-app-launch/CodeSystem/patient-access-category`, code from: `clinical`, `lab`, `pharmacy`, `insurer`, `network`, `aggregator`)\n* `1..1 MS` `name` Primary brand name to display on a card\n* `0..* MS` `alias` Aliases (e.g., former names like \"Partners Healthcare\") for filtering/search\n* `1..1 MS` `telecom` with `system` of `url` and `value` conveying the primary public website for the Brand. Note this is distinct from the patient access portal website (described below)\n* `0..* MS` `address` Locations (e.g., zip codes and/or street addresses) associated with the Brand. The following combinations are allowed:\n  * State\n  * City, state\n  * City, state, zip code\n  * Street address, city, state, zip code\n  * zip code alone\n* `0..1 MS` `partOf` \"Patient access provided by\", to convey that an\n  affiliated Brand hosts this Brand's API technology and patient portal. The\n  hierarchy of \"access provided by\" links SHALL NOT exceed a depth of two (i.e.,\n  a Brand either includes portal details or links directly to a Brand that\n  provides them).\n* `0..* MS` `endpoint` references one or more `PatientAccessEndpoints`.  Typically, this\n  property associates a single \"primary brand\" with the endpoint. Additional\n  affiliated Brands or parent brands can be associated via \"Patient access\n  provided by\" links (`Organization.partOf`). EHR vendors SHALL support\n  integrated publication of Organizations in the same JSON Bundle, as well as\n  external customer-managed publications:\n    * `0..1 MS`  `reference` containing a relative URL to an Endpoint within a Brand Bundle",
+    "description": "Profile on Organization to communicate the branding associated with a Patient",
     "fhirVersion": "4.0.1",
     "kind": "resource",
     "abstract": false,
@@ -19,159 +19,37 @@
                 "id": "Organization",
                 "path": "Organization",
                 "short": "Patient Access Brand",
-                "definition": "A brand of a healthcare provider, such as a hospital, clinic, or practice",
-                "constraint": [
-                    {
-                        "key": "pab-1",
-                        "severity": "error",
-                        "human": "A Patient Access Brand SHALL have a *portalName* extension or a reference to  an affiliated \"parent brand\" (`Organization.partOf`) or both.",
-                        "expression": "extension.where(url='http://hl7.org/fhir/smart-app-launch/StructureDefinition/patient-access-name').exists() or partOf.exists()"
-                    },
-                    {
-                        "key": "pab-2",
-                        "severity": "error",
-                        "human": "A Patient Access Brand SHALL have a *portalURL* extension or a reference to  an affiliated \"parent brand\" (`Organization.partOf`) or both.",
-                        "expression": "extension.where(url='http://hl7.org/fhir/smart-app-launch/StructureDefinition/patient-access-name').exists() or partOf.exists()"
-                    }
-                ]
+                "definition": "A brand of a healthcare provider, such as a hospital, clinic, or practice"
             },
             {
-                "id": "Organization.extension:logo",
+                "id": "Organization.extension:brand",
                 "path": "Organization.extension",
-                "sliceName": "logo",
-                "short": "Patient Access Brand Logo",
+                "sliceName": "brand",
+                "short": "Brand Details",
                 "min": 0,
                 "max": "*",
                 "type": [
                     {
                         "code": "Extension",
                         "profile": [
-                            "http://hl7.org/fhir/smart-app-launch/StructureDefinition/brand-logo"
+                            "http://hl7.org/fhir/StructureDefinition/organization-brand"
                         ]
                     }
                 ],
                 "mustSupport": true
             },
             {
-                "id": "Organization.extension:logoUse",
+                "id": "Organization.extension:portal",
                 "path": "Organization.extension",
-                "sliceName": "logoUse",
-                "short": "Patient Access Brand Logo Use Agreement",
-                "min": 0,
-                "max": "1",
-                "type": [
-                    {
-                        "code": "Extension",
-                        "profile": [
-                            "http://hl7.org/fhir/smart-app-launch/StructureDefinition/brand-logo-use-agreement"
-                        ]
-                    }
-                ],
-                "mustSupport": true
-            },
-            {
-                "id": "Organization.extension:flags",
-                "path": "Organization.extension",
-                "sliceName": "flags",
-                "short": "Patient Access Brand Flags",
+                "sliceName": "portal",
+                "short": "Portal Details",
                 "min": 0,
                 "max": "*",
                 "type": [
                     {
                         "code": "Extension",
                         "profile": [
-                            "http://hl7.org/fhir/smart-app-launch/StructureDefinition/brand-flags"
-                        ]
-                    }
-                ],
-                "mustSupport": true
-            },
-            {
-                "id": "Organization.extension:portalName",
-                "path": "Organization.extension",
-                "sliceName": "portalName",
-                "short": "Patient Access Brand Portal Name",
-                "min": 0,
-                "max": "1",
-                "type": [
-                    {
-                        "code": "Extension",
-                        "profile": [
-                            "http://hl7.org/fhir/smart-app-launch/StructureDefinition/patient-access-name"
-                        ]
-                    }
-                ],
-                "condition": [
-                    "pab-1"
-                ],
-                "mustSupport": true
-            },
-            {
-                "id": "Organization.extension:portalURL",
-                "path": "Organization.extension",
-                "sliceName": "portalURL",
-                "short": "Patient Access Brand Portal URL",
-                "min": 0,
-                "max": "1",
-                "type": [
-                    {
-                        "code": "Extension",
-                        "profile": [
-                            "http://hl7.org/fhir/smart-app-launch/StructureDefinition/patient-access-url"
-                        ]
-                    }
-                ],
-                "mustSupport": true
-            },
-            {
-                "id": "Organization.extension:portalDescription",
-                "path": "Organization.extension",
-                "sliceName": "portalDescription",
-                "short": "Patient Access Brand Portal Description",
-                "min": 0,
-                "max": "1",
-                "type": [
-                    {
-                        "code": "Extension",
-                        "profile": [
-                            "http://hl7.org/fhir/smart-app-launch/StructureDefinition/patient-access-description"
-                        ]
-                    }
-                ],
-                "condition": [
-                    "pab-2"
-                ],
-                "mustSupport": true
-            },
-            {
-                "id": "Organization.extension:portalLogo",
-                "path": "Organization.extension",
-                "sliceName": "portalLogo",
-                "short": "Patient Access Brand Portal Logo",
-                "min": 0,
-                "max": "*",
-                "type": [
-                    {
-                        "code": "Extension",
-                        "profile": [
-                            "http://hl7.org/fhir/smart-app-launch/StructureDefinition/patient-access-logo"
-                        ]
-                    }
-                ],
-                "mustSupport": true
-            },
-            {
-                "id": "Organization.extension:portalLogoUse",
-                "path": "Organization.extension",
-                "sliceName": "portalLogoUse",
-                "short": "Patient Access Brand Portal Logo Use Agreement",
-                "min": 0,
-                "max": "1",
-                "type": [
-                    {
-                        "code": "Extension",
-                        "profile": [
-                            "http://hl7.org/fhir/smart-app-launch/StructureDefinition/patient-access-logo-use-agreement"
+                            "http://hl7.org/fhir/StructureDefinition/organization-portal"
                         ]
                     }
                 ],
@@ -199,16 +77,6 @@
                 "short": "Unique identifier for the brand",
                 "definition": "The unique identifier for the brand  that apps can use to link this Brand across publishers or with external data sets. EHRs SHALL support customer-supplied identifiers (`system` and `value`).\n\n* It is RECOMMENDED that each Brand include an identifier where `system` is `urn:ietf:rfc: 3986` (meaning the identifier is a URL) and `value` is the HTTPS URL for the Brand's primary web presence, omitting any \"www.\" prefix from the domain and omitting any path component. For example, since the main web presence of Boston Children's Hospital is https: //www.childrenshospital.org/, a recommended identifier would be:\n\n  `{\n    \"system\": \"urn:ietf:rfc:3986\",\n    \"value\": \"https://childrenshospital.org\"\n   }`\n",
                 "mustSupport": true
-            },
-            {
-                "id": "Organization.type",
-                "path": "Organization.type",
-                "short": "Categories for this organization (health-system, hospital, outpatient, insurer, lab, pharmacy)",
-                "definition": "Categories for this organization (system: `http://hl7.org/fhir/smart-app-launch/CodeSystem/patient-access-category`, code from: `clinical`, `lab`, `pharmacy`, `insurer`, `network`, `aggregator`)",
-                "binding": {
-                    "strength": "extensible",
-                    "valueSet": "http://hl7.org/fhir/smart-app-launch/ValueSet/patient-access-category"
-                }
             },
             {
                 "id": "Organization.name",
@@ -246,17 +114,13 @@
                 "path": "Organization.partOf",
                 "short": "Affiliated \"parent brand\", if this Brand is part of a larger health system",
                 "definition": "Affiliated \"parent brand\", if this Brand is part of a larger health system.  \"Patient access provided by\", to convey that an affiliated Brand hosts this Brand's API technology and patient portal. The hierarchy of \"access provided by\" links SHALL NOT exceed a depth of two (i.e., a Brand either includes portal details or links directly to a Brand that provides them).",
-                "condition": [
-                    "pab-1",
-                    "pab-2"
-                ],
                 "mustSupport": true
             },
             {
                 "id": "Organization.endpoint",
                 "path": "Organization.endpoint",
-                "short": "The \"primary brand\" endpoint.",
-                "definition": "References one or more `PatientAccessEndpoints`.  Typically, this property associates a single \"primary brand\" with the endpoint. Additional affiliated Brands or parent brands can be associated via \"Patient access provided by\" links (`Organization.partOf`). EHR vendors SHALL support integrated publication of Organizations in the same JSON Bundle, **as well as external customer-managed publications**",
+                "short": "Endpoint associated with this brand",
+                "definition": "References one or more `PatientAccessEndpoints`. Endpoints here will also be listed within the `organization-portal` extension, to indicate the specific portal they're associated with.",
                 "type": [
                     {
                         "code": "Reference",

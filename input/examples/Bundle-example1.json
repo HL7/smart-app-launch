@@ -2,7 +2,6 @@
   "resourceType": "Bundle",
   "id": "example1",
   "meta": {
-    "lastUpdated": "2023-09-05T20:00:43.241454-07:00",
     "profile": [
       "http://hl7.org/fhir/smart-app-launch/StructureDefinition/patient-access-brands-bundle"
     ]
@@ -11,48 +10,7 @@
   "timestamp": "2023-09-05T20:00:43.241070-07:00",
   "entry": [
     {
-      "fullUrl": "https://examplelabs.example.org/Endpoint/examplelabs",
-      "resource": {
-        "resourceType": "Endpoint",
-        "id": "examplelabs",
-        "meta": {
-          "profile": [
-            "http://hl7.org/fhir/smart-app-launch/StructureDefinition/patient-access-endpoint"
-          ]
-        },
-        "extension": [
-          {
-            "url": "http://hl7.org/fhir/smart-app-launch/StructureDefinition/endpoint-fhir-version",
-            "valueCode": "4.0.1"
-          }
-        ],
-        "status": "active",
-        "address": "https://fhir.examplelabs.example.org/r4",
-        "name": "FHIR R4 Endpoint for ExampleLabs",
-        "contact": [
-          {
-            "system": "url",
-            "value": "https://dev-portal.examplelabs.org"
-          }
-        ],
-        "connectionType": {
-          "system": "http://terminology.hl7.org/CodeSystem/endpoint-connection-type",
-          "code": "hl7-fhir-rest"
-        },
-        "payloadType": [
-          {
-            "coding": [
-              {
-                "system": "http://terminology.hl7.org/CodeSystem/endpoint-payload-type",
-                "code": "none"
-              }
-            ]
-          }
-        ]
-      }
-    },
-    {
-      "fullUrl": "https://examplelabs.example.org/Organization/examplelabs",
+      "fullUrl": "https://fhir.labs.example.com/Organization/examplelabs",
       "resource": {
         "resourceType": "Organization",
         "id": "examplelabs",
@@ -63,16 +21,37 @@
         },
         "extension": [
           {
-            "url": "http://hl7.org/fhir/smart-app-launch/StructureDefinition/brand-logo",
-            "valueUrl": "https://example.org/examplelabs/images/ExampleLabs_Logo.svg"
+            "url": "http://hl7.org/fhir/StructureDefinition/organization-brand",
+            "extension": [
+              {
+                "url": "brandLogo",
+                "valueUrl": "https://labs.example.com/images/logo.svg"
+              }
+            ]
           },
           {
-            "url": "http://hl7.org/fhir/smart-app-launch/StructureDefinition/patient-access-name",
-            "valueString": "ExampleLabs Patient Portal"
-          },
-          {
-            "url": "http://hl7.org/fhir/smart-app-launch/StructureDefinition/patient-access-url",
-            "valueUrl": "https://example.org/patient.examplelabs.com/landing"
+            "url": "http://hl7.org/fhir/StructureDefinition/organization-portal",
+            "extension": [
+              {
+                "url": "portalName",
+                "valueUrl": "Example Labs HealthCentral Portal"
+              },
+              {
+                "url": "portalUrl",
+                "valueUrl": "https://healthcentral.labs.example.com"
+              },
+              {
+                "url": "portalLogo",
+                "valueUrl": "https://healthcentral.labs.example.com/logo.png"
+              },
+              {
+                "url": "portalEndpoint",
+                "valueReference": {
+                  "reference": "Endpoint/examplelabs",
+                  "display": "FHIR R4 Endpoint for ExampleLabs Brand"
+                }
+              }
+            ]
           }
         ],
         "identifier": [
@@ -94,46 +73,66 @@
           }
         ],
         "name": "ExampleLabs",
-        "alias": [
-          "ExampleLabs Alaska"
-        ],
+        "alias": ["ExampleLabs Alaska", "ExampleLabs Wisconsin"],
         "telecom": [
           {
             "system": "url",
-            "value": "https://www.examplelabs.com"
+            "value": "https://labs.example.com"
           }
         ],
         "address": [
           {
-            "line": [
-              "4015 Lake Otis Pkwy"
-            ],
+            "line": ["4015 Lake Otis Pkwy"],
             "city": "Anchorage",
             "state": "AK",
             "postalCode": "99508"
           },
           {
-            "line": [
-              "3223 Palmer Wasilla Hwy",
-              "Suite 4"
-            ],
-            "city": "Wasilla",
-            "state": "AK",
-            "postalCode": "99654"
-          },
+            "line": ["123 Main St"],
+            "city": "Madison",
+            "state": "WI",
+            "postalCode": "53726"
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "https://fhir.labs.example.com/Endpoint/examplelabs",
+      "resource": {
+        "resourceType": "Endpoint",
+        "id": "examplelabs",
+        "meta": {
+          "profile": [
+            "http://hl7.org/fhir/smart-app-launch/StructureDefinition/patient-access-endpoint"
+          ]
+        },
+        "extension": [
           {
-            "line": [
-              "1626 30Th Avenue"
-            ],
-            "city": "Fairbanks",
-            "state": "AK",
-            "postalCode": "99701"
+            "url": "http://hl7.org/fhir/StructureDefinition/endpoint-fhir-version",
+            "valueCode": "4.0.1"
           }
         ],
-        "endpoint": [
+        "status": "active",
+        "address": "https://fhir.labs.example.com/r4",
+        "name": "FHIR R4 Endpoint for ExampleLabs",
+        "contact": [
           {
-            "reference": "Endpoint/examplelabs",
-            "display": "FHIR R4 Endpoint for ExampleLabs Brand"
+            "system": "url",
+            "value": "https://dev-portal.labs.example.com"
+          }
+        ],
+        "connectionType": {
+          "system": "http://terminology.hl7.org/CodeSystem/endpoint-connection-type",
+          "code": "hl7-fhir-rest"
+        },
+        "payloadType": [
+          {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/endpoint-payload-type",
+                "code": "none"
+              }
+            ]
           }
         ]
       }

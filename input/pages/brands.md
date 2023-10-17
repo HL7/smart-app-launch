@@ -99,22 +99,6 @@ An app assembles its collection of Brands (potentially as an offline, configurat
 
 which are defined below. For fine-grained organizational management, apps SHALL select the FHIR resources linked from `.well-known/smart-configuration` if they differ from the resources in a vendor-consolidated Brand Bundle.
 
-#### FHIR Patient Access Endpoint Profile
-
-{{site.data.structuredefinitions.patient-access-endpoint.description}}
-
-[Formal Views of Profile Contents](StructureDefinition-patient-access-endpoint.html)
-    
-##### Example
-
-[Endpoint Example](Endpoint-example.html)
-
-```javascript
-
-{% include_relative Endpoint-example.json %}
-
-```
-
 #### FHIR Patient Access Brands (Organization) Profile
 
 
@@ -132,6 +116,17 @@ which are defined below. For fine-grained organizational management, apps SHALL 
 {% include_relative Organization-example.json %}
 
 ```
+
+#### FHIR Patient Access Endpoint Profile
+
+{{site.data.structuredefinitions.patient-access-endpoint.description}}
+
+[Formal Views of Profile Contents](StructureDefinition-patient-access-endpoint.html)
+    
+##### Example
+
+[Endpoint Example](Endpoint-example.html)
+
  
 #### FHIR Patient Access Brand Bundle Profile
 
@@ -140,40 +135,9 @@ which are defined below. For fine-grained organizational management, apps SHALL 
 [Formal Views of Profile Contents](StructureDefinition-patient-access-brands-bundle.html)
   
   
-##### Partial View Of Brand Bundle Example
+##### Brand Bundle Examples
 
-The following Bundle fragments in the example below illustrate how Brand data is compiled into a Bundle and how 
-a Brand (in other words, an Organization) references an Endpoint within the same Bundle. See the [Patient-Access Brand Examples](example-brands.html) for complete examples. 
-
-```javascript
-{
-  "resourceType": "Bundle",
-  "meta": {
-    "lastUpdated": "2022-03-14T15:09:26.535Z"
-  },
-  "entry": [{
-    "fullUrl": "https://pab.example.org/Endpoint/example",
-    "resource": {
-      "resourceType": "Endpoint",
-      "id": "examplelabs",
-      // ...
-    }
-  }, {
-    "fullUrl": "https://pab.example.org/Organization/example",
-    "resource": {
-      "resourceType": "Organization",
-      "name": "Example Hospital",
-      /// ...
-      "endpoint": [{
-         "reference": "Endpoint/examplelabs",
-         "display": "FHIR R4 Endpoint for ExampleLabs Brand"
-      }]
-    }
-  }],
-  // ...
-}
-```
-
+Brands and Endpoints are compiled together and published in a Brand Bundle. See the [Patient-Access Brand Examples](example-brands.html) for complete examples. 
 
 
 #### Rules And Best Practices For Creating And Using Patient Access Profiles

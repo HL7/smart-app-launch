@@ -8,7 +8,7 @@
   },
   "extension": [
     {
-      "url": "http://hl7.org/fhir/smart-app-launch/StructureDefinition/endpoint-fhir-version",
+      "url": "http://hl7.org/fhir/StructureDefinition/endpoint-fhir-version",
       "valueCode": "4.0.1"
     }
   ],

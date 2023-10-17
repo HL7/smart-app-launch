@@ -2,14 +2,15 @@
 
 *The brands below are fabricated for the purpose of these examples.*
 
-### Example 1: Lab with Thousands of Locations Nationwide
+### Example 1: Lab with Locations Nationwide
 
-* One national brand
-* Locations in thousands of cities
+Let's begin by considering a national lab with many locations nationwide.
 
-The configuration below establishes a single top-level Brand with a long list of ExampleHealth addresses. (The organization can also group  their locations into sub-brands such as "ExampleLabs Alaska")
+The configuration below establishes a single top-level Brand with a potentially long list of ExampleLabs addresses. In this configuration there's a single Organization associated with a single portal and endpoint. The organization lists several aliases and addresses.
 
+(An alternative choice for ExampleLabs would be to create an Organization for each state as a sub-brand with its own name, logo, and addresses. This is a decision that ExampleLabs can make based on how they want their brand to appear in patieint-facing apps.)
 
+Based on this configuration, a patient app might display the following cards to a user:
 <div class="bg-info" markdown="1">
 
 <img src="Logo1.png" alt="ExampleLabs" width="40"/> **ExampleLabs** ([examplelabs.com](#))
@@ -25,24 +26,23 @@ Nearest location: 1 mile (Madison)
 
 The FHIR server's `.well-known/smart-configuration` file would include a link like
 
-    "patientAccessBrands": "https://examplelabs.example.com/branding.json"
+    "patientAccessBrands": "https://labs.example.com/branding.json"
     
-And the hosted` Patient Access Brands Bundle file would look like:
+And the hosted Patient Access Brands Bundle file would look like:
 
 [Raw JSON](Bundle-example1.json)
-
-~~~
-{% include_relative Bundle-example1.json %}
-~~~
 
 
 ### Example 2: Regional Health System With Independently Branded Affiliates
 
-* Regional health system ("ExampleHealth")
-* Multiple locations in/around 12 cities
-* Provides EHR for many affiliates (distinctly branded sites like "ExampleHealth Physicians of Madison" or "ExampleHealth Community Hospital")
+Next, let's look at a Regional health system ("ExampleHealth") that has:
 
-The system displays the following cards to a user:
+* Has locations in/around 12 cities
+* Provides EHR for independent affiliates (distinctly branded sites like "ExampleHealth Physicians of Madison" or "ExampleHealth Community Hospital")
+
+The configuration below establishes a single Organiztion for ExampleHealth, with a single portal associated with two FHIR endpoints (one R2, one R4). There are also Organizations for the affiliated providers, each indicating a `partOf`  relationship with ExampleHealth.
+
+Based on this configuration, a patient app might display the following cards to a user:
 
 <div class="bg-info" markdown="1">
 <img src="Logo2.png" alt="ExampleHealth" width="40"/>  **ExampleHealth** ([examplehealth.org](#))
@@ -81,110 +81,47 @@ Nearest location: 120 miles (Lake City)
 
 [Raw JSON](Bundle-example2.json)
 
-~~~
-{% include_relative Bundle-example2.json %}
-~~~
-
 ### Example 3: Different EHRs for different sub-populations displayed in a unified card
 
-*(Note: this is not an uncommon pattern. For example see, <https://www.tuftsmedicalcenter.org/myTuftsMedicalCenter>, <https://www.nuvancehealth.org/patients-and-visitors/patient-portals>, <https://www.ouhealth.com/ou-health-patients-families/patient-portals>, or run a search like <https://www.google.com/search?q=%22patient+portals%22+%22if+you%22>.)*
+Now let's look at a more complex scenario where a tertiary care facility ("ExampleHospital") has two patient portals offered by different EHR vendors and split by audience:
 
-The ExampleHospital's patient portals below are split by audience:
 * EHR1: "Patient Gateway" for adult patients to help them connect with providers, manage appointments and refill prescriptions.
 * EHR2: "Pediatrics", a patient portal where parents can access their child's information.
 
-Based on the definitions below, there would be top-level Brand cards for the two Hospital's, ExampleHospital1 and ExampleHospital2
+*(Note: this is not an uncommon pattern. For example see, <https://www.dana-farber.org/for-patients-and-families/my-dana-farber>, <https://www.tuftsmedicalcenter.org/myTuftsMedicalCenter>, <https://www.nuvancehealth.org/patients-and-visitors/patient-portals>, <https://www.ouhealth.com/ou-health-patients-families/patient-portals>, or run a search like <https://www.google.com/search?q=%22patient+portals%22+%22if+you%22>.)*
+
+The configuration below establishes a single Organiztion for ExampleHospital, with a portal for pediatrics and a portal for adult care, each associated with a distinct endpoint.
+
+Based on this configuration, a patient app might display the following cards to a user:
 
 <div class="bg-info" markdown="1">
-<img src="Logo12.svg" alt="ExampleHospital1" width="40"/> **ExampleHospital1** ([examplehospital1.org](#))
-
-|Source|API|Portal|
-|--|--|--|
-|**Patient Gateway**|{{SQUARE}} Connect |{{SQUARE}} View|
-{:.grid style="background-color: white"}
-
-Nearest location: 3 miles (Boston)
-</div><!-- info -->
-
-<div class="bg-info" markdown="1">
-<img src="Logo7.svg" alt="ExampleHospital2" width="40"/> **ExampleHospital2** ([examplehospital2.org](#))
-
-
-|Source|API|Portal|
-|--|--|--|
-|**Pediatrics**|{{SQUARE}} Connect |{{SQUARE}} View|
-{:.grid style="background-color: white"}
-
-Nearest location: 3 miles (Boston)
-</div><!-- info -->
-
-ExampleHospital3's patient portal is split by "Patient Gateway" and "Pediatrics".
-
-Without a consistent identifier on both Organizations, ExampleHospital3 would have two cards:
-
-<div class="bg-info" markdown="1">
-<img src="Logo9.svg" alt="ExampleHospital3" width="40"/> **ExampleHospital3** ([examplehospital3.org](#))
+<img src="Logo10.svg" alt="Brand1" width="40"/> **ExampleHospital** ([examplehospital.org](#))
 
 |Source|API|Portal|
 |--|--|--|
 |**Patient Gateway**|{{SQUARE}}Connect|{{SQUARE}} View|
+|**Pediatrics**|{{SQUARE}}Connect|{{SQUARE}} View|
 {:.grid style="background-color: white"}
 
-Nearest location: 3 miles (Boston)
-</div><!-- info -->
-
-<div class="bg-info" markdown="1">
-<img src="Logo9.svg" alt="ExampleHospital3" width="40"/> **ExampleHospital3** ([examplehospital3.org](#))
-
-|Source|API|Portal|
-|--|--|--|
-|**Pediatrics**|{{SQUARE}} Connect |{{SQUARE}} View|
-{:.grid style="background-color: white"}
-
-Nearest location: 3 miles (Boston)
+Nearest location: 1 miles (Napa)
 </div><!-- info -->
 
 
-Although displaying 2 cards is correct, it may not reflect the organization's desired formatting.  Since the definitions below include a consistent identifier (system `urn:ietf:rfc:3986`, value `https://examplehospital3.org`), the system can combine the two ExampleHospital3 connection choices into a single card at display time. This results in a card more like this:
-
-<div class="bg-info" markdown="1">
-<img src="Logo9.svg" alt="ExampleHospital3" width="40"/> **ExampleHospital3** ([examplehospital3.org](#))
-
-|Source|API|Portal|
-|--|--|--|
-|**Patient Gateway**| {{SQUARE}}  Connect|{{SQUARE}} View |
-|**Pediatrics**|{{SQUARE}} Connect |{{SQUARE}} View|
-{:.grid style="background-color: white"}
-
-Nearest location: 3 miles (Boston)
-</div><!-- info -->
+*(Note: In practice, when ExampleHospital uses two different EHR vendors to host these different portals, it's possible that each vendor might publish only "their" portion of the content in an endpoint list. This is why it's important to populate consistent `Organization.identifier` with a consistent value, allowing apps to merge details from different publication sources into a single card for a streamlined selection UX.)*
 
 
-#### EHR1 content for ExampleHospital1 (with ExampleHospital3 as `partOf`)
-
-
-[Raw JSON](Bundle-example3.json)
-
-~~~
-{% include_relative Bundle-example3.json %}
-~~~
-
-
-#### EHR2 Content for ExampleHospital2 (with ExampleHospital3 as `partOf`)
-
-
-
-[Raw JSON](Bundle-example4.json)
-
-~~~
-{% include_relative Bundle-example4.json %}
-~~~
-
+[Raw JSON](Bundle-example2.json)
 
 
 ### Example 4: Two co-equal brands ("Brand1" + "Brand2")
 
-All three option described below would have two cards:
+Finally, let's consider the scenario where a single patient portal is associated with two brands, neither one considered "primary".
+
+One possibility is simply to duplicate the Endpoints and Organizations and maintain entirely separate copies of their information, which apps can render into separate cards.
+
+But if both organizations really do share an endpoint, the configuration below shows a more precise way to model the situation with one Endpoint and two Organizations that point to it.
+
+Based on this configuration, a patient app might display the following cards to a user:
 
 <div class="bg-info" markdown="1">
 <img src="Logo10.svg" alt="Brand1" width="40"/> **Brand1** ([brand1.org](#))
@@ -208,49 +145,5 @@ Nearest location: 1 miles (Napa)
 Nearest location: 13 miles (Sonoma)
 </div><!-- info -->
 
-#### Option 1: Duplicate the Endpoint
-
-* two endpoints with the same address
-* Each endpoint points to its primary brand
-* No brand hierarchy
-
-#### Option 2: Combine both Brands as Affiliated with a Hidden Brand
-
-* One endpoint with a parent brand
-* Parent brand marked as "hidden"
-* Child brands for Brand1 + Brand2, pointing up to "primary brand"
-
-##### Brand Bundle for Option 1: Duplicate the Endpoint
-
 
 [Raw JSON](Bundle-example5.json)
-
-~~~
-{% include_relative Bundle-example5.json %}
-~~~
-
-### Example 5: EHR and EHR Customer Hosted Brands Bundles
-
-ExampleHealth uses EHR1, and its endpoint is listed in EHR1's Brands Bundle.  As shown above, [ExampleHealth](#example-2-regional-health-system-with-independently-branded-affiliates) *also* hosts its own branding bundle (with mores details about every clinic location, specialty, etc.). In EHR1 Brands Bundle, ExampleHealth points to the Patient Access Endpoint within the Bundle and to an external Brand Bundle.
-
-For EHR1 Brands Bundle, the system displays the following card to a user:
-
-<div class="bg-info" markdown="1">
-<img src="Logo13.png" alt="ExampleHealth" width="40"/>  **ExampleHealth** ([examplehealth.org](#))
-
-|Source|API|Portal|
-|--|--|--|
-|**MyExampleHospital**| {{SQUARE}}  Connect|{{SQUARE}} View |
-{:.grid style="background-color: white"}
-
-</div><!-- info -->
-
-
-#### EHR1 Content for ExampleHealth
-
-
-[Raw JSON](Bundle-example6.json)
-
-~~~
-{% include_relative Bundle-example6.json %}
-~~~

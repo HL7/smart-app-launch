@@ -8,42 +8,43 @@
   },
   "extension": [
     {
-      "url": "http://hl7.org/fhir/smart-app-launch/StructureDefinition/brand-logo",
-      "valueUrl": "https://example.org/logo/main.1024x102.png"
+      "url": "http://hl7.org/fhir/StructureDefinition/organization-brand",
+      "extension": [
+        {
+          "url": "brandLogo",
+          "valueUrl": "https://example.org/examplelabs/images/logo.svg"
+        }
+      ]
     },
     {
-      "url": "http://hl7.org/fhir/smart-app-launch/StructureDefinition/brand-logo-use-agreement",
-      "valueUrl": "https://example.org/logo/use-agreement.html"
-    },
-    {
-      "url": "http://hl7.org/fhir/smart-app-launch/StructureDefinition/brand-flags",
-      "valueCode": "hidden"
-    },
-    {
-      "url": "http://hl7.org/fhir/smart-app-launch/StructureDefinition/patient-access-name",
-      "valueString": "Example Health Portal"
-    },
-    {
-      "url": "http://hl7.org/fhir/smart-app-launch/StructureDefinition/patient-access-url",
-      "valueUrl": "https://example.org/myportal"
-    },
-    {
-      "url": "http://hl7.org/fhir/smart-app-launch/StructureDefinition/patient-access-description",
-      "valueMarkdown": "This is the description of the portal. It can be multiple lines.\nIt can also be **markdown**.\n"
-    },
-    {
-      "url": "http://hl7.org/fhir/smart-app-launch/StructureDefinition/patient-access-logo",
-      "valueUrl": "https://example.org/portal-logo/main.1024x102.png"
-    },
-    {
-      "url": "http://hl7.org/fhir/smart-app-launch/StructureDefinition/patient-access-logo-use-agreement",
-      "valueUrl": "https://example.org/portal-logo/use-agreement.html"
+      "url": "http://hl7.org/fhir/StructureDefinition/organization-portal",
+      "extension": [
+        {
+          "url": "portalName",
+          "valueUrl": "Example Brand Portal"
+        },
+        {
+          "url": "portalUrl",
+          "valueUrl": "https://healthcentral.example.org"
+        },
+        {
+          "url": "portalLogo",
+          "valueUrl": "https://healthcentral.example.org/logo.png"
+        },
+        {
+          "url": "portalEndpoint",
+          "valueReference": {
+            "reference": "Endpoint/example",
+            "display": "FHIR R4 Endpoint for Example Brand"
+          }
+        }
+      ]
     }
   ],
   "identifier": [
     {
       "system": "urn:ietf:rfc:3986",
-      "value": "https://examplehospital.org"
+      "value": "https://examplelabs.org"
     }
   ],
   "active": true,
@@ -53,38 +54,25 @@
         {
           "system": "http://hl7.org/fhir/smart-app-launch/CodeSystem/patient-access-category",
           "code": "clinical",
-          "display": "Clinical Care provider"
+          "display": "Clinical"
         }
       ]
     }
   ],
-  "name": "Example Organization",
-  "alias": [
-    "Example Health System"
-  ],
-  "address": [
-    {
-      "line": [
-        "100 1st Avenue, Suite 227"
-      ],
-      "city": "Pleasanton",
-      "state": "MA",
-      "postalCode": "01002"
-    }
-  ],
-  "partOf": {
-    "display": "Larger Health System"
-  },
+  "name": "Example Brand",
+  "alias": ["ExampleHealth Brand"],
   "telecom": [
     {
       "system": "url",
-      "value": "https://example.org/brand-home"
+      "value": "https://brand.example.com"
     }
   ],
-  "endpoint": [
+  "address": [
     {
-      "reference": "Endpoint/example",
-      "display": "FHIR R4 Endpoint for Example Medical Center Brand"
+      "line": ["103 Main St"],
+      "city": "Boston",
+      "state": "MA",
+      "postalCode": "02111"
     }
   ]
 }
