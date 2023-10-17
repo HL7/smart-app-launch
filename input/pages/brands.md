@@ -1,22 +1,29 @@
 ### Introduction
 
-This specification provides a standardized method for Electronic Health Record (EHR) systems to publish Fast Healthcare Interoperability Resources (FHIR) endpoints and associated branding information to create a seamless user experience connecting patients to their health records through various applications. The specification focuses on the concept of "Patient-access Brands," where apps display recognizable cards or tiles representing different healthcare providers, payers, or organizations offering patient access through their FHIR endpoints.
-
-The specification defines FHIR profiles for [Endpoint]({{site.data.fhir.path}}endpoint.html), [Organization]({{site.data.fhir.path}}organization.html), and [Bundle]({{site.data.fhir.path}}bundle.html) resources. It outlines the process for API providers to publish Brands associated with their FHIR Endpoints and for apps to collect and present these Brands to users. Each Brand includes essential information such as the organization's name, logo, and patient access details, which apps can display in their user interface.
+The specification defines FHIR profiles for [Endpoint]({{site.data.fhir.path}}endpoint.html), [Organization]({{site.data.fhir.path}}organization.html), and [Bundle]({{site.data.fhir.path}}bundle.html) resources that make it easier for patient-facing apps to connect to health data providers. It outlines the process for API providers to publish Brands associated with their FHIR Endpoints, and for apps to collect and present these Brands to users. Each Brand includes essential information such as the organization's name, logo, and patient access details, which apps can display in their user interface.
 
 *EHR systems, healthcare providers, and app developers can ensure a consistent and recognizable user experience when connecting patients to their health records across various platforms and services by following this specification.*
 
 ### Brands and Endpoints
 
-#### Definition Of Brands And Endpoints In The Context Of The Specification
+This specification supports a model UX where apps display a collection of cards or tiles, each representing a "Patient-access Brand" that patients can recognize and connect to. App developers are not expected to follow this model UX precisely; the model exists to keep the design grounded and establish a shared vocabulary.
 
-This specification is designed to support a model UX where apps display a collection of cards or tiles, each representing a "Patient-access Brand" that patients can recognize and connect to. App developers are not expected to follow this model UX precisely; the model exists to keep the design grounded and establish a shared vocabulary.
+In this model, a healthcare **provider, payer, or other organization** exposing a FHIR patient access API can **decide which brands to publish** in association with their FHIR endpoints. Each Brand includes data describing the organization (e.g., organization name and logo that a patient would recognize) together with details about their patient access portals (e.g., name, logo, and description in terms that patients would recognize) as well as the API endpoints associated with these portals.
 
-Design goals:
+In this model, an **app** can:
+
+* **Display** the Brands it has collected (e.g., as cards or tiles in a UX)
+* Allow users to **filter or search** Brands based on names, locations, or categories
+* Allow users to **select** Brands (and more specifically portals) where they have data available
+* Guide useres to **connect** to FHIR endpoints for the selected portals
+
+
+### Design goals
 - Providers can publish Brand details (name, logo, etc.) that patients will recognize
-- Brand details can be published alongside endpoint details
-- Brand and Endpoint details can be published in aggregate (e.g., by EHR vendor, by region, or globally)
+- Brands can be associated with one or more patient access portals
+- Portals can be associated with one or more FHIR endpoints
 - Apps display Brands to create a “connect to my health records” UX
+- All details can be published in aggregate (e.g., by EHR vendor, by region, or globally)
 
 ##### Patient-Access Brand Bundle Examples
 
@@ -27,19 +34,10 @@ The [Patient-Access Brand Examples](example-brands.html) illustrate how provider
 * Cancer center affiliated with one portal for adult patients and another portal for pediatric patients
 * Clinical organization that has recently merged and still uses distinct brands
 
-#### Guidelines For API Providers Publishing Brands Associated With Their FHIR Endpoints
-
-A healthcare provider, payer, or other organization exposing a FHIR patient access API can **decide which brands to publish** in association with their FHIR endpoints. Each Brand includes data describing the organization (e.g., organization name and logo that a patient would recognize) together with details about their patient access portals (e.g., name, logo, an description in terms that patients should recognize) and the API endpoints associated with these portals.
-
-An app can:
-
-* **Display** the Brands it has collected (e.g., as cards or tiles in a UX)
-* Allow users to **filter or search** Brands based on names, locations, or categories
-* Allow users to **select and connect** to a Brand's API endpoint
 
 ### Brand Information
 
-#### Essential Information Included In Each Brand
+#### Information Included In Each Brand
 
 Each Brand includes the following information intended to support an app-based card or tile UX:
 
@@ -69,7 +67,7 @@ The details of the Patient Access Brand communicated to the patient.
 {:.grid}
 
 
-#### Understanding Relationships Among Brands, Portals, and Endpoints
+#### Relationships Among Brands, Portals, and Endpoints
 
 Commonly, a single Brand is typically associated with a single patient Portal that offers a single FHIR Endpoint. But all of the following cases are supported by this conceptual model:
 
@@ -85,8 +83,6 @@ Commonly, a single Brand is typically associated with a single patient Portal th
 
 ### FHIR Profiles
 
-#### Explanation of FHIR Profiles for Endpoint and Organization Resources
-
 An app assembles its collection of Brands (typically as an offline, configuration-time process) by gathering FHIR `PatientAccessEndpoint` (Endpoints) and `PatientAccessBrand` (Organizations) resources from:
 
 * Vendor-consolidated Brand Bundles that are openly published (e.g., in the context of a national EHR Certification program)
@@ -94,7 +90,7 @@ An app assembles its collection of Brands (typically as an offline, configuratio
 
 For fine-grained organizational management, apps SHALL select the FHIR resources linked from `.well-known/smart-configuration` if they differ from the resources in a vendor-consolidated Brand Bundle.
 
-#### FHIR Patient Access Brands (Organization) Profile
+#### Brand (Organization) Profile
 
 {{site.data.structuredefinitions.patient-access-brand.description}}
 
@@ -104,7 +100,7 @@ For fine-grained organizational management, apps SHALL select the FHIR resources
 
 [`Organization-example.json`](Organization-example.json)
 
-#### FHIR Patient Access Endpoint Profile
+#### Endpoint Profile
 
 {{site.data.structuredefinitions.patient-access-endpoint.description}}
 
@@ -115,7 +111,7 @@ For fine-grained organizational management, apps SHALL select the FHIR resources
 [`Endpoint-example.json`](Endpoint-example.json)
 
  
-#### FHIR Patient Access Brand Bundle Profile
+#### Brand Bundle Profile
 
 {{site.data.structuredefinitions.patient-access-brands-bundle.description}}
 
@@ -124,7 +120,9 @@ For fine-grained organizational management, apps SHALL select the FHIR resources
   
 ##### Brand Bundle Examples
 
-Brands and Endpoints are compiled together and published in a Brand Bundle. See the [Patient-Access Brand Examples](example-brands.html) for complete examples. 
+Brands and Endpoints are compiled together and published in a Brand Bundle.
+
+See the [Patient-Access Brand Examples](example-brands.html) for complete examples. 
 
 
 #### Rules And Best Practices 
