@@ -100,15 +100,9 @@ For fine-grained organizational management, apps SHALL select the FHIR resources
 
 [Full Profile Details](StructureDefinition-patient-access-brand.html)
 
-##### Example
+##### Example Organization
 
-[Organization Example](Organization-example.html)
-
-```javascript
-
-{% include_relative Organization-example.json %}
-
-```
+[`Organization-example.json`](Organization-example.json)
 
 #### FHIR Patient Access Endpoint Profile
 
@@ -116,9 +110,9 @@ For fine-grained organizational management, apps SHALL select the FHIR resources
 
 [Full Profile Details](StructureDefinition-patient-access-endpoint.html)
     
-##### Example
+##### Example Endpoint
 
-[Endpoint Example](Endpoint-example.html)
+[`Endpoint-example.json`](Endpoint-example.json)
 
  
 #### FHIR Patient Access Brand Bundle Profile

@@ -83,12 +83,10 @@ Nearest location: 120 miles (Lake City)
 
 ### Example 3: Different EHRs for different sub-populations displayed in a unified card
 
-Now let's look at a more complex scenario where a tertiary care facility ("ExampleHospital") has two patient portals offered by different EHR vendors and split by audience:
+Now let's look at a more complex (but still surprisingly common) scenario where a care facility ("ExampleHospital") has two patient portals offered by different EHR vendors and split by audience:
 
 * EHR1: "Patient Gateway" for adult patients to help them connect with providers, manage appointments and refill prescriptions.
 * EHR2: "Pediatrics", a patient portal where parents can access their child's information.
-
-*(Note: this is not an uncommon pattern. For example see, <https://www.dana-farber.org/for-patients-and-families/my-dana-farber>, <https://www.tuftsmedicalcenter.org/myTuftsMedicalCenter>, <https://www.nuvancehealth.org/patients-and-visitors/patient-portals>, <https://www.ouhealth.com/ou-health-patients-families/patient-portals>, or run a search like <https://www.google.com/search?q=%22patient+portals%22+%22if+you%22>.)*
 
 The configuration below establishes a single Organiztion for ExampleHospital, with a portal for pediatrics and a portal for adult care, each associated with a distinct endpoint.
 
@@ -107,7 +105,7 @@ Nearest location: 1 miles (Napa)
 </div><!-- info -->
 
 
-*(Note: In practice, when ExampleHospital uses two different EHR vendors to host these different portals, it's possible that each vendor might publish only "their" portion of the content in an endpoint list. This is why it's important to populate consistent `Organization.identifier` with a consistent value, allowing apps to merge details from different publication sources into a single card for a streamlined selection UX.)*
+*(Note: In practice, if ExampleHospital uses two different EHR vendors to host these different portals, it's possible that each vendor might publish only "their" portion of the content in an endpoint list. This is why it's important to populate `Organization.identifier` with consistent values, allowing apps to merge details from different publication sources into a single card for a streamlined selection UX. This guide [recommends the use of normalized website URLs](brands.html#consistent-identifiers-for-organizations) as common identifiers.)*
 
 
 [Raw JSON](Bundle-example2.json)

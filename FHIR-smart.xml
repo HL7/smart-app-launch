@@ -33,7 +33,7 @@
 <artifact id="Bundle/example1" key="Bundle-example1" name="example1"/>
 <artifact id="Bundle/example2" key="Bundle-example2" name="example2"/>
 <artifact id="Bundle/example3" key="Bundle-example3" name="example3"/>
-<artifact id="Bundle/example5" key="Bundle-example5" name="example5"/>
+<artifact id="Bundle/example4" key="Bundle-example4" name="example4"/>
 <artifact deprecated="true" id="CapabilityStatement/smart-app-launch-example" key="CapabilityStatement-smart-app-launch-example" name="smart-app-launch-example"/>
 <page key="NA" name="(NA)"/>
 <page key="many" name="(many)"/>
