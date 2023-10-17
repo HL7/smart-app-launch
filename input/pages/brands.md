@@ -98,7 +98,7 @@ For fine-grained organizational management, apps SHALL select the FHIR resources
 
 {{site.data.structuredefinitions.patient-access-brand.description}}
 
-[Formal Views of Profile Contents](StructureDefinition-patient-access-brand.html)
+[Full Profile Details](StructureDefinition-patient-access-brand.html)
 
 ##### Example
 
@@ -114,7 +114,7 @@ For fine-grained organizational management, apps SHALL select the FHIR resources
 
 {{site.data.structuredefinitions.patient-access-endpoint.description}}
 
-[Formal Views of Profile Contents](StructureDefinition-patient-access-endpoint.html)
+[Full Profile Details](StructureDefinition-patient-access-endpoint.html)
     
 ##### Example
 
@@ -125,7 +125,7 @@ For fine-grained organizational management, apps SHALL select the FHIR resources
 
 {{site.data.structuredefinitions.patient-access-brands-bundle.description}}
 
-[Formal Views of Profile Contents](StructureDefinition-patient-access-brands-bundle.html)
+[Full Profile Details](StructureDefinition-patient-access-brands-bundle.html)
   
   
 ##### Brand Bundle Examples

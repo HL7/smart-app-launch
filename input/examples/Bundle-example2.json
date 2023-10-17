@@ -1,26 +1,14 @@
-{
+ {
   "resourceType": "Bundle",
   "id": "example2",
-  "meta": {
-    "lastUpdated": "2023-09-05T20:18:52.639617-07:00",
-    "profile": [
-      "http://hl7.org/fhir/smart-app-launch/StructureDefinition/patient-access-brands-bundle"
-    ]
-  },
   "type": "collection",
   "timestamp": "2023-09-05T20:18:52.638960-07:00",
-  "entry": [
-    {
+  "entry": [ {
       "fullUrl": "https://ehr.example.com/Organization/examplehealth",
       "resource": {
         "resourceType": "Organization",
         "id": "examplehealth",
-        "meta": {
-          "profile": [
-            "http://hl7.org/fhir/smart-app-launch/StructureDefinition/patient-access-brand"
-          ]
-        },
-        "extension": [
+        "extension":[
           {
             "url": "http://hl7.org/fhir/StructureDefinition/organization-brand",
             "extension": [
@@ -29,39 +17,35 @@
                 "valueUrl": "https://example.org/examplehealth/logo/main.1024x1024.png"
               }
             ]
-          },
-          {
+          },{
             "url": "http://hl7.org/fhir/StructureDefinition/organization-portal",
             "extension": [
-              {
+             {
                 "url": "portalName",
                 "valueUrl": "My ExampleHealth Portal"
-              },
-              {
+              },{
                 "url": "portalLogo",
                 "valueUrl": "https://example.org/examplehealth/logo/main.1024x1024.png"
-              },
-              {
+              }, {
                 "url": "portalUrl",
                 "valueUrl": "http://hl7.org/fhir/smart-app-launch/StructureDefinition/patient-access-url"
-              },
-              {
+              } ,
+             {
                 "url": "portalEndpoint",
                 "valueReference": {
                   "reference": "Endpoint/examplehealth-r4",
                   "display": "FHIR R4 Endpoint for ExampleHealth Brand"
                 }
-              },
-              {
+              },{
                 "url": "portalEndpoint",
                 "valueReference": {
                   "reference": "Endpoint/examplehealth-r2",
                   "display": "FHIR R2 Endpoint for ExampleHealth Brand"
                 }
-              }
+              } 
             ]
-          }
-        ],
+          } 
+        ] ,
         "identifier": [
           {
             "system": "urn:ietf:rfc:3986",
@@ -81,7 +65,10 @@
           }
         ],
         "name": "ExampleHealth",
-        "alias": ["GoodHealth Hospital", "GoodHealth Mental Health"],
+        "alias": [
+          "GoodHealth Hospital",
+          "GoodHealth Mental Health"
+        ],
         "telecom": [
           {
             "system": "url",
@@ -145,13 +132,8 @@
       "resource": {
         "resourceType": "Organization",
         "id": "ehchospital",
-        "meta": {
-          "profile": [
-            "http://hl7.org/fhir/smart-app-launch/StructureDefinition/patient-access-brand"
-          ]
-        },
-
-        "extension": [
+        "extension": 
+        [
           {
             "url": "http://hl7.org/fhir/StructureDefinition/organization-brand",
             "extension": [
@@ -181,7 +163,9 @@
           }
         ],
         "name": "ExampleHealth Community Hospital",
-        "alias": ["GoodHealth Madison"],
+        "alias": [
+          "GoodHealth Madison"
+        ],
         "telecom": [
           {
             "system": "url",
@@ -204,12 +188,8 @@
       "resource": {
         "resourceType": "Organization",
         "id": "ehpmadison",
-        "meta": {
-          "profile": [
-            "http://hl7.org/fhir/smart-app-launch/StructureDefinition/patient-access-brand"
-          ]
-        },
-        "extension": [
+        "extension": 
+        [
           {
             "url": "http://hl7.org/fhir/StructureDefinition/organization-brand",
             "extension": [
@@ -239,7 +219,9 @@
           }
         ],
         "name": "ExampleHealth Physicians of Madison",
-        "alias": ["GoodHealth Madison"],
+        "alias": [
+          "GoodHealth Madison"
+        ],
         "telecom": [
           {
             "system": "url",
@@ -257,16 +239,11 @@
         }
       }
     },
-    {
+     {
       "fullUrl": "https://ehr.example.com/Endpoint/examplehealth-r2",
       "resource": {
         "resourceType": "Endpoint",
         "id": "examplehealth-r2",
-        "meta": {
-          "profile": [
-            "http://hl7.org/fhir/smart-app-launch/StructureDefinition/patient-access-endpoint"
-          ]
-        },
         "extension": [
           {
             "url": "http://hl7.org/fhir/StructureDefinition/endpoint-fhir-version",
@@ -303,11 +280,6 @@
       "resource": {
         "resourceType": "Endpoint",
         "id": "examplehealth-r4",
-        "meta": {
-          "profile": [
-            "http://hl7.org/fhir/smart-app-launch/StructureDefinition/patient-access-endpoint"
-          ]
-        },
         "extension": [
           {
             "url": "http://hl7.org/fhir/StructureDefinition/endpoint-fhir-version",

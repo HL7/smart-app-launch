@@ -1,12 +1,6 @@
 {
   "resourceType": "Bundle",
   "id": "example5",
-  "meta": {
-    "lastUpdated": "2023-09-05T20:36:42.269187-07:00",
-    "profile": [
-      "http://hl7.org/fhir/smart-app-launch/StructureDefinition/patient-access-brands-bundle"
-    ]
-  },
   "type": "collection",
   "timestamp": "2023-09-05T20:36:42.268403-07:00",
   "entry": [
@@ -15,11 +9,6 @@
       "resource": {
         "resourceType": "Organization",
         "id": "brand1",
-        "meta": {
-          "profile": [
-            "http://hl7.org/fhir/smart-app-launch/StructureDefinition/patient-access-brand"
-          ]
-        },
         "extension": [
           {
             "url": "http://hl7.org/fhir/StructureDefinition/organization-brand",
@@ -98,11 +87,6 @@
       "resource": {
         "resourceType": "Organization",
         "id": "brand1",
-        "meta": {
-          "profile": [
-            "http://hl7.org/fhir/smart-app-launch/StructureDefinition/patient-access-brand"
-          ]
-        },
         "extension": [
           {
             "url": "http://hl7.org/fhir/StructureDefinition/organization-brand",
@@ -181,11 +165,6 @@
       "resource": {
         "resourceType": "Endpoint",
         "id": "coequal-example",
-        "meta": {
-          "profile": [
-            "http://hl7.org/fhir/smart-app-launch/StructureDefinition/patient-access-endpoint"
-          ]
-        },
         "extension": [
           {
             "url": "http://hl7.org/fhir/StructureDefinition/endpoint-fhir-version",

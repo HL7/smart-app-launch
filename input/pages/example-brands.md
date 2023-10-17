@@ -95,7 +95,7 @@ The configuration below establishes a single Organiztion for ExampleHospital, wi
 Based on this configuration, a patient app might display the following cards to a user:
 
 <div class="bg-info" markdown="1">
-<img src="Logo10.svg" alt="Brand1" width="40"/> **ExampleHospital** ([examplehospital.org](#))
+<img src="Logo9.svg" alt="Brand1" width="40"/> **ExampleHospital** ([examplehospital.org](#))
 
 |Source|API|Portal|
 |--|--|--|
