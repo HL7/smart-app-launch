@@ -50,15 +50,7 @@ groups:
     resources:
 
       # - StructureDefinition/brand-flags
-      # - StructureDefinition/brand-logo-use-agreement
-      # - StructureDefinition/brand-logo
       # - StructureDefinition/brands-bundle
-      # - StructureDefinition/endpoint-fhir-version
-      # - StructureDefinition/patient-access-description
-      # - StructureDefinition/patient-access-logo-use-agreement
-      # - StructureDefinition/patient-access-logo
-      # - StructureDefinition/patient-access-name
-      # - StructureDefinition/patient-access-url
 
   PABTerminology:
       name: Patient Access Brands Terminology
@@ -106,19 +98,15 @@ groups:
     name: Patient Access Brands Bundle Examples
     description: Patient Access Brands Bundle Examples
     resources:
-
       - Bundle/example1
-      # - Bundle/example6
-      # - Bundle/example4
-      # - Bundle/example5
-      # - Bundle/example2
-      # - Bundle/example3
+      - Bundle/example2
+      - Bundle/example3
+      - Bundle/example4
 
   SMARTExtensions:
     name: SMART Launch Extension
     description: SMART Launch Extensions
     resources:
-
       - StructureDefinition/smart-app-state-basic
       - StructureDefinition/task-ehr-launch
       - StructureDefinition/task-standalone-launch
@@ -234,6 +222,7 @@ menu:
     Artifacts: artifacts.html # no artifacts to display!
     Best Practices: best-practices.html
     Patient-Access Brands and Endpoints: brands.html
+    Patient-Access Brand Examples: example-brands.html
     Examples: examples.html
     References: references.html
     History: http://hl7.org/fhir/smart-app-launch/history.html

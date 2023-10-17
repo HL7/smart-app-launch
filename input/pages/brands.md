@@ -69,7 +69,7 @@ The details of the Patient Access Brand communicated to the patient.
 {:.grid}
 
 
-#### Explanation Of The Relationship Between Brands, Portals, And Endpoints
+#### Understanding Relationships Among Brands, Portals, and Endpoints
 
 Commonly, a single Brand is typically associated with a single patient Portal that offers a single FHIR Endpoint. But all of the following cases are supported by this conceptual model:
 
@@ -81,7 +81,7 @@ Commonly, a single Brand is typically associated with a single patient Portal th
     * e.g., a national lab's portal might have one Endpoint for FHIR R4 and another for FHIR R2
     * e.g., a national lab's portal might have one Endpoint for laboratory results and another for imaging results
 * *Multiple Brands are associated with the same Portal*
-    * e.g., a regional health system might publish a small collection of brands based associated with specific hospitals or clinics that their patients will recognize, each independently branded -- even though all these paths lead to the same portal and FHRI Endpoints.
+    * e.g., a regional health system might publish a small collection of brands based associated with specific hospitals or clinics that their patients will recognize, each independently branded -- even though all these paths lead to the same portal and FHIR Endpoints.
 
 ### FHIR Profiles
 
