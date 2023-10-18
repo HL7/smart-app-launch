@@ -1,0 +1,416 @@
+{
+  "resourceType": "ImplementationGuide",
+  "id": "hl7.fhir.uv.smart-app-launch",
+  "url": "http://hl7.org/fhir/smart-app-launch/ImplementationGuide/hl7.fhir.uv.smart-app-launch",
+  "version": "2.2.0-preview",
+  "name": "SmartAppLaunch",
+  "title": "SMART App Launch",
+  "status": "active",
+  "date": "2023-03-01",
+  "publisher": "HL7 International - FHIR Infrastructure WG",
+  "contact": [
+    {
+      "name": "HL7 International - FHIR Infrastructure WG",
+      "telecom": [
+        {
+          "system": "url",
+          "value": "https://hl7.org/Special/committees/fiwg"
+        },
+        {
+          "system": "email",
+          "value": "fhir@lists.HL7.org"
+        }
+      ]
+    }
+  ],
+  "jurisdiction": [
+    {
+      "coding": [
+        {
+          "code": "001",
+          "system": "http://unstats.un.org/unsd/methods/m49/m49.htm",
+          "display": "World"
+        }
+      ]
+    }
+  ],
+  "packageId": "hl7.fhir.uv.smart-app-launch",
+  "license": "CC-BY-4.0",
+  "fhirVersion": [
+    "4.0.1"
+  ],
+  "definition": {
+    "grouping": [
+      {
+        "id": "PABProfiles",
+        "name": "Patient Access Brands"
+      },
+      {
+        "id": "PAB",
+        "name": "Patient Access Brand Examples",
+        "description": "The follow examples demonstrate use of Patient Access Brands. See [example-brands](./example-brands.html) for a guided tour."
+      },
+      {
+        "id": "SMARTAppState",
+        "name": "SMART App State"
+      },
+      {
+        "id": "SMARTResources",
+        "name": "SMART Launch Tasks"
+      }
+    ],
+    "resource": [
+      {
+        "reference": {
+          "reference": "StructureDefinition/patient-access-brands-bundle"
+        },
+        "name": "Patient Access Brands Bundle Profile",
+        "description": "JSON FHIR Bundle (type: `collection`) of Organizations and Endpoints that is hosted at a stable, publicly available, publicly disclosed location. Bundle Entries include:\n* [Patient Access Endpoint Profile](StructureDefinition-patient-access-endpoint.html) resources.\n* [Patient Access Brand (Organization)](StructureDefinition-patient-access-brand.html) resources. Vendors SHALL publish at least a \"primary brand\" for each endpoint and SHOULD support the publication of a more detailed Brand hierarchy.\n\nBrand Bundles SHALL populate `Bundle.timestamp` to advertise the timestamp of the last change to the contents. In addition, Brand Bundles SHOULD populate `Bundle.entry.resource.meta.lastUpdated` with a more detailed timestamp if the system tracks updates per Resource.",
+        "exampleBoolean": false,
+        "groupingId": "PABProfiles"
+      },
+      {
+        "reference": {
+          "reference": "StructureDefinition/patient-access-brand"
+        },
+        "name": "Patient Access Brand (Organization) Profile",
+        "description": "Profile on Organization to convey a Patient Access Brand.\nIn addition to the core data elements on Organization, two key extensions are used in this profile:\n\n* <http://hl7.org/fhir/StructureDefinition/organization-brand> conveys the organization's logo(s) and other top-level branding details. See definitions for details.\n* <http://hl7.org/fhir/StructureDefinition/organization-portal> conveys the details of a patient portal and its associated FHIR endpoints. See definitions for details.\n\n Notes:\n* `0..1 MS` `partOf` Conveys that an affiliate Brand response for providing this Brand's patient access. The hierarchy of \"access provided by\" links SHALL NOT exceed a depth of two (i.e., a Brand either includes portal details or links directly to a Brand that provides them).\n\n* `0..* MS` `identifier` Conveys identifiers that apps can use to link this Brand across publishers or with external data sets. EHRs SHALL support customer-supplied identifiers (`system` and `value`).\n\n    * It is RECOMMENDED that each Brand include an identifier where `system` is `urn:ietf:rfc: 3986` (meaning the identifier is a URL) and `value` is the HTTPS URL for the Brand's primary web presence, omitting any \"www.\" prefix from the domain and omitting any path component. For example, since the main web presence of Boston Children's Hospital is https://www.childrenshospital.org/, a recommended identifier would be:     `{\"system\": \"urn:ietf:rfc:3986\",\"value\": \"https://childrenshospital.org\"}`",
+        "exampleBoolean": false,
+        "groupingId": "PABProfiles"
+      },
+      {
+        "reference": {
+          "reference": "StructureDefinition/patient-access-endpoint"
+        },
+        "name": "Patient Access Endpoint Profile",
+        "description": "Profile on Endpoint associated with a Patient Access Brand. In addition to the core data elements on Endpoint, one key extensions is used in this profile:\n\n* <http://hl7.org/fhir/StructureDefinition/endpoint-fhir-version> conveys is a denormalization to help clients focus on supported endpoints. The `valueCode` is any version from http://hl7.org/fhir/valueset-FHIR-version.html (e.g., `4.0.1` is expected for FHIR R4 endpoints).\n\nNotes:\n * `0..1` `name` Conveys a fallback or default name describing the endpoint and the organization offering Patient API access at this endpoint. This value MAY contain technical details like FHIR API Version designations and apps SHOULD preferentially use names from an associated `PatientAccessBrand` rather than displaying this value to users.\n * `1..* MS` `contact` website where developers can configure access to this endpoint, providing at least one `\"system\": \"url\"` contact point where the `value` is an `https://` URL intended for app developers\n * `1..1 MS` `address` FHIR base URL for server supporting patient access",
+        "exampleBoolean": false,
+        "groupingId": "PABProfiles"
+      },
+      {
+        "reference": {
+          "reference": "CodeSystem/patient-access-category"
+        },
+        "name": "Patient Access Category Code System",
+        "description": "Categorizes a PatientAccessBrand into high-level taxonomy",
+        "exampleBoolean": false,
+        "groupingId": "PABProfiles"
+      },
+      {
+        "reference": {
+          "reference": "ValueSet/patient-access-category"
+        },
+        "name": "Patient Access Category Value Set",
+        "description": "Categorizes a PatientAccessBrand into high-level taxonomy",
+        "exampleBoolean": false,
+        "groupingId": "PABProfiles"
+      },
+      {
+        "reference": {
+          "reference": "Bundle/example1"
+        },
+        "name": "Lab with Locations Nationwide",
+        "exampleCanonical": "http://hl7.org/fhir/smart-app-launch/StructureDefinition/patient-access-brands-bundle",
+        "groupingId": "PAB"
+      },
+      {
+        "reference": {
+          "reference": "Bundle/example2"
+        },
+        "name": "Regional Health System With Independently Branded Affiliates",
+        "exampleCanonical": "http://hl7.org/fhir/smart-app-launch/StructureDefinition/patient-access-brands-bundle",
+        "groupingId": "PAB"
+      },
+      {
+        "reference": {
+          "reference": "Bundle/example3"
+        },
+        "name": "Different EHRs for different sub-populations displayed in a unified card",
+        "exampleCanonical": "http://hl7.org/fhir/smart-app-launch/StructureDefinition/patient-access-brands-bundle",
+        "groupingId": "PAB"
+      },
+      {
+        "reference": {
+          "reference": "Bundle/example4"
+        },
+        "name": "Two co-equal brands",
+        "exampleCanonical": "http://hl7.org/fhir/smart-app-launch/StructureDefinition/patient-access-brands-bundle",
+        "groupingId": "PAB"
+      },
+      {
+        "reference": {
+          "reference": "Organization/example"
+        },
+        "name": "Example Brand",
+        "exampleCanonical": "http://hl7.org/fhir/smart-app-launch/StructureDefinition/patient-access-brand",
+        "groupingId": "PAB"
+      },
+      {
+        "reference": {
+          "reference": "Endpoint/example"
+        },
+        "name": "Example Endpoint",
+        "exampleCanonical": "http://hl7.org/fhir/smart-app-launch/StructureDefinition/patient-access-endpoint",
+        "groupingId": "PAB"
+      },
+      {
+        "reference": {
+          "reference": "StructureDefinition/task-ehr-launch"
+        },
+        "name": "TaskEhrLaunch",
+        "description": "Defines a Task that indicates the user should launch an application using the SMART on FHIR EHR launch.",
+        "exampleBoolean": false,
+        "groupingId": "SMARTResources"
+      },
+      {
+        "reference": {
+          "reference": "StructureDefinition/task-standalone-launch"
+        },
+        "name": "TaskStandaloneLaunch",
+        "description": "Defines a Task that indicates the user should launch an application as a standalone application.",
+        "exampleBoolean": false,
+        "groupingId": "SMARTResources"
+      },
+      {
+        "reference": {
+          "reference": "StructureDefinition/smart-app-state-basic"
+        },
+        "name": "SMART App State",
+        "description": "SMART App State profile on Basic resource\n\n**See [App State capability](./app-state.html) for requirements, usage notes, and examples.**",
+        "exampleBoolean": false,
+        "groupingId": "SMARTAppState"
+      },
+      {
+        "reference": {
+          "reference": "CapabilityStatement/smart-app-state-server"
+        },
+        "name": "App State Server CapabilityStatement",
+        "description": "Required capabilities for App State Server",
+        "exampleBoolean": false,
+        "groupingId": "SMARTAppState"
+      },
+      {
+        "reference": {
+          "reference": "CodeSystem/smart-codes"
+        },
+        "name": "SMART on FHIR terminology.",
+        "description": "Codes used to in profiles related to SMART on FHIR.",
+        "exampleBoolean": false,
+        "groupingId": "SMARTResources"
+      },
+      {
+        "reference": {
+          "reference": "ValueSet/smart-launch-info"
+        },
+        "name": "Codes for tasks to application launches",
+        "description": "Defines codes for Tasks that request launch of SMART applications.",
+        "exampleBoolean": false,
+        "groupingId": "SMARTResources"
+      },
+      {
+        "reference": {
+          "reference": "ValueSet/smart-launch-types"
+        },
+        "name": "Launch Types for tasks to application launches",
+        "description": "Defines Launch Type codes for Tasks that request launch of SMART applications.",
+        "exampleBoolean": false,
+        "groupingId": "SMARTResources"
+      },
+      {
+        "reference": {
+          "reference": "Basic/app-state"
+        },
+        "name": "Example App State",
+        "description": "Example App State",
+        "exampleCanonical": "http://hl7.org/fhir/smart-app-launch/StructureDefinition/smart-app-state-basic",
+        "groupingId": "SMARTAppState"
+      },
+      {
+        "reference": {
+          "reference": "Task/task-for-standalone-launch"
+        },
+        "name": "Example Task for Standalone Launch",
+        "description": "Example Task for Standalone Launch",
+        "exampleCanonical": "http://hl7.org/fhir/smart-app-launch/StructureDefinition/task-standalone-launch",
+        "groupingId": "SMARTResources"
+      },
+      {
+        "reference": {
+          "reference": "Task/task-for-ehr-launch"
+        },
+        "name": "Example Task for EHR Launch",
+        "description": "Example Task for EHR Launch",
+        "exampleCanonical": "http://hl7.org/fhir/smart-app-launch/StructureDefinition/task-ehr-launch",
+        "groupingId": "SMARTResources"
+      }
+    ],
+    "page": {
+      "nameUrl": "toc.html",
+      "title": "Table of Contents",
+      "generation": "html",
+      "page": [
+        {
+          "nameUrl": "index.html",
+          "title": "Overview",
+          "generation": "markdown"
+        },
+        {
+          "nameUrl": "apps.html",
+          "title": "Apps",
+          "generation": "markdown",
+          "page": [
+            {
+              "nameUrl": "app-launch.html",
+              "title": "App Launch: Launch and Authorization",
+              "generation": "markdown"
+            },
+            {
+              "nameUrl": "scopes-and-launch-context.html",
+              "title": "App Launch: Scopes and Launch Context",
+              "generation": "markdown"
+            },
+            {
+              "nameUrl": "app-state.html",
+              "title": "Persisting App State (Experimental)",
+              "generation": "markdown"
+            },
+            {
+              "nameUrl": "task-launch.html",
+              "title": "Task profile for requesting SMART launch (Experimental)",
+              "generation": "markdown"
+            }
+          ]
+        },
+        {
+          "nameUrl": "backend-services.html",
+          "title": "Backend Services",
+          "generation": "markdown"
+        },
+        {
+          "nameUrl": "client-authentication.html",
+          "title": "Client Authentication",
+          "generation": "markdown",
+          "page": [
+            {
+              "nameUrl": "client-confidential-asymmetric.html",
+              "title": "Client Authentication: Asymmetric (public key)",
+              "generation": "markdown"
+            },
+            {
+              "nameUrl": "client-confidential-symmetric.html",
+              "title": "Client Authentication: Symmetric (shared secret)",
+              "generation": "markdown"
+            }
+          ]
+        },
+        {
+          "nameUrl": "token-introspection.html",
+          "title": "Token Introspection",
+          "generation": "markdown"
+        },
+        {
+          "nameUrl": "conformance.html",
+          "title": "Conformance",
+          "generation": "markdown"
+        },
+        {
+          "nameUrl": "best-practices.html",
+          "title": "Best Practices",
+          "generation": "markdown"
+        },
+        {
+          "nameUrl": "brands.html",
+          "title": "Patient-Access Brands and Endpoints",
+          "generation": "markdown",
+          "page": [
+            {
+              "nameUrl": "example-brands.html",
+              "title": "Patient-Access Brand Examples",
+              "generation": "markdown"
+            }
+          ]
+        },
+        {
+          "nameUrl": "examples.html",
+          "title": "Examples",
+          "generation": "markdown",
+          "page": [
+            {
+              "nameUrl": "example-app-launch-public.html",
+              "title": "Example App Launch for Public Client",
+              "generation": "markdown"
+            },
+            {
+              "nameUrl": "example-app-launch-asymmetric-auth.html",
+              "title": "Example App Launch for Asymmetric Client Auth",
+              "generation": "markdown"
+            },
+            {
+              "nameUrl": "example-app-launch-symmetric-auth.html",
+              "title": "Example App Launch for Symmetric Client Auth",
+              "generation": "markdown"
+            },
+            {
+              "nameUrl": "example-backend-services.html",
+              "title": "Example Backend Services Flow",
+              "generation": "markdown"
+            },
+            {
+              "nameUrl": "worked_example_id_token.html",
+              "title": "Example Id Token",
+              "generation": "markdown"
+            },
+            {
+              "nameUrl": "authorization-example-jwks-and-signatures.html",
+              "title": "Example JWS generation for Asymmetric Client Auth",
+              "generation": "markdown"
+            }
+          ]
+        },
+        {
+          "nameUrl": "references.html",
+          "title": "References",
+          "generation": "markdown"
+        }
+      ]
+    },
+    "parameter": [
+      {
+        "code": "copyrightyear",
+        "value": "2020+"
+      },
+      {
+        "code": "releaselabel",
+        "value": "CI-Build"
+      },
+      {
+        "code": "path-history",
+        "value": "http://hl7.org/fhir/smart-app-launch/history.html"
+      },
+      {
+        "code": "jira-code",
+        "value": "smart"
+      },
+      {
+        "code": "no-narrative",
+        "value": "Bundle/*"
+      },
+      {
+        "code": "no-narrative",
+        "value": "Organization/*"
+      },
+      {
+        "code": "no-narrative",
+        "value": "Endpoint/*"
+      },
+      {
+        "code": "no-narrative",
+        "value": "Basic/*"
+      },
+      {
+        "code": "no-narrative",
+        "value": "Task/*"
+      }
+    ]
+  }
+}
