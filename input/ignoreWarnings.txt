@@ -1,4 +1,56 @@
 == Suppressed Messages ==
 
+# ********************************************************************************************************************************
+# * Authors created ignoreWarnings.txt file at ig-data/input/ignoreWarnings.txt.                                 *
+# * See: https://confluence.hl7.org/pages/viewpage.action?pageId=66938614#ImplementationGuideParameters-ManagingWarningsandHints *
+# ********************************************************************************************************************************
+
 # Example URI in example.org domain does not need to be validated
 Code System URI 'https://myapp.example.org' is unknown so the code cannot be validated
+
+# The 'no narrative' parameter is used for these resources instances because they are infrastructural in nature and used in strictly managed trading systems where all systems share a common data model and additional text is unnecessary.
+WARNING: Basic/app-state: Basic: Rule dom-6: 'A resource should have narrative for robust management' Failed (Best Practice Recommendation)
+WARNING: Bundle/example1: Bundle.entry[0].resource: Rule dom-6: 'A resource should have narrative for robust management' Failed (Best Practice Recommendation)
+WARNING: Bundle/example1: Bundle.entry[1].resource: Rule dom-6: 'A resource should have narrative for robust management' Failed (Best Practice Recommendation)
+WARNING: Bundle/example2: Bundle.entry[0].resource: Rule dom-6: 'A resource should have narrative for robust management' Failed (Best Practice Recommendation)
+WARNING: Bundle/example2: Bundle.entry[1].resource: Rule dom-6: 'A resource should have narrative for robust management' Failed (Best Practice Recommendation)
+WARNING: Bundle/example2: Bundle.entry[2].resource: Rule dom-6: 'A resource should have narrative for robust management' Failed (Best Practice Recommendation)
+WARNING: Bundle/example2: Bundle.entry[3].resource: Rule dom-6: 'A resource should have narrative for robust management' Failed (Best Practice Recommendation)
+WARNING: Bundle/example2: Bundle.entry[4].resource/*Organization/examplehealth*/: Rule dom-6: 'A resource should have narrative for robust management' Failed (Best Practice Recommendation)
+WARNING: Bundle/example3: Bundle.entry[0].resource: Rule dom-6: 'A resource should have narrative for robust management' Failed (Best Practice Recommendation)
+WARNING: Bundle/example3: Bundle.entry[1].resource: Rule dom-6: 'A resource should have narrative for robust management' Failed (Best Practice Recommendation)
+WARNING: Bundle/example3: Bundle.entry[2].resource: Rule dom-6: 'A resource should have narrative for robust management' Failed (Best Practice Recommendation)
+WARNING: Bundle/example4: Bundle.entry[0].resource: Rule dom-6: 'A resource should have narrative for robust management' Failed (Best Practice Recommendation)
+WARNING: Bundle/example4: Bundle.entry[1].resource: Rule dom-6: 'A resource should have narrative for robust management' Failed (Best Practice Recommendation)
+WARNING: Bundle/example4: Bundle.entry[2].resource: Rule dom-6: 'A resource should have narrative for robust management' Failed (Best Practice Recommendation)
+WARNING: Bundle/example5: Bundle.entry[0].resource: Rule dom-6: 'A resource should have narrative for robust management' Failed (Best Practice Recommendation)
+WARNING: Bundle/example5: Bundle.entry[1].resource: Rule dom-6: 'A resource should have narrative for robust management' Failed (Best Practice Recommendation)
+WARNING: Bundle/example5: Bundle.entry[2].resource: Rule dom-6: 'A resource should have narrative for robust management' Failed (Best Practice Recommendation)
+WARNING: Bundle/example5: Bundle.entry[3].resource: Rule dom-6: 'A resource should have narrative for robust management' Failed (Best Practice Recommendation)
+WARNING: Bundle/example6: Bundle.entry[0].resource: Rule dom-6: 'A resource should have narrative for robust management' Failed (Best Practice Recommendation)
+WARNING: Bundle/example6: Bundle.entry[1].resource: Rule dom-6: 'A resource should have narrative for robust management' Failed (Best Practice Recommendation)
+WARNING: Endpoint/brand1-opt2: Endpoint: Rule dom-6: 'A resource should have narrative for robust management' Failed (Best Practice Recommendation)
+WARNING: Endpoint/brand2-opt2: Endpoint: Rule dom-6: 'A resource should have narrative for robust management' Failed (Best Practice Recommendation)
+WARNING: Endpoint/ehr1-examplehealth: Endpoint: Rule dom-6: 'A resource should have narrative for robust management' Failed (Best Practice Recommendation)
+WARNING: Endpoint/example: Endpoint: Rule dom-6: 'A resource should have narrative for robust management' Failed (Best Practice Recommendation)
+WARNING: Endpoint/examplehealth-r2: Endpoint: Rule dom-6: 'A resource should have narrative for robust management' Failed (Best Practice Recommendation)
+WARNING: Endpoint/examplehealth-r4: Endpoint: Rule dom-6: 'A resource should have narrative for robust management' Failed (Best Practice Recommendation)
+WARNING: Endpoint/examplehospital1-ehr1: Endpoint: Rule dom-6: 'A resource should have narrative for robust management' Failed (Best Practice Recommendation)
+WARNING: Endpoint/examplehospital2-ehr2: Endpoint: Rule dom-6: 'A resource should have narrative for robust management' Failed (Best Practice Recommendation)
+WARNING: Endpoint/examplelabs: Endpoint: Rule dom-6: 'A resource should have narrative for robust management' Failed (Best Practice Recommendation)
+WARNING: Organization/brand1-opt2: Organization: Rule dom-6: 'A resource should have narrative for robust management' Failed (Best Practice Recommendation)
+WARNING: Organization/brand2-opt2: Organization: Rule dom-6: 'A resource should have narrative for robust management' Failed (Best Practice Recommendation)
+WARNING: Organization/cust-hosted-examplehealth: Organization: Rule dom-6: 'A resource should have narrative for robust management' Failed (Best Practice Recommendation)
+WARNING: Organization/ehchospital: Organization: Rule dom-6: 'A resource should have narrative for robust management' Failed (Best Practice Recommendation)
+WARNING: Organization/ehpmadison: Organization: Rule dom-6: 'A resource should have narrative for robust management' Failed (Best Practice Recommendation)
+WARNING: Organization/example: Organization: Rule dom-6: 'A resource should have narrative for robust management' Failed (Best Practice Recommendation)
+WARNING: Organization/examplehealth: Organization: Rule dom-6: 'A resource should have narrative for robust management' Failed (Best Practice Recommendation)
+WARNING: Organization/examplehospital1-ehr1: Organization: Rule dom-6: 'A resource should have narrative for robust management' Failed (Best Practice Recommendation)
+WARNING: Organization/examplehospital2-ehr2: Organization: Rule dom-6: 'A resource should have narrative for robust management' Failed (Best Practice Recommendation)
+WARNING: Organization/examplehospital3-ehr1: Organization: Rule dom-6: 'A resource should have narrative for robust management' Failed (Best Practice Recommendation)
+WARNING: Organization/examplehospital3-ehr2: Organization: Rule dom-6: 'A resource should have narrative for robust management' Failed (Best Practice Recommendation)
+WARNING: Organization/examplelabs: Organization: Rule dom-6: 'A resource should have narrative for robust management' Failed (Best Practice Recommendation)
+WARNING: Task/task-for-ehr-launch: Task: Rule dom-6: 'A resource should have narrative for robust management' Failed (Best Practice Recommendation)
+WARNING: Task/task-for-standalone-launch: Task: Rule dom-6: 'A resource should have narrative for robust management' Failed (Best Practice Recommendation)
+
+
