@@ -113,7 +113,7 @@ This annotated example illustrates how a Brand is represented as a FHIR Organiza
   }],
   "extension" : [{
     // (0..1) `organization-brand` extension conveys branding details that
-    // are not part of FHIR's core deta model
+    // are not part of FHIR's core data model
     "url" : "http://hl7.org/fhir/StructureDefinition/organization-brand",
     "extension" : {
       // (0..*) Link to the logo (uses `https:` or  `data:` schme for inline)
