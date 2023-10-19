@@ -93,10 +93,27 @@ This annotated example illustrates how a Brand is represented as a FHIR Organiza
 {
   // A Brand is represented as a FHIR Organization
   "resourceType" : "Organization",
-  "id" : "example",
+  "id" : "good-health",
+  // The primary name by which patients recognize this brand
+  "name" : "Good Health",
+  // Additional names or former names that patients may recognize
+  "alias" : ["Goodie Bag Health"],
+  // Any valid status is allowed, but publishers should consider filtering 
+  // their published list to only include active brands.
+  "active" : true,
+  // This guide provides a vocabulary for loosely categorizing the type of
+  // data available at patient access API endpoints. Multiple categories
+  // can be included here.
+  "type" : [{
+    "coding" : [{
+      "system" : "http://hl7.org/fhir/smart-app-launch/CodeSystem/patient-access-category",
+      "code" : "clinical",
+      "display" : "Clinical"
+    }]
+  }],
   "extension" : [{
     // (0..1) `organization-brand` extension conveys branding details that
-    // are not part of FHIRs core deta model
+    // are not part of FHIR's core deta model
     "url" : "http://hl7.org/fhir/StructureDefinition/organization-brand",
     "extension" : {
       // (0..*) Link to the logo (uses `https:` or  `data:` schme for inline)
@@ -104,16 +121,16 @@ This annotated example illustrates how a Brand is represented as a FHIR Organiza
       // * formatted as SVG or 1024x1024 pixel PNG with transparent background
       // * legible at small sizes
       "url" : "brandLogo",
-      "valueUrl" : "https://example.org/examplelabs/images/logo.svg"
+      "valueUrl" : "https://goodhealth.example.org/images/logo.svg"
     },{
-      // (0..*) Link to the liceense agreement for the logo, if applicable
+      // (0..*) Link to the license agreement for the logo, if applicable
       "url" : "brandLogoLicense",
-      "valueUrl" : "https://example.org/examplelabs/license.html"
+      "valueUrl" : "https://goodhealth.example.org/license.html"
     }, {
-      // (0..*) Link ta authoritative Brand Bundle where additional information about
+      // (0..*) Link to a Brand Bundle where additional information about
       // this Brand may be available.
       "url" : "brandBundle",
-      "valueUrl" : "https://example.org/examplelabs/branding.json"
+      "valueUrl" : "https://goodhealth.example.org/branding.json"
     },
   },
   {
@@ -124,22 +141,28 @@ This annotated example illustrates how a Brand is represented as a FHIR Organiza
     "extension" : [{
       // (0..1) Name of the portal as shown to patients
       "url" : "portalName",
-      "valueString" : "Example Brand Portal"
+      "valueString" : "GoodHealthCentral"
+    },
+    {
+      // (0..1) Describes the portal and its intended audience. May be used to help
+      // patients select the right portal if multiple options are available.
+      "url" : "portalDescription",
+      "valueMarkdown" : "GoodHealthCentral is available for our primary care patients."
     },
     {
       // (0..1) Describes the portal and its intended audience. May be used to help
       // patients select the right portal if multiple options are available.
       "url" : "portalUrl",
-      "valueUrl" : "https://healthcentral.example.org"
+      "valueUrl" : "https://goodhealthcentral.example.org"
     },
     {
       // (0..1) Logo for the portal (see descriptions for brandLogo above)
       "url" : "portalLogo",
-      "valueUrl" : "https://healthcentral.example.org/logo.png"
+      "valueUrl" : "https://goodhealthcentral.example.org/logo.png"
     },{
       // (0..1) License for the portal logo (see description for brandLogoLicense above)
       "url" : "portalLogoLicense",
-      "valueUrl" : "https://healthcentral.example.org/logo-license.html"
+      "valueUrl" : "https://goodhealthcentral.example.org/logo-license.html"
     },
     {
       // (0..*) Endpoint associated with this portal. This extension repeat
@@ -148,14 +171,12 @@ This annotated example illustrates how a Brand is represented as a FHIR Organiza
       // Brand Bundle as this Organization) 
       "url" : "portalEndpoint",
       "valueReference" : {
-        "reference" : "Endpoint/example-r4",
-        "display" : "FHIR R4 Endpoint for Example Brand"
+        "reference" : "Endpoint/goodhealth-r4"
       }
     },{
       "url" : "portalEndpoint",
       "valueReference" : {
-        "reference" : "Endpoint/example-r2",
-        "display" : "FHIR R2 Endpoint for Example Brand"
+        "reference" : "Endpoint/goodhealth-r2"
       }
     }]
   }],
@@ -170,21 +191,6 @@ This annotated example illustrates how a Brand is represented as a FHIR Organiza
     "system" : "urn:ietf:rfc:3986",
     "value" : "https://examplelabs.org"
   }],
-  "active" : true,
-  // This guide provides a vocabulary for loosely categorizing the type of
-  // data available at patient access API endpoints. Multiple categories
-  // can be included here.
-  "type" : [{
-    "coding" : [{
-      "system" : "http://hl7.org/fhir/smart-app-launch/CodeSystem/patient-access-category",
-      "code" : "clinical",
-      "display" : "Clinical"
-    }]
-  }],
-  // The primary name by which patients recognize this brand
-  "name" : "Example Brand",
-  // Additional names or former names that patients may recognize
-  "alias" : ["ExampleHealth Brand"],
   // telecom with value conveying the primary public website for the Brand.
   // Note this is distinct from the patient access portal website.
   "telecom" : [{
@@ -218,17 +224,17 @@ This annotated example illustrates how an Endpoint is represented.
 ```js
 {
   "resourceType": "Endpoint",
-  "id": "example",
+  "id": "goodhealth-r4",
   // FHIR Base URL for the Patient Access Endpoint
-  "address": "https://example.org/r4",
+  "address": "https://fhir.goodhealth.example.org/r4",
   // Any valid status is allowed, but publishers should consider filtering 
   // their published list to only include active endpoints.
   "status": "active",
-  // Name for the endpoint offering Patient API access. This value may contain
+  // Name for the Patient Access Endpoint. This value may contain
   // technical details like FHIR API Version designations, so apps should prefer
   // displaying the `Organization.name` from an associated PatientAccessBrand, 
   // rather than displaying this value to users.
-  "name": "FHIR R4 Endpoint for Example Medical Center",
+  "name": "FHIR R4 Endpoint for GoodHealth",
   // Fixed value indicating FHIR API Endpoint
   "connectionType": {
     "code": "hl7-fhir-rest",
@@ -247,7 +253,7 @@ This annotated example illustrates how an Endpoint is represented.
   "contact": [
     {
       "system": "url",
-      "value": "https://dev-portal.example.org"
+      "value": "https://dev-portal.goodhealth.example.org"
     }
   ],
   // Some `payloadType` is required by FHIR R4. It can be populated with a 
