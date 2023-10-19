@@ -17,14 +17,12 @@ In this model, an **app** can:
 * Allow users to **select** Brands (and more specifically portals) where they have data available
 * Guide useres to **connect** to FHIR endpoints for the selected portals
 
-
 ### Design goals
 - Providers can publish Brand details (name, logo, etc.) that patients will recognize
 - Brands can be associated with one or more patient access portals
 - Portals can be associated with one or more FHIR endpoints
 - Apps display Brands to create a “connect to my health records” UX
 - All details can be published in aggregate (e.g., by EHR vendor, by region, or globally)
-
 
 ### Brand Information
 
@@ -56,7 +54,6 @@ The details of the Patient Access Brand communicated to the patient.
 | Patient-facing description | explaining the subset of patients eligible to connect, or the data available in a patient-friendly language | 0..1 |
 | API Endpoints| FHIR API Endpoints associated with the portal | 0..* |
 {:.grid}
-
 
 #### Relationships Among Brands, Portals, and Endpoints
 
@@ -150,8 +147,7 @@ This annotated example illustrates how a Brand is represented as a FHIR Organiza
       "valueMarkdown" : "GoodHealthCentral is available for our primary care patients."
     },
     {
-      // (0..1) Describes the portal and its intended audience. May be used to help
-      // patients select the right portal if multiple options are available.
+      // (0..1) Link to the portal website.
       "url" : "portalUrl",
       "valueUrl" : "https://goodhealthcentral.example.org"
     },
@@ -216,7 +212,6 @@ This annotated example illustrates how a Brand is represented as a FHIR Organiza
 
 [Formal Profile](StructureDefinition-patient-access-brand.html)
 
-
 #### Endpoint Profile
 
 This annotated example illustrates how an Endpoint is represented.
@@ -274,7 +269,6 @@ This annotated example illustrates how an Endpoint is represented.
 
 [Formal Profile](StructureDefinition-patient-access-endpoint.html)
     
- 
 #### Brand Bundle Profile
 
 {{site.data.structuredefinitions.patient-access-brands-bundle.description}}
@@ -292,9 +286,7 @@ This annotated example illustrates how an Endpoint is represented.
 } 
 ```
 
-
 [Formal Profile](StructureDefinition-patient-access-brands-bundle.html)
-  
   
 ##### Brand Bundle Examples
 
