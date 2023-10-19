@@ -43,7 +43,8 @@
     "grouping": [
       {
         "id": "PABProfiles",
-        "name": "Patient Access Brands"
+        "name": "Patient Access Brands",
+        "description": "Helping patients find and connect to the right API endpoints, by enabling publication of branding information for API providers, portals, and endpoints.\n\nFor an overview, see [Patient Access Brands](brands.html)."
       },
       {
         "id": "PAB",
@@ -52,11 +53,13 @@
       },
       {
         "id": "SMARTAppState",
-        "name": "SMART App State"
+        "name": "SMART App State",
+        "description": "Helping apps persist state to an EHR."
       },
       {
         "id": "SMARTResources",
-        "name": "SMART Launch Tasks"
+        "name": "SMART Launch Tasks",
+        "description": "Helping EHRs manage deferred or proposed app launches.\n\nFor an overview, see [Task profile for requesting SMART launch](task-launch.html)."
       }
     ],
     "resource": [
@@ -65,7 +68,7 @@
           "reference": "StructureDefinition/patient-access-brands-bundle"
         },
         "name": "Patient Access Brands Bundle Profile",
-        "description": "JSON FHIR Bundle (type: `collection`) of Organizations and Endpoints that is hosted at a stable, publicly available, publicly disclosed location. Bundle Entries include:\n* [Patient Access Endpoint Profile](StructureDefinition-patient-access-endpoint.html) resources.\n* [Patient Access Brand (Organization)](StructureDefinition-patient-access-brand.html) resources. Vendors SHALL publish at least a \"primary brand\" for each endpoint and SHOULD support the publication of a more detailed Brand hierarchy.\n\nBrand Bundles SHALL populate `Bundle.timestamp` to advertise the timestamp of the last change to the contents. In addition, Brand Bundles SHOULD populate `Bundle.entry.resource.meta.lastUpdated` with a more detailed timestamp if the system tracks updates per Resource.",
+        "description": "FHIR Bundle of Organizations and Endpoints that is hosted at a stable, publicly available location",
         "exampleBoolean": false,
         "groupingId": "PABProfiles"
       },
@@ -74,7 +77,7 @@
           "reference": "StructureDefinition/patient-access-brand"
         },
         "name": "Patient Access Brand (Organization) Profile",
-        "description": "Profile on Organization to convey a Patient Access Brand.\nIn addition to the core data elements on Organization, two key extensions are used in this profile:\n\n* <http://hl7.org/fhir/StructureDefinition/organization-brand> conveys the organization's logo(s) and other top-level branding details. See definitions for details.\n* <http://hl7.org/fhir/StructureDefinition/organization-portal> conveys the details of a patient portal and its associated FHIR endpoints. See definitions for details.\n\n Notes:\n* `0..1 MS` `partOf` Conveys that an affiliate Brand response for providing this Brand's patient access. The hierarchy of \"access provided by\" links SHALL NOT exceed a depth of two (i.e., a Brand either includes portal details or links directly to a Brand that provides them).\n\n* `0..* MS` `identifier` Conveys identifiers that apps can use to link this Brand across publishers or with external data sets. EHRs SHALL support customer-supplied identifiers (`system` and `value`).\n\n    * It is RECOMMENDED that each Brand include an identifier where `system` is `urn:ietf:rfc: 3986` (meaning the identifier is a URL) and `value` is the HTTPS URL for the Brand's primary web presence, omitting any \"www.\" prefix from the domain and omitting any path component. For example, since the main web presence of Boston Children's Hospital is https://www.childrenshospital.org/, a recommended identifier would be:     `{\"system\": \"urn:ietf:rfc:3986\",\"value\": \"https://childrenshospital.org\"}`",
+        "description": "Profile on Organization to convey a Patient Access Brand",
         "exampleBoolean": false,
         "groupingId": "PABProfiles"
       },
@@ -83,7 +86,7 @@
           "reference": "StructureDefinition/patient-access-endpoint"
         },
         "name": "Patient Access Endpoint Profile",
-        "description": "Profile on Endpoint associated with a Patient Access Brand. In addition to the core data elements on Endpoint, one key extensions is used in this profile:\n\n* <http://hl7.org/fhir/StructureDefinition/endpoint-fhir-version> conveys is a denormalization to help clients focus on supported endpoints. The `valueCode` is any version from http://hl7.org/fhir/valueset-FHIR-version.html (e.g., `4.0.1` is expected for FHIR R4 endpoints).\n\nNotes:\n * `0..1` `name` Conveys a fallback or default name describing the endpoint and the organization offering Patient API access at this endpoint. This value MAY contain technical details like FHIR API Version designations and apps SHOULD preferentially use names from an associated `PatientAccessBrand` rather than displaying this value to users.\n * `1..* MS` `contact` website where developers can configure access to this endpoint, providing at least one `\"system\": \"url\"` contact point where the `value` is an `https://` URL intended for app developers\n * `1..1 MS` `address` FHIR base URL for server supporting patient access",
+        "description": "Profile on Endpoint associated with a Patient Access Brand",
         "exampleBoolean": false,
         "groupingId": "PABProfiles"
       },
@@ -92,7 +95,6 @@
           "reference": "CodeSystem/patient-access-category"
         },
         "name": "Patient Access Category Code System",
-        "description": "Categorizes a PatientAccessBrand into high-level taxonomy",
         "exampleBoolean": false,
         "groupingId": "PABProfiles"
       },
@@ -101,7 +103,6 @@
           "reference": "ValueSet/patient-access-category"
         },
         "name": "Patient Access Category Value Set",
-        "description": "Categorizes a PatientAccessBrand into high-level taxonomy",
         "exampleBoolean": false,
         "groupingId": "PABProfiles"
       },
@@ -158,7 +159,6 @@
           "reference": "StructureDefinition/task-ehr-launch"
         },
         "name": "TaskEhrLaunch",
-        "description": "Defines a Task that indicates the user should launch an application using the SMART on FHIR EHR launch.",
         "exampleBoolean": false,
         "groupingId": "SMARTResources"
       },
@@ -167,7 +167,6 @@
           "reference": "StructureDefinition/task-standalone-launch"
         },
         "name": "TaskStandaloneLaunch",
-        "description": "Defines a Task that indicates the user should launch an application as a standalone application.",
         "exampleBoolean": false,
         "groupingId": "SMARTResources"
       },
@@ -176,8 +175,8 @@
           "reference": "StructureDefinition/smart-app-state-basic"
         },
         "name": "SMART App State",
-        "description": "SMART App State profile on Basic resource\n\n**See [App State capability](./app-state.html) for requirements, usage notes, and examples.**",
         "exampleBoolean": false,
+        "description": "SMART App State profile on Basic resource",
         "groupingId": "SMARTAppState"
       },
       {
@@ -185,7 +184,6 @@
           "reference": "CapabilityStatement/smart-app-state-server"
         },
         "name": "App State Server CapabilityStatement",
-        "description": "Required capabilities for App State Server",
         "exampleBoolean": false,
         "groupingId": "SMARTAppState"
       },
@@ -194,7 +192,6 @@
           "reference": "CodeSystem/smart-codes"
         },
         "name": "SMART on FHIR terminology.",
-        "description": "Codes used to in profiles related to SMART on FHIR.",
         "exampleBoolean": false,
         "groupingId": "SMARTResources"
       },
@@ -203,7 +200,6 @@
           "reference": "ValueSet/smart-launch-info"
         },
         "name": "Codes for tasks to application launches",
-        "description": "Defines codes for Tasks that request launch of SMART applications.",
         "exampleBoolean": false,
         "groupingId": "SMARTResources"
       },
@@ -212,7 +208,6 @@
           "reference": "ValueSet/smart-launch-types"
         },
         "name": "Launch Types for tasks to application launches",
-        "description": "Defines Launch Type codes for Tasks that request launch of SMART applications.",
         "exampleBoolean": false,
         "groupingId": "SMARTResources"
       },
