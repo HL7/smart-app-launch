@@ -273,6 +273,20 @@ This annotated example illustrates how an Endpoint is represented.
 
 {{site.data.structuredefinitions.patient-access-brands-bundle.description}}
 
+```js
+{
+  "resourceType": "Bundle",
+  "id": "example",
+  // Brand Bundles are always published as "collection"
+  "type": "collection",
+  // Brand Bundles always include a timestamp that apps can use to recognize
+  // if contents have changed since the last time they fetched the bundle.
+  "timestamp": "2023-09-05T20:00:43.241070-07:00",
+  "entry": [ /* Organizations and Endpoints here */ ]
+} 
+```
+
+
 [Formal Profile](StructureDefinition-patient-access-brands-bundle.html)
   
   
@@ -303,10 +317,10 @@ Publishers SHOULD include a weak `ETag` header in all HTTP responses. Clients SH
 
 ##### Metadata in `.well-known/smart-configuration`
 
-FHIR servers supporting this IG SHOULD include the following property in the SMART configuration JSON response:
+FHIR servers supporting this IG SHOULD include the following properties in the SMART configuration JSON response:
 
-* `0..1` `patientAccessBrandBundle` URL of a Brand Bundle. The Bundle entries include any Brand and "peer endpoints" associated with this FHIR endpoint.
-* `0..1` `patientAccessBrandIdentifier`: FHIR Identifier for this server's primary Brand within the Bundle. Publishers SHALL populate this property if the referenced Brand Bundle includes more than one Brand. When present, this identifier SHALL consist of a `value` and SHOULD have a `system`. 
+* `patientAccessBrandBundle` URL of a Brand Bundle. The Bundle entries include any Brand and "peer endpoints" associated with this FHIR endpoint.
+* `patientAccessBrandIdentifier`: FHIR Identifier for this server's primary Brand within the Bundle. Publishers SHALL populate this property if the referenced Brand Bundle includes more than one Brand. When present, this identifier SHALL consist of a `value` and SHOULD have a `system`. 
 
 The Brand Bundle SHALL include exactly one Brand with an `Organization.identifier` that matches the primary Brand identifier from SMART configuration JSON.
 
