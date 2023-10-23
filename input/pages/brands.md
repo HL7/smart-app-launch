@@ -2,7 +2,9 @@
 
 The specification defines FHIR profiles for [Endpoint]({{site.data.fhir.path}}endpoint.html), [Organization]({{site.data.fhir.path}}organization.html), and [Bundle]({{site.data.fhir.path}}bundle.html) resources that make it easier for patient-facing apps to connect to health data providers. It outlines the process for API providers to publish Brands associated with their FHIR Endpoints, and for apps to collect and present these Brands to users. Each Brand includes essential information such as the organization's name, logo, and patient access details, which apps can display in their user interface.
 
-*EHR systems, healthcare providers, and app developers can ensure a consistent and recognizable user experience when connecting patients to their health records across various platforms and services by following this specification.*
+EHR systems, healthcare providers, and app developers can ensure a consistent and recognizable user experience when connecting patients to their health records across various platforms and services by following this specification.
+
+The [Patient-Access Brand Examples](example-brands.html) illustrate how providers can represent diverse scenarios.
 
 ### Brands and Endpoints
 
@@ -303,7 +305,9 @@ The [Patient-Access Brand Examples](example-brands.html) illustrate how provider
 
 ##### Consistent Identifiers for Organizations
 
-Apps can use a Brand's `Organization.identifier` element to merge content published in multiple sources. To facilitate robust matching, EHRs SHALL support customer-supplied identifiers (`system` and `value`). It is RECOMMENDED that each Brand include an identifier where `system` is `urn:ietf:rfc: 3986` (meaning the identifier is a URL) and `value` is the HTTPS URL for the Brand's primary web presence, omitting any "www." prefix from the domain and omitting any path component. For example, since the main web presence of Boston Children's Hospital is https: //www.childrenshospital.org/, a recommended identifier would be:\n\n  `{"system": "urn:ietf:rfc:3986", "value": "https://childrenshospital.org"}`.
+Apps can use a Brand's `Organization.identifier` element to merge content published in multiple sources. To facilitate robust matching, EHRs SHALL support customer-supplied identifiers (`system` and `value`). It is RECOMMENDED that each Brand include an identifier where `system` is `urn:ietf:rfc: 3986` (meaning the identifier is a URL) and `value` is the HTTPS URL for the Brand's primary web presence, omitting any "www." prefix from the domain and omitting any path component. For example, since the main web presence of Boston Children's Hospital is https://www.childrenshospital.org/, a recommended identifier would be
+
+    {"system": "urn:ietf:rfc:3986", "value": "https://childrenshospital.org"}
 
 ##### Managing Cross Origin Resource Sharing (CORS) For FHIR Resources
 
