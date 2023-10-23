@@ -107,6 +107,32 @@
         "mustSupport": true
       },
       {
+        "id" : "Organization.type",
+        "path" : "Organization.type",
+        "slicing" : {
+          "discriminator" : [
+            {
+              "type" : "value",
+              "path" : "$this"
+            }
+          ],
+          "rules" : "open"
+        },
+        "mustSupport" : true
+      },
+      {
+        "id" : "Organization.type:pab",
+        "path" : "Organization.type",
+        "sliceName" : "pab",
+        "short" : "Categories of patient access offered",
+        "mustSupport" : true,
+        "min" : 0,
+        "binding" : {
+          "strength" : "extensible",
+          "valueSet" : "http://hl7.org/fhir/smart-app-launch/ValueSet/patient-access-category"
+        }
+      },
+      {
         "id": "Organization.alias",
         "path": "Organization.alias",
         "short": "Aliases (e.g., former names like \"Partners Healthcare\") for filtering/search",
