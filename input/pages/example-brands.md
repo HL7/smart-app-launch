@@ -106,7 +106,7 @@ Nearest location: 1 miles (Napa)
 *(Note: In practice, if ExampleHospital uses two different EHR vendors to host these different portals, it's possible that each vendor might publish only "their" portion of the content in an endpoint list. This is why it's important to populate `Organization.identifier` with consistent values, allowing apps to merge details from different publication sources into a single card for a streamlined selection UX. This guide [recommends the use of normalized website URLs](brands.html#consistent-identifiers-for-organizations) as common identifiers.)*
 
 
-[Raw JSON](Bundle-example2.json)
+[Raw JSON](Bundle-example3.json)
 
 
 ### Example 4: Two co-equal brands ("Brand1" + "Brand2")
