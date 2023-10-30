@@ -120,6 +120,9 @@ completing the launch.
 
 <br />
 
+### HTTP Headers
+
+As described in the underlying HTTP specifications, <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers">header names are compared in a case-insensitive manner</a>.
 
 ### FHIR Authorization Endpoint and Capabilities Discovery using a Well-Known Uniform Resource Identifiers (URIs)
 {: #using-well-known}
