@@ -645,6 +645,12 @@ includes the following parameters:
       <td><span class="label label-info">optional</span></td>
       <td>Token that can be used to obtain a new access token, using the same or a subset of the original authorization grants</td>
     </tr>
+    <tr>
+      <td><code>authorization_details</code></td>
+      <td><span class="label label-info">optional</span></td>
+      <td>Additional details describing where this token can be used, and any per-location context (experimental; see <a href="#experimental-authorization-details-for-multiple-servers">details</a>)</td>
+    </tr>
+
   </tbody>
 </table>
 
@@ -694,6 +700,40 @@ resource server and the authorization server; the mechanics of such an
 interaction are not defined by this specification.*
 
 At this point, **the authorization flow is complete**.
+
+##### Experimental: Authorization Details for Multiple Servers
+
+If an authorization server wishes to provide a token that can be used with more than one FHIR server (i.e., the token can be used with app's requested `aud` as well as additional endpoints), the following structures from [rfc9396](https://datatracker.ietf.org/doc/html/rfc9396) can be included in the access token response:
+
+* `authorization_details` array of objects, where each object may include
+  * `type` (required): fixed value `smart_on_fhir`
+  * `locations` (required): array of FHIR base URLs. Including a URL in this list indicates that the access token may be used with this FHIR server.
+  * `fhirVersions` (required): array of [FHIR Version](https://hl7.org/fhir/valueset-FHIR-version.html) codes (e.g., `4.0.1` for R4). Including a version in this list indicates that all servers in the `locations` array of this "authorization_details" object will support this version. Commonly there will be only a single location and a single version per "authorization details" object.
+  * `scope` (optional): string with space-separate SMART scopes. When present, indicates scopes that are granted for use at the `locations`. When absent, the top-level scopes from the access token response will apply at the `locations`.
+  * `patient`, `encounter`, `fhirContext` (optional). When present, these indicate the [SMART Launch Context](scopes-and-launch-context.html#launch-context-arrives-with-your-access_token) that applies at the `locations`. This allows server-specific context (e.g., allowing for different patient IDs for an R4 server vs R2 server). When a context parameter is absent, the top-level value from the access token response will apply at the `locations`.
+
+For example, an access request to an R4 FHIR server could potentially result in a token response for the requested R4 server as well as an R2 server. Note that the launch context and scopes for the R2 server differ from the top-level values in this example (accounting for different resource types and ids):
+
+```json
+{
+  "token_type": "Bearer",
+  "patient": "r4-123-id",
+  "scope": "launch/patient patient/MedicationRequest.rs patient/Patient.rs",
+  "expires_in": 3600,
+  "access_token": "eyJhbG...",
+  "authorization_details": [{
+    "type": "smart_on_fhir",
+    "locations": ["https://ehr.example.org/fhir/r4"],
+    "fhirVersions": ["4.0.1"],
+  }, {
+    "type": "smart_on_fhir",
+    "locations": ["https://ehr.example.org/fhir/r2"],
+    "fhirVersions": ["1.0.2"],
+    "scope": "launch/patient patient/MedicationOrder.rs patient/Patient.rs",
+    "patient": "r2-456-id"
+  }]
+}
+```
 
 
 #### Examples
@@ -834,6 +874,11 @@ The response is a JSON object containing a new access token, with the following 
       <td><code>refresh_token</code></td>
       <td><span class="label label-info">optional</span></td>
       <td>The refresh token issued by the authorization server. If present, the app should discard any previous <code>refresh_token</code> associated with this launch and replace it with this new value.</td>
+    </tr> 
+    <tr>
+      <td><code>authorization_details</code></td>
+      <td><span class="label label-info">optional</span></td>
+      <td>Additional details describing where this token can be used, and any per-location context (experimental; see <a href="#experimental-authorization-details-for-multiple-servers">details</a>)</td>
     </tr>
   </tbody>
 </table>
@@ -843,6 +888,8 @@ parameters to communicate the context values MAY BE included. For example,
 a parameter like `"patient": "123"` would indicate the FHIR resource
 https://[fhir-base]/Patient/123. Other context parameters may also
 be available. For full details see [SMART launch context parameters](scopes-and-launch-context.html).
+
+
 
 #### Examples
 
