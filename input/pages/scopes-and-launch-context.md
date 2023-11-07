@@ -557,19 +557,33 @@ Encounter resource types will *not be deprecated from top-level parameters*,
 and they will *not be permitted* within the `fhirContext` array unless they
 include a `role` other than `"launch"`.
 
-Each object in the `fhirContext` array SHALL have a  `reference` property with
-a string value containing a relative reference to a FHIR resource. Note that
-there MAY be more than one Reference to a given *type* of resource
+Each object in the `fhirContext` array SHALL include at least one of
+`"reference"`, `"canonical"`, or `"identifier"`, and MAY contain additional
+properties:
 
-Each object in the `fhirContext` array MAY have a  `role` property with a
-string value containing a URI identifying the role. The `role` property is
-OPTIONAL; it MAY be omitted and SHALL NOT be the empty string. Relative URIs
-can only be used if they are defined in this specification; other roles require
-the use of absolute URIs. The absence of a role property is semantically
+* `"reference"` (string): relative reference to a FHIR resource. Note that there MAY be more than one `fhirContext` item referencing the same type of resource.
+
+* `"canonical"` (string):  canonical URL for the `fhirContext` item (MAY include a version suffix)
+
+* `"identifier"` (object):  FHIR Identifier for the `fhirContext` item
+
+* `"type"` (string): FHIR resource type of the `fhirContext` item
+
+* `"role"` (string):  URI identifying the role of this `fhirContext` item.
+Relative role URIs can only be used if they are defined in this specification; other
+roles require the use of absolute URIs. This property MAY be omitted and SHALL
+NOT be the empty string.The absence of a role property is semantically
 equivalent to a role of `"launch"`, indicating to a client that the app launch
-was performed in the context of the referenced resource. More granular role
-URIs can be adopted in use-case-specific ways. Note that `role` need not be
-unique; multiple entries in `fhirContext` may have the same role.
+was performed in the context of the referenced resource. More granular role URIs
+can be adopted in use-case-specific ways. Multiple `fhirContext` items MAY have
+the same role.  Note: Specifications defining custom roles can list them in the
+[fhirContext Role Registry](https://confluence.hl7.org/display/FHIRI/fhirContext+Role+Registry) to
+promote awareness and reuse.
+
+Note that for `"identifier"` and `"canonical"`, this specification does not
+define rules for access control. The app may reach out to different servers to
+resolve these, authenticating as needed.
+
 
 <a id="fhircontext-examples"></a>
 
@@ -601,15 +615,31 @@ EHR might supply `fhirContext` like:
   // other properties omitted for brevity
   "patient": "123",
   "fhirContext": [{
-	"reference": "List/123",
-	"role": "https://example.org/med-list-at-home"
+    "reference": "List/123",
+    "role": "https://example.org/med-list-at-home"
   }, {
-	"reference": "List/456",
-	"role": "https://example.org/med-list-at-hospital"
+    "reference": "List/456",
+    "role": "https://example.org/med-list-at-hospital"
   }]
 }
 ```
 
+##### `fhirContext` example: Canonical Questionnaire
+
+If a data-gathering app expects to receive a canonical URL for a FHIR Questionnaire, 
+the EHR might supply `fhirContext` like:
+
+```json
+{
+  // other properties omitted for brevity
+  "patient": "123",
+  "fhirContext": [{
+    "role": "https://example.org/role/questionnaire-to-display",
+    "type": "Questionnaire",
+    "canonical": "https://example.org/Questionnaire/123/|v2023-05-03"
+  }]
+}
+```
 
 <h5 id="launch-intent"><b>App Launch Intent</b> (optional)</h5>
 `intent`: Some SMART apps might offer more than one context or user interface
