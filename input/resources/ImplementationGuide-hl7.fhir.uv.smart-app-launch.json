@@ -1,6 +1,10 @@
 {
   "resourceType": "ImplementationGuide",
   "id": "hl7.fhir.uv.smart-app-launch",
+  "extension": [{
+    "url": "http://hl7.org/fhir/StructureDefinition/structuredefinition-wg",
+    "valueCode": "fhir"
+  }],
   "url": "http://hl7.org/fhir/smart-app-launch/ImplementationGuide/hl7.fhir.uv.smart-app-launch",
   "version": "2.2.0-preview",
   "name": "SmartAppLaunch",

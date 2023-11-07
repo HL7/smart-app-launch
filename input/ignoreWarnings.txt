@@ -53,4 +53,15 @@ WARNING: Organization/examplelabs: Organization: Rule dom-6: 'A resource should 
 WARNING: Task/task-for-ehr-launch: Task: Rule dom-6: 'A resource should have narrative for robust management' Failed (Best Practice Recommendation)
 WARNING: Task/task-for-standalone-launch: Task: Rule dom-6: 'A resource should have narrative for robust management' Failed (Best Practice Recommendation)
 
+# Titles and a dedicated examples page serve the role of describing these examples
+# This IG depends on extensions that are going up for ballot simultaneously
 
+
+# Titles and a dedicated examples page serve the role of describing these examples
+WARNING: Unable to find ImplementationGuide.definition.resource.description for the resource Bundle/example1. Descriptions are strongly encouraged if they cannot be inferred from the resource to allow proper population of the artifact list.
+WARNING: Unable to find ImplementationGuide.definition.resource.description for the resource Bundle/example2. Descriptions are strongly encouraged if they cannot be inferred from the resource to allow proper population of the artifact list.
+WARNING: Unable to find ImplementationGuide.definition.resource.description for the resource Bundle/example3. Descriptions are strongly encouraged if they cannot be inferred from the resource to allow proper population of the artifact list.
+WARNING: Unable to find ImplementationGuide.definition.resource.description for the resource Bundle/example4. Descriptions are strongly encouraged if they cannot be inferred from the resource to allow proper population of the artifact list.
+WARNING: Unable to find ImplementationGuide.definition.resource.description for the resource Organization/example. Descriptions are strongly encouraged if they cannot be inferred from the resource to allow proper population of the artifact list.
+WARNING: Unable to find ImplementationGuide.definition.resource.description for the resource Endpoint/example. Descriptions are strongly encouraged if they cannot be inferred from the resource to allow proper population of the artifact list.
+WARNING: Constraint failed: dom-6: 'A resource should have narrative for robust management' (defined in http://hl7.org/fhir/StructureDefinition/DomainResource) (Best Practice Recommendation)

@@ -1,6 +1,10 @@
 {
   "resourceType": "StructureDefinition",
   "id": "task-standalone-launch",
+  "extension": [{
+    "url": "http://hl7.org/fhir/StructureDefinition/structuredefinition-wg",
+    "valueCode": "fhir"
+  }],
   "url": "http://hl7.org/fhir/smart-app-launch/StructureDefinition/task-standalone-launch",
   "name": "TaskStandaloneLaunch",
   "status": "active",

@@ -23,7 +23,7 @@
             "extension": [
               {
                 "url": "portalName",
-                "valueUrl": "Example Labs HealthCentral Portal"
+                "valueString": "Example Labs HealthCentral Portal"
               },
               {
                 "url": "portalUrl",

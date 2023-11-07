@@ -23,7 +23,7 @@
             "extension": [
               {
                 "url": "portalName",
-                "valueUrl": "Brand1 Portal"
+                "valueString": "Brand1 Portal"
               },
               {
                 "url": "portalUrl",

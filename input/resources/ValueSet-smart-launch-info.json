@@ -3,6 +3,10 @@
   "status": "active",
   "name": "SmartLaunchInformation",
   "id": "smart-launch-info",
+  "extension": [{
+    "url": "http://hl7.org/fhir/StructureDefinition/structuredefinition-wg",
+    "valueCode": "fhir"
+  }],
   "title": "Codes for tasks to application launches",
   "description": "Defines codes for Tasks that request launch of SMART applications.",
   "url": "http://hl7.org/fhir/smart-app-launch/ValueSet/smart-launch-info",

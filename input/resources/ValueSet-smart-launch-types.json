@@ -3,6 +3,10 @@
   "status": "active",
   "name": "SmartLaunchTypes",
   "id": "smart-launch-types",
+  "extension": [{
+    "url": "http://hl7.org/fhir/StructureDefinition/structuredefinition-wg",
+    "valueCode": "fhir"
+  }],
   "title": "Launch Types for tasks to application launches",
   "description": "Defines Launch Type codes for Tasks that request launch of SMART applications.",
   "url": "http://hl7.org/fhir/smart-app-launch/ValueSet/smart-launch-types",

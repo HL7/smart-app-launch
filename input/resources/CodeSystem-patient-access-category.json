@@ -4,6 +4,10 @@
   "content": "complete",
   "name": "PatientAccessCategoryCodeSystem",
   "id": "patient-access-category",
+  "extension": [{
+    "url": "http://hl7.org/fhir/StructureDefinition/structuredefinition-wg",
+    "valueCode": "fhir"
+  }],
   "title": "Patient Access Category Code System",
   "description": "Categorizes a PatientAccessBrand into high-level taxonomy",
   "url": "http://hl7.org/fhir/smart-app-launch/CodeSystem/patient-access-category",

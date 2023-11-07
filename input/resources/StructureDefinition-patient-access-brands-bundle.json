@@ -1,6 +1,10 @@
 {
   "resourceType": "StructureDefinition",
   "id": "patient-access-brands-bundle",
+  "extension": [{
+    "url": "http://hl7.org/fhir/StructureDefinition/structuredefinition-wg",
+    "valueCode": "fhir"
+  }],
   "url": "http://hl7.org/fhir/smart-app-launch/StructureDefinition/patient-access-brands-bundle",
   "name": "PatientAccessBrandsBundle",
   "title": "Patient Access Brands Bundle Profile",

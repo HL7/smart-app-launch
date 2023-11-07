@@ -1,6 +1,10 @@
 {
   "resourceType": "StructureDefinition",
   "id": "smart-app-state-basic",
+  "extension": [{
+    "url": "http://hl7.org/fhir/StructureDefinition/structuredefinition-wg",
+    "valueCode": "fhir"
+  }],
   "url": "http://hl7.org/fhir/smart-app-launch/StructureDefinition/smart-app-state-basic",
   "name": "SMARTAppStateBasic",
   "title": "SMART App State",

@@ -1,6 +1,10 @@
 {
   "resourceType": "CapabilityStatement",
   "id": "smart-app-state-server",
+  "extension": [{
+    "url": "http://hl7.org/fhir/StructureDefinition/structuredefinition-wg",
+    "valueCode": "fhir"
+  }],
   "url": "http://hl7.org/fhir/smart-app-launch/CapabilityStatement/smart-app-state-server",
   "name": "AppStateServerCapabilityStatement",
   "title": "App State Server CapabilityStatement",
