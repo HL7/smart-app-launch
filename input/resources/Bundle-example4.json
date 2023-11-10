@@ -52,8 +52,8 @@
             "coding": [
               {
                 "system": "http://hl7.org/fhir/smart-app-launch/CodeSystem/patient-access-category",
-                "code": "insurer",
-                "display": "Health Insurance provider"
+                "code": "insurance",
+                "display": "Insurance"
               }
             ]
           }
@@ -129,9 +129,9 @@
           {
             "coding": [
               {
-                "code": "insurer",
                 "system": "http://hl7.org/fhir/smart-app-launch/CodeSystem/patient-access-category",
-                "display": "Health Insurance provider"
+                "code": "insurance",
+                "display": "Insurance"
               }
             ]
           }

@@ -14,15 +14,19 @@
   "concept": [
     {
       "code": "clinical",
-      "display": "Clinical Care provider"
+      "display": "Clinical"
     },
     {
-      "code": "insurer",
-      "display": "Health insurance provider"
+      "code": "insurance",
+      "display": "Insurance"
     },
     {
-      "code": "lab",
+      "code": "laboratory",
       "display": "Laboratory"
+    },
+    {
+      "code": "imaging",
+      "display": "Imaging"
     },
     {
       "code": "pharmacy",
@@ -30,11 +34,11 @@
     },
     {
       "code": "network",
-      "display": "Network access provider such as a TEFCA QHIN"
+      "display": "Network access"
     },
     {
       "code": "aggregator",
-      "display": "Aggregator of healthcare data offering individual access"
+      "display": "Aggregator"
     }
   ],
   "experimental": false,

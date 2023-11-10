@@ -81,7 +81,7 @@
               {
                 "code": "clinical",
                 "system": "http://hl7.org/fhir/smart-app-launch/CodeSystem/patient-access-category",
-                "display": "Clinical Care provider"
+                "display": "Clinical"
               }
             ]
           }

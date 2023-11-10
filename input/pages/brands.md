@@ -40,7 +40,7 @@ Each Brand includes the following information intended to support an app-based c
 | Aliases | e.g., former names like "General Health Associates" for filtering/search | 0..* |
 | Identifiers | supporting cross-publisher references or links to external data sets such as the NPI Registry. | 0..* |
 | Locations | zip codes and street addresses associated with the Brand | 0..* |
-| Categories | health system, hospital, clinic, pharmacy, lab, insurer for filtering/search | 0..* |
+| Categories | clinical, insurance, laboratory, imaging, pharmacy, network, aggregator --- for filtering/search | 0..* |
 | Portal Details | describes a portal this Brand offers to patients **See the table below**.| 1..* |
 {:.grid}
 
