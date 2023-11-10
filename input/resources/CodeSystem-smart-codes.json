@@ -4,10 +4,6 @@
   "content": "complete",
   "name": "SmartOnFhirCodes",
   "id": "smart-codes",
-  "extension": [{
-    "url": "http://hl7.org/fhir/StructureDefinition/structuredefinition-wg",
-    "valueCode": "fhir"
-  }],
   "title": "SMART on FHIR terminology.",
   "description": "Codes used to in profiles related to SMART on FHIR.",
   "url": "http://hl7.org/fhir/smart-app-launch/CodeSystem/smart-codes",

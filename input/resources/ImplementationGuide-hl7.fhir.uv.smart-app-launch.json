@@ -18,7 +18,7 @@
       "telecom": [
         {
           "system": "url",
-          "value": "https://hl7.org/Special/committees/fiwg"
+          "value": "http://www.hl7.org/Special/committees/fiwg"
         },
         {
           "system": "email",

@@ -1,10 +1,6 @@
 {
   "resourceType": "StructureDefinition",
   "id": "patient-access-brand",
-  "extension": [{
-    "url": "http://hl7.org/fhir/StructureDefinition/structuredefinition-wg",
-    "valueCode": "fhir"
-  }],
   "url": "http://hl7.org/fhir/smart-app-launch/StructureDefinition/patient-access-brand",
   "name": "PatientAccessBrand",
   "title": "Patient Access Brand (Organization) Profile",
@@ -103,14 +99,6 @@
         "mustSupport": true
       },
       {
-        "id": "Organization.name",
-        "path": "Organization.name",
-        "short": "Primary brand name to display on a card",
-        "definition": "The primary brand name to display on a card.",
-        "min": 1,
-        "mustSupport": true
-      },
-      {
         "id" : "Organization.type",
         "path" : "Organization.type",
         "slicing" : {
@@ -135,6 +123,14 @@
           "strength" : "extensible",
           "valueSet" : "http://hl7.org/fhir/smart-app-launch/ValueSet/patient-access-category"
         }
+      },
+      {
+        "id": "Organization.name",
+        "path": "Organization.name",
+        "short": "Primary brand name to display on a card",
+        "definition": "The primary brand name to display on a card.",
+        "min": 1,
+        "mustSupport": true
       },
       {
         "id": "Organization.alias",
