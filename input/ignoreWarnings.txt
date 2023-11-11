@@ -8,7 +8,7 @@
 # Example URI in example.org domain does not need to be validated
 Code System URI 'https://myapp.example.org' is unknown so the code cannot be validated
 
-# Ghese example resources have content that can be inferred, and a standalone examples page providing more detail
+# These example resources have content that can be inferred, and a standalone examples page providing more detail
 WARNING: Unable to find ImplementationGuide.definition.resource.description for the resource Bundle/example1.  Descriptions are strongly encouraged if they cannot be inferred from the resource to allow proper population of the artifact list.
 WARNING: Unable to find ImplementationGuide.definition.resource.description for the resource Bundle/example2.  Descriptions are strongly encouraged if they cannot be inferred from the resource to allow proper population of the artifact list.
 WARNING: Unable to find ImplementationGuide.definition.resource.description for the resource Bundle/example3.  Descriptions are strongly encouraged if they cannot be inferred from the resource to allow proper population of the artifact list.
