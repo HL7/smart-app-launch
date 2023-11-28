@@ -512,7 +512,7 @@ Requested Scope | Meaning
 ----------------|---------
 `launch/patient`   | Need patient context at launch time (FHIR Patient resource). See note below.
 `launch/encounter` | Need encounter context at launch time (FHIR Encounter resource).
-(Others)           | This list can be extended by any SMART EHR to support additional context.  When specifying resource types, convert the type names to *all lowercase* (e.g., `launch/diagnosticreport`).
+(Others)           | This list can be extended by any SMART EHR to support additional context.  When specifying resource types, convert the type names to *all lowercase* (e.g., `launch/diagnosticreport`). In situations where the same resource type might be used for more than one purpose (e.g., in a medication reconciliation app, one List of at-home medications and another List of in-hospital medicdations), the app can solicit context with a specific role by appending `?role={role}` (see [example below](#fhircontext-example-medication-reconciliation)).
 {:.grid}
 
 Note on `launch/patient`: If an application requests a scope which is restricted to a single patient (e.g., `patient/*.rs`), and the authorization results in the EHR granting that scope, the EHR SHALL establish a patient in context. The EHR MAY refuse authorization requests including `patient/` that do not also include a valid `launch/patient` scope, or it MAY infer the `launch/patient` scope.
@@ -608,7 +608,13 @@ includes a value such as  `{"reference": "ImagingStudy/123"}`.
 
 If a medication reconciliation app expects distinct contextual inputs
 representing an at-home medication list and an in-hospital medication list, the
-EHR might supply `fhirContext` like:
+app might request context using scopes like:
+
+* `launch/list?role=https://example.org/med-list-at-home`
+* `launch/list?role=https://example.org/med-list-at-hospital`
+
+Based on this request or pre-configured settings, the EHR might supply
+`fhirContext` like:
 
 ```json
 {
