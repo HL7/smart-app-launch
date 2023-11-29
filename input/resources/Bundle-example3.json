@@ -116,7 +116,7 @@
       "fullUrl": "https://ehr1.example.com/Endpoint/examplehospital-ehr1",
       "resource": {
         "resourceType": "Endpoint",
-        "id": "examplehospital-ehr-1",
+        "id": "examplehospital-ehr1",
         "extension": [
           {
             "url": "http://hl7.org/fhir/StructureDefinition/endpoint-fhir-version",
@@ -152,7 +152,7 @@
       "fullUrl": "https://ehr2.example.com/Endpoint/examplehospital-ehr2",
       "resource": {
         "resourceType": "Endpoint",
-        "id": "examplehospital-ehr-2",
+        "id": "examplehospital-ehr2",
         "extension": [
           {
             "url": "http://hl7.org/fhir/StructureDefinition/endpoint-fhir-version",

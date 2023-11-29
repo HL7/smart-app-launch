@@ -86,7 +86,7 @@
       "fullUrl": "https://ehr.example.org/Organization/brand2",
       "resource": {
         "resourceType": "Organization",
-        "id": "brand1",
+        "id": "brand2",
         "extension": [
           {
             "url": "http://hl7.org/fhir/StructureDefinition/organization-brand",
