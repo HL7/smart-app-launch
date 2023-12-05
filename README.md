@@ -25,7 +25,6 @@ $ docker run \
 ```sh
 $ sushi # This shouldn't be necessary but currently it is, the first time
 $ _updatePublisher.sh # If you haven't done it before
-
 $ _genonce.sh
 ```
 
