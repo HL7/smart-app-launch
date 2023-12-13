@@ -6,7 +6,7 @@
     "valueCode": "fhir"
   }],
   "url": "http://hl7.org/fhir/smart-app-launch/ImplementationGuide/hl7.fhir.uv.smart-app-launch",
-  "version": "2.2.0-preview",
+  "version": "2.2.0-ballot",
   "name": "SmartAppLaunch",
   "title": "SMART App Launch",
   "status": "active",
