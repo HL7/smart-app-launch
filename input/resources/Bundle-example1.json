@@ -56,7 +56,7 @@
             "coding": [
               {
                 "system": "http://hl7.org/fhir/smart-app-launch/CodeSystem/patient-access-category",
-                "code": "lab",
+                "code": "laboratory",
                 "display": "Laboratory"
               }
             ]

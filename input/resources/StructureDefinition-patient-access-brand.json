@@ -120,7 +120,7 @@
         "mustSupport" : true,
         "min" : 0,
         "binding" : {
-          "strength" : "extensible",
+          "strength" : "required",
           "valueSet" : "http://hl7.org/fhir/smart-app-launch/ValueSet/patient-access-category"
         }
       },
