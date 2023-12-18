@@ -1,8 +1,7 @@
 ### Profile Audience and Scope
 
 This profile describes SMART's
-[`client-confidential-symmetric`](conformance.html) authentication mechanism.  It is intended for
-for [SMART App Launch](app-launch.html) clients that can maintain a secret but cannot manage asymmetric keypairs. For client that can manage asymmetric keypairs, [Asymmetric Authentication](client-confidential-asymmetric.html) is preferred. This profile is not intended for [SMART Backend Services](backend-services.html) clients.
+[`client-confidential-symmetric`](conformance.html) authentication mechanism.  It is intended for [SMART App Launch](app-launch.html) clients that can maintain a secret but cannot manage asymmetric keypairs. For client that can manage asymmetric keypairs, [Asymmetric Authentication](client-confidential-asymmetric.html) is preferred. This profile is not intended for [SMART Backend Services](backend-services.html) clients.
 
 ### Authentication using a `client_secret`
 
