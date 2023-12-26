@@ -17,7 +17,7 @@ In this model, an **app** can:
 * **Display** the Brands it has collected (e.g., as cards or tiles in a UX)
 * Allow users to **filter or search** Brands based on names, locations, or categories
 * Allow users to **select** Brands (and more specifically portals) where they have data available
-* Guide useres to **connect** to FHIR endpoints for the selected portals
+* Guide users to **connect** to FHIR endpoints for the selected portals
 
 ### Design goals
 - Providers can publish Brand details (name, logo, etc.) that patients will recognize
