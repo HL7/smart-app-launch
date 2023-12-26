@@ -66,7 +66,7 @@ Commonly, a single Brand is typically associated with a single patient Portal th
 * *One Brand is associated with multiple Portals*
   * e.g., a hospital may offer more than one patient portal for legacy purposes
   * e.g., a tertiary cancer center may offer one patient portal for adults and another for pediatric patients
-  * Becaues Brand information may be published in multiple places, Organizations include the same `identifier` to facilitate matching, merging, and de-duplication. Apps can merge Brands into a single target Brand's card by displaying the target Brand's title and logo. Within the Brand's card, the app displays a distinct "connect" button for each set of Patient Access Details.
+  * Because Brand information may be published in multiple places, Organizations include the same `identifier` to facilitate matching, merging, and de-duplication. Apps can merge Brands into a single target Brand's card by displaying the target Brand's title and logo. Within the Brand's card, the app displays a distinct "connect" button for each set of Patient Access Details.
 * *One Portal is associated with one Endpoint*
   * e.g., an EHR-based portal that provides access to patient data through a single FHIR R4 endpoint 
 * *One Portal is associated with multiple FHIR Endpoints*
