@@ -40,7 +40,7 @@ Next, let's look at a Regional health system ("ExampleHealth") that has:
 * Has locations in/around 12 cities
 * Provides EHR for independent affiliates (distinctly branded sites like "ExampleHealth Physicians of Madison" or "ExampleHealth Community Hospital")
 
-The configuration below establishes a single Organiztion for ExampleHealth, with a single portal associated with two FHIR endpoints (one R2, one R4). There are also Organizations for the affiliated providers, each indicating a `partOf`  relationship with ExampleHealth.
+The configuration below establishes a single Organization for ExampleHealth, with a single portal associated with two FHIR endpoints (one R2, one R4). There are also Organizations for the affiliated providers, each indicating a `partOf`  relationship with ExampleHealth.
 
 Based on this configuration, a patient app might display the following cards to a user:
 
