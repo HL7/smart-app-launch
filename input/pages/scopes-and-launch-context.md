@@ -572,7 +572,7 @@ properties:
 * `"role"` (string):  URI identifying the role of this `fhirContext` item.
 Relative role URIs can only be used if they are defined in this specification; other
 roles require the use of absolute URIs. This property MAY be omitted and SHALL
-NOT be the empty string.The absence of a role property is semantically
+NOT be the empty string. The absence of a role property is semantically
 equivalent to a role of `"launch"`, indicating to a client that the app launch
 was performed in the context of the referenced resource. More granular role URIs
 can be adopted in use-case-specific ways. Multiple `fhirContext` items MAY have
@@ -661,9 +661,9 @@ and inform the SMART EHR (out of band, at app configuration time)  of the
 `intent` values that can be used to launch the app directly into one of the
 three contexts. The app might respond to `intent` values like:
 
-* `summary-timeline-view` - A default UI context, showing a data summary
-* `recent-history-timeline` - A history display, showing a list of entries
-* `encounter-focused-timeline` - A timeline focused on the currently in-context encounter
+* `summary-timeline-view` - a default UI context, showing a data summary
+* `recent-history-timeline` - a history display, showing a list of entries
+* `encounter-focused-timeline` - a timeline focused on the currently in-context encounter
 
 If a SMART EHR provides a value that the client does not recognize, or does
 not provide a value, the client app SHOULD display a default application UI
