@@ -41,7 +41,7 @@ Each Brand includes the following information intended to support an app-based c
 | Identifiers | supporting cross-publisher references or links to external data sets such as the NPI Registry. | 0..* |
 | Locations | zip codes and street addresses associated with the Brand | 0..* |
 | Categories | clinical, insurance, laboratory, imaging, pharmacy, network, aggregator --- for filtering/search | 0..* |
-| Portal Details | describes a portal this Brand offers to patients **See the table below**.| 1..* |
+| Portal Details | describes a portal this Brand offers to patients **See the table below**.| 0..* |
 {:.grid}
 
 #### Portal Details
@@ -50,9 +50,9 @@ The details of the Patient Access Brand communicated to the patient.
 
 | Field | Description | Cardinality |
 | --- | --- | --- |
-| Portal name | e.g., "Patient Gateway" or "MyChildrens Portal" | 1..1 |
+| Portal name | e.g., "Patient Gateway" or "MyChildrens Portal" | 0..1 |
 | Portal logo | to be displayed on a card for Brands that have a portal logo in addition to their brand logo | 0..1 |
-| Portal URL | where patients can manage accounts with this provider. | 1..1 |
+| Portal URL | where patients can manage accounts with this provider. | 0..1 |
 | Patient-facing description | explaining the subset of patients eligible to connect, or the data available in a patient-friendly language | 0..1 |
 | API Endpoints| FHIR API Endpoints associated with the portal | 0..* |
 {:.grid}
