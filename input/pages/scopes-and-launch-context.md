@@ -576,7 +576,7 @@ properties:
 
 * `"identifier"` (object):  FHIR Identifier for the `fhirContext` item
 
-* `"type"` (string): FHIR resource type of the `fhirContext` item
+* `"type"` (string): FHIR resource type of the `fhirContext` item (RECOMMENDED when `"identifier"` or `"canonical"` is present)
 
 * `"role"` (string):  URI identifying the role of this `fhirContext` item.
 Relative role URIs can only be used if they are defined in this specification; other
