@@ -486,6 +486,19 @@ addition to whatever FHIR Resource access scopes it needs. Launch context scopes
 easy to tell apart from FHIR Resource scopes, because they always begin with
 `launch`.
 
+Requested Scope | Meaning
+----------------|---------
+`launch/patient`   | Need patient context at launch time (FHIR Patient resource).
+`launch/encounter` | Need encounter context at launch time (FHIR Encounter resource).
+(Others)           | This list can be extended by any SMART EHR to support additional context.  When specifying resource types, convert the type names to *all lowercase* (e.g., `launch/diagnosticreport`). In situations where the same resource type might be used for more than one purpose (e.g., in a medication reconciliation app, one List of at-home medications and another List of in-hospital medications), the app can solicit context with a specific role by appending `?role={role}` (see [example below](#fhircontext-example-medication-reconciliation)).
+{:.grid}
+
+When using `?role=` in launch context requests:
+* Each requested scope can include at most one role. If an app requires multiple roles, it MAY request multiple scopes (e.g., `launch/relatedperson?role=friend` and `launch/relatedperson?role=neighbor`).
+* If an EHR receives a request for an unsupported role, it SHOULD return any launch context supported for the supplied resource type. It MAY return alternative roles.
+
+
+
 There are two general approaches to asking for launch context data depending
 on the details of how your app is launched.
 
@@ -508,14 +521,8 @@ If an application requests a FHIR Resource scope which is restricted to a single
 
 Standalone apps that launch outside the EHR do not have any EHR context at the outset. These apps must explicitly request EHR context. The EHR SHOULD provide the requested context if requested by the following scopes, unless otherwise noted.
 
-Requested Scope | Meaning
-----------------|---------
-`launch/patient`   | Need patient context at launch time (FHIR Patient resource). See note below.
-`launch/encounter` | Need encounter context at launch time (FHIR Encounter resource).
-(Others)           | This list can be extended by any SMART EHR to support additional context.  When specifying resource types, convert the type names to *all lowercase* (e.g., `launch/diagnosticreport`). In situations where the same resource type might be used for more than one purpose (e.g., in a medication reconciliation app, one List of at-home medications and another List of in-hospital medications), the app can solicit context with a specific role by appending `?role={role}` (see [example below](#fhircontext-example-medication-reconciliation)).
-{:.grid}
-
 Note on `launch/patient`: If an application requests a scope which is restricted to a single patient (e.g., `patient/*.rs`), and the authorization results in the EHR granting that scope, the EHR SHALL establish a patient in context. The EHR MAY refuse authorization requests including `patient/` that do not also include a valid `launch/patient` scope, or it MAY infer the `launch/patient` scope.
+
 
 #### Launch context arrives with your `access_token`
 
@@ -535,7 +542,8 @@ parameters:
 //...
 }
 ```
-Some common launch context parameters are shown below. The following sections provides further details:
+
+Some common launch context parameters are shown in the example below. The following sections provides further details:
 
 Launch context parameter | Example value | Meaning
 -------------------------|---------------|---------
@@ -548,13 +556,14 @@ Launch context parameter | Example value | Meaning
 `tenant`              | `"2ddd6c3a-8e9a-44c6-a305-52111ad302a2"` | String conveying an opaque identifier for the healthcare organization that is launching the app. This parameter is intended primarily to support EHR Launch scenarios.
 {:.grid}
 
-<h5 id="fhir-context"><code>fhirContext</code></h5>
+<a id="fhir-context"></a>
+#### `fhirContext`
 
 To allow application flexibility, maintain backwards compatibility, and keep a
 predictable JSON structure, any contextual resource types that were requested
-by a launch scope will appear in the `fhirContext` array. The Patient and
-Encounter resource types will *not be deprecated from top-level parameters*,
-and they will *not be permitted* within the `fhirContext` array unless they
+by a launch scope will appear in the `fhirContext` array. The two exceptions are
+Patient and Encounter resource types, which will *not be deprecated from top-level
+parameters*, and they will *not be permitted* within the `fhirContext` array unless they
 include a `role` other than `"launch"`.
 
 Each object in the `fhirContext` array SHALL include at least one of
