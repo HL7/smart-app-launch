@@ -2,13 +2,8 @@ The SMART's App Launch specification enables apps to launch and securely interac
 The specification can be described as a set of capabilities and a given SMART on FHIR server implementation
 may implement a subset of these.  The methods of declaring a server's SMART authorization endpoints and launch capabilities are described in the sections below.
 
-### SMART on FHIR OAuth authorization Endpoints and Capabilities
 
-The server SHALL convey the FHIR OAuth authorization endpoints and any *optional* SMART Capabilities it supports using a [Well-Known Uniform Resource Identifiers (URIs)](#using-well-known) JSON file. (In previous versions of SMART, some of these details were also conveyed in a server's CapabilityStatement; this mechanism is now deprecated.)
-
-Capabilities designated *"experimental"* indicate features where community feedback is especially welcome; they are ready for adoption but could change over time based on implementation experience.
-
-### Conformance Language
+#### Conformance Language
 
 This specification uses the conformance verbs SHALL, SHOULD, and MAY as defined
 in [RFC2119](https://www.ietf.org/rfc/rfc2119.txt). Unlike RFC 2119, however,
@@ -50,6 +45,8 @@ External implementation guides MAY define additional capabilities to be discover
 #### Capabilities
 
 To promote interoperability, the following SMART on FHIR *Capabilities* have been defined. A given set of these capabilities is combined to support a specific use, a *Capability Set*.
+
+Capabilities designated *"experimental"* indicate features where community feedback is especially welcome; they are ready for adoption but could change over time based on implementation experience.
 
 ##### Launch Modes
 
@@ -118,19 +115,20 @@ completing the launch.
 
 * `smart-app-state`: support for managing [SMART App State](./app-state.html)
 
-<br />
-
-### HTTP Headers
-
-As described in the underlying HTTP specifications, <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers">header names are compared in a case-insensitive manner</a>.
 
 ### FHIR Authorization Endpoint and Capabilities Discovery using a Well-Known Uniform Resource Identifiers (URIs)
 {: #using-well-known}
 
-The authorization endpoints accepted by a FHIR resource server are exposed as a Well-Known Uniform Resource Identifiers (URIs) [(RFC5785)](https://datatracker.ietf.org/doc/html/rfc5785) JSON document.
+FHIR endpoints requiring authorization SHALL serve a JSON document at the
+location formed by appending `/.well-known/smart-configuration` to their base
+URL.  The server SHALL convey the FHIR OAuth authorization endpoints and any
+*optional* SMART Capabilities it supports using this "Well-Known Uniform
+Resource Identifiers (URIs)" JSON document (see [RFC5785](https://datatracker.ietf.org/doc/html/rfc5785)).
+Contrary to RFC5785 Appendix B.4, the `.well-known` path component may be appended even if the FHIR
+endpoint already contains a path component.
 
-FHIR endpoints requiring authorization SHALL serve a JSON document at the location formed by appending `/.well-known/smart-configuration` to their base URL.
-Contrary to RFC5785 Appendix B.4, the `.well-known` path component may be appended even if the FHIR endpoint already contains a path component.
+(In previous versions of SMART, some of these details were also conveyed in a server's CapabilityStatement; this mechanism is now deprecated.)
+
 
 Responses for `/.well-known/smart-configuration` requests SHALL be JSON, regardless of `Accept` headers provided in the request.
 
@@ -230,3 +228,6 @@ Content-Type: application/json
 }
 ```
 
+### HTTP Headers
+
+As described in the underlying HTTP specifications, <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers">header names are compared in a case-insensitive manner</a>.
