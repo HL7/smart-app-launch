@@ -47,22 +47,15 @@ EHRs supporting this capability SHALL advertise support by including
 `"smart-app-state"` in the capabilities array of their FHIR server's
 `.well-known/smart-configuration` file (see section [Conformance](conformance.html)).
 
-EHRs supporting this capability MAY include a `smart_app_state_endpoint`
-property if they want to maintain App State management functionality at a
+EHRs MAY include an `associated_endpoints[]` entry if they want to maintain App State management functionality at a
 location distinct form the core EHR's FHIR endpoint (see section [Design
 Notes](#design-notes)).
-
-The EHR's "App State FHIR endpoint" is defined as:
-
-1. The value in `smart_app_state_endpoint`, if present
-2. The EHR's primary FHIR endpoint, otherwise
-
 
 #### Example discovery document
 
 Consider a FHIR server with base URL `https://ehr.example.org/fhir`.
 
-The discovery document at
+If state is directly managed by the FHIR server, the discovery document at
 `https://ehr.example.org/fhir/.well-known/smart-configuration` might include:
 
 ```js
@@ -71,10 +64,22 @@ The discovery document at
     "smart-app-state",
     // <other capabilities snipped>
   ],
-  "smart_app_state_endpoint": "https://ehr.example.org/appstate"
   // <other properties snipped>
 }
 ```
+
+If state is externally managed, the discovery document might include:
+
+```js
+{
+  "associated_endpoints": [{
+    "url": "https://ehr.example.org/appstate",
+    "capabilities": ["smart-app-state"]
+  }]
+  // <other properties snipped>
+}
+```
+
 
 ### App State Interactions
 

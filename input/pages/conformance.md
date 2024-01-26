@@ -53,6 +53,8 @@ To promote interoperability, the following SMART on FHIR *Capabilities* have bee
 
 Capabilities designated *"experimental"* indicate features where community feedback is especially welcome; they are ready for adoption but could change over time based on implementation experience.
 
+To allow for extensibility, additional capabilities MAY be listed by a server or defined by other implementation guides, as long as these capabilities are represented with full URIs. Simple, non-URI capability strings are reserved for definition in SMART App Launch (see below).
+
 ##### Launch Modes
 
 * `launch-ehr`: support for SMART's EHR Launch mode  
@@ -120,7 +122,6 @@ completing the launch.
 
 * `smart-app-state`: support for managing [SMART App State](./app-state.html)
 
-
 ### FHIR Authorization Endpoint and Capabilities Discovery using a Well-Known Uniform Resource Identifiers (URIs)
 {: #using-well-known}
 
@@ -181,7 +182,8 @@ A JSON document must be returned using the `application/json` mime type.
 - `token_endpoint`: **REQUIRED**, URL to the OAuth2 token endpoint.
 - `token_endpoint_auth_methods_supported`: **OPTIONAL**, array of client authentication methods supported by the token endpoint. The options are "client_secret_post", "client_secret_basic", and "private_key_jwt".
 - `registration_endpoint`: **OPTIONAL**, If available, URL to the OAuth2 dynamic registration endpoint for this FHIR server.
-- `associated_endpoints`: **OPTIONAL**, Array of objects for endpoints that share the same authorization mechanism as this FHIR endpoint, each with a "url" and "capabilities" array
+- `smart_app_state_endpoint`: **OPTIONAL, DEPRECATED**, URL to the EHR's app state endpoint. Deprecated; use `associated_endpoints` with the `smart-app-state` capability instead.
+- `associated_endpoints`: **OPTIONAL**, Array of objects for endpoints that share the same authorization mechanism as this FHIR endpoint, each with a "url" and "capabilities" array. This property is deemed *experimental*.
 - `user_access_brand_bundle`: **RECOMMENDED**, URL for a Brand Bundle. See [User Access Brands](brands.html).
 - `user_access_brand_identifier`: **RECOMMENDED**, Identifier for the primary entry in a Brand Bundle. See [User Access Brands](brands.html).
 - `scopes_supported`: **RECOMMENDED**, Array of scopes a client may request. See [scopes and launch context](scopes-and-launch-context.html#quick-start). The server SHALL support all scopes listed here; additional scopes MAY be supported (so clients should not consider this an exhaustive list).
@@ -229,7 +231,11 @@ Content-Type: application/json
     "client-confidential-symmetric",
     "context-ehr-patient",
     "sso-openid-connect"
-  ]
+  ],
+  "associated_endpoints": [{
+    "url": "https://state.example.com",
+    "capabilities": ["smart-app-state"]
+  }]
 }
 ```
 
