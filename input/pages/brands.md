@@ -8,7 +8,7 @@ The [Patient-Access Brand Examples](example-brands.html) illustrate how provider
 
 ### Brands and Endpoints
 
-This specification supports a model UX where apps display a collection of cards or tiles, each representing a "Patient-access Brand" that patients can recognize and connect to. App developers are not expected to follow this model UX precisely; the model exists to keep the design grounded and establish a shared vocabulary.
+This specification supports a model User Experience (UX) where apps display a collection of cards or tiles, each representing a "Patient-access Brand" that patients can recognize and connect to. App developers are not expected to follow this model UX precisely; the model exists to keep the design grounded and establish a shared vocabulary.
 
 In this model, a healthcare **provider, payer, or other organization** exposing a FHIR patient access API can **decide which brands to publish** in association with their FHIR endpoints. Each Brand includes data describing the organization (e.g., organization name and logo that a patient would recognize) together with details about their patient access portals (e.g., name, logo, and description in terms that patients would recognize) as well as the API endpoints associated with these portals.
 
@@ -321,7 +321,7 @@ Publishers SHOULD include a weak `ETag` header in all HTTP responses. Clients SH
 
 ##### Metadata in `.well-known/smart-configuration`
 
-FHIR servers supporting this IG SHOULD include the following properties in the SMART configuration JSON response:
+To ensure that SMART apps can discover Brand information directly from a FHIR endpoint's base URL, FHIR servers supporting this IG SHOULD include the following properties in the SMART configuration JSON response:
 
 * `patientAccessBrandBundle` URL of a Brand Bundle. The Bundle entries include any Brand and "peer endpoints" associated with this FHIR endpoint.
 * `patientAccessBrandIdentifier`: FHIR Identifier for this server's primary Brand within the Bundle. Publishers SHALL populate this property if the referenced Brand Bundle includes more than one Brand. When present, this identifier SHALL consist of a `value` and SHOULD have a `system`. 
