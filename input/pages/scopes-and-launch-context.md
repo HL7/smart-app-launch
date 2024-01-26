@@ -502,7 +502,7 @@ The application could choose to also provide `launch/patient`,
 contexts the app would like the EHR to gather. The EHR MAY ignore these hints
 (for example, if the user is in a workflow where these contexts do not exist).
 
-If an application requests a FHIR Resource scope which is restricted to a single patient (e.g., `patient/*.rs`), and the authorization results in the EHR is granting that scope, the EHR SHALL establish a patient in context. The EHR MAY refuse authorization requests including `patient/` that do not also include a valid `launch`, or it MAY infer the `launch/patient` scope.
+If an application requests a FHIR Resource scope which is restricted to a single patient (e.g., `patient/*.rs`), and the authorization results in the EHR granting that scope, the EHR SHALL establish a patient in context. The EHR MAY refuse authorization requests including `patient/` that do not also include a valid `launch`, or it MAY infer the `launch/patient` scope.
 
 #### Standalone apps
 
@@ -512,7 +512,7 @@ Requested Scope | Meaning
 ----------------|---------
 `launch/patient`   | Need patient context at launch time (FHIR Patient resource). See note below.
 `launch/encounter` | Need encounter context at launch time (FHIR Encounter resource).
-(Others)           | This list can be extended by any SMART EHR to support additional context.  When specifying resource types, convert the type names to *all lowercase* (e.g., `launch/diagnosticreport`). In situations where the same resource type might be used for more than one purpose (e.g., in a medication reconciliation app, one List of at-home medications and another List of in-hospital medicdations), the app can solicit context with a specific role by appending `?role={role}` (see [example below](#fhircontext-example-medication-reconciliation)).
+(Others)           | This list can be extended by any SMART EHR to support additional context.  When specifying resource types, convert the type names to *all lowercase* (e.g., `launch/diagnosticreport`). In situations where the same resource type might be used for more than one purpose (e.g., in a medication reconciliation app, one List of at-home medications and another List of in-hospital medications), the app can solicit context with a specific role by appending `?role={role}` (see [example below](#fhircontext-example-medication-reconciliation)).
 {:.grid}
 
 Note on `launch/patient`: If an application requests a scope which is restricted to a single patient (e.g., `patient/*.rs`), and the authorization results in the EHR granting that scope, the EHR SHALL establish a patient in context. The EHR MAY refuse authorization requests including `patient/` that do not also include a valid `launch/patient` scope, or it MAY infer the `launch/patient` scope.

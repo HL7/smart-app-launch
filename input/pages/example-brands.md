@@ -8,7 +8,7 @@ Let's begin by considering a national lab with many locations nationwide.
 
 The configuration below establishes a single top-level Brand with a potentially long list of ExampleLabs addresses. In this configuration there's a single Organization associated with a single portal and endpoint. The organization lists several aliases and addresses.
 
-(An alternative choice for ExampleLabs would be to create an Organization for each state as a sub-brand with its own name, logo, and addresses. This is a decision that ExampleLabs can make based on how they want their brand to appear in patieint-facing apps.)
+(An alternative choice for ExampleLabs would be to create an Organization for each state as a sub-brand with its own name, logo, and addresses. This is a decision that ExampleLabs can make based on how they want their brand to appear in patient-facing apps.)
 
 Based on this configuration, a patient app might display the following cards to a user:
 <div class="bg-info" markdown="1">
@@ -40,7 +40,7 @@ Next, let's look at a Regional health system ("ExampleHealth") that has:
 * Has locations in/around 12 cities
 * Provides EHR for independent affiliates (distinctly branded sites like "ExampleHealth Physicians of Madison" or "ExampleHealth Community Hospital")
 
-The configuration below establishes a single Organiztion for ExampleHealth, with a single portal associated with two FHIR endpoints (one R2, one R4). There are also Organizations for the affiliated providers, each indicating a `partOf`  relationship with ExampleHealth.
+The configuration below establishes a single Organization for ExampleHealth, with a single portal associated with two FHIR endpoints (one R2, one R4). There are also Organizations for the affiliated providers, each indicating a `partOf`  relationship with ExampleHealth.
 
 Based on this configuration, a patient app might display the following cards to a user:
 
@@ -86,7 +86,7 @@ Now let's look at a more complex (but still surprisingly common) scenario where 
 * EHR1: "Patient Gateway" for adult patients to help them connect with providers, manage appointments and refill prescriptions.
 * EHR2: "Pediatrics", a patient portal where parents can access their child's information.
 
-The configuration below establishes a single Organiztion for ExampleHospital, with a portal for pediatrics and a portal for adult care, each associated with a distinct endpoint.
+The configuration below establishes a single Organization for ExampleHospital, with a portal for pediatrics and a portal for adult care, each associated with a distinct endpoint.
 
 Based on this configuration, a patient app might display the following cards to a user:
 

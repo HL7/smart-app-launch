@@ -58,7 +58,7 @@
       {
         "id": "PAB",
         "name": "Patient Access Brand Examples",
-        "description": "The follow examples demonstrate use of Patient Access Brands. See [example-brands](./example-brands.html) for a guided tour."
+        "description": "The following examples demonstrate use of Patient Access Brands. See [example-brands](./example-brands.html) for a guided tour."
       },
       {
         "id": "SMARTAppState",

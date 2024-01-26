@@ -8,7 +8,7 @@ In addition to the `active` field required by RFC7662 (a boolean indicating whet
 
 * `client_id`. As included in the original access token response. The client identifier of the client to which the token was issued.
 
-* `exp`. As included in the original access token response. The integer timestamp indicating when the access token expires.
+* `exp`. As included in the original access token response. The integer timestamp indicates when the access token expires.
 
 ### Conditional fields in the introspection response
 

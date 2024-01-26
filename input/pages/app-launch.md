@@ -1,12 +1,12 @@
 The SMART App Launch Framework connects third-party applications to Electronic
 Health Record data, allowing apps to launch from inside or outside the user
 interface of an EHR system. The framework supports apps for use by clinicians,
-patients, and others via a PHR or Patient Portal or any FHIR system where a user can launch an app. It provides a reliable, secure authorization protocol for
+patients, and others via a PHR, Patient Portal, or any FHIR system where a user can launch an app. It provides a reliable, secure authorization protocol for
 a variety of app architectures, including apps that run on an end-user's device
 as well as apps that run on a secure server.
 The Launch Framework supports four key use cases:
 
-1. Patients apps that launch standalone
+1. Patient apps that launch standalone
 2. Patient apps that launch from a portal
 3. Provider apps that launch standalone
 4. Provider apps that launch from a portal
@@ -454,7 +454,7 @@ href="scopes-and-launch-context.html">SMART launch
 context parameters</a>.*
 
 
-The app then instructs the browser to navigate the browser to the EHR's **authorization URL** as
+The app then instructs the browser to navigate to the EHR's **authorization URL** as
 determined above. For example to cause the browser to issue a `GET`:
 
 

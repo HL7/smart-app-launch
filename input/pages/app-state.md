@@ -5,15 +5,15 @@ configuration data to an EHR's FHIR server. Conformance requirements described
 below apply only to software that implements support for this capability.
 Example use cases include:
 
-* App with no backend storage persists user preferences such as default
+* An app with no backend storage persists user preferences such as default
   screens, shortcuts, or color preferences. Such apps can save preferences to
   the EHR and retrieve them on subsequent launches.
 
-* App maintains encrypted external data sets. Such apps can persist access keys
+* An app maintains encrypted external data sets. Such apps can persist access keys
   to the EHR and retrieve them on subsequent launches, allowing in-app
   decryption and display of external data sets.
 
-**Apps SHALL NOT use `smart-app-state` when data being persisted could be
+**Apps SHALL NOT use `smart-app-state` when the data being persisted could be
 managed directly using FHIR domain models.** For example, an app would never
 persist clinical diagnoses or observations using `smart-app-state`. Such usage
 is prohibited because the standard FHIR API provides safer and more
@@ -433,7 +433,7 @@ types like `https://app.example.org|user-preferences` or
 State types, these could be reviewed through an out-of-band process. This
 situation is expected when one developer supplies a patient-facing app and
 another developer supplies a provider-facing "companion app" that needs to
-query state written by the patient-facing app.
+query the state written by the patient-facing app.
 
 Further consideration is required when granting an app the ability to modify
 global app state (i.e., where `Basic.subject` is absent). Such permissions
