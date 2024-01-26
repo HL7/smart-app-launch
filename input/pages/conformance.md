@@ -176,7 +176,7 @@ A JSON document must be returned using the `application/json` mime type.
 - `token_endpoint`: **REQUIRED**, URL to the OAuth2 token endpoint.
 - `token_endpoint_auth_methods_supported`: **OPTIONAL**, array of client authentication methods supported by the token endpoint. The options are "client_secret_post", "client_secret_basic", and "private_key_jwt".
 - `registration_endpoint`: **OPTIONAL**, If available, URL to the OAuth2 dynamic registration endpoint for this FHIR server.
-- `smart_app_state_endpoint`: **CONDITIONAL**, URL to the EHR's app state endpoint. SHALL be present when the EHR supports the `smart-app-state` capability and the endpoint is distinct from the EHR's primary endpoint.
+- `associated_endpoints`: **OPTIONAL**, Array of objects for endpoints that share the same authorization mechanism as this FHIR endpoint, each with a "url" and "capabilities" array
 - `userAccessBrandBundle`: **RECOMMENDED**, URL for a Brand Bundle. See [User Access Brands](brands.html).
 - `userAccessBrandIdentifier`: **RECOMMENDED**, Identifier for the primary entry in a Brand Bundle. See [User Access Brands](brands.html).
 - `scopes_supported`: **RECOMMENDED**, Array of scopes a client may request. See [scopes and launch context](scopes-and-launch-context.html#quick-start). The server SHALL support all scopes listed here; additional scopes MAY be supported (so clients should not consider this an exhaustive list).
@@ -224,7 +224,11 @@ Content-Type: application/json
     "client-confidential-symmetric",
     "context-ehr-patient",
     "sso-openid-connect"
-  ]
+  ],
+  "associated_endpoints": [{
+    "url": "https://state.example.com",
+    "capabilities": ["smart-app-state"]
+  }]
 }
 ```
 
