@@ -63,7 +63,7 @@
             "coding": [
               {
                 "code": "clinical",
-                "system": "http://hl7.org/fhir/smart-app-launch/CodeSystem/patient-access-category",
+                "system": "http://hl7.org/fhir/smart-app-launch/CodeSystem/user-access-category",
                 "display": "Clinical"
               }
             ]
@@ -160,7 +160,7 @@
             "coding": [
               {
                 "code": "clinical",
-                "system": "http://hl7.org/fhir/smart-app-launch/CodeSystem/patient-access-category",
+                "system": "http://hl7.org/fhir/smart-app-launch/CodeSystem/user-access-category",
                 "display": "Clinical"
               }
             ]
@@ -215,7 +215,7 @@
             "coding": [
               {
                 "code": "clinical",
-                "system": "http://hl7.org/fhir/smart-app-launch/CodeSystem/patient-access-category",
+                "system": "http://hl7.org/fhir/smart-app-launch/CodeSystem/user-access-category",
                 "display": "Clinical"
               }
             ]

@@ -1,8 +1,8 @@
-[PatientAccessBrandsBundle]: StructureDefinition-patient-access-brands-bundle.html
-[PatientAccessBrand]: StructureDefinition-patient-access-brand.html
-[PatientAccessEndpoint]: StructureDefinition-patient-access-endpoint.html
-[PatientAccessCategoryCodeSystem]: CodeSystem-patient-access-category.html
-[PatientAccessCategoryValueSet]: ValueSet-patient-access-category.html
+[UserAccessBrandsBundle]: StructureDefinition-user-access-brands-bundle.html
+[UserAccessBrand]: StructureDefinition-user-access-brand.html
+[UserAccessEndpoint]: StructureDefinition-user-access-endpoint.html
+[UserAccessCategoryCodeSystem]: CodeSystem-user-access-category.html
+[UserAccessCategoryValueSet]: ValueSet-user-access-category.html
 [example1]: Bundle-example1.html
 [example2]: Bundle-example2.html
 [example3]: Bundle-example3.html

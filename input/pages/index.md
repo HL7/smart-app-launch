@@ -42,7 +42,7 @@ SMART uses a language of "scopes" to define specific access permissions that can
 
 SMART defines a Token Introspection API allowing Resource Servers or software components to understand the scopes, users, patients, and other context associated with access tokens. This pattern allows a looser coupling between Resource Servers and Authorization Servers.
 
-### [Patient-Access Brands](brands.html)
+### [User-Access Brands](brands.html)
 
 SMART defines a publication format for API providers to make branding information available to patient-facing apps. This helps apps offer a "connect to my records" UX where providers appear with the names, logos, and descriptions they choose.
 

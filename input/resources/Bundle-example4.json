@@ -51,7 +51,7 @@
           {
             "coding": [
               {
-                "system": "http://hl7.org/fhir/smart-app-launch/CodeSystem/patient-access-category",
+                "system": "http://hl7.org/fhir/smart-app-launch/CodeSystem/user-access-category",
                 "code": "insurance",
                 "display": "Insurance"
               }
@@ -129,7 +129,7 @@
           {
             "coding": [
               {
-                "system": "http://hl7.org/fhir/smart-app-launch/CodeSystem/patient-access-category",
+                "system": "http://hl7.org/fhir/smart-app-launch/CodeSystem/user-access-category",
                 "code": "insurance",
                 "display": "Insurance"
               }

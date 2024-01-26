@@ -26,9 +26,9 @@ Nearest location: 1 mile (Madison)
 
 The FHIR server's `.well-known/smart-configuration` file would include a link like
 
-    "patientAccessBrands": "https://labs.example.com/branding.json"
+    "userAccessBrands": "https://labs.example.com/branding.json"
     
-And the hosted Patient Access Brands Bundle file would look like:
+And the hosted User Access Brands Bundle file would look like:
 
 [Raw JSON](Bundle-example1.json)
 
