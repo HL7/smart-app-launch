@@ -576,9 +576,11 @@ NOT be the empty string.The absence of a role property is semantically
 equivalent to a role of `"launch"`, indicating to a client that the app launch
 was performed in the context of the referenced resource. More granular role URIs
 can be adopted in use-case-specific ways. Multiple `fhirContext` items MAY have
-the same role.  Note: Specifications defining custom roles can list them in the
+the same role.
+  * Note: Specifications defining custom roles can list them in the
 [fhirContext Role Registry](https://confluence.hl7.org/display/FHIRI/fhirContext+Role+Registry) to
 promote awareness and reuse.
+  * Note: We have not yet defined a protocol for apps to discover which roles an EHR supports; as such, it is important for EHRs to include this information in their developer documentation.
 
 Note that for `"identifier"` and `"canonical"`, this specification does not
 define rules for access control. The app may reach out to different servers to
