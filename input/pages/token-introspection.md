@@ -6,9 +6,9 @@ In addition to the `active` field required by RFC7662 (a boolean indicating whet
 
 * `scope`. As included in the original access token response. The list of scopes granted by the authorization server as a space-separated JSON string.
 
-* `client_id`. As included in the original access token response. The client identifier of the client to which the token was issued.
+* `client_id`. As included in the original access token request. The client identifier of the client to which the token was issued.
 
-* `exp`. As included in the original access token response. The integer timestamp indicates when the access token expires.
+* `exp`.  The integer timestamp indicates when the access token expires. This timestamp will be consistent the with `expires_in` interval provided in the original access token response.
 
 ### Conditional fields in the introspection response
 
