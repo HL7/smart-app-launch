@@ -1,8 +1,8 @@
 ### Introduction
 
-The specification defines FHIR profiles for [Endpoint]({{site.data.fhir.path}}endpoint.html), [Organization]({{site.data.fhir.path}}organization.html), and [Bundle]({{site.data.fhir.path}}bundle.html) resources that make it easier for user-facing apps to connect to health data providers. It outlines the process for API providers to publish Brands associated with their FHIR Endpoints, and for apps to collect and present these Brands to users. Each Brand includes essential information such as the organization's name, logo, and user access details, which apps can display in their user interface.
+The specification defines FHIR profiles for [Endpoint]({{site.data.fhir.path}}endpoint.html), [Organization]({{site.data.fhir.path}}organization.html), and [Bundle]({{site.data.fhir.path}}bundle.html) resources that help users connect their apps to health data providers. It outlines the process for data providers to publish FHIR Endpoint and Organization resources, where each Organization includes essential branding information such as the organization's name, logo, and user access details. Apps present branded Organizations to help users select the right data providers.
 
-EHR systems, healthcare providers, and app developers can ensure a consistent and recognizable user experience when connecting users to their health records across various platforms and services by following this specification.
+By following this specification, EHR systems, healthcare providers, payers, and app developers can ensure a consistent and recognizable user experience when connecting users to health records across various platforms and services.
 
 The [User-Access Brand Examples](example-brands.html) illustrate how providers can represent diverse scenarios.
 

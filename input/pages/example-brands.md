@@ -6,9 +6,9 @@
 
 Let's begin by considering a national lab with many locations nationwide.
 
-The configuration below establishes a single top-level Brand with a potentially long list of ExampleLabs addresses. In this configuration there's a single Organization associated with a single portal and endpoint. The organization lists several aliases and addresses.
+The configuration below establishes a single top-level Organization (applying the `UserAccessBrand` profile) with a potentially long list of ExampleLabs addresses. In this configuration there's a single Organization associated with a single portal and endpoint. The organization lists several aliases and addresses.
 
-(An alternative choice for ExampleLabs would be to create an Organization for each state as a sub-brand with its own name, logo, and addresses. This is a decision that ExampleLabs can make based on how they want their brand to appear in patient-facing apps.)
+(An alternative choice for ExampleLabs would be to create an Organization for each state as a "sub-brand" with its own name, logo, and addresses. This is a decision that ExampleLabs can make based on how they wish to appear in patient-facing apps.)
 
 Based on this configuration, a patient app might display the following cards to a user:
 <div class="bg-info" markdown="1">
