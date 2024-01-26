@@ -28,6 +28,8 @@ In this model, an **app** can:
 
 ### Brand Information
 
+*Note*: The overview tables and annotated examples on this page are intended for convenience and clarity. In case of any discrepancies, the formal profiles should be considered the definitive source of truth.
+
 #### Information Included In Each Brand
 
 Each Brand includes the following information intended to support an app-based card or tile UX:
