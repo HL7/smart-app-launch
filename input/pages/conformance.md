@@ -1,6 +1,11 @@
-The SMART's App Launch specification enables apps to launch and securely interact with EHRs.
-The specification can be described as a set of capabilities and a given SMART on FHIR server implementation
-may implement a subset of these.  The methods of declaring a server's SMART authorization endpoints and launch capabilities are described in the sections below.
+The SMART App Launch specification enables apps to launch and securely integrate with EHRs. The conformance framework for SMART on FHIR includes:
+
+* **Actors**
+  * *EHR Systems*: Operate as both resource servers and authorization servers, managing and providing secure access to health data.
+  * *Apps*: Operate as clients, seeking access to health data for diverse purposes.
+* **Capabilities**: the individual functional elements that an EHR system or a third-party application can support. A capability represents a single, distinct piece of functionality or a specific feature available within the SMART on FHIR ecosystem.
+* **Capability Sets**: collections of EHR capabilities that, when combined, enable specific use cases or application scenarios  (e.g., patient standalone access).
+* **Discovery Protocol**: a standardized method allowing apps to automatically identify the capabilities, services, and endpoints an EHR system offers. 
 
 
 #### Conformance Language
