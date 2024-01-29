@@ -20,10 +20,10 @@ In this model, an **app** can:
 * Guide useres to **connect** to FHIR endpoints for the selected portals
 
 ### Design goals
-- Providers can publish Brand details (name, logo, etc.) that users will recognize
+- Health Data Providers can publish Brand details (name, logo, etc.) that users will recognize
 - Brands can be associated with one or more user access portals
 - Portals can be associated with one or more FHIR endpoints
-- Apps display Brands to create a “connect to my health records” UX
+- Apps display Brands to create a "connect to my health records" UX
 - All details can be published in aggregate (e.g., by EHR vendor, by region, or globally)
 
 ### Brand Information
@@ -76,6 +76,38 @@ Commonly, a single Brand is typically associated with a single Portal that offer
   * e.g., a health system's portal might have one Endpoint for laboratory results and another for imaging results
 * *Multiple Brands are associated with the same Portal*
   * e.g., a regional health system that patients recognize under distinct brands associated with specific hospitals or clinics -- even though all these paths lead to the same portal and FHIR Endpoints.
+
+### Conformance Overview
+
+*Note*: This conformance overview is intended for convenience and clarity. In case of any discrepancies, the formal profiles should be considered the definitive source of truth.
+
+* **Health Data Provider**. Any organization that offers SMART on FHIR access to its users and wishes to appear as a branded entity in user-facing apps. A Health Data Provider works with a Brand Bundle Publisher and SMART on FHIR Server to manage Organization and Endpoint details.
+  * RECOMMENDED to define an Organization identifier where `system` is `urn:ietf:rfc:3986` and `value` is the HTTPS URL for the brand's primary web presence, omitting any "www." prefix from the domain and omitting any path component
+* **Brand Bundle Publisher**. Any organization hosting or enabling management of a User Access Brand Bundle.
+  * SHALL publish at least a "primary brand" that references each FHIR endpoint in the Brand Bundle
+  * SHOULD support the publication of a more detailed Brand hierarchy
+  * SHALL populate `Bundle.timestamp` to advertise the timestamp of the last change to the contents
+  * SHOULD populate `Bundle.entry.resource.meta.lastUpdated` with a more detailed timestamp if the system tracks updates per Resource.
+  * SHALL support Cross-Origin Resource Sharing (CORS) for all GET requests to the artifacts described in this guide.
+  * SHOULD include a weak `ETag`` header in all Brand Bundle HTTP responses
+  * SHALL allow Health Data Providers to manage all data elements marked "Must-Support" in the "[User Access Brand](StructureDefinition-user-access-brand.html)" and "[User Access Endpoint](StructureDefinition-user-access-endpoint.html)" profiles
+    * SHALL support customer-supplied Organization identifiers (`system` and `value``)
+    * MAY provide a Data Absent Reason of `asked-declined` or `asked-unknown` in a Brand Bundle
+    * SHALL NOT use Data Absent Reasons other than `asked-declined` or `asked-unknown` in a Brand Bundle
+* **SMART on FHIR Server**. Any SMART on FHIR server that supports discovery of a User Access Brand Bundle.
+  * SHOULD include `userAccessBrandBundle` and `userAccessBrandIdentifier` properties in the SMART configuration JSON response
+  * When populating `userAccessBrandBundle`
+      * SHOULD link to a Bundle that includes only Brands and Endpoints affiliated with the Health Data Provider responsible for this SMART on FHIR server
+      * MAY link to a Bundle with Brands or Endpoints for additional Health Data Providers
+      * SHALL populate `userAccessBrandIdentifier` in SMART configuration JSON response if the `userAccessBrandBundle` refers to a Bundle with multiple Brands.
+  * When populating `userAccessBrandIdentifier`
+      * SHALL include a `value`
+      * SHOULD include a `system`
+      * SHALL ensure this identifier matches exactly one `Organization.identifier` in the referenced Brand Bundle
+* **App**. Any SMART on FHIR app that leverages a User Access Brand Bundle.
+  * SHOULD provide an `If-None-Match` header in all Brand Bundle requests to avoid re-fetching data that have not changed
+  * SHOULD cache Brand Bundle responses by ETag
+  * SHALL select FHIR resources linked from the `.well-known/smart-configuration` if they differ from the resources in a vendor-consolidated Brand Bundle
 
 ### FHIR Profiles
 
@@ -185,7 +217,7 @@ This annotated example illustrates how a Brand is represented as a FHIR Organiza
   // customer-supplied identifiers (system and value). It is RECOMMENDED that
   // each Brand include an identifier where system is `urn:ietf:rfc: 3986` 
   // (meaning the identifier is a URL) and value is the HTTPS URL for the
-  // Brand’s primary web presence, omitting any “www.” prefix and any path.
+  // Brand’s primary web presence, omitting any "www." prefix and any path.
   // Of course, additional Identifiers may be included as well.
   "identifier" : [{
     "system" : "urn:ietf:rfc:3986",
@@ -348,6 +380,6 @@ Dereferencing the `userAccessBrandBundle` URL above would return a Brand Bundle.
 
 ##### Must-Support Definition (`MS`) and Data Absent Reasons
 
-For this specification a profile element labeled as "must support" means publishers must provide a way for Brands to populate value. For example, marking a Brand's "address" as `0..* MS` means that a publisher needs to give Brands a way to supply multiple addresses, even if some choose not to provide any.
+User Access Brand profile elements labeled as "must support" mean publishers must provide a way for Brands to populate the value. For example, marking a Brand's "address" as `0..* MS` means that a publisher needs to give Brands a way to supply multiple addresses, even if some choose not to provide any.
 
 An EHR that publishes a Brand Bundle may not have some required data elements (Brand Website, Portal Website, Portal Name). If the EHR has asked, but a Brand administrator has not supplied a value, the EHR MAY provide a [Data Absent Reason](http://hl7.org/fhir/StructureDefinition/data-absent-reason) of `asked-declined` or `asked-unknown`. The EHR SHALL NOT use other Data Absent Reasons.
