@@ -335,23 +335,23 @@ The [User-Access Brand Examples](example-brands.html) illustrate how providers c
 * Cancer center affiliated with one portal for adult patients and another portal for pediatric patients
 * Clinical organization that has recently merged and still uses distinct brands
 
-#### Rules And Best Practices 
+### Rules And Best Practices 
 
-##### Consistent Identifiers for Organizations
+#### Consistent Identifiers for Organizations
 
 Apps can use a Brand's `Organization.identifier` element to merge content published in multiple sources. To facilitate robust matching, EHRs SHALL support customer-supplied identifiers (`system` and `value`). It is RECOMMENDED that each Brand include an identifier where `system` is `urn:ietf:rfc: 3986` (meaning the identifier is a URL) and `value` is the HTTPS URL for the Brand's primary web presence, omitting any "www." prefix from the domain and omitting any path component. For example, since the main web presence of Boston Children's Hospital is https://www.childrenshospital.org/, a recommended identifier would be
 
     {"system": "urn:ietf:rfc:3986", "value": "https://childrenshospital.org"}
 
-##### Managing Cross Origin Resource Sharing (CORS) For FHIR Resources
+#### Managing Cross Origin Resource Sharing (CORS) For FHIR Resources
 
 Publishers SHALL support [Cross-Origin Resource Sharing (CORS)](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Access-Control-Allow-Origin) for all GET requests to the artifacts described in this guide.
 
-##### Caching Brand Bundles
+#### Caching Brand Bundles
 
 Publishers SHOULD include a weak `ETag` header in all HTTP responses. Clients SHOULD cache responses by ETag and SHOULD provide an `If-None-Match` header in all requests to avoid re-fetching data that have not changed. See <https://www.hl7.org/fhir/http.html#cread> for background.
 
-##### Metadata in `.well-known/smart-configuration`
+#### Metadata in `.well-known/smart-configuration`
 
 To ensure that SMART apps can discover Brand information directly from a FHIR endpoint's base URL, FHIR servers supporting this IG SHOULD include the following properties in the SMART configuration JSON response:
 
@@ -362,7 +362,7 @@ The Brand Bundle SHALL include exactly one Brand with an `Organization.identifie
 
 The Brand Bundle SHOULD include only the Brands and Endpoints associated with the SMART on FHIR server that links to the Bundle. However, the Brand Bundle MAY have additional Brands or Endpoints (e.g., supporting a publication pattern where endpoints from a given vendor might point to a comprehensive, centralized vendor-managed list). 
 
-###### Example `.well-known/smart-configuration`
+##### Example `.well-known/smart-configuration`
 
 ```javascript
 {
@@ -378,7 +378,7 @@ The Brand Bundle SHOULD include only the Brands and Endpoints associated with th
 
 Dereferencing the `userAccessBrandBundle` URL above would return a Brand Bundle.
 
-##### Must-Support Definition (`MS`) and Data Absent Reasons
+#### Must-Support Definition (`MS`) and Data Absent Reasons
 
 User Access Brand profile elements labeled as "must support" mean publishers must provide a way for Brands to populate the value. For example, marking a Brand's "address" as `0..* MS` means that a publisher needs to give Brands a way to supply multiple addresses, even if some choose not to provide any.
 
