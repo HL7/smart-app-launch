@@ -182,8 +182,8 @@ A JSON document must be returned using the `application/json` mime type.
 - `token_endpoint_auth_methods_supported`: **OPTIONAL**, array of client authentication methods supported by the token endpoint. The options are "client_secret_post", "client_secret_basic", and "private_key_jwt".
 - `registration_endpoint`: **OPTIONAL**, If available, URL to the OAuth2 dynamic registration endpoint for this FHIR server.
 - `associated_endpoints`: **OPTIONAL**, Array of objects for endpoints that share the same authorization mechanism as this FHIR endpoint, each with a "url" and "capabilities" array
-- `userAccessBrandBundle`: **RECOMMENDED**, URL for a Brand Bundle. See [User Access Brands](brands.html).
-- `userAccessBrandIdentifier`: **RECOMMENDED**, Identifier for the primary entry in a Brand Bundle. See [User Access Brands](brands.html).
+- `user_access_brand_bundle`: **RECOMMENDED**, URL for a Brand Bundle. See [User Access Brands](brands.html).
+- `user_access_brand_identifier`: **RECOMMENDED**, Identifier for the primary entry in a Brand Bundle. See [User Access Brands](brands.html).
 - `scopes_supported`: **RECOMMENDED**, Array of scopes a client may request. See [scopes and launch context](scopes-and-launch-context.html#quick-start). The server SHALL support all scopes listed here; additional scopes MAY be supported (so clients should not consider this an exhaustive list).
 - `response_types_supported`: **RECOMMENDED**, Array of OAuth2 `response_type` values that are supported.  Implementers can refer to `response_type`s defined in OAuth 2.0 ([RFC 6749](https://datatracker.ietf.org/doc/html/rfc6749)) and in [OIDC Core](https://openid.net/specs/openid-connect-core-1_0.html#Authentication).
 - `management_endpoint`: **RECOMMENDED**, URL where an end-user can view which applications currently have access to data and can make adjustments to these access rights.

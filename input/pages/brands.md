@@ -95,12 +95,12 @@ Commonly, a single Brand is typically associated with a single Portal that offer
     * MAY provide a Data Absent Reason of `asked-declined` or `asked-unknown` in a Brand Bundle
     * SHALL NOT use Data Absent Reasons other than `asked-declined` or `asked-unknown` in a Brand Bundle
 * **SMART on FHIR Server**. Any SMART on FHIR server that supports discovery of a User Access Brand Bundle.
-  * SHOULD include `userAccessBrandBundle` and `userAccessBrandIdentifier` properties in the SMART configuration JSON response
-  * When populating `userAccessBrandBundle`
+  * SHOULD include `user_access_brand_bundle` and `user_access_brand_identifier` properties in the SMART configuration JSON response
+  * When populating `user_access_brand_bundle`
       * SHOULD link to a Bundle that includes only Brands and Endpoints affiliated with the Health Data Provider responsible for this SMART on FHIR server
       * MAY link to a Bundle with Brands or Endpoints for additional Health Data Providers
-      * SHALL populate `userAccessBrandIdentifier` in SMART configuration JSON response if the `userAccessBrandBundle` refers to a Bundle with multiple Brands.
-  * When populating `userAccessBrandIdentifier`
+      * SHALL populate `user_access_brand_identifier` in SMART configuration JSON response if the `user_access_brand_bundle` refers to a Bundle with multiple Brands.
+  * When populating `user_access_brand_identifier` 
       * SHALL include a `value`
       * SHOULD include a `system`
       * SHALL ensure this identifier matches exactly one `Organization.identifier` in the referenced Brand Bundle
@@ -363,8 +363,8 @@ Publishers SHOULD include a weak `ETag` header in all HTTP responses. Clients SH
 
 To ensure that SMART apps can discover Brand information directly from a FHIR endpoint's base URL, FHIR servers supporting this IG SHOULD include the following properties in the SMART configuration JSON response:
 
-* `userAccessBrandBundle` URL of a Brand Bundle. The Bundle entries include any Brand and "peer endpoints" associated with this FHIR endpoint.
-* `userAccessBrandIdentifier`: FHIR Identifier for this server's primary Brand within the Bundle. Publishers SHALL populate this property if the referenced Brand Bundle includes more than one Brand. When present, this identifier SHALL consist of a `value` and SHOULD have a `system`. 
+* `user_access_brand_bundle` URL of a Brand Bundle. The Bundle entries include any Brand and "peer endpoints" associated with this FHIR endpoint.
+* `user_access_brand_identifier`: FHIR Identifier for this server's primary Brand within the Bundle. Publishers SHALL populate this property if the referenced Brand Bundle includes more than one Brand. When present, this identifier SHALL consist of a `value` and SHOULD have a `system`. 
 
 The Brand Bundle SHALL include exactly one Brand with an `Organization.identifier` that matches the primary Brand identifier from SMART configuration JSON.
 
@@ -375,8 +375,8 @@ The Brand Bundle SHOULD include only the Brands and Endpoints associated with th
 ```javascript
 {
   // details at http://hl7.org/fhir/smart-app-launch/conformance.html
-  "userAccessBrandBundle": "https://example.org/brands.json",
-  "userAccessBrandIdentifier": {
+  "user_access_brand_bundle": "https://example.org/brands.json",
+  "user_access_brand_identifier": {
     "system": "urn:ietf:rfc:3986",
     "value": "https://example.org"
   },
@@ -384,7 +384,7 @@ The Brand Bundle SHOULD include only the Brands and Endpoints associated with th
 }
 ```
 
-Dereferencing the `userAccessBrandBundle` URL above would return a Brand Bundle.
+Dereferencing the `user_access_brand_bundle` URL above would return a Brand Bundle.
 
 #### Must-Support Definition (`MS`) and Data Absent Reasons
 
