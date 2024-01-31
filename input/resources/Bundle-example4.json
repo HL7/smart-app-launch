@@ -79,6 +79,12 @@
             "city": "St Helena",
             "state": "CA"
           }
+        ],
+        "endpoint": [
+          {
+            "reference": "Endpoint/coequal-example",
+            "display": "FHIR R4 Endpoint for Brand1/Brand2"
+          }
         ]
       }
     },
@@ -156,6 +162,12 @@
           {
             "city": "Santa Rosa",
             "state": "CA"
+          }
+        ],
+        "endpoint": [
+          {
+            "reference": "Endpoint/coequal-example",
+            "display": "FHIR R4 Endpoint for Brand1/Brand2"
           }
         ]
       }

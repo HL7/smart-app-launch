@@ -109,6 +109,16 @@
             "city": "Waltham",
             "state": "MA"
           }
+        ],
+        "endpoint": [
+          {
+            "reference": "https://ehr1.example.com/Endpoint/examplehospital-ehr1",
+            "display": "FHIR R4 Endpoint for EHR1"
+          },
+          {
+            "reference": "https://ehr2.example.com/Endpoint/examplehospital-ehr2",
+            "display": "FHIR R4 Endpoint for EHR2"
+          }
         ]
       }
     },
