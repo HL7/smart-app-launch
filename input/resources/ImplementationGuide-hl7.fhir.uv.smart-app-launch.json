@@ -149,22 +149,6 @@
       },
       {
         "reference": {
-          "reference": "Organization/example"
-        },
-        "name": "Example Brand",
-        "exampleCanonical": "http://hl7.org/fhir/smart-app-launch/StructureDefinition/user-access-brand",
-        "groupingId": "PAB"
-      },
-      {
-        "reference": {
-          "reference": "Endpoint/example"
-        },
-        "name": "Example Endpoint",
-        "exampleCanonical": "http://hl7.org/fhir/smart-app-launch/StructureDefinition/user-access-endpoint",
-        "groupingId": "PAB"
-      },
-      {
-        "reference": {
           "reference": "StructureDefinition/task-ehr-launch"
         },
         "name": "TaskEhrLaunch",
