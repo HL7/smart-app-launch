@@ -73,5 +73,11 @@
       "state": "MA",
       "postalCode": "02111"
     }
+  ],
+  "endpoint": [
+    {
+      "reference": "Endpoint/example",
+      "display": "FHIR R4 Endpoint for Example Brand"
+    }
   ]
 }

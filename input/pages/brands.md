@@ -242,6 +242,14 @@ This annotated example illustrates how a Brand is represented as a FHIR Organiza
     "postalCode" : "02111"
   }, {
     "postalCode" : "02139"
+  }],
+  // These endpoints are already listed above in association with their portal.
+  // They are repeated here as a convenience for clients that do not know how
+  // to interpret User Access Brands.
+  "endpoint": [{
+    "reference" : "Endpoint/goodhealth-r2"
+  }, {
+    "reference" : "Endpoint/goodhealth-r4"
   }]
 }
 ```
