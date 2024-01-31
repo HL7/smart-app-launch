@@ -148,7 +148,7 @@ This annotated example illustrates how a Brand is represented as a FHIR Organiza
     // (0..1) `organization-brand` extension conveys branding details that
     // are not part of FHIR's core data model
     "url" : "http://hl7.org/fhir/StructureDefinition/organization-brand",
-    "extension" : {
+    "extension" : [{
       // (0..*) Link to the logo (uses `https:` or  `data:` schme for inline)
       // * optimized for display as a 1 in / 2.54 cm square
       // * formatted as SVG or 1024x1024 pixel PNG with transparent background
@@ -164,7 +164,7 @@ This annotated example illustrates how a Brand is represented as a FHIR Organiza
       // this Brand may be available.
       "url" : "brandBundle",
       "valueUrl" : "https://goodhealth.example.org/branding.json"
-    },
+    }]
   },
   {
     // (0..*) `organization-portal` extension conveys details about a
