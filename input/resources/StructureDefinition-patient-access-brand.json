@@ -47,7 +47,7 @@
             "key" : "uab-1",
             "severity" : "error",
             "human" : "Portal endpoints must also appear at Organization.endpoint",
-            "expression" : "Organization.extension('http://hl7.org/fhir/StructureDefinition/organization-portal').extension('portalEndpoint').value.subsetOf(%resource.endpoint)",
+            "expression" : "Organization.extension('http://hl7.org/fhir/StructureDefinition/organization-portal').extension('portalEndpoint').value.ofType(Reference).reference.subsetOf(%resource.endpoint.reference)",
             "source" : "http://hl7.org/fhir/smart-app-launch/StructureDefinition/user-access-brand"
           }
         ]
