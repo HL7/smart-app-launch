@@ -41,7 +41,16 @@
         "id": "Organization",
         "path": "Organization",
         "short": "User Access Brand",
-        "definition": "A brand of a healthcare provider, such as a hospital, clinic, or practice"
+        "definition": "A brand of a healthcare provider, such as a hospital, clinic, or practice",
+        "constraint": [
+          {
+            "key" : "uab-1",
+            "severity" : "error",
+            "human" : "Portal endpoints must also appear at Organization.endpoint",
+            "expression" : "Organization.extension('http://hl7.org/fhir/StructureDefinition/organization-portal').extension('portalEndpoint').value.subsetOf(%resource.endpoint)",
+            "source" : "http://hl7.org/fhir/smart-app-launch/StructureDefinition/user-access-brand"
+          }
+        ]
       },
       {
         "id": "Organization.extension",
