@@ -490,7 +490,7 @@ Requested Scope | Meaning
 ----------------|---------
 `launch/patient`   | Need patient context at launch time (FHIR Patient resource).
 `launch/encounter` | Need encounter context at launch time (FHIR Encounter resource).
-(Others)           | This list can be extended by any SMART EHR to support additional context.  When specifying resource types, convert the type names to *all lowercase* (e.g., `launch/diagnosticreport`). In situations where the same resource type might be used for more than one purpose (e.g., in a medication reconciliation app, one List of at-home medications and another List of in-hospital medications), the app can solicit context with a specific role by appending `?role={role}` (see [example below](#fhircontext-example-medication-reconciliation)).
+Others (Experimental)           | Any SMART EHR MAY extend this list to support additional context.  When specifying resource types, convert the type names to *all lowercase* (e.g., `launch/diagnosticreport`). In situations where the same resource type might be used for more than one purpose (e.g., in a medication reconciliation app, one List of at-home medications and another List of in-hospital medications), the app can solicit context with a specific role by appending `?role={role}` (see [example below](#fhircontext-example-medication-reconciliation)).
 {:.grid}
 
 When using `?role=` in launch context requests:
@@ -557,7 +557,7 @@ Launch context parameter | Example value | Meaning
 {:.grid}
 
 <a id="fhir-context"></a>
-#### `fhirContext`
+#### `fhirContext` (Experimental)
 
 To allow application flexibility, maintain backwards compatibility, and keep a
 predictable JSON structure, any contextual resource types that were requested
