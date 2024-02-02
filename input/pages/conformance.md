@@ -109,8 +109,8 @@ completing the launch.
 
 ##### Permissions
 
-* `permission-offline`: support for refresh tokens (requested by `offline_access` scope)
-* `permission-online`: support for refresh tokens during EHR Launch (requested by `online_access` scope)
+* `permission-offline`: support for "offline" refresh tokens (requested by `offline_access` scope)
+* `permission-online`: support for "online" refresh tokens requested during EHR Launch (requested by `online_access` scope). This capability is deemed *experimental*, providing the input to a scope negotiation that could result in granting an online or offline refresh token (see [Scopes and Launch Context](./scopes-and-launch-context.html)).
 * `permission-patient`: support for patient-level scopes (e.g., `patient/Observation.rs`)
 * `permission-user`: support for user-level scopes (e.g., `user/Appointment.rs`)
 * `permission-v1`: support for SMARTv1 scope syntax (e.g., `patient/Observation.read`)
