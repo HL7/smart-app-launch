@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<specification xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" ballotUrl="http://hl7.org/fhir/smart-app-launch/2024Jan" ciUrl="http://build.fhir.org/ig/HL7/smart-app-launch" defaultVersion="2.1.0" defaultWorkgroup="fhir-i" gitUrl="https://github.com/HL7/smart-app-launch" url="http://hl7.org/fhir/smart-app-launch">
+<version code="current" url="http://build.fhir.org/ig/HL7/smart-app-launch"/>
+<version code="2.2.0-ballot" url="http://hl7.org/fhir/smart-app-launch/2024Jan"/>
+<version code="2.1.0" url="http://hl7.org/fhir/smart-app-launch/STU2.1"/>
+<version code="2.1.0-ballot" url="http://hl7.org/fhir/smart-app-launch/2023Jan"/>
+<version code="2.0.0" url="http://hl7.org/fhir/smart-app-launch/STU2"/>
+<version code="1.1.0" deprecated="true" url="http://hl7.org/fhir/smart-app-launch/2021May"/>
+<version code="1.0.0" url="http://hl7.org/fhir/smart-app-launch/1.0.0"/>
+<version code="0.8.0" deprecated="true" url="http://hl7.org/fhir/smart-app-launch/0.8.0"/>
+<version code="1.0" deprecated="true"/>
+<artifactPageExtension value="-definitions"/>
+<artifactPageExtension value="-examples"/>
+<artifactPageExtension value="-mappings"/>
+<artifact id="CapabilityStatement/smart-app-state-server" key="CapabilityStatement-smart-app-state-server" name="App State Server CapabilityStatement"/>
+<artifact id="ValueSet/smart-launch-info" key="ValueSet-smart-launch-info" name="Codes for tasks to application launches"/>
+<artifact id="Bundle/example3" key="Bundle-example3" name="Different EHRs for different sub-populations displayed in a unified card"/>
+<artifact id="Basic/app-state" key="Basic-app-state" name="Example App State"/>
+<artifact deprecated="true" id="Organization/example" key="Organization-example" name="Example Brand"/>
+<artifact deprecated="true" id="Endpoint/example" key="Endpoint-example" name="Example Endpoint"/>
+<artifact id="Task/task-for-ehr-launch" key="Task-task-for-ehr-launch" name="Example Task for EHR Launch"/>
+<artifact id="Task/task-for-standalone-launch" key="Task-task-for-standalone-launch" name="Example Task for Standalone Launch"/>
+<artifact id="Bundle/example1" key="Bundle-example1" name="Lab with Locations Nationwide"/>
+<artifact id="ValueSet/smart-launch-types" key="ValueSet-smart-launch-types" name="Launch Types for tasks to application launches"/>
+<artifact deprecated="true" id="StructureDefinition/patient-access-brand" key="StructureDefinition-patient-access-brand" name="Patient Access Brand (Organization) Profile"/>
+<artifact deprecated="true" id="StructureDefinition/patient-access-brands-bundle" key="StructureDefinition-patient-access-brands-bundle" name="Patient Access Brands Bundle Profile"/>
+<artifact deprecated="true" id="CodeSystem/patient-access-category" key="CodeSystem-patient-access-category" name="Patient Access Category Code System"/>
+<artifact deprecated="true" id="ValueSet/patient-access-category" key="ValueSet-patient-access-category" name="Patient Access Category Value Set"/>
+<artifact deprecated="true" id="StructureDefinition/patient-access-endpoint" key="StructureDefinition-patient-access-endpoint" name="Patient Access Endpoint Profile"/>
+<artifact id="Bundle/example2" key="Bundle-example2" name="Regional Health System With Independently Branded Affiliates"/>
+<artifact id="StructureDefinition/smart-app-state-basic" key="StructureDefinition-smart-app-state-basic" name="SMART App State"/>
+<artifact deprecated="true" id="StructureDefinition/oauth-uris" key="StructureDefinition-oauth-uris" name="SMART on FHIR Oauth URIs"/>
+<artifact id="CodeSystem/smart-codes" key="CodeSystem-smart-codes" name="SMART on FHIR terminology."/>
+<artifact id="StructureDefinition/task-ehr-launch" key="StructureDefinition-task-ehr-launch" name="TaskEhrLaunch"/>
+<artifact id="StructureDefinition/task-standalone-launch" key="StructureDefinition-task-standalone-launch" name="TaskStandaloneLaunch"/>
+<artifact id="Bundle/example4" key="Bundle-example4" name="Two co-equal brands"/>
+<artifact id="StructureDefinition/user-access-brand" key="StructureDefinition-user-access-brand" name="User Access Brand (Organization) Profile"/>
+<artifact id="StructureDefinition/user-access-brands-bundle" key="StructureDefinition-user-access-brands-bundle" name="User Access Brands Bundle Profile"/>
+<artifact id="CodeSystem/user-access-category" key="CodeSystem-user-access-category" name="User Access Category Code System"/>
+<artifact id="ValueSet/user-access-category" key="ValueSet-user-access-category" name="User Access Category Value Set"/>
+<artifact id="StructureDefinition/user-access-endpoint" key="StructureDefinition-user-access-endpoint" name="User Access Endpoint Profile"/>
+<artifact deprecated="true" id="CapabilityStatement/smart-app-launch-example" key="CapabilityStatement-smart-app-launch-example" name="smart-app-launch-example"/>
+<page key="NA" name="(NA)"/>
+<page key="many" name="(many)"/>
+<page deprecated="true" key="profiles" name="(profiles)"/>
+<page key="app-launch" name="App Launch: Launch and Authorization"/>
+<page key="scopes-and-launch-context" name="App Launch: Scopes and Launch Context"/>
+<page key="apps" name="Apps"/>
+<page key="artifacts" name="Artifacts Summary"/>
+<page key="backend-services" name="Backend Services"/>
+<page deprecated="true" key="basic-auth-example" name="Basic Auth Example"/>
+<page key="best-practices" name="Best Practices"/>
+<page key="client-authentication" name="Client Authentication"/>
+<page key="client-confidential-asymmetric" name="Client Authentication: Asymmetric (public key)"/>
+<page key="client-confidential-symmetric" name="Client Authentication: Symmetric (shared secret)"/>
+<page key="conformance" name="Conformance"/>
+<page key="example-app-launch-asymmetric-auth" name="Example App Launch for Asymmetric Client Auth"/>
+<page key="example-app-launch-public" name="Example App Launch for Public Client"/>
+<page key="example-app-launch-symmetric-auth" name="Example App Launch for Symmetric Client Auth"/>
+<page key="example-backend-services" name="Example Backend Services Flow"/>
+<page key="worked_example_id_token" name="Example Id Token"/>
+<page key="authorization-example-jwks-and-signatures" name="Example JWS generation for Asymmetric Client Auth"/>
+<page deprecated="true" key="example-request-access-token" name="Example Request Access Token"/>
+<page deprecated="true" key="example-request-patient" name="Example Request Patient"/>
+<page deprecated="true" key="example-request-refresh" name="Example Request Refresh"/>
+<page deprecated="true" key="example-request-token-post" name="Example Request Token Post"/>
+<page key="examples" name="Examples"/>
+<page key="index" name="Overview"/>
+<page key="app-state" name="Persisting App State (Experimental)"/>
+<page key="references" name="References"/>
+<page key="toc" name="Table of Contents"/>
+<page key="task-launch" name="Task profile for requesting SMART launch (Experimental)"/>
+<page key="token-introspection" name="Token Introspection"/>
+<page key="example-brands" name="User-access Brand Examples"/>
+<page key="brands" name="User-access Brands and Endpoints"/>
+<page deprecated="true" key="smart-app-launch" name="smart-app-launch" url="smart-app-launch"/>
+</specification>
