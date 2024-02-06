@@ -1,4 +1,6 @@
-### `smart-app-state` capability
+{%include styles.html%}
+{%include exp-div.html%}
+### `smart-app-state` capability {%include exp.html%}
 
 This experimental capability allows apps to persist a small amount of
 configuration data to an EHR's FHIR server. Conformance requirements described
