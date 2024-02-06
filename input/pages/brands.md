@@ -12,7 +12,7 @@ This specification supports a model User Experience (UX) where apps display a co
 
 In this model, a healthcare **provider, payer, or other organization** exposing a user-facing FHIR API can **decide which brands to publish** in association with their FHIR endpoints. Each Brand includes data describing the organization (e.g., organization name and logo that a user would recognize) together with details about their user access portals (e.g., name, logo, and description in terms that users would recognize) as well as the API endpoints associated with these portals.
 
-In this model, an **app** can:
+Using this model, an **app** can:
 
 * **Display** the Brands it has collected (e.g., as cards or tiles in a UX)
 * Allow users to **filter or search** Brands based on names, locations, or categories
@@ -28,7 +28,7 @@ In this model, an **app** can:
 
 ### Brand Information
 
-*Note*: The overview tables and annotated examples on this page are intended for convenience and clarity. In case of any discrepancies, the formal profiles should be considered the definitive source of truth.
+{% include info-note.html text='The overview tables and annotated examples on this page are intended for convenience and clarity. In case of any discrepancies, the formal profiles should be considered the definitive source of truth.' %}
 
 #### Information Included In Each Brand
 
@@ -79,7 +79,7 @@ Commonly, a single Brand is typically associated with a single Portal that offer
 
 ### Conformance Overview
 
-*Note*: This conformance overview is intended for convenience and clarity. In case of any discrepancies, the formal profiles should be considered the definitive source of truth.
+{% include info-note.html text='The overview tables and annotated examples on this page are intended for convenience and clarity. In case of any discrepancies, the formal profiles should be considered the definitive source of truth.' %}
 
 * **Health Data Provider**. Any organization that offers SMART on FHIR access to its users and wishes to appear as a branded entity in user-facing apps. A Health Data Provider works with a Brand Bundle Publisher and SMART on FHIR Server to manage Organization and Endpoint details.
   * RECOMMENDED to define an Organization identifier where `system` is `urn:ietf:rfc:3986` and `value` is the HTTPS URL for the brand's primary web presence, omitting any "www." prefix from the domain and omitting any path component
@@ -368,7 +368,9 @@ To ensure that SMART apps can discover Brand information directly from a FHIR en
 
 The Brand Bundle SHALL include exactly one Brand with an `Organization.identifier` that matches the primary Brand identifier from SMART configuration JSON.
 
-The Brand Bundle SHOULD include only the Brands and Endpoints associated with the SMART on FHIR server that links to the Bundle. However, the Brand Bundle MAY have additional Brands or Endpoints (e.g., supporting a publication pattern where endpoints from a given vendor might point to a comprehensive, centralized vendor-managed list). 
+The Brand Bundle SHOULD include only the Brands and Endpoints associated with the SMART on FHIR server that links to the Bundle. However, the Brand Bundle MAY have additional Brands or Endpoints (e.g., supporting a publication pattern where endpoints from a given vendor might point to a comprehensive, centralized vendor-managed list).
+
+Note that the presence of an Endpoint in the Brand Bundle does not provide an implicit authorization to access the Endpoint. Clients that require access to the data provided by the FHIR Endpoints in the Brand Bundle should inspect the SMART Configuration of the Endpoint in order to retrieve information on the requirements for accessing this server.
 
 ##### Example `.well-known/smart-configuration`
 
