@@ -28,7 +28,10 @@ Using this model, an **app** can:
 
 ### Brand Information
 
-*Note*: The overview tables and annotated examples on this page are intended for convenience and clarity. In case of any discrepancies, the formal profiles should be considered the definitive source of truth.
+{% capture info_note %}
+The overview tables and annotated examples on this page are intended for convenience and clarity. In case of any discrepancies, the formal profiles should be considered the definitive source of truth.
+{% endcapture %}
+{% include info-note.html content=info_note %}
 
 #### Information Included In Each Brand
 
@@ -78,8 +81,10 @@ Commonly, a single Brand is typically associated with a single Portal that offer
   * e.g., a regional health system that patients recognize under distinct brands associated with specific hospitals or clinics -- even though all these paths lead to the same portal and FHIR Endpoints.
 
 ### Conformance Overview
-
-*Note*: This conformance overview is intended for convenience and clarity. In case of any discrepancies, the formal profiles should be considered the definitive source of truth.
+{% capture info_note %}
+This conformance overview is intended for convenience and clarity. In case of any discrepancies, the formal profiles should be considered the definitive source of truth.
+{% endcapture %}
+{% include info-note.html content=info_note %}
 
 * **Health Data Provider**. Any organization that offers SMART on FHIR access to its users and wishes to appear as a branded entity in user-facing apps. A Health Data Provider works with a Brand Bundle Publisher and SMART on FHIR Server to manage Organization and Endpoint details.
   * RECOMMENDED to define an Organization identifier where `system` is `urn:ietf:rfc:3986` and `value` is the HTTPS URL for the brand's primary web presence, omitting any "www." prefix from the domain and omitting any path component

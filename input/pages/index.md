@@ -2,6 +2,8 @@
 
 This implementation guide describes a set of foundational patterns based on [OAuth 2.0](https://tools.ietf.org/html/rfc6749) for client applications to authorize, authenticate, and integrate with FHIR-based data systems. The patterns defined in this specification are introduced in the sections below. For background on SMART Health IT, see [smarthealthit.org](https://smarthealthit.org).
 
+Portions of the specification designated as Experimental are indicated by {%include exp.html%} and background shading.
+
 ### [Discovery of Server Capabilities and Configuration](conformance.html)
 
 SMART defines a discovery document, available at `.well-known/smart-configuration` relative to a FHIR Server Base URL, allowing clients to learn the authorization endpoint URLs and features a server supports. This information helps client direct authorization requests to the right endpoint, and helps clients construct an authorization request that the server can support.

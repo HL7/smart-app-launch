@@ -1,4 +1,11 @@
+p, li, table.grid th, table.grid td, table.colsi th, table.colsi td, table.dict th, table.dict td, table.list th, table.list td { }
 .smart-code code {
   word-break: break-all;
   white-space: pre-wrap;
 }
+
+.optional { color: #CC3F00; }
+.caption { color: darkgreen; font-weight: bold; }
+.expSpan { background-color: #fff5e6; }
+.expBlock { padding-top: 5px; padding-left: 5px; padding-right: 10px; padding-bottom: 5px; background-color: #fff5e6; }
+.expIcon { padding-left: 3px; padding-right: 3px; border: 1px grey solid; font-weight: bold; color: black; background-color: #fff5e6 vertical-align: middle;}

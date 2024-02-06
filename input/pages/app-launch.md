@@ -646,9 +646,9 @@ includes the following parameters:
       <td>Token that can be used to obtain a new access token, using the same or a subset of the original authorization grants</td>
     </tr>
     <tr>
-      <td><code>authorization_details</code></td>
+      <td><code>authorization_details {%include exp.html%}</code></td>
       <td><span class="label label-info">optional</span></td>
-      <td>Additional details describing where this token can be used, and any per-location context (experimental; see <a href="#experimental-authorization-details-for-multiple-servers">details</a>)</td>
+      <td>{%include exp-span.html%}Additional details describing where this token can be used, and any per-location context (experimental; see <a href="#experimental-authorization-details-for-multiple-servers">details</a>)</span></td>
     </tr>
 
   </tbody>
@@ -701,8 +701,9 @@ interaction are not defined by this specification.*
 
 At this point, **the authorization flow is complete**.
 
-##### Experimental: Authorization Details for Multiple Servers
+##### {%include exp.html%} Experimental: Authorization Details for Multiple Servers
 
+{%include exp-div.html%}
 If an authorization server wishes to provide a token that can be used with more than one FHIR server (i.e., the token can be used with app's requested `aud` as well as additional endpoints), the following structures from [rfc9396](https://datatracker.ietf.org/doc/html/rfc9396) can be included in the access token response:
 
 * `authorization_details` array of objects, where each object may include
@@ -734,7 +735,7 @@ For example, an access request to an R4 FHIR server could potentially result in 
   }]
 }
 ```
-
+</div>
 
 #### Examples
 
@@ -876,9 +877,9 @@ The response is a JSON object containing a new access token, with the following 
       <td>The refresh token issued by the authorization server. If present, the app should discard any previous <code>refresh_token</code> associated with this launch and replace it with this new value.</td>
     </tr> 
     <tr>
-      <td><code>authorization_details</code></td>
+      <td><code>authorization_details{%include exp.html%}</code></td>
       <td><span class="label label-info">optional</span></td>
-      <td>Additional details describing where this token can be used, and any per-location context (experimental; see <a href="#experimental-authorization-details-for-multiple-servers">details</a>)</td>
+      <td>{%include exp-span.html%}Additional details describing where this token can be used, and any per-location context (experimental; see <a href="#experimental-authorization-details-for-multiple-servers">details</a>)</span></td>
     </tr>
   </tbody>
 </table>
