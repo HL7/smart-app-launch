@@ -125,6 +125,8 @@ For fine-grained organizational management, apps SHALL select the FHIR resources
 
 #### Brand Profile (Organization)
 
+See [Formal Profile](StructureDefinition-user-access-brand.html).
+
 This annotated example illustrates how a Brand is represented as a FHIR Organization.
 
 ```js
@@ -259,9 +261,10 @@ This annotated example illustrates how a Brand is represented as a FHIR Organiza
 }
 ```
 
-[Formal Profile](StructureDefinition-user-access-brand.html)
 
 #### Endpoint Profile
+
+See [Formal Profile](StructureDefinition-user-access-endpoint.html).
 
 This annotated example illustrates how an Endpoint is represented.
 
@@ -316,8 +319,7 @@ This annotated example illustrates how an Endpoint is represented.
 
 ```
 
-[Formal Profile](StructureDefinition-user-access-endpoint.html)
-    
+
 #### Brand Bundle Profile
 
 {{site.data.structuredefinitions.user-access-brands-bundle.description}}
