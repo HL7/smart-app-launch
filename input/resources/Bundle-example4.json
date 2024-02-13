@@ -51,7 +51,7 @@
           {
             "coding": [
               {
-                "system": "http://hl7.org/fhir/smart-app-launch/CodeSystem/patient-access-category",
+                "system": "http://hl7.org/fhir/smart-app-launch/CodeSystem/user-access-category",
                 "code": "insurance",
                 "display": "Insurance"
               }
@@ -78,6 +78,12 @@
           {
             "city": "St Helena",
             "state": "CA"
+          }
+        ],
+        "endpoint": [
+          {
+            "reference": "Endpoint/coequal-example",
+            "display": "FHIR R4 Endpoint for Brand1/Brand2"
           }
         ]
       }
@@ -129,7 +135,7 @@
           {
             "coding": [
               {
-                "system": "http://hl7.org/fhir/smart-app-launch/CodeSystem/patient-access-category",
+                "system": "http://hl7.org/fhir/smart-app-launch/CodeSystem/user-access-category",
                 "code": "insurance",
                 "display": "Insurance"
               }
@@ -156,6 +162,12 @@
           {
             "city": "Santa Rosa",
             "state": "CA"
+          }
+        ],
+        "endpoint": [
+          {
+            "reference": "Endpoint/coequal-example",
+            "display": "FHIR R4 Endpoint for Brand1/Brand2"
           }
         ]
       }

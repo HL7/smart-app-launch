@@ -2,11 +2,11 @@
   "resourceType": "CodeSystem",
   "status": "active",
   "content": "complete",
-  "name": "PatientAccessCategoryCodeSystem",
-  "id": "patient-access-category",
-  "title": "Patient Access Category Code System",
-  "description": "Categorizes a PatientAccessBrand into high-level taxonomy",
-  "url": "http://hl7.org/fhir/smart-app-launch/CodeSystem/patient-access-category",
+  "name": "UserAccessCategoryCodeSystem",
+  "id": "user-access-category",
+  "title": "User Access Category Code System",
+  "description": "Categorizes a UserAccessBrand into high-level taxonomy",
+  "url": "http://hl7.org/fhir/smart-app-launch/CodeSystem/user-access-category",
   "concept": [
     {
       "code": "clinical",

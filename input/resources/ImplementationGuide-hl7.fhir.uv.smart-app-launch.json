@@ -6,7 +6,7 @@
     "valueCode": "fhir"
   }],
   "url": "http://hl7.org/fhir/smart-app-launch/ImplementationGuide/hl7.fhir.uv.smart-app-launch",
-  "version": "2.2.0-ballot",
+  "version": "2.2.0",
   "name": "SmartAppLaunch",
   "title": "SMART App Launch",
   "status": "active",
@@ -46,19 +46,19 @@
   "dependsOn": [{
     "uri": "http://hl7.org/fhir/extensions/ImplementationGuide/hl7.fhir.uv.extensions",
     "packageId": "hl7.fhir.uv.extensions",
-    "version": "current"
+    "version": "5.1.0-ballot1"
   }],
   "definition": {
     "grouping": [
       {
         "id": "PABProfiles",
-        "name": "Patient Access Brands",
-        "description": "Helping patients find and connect to the right API endpoints, by enabling publication of branding information for API providers, portals, and endpoints.\n\nFor an overview, see [Patient Access Brands](brands.html)."
+        "name": "User Access Brands",
+        "description": "Helping patients find and connect to the right API endpoints, by enabling publication of branding information for API providers, portals, and endpoints.\n\nFor an overview, see [User Access Brands](brands.html)."
       },
       {
         "id": "PAB",
-        "name": "Patient Access Brand Examples",
-        "description": "The follow examples demonstrate use of Patient Access Brands. See [example-brands](./example-brands.html) for a guided tour."
+        "name": "User Access Brand Examples",
+        "description": "The following examples demonstrate use of User Access Brands. See [example-brands](./example-brands.html) for a guided tour."
       },
       {
         "id": "SMARTAppState",
@@ -74,44 +74,44 @@
     "resource": [
       {
         "reference": {
-          "reference": "StructureDefinition/patient-access-brands-bundle"
+          "reference": "StructureDefinition/user-access-brands-bundle"
         },
-        "name": "Patient Access Brands Bundle Profile",
+        "name": "User Access Brands Bundle Profile",
         "description": "FHIR Bundle of Organizations and Endpoints that is hosted at a stable, publicly available location",
         "exampleBoolean": false,
         "groupingId": "PABProfiles"
       },
       {
         "reference": {
-          "reference": "StructureDefinition/patient-access-brand"
+          "reference": "StructureDefinition/user-access-brand"
         },
-        "name": "Patient Access Brand (Organization) Profile",
-        "description": "Profile on Organization to convey a Patient Access Brand",
+        "name": "User Access Brand (Organization) Profile",
+        "description": "Profile on Organization to convey a User Access Brand",
         "exampleBoolean": false,
         "groupingId": "PABProfiles"
       },
       {
         "reference": {
-          "reference": "StructureDefinition/patient-access-endpoint"
+          "reference": "StructureDefinition/user-access-endpoint"
         },
-        "name": "Patient Access Endpoint Profile",
-        "description": "Profile on Endpoint associated with a Patient Access Brand",
+        "name": "User Access Endpoint Profile",
+        "description": "Profile on Endpoint associated with a User Access Brand",
         "exampleBoolean": false,
         "groupingId": "PABProfiles"
       },
       {
         "reference": {
-          "reference": "CodeSystem/patient-access-category"
+          "reference": "CodeSystem/user-access-category"
         },
-        "name": "Patient Access Category Code System",
+        "name": "User Access Category Code System",
         "exampleBoolean": false,
         "groupingId": "PABProfiles"
       },
       {
         "reference": {
-          "reference": "ValueSet/patient-access-category"
+          "reference": "ValueSet/user-access-category"
         },
-        "name": "Patient Access Category Value Set",
+        "name": "User Access Category Value Set",
         "exampleBoolean": false,
         "groupingId": "PABProfiles"
       },
@@ -120,7 +120,7 @@
           "reference": "Bundle/example1"
         },
         "name": "Lab with Locations Nationwide",
-        "exampleCanonical": "http://hl7.org/fhir/smart-app-launch/StructureDefinition/patient-access-brands-bundle",
+        "exampleCanonical": "http://hl7.org/fhir/smart-app-launch/StructureDefinition/user-access-brands-bundle",
         "groupingId": "PAB"
       },
       {
@@ -128,7 +128,7 @@
           "reference": "Bundle/example2"
         },
         "name": "Regional Health System With Independently Branded Affiliates",
-        "exampleCanonical": "http://hl7.org/fhir/smart-app-launch/StructureDefinition/patient-access-brands-bundle",
+        "exampleCanonical": "http://hl7.org/fhir/smart-app-launch/StructureDefinition/user-access-brands-bundle",
         "groupingId": "PAB"
       },
       {
@@ -136,7 +136,7 @@
           "reference": "Bundle/example3"
         },
         "name": "Different EHRs for different sub-populations displayed in a unified card",
-        "exampleCanonical": "http://hl7.org/fhir/smart-app-launch/StructureDefinition/patient-access-brands-bundle",
+        "exampleCanonical": "http://hl7.org/fhir/smart-app-launch/StructureDefinition/user-access-brands-bundle",
         "groupingId": "PAB"
       },
       {
@@ -144,23 +144,7 @@
           "reference": "Bundle/example4"
         },
         "name": "Two co-equal brands",
-        "exampleCanonical": "http://hl7.org/fhir/smart-app-launch/StructureDefinition/patient-access-brands-bundle",
-        "groupingId": "PAB"
-      },
-      {
-        "reference": {
-          "reference": "Organization/example"
-        },
-        "name": "Example Brand",
-        "exampleCanonical": "http://hl7.org/fhir/smart-app-launch/StructureDefinition/patient-access-brand",
-        "groupingId": "PAB"
-      },
-      {
-        "reference": {
-          "reference": "Endpoint/example"
-        },
-        "name": "Example Endpoint",
-        "exampleCanonical": "http://hl7.org/fhir/smart-app-launch/StructureDefinition/patient-access-endpoint",
+        "exampleCanonical": "http://hl7.org/fhir/smart-app-launch/StructureDefinition/user-access-brands-bundle",
         "groupingId": "PAB"
       },
       {
@@ -324,12 +308,12 @@
         },
         {
           "nameUrl": "brands.html",
-          "title": "Patient-Access Brands and Endpoints",
+          "title": "User-access Brands and Endpoints",
           "generation": "markdown",
           "page": [
             {
               "nameUrl": "example-brands.html",
-              "title": "Patient-Access Brand Examples",
+              "title": "User-access Brand Examples",
               "generation": "markdown"
             }
           ]
