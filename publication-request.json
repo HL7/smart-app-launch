@@ -1,9 +1,9 @@
 {
     "package-id": "hl7.fhir.uv.smart-app-launch",
-    "version": "2.2.0-ballot",
-    "path": "http://hl7.org/fhir/smart-app-launch/2024Jan",
-    "mode": "working",
-    "status": "ballot",
+    "version": "2.2.0",
+    "path": "http://hl7.org/fhir/smart-app-launch/STU2.2",
+    "mode": "milestone",
+    "status": "trial-use",
     "sequence": "STU 2.2",
     "desc": "Surface branding information for endpoints and organizations. Enhance fhirContext to support canonical and identifier references."
 }

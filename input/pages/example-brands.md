@@ -6,9 +6,9 @@
 
 Let's begin by considering a national lab with many locations nationwide.
 
-The configuration below establishes a single top-level Brand with a potentially long list of ExampleLabs addresses. In this configuration there's a single Organization associated with a single portal and endpoint. The organization lists several aliases and addresses.
+The configuration below establishes a single top-level Organization (applying the `UserAccessBrand` profile) with a potentially long list of ExampleLabs addresses. In this configuration there's a single Organization associated with a single portal and endpoint. The organization lists several aliases and addresses.
 
-(An alternative choice for ExampleLabs would be to create an Organization for each state as a sub-brand with its own name, logo, and addresses. This is a decision that ExampleLabs can make based on how they want their brand to appear in patieint-facing apps.)
+(An alternative choice for ExampleLabs would be to create an Organization for each state as a "sub-brand" with its own name, logo, and addresses. This is a decision that ExampleLabs can make based on how they wish to appear in patient-facing apps.)
 
 Based on this configuration, a patient app might display the following cards to a user:
 <div class="bg-info" markdown="1">
@@ -26,9 +26,9 @@ Nearest location: 1 mile (Madison)
 
 The FHIR server's `.well-known/smart-configuration` file would include a link like
 
-    "patientAccessBrands": "https://labs.example.com/branding.json"
+    "userAccessBrands": "https://labs.example.com/branding.json"
     
-And the hosted Patient Access Brands Bundle file would look like:
+And the hosted User Access Brands Bundle file would look like:
 
 [Raw JSON](Bundle-example1.json)
 
@@ -86,7 +86,7 @@ Now let's look at a more complex (but still surprisingly common) scenario where 
 * EHR1: "Patient Gateway" for adult patients to help them connect with providers, manage appointments and refill prescriptions.
 * EHR2: "Pediatrics", a patient portal where parents can access their child's information.
 
-The configuration below establishes a single Organiztion for ExampleHospital, with a portal for pediatrics and a portal for adult care, each associated with a distinct endpoint.
+The configuration below establishes a single Organization for ExampleHospital, with a portal for pediatrics and a portal for adult care, each associated with a distinct endpoint.
 
 Based on this configuration, a patient app might display the following cards to a user:
 

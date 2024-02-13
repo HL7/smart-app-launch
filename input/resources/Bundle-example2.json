@@ -63,7 +63,7 @@
             "coding": [
               {
                 "code": "clinical",
-                "system": "http://hl7.org/fhir/smart-app-launch/CodeSystem/patient-access-category",
+                "system": "http://hl7.org/fhir/smart-app-launch/CodeSystem/user-access-category",
                 "display": "Clinical"
               }
             ]
@@ -129,6 +129,16 @@
             "city": "Sioux City",
             "state": "IA"
           }
+        ],
+        "endpoint": [
+          {
+            "reference": "Endpoint/examplehealth-r2",
+            "display":  "FHIR R2 Endpoint for ExampleHealth Brand"
+          },
+          {
+            "reference": "Endpoint/examplehealth-r4",
+            "display":  "FHIR R4 Endpoint for ExampleHealth Brand"
+          }
         ]
       }
     },
@@ -160,7 +170,7 @@
             "coding": [
               {
                 "code": "clinical",
-                "system": "http://hl7.org/fhir/smart-app-launch/CodeSystem/patient-access-category",
+                "system": "http://hl7.org/fhir/smart-app-launch/CodeSystem/user-access-category",
                 "display": "Clinical"
               }
             ]
@@ -215,7 +225,7 @@
             "coding": [
               {
                 "code": "clinical",
-                "system": "http://hl7.org/fhir/smart-app-launch/CodeSystem/patient-access-category",
+                "system": "http://hl7.org/fhir/smart-app-launch/CodeSystem/user-access-category",
                 "display": "Clinical"
               }
             ]

@@ -1,12 +1,12 @@
 {
   "resourceType": "StructureDefinition",
-  "id": "patient-access-endpoint",
-  "url": "http://hl7.org/fhir/smart-app-launch/StructureDefinition/patient-access-endpoint",
-  "name": "PatientAccessEndpoint",
-  "title": "Patient Access Endpoint Profile",
+  "id": "user-access-endpoint",
+  "url": "http://hl7.org/fhir/smart-app-launch/StructureDefinition/user-access-endpoint",
+  "name": "UserAccessEndpoint",
+  "title": "User Access Endpoint Profile",
   "status": "active",
   "date": "2023-08-31",
-  "description": "Profile on Endpoint associated with a Patient Access Brand.\n\nFor background and context, see **[Patient Access Brands Overview](brands.html#endpoint-profile)**.\n\nIn addition to the core data elements on Endpoint, one key extension is used in this profile:\n\n* <http://hl7.org/fhir/StructureDefinition/endpoint-fhir-version> conveys is a denormalization to help clients focus on supported endpoints. The `valueCode` is any version from http://hl7.org/fhir/valueset-FHIR-version.html (e.g., `4.0.1` is expected for FHIR R4 endpoints).\n\nNotes:\n * `0..1` `name` Conveys a fallback or default name describing the endpoint and the organization offering Patient API access at this endpoint. This value MAY contain technical details like FHIR API Version designations and apps SHOULD preferentially use names from an associated `PatientAccessBrand` rather than displaying this value to users.\n * `1..* MS` `contact` website where developers can configure access to this endpoint, providing at least one `\"system\": \"url\"` contact point where the `value` is an `https://` URL intended for app developers\n * `1..1 MS` `address` FHIR base URL for server supporting patient access",
+  "description": "Profile on Endpoint associated with a User Access Brand.\n\nFor background and context, see **[User Access Brands Overview](brands.html#endpoint-profile)**.\n\nIn addition to the core data elements on Endpoint, one key extension is used in this profile:\n\n* <http://hl7.org/fhir/StructureDefinition/endpoint-fhir-version> conveys is a denormalization to help clients focus on supported endpoints. The `valueCode` is any version from http://hl7.org/fhir/valueset-FHIR-version.html (e.g., `4.0.1` is expected for FHIR R4 endpoints).\n\nNotes:\n * `0..1` `name` Conveys a fallback or default name describing the endpoint and the organization offering User API access at this endpoint. This value MAY contain technical details like FHIR API Version designations and apps SHOULD preferentially use names from an associated `UserAccessBrand` rather than displaying this value to users.\n * `1..* MS` `contact` website where developers can configure access to this endpoint, providing at least one `\"system\": \"url\"` contact point where the `value` is an `https://` URL intended for app developers\n * `1..1 MS` `address` FHIR base URL for server supporting user access",
   "fhirVersion": "4.0.1",
   "mapping": [
     {
@@ -30,8 +30,8 @@
       {
         "id": "Endpoint",
         "path": "Endpoint",
-        "short": "Patient Access Endpoint",
-        "definition": "Endpoint associated with a Patient Access Brand (Organization)"
+        "short": "User Access Endpoint",
+        "definition": "Endpoint associated with a User Access Brand (Organization)"
       },
       {
         "id": "Endpoint.extension",
@@ -82,7 +82,7 @@
       {
         "id": "Endpoint.name",
         "path": "Endpoint.name",
-        "definition": "Fallback or default name describing the endpoint and the organization offering Patient API access at this endpoint. This value MAY contain technical details like FHIR API Version designations, and apps SHOULD preferentially use the name from an associated PatientAccessBrand, rather than displaying this value to users."
+        "definition": "Fallback or default name describing the endpoint and the organization offering User API access at this endpoint. This value MAY contain technical details like FHIR API Version designations, and apps SHOULD preferentially use the name from an associated UserAccessBrand, rather than displaying this value to users."
       },
       {
         "id": "Endpoint.contact",
@@ -143,7 +143,7 @@
       {
         "id": "Endpoint.address",
         "path": "Endpoint.address",
-        "short": "FHIR base URL for servers supporting patient access",
+        "short": "FHIR base URL for servers supporting user access",
         "mustSupport": true
       }
     ]

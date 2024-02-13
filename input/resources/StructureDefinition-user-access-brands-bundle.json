@@ -1,12 +1,12 @@
 {
   "resourceType": "StructureDefinition",
-  "id": "patient-access-brands-bundle",
-  "url": "http://hl7.org/fhir/smart-app-launch/StructureDefinition/patient-access-brands-bundle",
-  "name": "PatientAccessBrandsBundle",
-  "title": "Patient Access Brands Bundle Profile",
+  "id": "user-access-brands-bundle",
+  "url": "http://hl7.org/fhir/smart-app-launch/StructureDefinition/user-access-brands-bundle",
+  "name": "UserAccessBrandsBundle",
+  "title": "User Access Brands Bundle Profile",
   "status": "active",
   "date": "2023-03-19",
-  "description": "JSON FHIR Bundle (type: `collection`) of Organizations and Endpoints that is hosted at a stable, publicly available, publicly disclosed location. \n\nFor background and context, see **[Patient Access Brands Overview](brands.html#brand-bundle-profile)**.\n\nBundle Entries include:\n* [Patient Access Endpoint Profile](StructureDefinition-patient-access-endpoint.html) resources.\n* [Patient Access Brand (Organization)](StructureDefinition-patient-access-brand.html) resources. Vendors SHALL publish at least a \"primary brand\" for each endpoint and SHOULD support the publication of a more detailed Brand hierarchy.\n\nBrand Bundles SHALL populate `Bundle.timestamp` to advertise the timestamp of the last change to the contents. In addition, Brand Bundles SHOULD populate `Bundle.entry.resource.meta.lastUpdated` with a more detailed timestamp if the system tracks updates per Resource.",
+  "description": "JSON FHIR Bundle (type: `collection`) of Organizations and Endpoints that is hosted at a stable, publicly available, publicly disclosed location. \n\nFor background and context, see **[User Access Brands Overview](brands.html#brand-bundle-profile)**.\n\nBundle Entries include:\n* [User Access Endpoint Profile](StructureDefinition-user-access-endpoint.html) resources.\n* [User Access Brand (Organization)](StructureDefinition-user-access-brand.html) resources. Vendors SHALL publish at least a \"primary brand\" for each endpoint and SHOULD support the publication of a more detailed Brand hierarchy.\n\nBrand Bundles SHALL populate `Bundle.timestamp` to advertise the timestamp of the last change to the contents. In addition, Brand Bundles SHOULD populate `Bundle.entry.resource.meta.lastUpdated` with a more detailed timestamp if the system tracks updates per Resource.",
   "fhirVersion": "4.0.1",
   "mapping": [
     {
@@ -40,8 +40,8 @@
       {
         "id": "Bundle",
         "path": "Bundle",
-        "short": "Patient Access Brands Bundle",
-        "definition": "FHIR Bundle (type: collection) of Endpoints and related resources hosted at a stable, publicly available, publicly disclosed location Endpoint associated with a Patient Access Brand (Organization)"
+        "short": "User Access Brands Bundle",
+        "definition": "FHIR Bundle (type: collection) of Endpoints and related resources hosted at a stable, publicly available, publicly disclosed location Endpoint associated with a User Access Brand (Organization)"
       },
       {
         "id": "Bundle.meta",
@@ -75,42 +75,42 @@
         "mustSupport": true
       },
       {
-        "id": "Bundle.entry:PatientAccessEndpoint",
+        "id": "Bundle.entry:UserAccessEndpoint",
         "path": "Bundle.entry",
-        "sliceName": "PatientAccessEndpoint",
+        "sliceName": "UserAccessEndpoint",
         "min": 0,
         "max": "*",
         "mustSupport": true
       },
       {
-        "id": "Bundle.entry:PatientAccessEndpoint.resource",
+        "id": "Bundle.entry:UserAccessEndpoint.resource",
         "path": "Bundle.entry.resource",
         "type": [
           {
             "code": "Endpoint",
             "profile": [
-              "http://hl7.org/fhir/smart-app-launch/StructureDefinition/patient-access-endpoint"
+              "http://hl7.org/fhir/smart-app-launch/StructureDefinition/user-access-endpoint"
             ]
           }
         ],
         "mustSupport": true
       },
       {
-        "id": "Bundle.entry:PatientAccessBrand",
+        "id": "Bundle.entry:UserAccessBrand",
         "path": "Bundle.entry",
-        "sliceName": "PatientAccessBrand",
+        "sliceName": "UserAccessBrand",
         "min": 0,
         "max": "*",
         "mustSupport": true
       },
       {
-        "id": "Bundle.entry:PatientAccessBrand.resource",
+        "id": "Bundle.entry:UserAccessBrand.resource",
         "path": "Bundle.entry.resource",
         "type": [
           {
             "code": "Organization",
             "profile": [
-              "http://hl7.org/fhir/smart-app-launch/StructureDefinition/patient-access-brand"
+              "http://hl7.org/fhir/smart-app-launch/StructureDefinition/user-access-brand"
             ]
           }
         ],
