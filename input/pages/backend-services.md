@@ -164,7 +164,7 @@ syntax](scopes-and-launch-context.html).  For Backend Services, requested scopes
 will be `system/` scopes (for example `system/Observation.rs`, which requests an
 access token capable of reading all Observations that the client has been
 pre-authorized to access). The use of Backend Services with `user/` and
-`patient/` scopes is not prohibited, but would required out-of-band coordination
+`patient/` scopes is not prohibited, but would require out-of-band coordination
 to establish context (e.g., to establish which user or patient applies).
 
 #### Response
@@ -255,7 +255,7 @@ with the actual token value.)
 
 The resource server SHALL validate the access token and ensure that it has not expired and that its scope covers the requested resource. The method used by the EHR to validate the access token is beyond the scope of this specification but generally involves an interaction or coordination between the EHR’s resource server and the authorization server.
 
-On occasion, an Backend Service may receive a FHIR resource that contains a “reference” to a resource hosted on a different resource server.  The Backend Service SHOULD NOT blindly follow such references and send along its access_token, as the token may be subject to potential theft.   The Backend Service SHOULD either ignore the reference, or initiate a new request for access to that resource.
+On occasion, a Backend Service may receive a FHIR resource that contains a “reference” to a resource hosted on a different resource server.  The Backend Service SHOULD NOT blindly follow such references and send along its access_token, as the token may be subject to potential theft.   The Backend Service SHOULD either ignore the reference, or initiate a new request for access to that resource.
 
 #### Example Request and Response
 

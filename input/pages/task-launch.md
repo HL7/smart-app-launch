@@ -9,9 +9,9 @@ Two profiles are defined:
 
 A Task with the profile [task-ehr-launch](StructureDefinition-task-ehr-launch.html), requests an EHR launch with optional `appContext`.
 
-The `Task.for` field, if present indicates the Patient resource to be used in the launch context.
+The `Task.for` field, if present, indicates the Patient resource to be used in the launch context.
 
-the `Task.encounter` field, if present indicates the Encounter resource to be used in the launch context.
+The `Task.encounter` field, if present, indicates the Encounter resource to be used in the launch context.
  
 The input field contains:
 

@@ -1,0 +1,18 @@
+{
+  "resourceType": "ValueSet",
+  "status": "active",
+  "name": "UserAccessCategoryValueSet",
+  "id": "user-access-category",
+  "title": "User Access Category Value Set",
+  "description": "Categorizes a UserAccessBrand into high-level taxonomy",
+  "url": "http://hl7.org/fhir/smart-app-launch/ValueSet/user-access-category",
+  "experimental": false,
+  "date": "2023-03-05T22:40:04-08:00",
+  "compose": {
+    "include": [
+      {
+        "system": "http://hl7.org/fhir/smart-app-launch/CodeSystem/user-access-category"
+      }
+    ]
+  }
+}

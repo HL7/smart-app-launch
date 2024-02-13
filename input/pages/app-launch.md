@@ -1,12 +1,12 @@
 The SMART App Launch Framework connects third-party applications to Electronic
 Health Record data, allowing apps to launch from inside or outside the user
 interface of an EHR system. The framework supports apps for use by clinicians,
-patients, and others via a PHR or Patient Portal or any FHIR system where a user can launch an app. It provides a reliable, secure authorization protocol for
+patients, and others via a PHR, Patient Portal, or any FHIR system where a user can launch an app. It provides a reliable, secure authorization protocol for
 a variety of app architectures, including apps that run on an end-user's device
 as well as apps that run on a secure server.
 The Launch Framework supports four key use cases:
 
-1. Patients apps that launch standalone
+1. Patient apps that launch standalone
 2. Patient apps that launch from a portal
 3. Provider apps that launch standalone
 4. Provider apps that launch from a portal
@@ -454,7 +454,7 @@ href="scopes-and-launch-context.html">SMART launch
 context parameters</a>.*
 
 
-The app then instructs the browser to navigate the browser to the EHR's **authorization URL** as
+The app then instructs the browser to navigate to the EHR's **authorization URL** as
 determined above. For example to cause the browser to issue a `GET`:
 
 
@@ -646,9 +646,9 @@ includes the following parameters:
       <td>Token that can be used to obtain a new access token, using the same or a subset of the original authorization grants</td>
     </tr>
     <tr>
-      <td><code>authorization_details</code></td>
+      <td><code>authorization_details {%include exp.html%}</code></td>
       <td><span class="label label-info">optional</span></td>
-      <td>Additional details describing where this token can be used, and any per-location context (experimental; see <a href="#experimental-authorization-details-for-multiple-servers">details</a>)</td>
+      <td>{%include exp-span.html%}Additional details describing where this token can be used, and any per-location context (experimental; see <a href="#experimental-authorization-details-for-multiple-servers">details</a>)</span></td>
     </tr>
 
   </tbody>
@@ -701,8 +701,9 @@ interaction are not defined by this specification.*
 
 At this point, **the authorization flow is complete**.
 
-##### Experimental: Authorization Details for Multiple Servers
+##### {%include exp.html%} Experimental: Authorization Details for Multiple Servers
 
+{%include exp-div.html%}
 If an authorization server wishes to provide a token that can be used with more than one FHIR server (i.e., the token can be used with app's requested `aud` as well as additional endpoints), the following structures from [rfc9396](https://datatracker.ietf.org/doc/html/rfc9396) can be included in the access token response:
 
 * `authorization_details` array of objects, where each object may include
@@ -734,7 +735,7 @@ For example, an access request to an R4 FHIR server could potentially result in 
   }]
 }
 ```
-
+</div>
 
 #### Examples
 
@@ -800,7 +801,7 @@ Authorization: Bearer i8hweunweunweofiwweoijewiwe
 
 Refresh tokens are issued to enable sessions to last longer than the validity period of an access token.  The app can use the `expires_in` field from the token response (see section <a href="#step-5-access-token">Obtain access token</a>) to determine when its access token will expire.  EHR implementers are also encouraged to consider using the [OAuth 2.0 Token Introspection Protocol](https://tools.ietf.org/html/rfc7662) to provide an introspection endpoint that clients can use to examine the validity and meaning of tokens. An app with "online access" can continue to get new access tokens as long as the end-user remains online.  Apps with "offline access" can continue to get new access tokens without the user being interactively engaged for cases where an application should have long-term access extending beyond the time when a user is still interacting with the client.
 
-The app requests a refresh token in its authorization request via the `online_access` or `offline_access` scope (see section <a href="scopes-and-launch-context.html">SMART on FHIR Access Scopes</a> for details).  A server can decide which client types (public or confidential) are eligible for offline access and able to receive a refresh token.  If granted, the EHR supplies a refresh_token in the token response.  A refresh token SHALL be bound to the same `client_id` and SHALL contain the same or a subset of the claims authorized for the access token with which it is associated. After an access token expires, the app requests a new access token by providing its refresh token to the EHR's token endpoint.
+The app requests a refresh token in its authorization request via the `online_access` scope (for EHR Launch) or `offline_access` scope (for EHR or Standalone launch). See section <a href="scopes-and-launch-context.html">SMART on FHIR Access Scopes</a> for details.  A server can decide which client types (public or confidential) are eligible for offline access and able to receive a refresh token.  If granted, the EHR supplies a refresh_token in the token response.  A refresh token SHALL be bound to the same `client_id` and SHALL contain the same or a subset of the claims authorized for the access token with which it is associated. After an access token expires, the app requests a new access token by providing its refresh token to the EHR's token endpoint.
 
 
 #### Request
@@ -876,9 +877,9 @@ The response is a JSON object containing a new access token, with the following 
       <td>The refresh token issued by the authorization server. If present, the app should discard any previous <code>refresh_token</code> associated with this launch and replace it with this new value.</td>
     </tr> 
     <tr>
-      <td><code>authorization_details</code></td>
+      <td><code>authorization_details{%include exp.html%}</code></td>
       <td><span class="label label-info">optional</span></td>
-      <td>Additional details describing where this token can be used, and any per-location context (experimental; see <a href="#experimental-authorization-details-for-multiple-servers">details</a>)</td>
+      <td>{%include exp-span.html%}Additional details describing where this token can be used, and any per-location context (experimental; see <a href="#experimental-authorization-details-for-multiple-servers">details</a>)</span></td>
     </tr>
   </tbody>
 </table>

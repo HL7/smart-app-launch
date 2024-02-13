@@ -6,9 +6,9 @@ In addition to the `active` field required by RFC7662 (a boolean indicating whet
 
 * `scope`. As included in the original access token response. The list of scopes granted by the authorization server as a space-separated JSON string.
 
-* `client_id`. As included in the original access token response. The client identifier of the client to which the token was issued.
+* `client_id`. As included in the original access token request. The client identifier of the client to which the token was issued.
 
-* `exp`. As included in the original access token response. The integer timestamp indicating when the access token expires.
+* `exp`.  The integer timestamp indicates when the access token expires. This timestamp will be consistent the with `expires_in` interval provided in the original access token response.
 
 ### Conditional fields in the introspection response
 
@@ -27,7 +27,7 @@ In addition to the required fields, the following fields SHALL be included in th
 
 ### Authorization to perform Token Introspection
 
-SMART on FHIR EHRs MAY implement access control protecting the Token Introspection endpoint. If access control is implemented, any client authorized to issue Token Introspection API calls SHOULD be able to authenticate to the Token Introspection endpoint using its client credentials. Further considerations for access control are out of scope for the SMART App Launch IG.
+SMART on FHIR EHRs MAY implement access control protecting the Token Introspection endpoint.  If access control is implemented, any client authorized to issue Token Introspection API calls SHALL be permitted to authenticate to the Token Introspection endpoint by providing an appropriately-scoped SMART App or SMART Backend Service bearer token in the `Authorization` header. Clients authorized in this way are able to introspect tokens issued to any client. Further considerations for access control are out of scope for the SMART App Launch IG.
 
 
 ### Example Request and Response

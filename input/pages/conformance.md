@@ -1,14 +1,14 @@
-The SMART's App Launch specification enables apps to launch and securely interact with EHRs.
-The specification can be described as a set of capabilities and a given SMART on FHIR server implementation
-may implement a subset of these.  The methods of declaring a server's SMART authorization endpoints and launch capabilities are described in the sections below.
+The SMART App Launch specification enables apps to launch and securely integrate with EHRs. The conformance framework for SMART on FHIR includes:
 
-### SMART on FHIR OAuth authorization Endpoints and Capabilities
+* **Actors**
+  * *EHR Systems*: Operate as both resource servers and authorization servers, managing and providing secure access to health data.
+  * *Apps*: Operate as clients, seeking access to health data for diverse purposes.
+* **Capabilities**: the individual functional elements that an EHR system or a third-party application can support. A capability represents a single, distinct piece of functionality or a specific feature available within the SMART on FHIR ecosystem.
+* **Capability Sets**: collections of EHR capabilities that, when combined, enable specific use cases or application scenarios  (e.g., patient standalone access).
+* **Discovery Protocol**: a standardized method allowing apps to automatically identify the capabilities, services, and endpoints an EHR system offers. 
 
-The server SHALL convey the FHIR OAuth authorization endpoints and any *optional* SMART Capabilities it supports using a [Well-Known Uniform Resource Identifiers (URIs)](#using-well-known) JSON file. (In previous versions of SMART, some of these details were also conveyed in a server's CapabilityStatement; this mechanism is now deprecated.)
 
-Capabilities designated *"experimental"* indicate features where community feedback is especially welcome; they are ready for adoption but could change over time based on implementation experience.
-
-### Conformance Language
+#### Conformance Language
 
 This specification uses the conformance verbs SHALL, SHOULD, and MAY as defined
 in [RFC2119](https://www.ietf.org/rfc/rfc2119.txt). Unlike RFC 2119, however,
@@ -50,6 +50,10 @@ External implementation guides MAY define additional capabilities to be discover
 #### Capabilities
 
 To promote interoperability, the following SMART on FHIR *Capabilities* have been defined. A given set of these capabilities is combined to support a specific use, a *Capability Set*.
+
+Capabilities designated *"experimental"* indicate features where community feedback is especially welcome; they are ready for adoption but could change over time based on implementation experience.
+
+To allow for extensibility, additional capabilities MAY be listed by a server or defined by other implementation guides, as long as these capabilities are represented with full URIs. Simple, non-URI capability strings are reserved for definition in SMART App Launch (see below).
 
 ##### Launch Modes
 
@@ -107,8 +111,8 @@ completing the launch.
 
 ##### Permissions
 
-* `permission-offline`: support for refresh tokens (requested by `offline_access` scope)
-* `permission-online`: support for refresh tokens (requested by `online_access` scope)
+* `permission-offline`: support for "offline" refresh tokens (requested by `offline_access` scope)
+* `permission-online`: support for "online" refresh tokens requested during EHR Launch (requested by `online_access` scope). This capability is deemed *experimental*, providing the input to a scope negotiation that could result in granting an online or offline refresh token (see [Scopes and Launch Context](./scopes-and-launch-context.html)).
 * `permission-patient`: support for patient-level scopes (e.g., `patient/Observation.rs`)
 * `permission-user`: support for user-level scopes (e.g., `user/Appointment.rs`)
 * `permission-v1`: support for SMARTv1 scope syntax (e.g., `patient/Observation.read`)
@@ -118,19 +122,19 @@ completing the launch.
 
 * `smart-app-state`: support for managing [SMART App State](./app-state.html)
 
-<br />
-
-### HTTP Headers
-
-As described in the underlying HTTP specifications, <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers">header names are compared in a case-insensitive manner</a>.
-
 ### FHIR Authorization Endpoint and Capabilities Discovery using a Well-Known Uniform Resource Identifiers (URIs)
 {: #using-well-known}
 
-The authorization endpoints accepted by a FHIR resource server are exposed as a Well-Known Uniform Resource Identifiers (URIs) [(RFC5785)](https://datatracker.ietf.org/doc/html/rfc5785) JSON document.
+FHIR endpoints requiring authorization SHALL serve a JSON document at the
+location formed by appending `/.well-known/smart-configuration` to their base
+URL.  The server SHALL convey the FHIR OAuth authorization endpoints and any
+*optional* SMART Capabilities it supports using this "Well-Known Uniform
+Resource Identifiers (URIs)" JSON document (see [RFC5785](https://datatracker.ietf.org/doc/html/rfc5785)).
+Contrary to RFC5785 Appendix B.4, the `.well-known` path component may be appended even if the FHIR
+endpoint already contains a path component.
 
-FHIR endpoints requiring authorization SHALL serve a JSON document at the location formed by appending `/.well-known/smart-configuration` to their base URL.
-Contrary to RFC5785 Appendix B.4, the `.well-known` path component may be appended even if the FHIR endpoint already contains a path component.
+(In previous versions of SMART, some of these details were also conveyed in a server's CapabilityStatement; this mechanism is now deprecated.)
+
 
 Responses for `/.well-known/smart-configuration` requests SHALL be JSON, regardless of `Accept` headers provided in the request.
 
@@ -178,9 +182,10 @@ A JSON document must be returned using the `application/json` mime type.
 - `token_endpoint`: **REQUIRED**, URL to the OAuth2 token endpoint.
 - `token_endpoint_auth_methods_supported`: **OPTIONAL**, array of client authentication methods supported by the token endpoint. The options are "client_secret_post", "client_secret_basic", and "private_key_jwt".
 - `registration_endpoint`: **OPTIONAL**, If available, URL to the OAuth2 dynamic registration endpoint for this FHIR server.
-- `smart_app_state_endpoint`: **CONDITIONAL**, URL to the EHR's app state endpoint. SHALL be present when the EHR supports the `smart-app-state` capability and the endpoint is distinct from the EHR's primary endpoint.
-- `patientAccessBrandBundle`: **RECOMMENDED**, URL for a Brand Bundle. See [Patient Access Brands](brands.html).
-- `patientAccessBrandIdentifier`: **RECOMMENDED**, Identifier for the primary entry in a Brand Bundle. See [Patient Access Brands](brands.html).
+- `smart_app_state_endpoint`: **OPTIONAL, DEPRECATED**, URL to the EHR's app state endpoint. Deprecated; use `associated_endpoints` with the `smart-app-state` capability instead.
+- `associated_endpoints`: **OPTIONAL**, Array of objects for endpoints that share the same authorization mechanism as this FHIR endpoint, each with a "url" and "capabilities" array. This property is deemed *experimental*.
+- `user_access_brand_bundle`: **RECOMMENDED**, URL for a Brand Bundle. See [User Access Brands](brands.html).
+- `user_access_brand_identifier`: **RECOMMENDED**, Identifier for the primary entry in a Brand Bundle. See [User Access Brands](brands.html).
 - `scopes_supported`: **RECOMMENDED**, Array of scopes a client may request. See [scopes and launch context](scopes-and-launch-context.html#quick-start). The server SHALL support all scopes listed here; additional scopes MAY be supported (so clients should not consider this an exhaustive list).
 - `response_types_supported`: **RECOMMENDED**, Array of OAuth2 `response_type` values that are supported.  Implementers can refer to `response_type`s defined in OAuth 2.0 ([RFC 6749](https://datatracker.ietf.org/doc/html/rfc6749)) and in [OIDC Core](https://openid.net/specs/openid-connect-core-1_0.html#Authentication).
 - `management_endpoint`: **RECOMMENDED**, URL where an end-user can view which applications currently have access to data and can make adjustments to these access rights.
@@ -226,7 +231,14 @@ Content-Type: application/json
     "client-confidential-symmetric",
     "context-ehr-patient",
     "sso-openid-connect"
-  ]
+  ],
+  "associated_endpoints": [{
+    "url": "https://state.example.com",
+    "capabilities": ["smart-app-state"]
+  }]
 }
 ```
 
+### HTTP Headers
+
+As described in the underlying HTTP specifications, <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers">header names are compared in a case-insensitive manner</a>.
