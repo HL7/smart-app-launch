@@ -78,10 +78,10 @@
     </a>
     <ul class="dropdown-menu">
       <li>
-        <a href="brands.html">Patient-Access Brands and Endpoints</a>
+        <a href="brands.html">User-Access Brands and Endpoints</a>
       </li>
       <li>
-        <a href="example-brands.html">Patient-Access Brand Examples</a>
+        <a href="example-brands.html">User-Access Brand Examples</a>
       </li>
     </ul>
   </li><li class="dropdown">

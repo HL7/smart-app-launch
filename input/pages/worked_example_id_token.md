@@ -101,7 +101,7 @@ print(id_token)
 
 
 ### Validating and using an ID Token (for clients)
-A client obtains the ID Token as the result of an authorization operation. To validate the token, the client fetches the servers's public key, and then decodes the token. While decoding the token, the client must verify that the audience ('aud') matches its own client_id
+A client obtains the ID Token as the result of an authorization operation. To validate the token, the client fetches the server's public key, and then decodes the token. While decoding the token, the client must verify that the audience ('aud') matches its own client_id
 
 
 

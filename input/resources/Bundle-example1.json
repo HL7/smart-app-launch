@@ -55,7 +55,7 @@
           {
             "coding": [
               {
-                "system": "http://hl7.org/fhir/smart-app-launch/CodeSystem/patient-access-category",
+                "system": "http://hl7.org/fhir/smart-app-launch/CodeSystem/user-access-category",
                 "code": "laboratory",
                 "display": "Laboratory"
               }
@@ -85,6 +85,12 @@
             "city": "Madison",
             "state": "WI",
             "postalCode": "53726"
+          }
+        ],
+        "endpoint": [
+          {
+            "reference": "Endpoint/examplelabs",
+            "display": "FHIR R4 Endpoint for ExampleLabs Brand"
           }
         ]
       }

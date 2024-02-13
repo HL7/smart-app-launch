@@ -1,5 +1,3 @@
-<!-- # SMART App Launch: Scopes and Launch Context-->
-
 SMART on FHIR's authorization scheme uses OAuth scopes to communicate (and
 negotiate) access requirements. Providing apps with access to broad data sets is consistent with current common practices (e.g., interface engines also provide access to broad data sets); access is also limited based on the privileges of the user in context.  In general, we use scopes for three kinds of data:
 
@@ -107,14 +105,14 @@ for broad support; we reserve the right to make some search parameters
 mandatory in the future.
 </div>
 
-#### Experimental features
-
+#### Experimental features {%include exp.html%}
+{%include exp-div.html%}
 Because the search parameter based syntax here is quite general, it opens up the possibility of using many features that servers may have trouble supporting in a consistent and performant fashion. Given the current level of implementation experience, the following features should be considered experimental, even if they are supported by a server:
 
 * Use of search modifiers such as `Observation.rs?code:in=http://valueset.example.org/ValueSet/diabetes-codes`
 * Use of search parameter chaining such as `Observation.rs?patient.birthdate=1990`
 * Use of [FHIR's `_filter` capabilities](https://www.hl7.org/fhir/search_filter.html)
-
+</div>
 
 #### Scope size over the wire
 
@@ -486,6 +484,19 @@ addition to whatever FHIR Resource access scopes it needs. Launch context scopes
 easy to tell apart from FHIR Resource scopes, because they always begin with
 `launch`.
 
+Requested Scope | Meaning
+----------------|---------
+`launch/patient`   | Need patient context at launch time (FHIR Patient resource).
+`launch/encounter` | Need encounter context at launch time (FHIR Encounter resource).
+<span class="expSpan">Others </span>{%include exp.html%}          | <span class="expSpan">Any SMART EHR MAY extend this list to support additional context.  When specifying resource types, convert the type names to *all lowercase* (e.g., `launch/diagnosticreport`). In situations where the same resource type might be used for more than one purpose (e.g., in a medication reconciliation app, one List of at-home medications and another List of in-hospital medications), the app can solicit context with a specific role by appending `?role={role}` (see [example below](#fhircontext-example-medication-reconciliation)).</span>
+{:.grid}
+
+When using `?role=` in launch context requests:
+* Each requested scope can include at most one role. If an app requires multiple roles, it MAY request multiple scopes (e.g., `launch/relatedperson?role=friend` and `launch/relatedperson?role=neighbor`).
+* If an EHR receives a request for an unsupported role, it SHOULD return any launch context supported for the supplied resource type. It MAY return alternative roles.
+
+
+
 There are two general approaches to asking for launch context data depending
 on the details of how your app is launched.
 
@@ -502,20 +513,14 @@ The application could choose to also provide `launch/patient`,
 contexts the app would like the EHR to gather. The EHR MAY ignore these hints
 (for example, if the user is in a workflow where these contexts do not exist).
 
-If an application requests a FHIR Resource scope which is restricted to a single patient (e.g., `patient/*.rs`), and the authorization results in the EHR is granting that scope, the EHR SHALL establish a patient in context. The EHR MAY refuse authorization requests including `patient/` that do not also include a valid `launch`, or it MAY infer the `launch/patient` scope.
+If an application requests a FHIR Resource scope which is restricted to a single patient (e.g., `patient/*.rs`), and the authorization results in the EHR granting that scope, the EHR SHALL establish a patient in context. The EHR MAY refuse authorization requests including `patient/` that do not also include a valid `launch`, or it MAY infer the `launch/patient` scope.
 
 #### Standalone apps
 
 Standalone apps that launch outside the EHR do not have any EHR context at the outset. These apps must explicitly request EHR context. The EHR SHOULD provide the requested context if requested by the following scopes, unless otherwise noted.
 
-Requested Scope | Meaning
-----------------|---------
-`launch/patient`   | Need patient context at launch time (FHIR Patient resource). See note below.
-`launch/encounter` | Need encounter context at launch time (FHIR Encounter resource).
-(Others)           | This list can be extended by any SMART EHR to support additional context.  When specifying resource types, convert the type names to *all lowercase* (e.g., `launch/diagnosticreport`). In situations where the same resource type might be used for more than one purpose (e.g., in a medication reconciliation app, one List of at-home medications and another List of in-hospital medicdations), the app can solicit context with a specific role by appending `?role={role}` (see [example below](#fhircontext-example-medication-reconciliation)).
-{:.grid}
-
 Note on `launch/patient`: If an application requests a scope which is restricted to a single patient (e.g., `patient/*.rs`), and the authorization results in the EHR granting that scope, the EHR SHALL establish a patient in context. The EHR MAY refuse authorization requests including `patient/` that do not also include a valid `launch/patient` scope, or it MAY infer the `launch/patient` scope.
+
 
 #### Launch context arrives with your `access_token`
 
@@ -535,7 +540,8 @@ parameters:
 //...
 }
 ```
-Some common launch context parameters are shown below. The following sections provides further details:
+
+Some common launch context parameters are shown in the example below. The following sections provides further details:
 
 Launch context parameter | Example value | Meaning
 -------------------------|---------------|---------
@@ -548,26 +554,28 @@ Launch context parameter | Example value | Meaning
 `tenant`              | `"2ddd6c3a-8e9a-44c6-a305-52111ad302a2"` | String conveying an opaque identifier for the healthcare organization that is launching the app. This parameter is intended primarily to support EHR Launch scenarios.
 {:.grid}
 
-<h5 id="fhir-context"><code>fhirContext</code></h5>
+<a id="fhir-context"></a>
+#### `fhirContext` {%include exp.html%}
 
-To allow application flexibility, maintain backwards compatibility, and keep a
+{%include exp-div.html%} To allow application flexibility, maintain backwards compatibility, and keep a
 predictable JSON structure, any contextual resource types that were requested
-by a launch scope will appear in the `fhirContext` array. The Patient and
-Encounter resource types will *not be deprecated from top-level parameters*,
-and they will *not be permitted* within the `fhirContext` array unless they
-include a `role` other than `"launch"`.
+by a launch scope will appear in the `fhirContext` array. The two exceptions are
+Patient and Encounter resource types, which will *not be deprecated from top-level
+parameters*, and they will *not be permitted* within the `fhirContext` array unless they
+include a `role` other than `"launch"`. </div>
 
 Each object in the `fhirContext` array SHALL include at least one of
 `"reference"`, `"canonical"`, or `"identifier"`, and MAY contain additional
 properties:
 
-* `"reference"` (string): relative reference to a FHIR resource. Note that there MAY be more than one `fhirContext` item referencing the same type of resource.
+
+* `"reference"` (string): relative reference to a FHIR resource. Note that there MAY be more than one `fhirContext` item referencing the same type of resource.</span>
 
 * `"canonical"` (string):  canonical URL for the `fhirContext` item (MAY include a version suffix)
 
 * `"identifier"` (object):  FHIR Identifier for the `fhirContext` item
 
-* `"type"` (string): FHIR resource type of the `fhirContext` item
+* `"type"` (string): FHIR resource type of the `fhirContext` item (RECOMMENDED when `"identifier"` or `"canonical"` is present)
 
 * `"role"` (string):  URI identifying the role of this `fhirContext` item.
 Relative role URIs can only be used if they are defined in this specification; other
@@ -576,9 +584,12 @@ NOT be the empty string. The absence of a role property is semantically
 equivalent to a role of `"launch"`, indicating to a client that the app launch
 was performed in the context of the referenced resource. More granular role URIs
 can be adopted in use-case-specific ways. Multiple `fhirContext` items MAY have
-the same role.  Note: Specifications defining custom roles can list them in the
+the same role.
+  * Note: Specifications defining custom roles can list them in the
 [fhirContext Role Registry](https://confluence.hl7.org/display/FHIRI/fhirContext+Role+Registry) to
 promote awareness and reuse.
+  * Note: We have not yet defined a protocol for apps to discover which roles an EHR supports; as such, it is important for EHRs to include this information in their developer documentation.
+
 
 Note that for `"identifier"` and `"canonical"`, this specification does not
 define rules for access control. The app may reach out to different servers to
@@ -646,6 +657,7 @@ the EHR might supply `fhirContext` like:
   }]
 }
 ```
+</div>
 
 <h5 id="launch-intent"><b>App Launch Intent</b> (optional)</h5>
 `intent`: Some SMART apps might offer more than one context or user interface
@@ -673,8 +685,9 @@ Note that *SMART makes no effort to standardize `intent` values*.  Intents simpl
 provide a mechanism for tighter custom integration between an app and a SMART
 EHR. The meaning of intent values must be negotiated between the app and the EHR.
 
-##### SMART App Styling (experimental[^1])
+##### SMART App Styling (experimental[^1]) {%include exp.html%}
 {: #styling}
+{%include exp-div.html%}
 `smart_style_url`: In order to mimic the style of the SMART EHR more closely,
 SMART apps can check for the existence of this launch context parameter and,  if provided,
 download the JSON file referenced by the URL value.
@@ -724,6 +737,7 @@ Optionally, if the client app detects a new version of the SMART Style object
 store the new property values and request approval to use the new values from
 a client app stakeholder. This allows for safeguarding against poor usability
 that might occur from the immediate use of these values in the client app UI.
+</div>
 
 ### Scopes for requesting identity data
 

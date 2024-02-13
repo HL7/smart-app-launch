@@ -5,7 +5,7 @@
   "name": "SmartOnFhirCodes",
   "id": "smart-codes",
   "title": "SMART on FHIR terminology.",
-  "description": "Codes used to in profiles related to SMART on FHIR.",
+  "description": "Codes used in profiles related to SMART on FHIR.",
   "url": "http://hl7.org/fhir/smart-app-launch/CodeSystem/smart-codes",
   "concept": [
     {

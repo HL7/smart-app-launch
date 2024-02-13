@@ -1,3 +1,6 @@
+.index.db
+.index.json
+FHIR-smart.xml
 .DS_Store
 Thumbs.db
 /fsh-generated

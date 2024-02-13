@@ -1,19 +1,20 @@
-### `smart-app-state` capability
+{%include exp-div.html%}
+### `smart-app-state` capability {%include exp.html%}
 
 This experimental capability allows apps to persist a small amount of
 configuration data to an EHR's FHIR server. Conformance requirements described
 below apply only to software that implements support for this capability.
 Example use cases include:
 
-* App with no backend storage persists user preferences such as default
+* An app with no backend storage persists user preferences such as default
   screens, shortcuts, or color preferences. Such apps can save preferences to
   the EHR and retrieve them on subsequent launches.
 
-* App maintains encrypted external data sets. Such apps can persist access keys
+* An app maintains encrypted external data sets. Such apps can persist access keys
   to the EHR and retrieve them on subsequent launches, allowing in-app
   decryption and display of external data sets.
 
-**Apps SHALL NOT use `smart-app-state` when data being persisted could be
+**Apps SHALL NOT use `smart-app-state` when the data being persisted could be
 managed directly using FHIR domain models.** For example, an app would never
 persist clinical diagnoses or observations using `smart-app-state`. Such usage
 is prohibited because the standard FHIR API provides safer and more
@@ -46,22 +47,15 @@ EHRs supporting this capability SHALL advertise support by including
 `"smart-app-state"` in the capabilities array of their FHIR server's
 `.well-known/smart-configuration` file (see section [Conformance](conformance.html)).
 
-EHRs supporting this capability MAY include a `smart_app_state_endpoint`
-property if they want to maintain App State management functionality at a
+EHRs MAY include an `associated_endpoints[]` entry if they want to maintain App State management functionality at a
 location distinct form the core EHR's FHIR endpoint (see section [Design
 Notes](#design-notes)).
-
-The EHR's "App State FHIR endpoint" is defined as:
-
-1. The value in `smart_app_state_endpoint`, if present
-2. The EHR's primary FHIR endpoint, otherwise
-
 
 #### Example discovery document
 
 Consider a FHIR server with base URL `https://ehr.example.org/fhir`.
 
-The discovery document at
+If state is directly managed by the FHIR server, the discovery document at
 `https://ehr.example.org/fhir/.well-known/smart-configuration` might include:
 
 ```js
@@ -70,10 +64,22 @@ The discovery document at
     "smart-app-state",
     // <other capabilities snipped>
   ],
-  "smart_app_state_endpoint": "https://ehr.example.org/appstate"
   // <other properties snipped>
 }
 ```
+
+If state is externally managed, the discovery document might include:
+
+```js
+{
+  "associated_endpoints": [{
+    "url": "https://ehr.example.org/appstate",
+    "capabilities": ["smart-app-state"]
+  }]
+  // <other properties snipped>
+}
+```
+
 
 ### App State Interactions
 
@@ -433,7 +439,7 @@ types like `https://app.example.org|user-preferences` or
 State types, these could be reviewed through an out-of-band process. This
 situation is expected when one developer supplies a patient-facing app and
 another developer supplies a provider-facing "companion app" that needs to
-query state written by the patient-facing app.
+query the state written by the patient-facing app.
 
 Further consideration is required when granting an app the ability to modify
 global app state (i.e., where `Basic.subject` is absent). Such permissions
