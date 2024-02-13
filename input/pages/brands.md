@@ -163,7 +163,9 @@ This annotated example illustrates how a Brand is represented as a FHIR Organiza
       "url" : "brandLogo",
       "valueUrl" : "https://goodhealth.example.org/images/logo.svg"
     },{
-      // (0..*) Link to the license agreement for the logo, if applicable
+      // (0..*) Link to the license agreement for the logo, if applicable.
+      // Developers must review and agree to the linked logo license terms
+      // prior to using the logo in their applications.
       "url" : "brandLogoLicense",
       "valueUrl" : "https://goodhealth.example.org/license.html"
     }, {
