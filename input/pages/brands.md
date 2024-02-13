@@ -15,16 +15,16 @@ In this model, a healthcare **provider, payer, or other organization** exposing 
 Using this model, an **app** can:
 
 * **Display** the Brands it has collected (e.g., as cards or tiles in a UX)
-* Allow users to **filter or search** Brands based on names, locations, or categories
-* Allow users to **select** Brands (and more specifically portals) where they have data available
-* Guide useres to **connect** to FHIR endpoints for the selected portals
+* Allow users to **filter or search** Brands based on names, locations, or categories.
+* Allow users to **select** Brands (and more specifically portals) where they have data available.
+* Guide users to **connect** to FHIR endpoints for the selected portals.
 
 ### Design goals
-- Health Data Providers can publish Brand details (name, logo, etc.) that users will recognize
-- Brands can be associated with one or more user access portals
-- Portals can be associated with one or more FHIR endpoints
-- Apps display Brands to create a "connect to my health records" UX
-- All details can be published in aggregate (e.g., by EHR vendor, by region, or globally)
+- Health Data Providers can publish Brand details (name, logo, etc.) that users will recognize.
+- Brands can be associated with one or more user access portals.
+- Portals can be associated with one or more FHIR endpoints.
+- Apps display Brands to create a "connect to my health records" UX.
+- All details can be published in aggregate (e.g., by EHR vendor, by region, or globally).
 
 ### Brand Information
 
@@ -69,14 +69,14 @@ Commonly, a single Brand is typically associated with a single Portal that offer
 * *One Brand is associated with one Portal*
   * e.g., a primary care practice with a single EHR providing user access
 * *One Brand is associated with multiple Portals*
-  * e.g., a hospital may offer more than one portal for legacy purposes
-  * e.g., a tertiary cancer center may offer one portal for adults and another for pediatric patients
+  * e.g., a hospital may offer more than one patient portal for legacy purposes
+  * e.g., a tertiary cancer center may offer one patient portal for adults and another for pediatric patients
   * Because Brand information may be published in multiple places, Organizations include the same `identifier` to facilitate matching, merging, and de-duplication. Apps can merge Brands into a single target Brand's card by displaying the target Brand's title and logo. Within the Brand's card, the app displays a distinct "connect" button for each set of Portal Details.
 * *One Portal is associated with one Endpoint*
   * e.g., an EHR-based portal that provides access to patient data through a single FHIR R4 endpoint 
 * *One Portal is associated with multiple FHIR Endpoints*
-  * e.g., a national lab's portal might have one Endpoint for FHIR R4 and another for FHIR R2
-  * e.g., a health system's portal might have one Endpoint for laboratory results and another for imaging results
+  * e.g., a national lab's portal might have one Endpoint for FHIR R4 and another for FHIR R2.
+  * e.g., a health system's portal might have one Endpoint for laboratory results and another for imaging results.
 * *Multiple Brands are associated with the same Portal*
   * e.g., a regional health system that patients recognize under distinct brands associated with specific hospitals or clinics -- even though all these paths lead to the same portal and FHIR Endpoints.
 
