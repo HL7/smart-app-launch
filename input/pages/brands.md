@@ -40,7 +40,7 @@ Each Brand includes the following information intended to support an app-based c
 | Field | Description | Cardinality |
 | --- | --- | --- |
 | Name|Primary name for the organization to display on a card, e.g., "General Hospital" | 1..1 |
-| Consumer-facing website for this Brand | note this is distinct from an access portal, described under "Access Details" below | 1..1 |
+| User-facing website for this Brand | note this is distinct from an access portal, described under "Access Details" below | 1..1 |
 | Logo |to be displayed on a card, and link to logo use terms/agreements | 0..1 |
 | Aliases | e.g., former names like "General Health Associates" for filtering/search | 0..* |
 | Identifiers | supporting cross-publisher references or links to external data sets such as the NPI Registry. | 0..* |
