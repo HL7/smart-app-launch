@@ -14,7 +14,7 @@ In this model, a healthcare **provider, payer, or other organization** exposing 
 
 Using this model, an **app** can:
 
-* **Display** the Brands it has collected (e.g., as cards or tiles in a UX)
+* **Display** the Brands it has collected (e.g., as cards or tiles in a UX).
 * Allow users to **filter or search** Brands based on names, locations, or categories.
 * Allow users to **select** Brands (and more specifically portals) where they have data available.
 * Guide users to **connect** to FHIR endpoints for the selected portals.
