@@ -94,9 +94,9 @@ This conformance overview is intended for convenience and clarity. In case of an
   * SHALL populate `Bundle.timestamp` to advertise the timestamp of the last change to the contents
   * SHOULD populate `Bundle.entry.resource.meta.lastUpdated` with a more detailed timestamp if the system tracks updates per Resource.
   * SHALL support Cross-Origin Resource Sharing (CORS) for all GET requests to the artifacts described in this guide.
-  * SHOULD include a weak `ETag`` header in all Brand Bundle HTTP responses
+  * SHOULD include a weak `ETag` header in all Brand Bundle HTTP responses
   * SHALL allow Health Data Providers to manage all data elements marked "Must-Support" in the "[User Access Brand](StructureDefinition-user-access-brand.html)" and "[User Access Endpoint](StructureDefinition-user-access-endpoint.html)" profiles
-    * SHALL support customer-supplied Organization identifiers (`system` and `value``)
+    * SHALL support customer-supplied Organization identifiers (`system` and `value`)
     * MAY provide a Data Absent Reason of `asked-declined` or `asked-unknown` in a Brand Bundle
     * SHALL NOT use Data Absent Reasons other than `asked-declined` or `asked-unknown` in a Brand Bundle
 * **SMART on FHIR Server**. Any SMART on FHIR server that supports discovery of a User Access Brand Bundle.
