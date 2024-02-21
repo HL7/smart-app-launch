@@ -11,7 +11,38 @@
   "compose": {
     "include": [
       {
-        "system": "http://hl7.org/fhir/smart-app-launch/CodeSystem/user-access-category"
+        "system": "http://terminology.hl7.org/CodeSystem/organization-type",
+        "concept": [
+          {
+            "code": "prov",
+            "display": "Healthcare Provider"
+          },
+          {
+            "code": "ins",
+            "display": "Insurance Company"
+          },
+          {
+            "code": "laboratory",
+            "display": "Laboratory"
+          },
+          {
+            "code": "imaging",
+            "display": "Imaging Center"
+          },
+          {
+            "code": "pharmacy",
+            "display": "Pharmacy"
+          },
+          {
+            "code": "health-information-network",
+            "display": "Health Information Network"
+
+          },
+          {
+            "code": "health-data-aggregator",
+            "display": "Health Data Aggregator"
+          }
+        ]
       }
     ]
   }

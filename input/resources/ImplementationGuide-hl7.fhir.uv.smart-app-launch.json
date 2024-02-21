@@ -101,14 +101,6 @@
       },
       {
         "reference": {
-          "reference": "CodeSystem/user-access-category"
-        },
-        "name": "User Access Category Code System",
-        "exampleBoolean": false,
-        "groupingId": "PABProfiles"
-      },
-      {
-        "reference": {
           "reference": "ValueSet/user-access-category"
         },
         "name": "User Access Category Value Set",

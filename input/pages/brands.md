@@ -146,9 +146,9 @@ This annotated example illustrates how a Brand is represented as a FHIR Organiza
   // can be included here.
   "type" : [{
     "coding" : [{
-      "system" : "http://hl7.org/fhir/smart-app-launch/CodeSystem/user-access-category",
-      "code" : "clinical",
-      "display" : "Clinical"
+      "system" : "http://terminology.hl7.org/CodeSystem/organization-type",
+      "code" : "prov",
+      "display" : "Healthcare Provider"
     }]
   }],
   "extension" : [{

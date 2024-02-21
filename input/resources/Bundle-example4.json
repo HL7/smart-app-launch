@@ -51,9 +51,9 @@
           {
             "coding": [
               {
-                "system": "http://hl7.org/fhir/smart-app-launch/CodeSystem/user-access-category",
-                "code": "insurance",
-                "display": "Insurance"
+                "system": "http://terminology.hl7.org/CodeSystem/organization-type",
+                "code": "ins",
+                "display": "Insurance Company"
               }
             ]
           }
@@ -135,9 +135,9 @@
           {
             "coding": [
               {
-                "system": "http://hl7.org/fhir/smart-app-launch/CodeSystem/user-access-category",
-                "code": "insurance",
-                "display": "Insurance"
+                "system": "http://terminology.hl7.org/CodeSystem/organization-type",
+                "code": "ins",
+                "display": "Insurance Company"
               }
             ]
           }
