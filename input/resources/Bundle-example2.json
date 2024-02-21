@@ -77,7 +77,7 @@
         "telecom": [
           {
             "system": "url",
-            "value": "https://www.examplehealth.com"
+            "value": "https://health.example.com"
           }
         ],
         "address": [
@@ -264,7 +264,7 @@
           }
         ],
         "status": "active",
-        "address": "https://ehrfhir.examplehealth.org/ProdFHIR/api/FHIR/R4",
+        "address": "https://ehr.example.com/ProdFHIR/api/FHIR/R2",
         "name": "FHIR DSTU2 Endpoint for ExampleHealth",
         "contact": [
           {
@@ -300,7 +300,7 @@
           }
         ],
         "status": "active",
-        "address": "https://ehrfhir.examplehealth.org/ProdFHIR/api/FHIR/R4",
+        "address": "https://ehr.example.com/ProdFHIR/api/FHIR/R4",
         "name": "FHIR R4 Endpoint for ExampleHealth",
         "contact": [
           {
