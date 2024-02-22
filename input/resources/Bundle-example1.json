@@ -14,7 +14,7 @@
             "extension": [
               {
                 "url": "brandLogo",
-                "valueUrl": "https://labs.example.com/images/logo.svg"
+                "valueUrl": "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg'><path d='M0 0h1024v1024H0z' style='fill:%23eee'/><text x='40' y='170' style='font-size:150px'>1024x1024</text></svg>"
               }
             ],
             "url": "http://hl7.org/fhir/StructureDefinition/organization-brand"
@@ -31,7 +31,7 @@
               },
               {
                 "url": "portalLogo",
-                "valueUrl": "https://healthcentral.labs.example.com/logo.png"
+                "valueUrl": "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg'><path d='M0 0h1024v1024H0z' style='fill:%23666'/><text x='40' y='170' style='font-size:150px'>1024x1024</text></svg>"
               },
               {
                 "url": "portalEndpoint",
