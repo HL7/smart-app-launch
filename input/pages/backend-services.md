@@ -118,7 +118,7 @@ and the FHIR server SHALL be secured using TLS V1.2 or a more recent version of 
 
 
 Before a client can request an access token, it generates a one-time-use
-authentication JWT [as described in `client-confidential-symmetric`
+authentication JWT [as described in `client-confidential-asymmetric`
 authentication](client-confidential-asymmetric.html#authenticating-to-the-token-endpoint).
 After generating this authentication JWT, the client
 requests an access token via HTTP `POST` to the FHIR authorization server's
