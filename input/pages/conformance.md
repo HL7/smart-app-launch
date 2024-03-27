@@ -177,7 +177,7 @@ A JSON document must be returned using the `application/json` mime type.
 ##### Metadata
 - `issuer`: **CONDITIONAL**, String conveying this system's OpenID Connect Issuer URL. Required if the server's capabilities include `sso-openid-connect`; otherwise, omitted.
 - `jwks_uri`: **CONDITIONAL**, String conveying this system's JSON Web Key Set URL. Required if the server's capabilities include `sso-openid-connect`; otherwise, optional.
-- `authorization_endpoint`: **REQUIRED**, URL to the OAuth2 authorization endpoint.
+- `authorization_endpoint`: **CONDITIONAL**, URL to the OAuth2 authorization endpoint. Required if server supports the `launch-ehr` or `launch-standalone` capability; otherwise, optional.
 - `grant_types_supported`: **REQUIRED**, Array of grant types supported at the token endpoint. The options are "authorization_code" (when SMART App Launch is supported) and "client_credentials" (when SMART Backend Services is supported).
 - `token_endpoint`: **REQUIRED**, URL to the OAuth2 token endpoint.
 - `token_endpoint_auth_methods_supported`: **OPTIONAL**, array of client authentication methods supported by the token endpoint. The options are "client_secret_post", "client_secret_basic", and "private_key_jwt".
