@@ -44,7 +44,7 @@ Each Brand includes the following information intended to support an app-based c
 | Logo |to be displayed on a card, and link to logo use terms/agreements | 0..1 |
 | Aliases | e.g., former names like "General Health Associates" for filtering/search | 0..* |
 | Identifiers | supporting cross-publisher references or links to external data sets such as the NPI Registry. | 0..* |
-| Locations | zip codes and street addresses associated with the Brand | 0..* |
+| Locations | Places associated with the Brand (e.g., states, cities, or street addresses) | 0..* |
 | Categories | clinical, insurance, laboratory, imaging, pharmacy, network, aggregator --- for filtering/search | 0..* |
 | Portal Details | describes a portal this Brand offers to users **See the table below**.| 0..* |
 {:.grid}
@@ -239,7 +239,10 @@ This annotated example illustrates how a Brand is represented as a FHIR Organiza
     "value" : "https://brand.example.com"
   }],
   // Locations (e.g., zip codes and/or street addresses) associated with the Brand.
-  // The following combinations are allowed:
+  // The following combinations are allowed, and as a best practice to ensure
+  // consistent worldwide adoption, the Address.country data element SHOULD be
+  // populated inside any of these with an ISO 3166-1 alpha-2 country code.
+:
   // * State
   // * City, state
   // * City, state, zip code
@@ -248,9 +251,11 @@ This annotated example illustrates how a Brand is represented as a FHIR Organiza
   "address" : [{
     "city" : "Boston",
     "state" : "MA",
-    "postalCode" : "02111"
+    "postalCode" : "02111",
+    "country": "US"
   }, {
-    "postalCode" : "02139"
+    "postalCode" : "02139",
+    "country": "US"
   }],
   // These endpoints are already listed above in association with their portal.
   // They are repeated here as a convenience for clients that do not know how

@@ -69,15 +69,18 @@
         "address": [
           {
             "city": "Napa",
-            "state": "CA"
+            "state": "CA",
+            "country": "US"
           },
           {
             "city": "Sonoma",
-            "state": "CA"
+            "state": "CA",
+            "country": "US"
           },
           {
             "city": "St Helena",
-            "state": "CA"
+            "state": "CA",
+            "country": "US"
           }
         ],
         "endpoint": [
@@ -153,15 +156,18 @@
         "address": [
           {
             "city": "Sonoma",
-            "state": "CA"
+            "state": "CA",
+            "country": "US"
           },
           {
             "city": "San Rafael",
-            "state": "CA"
+            "state": "CA",
+            "country": "US"
           },
           {
             "city": "Santa Rosa",
-            "state": "CA"
+            "state": "CA",
+            "country": "US"
           }
         ],
         "endpoint": [

@@ -83,51 +83,63 @@
         "address": [
           {
             "city": "Madison",
-            "state": "WI"
+            "state": "WI",
+            "country": "US"
           },
           {
             "city": "Anamosa",
-            "state": "IA"
+            "state": "IA",
+            "country": "US"
           },
           {
             "city": "Cedar Rapids",
-            "state": "IA"
+            "state": "IA",
+            "country": "US"
           },
           {
             "city": "Des Moines",
-            "state": "IA"
+            "state": "IA",
+            "country": "US"
           },
           {
             "city": "Dubuque",
-            "state": "IA"
+            "state": "IA",
+            "country": "US"
           },
           {
             "city": "Fort Dodge",
-            "state": "IA"
+            "state": "IA",
+            "country": "US"
           },
           {
             "city": "Grinnell",
-            "state": "IA"
+            "state": "IA",
+            "country": "US"
           },
           {
             "city": "Marshalltown",
-            "state": "IA"
+            "state": "IA",
+            "country": "US"
           },
           {
             "city": "Peoria",
-            "state": "IA"
+            "state": "IA",
+            "country": "US"
           },
           {
             "city": "Pekin",
-            "state": "I"
+            "state": "IA",
+            "country": "US"
           },
           {
             "city": "Muscatine",
-            "state": "IA"
+            "state": "IA",
+            "country": "US"
           },
           {
             "city": "Sioux City",
-            "state": "IA"
+            "state": "IA",
+            "country": "US"
           }
         ],
         "endpoint": [
@@ -189,7 +201,8 @@
         "address": [
           {
             "city": "Lake City",
-            "state": "IA"
+            "state": "IA",
+            "country": "US"
           }
         ],
         "partOf": {
@@ -244,7 +257,8 @@
         "address": [
           {
             "city": "Madison",
-            "state": "WI"
+            "state": "WI",
+            "country": "US"
           }
         ],
         "partOf": {

@@ -75,16 +75,19 @@
             "line": ["4015 Lake Otis Pkwy"],
             "city": "Anchorage",
             "state": "AK",
-            "postalCode": "99508"
+            "postalCode": "99508",
+            "country": "US"
           },
           {
-            "state": "...(more here)..."
+            "state": "...(more here)...",
+            "country": "US"
           },
           {
             "line": ["123 Main St"],
             "city": "Madison",
             "state": "WI",
-            "postalCode": "53726"
+            "postalCode": "53726",
+            "country": "US"
           }
         ],
         "endpoint": [
