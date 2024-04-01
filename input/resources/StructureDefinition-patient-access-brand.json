@@ -161,7 +161,7 @@
         "id": "Organization.address",
         "path": "Organization.address",
         "short": "Locations (e.g., zip codes and/or street addresses) associated with the Brand.",
-        "definition": "Locations (e.g., zip codes and/or street addresses) associated with the Brand. The following combinations are allowed:\n  * State\n  * City, state\n  * City, state, zip code\n  * Street address, city, state, zip code\n  * zip code alone\n",
+        "definition": "Locations (e.g., zip codes and/or street addresses) associated with the Brand. The following combinations are allowed, and as a best practice to ensure consistent worldwide adoption, the Address.country data element SHOULD be populated inside any of these with an ISO 3166-1 alpha-2 country code:\n  * State\n  * City, state\n  * City, state, zip code\n  * Street address, city, state, zip code\n  * zip code alone\n",
         "mustSupport": true
       },
       {
