@@ -46,7 +46,11 @@
   "dependsOn": [{
     "uri": "http://hl7.org/fhir/extensions/ImplementationGuide/hl7.fhir.uv.extensions",
     "packageId": "hl7.fhir.uv.extensions",
-    "version": "5.1.0-ballot1"
+    "version": "5.1.0-snapshot1"
+  }, {
+    "uri": "http://terminology.hl7.org/ImplementationGuide/hl7.terminology",
+    "packageId": "hl7.terminology",
+    "version": "5.5.0"
   }],
   "definition": {
     "grouping": [

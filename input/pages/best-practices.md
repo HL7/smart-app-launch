@@ -29,7 +29,7 @@ The responsibility of supporting transparent consent falls on both the authoriza
 * For each requested scope, present the user with both a short and long description of the access requested. The long description may be available in a pop-up window or some similar display method. These descriptions should be in plain language and localized to the user's browser language preference.
 * Consider publishing consent design documentation for client developers including user interface screenshots and full scope description metadata.  This will provide valuable transparency to client developers as they make decisions on what access to request at authorization time.
 * Avoid industry jargon when describing a given scope to the user. For example, an average patient may not know what is meant if a client application is requesting access to their "Encounters".
-* If using the [experimental query-based scopes](scopes-and-launch-context.html#experimental-features), consider how the query will be represented in plain language. If the query cannot easily be explained in a single sentence, adjustment of the requested scope should be considered or proper documentation provided to educate the intended user population.
+* If using the [experimental query-based scopes](scopes-and-launch-context.html#experimental-features-exp), consider how the query will be represented in plain language. If the query cannot easily be explained in a single sentence, adjustment of the requested scope should be considered or proper documentation provided to educate the intended user population.
 
 ### App and Server developers should consider trade-offs associated with confidential vs public app architectures
 

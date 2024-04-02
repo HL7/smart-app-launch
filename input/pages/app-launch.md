@@ -648,7 +648,7 @@ includes the following parameters:
     <tr>
       <td><code>authorization_details {%include exp.html%}</code></td>
       <td><span class="label label-info">optional</span></td>
-      <td>{%include exp-span.html%}Additional details describing where this token can be used, and any per-location context (experimental; see <a href="#experimental-authorization-details-for-multiple-servers">details</a>)</span></td>
+      <td>{%include exp-span.html%}Additional details describing where this token can be used, and any per-location context (experimental; see <a href="#experimental-authorization-details-for-multiple-servers-exp">details</a>)</span></td>
     </tr>
 
   </tbody>
@@ -701,7 +701,7 @@ interaction are not defined by this specification.*
 
 At this point, **the authorization flow is complete**.
 
-##### {%include exp.html%} Experimental: Authorization Details for Multiple Servers
+##### Experimental: Authorization Details for Multiple Servers {%include exp.html%}
 
 {%include exp-div.html%}
 If an authorization server wishes to provide a token that can be used with more than one FHIR server (i.e., the token can be used with app's requested `aud` as well as additional endpoints), the following structures from [rfc9396](https://datatracker.ietf.org/doc/html/rfc9396) can be included in the access token response:
@@ -879,7 +879,7 @@ The response is a JSON object containing a new access token, with the following 
     <tr>
       <td><code>authorization_details{%include exp.html%}</code></td>
       <td><span class="label label-info">optional</span></td>
-      <td>{%include exp-span.html%}Additional details describing where this token can be used, and any per-location context (experimental; see <a href="#experimental-authorization-details-for-multiple-servers">details</a>)</span></td>
+      <td>{%include exp-span.html%}Additional details describing where this token can be used, and any per-location context (experimental; see <a href="#experimental-authorization-details-for-multiple-servers-exp">details</a>)</span></td>
     </tr>
   </tbody>
 </table>

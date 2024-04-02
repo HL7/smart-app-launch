@@ -6,19 +6,36 @@
 # ********************************************************************************************************************************
 
 # Example URI in example.org domain does not need to be validated
-INFORMATION: Basic/app-state: Basic.code.coding[0]: Code System URI 'https://myapp.example.org' could not be found so the code cannot be validated
+INFORMATION: Basic/app-state: Basic.code.coding[0].system: A definition for CodeSystem 'https://myapp.example.org' could not be found, so the code cannot be validated
+
 
 # These example resources have content that can be inferred, and a standalone examples page providing more detail
 WARNING: Unable to find ImplementationGuide.definition.resource.description for the resource Bundle/example1.  Descriptions are strongly encouraged if they cannot be inferred from the resource to allow proper population of the artifact list.
 WARNING: Unable to find ImplementationGuide.definition.resource.description for the resource Bundle/example2.  Descriptions are strongly encouraged if they cannot be inferred from the resource to allow proper population of the artifact list.
 WARNING: Unable to find ImplementationGuide.definition.resource.description for the resource Bundle/example3.  Descriptions are strongly encouraged if they cannot be inferred from the resource to allow proper population of the artifact list.
 WARNING: Unable to find ImplementationGuide.definition.resource.description for the resource Bundle/example4.  Descriptions are strongly encouraged if they cannot be inferred from the resource to allow proper population of the artifact list.
-WARNING: Unable to find ImplementationGuide.definition.resource.description for the resource Organization/example.  Descriptions are strongly encouraged if they cannot be inferred from the resource to allow proper population of the artifact list.
-WARNING: Unable to find ImplementationGuide.definition.resource.description for the resource Endpoint/example.  Descriptions are strongly encouraged if they cannot be inferred from the resource to allow proper population of the artifact list.
 
 # The 'no narrative' parameter is used for these resources instances because they are infrastructural in nature and used in strictly managed trading systems where all systems share a common data model and additional text is unnecessary.
 WARNING: Basic/app-state: Basic: Constraint failed: dom-6: 'A resource should have narrative for robust management' (defined in http://hl7.org/fhir/StructureDefinition/DomainResource) (Best Practice Recommendation)
-WARNING: Endpoint/example: Endpoint: Constraint failed: dom-6: 'A resource should have narrative for robust management' (defined in http://hl7.org/fhir/StructureDefinition/DomainResource) (Best Practice Recommendation)
-WARNING: Organization/example: Organization: Constraint failed: dom-6: 'A resource should have narrative for robust management' (defined in http://hl7.org/fhir/StructureDefinition/DomainResource) (Best Practice Recommendation)
 WARNING: Task/task-for-ehr-launch: Task: Constraint failed: dom-6: 'A resource should have narrative for robust management' (defined in http://hl7.org/fhir/StructureDefinition/DomainResource) (Best Practice Recommendation)
 WARNING: Task/task-for-standalone-launch: Task: Constraint failed: dom-6: 'A resource should have narrative for robust management' (defined in http://hl7.org/fhir/StructureDefinition/DomainResource) (Best Practice Recommendation)
+WARNING: Bundle/example1: Bundle.entry[0].resource/*Organization/examplelabs*/: Constraint failed: dom-6: 'A resource should have narrative for robust management' (defined in http://hl7.org/fhir/StructureDefinition/DomainResource) (Best Practice Recommendation)
+WARNING: Bundle/example1: Bundle.entry[1].resource/*Endpoint/examplelabs*/: Constraint failed: dom-6: 'A resource should have narrative for robust management' (defined in http://hl7.org/fhir/StructureDefinition/DomainResource) (Best Practice Recommendation)
+WARNING: Bundle/example2: Bundle.entry[0].resource/*Organization/examplehealth*/: Constraint failed: dom-6: 'A resource should have narrative for robust management' (defined in http://hl7.org/fhir/StructureDefinition/DomainResource) (Best Practice Recommendation)
+WARNING: Bundle/example2: Bundle.entry[1].resource/*Organization/ehchospital*/: Constraint failed: dom-6: 'A resource should have narrative for robust management' (defined in http://hl7.org/fhir/StructureDefinition/DomainResource) (Best Practice Recommendation)
+WARNING: Bundle/example2: Bundle.entry[2].resource/*Organization/ehpmadison*/: Constraint failed: dom-6: 'A resource should have narrative for robust management' (defined in http://hl7.org/fhir/StructureDefinition/DomainResource) (Best Practice Recommendation)
+WARNING: Bundle/example2: Bundle.entry[3].resource/*Endpoint/examplehealth-r2*/: Constraint failed: dom-6: 'A resource should have narrative for robust management' (defined in http://hl7.org/fhir/StructureDefinition/DomainResource) (Best Practice Recommendation)
+WARNING: Bundle/example2: Bundle.entry[4].resource/*Endpoint/examplehealth-r4*/: Constraint failed: dom-6: 'A resource should have narrative for robust management' (defined in http://hl7.org/fhir/StructureDefinition/DomainResource) (Best Practice Recommendation)
+WARNING: Bundle/example3: Bundle.entry[0].resource/*Organization/examplehospital*/: Constraint failed: dom-6: 'A resource should have narrative for robust management' (defined in http://hl7.org/fhir/StructureDefinition/DomainResource) (Best Practice Recommendation)
+WARNING: Bundle/example3: Bundle.entry[1].resource/*Endpoint/examplehospital-ehr1*/: Constraint failed: dom-6: 'A resource should have narrative for robust management' (defined in http://hl7.org/fhir/StructureDefinition/DomainResource) (Best Practice Recommendation)
+WARNING: Bundle/example3: Bundle.entry[2].resource/*Endpoint/examplehospital-ehr2*/: Constraint failed: dom-6: 'A resource should have narrative for robust management' (defined in http://hl7.org/fhir/StructureDefinition/DomainResource) (Best Practice Recommendation)
+WARNING: Bundle/example4: Bundle.entry[0].resource/*Organization/brand1*/: Constraint failed: dom-6: 'A resource should have narrative for robust management' (defined in http://hl7.org/fhir/StructureDefinition/DomainResource) (Best Practice Recommendation)
+WARNING: Bundle/example4: Bundle.entry[1].resource/*Organization/brand2*/: Constraint failed: dom-6: 'A resource should have narrative for robust management' (defined in http://hl7.org/fhir/StructureDefinition/DomainResource) (Best Practice Recommendation)
+WARNING: Bundle/example4: Bundle.entry[2].resource/*Endpoint/coequal-example*/: Constraint failed: dom-6: 'A resource should have narrative for robust management' (defined in http://hl7.org/fhir/StructureDefinition/DomainResource) (Best Practice Recommendation)
+
+# Examples are in Brand Bundles, and validated in that context
+INFORMATION: StructureDefinition.where(url = 'http://hl7.org/fhir/smart-app-launch/StructureDefinition/user-access-brand'): The Implementation Guide contains no explicitly linked examples for this profile
+INFORMATION: StructureDefinition.where(url = 'http://hl7.org/fhir/smart-app-launch/StructureDefinition/user-access-endpoint'): The Implementation Guide contains no explicitly linked examples for this profile
+
+# smart-codes is exempt from THO Process, see details at https://confluence.hl7.org/display/TSMG/2024-03-18+TSMG+Agenda+and+Minutes
+INFORMATION: CodeSystem/smart-codes: CodeSystem: Most code systems defined in HL7 IGs will need to move to THO later during the process. Consider giving this code system a THO URL now (See https://confluence.hl7.org/display/TSMG/Terminology+Play+Book, and/or talk to TSMG)
