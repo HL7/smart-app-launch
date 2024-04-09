@@ -562,14 +562,14 @@ predictable JSON structure, any contextual resource types that were requested
 by a launch scope will appear in the `fhirContext` array. The two exceptions are
 Patient and Encounter resource types, which will *not be deprecated from top-level
 parameters*, and they will *not be permitted* within the `fhirContext` array unless they
-include a `role` other than `"launch"`. </div>
+include a `role` other than `"launch"`. 
 
 Each object in the `fhirContext` array SHALL include at least one of
 `"reference"`, `"canonical"`, or `"identifier"`, and MAY contain additional
 properties:
 
 
-* `"reference"` (string): relative reference to a FHIR resource. Note that there MAY be more than one `fhirContext` item referencing the same type of resource.</span>
+* `"reference"` (string): relative reference to a FHIR resource. Note that there MAY be more than one `fhirContext` item referencing the same type of resource.
 
 * `"canonical"` (string):  canonical URL for the `fhirContext` item (MAY include a version suffix)
 
