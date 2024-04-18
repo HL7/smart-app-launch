@@ -39,3 +39,24 @@ INFORMATION: StructureDefinition.where(url = 'http://hl7.org/fhir/smart-app-laun
 
 # smart-codes is granted an exemption, details at https://confluence.hl7.org/display/TSMG/2024-03-18+TSMG+Agenda+and+Minutes
 INFORMATION: CodeSystem/smart-codes: CodeSystem: Most code systems defined in HL7 IGs will need to move to THO later during the process. Consider giving this code system a THO URL now (See https://confluence.hl7.org/display/TSMG/Terminology+Play+Book, and/or talk to TSMG)
+
+
+# Ignoring info about references to draft code system for Organization type, since we've beek asked to use this draft code system
+INFORMATION: Bundle/example1: Bundle.entry[0].resource/*Organization/examplelabs*/.type[0]: Reference to draft CodeSystem http://terminology.hl7.org/CodeSystem/organization-type|2.0.0
+INFORMATION: Bundle/example1: Bundle.entry[1].resource/*Endpoint/examplelabs*/.payloadType[0]: Reference to draft CodeSystem http://terminology.hl7.org/CodeSystem/endpoint-payload-type|2.0.0
+INFORMATION: Bundle/example2: Bundle.entry[0].resource/*Organization/examplehealth*/.type[0]: Reference to draft CodeSystem http://terminology.hl7.org/CodeSystem/organization-type|2.0.0
+INFORMATION: Bundle/example2: Bundle.entry[1].resource/*Organization/ehchospital*/.type[0]: Reference to draft CodeSystem http://terminology.hl7.org/CodeSystem/organization-type|2.0.0
+INFORMATION: Bundle/example2: Bundle.entry[2].resource/*Organization/ehpmadison*/.type[0]: Reference to draft CodeSystem http://terminology.hl7.org/CodeSystem/organization-type|2.0.0
+INFORMATION: Bundle/example2: Bundle.entry[3].resource/*Endpoint/examplehealth-r2*/.payloadType[0]: Reference to draft CodeSystem http://terminology.hl7.org/CodeSystem/endpoint-payload-type|2.0.0
+INFORMATION: Bundle/example2: Bundle.entry[4].resource/*Endpoint/examplehealth-r4*/.payloadType[0]: Reference to draft CodeSystem http://terminology.hl7.org/CodeSystem/endpoint-payload-type|2.0.0
+INFORMATION: Bundle/example3: Bundle.entry[0].resource/*Organization/examplehospital*/.type[0]: Reference to draft CodeSystem http://terminology.hl7.org/CodeSystem/organization-type|2.0.0
+INFORMATION: Bundle/example3: Bundle.entry[1].resource/*Endpoint/examplehospital-ehr1*/.payloadType[0]: Reference to draft CodeSystem http://terminology.hl7.org/CodeSystem/endpoint-payload-type|2.0.0
+INFORMATION: Bundle/example3: Bundle.entry[2].resource/*Endpoint/examplehospital-ehr2*/.payloadType[0]: Reference to draft CodeSystem http://terminology.hl7.org/CodeSystem/endpoint-payload-type|2.0.0
+INFORMATION: Bundle/example4: Bundle.entry[0].resource/*Organization/brand1*/.type[0]: Reference to draft CodeSystem http://terminology.hl7.org/CodeSystem/organization-type|2.0.0
+INFORMATION: Bundle/example4: Bundle.entry[1].resource/*Organization/brand2*/.type[0]: Reference to draft CodeSystem http://terminology.hl7.org/CodeSystem/organization-type|2.0.0
+INFORMATION: Bundle/example4: Bundle.entry[2].resource/*Endpoint/coequal-example*/.payloadType[0]: Reference to draft CodeSystem http://terminology.hl7.org/CodeSystem/endpoint-payload-type|2.0.0
+INFORMATION: StructureDefinition/user-access-endpoint: StructureDefinition.snapshot.element[12].pattern.ofType(Coding): Reference to draft CodeSystem http://terminology.hl7.org/CodeSystem/endpoint-connection-type|2.1.0
+INFORMATION: StructureDefinition/user-access-endpoint: StructureDefinition.snapshot.element[25].pattern.ofType(CodeableConcept): Reference to draft CodeSystem http://terminology.hl7.org/CodeSystem/endpoint-payload-type|2.0.0
+INFORMATION: StructureDefinition/user-access-endpoint: StructureDefinition.differential.element[4].pattern.ofType(Coding): Reference to draft CodeSystem http://terminology.hl7.org/CodeSystem/endpoint-connection-type|2.1.0
+INFORMATION: StructureDefinition/user-access-endpoint: StructureDefinition.differential.element[10].pattern.ofType(CodeableConcept): Reference to draft CodeSystem http://terminology.hl7.org/CodeSystem/endpoint-payload-type|2.0.0
+
