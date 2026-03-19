@@ -121,7 +121,7 @@ Servers that support purely browser-based apps SHALL enable [Cross-Origin Resour
 
 #### Related reading
 
-Implementers can review the [OAuth Security Topics](https://tools.ietf.org/html/draft-ietf-oauth-security-topics-16) guidance from IETF as a collection of Best Current Practices.
+Implementers can review the [OAuth Security Topics](https://tools.ietf.org/html/draft-ietf-oauth-security-topics-16) guidance from IETF as a collection of Best Current Practices. When supported by the authorization server, clients are encouraged to validate the `iss` parameter in the authorization response as defined in [IETF RFC 9207](https://tools.ietf.org/html/rfc9207) to mitigate authorization server mix-up attacks.
 
 Some resources shared with apps following this IG may be considered [Patient Sensitive](http://hl7.org/fhir/security.html#Patient); implementers should review the Core FHIR Specification's [Security Page](http://hl7.org/fhir/security.html) for additional security and privacy considerations.
 
@@ -253,6 +253,8 @@ The following parameters are included:
 
 Identifies the EHR's FHIR endpoint, which the app can use to obtain
 additional details about the EHR including its authorization URL.
+
+Note: This `iss` parameter applies to the app launch URL, where it conveys the FHIR server base URL. In OAuth 2.0 authorization responses, an `iss` parameter may also be present as defined by [IETF RFC 9207](https://tools.ietf.org/html/rfc9207), where it represents the authorization server issuer. These uses are distinct and occur at different stages of the SMART App Launch flow.
 
       </td>
     </tr>
@@ -523,6 +525,15 @@ risk of leaks.
       <td><span class="label label-success">required</span></td>
       <td>The exact value received from the client.</td>
     </tr>
+    <tr>
+      <td><code>iss</code></td>
+      <td><span class="label label-info">optional</span></td>
+      <td>
+
+The authorization server issuer identifier as defined by [IETF RFC 9207](https://tools.ietf.org/html/rfc9207). If present, this value identifies the authorization server and SHALL NOT be used to determine the FHIR server base URL (which is established during the app launch sequence).
+
+      </td>
+    </tr>
   </tbody>
 </table>
 
@@ -530,6 +541,14 @@ The app SHALL validate the value of the state parameter upon return to the
 redirect URL and SHALL ensure that the state value is securely tied to the
 user’s current session (e.g., by relating the state value to a session
 identifier issued by the app).
+
+If an `iss` parameter is present in the authorization response, it SHALL be
+interpreted as the authorization server issuer identifier as defined by
+[IETF RFC 9207](https://tools.ietf.org/html/rfc9207). Clients MAY validate
+this value against the expected authorization server issuer, for example as
+discovered from the SMART `.well-known/smart-configuration`. Clients SHALL NOT
+use this parameter to determine the FHIR server base URL, which is established
+during the app launch sequence.
 
 ###### *For example*
 
