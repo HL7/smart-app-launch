@@ -211,7 +211,7 @@ the following properties:
     <tr>
       <td><code>token_type</code></td>
       <td><span class="label label-success">required</span></td>
-      <td>Fixed value: <code>bearer</code>.</td>
+      <td>Fixed value: <code>Bearer</code>.</td>
     </tr>
     <tr>
       <td><code>expires_in</code></td>

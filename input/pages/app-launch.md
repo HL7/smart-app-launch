@@ -859,7 +859,7 @@ The response is a JSON object containing a new access token, with the following 
     <tr>
       <td><code>token_type</code></td>
       <td><span class="label label-success">required</span></td>
-      <td>Fixed value: bearer</td>
+      <td>Fixed value: Bearer</td>
     </tr>
     <tr>
       <td><code>expires_in</code></td>
