@@ -194,6 +194,11 @@ tools and client libraries, see [https://jwt.io](https://jwt.io).
       <td><span class="label label-success">required</span></td>
       <td>A nonce string value that uniquely identifies this authentication JWT.</td>
     </tr>
+    <tr>
+      <td><code>organization</code></td>
+      <td><span class="label label-info">optional</span></td>
+      <td>Identifier for the organization on whose behalf this request is made, for clients that act on behalf of multiple organizations. See <a href="#organization-identity">Organization Identity</a>.</td>
+    </tr>
   </tbody>
 </table>
 
@@ -253,6 +258,29 @@ the [OAuth 2.0 specification](https://tools.ietf.org/html/rfc6749#section-5.2).
 * The FHIR authorization server SHOULD cache a client's JWK Set according to the client's cache-control header; it doesn't need to retrieve it anew every time. 
 
 Processing of the access token request proceeds according to either the [SMART App Launch](app-launch.html#step-5-access-token) or the [SMART Backend Services](backend-services.html#step-3-access-token) specification.
+
+### Organization Identity
+
+A `client_id` identifies a piece of software, not the organization a request serves. Some clients act on behalf of different organizations from request to request — for example, a registry platform serving a public health agency for one registry and a payer for another, or a backend integration service connecting on behalf of many customer organizations under one registration.
+
+Such a client MAY include an `organization` claim in its authentication JWT to state which organization a request serves. The value is one string naming the organization by identifier, in either of two forms:
+
+* a FHIR identifier token, e.g., `http://hl7.org/fhir/sid/us-npi|1093817465`
+* an absolute URI, e.g., `https://directory.example-network.org/org/example-org`. OIDs are common organization identifiers; for consistency, express an OID in its URI form (e.g., `urn:oid:2.16.840.1.113883.3.464`) rather than as a token.
+
+A server MAY, per its own policy, restrict which `organization` values a client can use. When it does, the permitted set is established when the client registers, or later through ongoing maintenance of that registration. This can be entirely out-of-band; no API or interchange format is specified.
+
+A server that receives an `organization` claim:
+
+* MAY apply any policy it chooses to the stated value — matching it against a permitted set, consulting its own knowledge of the client, or anything else — rejecting with the OAuth `invalid_request` error when the request fails that policy
+* SHALL record the organization alongside the issued token, so audit logs can answer "on whose behalf"
+* MAY apply any appropriate filtering logic on the access granted
+* SHOULD expose the value in token introspection, so resource servers can see it
+* SHALL NOT expose additional information to a client on the basis of an `organization` claim (there is no built-in guarantee that the value is correct; it is opt-in from the client and verified only out of band)
+
+Anything shown to a user or administrator about the organization uses the display name the server holds for that identifier — never a string supplied by the client at runtime.
+
+This specification intentionally defines no authorization-endpoint parameter for organization identity: authorization requests travel through the browser, where a crafted link controls parameter values, so a parameter whose purpose is to change what the user is told during authorization would invite consent spoofing. In the authorization code flow, a client states its `organization` at the code-for-token exchange on the back channel.
 
 ### Worked example
 
