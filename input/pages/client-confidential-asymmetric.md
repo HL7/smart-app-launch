@@ -278,7 +278,7 @@ A server that receives an `organization` claim:
 * SHOULD expose the value in token introspection, so resource servers can see it
 * SHALL NOT expose additional information to a client on the basis of an `organization` claim (there is no built-in guarantee that the value is correct; it is opt-in from the client and verified only out of band)
 
-Anything shown to a user or administrator about the organization uses the display name the server holds for that identifier — never a string supplied by the client at runtime.
+Anything shown to an end user about the organization uses the display name the server holds for that identifier, not a string supplied by the client at runtime. Administrative and audit views may usefully show the raw claim value.
 
 This specification intentionally defines no authorization-endpoint parameter for organization identity: authorization requests travel through the browser, where a crafted link controls parameter values, so a parameter whose purpose is to change what the user is told during authorization would invite consent spoofing. In the authorization code flow, a client states its `organization` at the code-for-token exchange on the back channel.
 
