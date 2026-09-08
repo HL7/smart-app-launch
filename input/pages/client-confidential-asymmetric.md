@@ -312,7 +312,8 @@ At runtime, when the bilirubin monitoring service needs to authenticate to the t
   "sub": "https://bili-monitor.example.com",
   "aud": "https://authorize.smarthealthit.org/token",
   "exp": 1422568860,
-  "jti": "random-non-reusable-jwt-id-123"
+  "jti": "random-non-reusable-jwt-id-123",
+  "organization": "https://directory.example-network.org/org/example-org"
 }
 ```
 
