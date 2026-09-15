@@ -4,6 +4,9 @@
   "extension": [{
     "url": "http://hl7.org/fhir/StructureDefinition/structuredefinition-wg",
     "valueCode": "fhir"
+  }, {
+    "url": "http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status",
+    "valueCode": "trial-use"
   }],
   "url": "http://hl7.org/fhir/smart-app-launch/ImplementationGuide/hl7.fhir.uv.smart-app-launch",
   "version": "2.2.0",
@@ -45,8 +48,8 @@
   ],
   "dependsOn": [{
     "uri": "http://hl7.org/fhir/extensions/ImplementationGuide/hl7.fhir.uv.extensions",
-    "packageId": "hl7.fhir.uv.extensions",
-    "version": "5.1.0-snapshot1"
+    "packageId": "hl7.fhir.uv.extensions.r4",
+    "version": "5.3.0"
   }, {
     "uri": "http://terminology.hl7.org/ImplementationGuide/hl7.terminology",
     "packageId": "hl7.terminology",

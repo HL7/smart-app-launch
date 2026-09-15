@@ -83,7 +83,7 @@ For consistency in implementation, FHIR authorization servers SHALL support regi
   it allows a client to rotate its own keys by updating the hosted content at the
   JWK Set URL, assures that the public key used by the FHIR authorization server is current, and avoids the
   need for the FHIR authorization server to maintain and protect the JWK Set.
-  The client SHOULD return a `Cache-Control` header in its JWKS response (see [JWK Set Retrieval and Caching](#jwks-caching)).
+  The client SHOULD return a `Cache-Control` header in its JWKS response (see [Signature Verification](#jwks-caching)).
 
   2. JWK Set directly (strongly discouraged). If a client cannot host the JWK
   Set at a TLS-protected URL, it MAY supply the JWK Set directly to the FHIR authorization server at
@@ -270,19 +270,13 @@ A FHIR authorization server SHALL apply these directives as defined in
 * If that attempt fails, the server MAY continue to use the most recently retrieved JWK Set
   for as long as `stale-if-error` permits. If `stale-if-error` is absent or shorter than one
   day, the server MAY instead apply its own stale-on-error interval. Stale use never extends
-  freshness, and this allowance does not apply to responses with `no-store`, `no-cache`, or
-  `must-revalidate`.
+  freshness.
 * A successfully retrieved JWK Set supersedes earlier ones: a key removed from the current
   set SHALL NOT be accepted because it appeared in an earlier set.
 
-| JWKS `Cache-Control` | Meaning |
-| --- | --- |
-| `max-age=3600, stale-if-error=86400` | Fresh for one hour, then recheck; on retrieval failure, use the last known good JWK Set for up to one day of staleness |
-| `max-age=86400` | Reuse for a full day without checking for key changes, even while the JWKS URL is healthy |
-{:.grid}
-
-Note that `no-cache` and `must-revalidate` prohibit stale reuse under RFC9111, so they defeat
-`stale-if-error`.
+For example, `Cache-Control: max-age=3600, stale-if-error=86400` means: fresh for one hour,
+then recheck; on retrieval failure, use the last known good JWK Set for up to one day of
+staleness.
 
 Processing of the access token request proceeds according to either the [SMART App Launch](app-launch.html#step-5-access-token) or the [SMART Backend Services](backend-services.html#step-3-access-token) specification.
 
