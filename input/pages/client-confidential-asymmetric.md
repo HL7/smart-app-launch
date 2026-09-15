@@ -256,7 +256,7 @@ the [OAuth 2.0 specification](https://tools.ietf.org/html/rfc6749#section-5.2).
 
 The client's JWKS response SHOULD include a `Cache-Control` header with `max-age`, indicating
 how long the JWK Set may be treated as fresh before the server checks again, and with
-`stale-if-error` of at least 86400 seconds (one day), indicating how long the last successfully
+`stale-if-error` of 86400 seconds (one day), indicating how long the last successfully
 retrieved JWK Set may continue to be used if a refresh attempt fails.
 
 A FHIR authorization server SHALL apply these directives as defined in
