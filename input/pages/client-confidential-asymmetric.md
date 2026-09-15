@@ -83,14 +83,7 @@ For consistency in implementation, FHIR authorization servers SHALL support regi
   it allows a client to rotate its own keys by updating the hosted content at the
   JWK Set URL, assures that the public key used by the FHIR authorization server is current, and avoids the
   need for the FHIR authorization server to maintain and protect the JWK Set.
-  The client SHOULD return a `Cache-Control` header in its JWKS response, using `max-age` to
-  indicate how long the FHIR authorization server may treat the JWK Set as fresh before checking
-  again, and `stale-if-error` to indicate how long the server may continue to use the most recently
-  retrieved JWK Set if an attempt to refresh it fails. These address different risks and need not
-  be similar: a short `max-age` (even `0`, with an `ETag` to make revalidation inexpensive) can
-  coexist with a long `stale-if-error`. Clients are encouraged to provide a `stale-if-error` value
-  of at least 86400 seconds (one day) unless their security requirements call for a shorter
-  outage-tolerance interval. See [JWK Set Retrieval and Caching](#jwks-caching).
+  The client SHOULD return a `Cache-Control` header in its JWKS response (see [JWK Set Retrieval and Caching](#jwks-caching)).
 
   2. JWK Set directly (strongly discouraged). If a client cannot host the JWK
   Set at a TLS-protected URL, it MAY supply the JWK Set directly to the FHIR authorization server at
@@ -261,39 +254,35 @@ the [OAuth 2.0 specification](https://tools.ietf.org/html/rfc6749#section-5.2).
 
 <a id="jwks-caching"></a>
 
-When retrieving a JWK Set from a JWKS URL, a FHIR authorization server SHALL apply the
-`max-age` and `stale-if-error` directives of the response's `Cache-Control` header, as
-defined in [RFC9111](https://www.rfc-editor.org/rfc/rfc9111.html) and
-[RFC5861](https://www.rfc-editor.org/rfc/rfc5861.html), as follows:
+The client's JWKS response SHOULD include a `Cache-Control` header with `max-age`, indicating
+how long the JWK Set may be treated as fresh before the server checks again, and with
+`stale-if-error` of at least 86400 seconds (one day), indicating how long the last successfully
+retrieved JWK Set may continue to be used if a refresh attempt fails.
 
-* While a retrieved JWK Set is fresh (e.g., within `max-age`), the server MAY reuse it without
-  contacting the JWKS URL. The server SHALL NOT treat a JWK Set as fresh for longer than the
-  response indicates, but MAY behave more conservatively (e.g., refresh more often).
+A FHIR authorization server SHALL apply these directives as defined in
+[RFC9111](https://www.rfc-editor.org/rfc/rfc9111.html) and
+[RFC5861](https://www.rfc-editor.org/rfc/rfc5861.html):
+
+* The server SHALL NOT treat a JWK Set as fresh for longer than `max-age` indicates, but MAY
+  refresh more often.
 * When the cached JWK Set is stale, the server SHALL attempt to retrieve or revalidate it
-  (e.g., a conditional request using the `ETag`) and SHALL NOT use the stale JWK Set unless
-  such an attempt has failed.
-* If that attempt fails, the server MAY use the most recently successfully retrieved JWK Set
-  for as long as `stale-if-error` permits. If `stale-if-error` is absent or shorter than the
-  server's documented local stale-on-error policy, the server MAY apply its local policy
-  instead. This is a SMART-defined allowance layered on HTTP caching semantics, not ordinary
-  RFC5861 behavior, and it does not extend freshness: the server still attempts retrieval or
-  revalidation when the JWK Set becomes stale, and applies the local policy only after that
-  attempt fails. It does not apply to responses carrying `no-store`, `no-cache`, or
+  (e.g., a conditional request using the `ETag`) before using it.
+* If that attempt fails, the server MAY continue to use the most recently retrieved JWK Set
+  for as long as `stale-if-error` permits. If `stale-if-error` is absent or shorter than one
+  day, the server MAY instead apply its own stale-on-error interval. Stale use never extends
+  freshness, and this allowance does not apply to responses with `no-store`, `no-cache`, or
   `must-revalidate`.
-* A successfully retrieved valid JWK Set supersedes previously retrieved sets: a key removed
-  from the current JWK Set SHALL NOT be accepted because it appeared in an earlier set.
+* A successfully retrieved JWK Set supersedes earlier ones: a key removed from the current
+  set SHALL NOT be accepted because it appeared in an earlier set.
 
 | JWKS `Cache-Control` | Meaning |
 | --- | --- |
-| `max-age=3600, stale-if-error=86400` | Fresh for one hour, then recheck; on retrieval failure, use last known good for up to one day of staleness |
-| `max-age=0, stale-if-error=86400` | Revalidate before each reuse (cheap with an `ETag`); on retrieval failure, use last known good for up to one day of staleness |
+| `max-age=3600, stale-if-error=86400` | Fresh for one hour, then recheck; on retrieval failure, use the last known good JWK Set for up to one day of staleness |
 | `max-age=86400` | Reuse for a full day without checking for key changes, even while the JWKS URL is healthy |
 {:.grid}
 
-The second policy shows that prompt key-change detection and outage tolerance are independent.
-The third does *not* mean "check normally, but tolerate a day of staleness when offline"; that
-is expressed with `stale-if-error`. Note that `no-cache` and `must-revalidate` prohibit stale
-reuse under RFC9111, so `max-age=0` is the right way to express "revalidate when possible."
+Note that `no-cache` and `must-revalidate` prohibit stale reuse under RFC9111, so they defeat
+`stale-if-error`.
 
 Processing of the access token request proceeds according to either the [SMART App Launch](app-launch.html#step-5-access-token) or the [SMART Backend Services](backend-services.html#step-3-access-token) specification.
 
