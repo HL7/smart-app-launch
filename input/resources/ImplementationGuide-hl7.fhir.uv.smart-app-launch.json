@@ -52,8 +52,8 @@
     "version": "5.3.0"
   }, {
     "uri": "http://terminology.hl7.org/ImplementationGuide/hl7.terminology",
-    "packageId": "hl7.terminology",
-    "version": "5.5.0"
+    "packageId": "hl7.terminology.r4",
+    "version": "7.3.0"
   }],
   "definition": {
     "grouping": [
@@ -377,6 +377,10 @@
       {
         "code": "jira-code",
         "value": "smart"
+      },
+      {
+        "code": "pin-canonicals",
+        "value": "pin-multiples"
       },
       {
         "code": "no-narrative",
