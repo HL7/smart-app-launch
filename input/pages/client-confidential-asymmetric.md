@@ -271,8 +271,8 @@ A FHIR authorization server SHALL apply these directives as defined in
   for as long as `stale-if-error` permits. If `stale-if-error` is absent or shorter than one
   day, the server MAY instead apply its own stale-on-error interval. Stale use never extends
   freshness.
-* A successfully retrieved JWK Set supersedes earlier ones: a key removed from the current
-  set SHALL NOT be accepted because it appeared in an earlier set.
+* A successfully retrieved JWK Set supersedes earlier ones: a key absent from the current
+  set SHALL NOT be used to verify signatures, even if it appeared in an earlier set.
 
 For example, `Cache-Control: max-age=3600, stale-if-error=86400` means: fresh for one hour,
 then recheck; on retrieval failure, use the last known good JWK Set for up to one day of
