@@ -34,6 +34,8 @@ cases.
 * [RFC7521, Assertion Framework for OAuth 2.0 Client Authentication and Authorization Grants](https://tools.ietf.org/html/rfc7521)
 * [RFC7523, JSON Web Token (JWT) Profile for OAuth 2.0 Client Authentication and Authorization Grants](https://tools.ietf.org/html/rfc7523)
 * [RFC7591, OAuth 2.0 Dynamic Client Registration Protocol](https://tools.ietf.org/html/rfc7591)
+* [RFC9111, HTTP Caching](https://www.rfc-editor.org/rfc/rfc9111.html)
+* [RFC5861, HTTP Cache-Control Extensions for Stale Content](https://www.rfc-editor.org/rfc/rfc5861.html)
 
 <a id="discovery-requirements"></a>
 
@@ -80,7 +82,8 @@ For consistency in implementation, FHIR authorization servers SHALL support regi
   of this approach are that
   it allows a client to rotate its own keys by updating the hosted content at the
   JWK Set URL, assures that the public key used by the FHIR authorization server is current, and avoids the
-  need for the FHIR authorization server to maintain and protect the JWK Set. The client SHOULD return a “Cache-Control” header in its JWKS response
+  need for the FHIR authorization server to maintain and protect the JWK Set.
+  The client SHOULD return a `Cache-Control` header in its JWKS response (see [Signature Verification](#jwks-caching)).
 
   2. JWK Set directly (strongly discouraged). If a client cannot host the JWK
   Set at a TLS-protected URL, it MAY supply the JWK Set directly to the FHIR authorization server at
@@ -249,8 +252,31 @@ If an error is encountered during the authentication process, the server SHALL
 respond with an `invalid_client` error as defined by
 the [OAuth 2.0 specification](https://tools.ietf.org/html/rfc6749#section-5.2).
 
-* The FHIR authorization server SHALL NOT cache a JWKS for longer than the client's cache-control header indicates.
-* The FHIR authorization server SHOULD cache a client's JWK Set according to the client's cache-control header; it doesn't need to retrieve it anew every time. 
+<a id="jwks-caching"></a>
+
+The client's JWKS response SHOULD include a `Cache-Control` header with `max-age`, indicating
+how long the JWK Set may be treated as fresh before the server checks again, and with
+`stale-if-error` of 86400 seconds (one day), indicating how long the last successfully
+retrieved JWK Set may continue to be used if a refresh attempt fails.
+
+A FHIR authorization server SHALL apply these directives as defined in
+[RFC9111](https://www.rfc-editor.org/rfc/rfc9111.html) and
+[RFC5861](https://www.rfc-editor.org/rfc/rfc5861.html):
+
+* The server SHALL NOT treat a JWK Set as fresh for longer than `max-age` indicates, but MAY
+  refresh more often.
+* When the cached JWK Set is stale, the server SHALL attempt to retrieve or revalidate it
+  (e.g., a conditional request using the `ETag`) before using it.
+* If that attempt fails, the server MAY continue to use the most recently retrieved JWK Set
+  for as long as `stale-if-error` permits. If `stale-if-error` is absent or shorter than one
+  day, the server MAY instead apply its own stale-on-error interval. Stale use never extends
+  freshness.
+* A successfully retrieved JWK Set supersedes earlier ones: a key absent from the current
+  set SHALL NOT be used to verify signatures, even if it appeared in an earlier set.
+
+For example, `Cache-Control: max-age=3600, stale-if-error=86400` means: fresh for one hour,
+then recheck; on retrieval failure, use the last known good JWK Set for up to one day of
+staleness.
 
 Processing of the access token request proceeds according to either the [SMART App Launch](app-launch.html#step-5-access-token) or the [SMART Backend Services](backend-services.html#step-3-access-token) specification.
 

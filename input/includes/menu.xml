@@ -3,7 +3,7 @@
     <a href="index.html">Overview</a>
   </li>
   <li class="dropdown">
-    <a data-toggle="dropdown" href="#" class="dropdown-toggle">Apps
+    <a data-toggle="dropdown" href="apps.html" class="dropdown-toggle">Apps
       <b class="caret"></b>
     </a>
     <ul class="dropdown-menu">
@@ -43,7 +43,7 @@
     </ul>
   </li>
   <li class="dropdown">
-    <a data-toggle="dropdown" href="#" class="dropdown-toggle">Backend Services
+    <a data-toggle="dropdown" href="backend-services.html" class="dropdown-toggle">Backend Services
       <b class="caret"></b>
     </a>
     <ul class="dropdown-menu">
@@ -56,7 +56,7 @@
     </ul>
   </li>
   <li class="dropdown">
-    <a data-toggle="dropdown" href="#" class="dropdown-toggle">Authentication
+    <a data-toggle="dropdown" href="client-authentication.html" class="dropdown-toggle">Authentication
       <b class="caret"></b>
     </a>
     <ul class="dropdown-menu">
@@ -72,7 +72,7 @@
     <a href="conformance.html">Conformance</a>
   </li>
  <li class="dropdown">
-    <a data-toggle="dropdown" href="#" class="dropdown-toggle">Brands
+    <a data-toggle="dropdown" href="brands.html" class="dropdown-toggle">Brands
     <span class="badge" style="background: none; border: 1px solid white; font-size: .75em; vertical-align: middle; margin-left: 5px;">New</span>
       <b class="caret"></b>
     </a>
@@ -85,7 +85,7 @@
       </li>
     </ul>
   </li><li class="dropdown">
-    <a data-toggle="dropdown" href="#" class="dropdown-toggle">See also
+    <a data-toggle="dropdown" href="references.html" class="dropdown-toggle">See also
       <b class="caret"></b>
     </a>
     <ul class="dropdown-menu">
